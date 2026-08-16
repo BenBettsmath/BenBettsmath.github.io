@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Symmetric and alternating groups</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Symmetric and alternating groups</span></div>
+<div class="part-nav"><a href="groups-1.html">&larr; Basic toolkit</a><a href="groups.html">Group Theory contents</a><a href="groups-3.html">Free groups &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Symmetric and alternating groups</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Symmetric and alternating groups.</strong> <span class="cite">(D&amp;F &sect;3.5)</span>
+  $S_n$ is the permutations of $\{1, \ldots, n\}$, with $|S_n| = n!$. Every permutation factors into disjoint cycles, uniquely up to ordering and starting point within each cycle. <em>Cycle notation absorbs all of $S_n$ without redundancy.</em> The sign $\mathrm{sgn}\colon S_n \to \{\pm 1\}$ is the unique surjection to a group of order $2$, and $A_n := \ker(\mathrm{sgn})$ has index $2$, so $A_n \trianglelefteq S_n$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> In $S_5$, the permutation $(1\,2\,3)(4\,5)$ has order $\mathrm{lcm}(3, 2) = 6$ and sign $(-1)^{(3-1) + (2-1)} = (-1)^3 = -1$, so it lies in $S_5 \setminus A_5$. <em>Sign is a bit count, but distributed: each cycle of length $k$ contributes $(-1)^{k-1}$.</em><br>
+  <span class="thm-label">Non-example.</span> $(1\,2\,3)$ and $(1\,3\,2)$ aren't equal, yet generate the same cyclic subgroup of order $3$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Cycle type equals conjugacy class.</strong> <span class="cite">(D&amp;F &sect;4.3)</span>
+  Two elements of $S_n$ are conjugate iff they share a cycle type (same multiset of cycle lengths). <em>Conjugacy = relabeling. Conjugating $\sigma$ by $\tau$ does not move the cycle structure, just relabels which points each cycle moves.</em> Conjugating $\sigma$ by $\tau$ relabels: $\tau\sigma\tau^{-1}$ keeps the cycle structure but replaces each entry $i$ by $\tau(i)$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Computation.</span> In $S_5$, conjugacy classes match partitions of $5$: $(5)$, $(4,1)$, $(3,2)$, $(3,1,1)$, $(2,2,1)$, $(2,1,1,1)$, $(1^5)$. Sizes $24, 30, 20, 20, 15, 10, 1$ sum to $120 = 5!$. In $A_5$ the picture changes: $5$-cycles split into two classes of size $12$ each (odd stabilizer prevents reunion), the $3$-cycles stay one class of size $20$, the $(2,2,1)$ (double transpositions) stay at $15$, the identity at $1$. Sizes $1 + 15 + 20 + 12 + 12 = 60$. <em>Qual loves this: class sizes determine which unions can form normal subgroups.</em>
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> $A_n$ is simple for $n \geq 5$. <span class="cite">(D&amp;F &sect;4.6, Thm. 6)</span>
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Note.</span> <strong>Why $A_5$ is simple.</strong>
+  A normal subgroup is a union of conjugacy classes containing the identity. From sizes $\{1, 15, 20, 12, 12\}$, the only sums including $1$ that divide $60$ are $1$ and $60$. <em>No subset of conjugacy classes has the right order for a proper normal subgroup.</em> So $A_5$ has no nontrivial proper normal subgroup. $A_4$ is solvable and not simple: it has $V_4 = \{1, (12)(34), (13)(24), (14)(23)\} \trianglelefteq A_4$ of order $4$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Sylow $p$-subgroups of $S_n$ (when $n < p^2$).</strong> <span class="cite">(D&amp;F &sect;4.5)</span>
+  By Legendre, the power of prime $p$ dividing $n!$ is $\sum_{k=1}^\infty \lfloor n/p^k \rfloor$. When $n < p^2$, this sum is just $\lfloor n/p \rfloor$ (no $p^2$ terms). <em>The Sylow $p$-subgroup is simply the direct product of $\lfloor n/p \rfloor$ disjoint $p$-cycles on $\lfloor n/p \rfloor$ blocks of size $p$.</em> Disjoint cycles commute, so the subgroup is elementary abelian $(\mathbb{Z}/p)^{\lfloor n/p\rfloor}$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Computation.</span> Sylow $7$-subgroup of $S_{28}$. The multiples of $7$ in $\{1,\dots,28\}$ are $7, 14, 21, 28$, four of them. Since $28 < 49$ (no $7^2$ in the count), we get exactly $7^4 \mid 28!$. A Sylow $7$-subgroup is generated by four disjoint $7$-cycles on the blocks $\{1,\dots,7\}, \{8,\dots,14\}, \{15,\dots,21\}, \{22,\dots,28\}$. Order $7^4 = 2401$, isomorphic to $(\mathbb{Z}/7)^4$. <em>Quals love this: four independent cycles, so fully commutative.</em>
+</div>
+
+<div class="part-nav"><a href="groups-1.html">&larr; Basic toolkit</a><a href="groups.html">Group Theory contents</a><a href="groups-3.html">Free groups &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script s

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Basic toolkit</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Basic toolkit</span></div>
+<div class="part-nav"><span class="disabled">&larr; previous</span><a href="groups.html">Group Theory contents</a><a href="groups-2.html">Symmetric and alternating groups &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Basic toolkit</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Normal subgroup.</strong> <span class="cite">(D&amp;F &sect;3.1)</span>
+  $H \trianglelefteq G$ iff $gHg^{-1} = H$ for every $g \in G$. This is exactly the condition that makes the coset space $G/H$ a group.
+  <em>Normal does not mean elements commute. It means conjugation shuffles $H$ into itself, possibly scrambling it internally.</em>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> Every kernel is normal, and every normal subgroup is a kernel, namely of the quotient map $G \to G/H$. So "normal subgroup" and "kernel of some homomorphism" are the same class of objects seen from two angles. <span class="cite">(D&amp;F &sect;3.1)</span>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> $A_n \trianglelefteq S_n$ (kernel of the sign map), and $Z(G) \trianglelefteq G$ always.<br>
+  <span class="thm-label">Non-example.</span> $\langle (1\,2) \rangle$ is <em>not</em> normal in $S_3$. Conjugating by $(1\,2\,3)$ turns $(1\,2)$ into $(2\,3)$, which escapes the subgroup. Conjugation relabels the points a transposition moves, so a single transposition's cyclic subgroup is never normal in $S_n$ for $n \geq 3$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Normality is not transitive.</strong> In $D_8$ take a reflection $s$. Then $\langle s \rangle \trianglelefteq \langle s, r^2 \rangle \trianglelefteq D_8$, yet $\langle s \rangle$ is not normal in $D_8$ since $rsr^{-1} = sr^{-2} \notin \langle s \rangle$. Each step has index 2, and index 2 forces normality, but the composite fails. Quals love this. <span class="cite">(D&amp;F &sect;3.1)</span>
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>The four isomorphism theorems.</strong> <span class="cite">(D&amp;F &sect;3.3)</span>
+  <ol>
+    <li><strong>First:</strong> $G/\ker\phi \cong \mathrm{im}\,\phi$ for any homomorphism $\phi$. The workhorse. Almost every "identify this quotient" problem is a hunt for the right $\phi$.</li>
+    <li><strong>Second (diamond):</strong> $H/(H \cap N) \cong HN/N$ when $N \trianglelefteq G$ and $H \leq G$. Draw the diamond of subgroups, the two parallel sides give isomorphic quotients.</li>
+    <li><strong>Third:</strong> $(G/N)/(H/N) \cong G/H$ when $N \trianglelefteq H \trianglelefteq G$. Quotients of quotients cancel like fractions.</li>
+    <li><strong>Fourth (lattice):</strong> Subgroups of $G/N$ correspond bijectively with subgroups of $G$ containing $N$, preserving containment, normality, and index. The quotient's subgroup lattice is a floor of the original lattice.</li>
+  </ol>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Cheap normality certificates.</strong> <span class="cite">(D&amp;F &sect;3.2, 4.2)</span>
+  <ul>
+    <li>$[G:H] = 2 \Rightarrow H \trianglelefteq G$. The cheapest proof of normality in the book.</li>
+    <li>More generally, if $[G:H] = p$ is the <em>smallest</em> prime dividing $|G|$, then $H \trianglelefteq G$.</li>
+    <li>$Z(G)$ and $[G,G]$ are always normal. So is any subgroup of $Z(G)$.</li>
+    <li>$H, K \trianglelefteq G \Rightarrow H \cap K \trianglelefteq G$ and $HK \trianglelefteq G$.</li>
+  </ul>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Fun fact.</span> <strong>Counting with products.</strong> <span class="cite">(D&amp;F &sect;3.2)</span>
+  For finite subgroups, $|HK| = \dfrac{|H|\,|K|}{|H \cap K|}$ whether or not $HK$ is a subgroup. And $HK$ <em>is</em> a subgroup iff $HK = KH$, which holds for free when either factor is normal. The counting formula is the engine behind many Sylow arguments later.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Commutator subgroup.</strong> <span class="cite">(D&amp;F &sect;5.4)</span>
+  $[G,G]$ is generated by the commutators $[x,y] = xyx^{-1}y^{-1}$. It measures how far $G$ is from abelian, and it is the <em>smallest</em> normal subgroup with abelian quotient. So $G/[G,G]$, the abelianization, is the largest abelian shadow of $G$. Any homomorphism from $G$ to an abelian group factors through it.
+</div>
+
+<div class="part-nav"><span class="disabled">&larr; previous</span><a href="groups.html">Group Theory contents</a><a href="groups-2.html">Symmetric and alternating groups &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

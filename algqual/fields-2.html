@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 5. Field Theory &middot; Splitting fields, normality, separability</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Splitting fields, normality, separability</span></div>
+<div class="part-nav"><a href="fields-1.html">&larr; Field extensions and degrees</a><a href="fields.html">Field Theory contents</a><a href="fields-3.html">Finite fields &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Splitting fields, normality, separability</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Splitting field.</strong> <span class="cite">(D&amp;F &sect;13.4)</span>
+  The <strong>splitting field</strong> of $f \in F[x]$ over $F$ is the smallest extension of $F$ in which $f$ splits completely into linear factors. <em>Splitting fields exist and are unique up to isomorphism, so this is the canonical home for a polynomial's roots.</em> Construction: adjoin roots one at a time; no field is smaller. Uniqueness: any two splitting fields are isomorphic over $F$ by a deep recursion on the number of irreducible factors.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> Splitting field of $x^2 - 2$ over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt 2)$, degree $2$. Splitting field of $x^3 - 2$ over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt[3]{2}, \zeta_3)$, degree $6$ (must adjoin both a real cube root and a primitive third root of unity).<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Q}(\sqrt[3]{2})$ is <em>not</em> the splitting field of $x^3 - 2$. The other two roots $\omega \sqrt[3]{2}, \omega^2 \sqrt[3]{2}$ where $\omega = e^{2\pi i/3}$ lie outside $\mathbb{R}$, so they are not in $\mathbb{Q}(\sqrt[3]{2}) \subset \mathbb{R}$. This makes $\mathbb{Q}(\sqrt[3]{2})/\mathbb{Q}$ not normal.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Splitting field of $x^4 + 4$.</strong> Sophie Germain identity: $x^4 + 4 = (x^2 - 2x + 2)(x^2 + 2x + 2)$. Roots of $x^2 - 2x + 2 = 0$: discriminant $4 - 8 = -4$, so $x = \frac{2 \pm 2i}{2} = 1 \pm i$. Roots of $x^2 + 2x + 2 = 0$: similarly $x = -1 \pm i$. All four roots live in $\mathbb{Q}(i)$, so the splitting field is $\mathbb{Q}(i)$ of degree $2$ over $\mathbb{Q}$.
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Normal extension.</strong> <span class="cite">(D&amp;F &sect;13.4)</span>
+  $E/F$ is <strong>normal</strong> if $E$ is the splitting field of some family of polynomials over $F$. <em>Equivalently, every irreducible $f \in F[x]$ with one root in $E$ has all roots in $E$.</em> Normality is the rigidity condition that forces automorphisms to permute roots faithfully. Without it, the extension escapes our control.
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Separability.</strong> <span class="cite">(D&amp;F &sect;13.5)</span>
+  $f \in F[x]$ is <strong>separable</strong> if it has no repeated roots (in an algebraic closure). <em>Check: $\gcd(f, f') = 1$, so the derivative is coprime to $f$.</em> Element: $\alpha$ is separable over $F$ if its minimal polynomial is separable. Extension: $E/F$ is separable if every element is. Field: $F$ is <strong>perfect</strong> if every irreducible in $F[x]$ is separable. All of characteristic $0$ is perfect. Finite fields are perfect (Frobenius is surjective).
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> In characteristic $0$: if $f$ is irreducible and $f' = 0$, then $\deg f' < \deg f$ and $f' \neq 0$, contradiction. So all irreducibles are separable. Finite fields $\mathbb{F}_q$: Frobenius $x \mapsto x^q$ is a bijection, so $\mathbb{F}_q$ is perfect.<br>
+  <span class="thm-label">Non-example (inseparable!).</span> Over $F = \mathbb{F}_p(t)$, the polynomial $x^p - t$ is irreducible by Eisenstein at $t$. But $(x^p - t)' = 0$ in characteristic $p$, so $x^p - t = (x - \sqrt[p]{t})^p$ has a single root of multiplicity $p$. Hence the extension $\mathbb{F}_p(t, \sqrt[p]{t})/\mathbb{F}_p(t)$ is not separable, and $\mathbb{F}_p(t)$ is not perfect.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop (Frobenius).</span> <span class="cite">(D&amp;F &sect;13.5, Prop. 35)</span>
+  In characteristic $p$, the map $\varphi(a) = a^p$ is a ring homomorphism (the Frobenius endomorphism). Since $\ker \varphi = \{a : a^p = 0\}$, in an integral domain $\ker \varphi = 0$, so Frobenius is injective. On a finite field $\mathbb{F}_{p^n}$, Frobenius is surjective, hence bijective: an automorphism. This makes every finite field perfect.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Normal + Separable = Galois.</strong> A finite extension $E/F$ is Galois iff it is normal and separable. Normality traps the automorphisms and forces them to act as root permutations. Separability ensures that there are no repeated roots to worry about. Together, they give $|\mathrm{Aut}(E/F)| = [E:F]$, the full automorphism group.
+</div>
+
+<div class="part-nav"><a href="fields-1.html">&larr; Field extensions and degrees</a><a href="fields.html">Field Theory contents</a><a href="fields-3.html">Finite fields &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

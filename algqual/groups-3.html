@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Free groups</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Free groups</span></div>
+<div class="part-nav"><a href="groups-2.html">&larr; Symmetric and alternating groups</a><a href="groups.html">Group Theory contents</a><a href="groups-4.html">Abelian groups and the structure theorem &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Free groups</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Free group.</strong> <span class="cite">(D&amp;F &sect;6.3)</span>
+  The free group $F_n$ on $n$ generators has a universal property: any $f\colon \{x_1, \ldots, x_n\} \to G$ to a group $G$ extends to a unique homomorphism $F_n \to G$. <em>No relations except group axioms. Every group is a quotient of some free group.</em> The elements of $F_n$ are reduced words in the letters $x_i^{\pm 1}$ with no $x_i x_i^{-1}$ adjacencies.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> $F_1 \cong \mathbb{Z}$: a single generator with no relations gives an infinite cyclic group. $F_2$ is countable (countable alphabet, finite words), yet it has every countable group as a quotient. <em>Small generating set, but explosive quotient richness.</em><br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}/2\mathbb{Z}$ isn't free: all free groups are torsion-free, but $\mathbb{Z}/2$ has torsion. No nontrivial finite group is free.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Schreier).</span> <span class="cite">(D&amp;F &sect;6.3, Thm. 19)</span>
+  Every subgroup of a free group is free.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Schreier index formula.</strong> A subgroup of index $k$ in $F_n$ is free of rank $k(n-1) + 1$. For $n = k = 2$: an index-$2$ subgroup of $F_2$ has rank $2(2-1) + 1 = 3$, so $F_3 \hookrightarrow F_2$. <em>A finite-index subgroup of a free group can be larger (more generators) than the whole group.</em> <span class="cite">(D&amp;F &sect;6.3)</span>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Computation.</span> Explicit $F_3 \subseteq F_2$: Set $F_2 = \langle a, b \rangle$ and let $H = \ker(F_2 \to \mathbb{Z}/2 : a \mapsto 1, b \mapsto 0)$. So $H$ is the subgroup of words sending $a$ to an odd number of times and $b$ any number of times. Index $[F_2 : H] = 2$, with coset representatives $\{1, a\}$. Schreier rewriting gives three independent free generators of $H$: $b$, $a^2$, $aba^{-1}$. <em>We've built $F_3$ inside $F_2$, proving it abstractly exists without freeness up front.</em>
+</div>
+
+<div class="part-nav"><a href="groups-2.html">&larr; Symmetric and alternating groups</a><a href="groups.html">Group Theory contents</a><a href="groups-4.html">Abelian groups and the structure theorem &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

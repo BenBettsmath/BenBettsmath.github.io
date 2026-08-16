@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+/* ── UNM color tokens ─────────────────────────────────────── */
+:root {
+  --cherry:     #BA0C2F;
+  --cherry-dk:  #8C0A23;
+  --turquoise:  #007A86;
+  --turq-lt:    #009DAB;
+  --silver:     #A7A9AC;
+  --silver-lt:  #E8E9EA;
+  --bg:         #FAF8F5;
+  --text:       #1E1E1E;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+body {
+  font-family: 'STIX Two Text', Georgia, serif;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+}
+
+/* ── Navigation ───────────────────────────────────────────── */
+.topnav {
+  background-color: var(--cherry);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+}
+
+.topnav a:hover {
+  background-color: var(--cherry-dk);
+  text-decoration: none;
+}
+
+.active {
+  background-color: var(--turquoise) !important;
+  color: #fff !important;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/* ── Dropdowns (kept for future use) ─────────────────────── */
+.dropdown { float: left; overflow: hidden; }
+.dropdown .dropbtn {
+  font-size: 16px; border: none; outline: none;
+  color: white; padding: 14px 20px;
+  background-color: inherit; font-family: inherit; margin: 0; cursor: pointer;
+}
+.dropdown-content {
+  display: none; position: absolute;
+  background-color: var(--cherry-dk); min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1;
+}
+.dropdown-content a {
+  float: none; color: white; padding: 12px 16px;
+  text-decoration: none; display: block; text-align: left;
+}
+.topnav a:hover, .dropdown:hover .dropbtn,
+.dropdown-content a:hover { background-color: var(--cherry-dk); }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* ── Layout ───────────────────────────────────────────────── */
+.page-content {
+  margin-top: 60px;
+  padding: 36px 44px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Home intro ───────────────────────────────────────────── */
+.intro-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 24px;
+}
+
+.intro-photo img {
+  width: 210px;
+  height: auto;
+  border-radius: 8px;
+  border: 3px solid var(--cherry);
+  box-shadow: 4px 4px 16px rgba(186,12,47,0.18);
+}
+
+.intro-text { flex: 1; }
+
+.intro-text h1 {
+  margin-top: 0;
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 800;
+  font-size: 2.1rem;
+  color: var(--cherry);
+  letter-spacing: -0.01em;
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+h2 {
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 800;
+  color: var(--cherry);
+  border-bottom: 2px solid var(--cherry);
+  padding-bottom: 4px;
+  margin-top: 1.8em;
+}
+
+h3 {
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 700;
+  color: var(--turquoise);
+  margin-top: 1.4em;
+}
+
+/* ── Links ────────────────────────────────────────────────── */
+a {
+  color: var(--turquoise);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--cherry);
+  text-decoration: underline;
+}
+
+/* ── Pill labels ──────────────────────────────────────────── */
+.label {
+  display: inline-block;
+  background-color: var(--turquoise);
+  color: white;
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 3px 11px;
+  font-size: 13px;
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+.label:hover {
+  background-color: var(--cherry);
+  color: white;
+  text-decoration: none;
+}
+
+/* ── Paper / talk lists ───────────────────────────────────── */
+.paper-list, .talk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.paper-list li, .talk-list li {
+  margin-bottom: 14px;
+  line-height: 1.6;
+  padding-left: 12px;
+  border-left: 3px solid var(--silver-lt);
+}
+
+.paper-list li:hover, .talk-list li:hover {
+  border-left-color: var(--cherry);
+}
+
+/* ── Teaching ─────────────────────────────────────────────── */
+.teaching-list { list-style: none; padding: 0; }
+.teaching-list li { margin-bottom: 8px; }
+
+.teaching-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.teaching-table th {
+  text-align: left;
+  padding: 9px 14px;
+  background-color: var(--cherry);
+  color: white;
+  font-family: 'STIX Two Text', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.teaching-table td {
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--silver-lt);
+}
+
+.teaching-table tbody tr:hover {
+  background-color: #fff0f3;
+}
+
+/* ── CV table ─────────────────────────────────────────────── */
+.cv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.cv-table tr { border-bottom: 1px solid var(--silver-lt); }
+
+.cv-table td {
+  padding: 8px 4px;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.cv-date {
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 20px;
+  color: #777;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer {
+  margin-top: 60px;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  border-top: 2px solid var(--silver-lt);
+  background-color: #f3f0ec;
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn { display: none; }
+  .topnav a.icon { float: right; display: block; }
+  .topnav.responsive { position: relative; }
+  .topnav.responsive a.icon { position: absolute; right: 0; top: 0; }
+  .topnav.responsive a { float: none; display: block; text-align: left; }
+  .topnav.responsive .dropdown { float: none; }
+  .topnav.responsive .dropdown-content { position: relative; }
+  .topnav.responsive .dropdown .dropbtn { display: block; width: 100%; text-align: left; }
+
+  .intro-row { flex-direction: column; }
+  .intro-photo img { width: 100%; }
+  .page-content { padding: 20px 16px; }
+}

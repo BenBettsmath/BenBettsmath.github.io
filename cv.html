@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV – Ben Betts</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="index.html">Home</a>
+  <a href="research.html">Research</a>
+  <a href="teaching.html">Teaching</a>
+  <a href="cv.html" class="active">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+
+  <h2>Education</h2>
+  <table class="cv-table">
+    <tr>
+      <td><b>University of New Mexico</b> &mdash; Ph.D. in Mathematics</td>
+      <td class="cv-date">Fall 2022 &ndash; Present</td>
+    </tr>
+    <tr>
+      <td><b>University of Washington</b> &mdash; B.S. in Mathematics</td>
+      <td class="cv-date">Fall 2019 &ndash; Spring 2021</td>
+    </tr>
+    <tr>
+      <td><b>Clark College</b> &mdash; Associate of Arts</td>
+      <td class="cv-date">Fall 2017 &ndash; Spring 2019</td>
+    </tr>
+  </table>
+
+  <h2>Research Interests</h2>
+  <ul>
+    <li>Commutative Algebra</li>
+    <li>Homological Algebra</li>
+  </ul>
+
+  <h2>Teaching Experience</h2>
+  <table class="teaching-table">
+    <thead>
+      <tr><th>Semester</th><th>Course</th><th>Role</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fall 2022</td><td>Calculus I (Math 1512)</td><td>Teaching Assistant</td></tr>
+      <tr><td>Fall 2022</td><td>Linear Algebra (Math 314)</td><td>Grader (PA)</td></tr>
+      <tr><td>Spring 2023</td><td>Calculus I (Math 1512)</td><td>Teaching Assistant</td></tr>
+      <tr><td>Fall 2023</td><td>Calculus II (Math 1522)</td><td>Teaching Assistant</td></tr>
+      <tr><td>Spring 2024</td><td>Calculus II (Math 1522)</td><td>Instructor of Record</td></tr>
+      <tr><td>Summer 2024</td><td>Calculus II (Math 1522)</td><td>Instructor of Record</td></tr>
+      <tr><td>Fall 2024</td><td>Calculus II (Math 1522)</td><td>Teaching Assistant</td></tr>
+      <tr><td>Fall 2024</td><td>Graduate Abstract Algebra I (Math 519)</td><td>Grader</td></tr>
+      <tr><td>Spring 2025</td><td>Calculus II (Math 1522)</td><td>Instructor of Record</td></tr>
+      <tr><td>Summer 2025</td><td>Algebra Qualifying Exam Prep</td><td>Instructor</td></tr>
+      <tr><td>Fall 2025</td><td>Calculus I (Math 1512)</td><td>Teaching Assistant</td></tr>
+      <tr><td>Spring 2026</td><td>Calculus III (Math 2531)</td><td>Instructor of Record</td></tr>
+      <tr><td>Summer 2026</td><td>Calculus III (Math 2531)</td><td>Instructor of Record</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Talks</h2>
+  <ul class="talk-list">
+    <li><b>Labelable Homotopy Complex-Graphs</b>, Algebra and Geometry Seminar, University of New Mexico, Spring 2026.</li>
+    <li><b>Algebraic Morse Theory</b>, Algebra and Geometry Seminar, University of New Mexico, Fall 2025.</li>
+    <li><b>Discrete Morse Theory</b>, Algebra and Geometry Seminar, University of New Mexico, Fall 2025.</li>
+    <li><b>Egyptian Domains</b>, Algebra and Geometry Seminar, University of New Mexico, Spring 2025.</li>
+  </ul>
+
+  <h2>Posters</h2>
+  <ul class="talk-list">
+    <li><b>Minimal Free Resolutions of Monomial Ideals in a Complete Intersection</b>, SLAM, Spring 2026.</li>
+  </ul>
+
+  <h2>Advanced Coursework</h2>
+  <ul>
+    <li>Commutative Algebra (Prof. J. Vassilev)</li>
+    <li>Toric Varieties (Prof. J. Vassilev)</li>
+    <li>Algebraic Topology (Prof. S. Percival)</li>
+    <li>Riemannian Geometry I &amp; II (Prof. H. Huang)</li>
+    <li>Riemannian Geometry I (Prof. D. Vassilev)</li>
+    <li>Functional Analysis I &amp; II (Prof. M. Blair)</li>
+    <li>High Dimensional Probability (Prof. A. Skripka)</li>
+  </ul>
+
+  <h2>Technical &amp; Linguistic Skills</h2>
+  <ul>
+    <li><b>Programming &amp; Math Software:</b> Python, MATLAB, Macaulay2, LaTeX</li>
+    <li><b>Languages:</b> English (Native), Spanish (Fluent)</li>
+  </ul>
+
+  <h2>Work Experience</h2>
+  <table class="cv-table">
+    <tr>
+      <td><b>Math &amp; Spanish Tutor</b>, Clark College &mdash; Vancouver, WA</td>
+      <td class="cv-date">July 2017 &ndash; July 2019</td>
+    </tr>
+    <tr>
+      <td><b>Math Tutor</b>, Mathnasium of NE Seattle &mdash; Seattle, WA</td>
+      <td class="cv-date">July 2020 &ndash; June 2021</td>
+    </tr>
+  </table>
+
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

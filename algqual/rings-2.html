@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 2. Ring Theory &middot; Local rings and power series</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Local rings and power series</span></div>
+<div class="part-nav"><a href="rings-1.html">&larr; Ideals, primes, and maximals</a><a href="rings.html">Ring Theory contents</a><a href="rings-3.html">Localization &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Local rings and power series</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Local ring.</strong> <span class="cite">(D&amp;F &sect;7.1)</span>
+  $R$ is <strong>local</strong> if it has a unique maximal ideal. <em>Equivalently, the non-units form an ideal:</em> an element is either a unit or lies in the maximal ideal, with no middle ground.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> Every field is local (maximal ideal is $(0)$). The $p$-adics $\mathbb{Z}_p$ are local with maximal ideal $p\mathbb{Z}_p$, as is the localization $\mathbb{Z}_{(p)} = \{a/b : p \nmid b\}$ with maximal ideal $p\mathbb{Z}_{(p)}$.<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}$ has one maximal ideal per prime, so it isn't local. $\mathbb{Z}[\sqrt{10}]$ isn't either: $(2, \sqrt{10})$ and $(5, \sqrt{10})$ are distinct maximal ideals.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Local rings are "monoidal".</strong> In a local ring, there's one monopoly of "bad" elements: they all live in the unique maximal ideal $\mathfrak{m}$. This makes local rings much easier to work with than global rings, where different primes can interfere. Localization is the art of forcing a ring to become local.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>$K[[x]]$ is a local PID.</strong> <span class="cite">(D&amp;F &sect;7.2, Ex. 3)</span>
+  $K[[x]]$ is the formal power series $\sum_{n \geq 0} a_n x^n$. <em>A series is a unit iff $a_0 \neq 0$:</em> invert coefficients from the constant term outward. Non-units form the ideal $(x)$, making the ring local. Any nonzero ideal has an element of minimal $x$-order $k$, so $I = (x^k)$. Hence $K[[x]]$ is a PID, in fact a discrete valuation ring.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Inverting $1 - x$ in $K[[x]]$: want $\sum a_n x^n$ with $(1-x)\sum a_n x^n = 1$. Coefficients give $a_0 = 1$, $a_n = a_{n-1}$, so $(1-x)^{-1} = 1 + x + x^2 + x^3 + \cdots$. Inverting $2 + x$ in $\mathbb{Q}[[x]]$: pull out $2$ to get $\tfrac{1}{2}(1 + x/2)^{-1} = \tfrac{1}{2}\sum (-x/2)^n$.
+</div>
+
+<div class="part-nav"><a href="rings-1.html">&larr; Ideals, primes, and maximals</a><a href="rings.html">Ring Theory contents</a><a href="rings-3.html">Localization &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

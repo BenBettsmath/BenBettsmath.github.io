@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 4. Linear Algebra &middot; Qual problems &middot; Linear Algebra</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="linalg.html">Linear Algebra</a> &rsaquo; <span>Qual problems &middot; Linear Algebra</span></div>
+<div class="part-nav"><a href="linalg-3.html">&larr; Nilpotent matrices</a><a href="linalg.html">Linear Algebra contents</a><a href="fields-1.html">Part: Field Theory &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Qual problems &middot; Linear Algebra</h2>
+
+<ol class="qual-list">
+<li><div class="qbody"><span class="src">(Aug 2024 #8)</span> Suppose $A$ is a $3 \times 3$ matrix over $\mathbb{F}_7$ satisfying $A^9 = I$. Determine the number of conjugacy classes of such $A$.<span class="dot-target" data-prob="1"></span></div></li>
+<li><div class="qbody"><span class="src">(Jan 2024 #8)</span> Suppose $A$ is a $4 \times 4$ matrix over $\mathbb{F}_{11}$ satisfying $A^{20} = I$. Determine the number of isomorphism classes of $A$.<span class="dot-target" data-prob="2"></span></div></li>
+<li><div class="qbody"><span class="src">(Aug 2023 #8)</span> Suppose $A$ is a $5 \times 5$ matrix over $\mathbb{F}_2$ satisfying $A^7 = I$. Determine all isomorphism classes, listing one matrix from each.<span class="dot-target" data-prob="3"></span></div></li>
+<li><div class="qbody"><span class="src">(Jan 2022 #7)</span> Prove that if $V$ is finite-dimensional over a field of characteristic $0$ and $u, v \in \mathrm{End}_K(V)$, then $uv - vu \neq 1$. Give an example showing this can fail in infinite dimension.<span class="dot-target" data-prob="4"></span></div></li>
+<li><div class="qbody"><span class="src">(Jan 2020 #10)</span> Let $A$ be a complex $10 \times 10$ matrix with $A^{10000} = 0$. Prove $A^{10} = 0$.<span class="dot-target" data-prob="5"></span></div></li>
+</ol>
+</div>
+
+<div class="part-nav"><a href="linalg-3.html">&larr; Nilpotent matrices</a><a href="linalg.html">Linear Algebra contents</a><a href="fields-1.html">Part: Field Theory &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script>
+const SOLUTIONS = {};
+SOLUTIONS["1"] = null;
+SOLUTIONS["2"] = null;
+SOLUTIONS["3"] = null;
+SOLUTIONS["4"] = null;
+SOLUTIONS["5"] = null;
+</script>
+<script src="qual_solutions_data.js?v=827fe807"></script>
+<script>Object.assign(SOLUTIONS, (window.QUAL_SOLUTIONS_DATA||{})["linalg"]||{});</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

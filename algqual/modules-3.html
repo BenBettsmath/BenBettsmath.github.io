@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 3. Module Theory &middot; Structure theorem for f.g. modules over a PID</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Structure theorem for f.g. modules over a PID</span></div>
+<div class="part-nav"><a href="modules-2.html">&larr; Exact sequences</a><a href="modules.html">Module Theory contents</a><a href="modules-4.html">Projective, injective, and flat modules &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Structure theorem for f.g. modules over a PID</h2>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Invariant factor form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 5)</span>
+  Every f.g. module $M$ over a PID $R$ decomposes as
+  $$M \cong R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m), \qquad a_1 \mid a_2 \mid \cdots \mid a_m, \quad a_i \in R \setminus R^\times.$$
+  The $a_i$ are the <strong>invariant factors</strong> and $r$ is the <strong>free rank</strong>.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Elementary divisor form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 6)</span>
+  Equivalently $M \cong R^r \oplus R/(p_1^{\alpha_1}) \oplus \cdots \oplus R/(p_t^{\alpha_t})$ where the $p_i^{\alpha_i}$ are prime powers (with repetitions allowed). The multiset of elementary divisors is uniquely determined.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Smith normal form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 21)</span>
+  Any matrix $A$ over a PID can be put in the form $\mathrm{diag}(d_1, \ldots, d_r, 0, \ldots, 0)$ with $d_1 \mid \cdots \mid d_r$ by elementary row and column operations. For $A = xI - T$ over $k[x]$, the $d_i$ are the invariant factors of the operator $T$.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">How to read a quotient as a cokernel.</span>
+  To find $\mathbb{Z}^n/H$ for $H = \langle v_1, \ldots, v_m \rangle$, write generators as the <strong>columns</strong> of an $n \times m$ matrix $M$. Then $M : \mathbb{Z}^m \to \mathbb{Z}^n$ has image $H$, and the quotient sits in
+  $$0 \to \mathbb{Z}^m \xrightarrow{\ M\ } \mathbb{Z}^n \to \mathbb{Z}^n/H \to 0.$$
+  Columns, not rows. Row ops change target basis of $\mathbb{Z}^n$, column ops the source basis of $\mathbb{Z}^m$. Each invariant factor $d_i$ gives a cyclic block $\mathbb{Z}/d_i$. A coordinate that no column reaches gives a free $\mathbb{Z}$ summand.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Both forms are the same, seen differently.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
+  Invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ capture divisibility globally. Elementary divisors are the prime powers in the factorization of the $a_i$. Converting between them is easy: factor each $a_i$ into primes, then collect powers of the same prime. The two forms record the same data in different languages. Invariant factors are better for quotient structure; elementary divisors for Sylow-style analysis by prime.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Two main applications.</span>
+  <ul>
+    <li><strong>Abelian groups</strong> ($R = \mathbb{Z}$): Every f.g. abelian group is $\mathbb{Z}^r \oplus \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_m$ with $d_1 \mid d_2 \mid \cdots \mid d_m$ (invariant factor form) or a sum of cyclic groups of prime-power order (elementary divisor form, the "canonical form" from group theory).</li>
+    <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a f.d. $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors that yield the Jordan normal form. The cyclic blocks $k[x]/(x - \lambda)^j$ are the generalized eigenspaces.</li>
+  </ul>
+</div>
+
+<div class="part-nav"><a href="modules-2.html">&larr; Exact sequences</a><a href="modules.html">Module Theory contents</a><a href="modules-4.html">Projective, injective, and flat modules &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

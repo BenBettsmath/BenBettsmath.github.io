@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc III · Vector Calculus</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Chapter 16 · Vector Calculus</h2>
+<div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+<p>Vector fields and the calculus built on them. Conservative fields, line integrals for work and fence area, the Fundamental Theorem for Line Integrals, Green's Theorem, curl and divergence. The thread is the gradient again. A field that is a gradient stores its line integral in a potential, and the rest of the chapter measures how far a field is from being one.</p>
+<div class="section"><h3>16.1 Vector Fields</h3>
+
+<p class="part"><span class="dimtag">2D</span>A <b>vector field</b> on $\mathbb R^n$ is a function $\vec F : \mathbb R^n \to \mathbb R^n$. To each point $\vec x$ in the domain we attach a vector $\vec F(\vec x)$, drawn as an arrow based at $\vec x$.</p>
+
+<p>In $\mathbb R^2$ it is $\vec F(x, y) = P(x, y)\hat\imath + Q(x, y)\hat\jmath$. In $\mathbb R^3$ it is $\vec F = P\hat\imath + Q\hat\jmath + R\hat k$.</p>
+
+<p><b>Conservative field.</b> $\vec F = \nabla f$ for some scalar function $f$, called the <em>potential</em>. On a simply connected domain, $\vec F$ is conservative exactly when $\nabla \times \vec F = \vec 0$.</p>
+
+<p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ is a source with $\nabla \cdot \vec F &gt; 0$. The swirl $\vec F = \langle -y, x, 0\rangle$ has nonzero curl. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
+
+<p><b>Why a potential can fail to exist.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl they are rays, every ray passes through the origin, and marching the value of $f$ once around the circle returns a larger value than it started with. A single-valued potential is impossible.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="potentialContours"></canvas></div>
+
+<div class="fig-inline"><figure><img src="stewart_figs/p1201-1201.png" alt=""><figcaption>Stewart §16.1 Figures 6 to 8, typical 2D vector fields, a swirl, a sinusoidal one, and a mixed log.</figcaption></figure></div>
+<div class="fig-inline-canvas"><canvas data-fig="swirlFlow"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="radialFlow"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="gradFlow"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="shearFlow"></canvas></div>
+</div>
+<div class="section"><h3>16.2 Line Integrals</h3>
+
+<p class="part"><span class="dimtag">1D in 3D</span>Let $C$ be a smooth oriented curve parametrised by $\vec r(t)$ for $a \le t \le b$.</p>
+
+<p><b>(1) Scalar line integral.</b></p>
+<div class="formula">$\displaystyle\int_C f\,ds = \int_a^b f(\vec r(t))\,|\vec r\,'(t)|\,dt.$</div>
+<p>Geometrically this is the area of a fence of height $f$ standing on $C$, and physically it is the mass of a wire with linear density $f$.</p>
+
+<p><b>(2) Vector line integral, the work.</b></p>
+<div class="formula">$\displaystyle\int_C \vec F \cdot d\vec r = \int_a^b \vec F(\vec r(t)) \cdot \vec r\,'(t)\,dt = \int_C P\,dx + Q\,dy + R\,dz.$</div>
+<p>This integrates the tangent component of $\vec F$, and it equals the work done by $\vec F$ moving an object along $C$.</p>
+
+<p><b>(3) 2D flux.</b> The integral $\displaystyle\int_C \vec F \cdot \vec n\,ds$ takes the normal component, measuring how much of the field crosses $C$.</p>
+
+<p><b>Orientation.</b> Reversing $C$ flips the sign of $\int \vec F \cdot d\vec r$ and the flux. The scalar integral $\int f\,ds$ does not change.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Two integrals share similar notation. The scalar $\int_C f\,ds$ uses $|\vec r\,'(t)|\,dt$ and does <em>not</em> change when you reverse $C$. The work $\int_C\vec F\cdot d\vec r$ uses $\vec r\,'(t)\,dt$ and flips sign when $C$ is reversed. Match the integrand to the right form.</p></div>
+<p><b>Wire mass and centre of mass.</b> For a wire $C$ with linear density $\rho(x, y, z)$,</p>
+<div class="formula">$m = \int_C \rho\,ds,\qquad \bar x = \dfrac{1}{m}\int_C x\,\rho\,ds,\qquad \bar y = \dfrac{1}{m}\int_C y\,\rho\,ds,\qquad \bar z = \dfrac{1}{m}\int_C z\,\rho\,ds.$</div>
+<p><em>Same lever-arm logic as the 2D case.</em> Chop the wire into small pieces, where the $i$-th has length $\Delta s_i$ and mass $\rho_i \Delta s_i$ at position $(x_i, y_i, z_i)$. The discrete centre of mass along $x$ is $\bar x = \sum \rho_i x_i \Delta s_i / \sum \rho_i \Delta s_i$, which in the limit becomes $\int_C x \rho\,ds / \int_C \rho\,ds$. The $x$ inside is the lever arm to the $yz$-plane.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="fence"></canvas></div>
+</div>
+<div class="section"><h3>16.3 The Fundamental Theorem for Line Integrals</h3>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>The Fundamental Theorem for Line Integrals.</b> If $\vec F = \nabla f$ and $C$ goes from $\vec r(a)$ to $\vec r(b)$, then</p>
+<div class="formula">$\displaystyle\int_C \nabla f \cdot d\vec r = f(\vec r(b)) - f(\vec r(a)).$</div>
+<p><em>Why.</em> By the chain rule of 14.5, $\frac{d}{dt} f(\vec r(t)) = \nabla f \cdot \vec r\,'(t)$, which is the integrand. The line integral therefore adds up every change in $f$ along the path, and the total change of $f$ over a trip is its final value minus its initial value.</p>
+
+<p><b>Path independence.</b> $\int_C \vec F \cdot d\vec r$ is independent of the path iff $\vec F$ is conservative iff $\oint_C \vec F \cdot d\vec r = 0$ for every closed $C$. If work depends only on endpoints then closed loops give zero, and work measured from a fixed base point defines the potential $f$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="pathIndependence"></canvas></div>
+
+<p><b>Exactness test in $\mathbb R^2$.</b> On a simply-connected domain, $\vec F = \langle P, Q\rangle$ is conservative iff $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$P_y=Q_x$ is enough only on a <em>simply connected</em> domain with no holes. The field $\vec F=\dfrac{\langle -y,\,x\rangle}{x^2+y^2}$ satisfies $P_y=Q_x$ everywhere it is defined, yet $\oint_C\vec F\cdot d\vec r=2\pi\ne 0$ around the origin, since the punctured plane has a hole, worked out in 16.4.</p></div>
+<p><b>Finding a potential function.</b> Integrate $f_x = P$ with respect to $x$, then differentiate with respect to $y$ and match $f_y = Q$ to determine the unknown function of $y$.</p>
+
+</div>
+<div class="section"><h3>16.4 Green's Theorem</h3>
+
+<p class="part"><span class="dimtag">2D</span><b>Green's Theorem.</b> Let $C$ be a positively oriented, counterclockwise, piecewise smooth, simple closed curve bounding a region $D$. If $P, Q$ have continuous partials on an open region containing $D$, then</p>
+<div class="formula">$\displaystyle\oint_C P\,dx + Q\,dy = \iint_D \left(\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}\right)dA.$</div>
+<p><em>Why.</em> Tile $D$ with small counterclockwise squares. Each interior edge is traversed twice in opposite directions by the two squares sharing it, so the interior contributions cancel and only the outer boundary survives. The circulation around one small square works out to $(Q_x - P_y)\,dA$, so summing circulations over the tiles gives the double integral while the surviving boundary terms give the line integral.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Mind the order. The integrand is $Q_x-P_y$, the $x$-derivative of the second component minus the $y$-derivative of the first, and $C$ must be counterclockwise. A clockwise curve flips the sign.</p></div>
+<p><b>Area formula.</b> $A = \tfrac12 \oint_C (x\,dy - y\,dx)$.</p>
+
+<p><b>Green with a hole.</b> For $D$ with outer boundary $C_{\text{out}}$ (CCW) and inner $C_{\text{in}}$ (CW),</p>
+<div class="formula">$\displaystyle\oint_{C_{\text{out}}} P\,dx + Q\,dy - \oint_{C_{\text{in}}} P\,dx + Q\,dy = \iint_D (Q_x - P_y)\,dA.$</div>
+<p>Equivalently, traverse outer CCW and inner CW so $D$ is always on the left.</p>
+
+<p><em>Example with a hole.</em> Compute $\oint_C \dfrac{-y\,dx + x\,dy}{x^2 + y^2}$ for any simple CCW curve $C$ around the origin. The integrand blows up at $(0, 0)$, so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. Between $C$ and $C_\varepsilon$ we have $Q_x - P_y = 0$, so Green gives $\oint_C - \oint_{C_\varepsilon} = 0$. Parametrising $C_\varepsilon$ gives $\oint_{C_\varepsilon} = 2\pi$, hence $\oint_C = 2\pi$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="greens"></canvas></div>
+</div>
+<div class="section"><h3>16.5 Curl and Divergence</h3>
+
+<p class="part"><span class="dimtag">3D</span><b>Curl.</b> For $\vec F = \langle P, Q, R\rangle$,</p>
+<div class="formula">$\nabla \times \vec F = \det\begin{pmatrix}\hat\imath&amp;\hat\jmath&amp;\hat k\\\partial_x&amp;\partial_y&amp;\partial_z\\P&amp;Q&amp;R\end{pmatrix} = \langle R_y - Q_z,\ P_z - R_x,\ Q_x - P_y\rangle.$</div>
+
+<p><b>Curl of a gradient is zero.</b> $\vec F = \nabla f$ (conservative) $\Rightarrow \nabla \times \vec F = \vec 0$, and the converse holds on simply-connected domains in $\mathbb R^3$. Each component of $\nabla\times\nabla f$ is a difference of mixed partials such as $f_{zy} - f_{yz}$, which vanishes by Clairaut.</p>
+
+<p><b>Divergence.</b></p>
+<div class="formula">$\nabla \cdot \vec F = \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}.$</div>
+
+<p><b>Divergence of a curl is zero.</b> $\nabla \cdot (\nabla \times \vec F) = 0.$ Expand it and the mixed partials cancel in pairs, Clairaut again. Swirl has no sources.</p>
+
+<p>Physical pictures help. Divergence measures source and sink behaviour at a point, outward flow if positive and inward if negative. Curl measures local rotation, the paddle wheel picture.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="curlFlow"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="divPlusFlow"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="divMinusFlow"></canvas></div>
+</div>
+<div class="section"><h3>The dome's field</h3>
+<p>Exercises on the dome $f = 1 - x^2 - y^2$, to be drawn by hand.</p>
+<ol class="tight">
+  <li><b>Gradient field.</b> Draw $\vec F = \nabla f = \langle -2x, -2y\rangle$ at a ring of points. Every arrow points toward the peak.</li>
+  <li><b>Right angles.</b> Overlay the level circles of $f$ and check that each arrow crosses its circle at a right angle, longest where the circles crowd together.</li>
+  <li><b>The swirl.</b> Draw $\vec G = \langle -y, x\rangle$ and verify it is not a gradient by computing $\oint \vec G\cdot d\vec r$ around the unit circle.</li>
+  <li><b>Work as height.</b> Since $f$ is a potential for $\vec F$, the work from $(1,0)$ to $(0,0)$ is $f(0,0)-f(1,0)$ along any path.</li>
+  <li><b>Curl and divergence.</b> $\vec F$ has a sink at the peak and no spin. $\vec G$ has pure spin and no net outflow. Sketch a paddle wheel in each.</li>
+</ol>
+</div>
+<div class="section"><h3>Worked example</h3>
+
+<p><b>Green's Theorem on a semi-annulus.</b> Evaluate $\oint_C (y^2\,dx + 3xy\,dy)$ where $C$ is the boundary of $\{1 \le x^2 + y^2 \le 4,\ y \ge 0\}$, oriented positively.<br>
+$P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_D y\,dA = \int_0^\pi\!\int_1^2 (r\sin\theta)\,r\,dr\,d\theta = \left(\int_0^\pi \sin\theta\,d\theta\right)\left(\int_1^2 r^2\,dr\right) = 2 \cdot \tfrac{7}{3} = \tfrac{14}{3}$.</p>
+
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Sketch the vector field $\vec F(x, y) = \langle -y, x\rangle$.</li>
+  <li>Determine whether $\vec F(x, y) = \langle 3 + 2 x y,\ x^2 - 3 y^2\rangle$ is conservative. if so, find a potential.</li>
+  <li>Evaluate $\int_C y\,ds$ where $C$ is the right half of the unit circle from $(0, -1)$ to $(0, 1)$.</li>
+  <li>Find the work done by $\vec F(x, y) = \langle x^2, -xy\rangle$ along the quarter-circle $\vec r(t) = \langle\cos t, \sin t\rangle$, $0 \le t \le \pi/2$.</li>
+  <li>Evaluate $\int_C \vec F \cdot d\vec r$ where $\vec F = \langle z, x, y\rangle$ and $C$ is the helix $\vec r(t) = \langle\cos t, \sin t, t\rangle$, $0 \le t \le \pi$.</li>
+  <li>Use FTLI to evaluate $\int_C \nabla f \cdot d\vec r$ where $f(x, y) = \sin x + x^2 y$ and $C$ goes from $(0, 0)$ to $(\pi, 2)$.</li>
+  <li>Use Green's Theorem to evaluate $\oint_C (y^2\,dx + 3 x y\,dy)$ where $C$ is the boundary of the upper semi-annulus $1 \le x^2 + y^2 \le 4$, $y \ge 0$.</li>
+  <li>Compute curl and divergence of $\vec F = \langle yz, xz, xy\rangle$.</li>
+</ol>
+
+</div>
+<div class="section"><h3>More interactive figures</h3>
+<div class="fig-grid">
+<div class="fig"><canvas data-fig="radial"></canvas></div>
+<div class="fig"><canvas data-fig="swirl"></canvas></div>
+<div class="fig"><canvas data-fig="gradField"></canvas></div>
+<div class="fig"><canvas data-fig="shear"></canvas></div>
+</div></div>
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Conservative tests.</b> On a simply connected domain, $P_y = Q_x$ in $\mathbb R^2$, or $\nabla\times\vec F = \vec 0$ in $\mathbb R^3$, implies $\vec F$ is conservative.</p>
+
+<p><b>Finding a potential.</b> Integrate $f_x = P$ with respect to $x$, giving $f = \int P\,dx + g(y, z)$. Match $f_y = Q$ to determine $g_y$, then $f_z = R$ for the rest. The potential is unique up to a constant.</p>
+
+<p><b>Reducing a line integral to one variable.</b> Parametrise $C$ by $\vec r(t)$, $a \le t \le b$. Then $\int_C \vec F\cdot d\vec r = \int_a^b \vec F(\vec r(t))\cdot\vec r\,'(t)\,dt$, and for a scalar integral use $|\vec r\,'(t)|$ in place of the dot product.</p>
+
+<p><b>Using FTLI.</b> If $\vec F$ is conservative with potential $f$, evaluate $f$ at the endpoints. No parametrisation is needed.</p>
+
+<p><b>When to use Green's Theorem.</b> For a closed counterclockwise curve with $\vec F$ smooth on a region containing $\overline D$, convert $\oint_C P\,dx + Q\,dy$ to $\iint_D (Q_x - P_y)\,dA$ when the area integral is easier.</p>
+
+<p><b>Green for area.</b> Any field with $Q_x - P_y = 1$ turns the area into a boundary integral, giving $A(D) = \tfrac12 \oint_C (x\,dy - y\,dx) = \oint_C x\,dy = -\oint_C y\,dx$.</p>
+
+<p><b>Green with a hole.</b> Traverse the outer boundary counterclockwise and the inner boundary clockwise, so the region is always on the left.</p>
+
+<p><b>Interpretations.</b> $\nabla\cdot\vec F$ is net outward flux per unit volume, a source if positive and a sink if negative. $\nabla\times\vec F$ is twice the local angular velocity of an infinitesimal paddle wheel.</p>
+
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math and Statistics</footer>
+<script type="module">
+import { initFigures } from './calc3_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+<div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+</div></body></html>

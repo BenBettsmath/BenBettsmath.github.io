@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 4. Linear Algebra &middot; Rational canonical form</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="linalg.html">Linear Algebra</a> &rsaquo; <span>Rational canonical form</span></div>
+<div class="part-nav"><a href="linalg-1.html">&larr; Minimal and characteristic polynomials</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-3.html">Nilpotent matrices &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Rational canonical form</h2>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (RCF).</span> <span class="cite">(D&amp;F &sect;12.2, Thm. 16-17)</span>
+  Every operator $T$ on an $n$-dimensional $k$-vector space has a unique rational canonical form: a block diagonal $\mathrm{diag}(C_{a_1}, \ldots, C_{a_r})$ with companion matrices for polynomials $a_1 \mid a_2 \mid \cdots \mid a_r$ in $k[x]$.
+  Constraints: $\sum \deg a_i = n$, $\prod a_i = \chi_T$, and $a_r = m_T$.
+  <em>Invariant factors lock down similarity. Two operators similar iff their invariant factor sequences match.</em>
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Companion matrix.</strong> <span class="cite">(D&amp;F &sect;12.2)</span>
+  For monic $f = x^d + b_{d-1} x^{d-1} + \cdots + b_0 \in k[x]$, the companion matrix $C_f$ is the $d \times d$ matrix with $1$'s on the superdiagonal below the main diagonal, last column $(-b_0, -b_1, \ldots, -b_{d-1})^T$, zeros elsewhere.
+  Then $\chi_{C_f} = m_{C_f} = f$. <em>The companion matrix encodes $f$ as an operator.</em>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Rational canonical form is computed in the base field.</strong> <span class="cite">(D&amp;F &sect;12.2, Cor. 18)</span>
+  Two matrices $A, B$ over $K$ are similar over $K$ if and only if they are similar over any extension field $L \supseteq K$. RCF is purely a polynomial computation in $k[x]$, so extending scalars does not create new similarity classes. Quals love the independence from field extensions.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Jordan canonical form).</span> <span class="cite">(D&amp;F &sect;12.3)</span>
+  Over an algebraically closed field, every operator $T$ is similar to a block diagonal of Jordan blocks $J_k(\lambda) = \lambda I_k + N_k$, where $N_k$ is the $k \times k$ nilpotent shift. One Jordan block per elementary divisor $(x - \lambda)^k$. <em>Over $\mathbb{C}$, Jordan blocks are the canonical form. Over $\mathbb{Q}$ or finite fields, use invariant factors instead.</em>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Diagonalizability criterion.</strong> <span class="cite">(D&amp;F &sect;12.3, Prop. 23)</span>
+  An operator $T$ on a vector space over $k$ is diagonalizable if and only if $m_T$ splits into distinct linear factors in $k[x]$. No repeated roots.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> If $A^n = I$ and $\gcd(\mathrm{char}(k), n) = 1$, then $m_A \mid x^n - 1$. Since $x^n - 1$ is squarefree (its derivative $nx^{n-1}$ is coprime to it), every divisor is squarefree, so $A$ is diagonalizable over the algebraic closure.<br>
+  <span class="thm-label">Non-example.</span> A Jordan block $J_2(\lambda)$ has $m = (x-\lambda)^2$, non-squarefree, hence not diagonalizable.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Classification by invariant factors:</strong> $3 \times 3$ matrices over $k$ with $\chi = (x-2)^2(x-3)$.
+  <br>Invariant factor chains $a_1 \mid a_2$ with product $(x-2)^2(x-3)$ are:
+  <ul>
+    <li>$a_1 = 1, a_2 = (x-2)^2(x-3)$: One companion block. RCF is $C_{a_2}$ with $m = a_2$.</li>
+    <li>$a_1 = (x-2), a_2 = (x-2)(x-3)$: Two blocks, $m = a_2 = (x-2)(x-3)$. RCF is $\mathrm{diag}(C_{(x-2)}, C_{(x-2)(x-3)})$.</li>
+  </ul>
+  These are the two similarity classes. Elementary divisor view: $\{(x-2)^2, (x-3)\}$ for class 1 and $\{(x-2), (x-2), (x-3)\}$ for class 2.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Note.</span> <strong>Template: matrices with $A^n = I$ over finite fields $\mathbb{F}_q$.</strong>
+  <br>If $A^n = I$ then $m_A \mid x^n - 1$. Steps to enumerate similarity classes:
+  <ol>
+    <li>Factor $x^n - 1$ over $\mathbb{F}_q$ into irreducibles. These correspond to Frobenius orbits of $n$th roots of unity under $\zeta \mapsto \zeta^q$. An orbit's length is the degree of its irreducible factor. Roots of order $d$ have orbit size equal to the order of $q \pmod{d}$.</li>
+    <li>If $p = \mathrm{char}(\mathbb{F}_q)$ and $p \nmid n$, then $x^n - 1$ is squarefree. Every divisor is too, so all matrices with $A^n = I$ are diagonalizable. Similarity classes correspond to multisets of irreducible factors summing to degree $n$.</li>
+    <li>If $p \mid n$, write $n = p^s n'$ with $p \nmid n'$. Then $x^n - 1 = (x^{n'}-1)^{p^s}$. Irreducible factors now repeat. Invariant factor chains $a_1 \mid \cdots \mid a_r$ reappear, encoding the nilpotent structure in each Jordan block.</li>
+    <li>Count by partition type: split $n$ into parts matching degrees of available irreducibles, then count multisets of factors by repetition pattern for each partition.</li>
+  </ol>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Matrices $A$ over $\mathbb{F}_7$ with $A^9 = I$ (Aug 2024 qual).</strong>
+  <br>We have $p = 7$, $n = 9$, $\gcd(7,9) = 1$. So $x^9 - 1$ is squarefree over $\mathbb{F}_7$. Factor into irreducibles as Frobenius orbits of $9$th roots of unity under $\zeta \mapsto \zeta^7$.
+  <ul>
+    <li>Order $1$: Root $\zeta = 1$ is fixed by Frobenius, orbit length $1$. Irreducible factor: $x - 1$.</li>
+    <li>Order $3$: The primitive cube roots satisfy $7 \equiv 1 \pmod{3}$, so Frobenius fixes each individually. Two roots, two orbits of length $1$. Over $\mathbb{F}_7$: $2^3 \equiv 1 \pmod{7}$ and $2^2 + 2 + 1 = 7 \equiv 0 \pmod{7}$, so the roots are $2$ and $4$. Factors: $(x-2)(x-4)$.</li>
+    <li>Order $9$: The six primitive $9$th roots. Order of $7 \pmod{9}$ is $3$ (since $7^1 \equiv 7$, $7^2 \equiv 4$, $7^3 \equiv 1 \pmod{9}$). Each orbit has size $3$, giving $6/3 = 2$ irreducible factors of degree $3$.</li>
+  </ul>
+  So $x^9 - 1 = (x-1)(x-2)(x-4)\,f_1 f_2$ over $\mathbb{F}_7$, three linears and two cubics, degrees $1+1+1+3+3 = 9$.
+  Now count. A conjugacy class of $3 \times 3$ matrices is a multiset of elementary divisors with degrees summing to $3$, and since $x^9-1$ is squarefree each elementary divisor is one of these five irreducibles to the first power. Total degree $3$ leaves exactly two shapes.
+  <ul>
+    <li>One cubic factor. $2$ classes.</li>
+    <li>Three linear factors chosen from $\{x-1,\, x-2,\, x-4\}$ with repetition allowed. Multisets of size $3$ from $3$ symbols, $\binom{5}{3} = 10$ classes.</li>
+  </ul>
+  Total $10 + 2 = \boxed{12}$ conjugacy classes.
+</div>
+
+<div class="part-nav"><a href="linalg-1.html">&larr; Minimal and characteristic polynomials</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-3.html">Nilpotent matrices &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

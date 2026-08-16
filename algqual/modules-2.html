@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 3. Module Theory &middot; Exact sequences</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Exact sequences</span></div>
+<div class="part-nav"><a href="modules-1.html">&larr; Basics</a><a href="modules.html">Module Theory contents</a><a href="modules-3.html">Structure theorem for f.g. modules over a PID &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Exact sequences</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Short exact sequence.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  A diagram $0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0$ is exact if $f$ is injective, $g$ is surjective, and $\mathrm{im}\, f = \ker g$. <em>Exactness says f embeds A as the kernel of the quotient map g: B ↠ C.</em> The sequence <strong>splits</strong> if $B \cong A \oplus C$ (as an isomorphism of the diagram), equivalently if there is a section $C \to B$ of $g$ or a retraction $B \to A$ of $f$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example (split).</span> $0 \to \mathbb{Z}/2 \to \mathbb{Z}/2 \oplus \mathbb{Z}/3 \to \mathbb{Z}/3 \to 0$ splits trivially.<br>
+  <span class="thm-label">Non-example (non-split).</span> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would give $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ does not.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Most short exact sequences don't split.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  A split is an isomorphism $B \cong A \oplus C$ respecting the diagram. For this to hold, middle has to contain a copy of $C$ as a summand, requiring a section of $g$. But $B$ often encodes obstruction data: a hidden constraint that forces $B$ to be irreducibly between $A$ and $C$. Three canonically obstructed cases.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Remark.</span> <strong>Three standard non-split examples.</strong>
+  <ul>
+    <li><strong>Over $\mathbb{Z}$:</strong> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would need $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ doesn't.</li>
+    <li><strong>Over $\mathbb{C}[x]$:</strong> $0 \to (x)/(x^2) \to \mathbb{C}[x]/(x^2) \to \mathbb{C}[x]/(x) \to 0$. The obstruction is the action of $x$, not dimension. Element of the middle as $(c, d)$ for $c + dx \bmod x^2$. Multiply by $x$: $(c, d) \mapsto (0, c)$, the constant sliding forward and the $x$ slot vanishing. This nonzero action of $x$ on the middle cannot split into summands where $x$ dies (the two copies of $\mathbb{C}$).</li>
+    <li><strong>Over $\mathbb{Z}[i]$:</strong> $0 \to (1+i) \to \mathbb{Z}[i] \to \mathbb{Z}[i]/(1+i) \cong \mathbb{F}_2 \to 0$. A split would be an idempotent in $\mathbb{Z}[i]$ projecting to $\mathbb{F}_2$, but $\mathbb{Z}[i]$ has only idempotents $0, 1$.</li>
+    <li><strong>General principle (domains).</strong> If $R$ is a domain and $0 \neq I \subsetneq R$, then $0 \to I \to R \to R/I \to 0$ never splits. A split gives an idempotent $e$ with $eR = M$ and $(1-e)R = I$, so $e^2 = e$ in the domain forces $e \in \{0,1\}$, making $I = 0$ or $I = R$.</li>
+  </ul>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Sequence from two maximal ideals.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  If $I, J$ are distinct maximal ideals of $R$, then $I + J = R$, and the sequence
+  $$0 \to IJ \to I \oplus J \xrightarrow{(a, b) \mapsto a - b} R \to 0$$
+  (with first map $x \mapsto (x, x)$) is exact. If $I$ and $J$ are projective, so is $IJ$, since the sequence splits.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Short Five Lemma).</span> <span class="cite">(D&amp;F &sect;10.5, Prop. 24)</span>
+  In a commutative diagram of short exact sequences
+  $$\begin{array}{ccccccccc} 0 &\to& A &\to& B &\to& C &\to& 0 \\ & & \downarrow{\scriptstyle \alpha} & & \downarrow{\scriptstyle \beta} & & \downarrow{\scriptstyle \gamma} & & \\ 0 &\to& A' &\to& B' &\to& C' &\to& 0 \end{array}$$
+  if $\alpha$ and $\gamma$ are injective (resp. surjective, isomorphisms) then so is $\beta$.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Proof template (diagram chase).</span>
+  For $\beta$ injective: take $b \in \ker \beta$. Its image in $C$ lies in $\ker \gamma = 0$, so $b$ comes from some $a \in A$ via the top row. The image of $\alpha(a)$ in $B'$ is $\beta(b) = 0$, and $A' \hookrightarrow B'$ gives $\alpha(a) = 0$. With $\alpha$ injective, $a = 0$, so $b = 0$. Surjectivity dualizes.
+</div>
+
+<div class="part-nav"><a href="modules-1.html">&larr; Basics</a><a href="modules.html">Module Theory contents</a><a href="modules-3.html">Structure theorem for f.g. modules over a PID &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

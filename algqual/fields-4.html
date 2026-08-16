@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 5. Field Theory &middot; Cyclotomic polynomials</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Cyclotomic polynomials</span></div>
+<div class="part-nav"><a href="fields-3.html">&larr; Finite fields</a><a href="fields.html">Field Theory contents</a><a href="fields-5.html">Galois theory &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Cyclotomic polynomials</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Cyclotomic polynomial.</strong> <span class="cite">(D&amp;F &sect;13.6)</span>
+  $\Phi_n(x) = \prod_{\substack{1 \leq a \leq n \\ \gcd(a, n) = 1}} (x - \zeta_n^a)$ where $\zeta_n = e^{2\pi i / n}$ is a primitive $n$-th root of unity. <em>$\Phi_n$ has degree $\varphi(n)$ (Euler totient) and integer coefficients, built from primitive $n$-th roots only.</em> The roots of $\Phi_n$ in $\mathbb{C}$ are $\zeta_n^a$ for $\gcd(a, n) = 1$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <span class="cite">(D&amp;F &sect;13.6, Thm. 40, 41)</span>
+  <strong>Factorization:</strong> $x^n - 1 = \prod_{d \mid n} \Phi_d(x)$. <strong>Irreducibility:</strong> Each $\Phi_n$ is irreducible over $\mathbb{Q}$. <strong>Degree and Galois:</strong> $[\mathbb{Q}(\zeta_n):\mathbb{Q}] = \varphi(n)$ and $\mathrm{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$. The isomorphism sends $a \bmod n$ to the automorphism $\zeta_n \mapsto \zeta_n^a$. This group is always abelian (multiplicative group of units).
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Small values (memorize for quals).</span> $\Phi_1 = x - 1$, degree $1$. $\Phi_2 = x + 1$, degree $1$. $\Phi_3 = x^2 + x + 1$, degree $2$. $\Phi_4 = x^2 + 1$, degree $2$. $\Phi_5 = x^4 + x^3 + x^2 + x + 1$, degree $4$. $\Phi_6 = x^2 - x + 1$, degree $2$. $\Phi_8 = x^4 + 1$, degree $4$. <strong>Pattern:</strong> For $p$ prime, $\Phi_p(x) = x^{p-1} + x^{p-2} + \cdots + x + 1$ has degree $p - 1$. For $p^k$, $\Phi_{p^k}(x) = \Phi_p(x^{p^{k-1}})$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Factoring $\Phi_n$ over $\mathbb{F}_q$.</strong> <span class="cite">(D&amp;F &sect;14.3)</span>
+  Let $q$ be a prime power with $\gcd(q, n) = 1$, and let $d = \mathrm{ord}_n(q)$ be the multiplicative order of $q$ modulo $n$ (smallest positive integer with $q^d \equiv 1 \pmod n$). Then $\Phi_n(x) \in \mathbb{F}_q[x]$ factors into exactly $\varphi(n)/d$ distinct irreducibles, each of degree $d$. <em>The factorization is uniform: all irreducible factors have the same degree.</em> Consequence: $x^n - 1 = \prod_{e \mid n} \Phi_e$ in $\mathbb{F}_q[x]$, each $\Phi_e$ factoring as above with $d_e = \mathrm{ord}_e(q)$.
+  <br><strong>Examples.</strong> Over $\mathbb{F}_7$: $\mathrm{ord}_9(7) = 3$, so $\Phi_9$ (degree $6$) splits into $6/3 = 2$ irreducible cubics. Over $\mathbb{F}_{11}$: $\mathrm{ord}_{20}(11) = 2$ (check: $11^2 = 121 = 6 \cdot 20 + 1$), so $\Phi_{20}$ (degree $8$) splits into $4$ irreducible quadratics.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Subfields of $\mathbb{Q}(\zeta_8)$.</strong> We have $[\mathbb{Q}(\zeta_8):\mathbb{Q}] = \varphi(8) = 4$ and $\mathrm{Gal}(\mathbb{Q}(\zeta_8)/\mathbb{Q}) \cong (\mathbb{Z}/8\mathbb{Z})^\times = \{1, 3, 5, 7\} \cong \mathbb{Z}/2 \times \mathbb{Z}/2$ (isomorphic to the Klein four group). The three subgroups of order $2$ correspond to three degree-2 subfields. Note $\zeta_8 = e^{2\pi i/8}$, so $\zeta_8 + \zeta_8^{-1} = 2\cos(\pi/4) = \sqrt{2}$. Also $\zeta_8^2 = e^{\pi i/2} = i$. The three quadratic subfields are $\mathbb{Q}(\sqrt{2}), \mathbb{Q}(i), \mathbb{Q}(i\sqrt{2})$. Thus $\mathbb{Q}(\zeta_8) = \mathbb{Q}(i, \sqrt{2})$.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>When is $1 + t + t^2 + \cdots + t^n$ irreducible?</strong> Using the geometric series, $1 + t + \cdots + t^n = \frac{t^{n+1} - 1}{t - 1} = \prod_{d \mid n+1,\ d > 1} \Phi_d(t)$. This is a product of cyclotomic polynomials. It is irreducible iff exactly one factor appears, i.e., iff $n + 1$ is prime (so $n+1$ has only divisor $1$ and itself). When $n+1 = p$ prime, we get $1 + t + \cdots + t^{p-1} = \Phi_p(t)$.
+  <ul>
+    <li>$n = 1$: $1 + t = \Phi_2$ irreducible.</li>
+    <li>$n = 2$: $1 + t + t^2 = \Phi_3$ irreducible.</li>
+    <li>$n = 3$: $1 + t + t^2 + t^3 = \Phi_2 \cdot \Phi_4 = (t+1)(t^2 + 1)$ reducible.</li>
+    <li>$n = 4$: $\Phi_5$ irreducible ($5$ prime).</li>
+    <li>$n = 5$: $\Phi_2 \cdot \Phi_3 \cdot \Phi_6 = (t+1)(t^2 + t + 1)(t^2 - t + 1)$ reducible.</li>
+  </ul>
+</div>
+
+<div class="part-nav"><a href="fields-3.html">&larr; Finite fields</a><a href="fields.html">Field Theory contents</a><a href="fields-5.html">Galois theory &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

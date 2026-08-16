@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc III · Partial Derivatives and Gradients</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Chapter 14 · Partial Derivatives and Gradients</h2>
+<div class="chapter-nav"><a href="ch13.html">← previous</a><a href="outline.html">outline</a><a href="ch15.html">next →</a></div>
+<p>Functions of several variables, partial derivatives, the gradient, tangent planes, the chain rule, optimisation, and Taylor approximation of surfaces. One object runs through the whole chapter. The gradient is a single vector, and four different things you dot it with answer four different questions.</p>
+
+<div class="spine"><div class="spine-name">The gradient, one object used four ways</div>
+<p>Dotting $\nabla f$ with a displacement gives the linear approximation, with a velocity the chain rule, with a unit direction the directional derivative, and setting it to zero locates critical points. The running example is the dome $z = 1 - x^2 - y^2$ at the point $(\tfrac12, \tfrac12, \tfrac12)$.</p>
+</div>
+
+<div class="section"><h3>14.1 Functions of Several Variables</h3>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> A function of two variables $f : D \subset \mathbb R^2 \to \mathbb R$ has a graph that is a surface $z = f(x, y)$. The level curves are the locus $f(x, y) = k$ for a fixed $k$. Varying $k$ draws a contour map. Close contours mean steep, widely spaced ones mean shallow. A function of three variables $f(x, y, z)$ would graph in four dimensions, so we picture its level surfaces $f(x, y, z) = k$ instead.</p>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Story.</b> The dome $z = 1 - x^2 - y^2$ is a cap over the unit disk, height $1$ at the centre and dropping to $0$ on the circle $x^2 + y^2 = 1$. Its level curves $1 - x^2 - y^2 = k$ are circles of radius $\sqrt{1-k}$, tight near the rim where the cap falls fast and loose near the top where it is nearly flat. We will read every later idea off this one surface and its contour map, starting at the point $(\tfrac12, \tfrac12, \tfrac12)$, which sits on the level curve $k = \tfrac12$.</p>
+
+<p>Compare the dome with three reference shapes. The bowl $f = x^2 + y^2$ has circular level curves and one low point. The saddle $f = x^2 - y^2$ has hyperbola level curves and the plane $f = x + y$ has parallel straight lines.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="contourZoo"></canvas></div>
+<div class="fig-inline"><figure><img src="stewart_figs/p1018-1018.png" alt=""><figcaption>Stewart §14.1 Figure 18, lifting the contour map of $h(x,y) = 4x^2 + y^2 + 1$ onto the elliptic paraboloid.</figcaption></figure></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Sketch the level curves of $f = x^2 + 4y^2$ at $k = 1, 4, 9$ and say which direction the contours bunch in. Find the domain of $f = \ln(y - x^2)$ and shade it.</p>
+</div>
+<div class="section"><h3>14.2 Limits and Continuity</h3>
+
+<p class="part"><span class="dimtag">2D</span><b>Intro.</b> The statement $\lim_{(x,y) \to (a,b)} f(x, y) = L$ means $f \to L$ along every path that approaches $(a, b)$ inside the domain. To show a limit fails, find two paths that give different limits. Common ones are lines $y = mx$ and parabolas $y = x^2$ or $x = y^2$. A polar substitution $x = r\cos\theta$, $y = r\sin\theta$ helps when the value depends only on $r \to 0$.</p>
+
+<p class="part"><span class="dimtag">1D in 2D</span><b>Story.</b> Agreement along straight lines does not settle it. For $f = \dfrac{xy^2}{x^2 + y^4}$ every line $y = mx$ sends $f \to 0$, yet along the parabola $x = y^2$ the value is $\tfrac12$. The limit exists only when every path agrees, and one disagreeing path is enough to rule it out.</p>
+
+<p>$f$ is continuous at $(a, b)$ when $\lim_{(x,y) \to (a,b)} f(x, y) = f(a, b)$. Polynomials and rational functions are continuous on their domains.</p>
+
+<p class="part"><span class="dimtag">2D</span><b>Practice.</b> Use polar coordinates on $\lim_{(x,y)\to(0,0)} \dfrac{x^3 + y^3}{x^2 + y^2}$. Show $\lim_{(x,y)\to(0,0)} \dfrac{xy^3}{x^2 + y^6}$ does not exist even though every straight line gives $0$.</p>
+</div>
+<div class="section"><h3>14.3 Partial Derivatives</h3>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Intro.</b> Freeze one variable and the surface becomes a curve. The partial derivative is the slope of that curve.</p>
+<div class="formula">$f_x(x, y) = \displaystyle\lim_{h \to 0} \dfrac{f(x + h, y) - f(x, y)}{h}\quad (\text{hold } y \text{ fixed}).$</div>
+<p>Likewise $f_y$ holds $x$ fixed. The notations $\partial f/\partial x$, $f_x$, and $\partial z/\partial x$ all mean the same thing. Geometrically $f_x$ is the slope of the trace cut by $y = $ const, and $f_y$ the slope of the trace cut by $x = $ const.</p>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Story.</b> On the dome the trace $y = \tfrac12$ is the parabola $z = \tfrac34 - x^2$ with slope $f_x = -2x$, equal to $-1$ at $x = \tfrac12$. By symmetry $f_y = -1$ there too. The next section combines these two slopes into a plane, and the section after that into a vector.</p>
+
+<p>Higher partials repeat the process, giving $f_{xx}$, $f_{xy} = (f_x)_y$, $f_{yx}$, and $f_{yy}$. Clairaut's theorem says the mixed partials agree, $f_{xy} = f_{yx}$, whenever both are continuous. Both measure the same second difference of $f$ over a small rectangle, one stepping in $x$ first and the other in $y$ first.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="contourRead"></canvas></div>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Practice.</b> Find $f_x$ and $f_y$ for $f = x^4 y^2 - 10x^2 y + 7y - 3$. For $f = e^x\sin y$ check that $f_{xy} = f_{yx}$.</p>
+</div>
+<div class="section"><h3>14.4 Tangent Planes and Linear Approximations</h3>
+
+<p class="part"><span class="dimtag">1D</span><b>One dimension first.</b> In one variable the tangent line at $a$ is the best linear approximation, $L(x) = f(a) + f'(a)(x - a)$. Concavity decides the sign of the error. Concave down puts the tangent above the curve, so $L$ overestimates, and concave up puts it below. The same fact carries to two variables.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="overUnder1D"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Lift to a surface.</b> Two traces give two tangent lines, and the plane through both is the tangent plane.</p>
+<div class="formula">$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0).$</div>
+<p>Cut with $y = y_0$ to get the trace $z = f(x, y_0)$ whose tangent line is $z - z_0 = f_x(x - x_0)$. Cut with $x = x_0$ to get the other tangent line $z - z_0 = f_y(y - y_0)$. The plane holding both is the formula above. The linearisation $L(x, y) = f(a, b) + f_x(a, b)(x - a) + f_y(a, b)(y - b)$ is that same plane written as a function, and its error vanishes faster than $|\Delta\vec x|$.</p>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Story.</b> At $(\tfrac12, \tfrac12)$ the dome has $f_x = f_y = -1$ and $z_0 = \tfrac12$, so the tangent plane is $z = \tfrac32 - x - y$. The dome bends down in every direction, so the plane lies above the surface and the linearisation overestimates. A saddle bends up one way and down the other, so its tangent plane cuts through the surface and the estimate is high in some directions and low in others.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The hypothesis is <em>continuous</em> partials. Merely having $f_x$ and $f_y$ exist at a point is not enough for differentiability, or even for continuity. For $f(x,y)=\dfrac{xy}{x^2+y^2}$ with $f(0,0)=0$, both partials exist at the origin, yet $f$ is not even continuous there.</p></div>
+<p><b>Total differential.</b> The differential $dz = \dfrac{\partial z}{\partial x}\,dx + \dfrac{\partial z}{\partial y}\,dy$ estimates the change $\Delta z \approx dz$. Here $dz$ is the rise along the tangent plane and $\Delta z$ is the true rise on the surface. Their gap is second-order small, and for the dome it is the overestimate just described.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="domeTangent"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="tangentPlane"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(2, 2, 1)$. Find the linearisation of $f = \sqrt{20 - x^2 - 7y^2}$ at $(2, 1)$ and estimate $f(1.95, 1.08)$. Say whether your estimate runs high or low by checking the bend.</p>
+</div>
+<div class="section"><h3>14.5 The Chain Rule</h3>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Intro.</b> Walk a path on the surface and the chain rule is the gradient dotted with your velocity. With $z = f(x, y)$, $x = g(t)$, $y = h(t)$,</p>
+<div class="formula">$\dfrac{dz}{dt} = \dfrac{\partial z}{\partial x}\dfrac{dx}{dt} + \dfrac{\partial z}{\partial y}\dfrac{dy}{dt} = \nabla f \cdot \langle x'(t),\ y'(t)\rangle.$</div>
+<p><em>Why.</em> In a small time $dt$ your position shifts by $dx = x'\,dt$ and $dy = y'\,dt$. Each shift changes the height by its slope times its step, $f_x\,dx$ from the $x$ move and $f_y\,dy$ from the $y$ move, and to first order the two contributions just add.</p>
+<p>The general version branches one level deeper. With $x = g(s, t)$ and $y = h(s, t)$,</p>
+<div class="formula">$\dfrac{\partial z}{\partial s} = \dfrac{\partial z}{\partial x}\dfrac{\partial x}{\partial s} + \dfrac{\partial z}{\partial y}\dfrac{\partial y}{\partial s},\qquad \dfrac{\partial z}{\partial t} = \dfrac{\partial z}{\partial x}\dfrac{\partial x}{\partial t} + \dfrac{\partial z}{\partial y}\dfrac{\partial y}{\partial t}.$</div>
+<p>A tree diagram makes the bookkeeping safe. Branches run from $z$ to $x$ and $y$, then on to $s$ and $t$, and you sum the products along every path.</p>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Story.</b> Along the diagonal $x = t$, $y = t$ the dome height is $z = 1 - 2t^2$. The chain rule gives $\dfrac{dz}{dt} = \nabla f \cdot \langle 1, 1\rangle = -4t$, which agrees with differentiating $1 - 2t^2$ directly. The same gradient, dotted now with a velocity instead of a displacement, gives the rate of change along the path.</p>
+
+<p><b>Implicit differentiation.</b> If $F(x, y, z) = 0$ defines $z$ as a function of $x$ and $y$, differentiate with the chain rule, remembering $z$ depends on $x$ and $y$. Solving gives, wherever $F_z \ne 0$,</p>
+<div class="formula">$\dfrac{\partial z}{\partial x} = -\dfrac{F_x}{F_z},\qquad \dfrac{\partial z}{\partial y} = -\dfrac{F_y}{F_z}.$</div>
+
+<p class="part"><span class="dimtag">1D in 3D</span><b>Practice.</b> For $z = x^2 y$ with $x = r\cos\theta$, $y = r\sin\theta$, find $\partial z/\partial\theta$. For $w = f(x, y)$ with $x = s + t$ and $y = s - t$, show $w_s + w_t = 2f_x$.</p>
+</div>
+<div class="section"><h3>14.6 Directional Derivatives and the Gradient Vector</h3>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> Collect the two partials into one vector and the directional derivative is that vector dotted with a unit direction.</p>
+<div class="formula">$\nabla f = \langle f_x, f_y\rangle,\qquad D_{\vec u} f = \nabla f \cdot \vec u = f_x a + f_y b\quad (\vec u = \langle a, b\rangle \text{ unit}).$</div>
+<p>Because $D_{\vec u} f = |\nabla f|\cos\theta$, the slope is largest along $\nabla f$, zero across it (along a level curve), and most negative against it. So $\max_{\vec u} D_{\vec u} f = |\nabla f|$, reached at $\vec u = \nabla f/|\nabla f|$. The gradient is perpendicular to level curves in $\mathbb R^2$ and to level surfaces in $\mathbb R^3$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$D_{\vec u}f=\nabla f\cdot\vec u$ requires $\vec u$ to be a <em>unit</em> vector. If you are handed a direction $\vec v$ that is not unit, say $\vec v=\hat\imath+\hat\jmath$, normalize it first as $\vec u=\vec v/|\vec v|$. Skipping this rescales the answer by $|\vec v|$.</p></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Tangent vectors sweep the tangent plane.</b> Slicing the surface with the vertical plane $y = y_0$ gives a trace whose tangent vector is $\langle 1, 0, f_x\rangle$, and the slice $x = x_0$ gives $\langle 0, 1, f_y\rangle$. Slicing in the unit direction $\vec u = \langle\cos\theta, \sin\theta\rangle$ gives the tangent vector $\langle\cos\theta,\ \sin\theta,\ D_{\vec u}f\rangle$. As $\theta$ turns this vector sweeps out the tangent plane of 14.4, which is precisely the set of all tangent vectors at the point.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="tangentVectors"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the gradient four ways.</b> At $(\tfrac12, \tfrac12)$ the dome gradient is $\nabla f = \langle -1, -1\rangle$. Dot it with a small displacement and you rebuild the tangent plane of 14.4. Dot it with the velocity $\langle 1, 1\rangle$ and you recover the chain rule rate $-2$ of 14.5. Dot it with the unit direction $\vec u = \tfrac{1}{\sqrt2}\langle 1, 1\rangle$ and the slope under your feet is $-\sqrt2$, the steepest descent, since $\langle -1, -1\rangle$ points straight downhill. Step perpendicular, along $\tfrac{1}{\sqrt2}\langle 1, -1\rangle$, and the slope is $0$, which is the level curve $k = \tfrac12$ through the point. Four questions, one vector.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="gradFourWays"></canvas></div>
+
+<p class="part"><span class="dimtag">2D</span><b>Story, the gradient does not aim at the origin.</b> For $f = x^2 + 3y^2$ the level curves are ellipses and $\nabla f = \langle 2x, 6y\rangle$. At $(1, 1)$ the gradient is $\langle 2, 6\rangle$ while the position vector is $\langle 1, 1\rangle$, not parallel. The gradient is perpendicular to the level curve through the point, and it points toward the origin only when the level curves are circles.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="gradPerpLevel"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Level surfaces.</b> The tangent plane to $F(x, y, z) = k$ at $(x_0, y_0, z_0)$ is</p>
+<div class="formula">$\nabla F(x_0, y_0, z_0) \cdot \langle x - x_0,\ y - y_0,\ z - z_0\rangle = 0.$</div>
+<p>This is the same fact as 14.4. The graph $z = f(x, y)$ is the level set $F = z - f(x, y) = 0$, so $\nabla F = \langle -f_x, -f_y, 1\rangle$ and the formula collapses back to $z - z_0 = f_x(x - x_0) + f_y(y - y_0)$.</p>
+
+<p>A function of three variables has no graph to draw, so watch its level surfaces instead. Below, $f(x, y, z) = x^2 + 2y^2 + z^2$ and the surface $f = k$ swells and shrinks as $k$ varies. At every point $\nabla f = \langle 2x, 4y, 2z\rangle$ is normal to the level surface, hence normal to its tangent plane.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="levelSurfGrad"></canvas></div>
+
+<div class="fig-inline-canvas"><canvas data-fig="gradLevel"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="directional"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="levelSurfaces"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Find the directional derivative of $f = x^2 y^3$ at $(1, 2)$ along $\vec v = \hat\imath + \hat\jmath$. Find the maximum rate of change of $f = x + y/z$ at $(1, 1, 1)$ and the direction it occurs. Using $f = x^2 + 3y^2$, find a point where the gradient is genuinely not aimed at the origin and confirm it by sketch.</p>
+</div>
+<div class="section"><h3>14.7 Maximum and Minimum Values</h3>
+
+<p class="part"><span class="dimtag">1D</span><b>One dimension first.</b> In one variable a critical point has $f'(a) = 0$ and the second derivative classifies it, positive for a minimum, negative for a maximum, zero inconclusive. In two variables a surface can curve up in one direction and down in another, so a single number must be replaced.</p>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Lift to a surface.</b> A critical point has $\nabla f = \vec 0$, and the second derivatives test classifies it.</p>
+<div class="formula">$D = f_{xx} f_{yy} - (f_{xy})^2 \quad\text{at a critical point } (a, b).$</div>
+<ul class="tight">
+  <li>$D &gt; 0$ and $f_{xx} &gt; 0$ gives a local minimum.</li>
+  <li>$D &gt; 0$ and $f_{xx} &lt; 0$ gives a local maximum.</li>
+  <li>$D &lt; 0$ gives a saddle point.</li>
+  <li>$D = 0$ is inconclusive.</li>
+</ul>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the test by shapes.</b> The downward elliptic paraboloid $z = 1 - 3x^2 - y^2$ drops fastest along $x$ and slowest along $y$, two perpendicular special directions aligned with the axes. Turned $45^\circ$ it becomes $z = 1 - 2x^2 - 2xy - 2y^2$. The shape is unchanged, the special directions have rotated, and the cross term $-2xy$ records the rotation. The test reads only the signs of the two curvatures along the special directions. Both downward is a maximum, both upward a minimum, one of each a saddle. The dome $z = 1 - x^2 - y^2$ is the round case with no special direction.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="paraboloidTurn"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the natural saddle.</b> Build $z = x^2 - y^2$ from its slices. The cut $y = 0$ is the upward parabola $z = x^2$, the cut $x = 0$ is the downward parabola $z = -y^2$, and the level set $z = 0$ is the pair of lines $y = \pm x$. Up one way and down the perpendicular way is exactly $D &lt; 0$. The example $f = x^3 - 3x + y^2$ is instructive because adding $y^2$ turns the one variable maximum of $x^3 - 3x$ at $x = -1$ into a saddle of the surface.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="saddleTraces"></canvas></div>
+
+<p><b>Hessian.</b> The matrix $H = \begin{pmatrix} f_{xx} &amp; f_{xy} \\ f_{xy} &amp; f_{yy}\end{pmatrix}$ holds the second-order data. Its eigenvalues are the two special curvatures, $D = \det H$ is their product, and the eigenvectors are the special directions. Both eigenvalues positive is a minimum, both negative a maximum, opposite signs a saddle.</p>
+
+<p class="part"><span class="dimtag">2D</span><b>Absolute extrema.</b> By the Extreme Value Theorem a continuous $f$ on a closed bounded $D$ attains its max and min. Find the interior critical points, walk the boundary as a one variable problem, and compare all candidates.</p>
+
+<div class="fig-inline"><figure><img src="stewart_figs/p1090-1090.png" alt=""><figcaption>Stewart §14.7 Figure 12, region $D$ with boundary $L_1, L_2, L_3, L_4$. Evaluate $f$ separately on each segment.</figcaption></figure></div>
+<div class="fig-inline-canvas"><canvas data-fig="hessMin"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="hessMax"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="hessSaddle"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Classify the critical points of $f = x^4 + y^4 - 4xy + 1$. Confirm that $f = x^3 - 3x + y^2$ has a saddle where the one variable cut had a maximum. Find the absolute max and min of $f = x^2 + y^2 - 2x$ on the disk $x^2 + y^2 \le 4$.</p>
+</div>
+<div class="section"><h3>Taylor Approximation for Surfaces</h3>
+
+<p class="part"><span class="dimtag">2D in 3D</span>Near $(x_0, y_0)$, the degree 2 Taylor approximation is</p>
+<div class="formula">$f(x_0 + h,\ y_0 + k) \approx f(x_0, y_0) + f_x\,h + f_y\,k + \tfrac12\bigl(f_{xx} h^2 + 2 f_{xy} h k + f_{yy} k^2\bigr).$</div>
+<p>The linear terms give the tangent plane of 14.4 and the quadratic terms are set by the Hessian. At a critical point the linear terms vanish, so the surface is locally the graph of the quadratic part, a quadric surface, and its type is what the second derivatives test reads off.</p>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>At a critical point.</b> Take $f = x^3 - 3x + y^2$ from 14.7. At the critical point $(1, 0)$, $f = -2$ and $H = \begin{pmatrix}6&amp;0\\0&amp;2\end{pmatrix}$, so the degree 2 approximation is $Q = -2 + 3h^2 + k^2$, an upward elliptic paraboloid. At $(-1, 0)$, $f = 2$ and $H = \begin{pmatrix}-6&amp;0\\0&amp;2\end{pmatrix}$, giving $Q = 2 - 3h^2 + k^2$, a saddle. The figure draws both local quadrics against the surface. Near each critical point the two are indistinguishable, which is the second derivatives test in geometric form.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="taylorQuad"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Eigenvectors and level curves.</b> The level curves of the local quadric are ellipses at a maximum or minimum and hyperbolas at a saddle, and in both cases their axes are the Hessian eigenvectors. Rotating the surface rotates the eigenvectors with those axes and introduces a cross term in the quadratic, while the eigenvalues, and hence $D = \det H$, are unchanged. The animations below rotate the model quadrics $z = 1 - 3x^2 - y^2$ and $z = x^2 - y^2$ through $45^\circ$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="hessEigen"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="saddleEigen"></canvas></div>
+
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Compute the second-order Taylor approximation of $f = e^{xy}$ near $(0, 0)$, then of $f = \sqrt{20 - x^2 - 7y^2}$ near $(2, 1)$, and match the quadratic part to the bend found in 14.4.</p>
+</div>
+<div class="section"><h3>14.8 Lagrange Multipliers</h3>
+
+<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> Optimise $f(x, y)$ along a constraint curve $g(x, y) = k$. At a constrained best the level curve of $f$ just touches the constraint curve, so their normals line up and $\nabla f \parallel \nabla g$.</p>
+<div class="formula">$\nabla f = \lambda\,\nabla g,\qquad g(x, y) = k.$</div>
+<p>Solve the system, evaluate $f$ at every candidate, and compare. With two constraints in $\mathbb R^3$ the gradient lies in the plane of the two normals, $\nabla f = \lambda\nabla g + \mu\nabla h$.</p>
+
+<p class="part"><span class="dimtag">1D in 2D</span><b>Story.</b> Maximise and minimise $f = xy$ on $x^2 + y^2 = 8$. The system $\langle y, x\rangle = \lambda\langle 2x, 2y\rangle$ forces $x^2 = y^2$, so $2x^2 = 8$ and $x = \pm 2$. The maximum is $f = 4$ at the same-sign points and the minimum is $-4$ at the opposite-sign ones. The figure shows the same idea with $\nabla f$ and $\nabla g$ turning together and aligning only where the level curve kisses the constraint.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="lagrange"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="lagrangeEllipse"></canvas></div>
+</div>
+<div class="section"><h3>Worked examples</h3>
+
+<p><b>Classify the critical points of $f(x, y) = x^4 + y^4 - 4xy + 1$.</b><br>
+$f_x = 4x^3 - 4y = 0$ gives $y = x^3$. $f_y = 4y^3 - 4x = 0$ gives $x = y^3 = x^9$, so $x(x^8 - 1) = 0$, with critical points $(0, 0)$, $(1, 1)$, $(-1, -1)$.
+$f_{xx} = 12x^2$, $f_{yy} = 12y^2$, $f_{xy} = -4$, so $D = 144 x^2 y^2 - 16$.
+$D(0, 0) = -16 &lt; 0$, so the origin is a saddle. $D(\pm 1, \pm 1) = 128 &gt; 0$ with $f_{xx}(\pm 1, \pm 1) = 12 &gt; 0$, so both are local minima with value $f = -1$.</p>
+
+<p><b>A maximum that becomes a saddle.</b> $f(x, y) = x^3 - 3x + y^2$.<br>
+$f_x = 3x^2 - 3 = 0$ gives $x = \pm 1$, and $f_y = 2y = 0$ gives $y = 0$, so the critical points are $(1, 0)$ and $(-1, 0)$.
+$f_{xx} = 6x$, $f_{yy} = 2$, $f_{xy} = 0$, so $D = 12x$.
+At $(1, 0)$, $D = 12 &gt; 0$ and $f_{xx} = 6 &gt; 0$, a local minimum. At $(-1, 0)$, $D = -12 &lt; 0$, a saddle. The one variable function $x^3 - 3x$ has a local maximum at $x = -1$, but adding $y^2$ lets the surface climb in the $y$ direction there, and up one way with down the other is a saddle.</p>
+
+<p><b>Absolute extrema on a rectangle.</b> $f(x, y) = x^2 - 2xy + 2y$ on $R = [0, 3] \times [0, 2]$.<br>
+Interior critical point from $f_x = 2x - 2y = 0$ and $f_y = -2x + 2 = 0$, giving $x = 1$, $y = 1$, with $f(1, 1) = 1$.<br>
+Boundary pieces.
+On $L_1$, $y = 0$, $0 \le x \le 3$, $f = x^2$ with extrema $0$ at $x = 0$ and $9$ at $x = 3$.
+On $L_2$, $x = 3$, $0 \le y \le 2$, $f = 9 - 4y$ decreasing, extrema $9$ at $y = 0$ and $1$ at $y = 2$.
+On $L_3$, $y = 2$, $0 \le x \le 3$, $f = (x - 2)^2$ with min $0$ at $x = 2$ and max $4$ at $x = 0$.
+On $L_4$, $x = 0$, $0 \le y \le 2$, $f = 2y$ with min $0$ at $y = 0$ and max $4$ at $y = 2$.<br>
+Candidate values are $0$ at $(0,0)$ and $(2,2)$, then $1$, then $4$ at $(0,2)$, then $9$ at $(3,0)$. The absolute max is $9$ at $(3, 0)$ and the absolute min is $0$ at $(0, 0)$ and $(2, 2)$.</p>
+
+<p><b>Absolute extrema on a disk.</b> Same $f(x, y) = x^2 - 2xy + 2y$ on the closed disk $D = \{x^2 + y^2 \le 4\}$.<br>Interior critical point $(1, 1)$ as before, with $f(1, 1) = 1$.<br>On the boundary $x^2 + y^2 = 4$ parametrise $x = 2\cos t$, $y = 2\sin t$, $0 \le t \le 2\pi$, so $g(t) = 4\cos^2 t - 8\cos t\sin t + 4\sin t = 2 + 2\cos 2t - 4\sin 2t + 4\sin t.$ Then $g'(t) = -4\sin 2t - 8\cos 2t + 4\cos t = 0$ has four solutions in $[0, 2\pi)$, $t \approx 0.87,\ 2.42,\ 4.26,\ 5.95$, giving $f \approx 0.78,\ 8.86,\ -5.98,\ 4.74$. Comparing with the interior value $f(1,1)=1$, the absolute maximum is $\approx 8.86$ at $\approx (-1.50,\ 1.32)$ and the absolute minimum is $\approx -5.98$ at $\approx (-0.88,\ -1.80)$. A closed boundary loop has no endpoints, so every candidate is either the interior critical point or a boundary critical point.</p>
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Find the domain of $f(x, y) = \ln(y - x^2)$.</li>
+  <li>Evaluate $\displaystyle\lim_{(x,y) \to (0,0)} \dfrac{x^3 + y^3}{x^2 + y^2}$ using polar coordinates.</li>
+  <li>Find $f_x$ and $f_y$ for $f(x, y) = x^4 y^2 - 10 x^2 y + 7 y - 3$.</li>
+  <li>Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(2, 2, 1)$.</li>
+  <li>Find the linearisation of $f(x, y) = \sqrt{20 - x^2 - 7 y^2}$ at $(2, 1)$ and use it to estimate $f(1.95, 1.08)$. Say whether the estimate runs high or low.</li>
+  <li>If $w = f(x, y)$ with $x = s + t$ and $y = s - t$, show $w_s + w_t = 2 f_x$.</li>
+  <li>Find $\partial z / \partial \theta$ for $z = x^2 y$, $x = r\cos\theta$, $y = r\sin\theta$.</li>
+  <li>Find the directional derivative of $f(x, y) = x^2 y^3$ at $P(1, 2)$ in the direction of $\vec v = \hat\imath + \hat\jmath$.</li>
+  <li>Find the maximum rate of change of $f(x, y, z) = x + y/z$ at $(1, 1, 1)$.</li>
+  <li>Find and classify the critical points of $f(x, y) = x^4 + y^4 - 4xy + 1$.</li>
+  <li>Use Lagrange multipliers to find the maximum and minimum values of $f(x, y) = x^2 + y^2$ subject to $xy = 1$.</li>
+  <li>Compute the second-order Taylor approximation of $f(x, y) = e^{xy}$ near $(0, 0)$.</li>
+</ol>
+
+</div>
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Showing a limit does not exist.</b> Find two paths with different limits. Standard choices are $y = mx$, $y = mx^2$, $x = y^2$. For $\dfrac{x^a y^b}{x^c + y^d}$ try $y = kx^{c/d}$.</p>
+
+<p><b>Differentiability (sufficient condition).</b> If $f_x, f_y$ exist near $(a, b)$ and are continuous at $(a, b)$, then $f$ is differentiable there, hence continuous.</p>
+
+<p><b>Tangent plane, linearisation, differential.</b> Three forms of one object. The plane $z = z_0 + f_x(x - x_0) + f_y(y - y_0)$, the function $L(x, y)$ equal to its right side, and the differential $dz = f_x\,dx + f_y\,dy$.</p>
+
+<p><b>Tangent plane to a level surface.</b> For $F(x, y, z) = k$ at $P_0$ the plane is $\nabla F(P_0)\cdot\langle x - x_0, y - y_0, z - z_0\rangle = 0$ and the normal line is $\vec r(t) = P_0 + t\nabla F(P_0)$.</p>
+
+<p><b>Chain rule tree.</b> Branch from $z$ to its direct inputs, then to theirs. $\partial z/\partial s$ is the sum of products along every path from $z$ to $s$.</p>
+
+<p><b>Absolute extrema on a closed bounded region.</b>
+</p><ol class="tight">
+<li>Solve $f_x = f_y = 0$ for interior critical points and evaluate $f$ at each.</li>
+<li>Parametrise each boundary piece, reduce $f$ to one variable, and find its extrema.</li>
+<li>Evaluate $f$ at the vertices.</li>
+<li>Compare all candidates.</li>
+</ol><p></p>
+
+<p><b>Lagrange procedure.</b> Solve $\nabla f = \lambda\nabla g$ together with $g = k$, evaluate $f$ at every solution, and compare. If the constraint set is not closed and bounded, also check behaviour at infinity. With two constraints, $\nabla f = \lambda\nabla g + \mu\nabla h$.</p>
+
+</div>
+<div class="chapter-nav"><a href="ch13.html">← previous</a><a href="outline.html">outline</a><a href="ch15.html">next →</a></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math and Statistics</footer>
+<script type="module">
+import { initFigures } from './calc3_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 Important Problem Types: Algebra Qual</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    ol.problem-list > li { margin-bottom: 0.9em; padding: 2px 4px; line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <h2>30 Important Problem Types</h2>
+
+  <ol class="problem-list">
+    <li><strong>Show that no group of a given order $N$ is simple.</strong> Pick a prime $p \mid N$, list the Sylow constraints on $n_p$, and either force $n_p = 1$ or count elements of $p$-power order for a contradiction. If $n_p$ is small, the coset action embeds $G \hookrightarrow S_{n_p}$ with nontrivial kernel.</li>
+
+    <li><strong>Compute the Galois group of a given polynomial over $\mathbb{Q}$.</strong> Find the splitting field, compute its degree, and identify the group from its action on the roots.</li>
+
+    <li><strong>Determine whether $\mathbb{Z}[\sqrt{d}]$ is a UFD, PID, or Euclidean domain.</strong> Use the norm $N(a + b\sqrt{d}) = |a^2 - db^2|$ to check whether irreducibles are prime, or exhibit two distinct irreducible factorizations of one element.</li>
+
+    <li><strong>Show that the automorphism group of an algebraic closure of a finite field is uncountable.</strong> $\mathrm{Gal}(\overline{\mathbb{F}_p}/\mathbb{F}_p) \cong \hat{\mathbb{Z}} = \varprojlim \mathbb{Z}/n\mathbb{Z}$ surjects onto each $\mathbb{Z}_p$, hence uncountable.</li>
+
+    <li><strong>Determine whether a given group is solvable.</strong> Use Burnside ($|G| = p^a q^b$), Feit-Thompson (odd order), or build the derived series and show it terminates.</li>
+
+    <li><strong>Classify the $m \times m$ matrices over $\mathbb{F}_q$ satisfying $A^k = I$.</strong> Factor $x^k - 1$ over $\mathbb{F}_q$ into irreducibles and enumerate the divisibility chains of invariant factors whose degrees sum to $m$.</li>
+
+    <li><strong>Determine which abelian groups of order at most $M$ are projective (or injective) as $\mathbb{Z}/n\mathbb{Z}$-modules.</strong> Projective $=$ free. Injective means each $p$-primary part is a direct sum of copies of $\mathbb{Z}/p^{a_p}\mathbb{Z}$ where $p^{a_p}$ is the exact power of $p$ dividing $n$.</li>
+
+    <li><strong>$p$-group facts.</strong> Groups of order $p^2$ are abelian; the center of any nontrivial $p$-group is nontrivial; for a non-abelian group of order $p^3$, $Z(G) = [G,G] \cong \mathbb{Z}/p\mathbb{Z}$.</li>
+
+    <li><strong>Exhibit a non-split short exact sequence of modules.</strong> Standard example over $\mathbb{Z}$: $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2\mathbb{Z} \to 0$. Over $\mathbb{C}[x]$ or $\mathbb{Z}[i]$, choose analogues using torsion vs. torsion-free or idempotent obstructions.</li>
+
+    <li><strong>Compute the splitting field of a polynomial over $\mathbb{Q}$ and its degree.</strong> Factor over progressively larger extensions and track degrees with the tower law.</li>
+
+    <li><strong>Compute a tensor product of abelian groups over $\mathbb{Z}$.</strong> Main identity: $\mathbb{Z}/m \otimes_\mathbb{Z} \mathbb{Z}/n \cong \mathbb{Z}/\gcd(m,n)$. Tensor is zero when $\gcd(m,n) = 1$.</li>
+
+    <li><strong>Describe the maximal ideals of $C[0,1]$.</strong> They are exactly $\mathfrak{m}_t = \{f : f(t) = 0\}$ for $t \in [0,1]$, by compactness.</li>
+
+    <li><strong>Show that $\mathbb{Q}$ is injective but not projective as a $\mathbb{Z}$-module.</strong> Injective because divisible. Not projective because projective over $\mathbb{Z}$ means free, and $\mathbb{Q}$ is not free.</li>
+
+    <li><strong>Show that the nilradical of a commutative ring equals the intersection of its prime ideals.</strong> Primes are radical; conversely, if $r$ is not nilpotent, Zorn yields a prime missing $\{1, r, r^2, \ldots\}$.</li>
+
+    <li><strong>Describe all intermediate fields of a Galois extension of degree $n$.</strong> List subgroups of $\mathrm{Gal}(K/F)$ and apply the fundamental theorem.</li>
+
+    <li><strong>If $[\mathbb{Q}(\alpha):\mathbb{Q}] = m$, $[\mathbb{Q}(\beta):\mathbb{Q}] = n$, $\gcd(m,n) = 1$, show $[\mathbb{Q}(\alpha,\beta):\mathbb{Q}] = mn$.</strong> Both $m, n$ divide $[\mathbb{Q}(\alpha,\beta):\mathbb{Q}]$ by the tower law; the reverse inequality is also from the tower law.</li>
+
+    <li><strong>Show that $\mathbb{C}[x^2, x^3]$ is not a UFD.</strong> Not integrally closed in $\mathbb{C}(x)$: $x$ satisfies $t^2 - x^2 = 0$ but does not lie in the ring.</li>
+
+    <li><strong>Show that $AB - BA \neq I$ for $n \times n$ matrices over a field of characteristic not dividing $n$.</strong> Take the trace: $\mathrm{tr}(AB - BA) = 0 \neq n = \mathrm{tr}(I)$.</li>
+
+    <li><strong>Show that the nilpotency index of an $n \times n$ nilpotent matrix is at most $n$.</strong> All eigenvalues are zero, so $\chi_A(x) = x^n$; by Cayley-Hamilton, $A^n = 0$.</li>
+
+    <li><strong>If $|\mathrm{Aut}(G)| = 1$, show $G$ is abelian and every element has order at most $2$.</strong> Inner automorphisms trivial $\Rightarrow G$ abelian. Then $g \mapsto g^{-1}$ is an automorphism, must be trivial, so $g^2 = 1$.</li>
+
+    <li><strong>Rings satisfying $x^n = x$.</strong> Boolean ($n = 2$): expanding squares gives $2x = 0$ and $xy = yx$. For $n = 3$, setting $x = 2$ gives $\mathrm{char}(R) \mid 6$.</li>
+
+    <li><strong>Show $K[[x]]$ is local with maximal ideal $(x)$ and is a PID.</strong> A series is a unit iff constant term nonzero; every nonzero ideal is $(x^k)$ for some $k \geq 0$.</li>
+
+    <li><strong>Show that $V \otimes V \cong S^2 V \oplus \Lambda^2 V$ when $\mathrm{char}(k) \neq 2$.</strong> Decompose $v \otimes w = \tfrac{1}{2}(v \otimes w + w \otimes v) + \tfrac{1}{2}(v \otimes w - w \otimes v)$.</li>
+
+    <li><strong>Show that the free group of rank $2$ contains the free group of rank $3$.</strong> Schreier: subgroups of free groups are free. The Schreier index formula gives rank $k(n-1) + 1$ for an index-$k$ subgroup of $F_n$; with $n = k = 2$ rank is $3$.</li>
+
+    <li><strong>Compute $S^{-1}R$ for a specific multiplicative set $S$.</strong> Primes of $S^{-1}R$ correspond to primes of $R$ disjoint from $S$; localizing at a prime $\mathfrak{p}$ produces a local ring with maximal ideal $\mathfrak{p} R_\mathfrak{p}$.</li>
+
+    <li><strong>Describe $\mathbb{Q}(\zeta_n)$ and its subfields.</strong> $[\mathbb{Q}(\zeta_n):\mathbb{Q}] = \varphi(n)$, $\mathrm{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$. Subfields correspond to subgroups.</li>
+
+    <li><strong>Prove an isomorphism statement via a diagram chase or the short five lemma.</strong> Push elements explicitly through the diagram.</li>
+
+    <li><strong>Construct a Galois extension with a prescribed finite Galois group.</strong> Over $\mathbb{Q}$, finite abelian groups arise as subfields of $\mathbb{Q}(\zeta_n)$. Over a function field $F(x_1, \ldots, x_n)$, every finite group occurs. The general inverse Galois problem over $\mathbb{Q}$ is open.</li>
+
+    <li><strong>Describe the Sylow $p$-subgroups of $S_n$.</strong> A Sylow $p$-subgroup of $S_p$ is cyclic of order $p$. When $n < p^2$ it is a product of $\lfloor n/p\rfloor$ disjoint $p$-cycles, hence elementary abelian.</li>
+
+    <li><strong>Determine the reducibility of $1 + t + t^2 + \cdots + t^n = (t^{n+1} - 1)/(t - 1)$ in $\mathbb{Q}[t]$.</strong> Using $t^{n+1} - 1 = \prod_{d \mid n+1} \Phi_d(t)$, the sum equals $\prod_{d \mid n+1,\, d > 1} \Phi_d(t)$. Irreducible iff $n+1$ is prime, when it equals $\Phi_{n+1}(t)$.</li>
+  </ol>
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

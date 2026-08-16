@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 5. Field Theory &middot; Galois groups of specific polynomials</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Galois groups of specific polynomials</span></div>
+<div class="part-nav"><a href="fields-5.html">&larr; Galois theory</a><a href="fields.html">Field Theory contents</a><a href="fields-7.html">Qual problems &middot; Field Theory &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Galois groups of specific polynomials</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Discriminant of a polynomial.</strong> <span class="cite">(D&amp;F &sect;14.6)</span>
+  For monic $f \in F[x]$ with roots $\alpha_1, \ldots, \alpha_n$ in a splitting field, the <strong>discriminant</strong> is $\Delta(f) = \prod_{i < j} (\alpha_i - \alpha_j)^2$. <em>Discriminant lives in $F$ (it is a symmetric polynomial in the roots, so $F$-coefficients are preserved).</em> $\Delta \neq 0$ iff all roots are distinct, i.e., $f$ is separable. The square root $\sqrt{\Delta}$ is fixed by $\mathrm{Gal}(f)$ iff the Galois group is contained in $A_n$ (the alternating group). So $\sqrt{\Delta} \in F$ detects whether $\mathrm{Gal}(f) \subseteq A_n$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Cubic Galois group via discriminant.</strong> <span class="cite">(D&amp;F &sect;14.6)</span>
+  For $f = x^3 + px + q$ irreducible over $F$ with $\mathrm{char}(F) \neq 2,3$, the discriminant is $\Delta(f) = -4p^3 - 27q^2$. <em>Two cases: $\sqrt{\Delta} \in F$ or $\sqrt{\Delta} \notin F$.</em> If $\sqrt{\Delta} \in F$, then $\mathrm{Gal}(f) \cong \mathbb{Z}/3$ (cyclic, $f$ splits over the unique cubic extension). Otherwise $\mathrm{Gal}(f) \cong S_3$ (nonabelian, the generic case).
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Galois group of $x^3 - 3x + 1$ over $\mathbb{Q}$.</strong> First check irreducibility: rational root test on $x^3 - 3x + 1$. Candidates $\pm 1$ give $1 - 3 + 1 = -1 \neq 0$ and $-1 + 3 + 1 = 3 \neq 0$, so irreducible. Write $f = x^3 - 3x + 1$ in form $x^3 + px + q$ where $p = -3, q = 1$. Discriminant: $\Delta = -4(-3)^3 - 27(1)^2 = -4(-27) - 27 = 108 - 27 = 81 = 9^2$. Since $\sqrt{\Delta} = 9 \in \mathbb{Q}$, the Galois group is $\mathrm{Gal}(f) \cong \mathbb{Z}/3$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Galois group of $x^n - a$ over $\mathbb{Q}$.</strong> <span class="cite">(D&amp;F &sect;14.7)</span>
+  Assume $x^n - a$ is irreducible over $\mathbb{Q}$ with $n \geq 3$. Let $\alpha = a^{1/n}$ and $\zeta_n$ a primitive $n$-th root. The splitting field is $K = \mathbb{Q}(\alpha, \zeta_n)$ of degree $[K:\mathbb{Q}] = n \cdot \varphi(n)$ (product of the two extension degrees, which are coprime). The Galois group $G = \mathrm{Gal}(K/\mathbb{Q})$ is a subgroup of the semidirect product $\mathbb{Z}/n \rtimes (\mathbb{Z}/n)^\times$. <em>The group is non-abelian when $n \geq 3$ because the conjugation action is nontrivial.</em>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Galois group of $x^5 - 2$ over $\mathbb{Q}$.</strong> Irreducibility: Eisenstein criterion at $p=2$ (leading coeff $1$ coprime to $2$, but $2 \mid 2$, $2^2 \nmid 2$). Splitting field: $K = \mathbb{Q}(\sqrt[5]{2}, \zeta_5)$. Degree: $[K:\mathbb{Q}] = 5 \cdot \varphi(5) = 5 \cdot 4 = 20$. Galois group: $\mathrm{Gal}(K/\mathbb{Q})$ is isomorphic to the non-abelian semidirect product $\mathbb{Z}/5 \rtimes \mathbb{Z}/4$, order $20$. It is non-abelian because $\mathbb{Z}/4$ acts nontrivially on $\mathbb{Z}/5$ by the action $g \cdot a \equiv a \cdot j^g \pmod{5}$ for some $j$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Cyclotomic and Kronecker-Weber theorem.</strong> <span class="cite">(D&amp;F &sect;13.6, &sect;14.5)</span>
+  $\mathrm{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$, always abelian (since units form an abelian group). <strong>Kronecker-Weber:</strong> Every finite abelian extension $K/\mathbb{Q}$ is contained in some cyclotomic field $\mathbb{Q}(\zeta_n)$. So cyclotomic fields exhaust all finite abelian Galois extensions of $\mathbb{Q}$.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>Every finite group is a Galois group over function fields.</strong> <span class="cite">(D&amp;F &sect;14.6, Ex. 46)</span>
+  For any finite group $G$, there exists a Galois extension $L/K$ of fields with $\mathrm{Gal}(L/K) \cong G$. <em>Construction: embed $G \hookrightarrow S_n$ as a transitive subgroup. Take $L = \mathbb{Q}(x_1, \ldots, x_n)$ (purely transcendental), and let $G$ act by permuting variables. Set $K = L^G$ (fixed field). Then $L/K$ is Galois with group $G$.</em> Note: $K$ is not usually $\mathbb{Q}$. The inverse Galois problem over $\mathbb{Q}$ (whether all finite groups realize over $\mathbb{Q}$) remains open.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Galois-Abel-Ruffini).</span> <span class="cite">(D&amp;F &sect;14.7)</span>
+  A polynomial $f \in \mathbb{Q}[x]$ is solvable by radicals (i.e., roots expressible in $+, -, \times, \div, \sqrt[n]{\ }$) iff its Galois group $\mathrm{Gal}(f)$ is a solvable group. <em>Solvable means: a composition series where all quotients have prime order.</em> For $n \geq 5$, the symmetric group $S_n$ is not solvable. Therefore a generic degree-$n$ polynomial with $n \geq 5$ has Galois group $S_n$, hence is not solvable by radicals. This settles classical problems on quintic and higher-degree equations.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Computing Galois groups is an art.</strong> For small cases (cubics, quartics, $x^n - a$), discriminant or direct symmetry arguments work. For higher degrees, use Frobenius splitting in primes, Newton polygon factorizations, or reduction modulo $p$ to guess the Galois group, then verify. The problem is hard: no uniform algorithm is known.
+</div>
+
+<div class="qual-section">
+
+<div class="part-nav"><a href="fields-5.html">&larr; Galois theory</a><a href="fields.html">Field Theory contents</a><a href="fields-7.html">Qual problems &middot; Field Theory &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

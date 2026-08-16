@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 4. Linear Algebra &middot; Minimal and characteristic polynomials</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="linalg.html">Linear Algebra</a> &rsaquo; <span>Minimal and characteristic polynomials</span></div>
+<div class="part-nav"><a href="modules.html">&larr; Part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Minimal and characteristic polynomials</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Characteristic and minimal polynomials.</strong> <span class="cite">(D&amp;F &sect;12.2)</span>
+  For $T \colon V \to V$ on an $n$-dimensional $k$-vector space:
+  <ul>
+    <li>$\chi_T(x) = \det(xI - T)$ is the characteristic polynomial, monic of degree $n$.</li>
+    <li>$m_T(x)$ is the minimal polynomial, the monic generator of the ideal of polynomials vanishing on $T$.</li>
+    <li><strong>Cayley-Hamilton:</strong> $\chi_T(T) = 0$. So $m_T \mid \chi_T$, and they share the same irreducible factors (up to multiplicity).</li>
+    <li>$m_T$ is the largest invariant factor. Writing invariant factors as $a_1 \mid a_2 \mid \cdots \mid a_r$, their product is $\chi_T$.</li>
+  </ul>
+  <em>The minimal polynomial captures the smallest algebraic relation on $T$, while the characteristic polynomial is the big picture. Cayley-Hamilton bridges them.</em>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> For the companion matrix of $f = x^3 + 2x + 1$, both $\chi$ and $m$ equal $f$. The companion matrix "sees" the full polynomial. For $T = \mathrm{diag}(2, 2, 3)$, $\chi = (x-2)^2 (x - 3)$ but $m = (x - 2)(x - 3)$ because repeated eigenvalues are diagonalizable here (distinct eigenvalues).
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. The minimal polynomial feels the Jordan structure, not just the size.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Trace and determinant from eigenvalues.</strong> <span class="cite">(D&amp;F &sect;12.3)</span>
+  $\mathrm{tr}(A) = \sum \lambda_i$ and $\det(A) = \prod \lambda_i$, summing and multiplying eigenvalues with multiplicity. Trace is cyclic, so $\mathrm{tr}(AB) = \mathrm{tr}(BA)$. Thus $\mathrm{tr}(AB - BA) = 0$ always.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true for $\mathbb{C}$), the equation $AB - BA = I$ is algebraically impossible. This kills the noncommutative Heisenberg relation in finite dimension. Quals love this.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Compute $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. Over $k[x]$, the commutator relation works. Infinite-dimensional vector spaces have no trace, so the trace argument collapses.
+</div>
+
+<div class="part-nav"><a href="modules.html">&larr; Part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

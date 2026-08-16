@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1e293b">
+<meta name="robots" content="noindex, nofollow">
+<title>Day Colors</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="topbar">
+  <button id="prevBtn" class="icon-btn">&larr;</button>
+  <h1 id="monthTitle">Month</h1>
+  <button id="legendBtn" class="icon-btn">&#9673;</button>
+  <button id="nextBtn" class="icon-btn">&rarr;</button>
+</header>
+
+<main id="app">
+  <div id="weekdayRow" class="weekday-row"></div>
+  <div id="calendarGrid" class="calendar-grid"></div>
+</main>
+
+<!-- Day editor sheet -->
+<div id="dayModal" class="sheet-backdrop hidden">
+  <div class="sheet">
+    <div class="sheet-header">
+      <h2 id="dayModalTitle">Date</h2>
+      <button id="dayModalClose" class="icon-btn">&times;</button>
+    </div>
+    <div id="dayLabelList" class="label-toggle-list"></div>
+  </div>
+</div>
+
+<!-- Legend editor sheet -->
+<div id="legendModal" class="sheet-backdrop hidden">
+  <div class="sheet">
+    <div class="sheet-header">
+      <h2>Legend</h2>
+      <button id="legendModalClose" class="icon-btn">&times;</button>
+    </div>
+    <div id="legendList" class="list"></div>
+    <div class="new-label-row">
+      <input id="newLabelName" type="text" placeholder="Label name (e.g. Gym)">
+      <input id="newLabelColor" type="color" value="#38bdf8">
+      <button id="addLabelBtn" class="primary-btn">Add</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

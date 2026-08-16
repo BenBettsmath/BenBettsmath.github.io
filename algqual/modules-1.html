@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 3. Module Theory &middot; Basics</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Basics</span></div>
+<div class="part-nav"><a href="rings.html">&larr; Part: Ring Theory</a><a href="modules.html">Module Theory contents</a><a href="modules-2.html">Exact sequences &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Basics</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Module.</strong> <span class="cite">(D&amp;F &sect;10.1)</span>
+  A left $R$-module $M$ is an abelian group with an action $R \times M \to M$, $(r, m) \mapsto rm$, satisfying $1m = m$, $(rs)m = r(sm)$, and bilinearity: $(r+s)m = rm + sm$, $r(m+n) = rm + rn$.
+  <em>Modules are ring actions on abelian groups, what vector spaces are to fields.</em>
+  $M$ is <strong>free of rank $n$</strong> if $M \cong R^n$, <strong>torsion</strong> if every element is killed by some nonzero $r \in R$, and <strong>finitely generated</strong> if a finite subset generates $M$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Examples.</span> Vector spaces are $F$-modules, abelian groups are $\mathbb{Z}$-modules, ideals $I \leq R$ are $R$-modules, and $R/I$ is an $R$-module.<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Q}$ is a $\mathbb{Z}$-module but not finitely generated: any finite subset $\{a_1/b_1, \ldots, a_n/b_n\}$ generates only fractions with denominators dividing $\mathrm{lcm}(b_i)$, so larger denominators escape.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>The annihilator is always an ideal.</strong> <span class="cite">(D&amp;F &sect;10.1)</span>
+  The set $\mathrm{ann}_R(M) = \{r \in R : rm = 0 \text{ for all } m \in M\}$ forms an ideal of $R$ by closure under addition and multiplication by $s \in R$. For $M = R/I$ the annihilator is $I$ itself: $r$ kills $R/I$ iff $r \in I$. Direct sums are special: $r$ kills $M_1 \oplus M_2$ iff it kills both, so $\mathrm{ann}(M_1 \oplus M_2) = \mathrm{ann}(M_1) \cap \mathrm{ann}(M_2)$.
+</div>
+
+<div class="part-nav"><a href="rings.html">&larr; Part: Ring Theory</a><a href="modules.html">Module Theory contents</a><a href="modules-2.html">Exact sequences &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc III · Material Outline</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Calculus III. Material outline</h2>
+<p>pick a chapter. each page has the full notes, the original outline figures from the latex source, and rotatable 3D versions.</p>
+<a class="chapter-card" href="ch10.html"><h4>Chapter 10 · Parametric Curves & Polar Coordinates</h4><p>Curves in parametric and polar form: slope, arc length, and area for each.</p></a>
+<a class="chapter-card" href="ch12.html"><h4>Chapter 12 · Vectors and the Geometry of Space</h4><p>3D geometry: vectors, dot and cross products, lines and planes, and the six quadric surfaces classified by their traces.</p></a>
+<a class="chapter-card" href="ch13.html"><h4>Chapter 13 · Vector Functions and Space Curves</h4><p>Vector-valued functions $\vec r(t)$. Tangents, arc length, curvature, motion, projectiles, and taylor approximation of curves.</p></a>
+<a class="chapter-card" href="ch14.html"><h4>Chapter 14 · Partial Derivatives & Gradients</h4><p>Functions of several variables, partial derivatives, gradient and directional derivative, tangent planes, the chain rule, optimisation (Hessian and Lagrange), and Taylor approximation.</p></a>
+<a class="chapter-card" href="ch15.html"><h4>Chapter 15 · Multiple Integrals</h4><p>Double and triple integrals in polar, cylindrical, and spherical coordinates. volume elements, plus mass, centre of mass, and probability density.</p></a>
+<a class="chapter-card" href="ch16.html"><h4>Chapter 16 · Vector Calculus</h4><p>Vector fields, conservative fields, line integrals (work and fence area), the Fundamental Theorem for Line Integrals, Green's Theorem, curl and divergence.</p></a>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc3_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

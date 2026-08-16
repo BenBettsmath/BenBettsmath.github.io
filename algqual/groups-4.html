@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Abelian groups and the structure theorem</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Abelian groups and the structure theorem</span></div>
+<div class="part-nav"><a href="groups-3.html">&larr; Free groups</a><a href="groups.html">Group Theory contents</a><a href="groups-5.html">Group actions &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Abelian groups and the structure theorem</h2>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>Structure theorem for finitely generated abelian groups.</strong> <span class="cite">(D&amp;F &sect;5.2, Thm. 5)</span>
+  Every finitely generated abelian group is isomorphic to
+  $$\mathbb{Z}^r \oplus \mathbb{Z}/d_1\mathbb{Z} \oplus \cdots \oplus \mathbb{Z}/d_k\mathbb{Z}, \qquad d_1 \mid d_2 \mid \cdots \mid d_k, \quad d_i > 1$$
+  (<em>invariant factor form</em>), or equivalently as
+  $$\mathbb{Z}^r \oplus \mathbb{Z}/p_1^{a_1}\mathbb{Z} \oplus \cdots \oplus \mathbb{Z}/p_t^{a_t}\mathbb{Z}$$
+  (<em>elementary divisor form</em>). <em>One representation per group, in either guise. This is the complete classification.</em> The decomposition is unique in either form.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> Order $12$ has two abelian groups: $\mathbb{Z}/12 \cong \mathbb{Z}/4 \oplus \mathbb{Z}/3$ (one generator of order $12$) and $\mathbb{Z}/2 \oplus \mathbb{Z}/6 \cong \mathbb{Z}/2 \oplus \mathbb{Z}/2 \oplus \mathbb{Z}/3$ (no element of order $>6$). <em>Different structures, same order.</em><br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ and $(\mathbb{Z}/2)^2$ both have order $4$ but aren't isomorphic. First has an element of order $4$; second doesn't.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Rules.</span> <strong>Converting between forms.</strong>
+  <ul>
+    <li><em>Invariant factors $\to$ elementary divisors:</em> Factor each $d_i$ into prime powers. Done.</li>
+    <li><em>Elementary divisors $\to$ invariant factors:</em> Group the prime powers by prime. For each prime $p$, sort its power factors decreasing: $p^{a_1} \geq p^{a_2} \geq \cdots$. The largest invariant factor $d_k = \prod_p p^{a_1(p)}$ (the largest of each prime's list). Then $d_{k-1}$ is the product of each second-largest, and so on. Fill gaps with $1$s. <em>This repackaging is forced: the structure is the same either way.</em></li>
+  </ul>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Elementary divisors $\{4, 2, 9, 3, 5\}$ over $\mathbb{Z}$.
+  <ul>
+    <li>Group by prime: for $p=2$: $\{4, 2\}$. For $p=3$: $\{9, 3\}$. For $p=5$: $\{5\}$.</li>
+    <li>Largest invariant factor: $4 \cdot 9 \cdot 5 = 180$.</li>
+    <li>Second largest: $2 \cdot 3 \cdot 1 = 6$.</li>
+    <li>Check $6 \mid 180$. So $M \cong \mathbb{Z}/6 \oplus \mathbb{Z}/180$.</li>
+  </ul>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Computing $\mathbb{Z}^n/H$ via Smith normal form.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
+  Write the generators of $H \leq \mathbb{Z}^n$ as the <strong>columns</strong> of an $n \times m$ integer matrix $M$, so $M : \mathbb{Z}^m \to \mathbb{Z}^n$ has image $H$ and the quotient is its cokernel,
+  $$0 \to \mathbb{Z}^m \xrightarrow{\ M\ } \mathbb{Z}^n \to \mathbb{Z}^n/H \to 0.$$
+  Reduce $M$ by integer row and column operations to Smith normal form $\mathrm{diag}(d_1, \ldots, d_r, 0, \ldots, 0)$ with $d_1 \mid d_2 \mid \cdots \mid d_r$. Then
+  $$\mathbb{Z}^n/H \cong \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_r \oplus \mathbb{Z}^{n-r}.$$
+  Allowed operations are to swap two rows or columns, multiply a row or column by $\pm 1$, and add an integer multiple of one row or column to another. <em>Each zero diagonal entry gives a free $\mathbb{Z}$ summand in the quotient.</em>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> $\mathbb{Z}^4/H$ for $H = \langle (2,2,2,2), (2,4,8,0), (8,8,0,4) \rangle$ (Aug 2022 qual). The generators are the columns of
+  $$M = \begin{pmatrix} 2 & 2 & 8 \\ 2 & 4 & 8 \\ 2 & 8 & 0 \\ 2 & 0 & 4 \end{pmatrix}.$$
+  Clear the first row off the other columns, $C_2 \leftarrow C_2 - C_1$ and $C_3 \leftarrow C_3 - 4C_1$, then clear the first column with row operations and continue. Padding with a fourth zero column to square it up, this reduces to $\mathrm{diag}(2, 2, 4, 0)$, so the invariant factors are $2, 2, 4$ and the zero pivot is one free direction,
+  $$\mathbb{Z}^4/H \cong \mathbb{Z}/2 \oplus \mathbb{Z}/2 \oplus \mathbb{Z}/4 \oplus \mathbb{Z}.$$
+</div>
+
+<div class="part-nav"><a href="groups-3.html">&larr; Free groups</a><a href="groups.html">Group Theory contents</a><a h

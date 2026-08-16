@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 5. Field Theory &middot; Field extensions and degrees</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Field extensions and degrees</span></div>
+<div class="part-nav"><a href="linalg.html">&larr; Part: Linear Algebra</a><a href="fields.html">Field Theory contents</a><a href="fields-2.html">Splitting fields, normality, separability &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Field extensions and degrees</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Extension degree.</strong> <span class="cite">(D&amp;F &sect;13.1)</span>
+  $E/F$ is a field extension if $F \subseteq E$ are fields. The <strong>degree</strong> is $[E:F] := \dim_F E$, viewing $E$ as a vector space over $F$. <em>Degree is just dimension, the most powerful lens in field theory.</em> The <strong>tower law</strong> $[K:F] = [K:E][E:F]$ whenever $F \subseteq E \subseteq K$ follows from vector space dimension multiplying in chains. So $[E:F] \mid [K:F]$.
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Algebraic element, minimal polynomial.</strong> <span class="cite">(D&amp;F &sect;13.1)</span>
+  $\alpha \in E$ is <strong>algebraic over $F$</strong> if some nonzero $f \in F[x]$ has $f(\alpha) = 0$. <em>Algebraic = satisfies a polynomial equation, the gateway to finite extensions.</em> The <strong>minimal polynomial</strong> $m_{\alpha,F} \in F[x]$ is the unique monic irreducible polynomial vanishing on $\alpha$; any $f$ with $f(\alpha) = 0$ satisfies $m_{\alpha,F} \mid f$. From the ideal $\ker(\text{evaluation at } \alpha)$, we get $F(\alpha) \cong F[x]/(m_{\alpha,F})$ and $[F(\alpha):F] = \deg m_{\alpha,F}$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> $\sqrt{2}$ is algebraic over $\mathbb{Q}$ with $m_{\sqrt 2, \mathbb{Q}} = x^2 - 2$, and $[\mathbb{Q}(\sqrt 2):\mathbb{Q}] = 2$. $[\mathbb{Q}(\sqrt[3]{2}):\mathbb{Q}] = 3$ with minimal poly $x^3 - 2$ (Eisenstein). Composite: $[\mathbb{Q}(\sqrt 2, \sqrt 3):\mathbb{Q}] = 4$ because $\gcd(2,3)=1$ forces the minimal polynomials to remain irreducible over $\mathbb{Q}(\sqrt 2)$.<br>
+  <span class="thm-label">Non-example.</span> $\pi$ is transcendental over $\mathbb{Q}$ (no nonzero $f \in \mathbb{Q}[x]$ has $f(\pi) = 0$). Hence $\mathbb{Q}(\pi)$ has infinite degree over $\mathbb{Q}$. The field $\mathbb{Q}(\pi)$ is not finitely generated as a $\mathbb{Q}$-vector space.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Coprimality forces disjointness.</strong> If $[F(\alpha):F] = m$ and $[F(\beta):F] = n$ with $\gcd(m, n) = 1$, then $[F(\alpha, \beta):F] = mn$. The minimal polynomials of $\beta$ over $F$ and $F(\alpha)$ remain the same (one cannot divide the other), so they conspire to produce the full product degree. This is quals' favorite trick for computing degrees of compositums.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Proof sketch.</span> Tower law gives $[F(\alpha, \beta) : F] = [F(\alpha, \beta) : F(\alpha)] [F(\alpha) : F]$. Both $m$ and $n$ divide the left side, so $mn \mid [F(\alpha, \beta) : F]$ when $\gcd(m,n)=1$. But $[F(\alpha, \beta) : F(\alpha)] \leq n$ because $m_{\beta,F}$ stays irreducible over $F(\alpha)$ (its degree does not drop), giving the upper bound $[F(\alpha, \beta) : F] \leq mn$.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>$\sqrt{2} + \sqrt{3}$ generates the whole compositum.</strong> Let $\alpha = \sqrt 2 + \sqrt 3$. Square: $\alpha^2 = 5 + 2\sqrt{6}$, so $\sqrt{6} = (\alpha^2 - 5)/2 \in \mathbb{Q}(\alpha)$. Then $2\sqrt{6} = \alpha^2 - 5$, square again: $(\alpha^2 - 5)^2 = 24$ gives $\alpha^4 - 10\alpha^2 + 1 = 0$. This polynomial is irreducible over $\mathbb{Q}$ (rational root test kills all $\pm 1$, and it does not factor as product of quadratics). Hence $\mathbb{Q}(\sqrt{2} + \sqrt{3}) = \mathbb{Q}(\sqrt 2, \sqrt 3)$ of degree $4$.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Primitive Element).</span> <span class="cite">(D&amp;F &sect;14.4, Thm. 25)</span>
+  Any finite separable extension $E/F$ is simple, i.e., $E = F(\gamma)$ for some $\gamma$ (a "primitive element"). <em>Separability says distinct roots, and then one generic element generates everything.</em> For example $\mathbb{Q}(\sqrt 2, \sqrt 3) = \mathbb{Q}(\sqrt 2 + \sqrt 3)$. In characteristic $0$, all finite extensions are separable, so all have primitive elements.
+</div>
+
+<div class="part-nav"><a href="linalg.html">&larr; Part: Linear Algebra</a><a href="fields.html">Field Theory contents</a><a href="fields-2.html">Splitting fields, normality, separability &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

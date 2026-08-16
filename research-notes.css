@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+:root{ --gold:#B98C28; --gold-soft:#f0e4c4; --crit:#B98C28; --crit-soft:#f0e4c4;
+  --teal:#007A86; --teal-soft:#d4ecee; --cherry-soft:#f6dde2; --edge:#5a5f66; --rule:#cfd0d2; }
+.breadcrumb{ font-family:'STIX Two Text', Georgia, serif; font-size:13px; color:#888; margin:0 0 14px }
+.breadcrumb a{ color:var(--turquoise) }
+h1.note-title{ font-family:'STIX Two Text', Georgia, serif; font-weight:800; color:var(--cherry); font-size:2.1rem; letter-spacing:-.01em; margin:0 0 .3em }
+h1.note-title em{ font-style:italic; color:var(--turquoise); font-weight:700 }
+.lede{ font-size:1.1rem; color:#3a3a3a; max-width:72ch; margin:0 0 6px }
+h3{ color:var(--turquoise); margin-top:1.6em }
+.defn{ border-left:4px solid var(--cherry); background:#fff; padding:.7em 1.1em; margin:1.2em 0; border-radius:0 6px 6px 0; box-shadow:0 1px 4px rgba(0,0,0,.04); max-width:80ch }
+.defn .term{ font-family:'STIX Two Text', Georgia, serif; font-weight:700; color:var(--cherry) }
+p.body{ max-width:78ch }
+.katex{ font-size:1.0em }
+.figure{ margin:26px 0 10px; background:#fff; border:1px solid var(--silver-lt); border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,.05); overflow:hidden }
+.panels{ display:grid; grid-template-columns:1fr 1fr; gap:0 }
+.panel{ padding:10px 12px 6px; min-width:0 } .panel + .panel{ border-left:1px solid var(--silver-lt) }
+canvas{ display:block; width:100%; height:auto }
+.spine{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:2px; padding:8px 2px 12px; min-height:52px }
+.mod{ display:flex; flex-direction:column; align-items:center; gap:2px } .mod .box{ border:1.5px solid var(--silver); background:#fff; border-radius:6px; padding:4px 9px; font-size:1.0rem; min-width:34px; text-align:center }
+.mod.crit .box{ border-color:var(--gold); background:var(--gold-soft) }
+.mod .tag{ font-family:'STIX Two Text', Georgia, serif; font-size:8.5px; color:#999 }
+.arr{ display:flex; flex-direction:column; align-items:center; color:#999 } .arr .lab{ font-family:'STIX Two Text', Georgia, serif; font-size:9px; color:var(--cherry) } .arr .ln{ font-size:1.1rem; line-height:1 }
+.theater{ border-top:1px dashed var(--silver-lt); padding-top:10px }
+.mtitle{ font-family:'STIX Two Text', Georgia, serif; font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:#999; text-align:center; margin-bottom:8px }
+.mrow{ display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap }
+.mwrap{ display:flex; flex-direction:column; align-items:center; gap:5px } .mcap{ font-family:'STIX Two Text', Georgia, serif; font-size:8.5px; color:#999 }
+table.mat{ border-collapse:collapse; font-family:'STIX Two Text',serif; font-size:12px }
+table.mat td,table.mat th{ border:1px solid var(--silver-lt); padding:3px 6px; text-align:center; min-width:24px; background:#fff; color:var(--text) }
+table.mat th{ background:transparent; border:0; font-size:10px; font-weight:600 }
+table.mat td.zero{ color:#bbb }
+td.K,th.K{ color:var(--gold) } td.Md,th.Md{ color:var(--cherry) } td.Mu,th.Mu{ color:var(--teal) }
+td.pivot{ background:var(--cherry-soft); outline:2px solid var(--cherry); font-weight:700 }
+td.newentry{ background:var(--cherry-soft); color:var(--cherry); font-weight:700 }
+.bracket{ position:relative; padding:0 8px } .bracket::before,.bracket::after{ content:""; position:absolute; top:0; bottom:0; width:6px; border:1.5px solid var(--text) }
+.bracket::before{ left:0; border-right:0; border-radius:3px 0 0 3px } .bracket::after{ right:0; border-left:0; border-radius:0 3px 3px 0 }
+.opbig{ font-size:1.4rem; color:#999 } .op{ font-family:'STIX Two Text',serif; font-size:11px; color:var(--cherry); text-align:center }
+.stage{ padding:2px 20px 4px }
+.caption{ min-height:4.6em; font-size:.98rem; border-top:1px dashed var(--silver-lt); padding-top:12px; margin-top:4px }
+.caption .step-tag{ font-family:'STIX Two Text', Georgia, serif; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cherry); display:block; margin-bottom:5px }
+.controls{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:12px 20px 16px }
+.controls button{ font-family:'STIX Two Text', Georgia, serif; font-weight:700; font-size:12px; letter-spacing:.03em; background:#fff; color:var(--text); border:1px solid var(--silver); padding:8px 14px; border-radius:6px; cursor:pointer; transition:all .15s }
+.controls button:hover:not(:disabled){ background:var(--turquoise); color:#fff; border-color:var(--turquoise) }
+.controls button:disabled{ opacity:.4; cursor:not-allowed }
+.controls button.primary{ background:var(--cherry); color:#fff; border-color:var(--cherry) } .controls button.primary:hover:not(:disabled){ background:var(--cherry-dk) }
+.progress{ font-family:'STIX Two Text', Georgia, serif; font-size:12px; color:#888; margin-left:auto } .progress b{ color:var(--cherry) }
+.figcaption{ font-size:.9rem; color:#777; font-style:italic; max-width:80ch; margin:12px 2px 0 }
+.fig-static{ margin:22px 0 6px; background:#fff; border:1px solid var(--silver-lt); border-radius:10px; padding:8px }
+.fig-static canvas, .fig-static svg{ display:block; width:100%; height:auto }
+.rules{ display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 }
+.rules .rc{ flex:1 1 210px; border:1px solid var(--silver-lt); border-radius:8px; background:#fff; padding:10px 10px 8px; text-align:center }
+.rules .rc svg{ width:100%; height:auto; max-width:250px; margin:0 auto }
+.rules .rc .rl{ font-family:'STIX Two Text', Georgia, serif; font-weight:700; font-size:12px; color:var(--cherry); margin-top:6px }
+.rules .rc .rd{ font-size:.86rem; color:#555; margin-top:3px }
+/* notes hub cards */
+.hub{ display:flex; gap:1em; flex-wrap:wrap; margin:1.4em 0 }
+.hub a{ flex:1 1 240px; display:block; padding:1.1em 1.3em; border:1px solid var(--silver-lt); border-radius:8px; background:#fff; text-decoration:none; color:inherit; box-shadow:0 1px 4px rgba(0,0,0,.04) }
+.hub a:hover{ background:#f3f8f9; border-color:var(--turquoise) }
+.hub h3{ margin:0; color:var(--cherry); font-family:'STIX Two Text', Georgia, serif }
+.hub p{ margin:.35em 0 0; color:#666; font-size:.9rem }
+#corner-trigger{ position:fixed; right:0; bottom:0; width:64px; height:64px; z-index:60; cursor:default }
+.locked .page-content, .locked footer{ display:none }
+footer{ margin-top:60px; padding-top:18px; border-top:1px solid var(--silver-lt); font-size:.85em; color:var(--ink-soft) }
+@media (max-width:680px){ .panels{ grid-template-columns:1fr } .panel + .panel{ border-left:0; border-top:1px solid var(--silver-lt) } .progress{ width:100%; margin-left:0; order:5 } }

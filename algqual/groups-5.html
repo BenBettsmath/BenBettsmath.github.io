@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Group actions</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Group actions</span></div>
+<div class="part-nav"><a href="groups-4.html">&larr; Abelian groups and the structure theorem</a><a href="groups.html">Group Theory contents</a><a href="groups-6.html">Sylow theorems &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Group actions</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Group action.</strong> <span class="cite">(D&amp;F &sect;4.1)</span>
+  An action of $G$ on a set $X$ is a homomorphism $G \to \mathrm{Sym}(X)$, equivalently a map $G \times X \to X$ with $1 \cdot x = x$ and $(gh) \cdot x = g \cdot (h \cdot x)$. <em>$G$ permutes $X$, respecting the group structure.</em> The <strong>orbit</strong> of $x$ is $Gx = \{gx : g \in G\}$; the <strong>stabilizer</strong> is $G_x = \{g : gx = x\}$, a subgroup of $G$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> $S_n$ acts on $\{1, \ldots, n\}$ (one orbit, stabilizer of $i$ is $S_{n-1}$). $G$ acts on itself by left multiplication (one orbit, trivial stabilizer). By conjugation (orbits are conjugacy classes, stabilizers = centralizers). <em>Three of the most important actions.</em><br>
+  <span class="thm-label">Non-example.</span> The trivial action $g \cdot x = x$ is technically valid but useless. A common <em>mistake</em>: writing $g \cdot x = xg^{-1}$ for a left action of $G$. This is actually a *right* action (the formula multiplies on the right). Stick to $g \cdot x = gxg^{-1}$ for conjugation or $gx$ for left multiplication on $G$ itself.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Orbit-stabilizer).</span> <span class="cite">(D&amp;F &sect;4.1, Prop. 2)</span>
+  $$|Gx| = [G:G_x].$$
+  <em>Size of an orbit equals the index of its stabilizer. Elegant formula underlying all group action applications.</em>
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Class equation).</span> <span class="cite">(D&amp;F &sect;4.3, Thm. 7)</span>
+  $$|G| = |Z(G)| + \sum_i [G:C_G(g_i)],$$
+  the sum running over one representative $g_i$ per conjugacy class of size $>1$. <em>Orbits under conjugation partition $G$. This equation detects nontrivial centers.</em>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Cor.</span> <span class="cite">(D&amp;F &sect;4.3, Cor. 9)</span>
+  If $|G| = p^n$ then $Z(G) \neq 1$. <em>$p$-groups always have nontrivial center.</em> Groups of order $p^2$ are abelian.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Coset action / Cayley).</span> <span class="cite">(D&amp;F &sect;4.2, Thm. 3)</span>
+  $G$ acts on the left cosets of $H$ by left multiplication, giving $\phi\colon G \to S_{[G:H]}$. Then $\ker\phi = \text{Core}_G(H) = \bigcap_{g \in G} gHg^{-1}$ (the core of $H$), which is normal in $G$ and contained in $H$. If $[G:H] = n$ and $n! < |G|$, then $\ker\phi$ is nontrivial and proper, giving a nontrivial normal subgroup of $G$.
+</div>
+
+<div class="part-nav"><a href="groups-4.html">&larr; Abelian groups and the structure theorem</a><a href="groups.html">Group Theory contents</a><a href="groups-6.html">Sylow theorems &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

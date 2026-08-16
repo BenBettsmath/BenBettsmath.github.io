@@ -1,0 +1,24 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# Backups
+*.bak
+*.backup
+*.original
+*.preinverse
+
+calc3/homework/
+
+.claude/
+code/cx3d/

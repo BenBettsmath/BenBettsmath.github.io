@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 1. Group Theory &middot; Sylow theorems</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Sylow theorems</span></div>
+<div class="part-nav"><a href="groups-5.html">&larr; Group actions</a><a href="groups.html">Group Theory contents</a><a href="groups-7.html">Solvable and nilpotent groups &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Sylow theorems</h2>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Sylow).</span> <span class="cite">(D&amp;F &sect;4.5, Thm. 18)</span>
+  Let $|G| = p^a m$ with $p \nmid m$.
+  <ol>
+    <li><strong>Existence:</strong> Sylow $p$-subgroups (subgroups of order $p^a$) exist.</li>
+    <li><strong>Conjugacy:</strong> All Sylow $p$-subgroups are conjugate. Any $p$-subgroup nests in some Sylow $p$-subgroup.</li>
+    <li><strong>Count:</strong> The number $n_p$ of Sylow $p$-subgroups satisfies $n_p \equiv 1 \pmod{p}$ and $n_p \mid m$. <em>Two congruences to squeeze out solutions.</em></li>
+  </ol>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Extra Sylow facts.</strong> <span class="cite">(D&amp;F &sect;4.5)</span>
+  <ul>
+    <li>$P \in \mathrm{Syl}_p(G)$ and $P \leq H \leq G$ implies $P \in \mathrm{Syl}_p(H)$. (Syl$p$ subgroups descend.)</li>
+    <li>$N_G(P)/C_G(P) \hookrightarrow \mathrm{Aut}(P)$ constrains $n_p$ via $|N_G(P)/C_G(P)| \mid |\mathrm{Aut}(P)|$.</li>
+    <li>If $n_p = 1$ for *all* primes $p \mid |G|$, then $G \cong P_1 \times \cdots \times P_k$ where $P_i$ is the unique Sylow $p_i$-subgroup. (All Sylow subgroups normal means $G$ is their direct product.)</li>
+  </ul>
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Note.</span> <strong>Simplicity proof template (how to prove $G$ is not simple).</strong>
+  <ol>
+    <li>List $n_p$ candidates for each $p \mid |G|$ using $n_p \equiv 1 \pmod p$, $n_p \mid m$.</li>
+    <li>If $n_p = 1$ for some $p$, the unique Sylow is normal; done, $G$ is not simple.</li>
+    <li>Else count elements: each Sylow $p$-subgroup (if cyclic of prime order) contributes $p-1$ nonidentity elements of order $p$. If $n_p(p-1) + (\text{other elements}) > |G|$, contradiction: $n_p$ can't be that large.</li>
+    <li>If $n_p$ is small, use coset action: $G \to S_{n_p}$ has nontrivial kernel when $n_p! < |G|$, giving a nontrivial normal subgroup.</li>
+    <li>Use automorphism constraint: $N_G(P)/C_G(P) \hookrightarrow \mathrm{Aut}(P)$ implies $|N_G(P)/C_G(P)| \mid |\mathrm{Aut}(P)|$, ruling out large $n_p$.</li>
+  </ol>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>Worked Sylow examples.</strong>
+  <p><strong>$|G| = pq$, $p < q$.</strong> $n_q \equiv 1 \pmod q$ and $n_q \mid p$, so $n_q \in \{1, p\}$; $p < q$ forces $n_q = 1$. If also $p \nmid q-1$ then $n_p = 1$, so $G \cong \mathbb{Z}/pq$.</p>
+  <p><strong>$|G| = 30$.</strong> $n_5 \in \{1, 6\}$, $n_3 \in \{1, 10\}$. If both $>1$ then $6 \cdot 4 + 10 \cdot 2 = 44 > 30$, a contradiction, so $n_3 = 1$ or $n_5 = 1$.</p>
+  <p><strong>$|G| = 56 = 2^3 \cdot 7$.</strong> $n_7 \in \{1, 8\}$. If $n_7 = 8$ then $8 \cdot 6 = 48$ elements of order $7$, leaving just $8$ for the Sylow $2$-subgroup, so $n_2 = 1$.</p>
+  <p><strong>$|G| = 80 = 2^4 \cdot 5$.</strong> $n_5 \in \{1, 16\}$. If $n_5 = 16$ then $16 \cdot 4 = 64$ elements of order $5$, leaving $16$ for $2$-power elements, so $n_2 = 1$.</p>
+  <p><strong>$|G| = 132 = 4 \cdot 3 \cdot 11$.</strong> $n_{11} \in \{1, 12\}$. If $n_{11} = 12$ then $12 \cdot 10 = 120$ elements of order $11$, leaving $12$, too few for both $n_2 > 1$ and $n_3 > 1$. So one of those Sylows is normal.</p>
+  <p><strong>$|G| = p^2 q$ with $p > q$.</strong> $n_p \mid q$ and $n_p \equiv 1 \pmod p$. With $p > q$, only $n_p = 1$ works.</p>
+</div>
+
+<div class="part-nav"><a href="groups-5.html">&larr; Group actions</a><a href="groups.html">Group Theory contents</a><a href="groups-7.html">Solvable and nilpotent groups &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

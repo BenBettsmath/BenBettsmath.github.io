@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ben Betts</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="index.html" class="active">Home</a>
+  <a href="research.html">Research</a>
+  <a href="teaching.html">Teaching</a>
+  <a href="cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <div class="intro-row">
+    <div class="intro-photo">
+      <!-- Replace photo.jpg with your actual photo filename -->
+      <img src="IMG_20260531_133904.png" alt="Ben Betts">
+    </div>
+    <div class="intro-text">
+      <h1>Ben Betts</h1>
+      <p>
+        I am a PhD student in the <a href="https://math.unm.edu/">Department of Mathematics and Statistics</a>
+        at the University of New Mexico, where I am advised by
+        <a href="https://math.unm.edu/~jvassil/">Janet Vassilev</a>.
+      </p>
+      <p>
+        I received my BS in Mathematics from the University of Washington in Spring 2021,
+        and I have been a PhD student at UNM since Fall 2022.
+      </p>
+      <p>
+        My research interests are in commutative and homological algebra.
+      </p>
+      <p>
+        <b>Email:</b> <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

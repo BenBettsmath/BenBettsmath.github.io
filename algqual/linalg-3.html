@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 4. Linear Algebra &middot; Nilpotent matrices</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="linalg.html">Linear Algebra</a> &rsaquo; <span>Nilpotent matrices</span></div>
+<div class="part-nav"><a href="linalg-2.html">&larr; Rational canonical form</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-4.html">Qual problems &middot; Linear Algebra &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Nilpotent matrices</h2>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Nilpotent matrices.</strong> <span class="cite">(D&amp;F &sect;12.3)</span>
+  For an $n \times n$ matrix $A$:
+  <ul>
+    <li>$A$ is nilpotent $\Leftrightarrow$ all eigenvalues are $0$ $\Leftrightarrow$ $\chi_A(x) = x^n$.</li>
+    <li>The nilpotency index $\nu(A) = \min\{k : A^k = 0\}$ satisfies $\nu(A) \leq n$ by Cayley-Hamilton.</li>
+    <li>$\nu(A)$ equals the size of the largest Jordan block in $A$. The block structure, not just the size of the matrix, determines how fast $A$ kills vectors.</li>
+  </ul>
+  <em>Nilpotent operators are the most degenerate: all powers of eigenvalues are zero.</em>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> The strict upper triangular $N$ with $1$s on the superdiagonal is maximally nilpotent: $N^n = 0$ but $N^{n-1} \neq 0$. Its index is $n$, the largest possible. It is a single $n \times n$ Jordan block.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Non-example.</span> $\mathrm{diag}(1, 0)$ has eigenvalue $1$, so not nilpotent. The matrix $\mathrm{diag}(0, 0, N_2)$ with $N_2$ the $2 \times 2$ shift is nilpotent of index $2$, not $4$, because the largest Jordan block is size $2$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Index equals largest Jordan block size.</strong> For the matrix $J_3(0) \oplus J_2(0)$ (direct sum of two Jordan blocks), $\chi = x^5$, but $m = x^3$. You need three powers, not five, because the $3 \times 3$ block is the largest. Index of nilpotency is the bottleneck: the biggest Jordan block dictates how many powers you need to zero everything.
+</div>
+
+
+<div class="qual-section">
+
+<div class="part-nav"><a href="linalg-2.html">&larr; Rational canonical form</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-4.html">Qual problems &middot; Linear Algebra &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

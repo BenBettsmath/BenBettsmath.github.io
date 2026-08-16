@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 2. Ring Theory &middot; Ideals, primes, and maximals</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Ideals, primes, and maximals</span></div>
+<div class="part-nav"><a href="groups.html">&larr; Part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Ideals, primes, and maximals</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Prime and maximal ideals.</strong> <span class="cite">(D&amp;F &sect;7.4)</span>
+  In a commutative ring $R$ with $1$: an ideal $\mathfrak{p} \neq R$ is <strong>prime</strong> if $ab \in \mathfrak{p}$ implies $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$, i.e. $R/\mathfrak{p}$ is a domain. An ideal $\mathfrak{m} \neq R$ is <strong>maximal</strong> if nothing lies strictly between $\mathfrak{m}$ and $R$, i.e. $R/\mathfrak{m}$ is a field. <em>Maximal always forces prime, but prime doesn't force maximal (except in PIDs).</em> In a PID every nonzero prime is maximal.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> In $\mathbb{Z}$, $(p)$ is maximal iff $p$ is prime. In $\mathbb{Q}[x, y]$, $(x)$ is prime but not maximal ($\mathbb{Q}[x,y]/(x) \cong \mathbb{Q}[y]$, a domain not a field); $(x, y)$ is maximal ($\mathbb{Q}[x,y]/(x,y) \cong \mathbb{Q}$).<br>
+  <span class="thm-label">Non-example.</span> In $\mathbb{Z}$, $(6)$ is neither prime nor maximal: $6 = 2 \cdot 3$ but neither $2$ nor $3$ lies in $(6)$. In $\mathbb{Q}[x, y]$ the ideal $(x^2, xy)$ is not prime: the product $x \cdot xy = x^2y \in (x^2, xy)$, yet $x, y \notin (x^2, xy)$ (quotient $\mathbb{Q}[x,y]/(x^2,xy)$ has nilpotents).
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (CRT).</span> <span class="cite">(D&amp;F &sect;7.6, Thm. 17)</span>
+  If $I + J = R$ then the map $r \mapsto (r + I, r + J)$ induces $R/(IJ) = R/(I \cap J) \cong R/I \times R/J$. For $n = p_1^{a_1} \cdots p_k^{a_k}$, $\mathbb{Z}/n\mathbb{Z} \cong \prod_i \mathbb{Z}/p_i^{a_i}\mathbb{Z}$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>CRT recovers $\mathbb{Z}/n\mathbb{Z}$ from prime powers.</strong> <span class="cite">(D&amp;F &sect;7.6)</span>
+  The coprimality condition $I + J = R$ is exactly what you get when ideals are coprime. For $\mathbb{Z}$, the prime powers $p_i^{a_i}$ generate coprime ideals, so the CRT isomorphism is an algebraic manifestation of the prime factorization of integers. This is why the CRT is the workhorse for solving systems of congruences.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Note.</span> <strong>Maximal ideals of $\mathbb{Z}/n\mathbb{Z}$.</strong>
+  The ideals of $\mathbb{Z}/n\mathbb{Z}$ correspond to divisors of $n$; the maximal ones are $(p)/(n)$ for primes $p \mid n$. For $n = 100 = 2^2 \cdot 5^2$, the maximal ideals are $(2)$ and $(5)$.
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Radical of an ideal.</strong> <span class="cite">(D&amp;F &sect;7.4)</span>
+  The <strong>radical</strong> of $I \leq R$ is $\sqrt{I} := \{r \in R : r^n \in I \text{ for some } n\}$, an ideal with $I \subseteq \sqrt{I} = \bigcap_{\mathfrak{p} \supseteq I} \mathfrak{p}$ (intersection of primes containing $I$). <em>Radicals measure "invisible zeros": every prime over $I$ sees $\sqrt{I}$ as its minimal radical hull.</em> $I$ is <strong>radical</strong> if $I = \sqrt I$; primes are radical. The nilradical is $\mathrm{nil}(R) = \sqrt{(0)}$.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>Nilradical equals intersection of primes.</strong> <span class="cite">(D&amp;F &sect;7.4, Ex. 26)</span>
+  $\mathrm{nil}(R) := \{r : r^n = 0 \text{ for some } n\} = \bigcap_{\mathfrak{p} \text{ prime}} \mathfrak{p}.$
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>The nilradical is the smallest radical ideal.</strong> The nilradical is the smallest ideal $I$ such that $R/I$ has no nonzero nilpotent elements (is reduced). Any prime ideal contains all nilpotents, so their intersection is the set of elements killed by every prime.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Note.</span> <strong>Proof sketch.</strong>
+  $\subseteq$: if $r$ is nilpotent then $r^n = 0 \in \mathfrak{p}$ for every prime, and primes are radical.<br>
+  $\supseteq$: if $r$ isn't nilpotent then $S = \{1, r, r^2, \ldots\}$ avoids $0$. Apply Zorn to the ideals disjoint from $S$ to get a maximal such $\mathfrak{p}$; that $\mathfrak{p}$ is prime, and $r \notin \mathfrak{p}$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Sum of nilpotents.</strong> <span class="cite">(D&amp;F &sect;7.3, Ex. 8)</span>
+  In a commutative ring, if $x^n = 0$ and $y^m = 0$ then $(x+y)^{m+n-1} = 0$, since every binomial term contains $x^n$ or $y^m$. So nilpotents form an ideal.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Maximal ideals of $C[0,1]$.</strong> <span class="cite">(D&amp;F &sect;7.4, Ex. 33)</span>
+  Let $R$ be the continuous functions $[0,1] \to \mathbb{R}$. For each $t \in [0,1]$, $\mathfrak{m}_t = \{f \in R : f(t) = 0\}$ is the kernel of evaluation $f \mapsto f(t)$, and $R/\mathfrak{m}_t \cong \mathbb{R}$ is a field, so $\mathfrak{m}_t$ is maximal. Every maximal ideal has this form.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Proof of surjectivity.</span> Say $M$ is an ideal in no $\mathfrak{m}_t$. For each $t \in [0,1]$ pick $f_t \in M$ with $f_t(t) \neq 0$. Each $f_t$ is nonzero near $t$, and by compactness of $[0,1]$ finitely many such neighborhoods at $t_1, \ldots, t_n$ cover it. Then $g = f_{t_1}^2 + \cdots + f_{t_n}^2 \in M$ is strictly positive on $[0,1]$, hence a unit in $R$, so $M = R$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Rings where $x^n = x$.</strong> <span class="cite">(D&amp;F &sect;7.1, Ex. 12-15)</span>
+  <ul>
+    <li><strong>Boolean rings ($x^2 = x$).</strong> <em>These are precisely the commutative rings of characteristic 2.</em> From $(x+x)^2 = x + x$ we get $x + x = 0$, so char $2$. Expanding $(x+y)^2 = x+y$ to $x + xy + yx + y = x + y$ gives $xy + yx = 0$, and $-1 = 1$ forces $xy = yx$.</li>
+    <li><strong>$x^3 = x$.</strong> Setting $x = 2$ gives $8 = 2$, so $6 = 0$ and $\mathrm{char}(R) \mid 6$. There is one such ring per divisor of $6$: $\mathbb{Z}/2$ (char $2$), $\mathbb{Z}/3$ (char $3$), $\mathbb{Z}/6$ (char $6$).</li>
+  </ul>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> The power set $\mathcal{P}(X)$ of any set $X$ is a Boolean ring under symmetric difference and intersection. <span class="cite">(D&amp;F &sect;7.1 Ex. 15)</span> Elements (subsets) satisfy $A = A$ (idempotent), and commutativity is automatic.<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ isn't Boolean: $2^2 = 0 \neq 2$. So "$x^2 = x$" is a real restriction.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Boolean rings are products of copies of $\mathbb{Z}/2$.</strong> By the CRT, every Boolean ring is isomorphic to a direct product of copies of $\mathbb{Z}/2$ (one for each maximal ideal). So the structure of Boolean rings is completely determined: they are exactly $(\mathbb{Z}/2)^S$ for sets $S$.
+</div>
+
+<div class="part-nav"><a href="groups.html">&larr; Part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

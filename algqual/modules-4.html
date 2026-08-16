@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 3. Module Theory &middot; Projective, injective, and flat modules</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Projective, injective, and flat modules</span></div>
+<div class="part-nav"><a href="modules-3.html">&larr; Structure theorem for f.g. modules over a PID</a><a href="modules.html">Module Theory contents</a><a href="modules-5.html">Hom and tensor products &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Projective, injective, and flat modules</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Projective, injective, flat.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  <em>Three dual notions of "nice" modules.</em>
+  <ul>
+    <li>$P$ is <strong>projective</strong> if every surjection $M \twoheadrightarrow N$ and every map $P \to N$ has a lift $P \to M$. Equivalently, $P$ is a direct summand of a free module. Over a PID, projective equals free.</li>
+    <li>$I$ is <strong>injective</strong> if every injection $N \hookrightarrow M$ and every map $N \to I$ extends to $M \to I$. Over $\mathbb{Z}$, injective equals divisible (every element divisible by all nonzero integers).</li>
+    <li>$M$ is <strong>flat</strong> if $- \otimes_R M$ preserves short exact sequences. Projective implies flat.</li>
+  </ul>
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Examples.</span> Over $\mathbb{Z}$: $\mathbb{Z}^n$ is free, projective, and flat. $\mathbb{Q}$ is injective (divisible) and flat (localization), but not projective.<br>
+  <span class="thm-label">Non-examples.</span> $\mathbb{Z}/2$ is not projective over $\mathbb{Z}$: the surjection $\mathbb{Z} \twoheadrightarrow \mathbb{Z}/2$ does not split. $\mathbb{Z}$ is not injective as a $\mathbb{Z}$-module: the injection $\mathbb{Z} \xrightarrow{\times 2} \mathbb{Z}$ and the identity map $\mathbb{Z} \to \mathbb{Z}$ do not extend.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Baer's Criterion).</span> <span class="cite">(D&amp;F &sect;10.5 Prop. 36)</span>
+  An $R$-module $Q$ is injective iff for every left ideal $I \subseteq R$ and every $R$-linear map $\varphi: I \to Q$, $\varphi$ extends to $R \to Q$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Cor.</span> <strong>Divisible $\Leftrightarrow$ injective over a PID.</strong> <span class="cite">(D&amp;F &sect;10.5 Cor. 38)</span>
+  Over a PID every ideal is principal, so Baer reduces to dividing one element by another. Hence $Q$ is injective iff $rQ = Q$ for all nonzero $r \in R$ (i.e. $Q$ is divisible).
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>Finitely generated flat $=$ projective over Noetherian.</strong> <span class="cite">(D&amp;F &sect;10.5 Cor. 42)</span>
+  If $R$ is Noetherian and $M$ is finitely generated, then $M$ is flat iff $M$ is projective. (More generally, finitely presented flat $=$ projective over any ring.)
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>$\mathbb{Q}$ is not projective over $\mathbb{Z}$.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  If $\mathbb{Q}$ were projective over the PID $\mathbb{Z}$ it would be free. But any two nonzero rationals $p/q$ and $r/s$ satisfy a nontrivial $\mathbb{Z}$-linear relation $(rs)(p/q) - (pq)(r/s) = 0$, and a free $\mathbb{Z}$-module has none between distinct basis elements. So $\mathbb{Q}$ has rank $\leq 1$, yet it is not cyclic (no element generates $\mathbb{Q}$).
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Projective $=$ injective $=$ flat over $\mathbb{Z}/n\mathbb{Z}$.</strong> <span class="cite">(D&amp;F &sect;10.5, plus CRT &sect;7.6 Thm. 17)</span>
+  Write $n = p_1^{a_1} \cdots p_k^{a_k}$, so $\mathbb{Z}/n\mathbb{Z} \cong \prod_i \mathbb{Z}/p_i^{a_i}\mathbb{Z}$. Each $\mathbb{Z}/p^a\mathbb{Z}$ is a local Artinian principal ideal ring, hence <em>quasi-Frobenius</em>: by Baer applied to the chain of ideals $0 \subset (p^{a-1}) \subset \cdots \subset (p) \subset \mathbb{Z}/p^a$, a f.g. $\mathbb{Z}/p^a$-module is projective iff free iff injective. By CRT, the f.g. projective $=$ injective $=$ flat $\mathbb{Z}/n\mathbb{Z}$-modules are exactly
+  $$\bigoplus_{i=1}^{k} \left(\mathbb{Z}/p_i^{a_i}\mathbb{Z}\right)^{k_i}, \qquad k_i \geq 0 \text{ independent.}$$
+  Such a module is <em>free</em> over $\mathbb{Z}/n$ iff all $k_i$ are equal, so projective $\ne$ free in general. (E.g. $(\mathbb{Z}/8)^2$ is projective over $\mathbb{Z}/56 = \mathbb{Z}/8 \times \mathbb{Z}/7$ but not free over $\mathbb{Z}/56$.) Flat $=$ projective by &sect;10.5 Cor. 42, since $\mathbb{Z}/n$ is Noetherian.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Remark.</span> <strong>Why the ideals of $\mathbb{Z}/n$ determine the indecomposables.</strong>
+  The ideals of $\mathbb{Z}/n\mathbb{Z}$ are exactly $(\bar d)$ for $d \mid n$, with $(\bar d) \cong \mathbb{Z}/(n/d)\mathbb{Z}$ as an abelian group. Among these, the ideals that <em>split off as direct summands</em> of $\mathbb{Z}/n\mathbb{Z}$ are precisely the $\mathbb{Z}/p_i^{a_i}\mathbb{Z}$, one for each prime divisor. CRT identifies $\mathbb{Z}/n$ with $\prod_i \mathbb{Z}/p_i^{a_i}$; the orthogonal idempotents $e_i = (0, \ldots, 1, \ldots, 0)$ are the elements of $\mathbb{Z}/n$ cutting out the summands $(\bar e_i) \cong \mathbb{Z}/p_i^{a_i}$. Any other ideal (say $(\bar p_i) \subsetneq \mathbb{Z}/p_i^{a_i}$, or a product of strictly smaller primary parts) is not a direct summand: no idempotent generates it. So the direct summands of $\mathbb{Z}/n$ are exactly these maximal-prime-power ideals.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Strategy.</span> <strong>"Find all P, I, or F modules of order $\leq M$ over $\mathbb{Z}/n\mathbb{Z}$."</strong>
+  Same procedure for projective, injective, and flat; they're one class by the previous proposition. Three steps.
+  <ol>
+    <li><b>Factor</b> $n = p_1^{a_1} \cdots p_k^{a_k}$.</li>
+    <li><b>Identify the indecomposable summands.</b> As ideals of $\mathbb{Z}/n$ they are $\mathbb{Z}/p_1^{a_1}, \ldots, \mathbb{Z}/p_k^{a_k}$, one per prime, and no others: the prop and note above show every P/I/F module is built from these.</li>
+    <li><b>Enumerate</b> tuples $(k_1, \ldots, k_k)$ of nonnegative integers with
+      $$\prod_{i=1}^k \bigl(p_i^{a_i}\bigr)^{k_i} \;\leq\; M.$$
+      Each such tuple gives one module $\bigoplus_i (\mathbb{Z}/p_i^{a_i})^{k_i}$ of order $\prod_i (p_i^{a_i})^{k_i}$.</li>
+  </ol>
+  Both directions: a P/I/F module is a direct sum of indecomposables (the prop), and any such sum is again P/I/F, since direct sums preserve all three. For projective, summands of a free module sum to a summand of a free module; finite sums of injectives are injective; for flat, $- \otimes (M \oplus N) = (- \otimes M) \oplus (- \otimes N)$ preserves exactness summandwise.
+</div>
+
+<div class="thm-block warn">
+  <span class="thm-label">Warning.</span> <strong>Why not &ldquo;free&rdquo;?</strong> Free $\mathbb{Z}/n$-modules are the diagonal cases $k_1 = k_2 = \cdots = k_k$. Over $\mathbb{Z}/56 = \mathbb{Z}/8 \times \mathbb{Z}/7$, $\mathbb{Z}/8$ is projective but not free; it has the wrong order ($8 \neq 56^m$ for any $m \geq 0$). The qual asks for projective (resp. injective, flat), so enumerate the larger class, not the free modules alone.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Injective abelian groups of order $\leq 100$ over $\mathbb{Z}/56\mathbb{Z}$ (Aug 2024 qual). $56 = 2^3 \cdot 7$, so injectives are $(\mathbb{Z}/8)^a \oplus (\mathbb{Z}/7)^b$ with $8^a \cdot 7^b \leq 100$. Tuples $(0,0), (1,0), (0,1), (1,1), (2,0), (0,2)$ give six modules of orders $1, 8, 7, 56, 64, 49$.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Projective abelian groups of order $\leq 125$ over $\mathbb{Z}/100\mathbb{Z}$ (Jan 2024 qual). $100 = 4 \cdot 25$, so projectives are $(\mathbb{Z}/4)^a \oplus (\mathbb{Z}/25)^b$ with $4^a \cdot 25^b \leq 125$. Tuples $(0,0), (1,0), (2,0), (3,0), (0,1), (1,1)$ give six modules of orders $1, 4, 16, 64, 25, 100$. Wider than the free modules $(\mathbb{Z}/100)^m$, which give only $\{0, \mathbb{Z}/100\}$.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Injective abelian groups of order $\leq 200$ over $\mathbb{Z}/120\mathbb{Z}$ (Aug 2023 qual). $120 = 2^3 \cdot 3 \cdot 5$. Indecomposable summands $\mathbb{Z}/8, \mathbb{Z}/3, \mathbb{Z}/5$. Want $(\mathbb{Z}/8)^a \oplus (\mathbb{Z}/3)^b \oplus (\mathbb{Z}/5)^c$ with $8^a \cdot 3^b \cdot 5^c \leq 200$.
+  Enumerate $(a,b,c)$:
+  <ul>
+    <li>$a = 0$: $b$-then-$c$ runs through $(0,0)\!:\!1$, $(0,1)\!:\!5$, $(0,2)\!:\!25$, $(0,3)\!:\!125$, $(1,0)\!:\!3$, $(1,1)\!:\!15$, $(1,2)\!:\!75$, $(2,0)\!:\!9$, $(2,1)\!:\!45$, $(3,0)\!:\!27$, $(3,1)\!:\!135$, $(4,0)\!:\!81$ (12 tuples).</li>
+    <li>$a = 1$: $(0,0)\!:\!8$, $(0,1)\!:\!40$, $(0,2)\!:\!200$, $(1,0)\!:\!24$, $(1,1)\!:\!120$, $(2,0)\!:\!72$ (6 tuples).</li>
+    <li>$a = 2$: $(0,0)\!:\!64$, $(1,0)\!:\!192$ (2 tuples).</li>
+    <li>$a \geq 3$: $8^3 = 512 > 200$, none.</li>
+  </ul>
+  Total: <b>20 injective $\mathbb{Z}/120\mathbb{Z}$-modules of order $\leq 200$.</b>
+</div>
+
+<div class="part-nav"><a href="modules-3.html">&larr; Structure theorem for f.g. modules over a PID</a><a href="modules.html">Module Theory contents</a><a href="modules-5.html">Hom and tensor products &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

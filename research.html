@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research – Ben Betts</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-content { max-width: 820px; }
+.hub { display: flex; gap: 1em; flex-wrap: wrap; margin: 1.4em 0; }
+.hub a { flex: 1 1 280px; display: block; padding: 1.1em 1.3em; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; text-decoration: none; color: inherit; }
+.hub a:hover { background: #eef3fa; }
+.hub h3 { margin: 0; }
+</style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="index.html">Home</a>
+  <a href="research.html" class="active">Research</a>
+  <a href="teaching.html">Teaching</a>
+  <a href="cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h1>Research</h1>
+<div class="hub">
+  <a href="research-notes.html"><h3>Notes &rsaquo;</h3></a>
+  <a href="research-code.html"><h3>Code &rsaquo;</h3></a>
+</div>
+</div>
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+<script>
+function toggleNav() { document.getElementById("myTopnav").classList.toggle("responsive"); }
+</script>
+</body>
+</html>

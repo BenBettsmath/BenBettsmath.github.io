@@ -1,0 +1,321 @@
+================================================================================
+LINEAR ALGEBRA PRIMITIVES
+================================================================================
+
+  bridges
+    INPUTS: Matrix or MutableMatrix or MutableFreeComplex
+    OUTPUTS: List
+    Unit entries as (row, col) or (degree, row, col).
+
+  rowOp
+    INPUTS: MutableMatrix, ZZ (i), ZZ (j), Thing (c)
+
+  colOp
+    INPUTS: MutableMatrix, ZZ (i), ZZ (j), Thing (c)
+
+  permuteRows
+    INPUTS: Matrix, List (permutation)
+    OUTPUTS: Matrix
+
+  permuteCols
+    INPUTS: Matrix, List
+    OUTPUTS: Matrix
+
+
+================================================================================
+REPLACEMENT GRAPH AND MORSE MATCHING
+================================================================================
+
+  A matching is a list of (degree, row, col) triples, each a source column and
+  target row of d_degree with pivot d_degree_(row, col).
+
+  replacementAdjacency
+    INPUTS: MutableFreeComplex, List (matching)
+    OUTPUTS: HashTable
+
+  isAcyclicMatching
+    INPUTS: MutableFreeComplex, List
+    OUTPUTS: Boolean
+
+  greedyMorseMatching
+    INPUTS: MutableFreeComplex
+    OUTPUTS: List
+    Morse, not maximal.
+
+  bmMatrixMatching
+    INPUTS: MutableFreeComplex
+    OUTPUTS: List
+    Maximal Morse.
+
+  antidiagonalBinaryMatching
+    INPUTS: MutableFreeComplex
+    OUTPUTS: List
+    Maximal Morse.
+
+  mccMatching
+    INPUTS: ComplexGraph
+    OUTPUTS: List
+    Maximal Morse, built mcc by mcc. Used by genAMTReduce(ComplexGraph).
+
+  Matcher map.
+    MFC: greedyMorseMatching (not maximal), bmMatrixMatching,
+    antidiagonalBinaryMatching.
+    ComplexGraph: mccMatching, bmMatchingDown, greedyDown, bmMatchingUp,
+    prunedMatching.
+
+
+================================================================================
+STRONGLY CONNECTED COMPONENTS, CLUSTERS, CYCLES
+================================================================================
+
+  stronglyConnected
+    INPUTS: HashTable (adjacency)
+    OUTPUTS: List of List
+
+  sccs
+    INPUTS: MutableFreeComplex, List (closing)
+    OUTPUTS: List of HashTable
+    Keys "deg", "upper", "lower", "edgeCount".
+
+  sccMatrix
+    INPUTS: MutableFreeComplex, HashTable (scc)
+    OUTPUTS: Matrix
+
+  sccDet
+    INPUTS: MutableFreeComplex, HashTable
+    OUTPUTS: ring element
+
+  cycleRank
+    INPUTS: MutableFreeComplex, List, HashTable
+    OUTPUTS: ZZ
+
+  sccReport
+    INPUTS: MutableFreeComplex, List (closing), HashTable (scc)
+    OUTPUTS: HashTable
+    Keys "deg", "upper", "lower", "matrix", "det", "cycleRank".
+
+
+================================================================================
+CLOSINGS
+================================================================================
+
+  closing
+    INPUTS: mGrdComplexGraph, List (maximal acyclic matching)   [preferred]
+    INPUTS: MutableFreeComplex, List (maximal acyclic matching)
+    OUTPUTS: List (the added edges M)
+    Maximal non-degenerate closing. Used by genAMTReduce.
+
+  degenerateClosing
+    INPUTS: mGrdComplexGraph, List (maximal acyclic matching)
+    INPUTS: MutableFreeComplex, List (maximal acyclic matching)
+    OUTPUTS: List (the added edges M)
+    Saturated closing, keeps the det 0 blocks.
+
+  sccClass
+    INPUTS: MutableFreeComplex, HashTable (scc)
+    OUTPUTS: String
+    "unit", "torsion", "zero", or "nonconstant".
+
+  sccCensus
+    INPUTS: MutableFreeComplex, List (closing)
+    OUTPUTS: List of HashTable
+    Keys "deg", "n", "det", "class", "badPrimes", "cycleRank", "upper", "lower".
+
+  cellPartition
+    INPUTS: MutableFreeComplex, List (closing)
+    OUTPUTS: HashTable
+    Keys "matched", "sccUnit", "sccTorsion", "sccZero", "sccNonconstant",
+    "critical", "survivorsByDeg".
+
+
+================================================================================
+MCCS
+================================================================================
+
+  mccs
+    INPUTS: ComplexGraph
+    OPTION: MaxCells => 800
+    OUTPUTS: List of HashTable
+    Keys "multidegree", "shape", "nCells", "bettiQ", "badPrimes", "torsion",
+    "cells".
+
+  mccSummary
+    INPUTS: ComplexGraph
+    OUTPUTS: HashTable
+    Keys "numMCCs", "numNonHomogeneous", "totalCells", "sizeHistogram",
+    "byMultidegree".
+
+
+================================================================================
+GUARANTEED SETTING CHECKS
+================================================================================
+
+  isMaximalMorse
+    INPUTS: MutableFreeComplex, List (matching)
+    OUTPUTS: Boolean
+
+  levelPairingCounts
+    INPUTS: MutableFreeComplex, List
+    OUTPUTS: (v, s)
+
+  levelPairingExists
+    INPUTS: MutableFreeComplex, List
+    OUTPUTS: Boolean
+
+  isNonDegenerateClosing
+    INPUTS: MutableFreeComplex, List (closing)
+    OUTPUTS: Boolean
+
+  sccsAreLevelPairs
+    INPUTS: MutableFreeComplex, List
+    OUTPUTS: Boolean
+
+  sccsAreSeparated
+    INPUTS: MutableFreeComplex, List
+    OUTPUTS: Boolean
+
+  guaranteedSetting
+    INPUTS: MutableFreeComplex, List (matching)
+    OUTPUTS: HashTable
+    Keys "morse", "maximalMorse", "levelPairingExists", "closingCovers",
+    "nonDegenerate", "singleLevelPair", "sccSeparated", "closing", "v", "s",
+    "guaranteed".
+
+
+================================================================================
+GENERALIZED MATCHED BLOCK AND HOMOTOPY
+================================================================================
+
+  genMatchedSccs
+    INPUTS: MutableFreeComplex, List (closing)
+    OUTPUTS: (bMats, sccs)
+
+  sccHomotopy
+    INPUTS: MutableFreeComplex, HashTable (scc)
+    OUTPUTS: Matrix
+
+  genHomotopy
+    INPUTS: MutableFreeComplex, List (closing)
+    INPUTS: MutableFreeComplex, List (closing), List (sccs)
+    OUTPUTS: List of Matrix
+
+  hplSeries
+    INPUTS: Matrix (delta), Matrix (h), ZZ (depth)
+    OUTPUTS: Matrix
+
+
+================================================================================
+ONE PASS GENERALIZED AMT
+================================================================================
+
+  matchedIso
+    INPUTS: MutableFreeComplex, List (closing)
+    INPUTS: MutableFreeComplex, List (closing), ZZ (characteristic)
+    OUTPUTS: HashTable
+    Keys "bAbs", "isoByDeg", "absCols", "absRows", "sccs", "sccOf",
+    "absorbable".
+
+  genAMTReduce
+    INPUTS: MutableFreeComplex
+    INPUTS: MutableFreeComplex, ZZ (characteristic, 0 keeps R)
+    INPUTS: ComplexGraph
+    INPUTS: ComplexGraph, ZZ (characteristic)
+    OUTPUTS: HashTable
+    The ComplexGraph form gives the minimal resolution of R/I over the given
+    characteristic. Keys "matching", "diffs", "critByDeg", "ranks", "sccs",
+    "determinants", and for the ComplexGraph form "closing", "matchedDets",
+    "matchedInvertible", "dSquaredZero".
+
+  minimalResolutionInChar
+    INPUTS: MutableFreeComplex, ZZ (characteristic)
+    OUTPUTS: HashTable
+    Alias for genAMTReduce.
+
+
+================================================================================
+USING WITH COMPLEXGRAPH
+================================================================================
+
+    needsPackage "ComplexGraph"
+    needsPackage "GeneralAMT"
+    R = QQ[x, y, z, w]
+    G = {x*y, x*w, y*z, z*w}
+    cg  = taylorComplexGraph(G, R)
+    out = genAMTReduce getCGMFC cg
+
+  "critByDeg" holds the surviving cells by MFC index. Recover monomial labels by
+  vertex key.
+
+    for k in sort keys out#"critByDeg" list
+        for i in out#"critByDeg"#k list
+            getVertexLabel findVertexByKey(getCGGraph cg, {k, i})
+
+
+================================================================================
+CUBE PRUNING
+================================================================================
+
+  cubePrunedMatchedMCCs
+    INPUTS: List (monomial generators), Ring
+    OUTPUTS: List of HashTable, one per obstruction mcc
+    Keys "multidegree", "nCritical", "mfc", "matching", "shift", "cellSubset".
+
+  closingSCCs
+    INPUTS: MutableFreeComplex, List (acyclic matching)
+    OUTPUTS: HashTable
+    Keys "closing", "sccs", "DbInvariantFactors", "DbCorank", "DbTorsion".
+
+  cubePrunedClosingSCCs
+    INPUTS: List (monomial generators), Ring
+    OUTPUTS: List of HashTable, one per obstruction mcc
+
+  cubePrunedClosingComparison
+    INPUTS: List (monomial generators), Ring
+    OUTPUTS: List of HashTable, one per obstruction mcc
+
+  cubePrunedResolutionMaps
+    INPUTS: List (monomial generators), Ring
+    OUTPUTS: List of Matrix
+
+  cubePrunedResolutionMapsFull
+    INPUTS: List (monomial generators), Ring
+    OUTPUTS: List of Matrix
+    Untruncated, including trailing zero maps.
+
+  iteratedClosing
+    INPUTS: MutableFreeComplex, List (matching)
+    OUTPUTS: List of Matrix
+
+  minimizeOverField
+    INPUTS: List of Matrix, Ring
+    OUTPUTS: List of Matrix
+
+
+================================================================================
+MCC-FIRST CENSUS AND VERIFICATION
+================================================================================
+
+  mccData(genList, R)
+    Keys "betti", "badPrimes", "nMCCs", "mccs".
+
+  verifyResolution(diffs)
+    Keys "ranks", "d2zero", "alternatingSum", "minimal", "ok".
+
+  conleyMorsePolynomial(genList, R)
+  conleyMorsePolynomial(genList, R, p)
+    Keys "P", "Pstring", "betti", "Bstring", "slack", "qString", "verified",
+    "mccs".
+
+  conleyIndex(rec)
+  conleyIndex(genList, R)
+  conleyIndex(genList, R, p)
+
+
+================================================================================
+FILE ORGANIZATION
+================================================================================
+
+  GeneralAMT/
+    GeneralAMT.m2      package header, exports, load
+    GenAMT.m2          implementation
+    GeneralAMTAPI.txt  this file

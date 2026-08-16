@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 2. Ring Theory &middot; Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</span></div>
+<div class="part-nav"><a href="rings-3.html">&larr; Localization</a><a href="rings.html">Ring Theory contents</a><a href="rings-5.html">Qual problems &middot; Ring Theory &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Factorization classes.</strong> <span class="cite">(D&amp;F &sect;8.1-8.3)</span>
+  Let $R$ be an integral domain.
+  <ul>
+    <li>$R$ is a <strong>UFD</strong> if every nonzero non-unit factors uniquely (up to units and order) into irreducibles. <em>In a UFD, irreducible and prime become the same.</em> In a UFD, irreducible = prime.</li>
+    <li>$R$ is a <strong>PID</strong> if every ideal is principal. <em>PIDs are "maximal among domains without unique factorization."</em></li>
+    <li>$R$ is an <strong>ED</strong> (Euclidean domain) if it has a norm $N\colon R \setminus 0 \to \mathbb{Z}_{\geq 0}$ with division algorithm: for $a, b \neq 0$ there exist $q, r$ with $a = qb + r$ and $r = 0$ or $N(r) < N(b)$.</li>
+  </ul>
+  <em>The chain ED $\Rightarrow$ PID $\Rightarrow$ UFD is one-way:</em> both implications hold, and neither reverses.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Examples.</span> $\mathbb{Z}$ is ED with $N(a) = |a|$. $F[x]$ is ED with $N(f) = \deg f$. $\mathbb{Z}[i]$ is ED with $N(a + bi) = a^2 + b^2$. $\mathbb{Z}[\omega]$ ($\omega = e^{2\pi i / 3}$) is ED with $N(a + b\omega) = a^2 - ab + b^2$. Every field is trivially ED, PID, and UFD.<br>
+  <span class="thm-label">Non-examples.</span> $\mathbb{Z}[\sqrt{-5}]$ isn't a UFD: $6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$ (genuine counterexample to unique factorization). $\mathbb{Z}[x]$ is a UFD but not a PID: $(2, x)$ isn't principal (polynomial rings jump the ED/PID gap). $\mathbb{Z}[(1 + \sqrt{-19})/2]$ is a PID but not ED (prime gaps can prevent the Euclidean algorithm).
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>The ED-to-UFD chain is strict.</strong> At each step, you lose structure: ED's have a norm and division algorithm (very rigid); PIDs drop the norm but keep principal ideals; UFDs drop principals but keep unique factorization. No domain has all three unless it's also one of the earlier classes. $\mathbb{Z}[x]$ and $\mathbb{Z}[(1+\sqrt{-19})/2]$ show gaps are real.
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Integral element, integrally closed.</strong> <span class="cite">(D&amp;F &sect;15.3)</span>
+  $\alpha$ in an overring $S \supseteq R$ is <strong>integral over $R$</strong> if $\alpha$ satisfies a monic polynomial $\alpha^n + r_{n-1}\alpha^{n-1} + \cdots + r_0 = 0$ with $r_i \in R$. <em>Integrality is the algebraic analog of finiteness:</em> $R$ is <strong>integrally closed</strong> in $S$ if every element of $S$ integral over $R$ already lies in $R$. A domain is integrally closed (in its fraction field) iff it equals its integral closure.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> Every UFD is integrally closed in its fraction field. <span class="cite">(D&amp;F &sect;9.3, Prop. 9)</span> $\mathbb{Z}$ is integrally closed in $\mathbb{Q}$: by the rational root theorem, rational roots of monic integer polynomials are integers.<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{C}[x^2, x^3]$ isn't integrally closed in $\mathbb{C}(x)$: $x$ satisfies $t^2 - x^2 = 0$ but isn't in the subring (it has odd degree in the generators).
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Integral closure is a UFD repair kit.</strong> If $R$ is not a UFD but is integrally closed, the fault lies elsewhere (irreducibles aren't prime). But if $R$ isn't integrally closed, its integral closure $\overline{R}$ is a bigger ring that might be a UFD or PID. This is why $\mathbb{Z}[\sqrt{d}]$ often sits in a larger ring of integers.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Ring of integers of $\mathbb{Q}(\sqrt d)$.</strong> <span class="cite">(D&amp;F &sect;15.3, Prop. 26)</span>
+  Let $d$ be squarefree. The integral closure of $\mathbb{Z}$ in $\mathbb{Q}(\sqrt d)$ is
+  $$\mathcal{O}_{\mathbb{Q}(\sqrt d)} = \begin{cases} \mathbb{Z}[\sqrt d] & \text{if } d \equiv 2, 3 \pmod 4,\\ \mathbb{Z}\!\left[\tfrac{1+\sqrt d}{2}\right] & \text{if } d \equiv 1 \pmod 4. \end{cases}$$
+  <em>The $d \equiv 1 \pmod 4$ case splits: $\mathbb{Z}[\sqrt d]$ sits strictly inside the full ring of integers.</em> The element $\omega = (1+\sqrt d)/2$ satisfies the monic $\omega^2 - \omega + (1-d)/4 = 0$ but has no integer coefficients in $\mathbb{Z}[\sqrt d]$. So $\mathbb{Z}[\sqrt d]$ is not integrally closed when $d \equiv 1 \pmod 4$ (e.g. $d = -11, -7, -3, 5, 13, \ldots$), hence not a UFD.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Rules.</span> <strong>How to show a ring is not a UFD.</strong> <span class="cite">(D&amp;F &sect;8.3)</span>
+  <ol>
+    <li>Exhibit two distinct irreducible factorizations of one element. A multiplicative norm $N$ helps: if $N(ab) = N(a)N(b)$ is strictly multiplicative, then $N(p)$ prime forces $p$ irreducible.</li>
+    <li>Find an irreducible that isn't prime: $p \mid ab$ but $p \nmid a$ and $p \nmid b$. This breaks the UFD property directly.</li>
+    <li>Show the ring isn't integrally closed in its fraction field. UFDs are always integrally closed. <span class="cite">(D&amp;F &sect;9.3)</span></li>
+  </ol>
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>$\mathbb{Z}[\sqrt{-5}]$ is not a UFD.</strong>
+  $6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$. With norm $N(a + b\sqrt{-5}) = a^2 + 5b^2$: $N(2) = 4$, $N(3) = 9$, $N(1 \pm \sqrt{-5}) = 6$. For $2 = \alpha\beta$ nontrivial, $N(\alpha)N(\beta) = 4$ requires both norms $2$, but $a^2 + 5b^2 = 2$ has no integer solutions. So $2, 3, 1 \pm \sqrt{-5}$ are all irreducible. The two factorizations use different irreducibles and are genuinely distinct: units are $\pm 1$.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Norms can measure irreducibility.</strong> For imaginary quadratic fields $\mathbb{Z}[\sqrt{d}]$ with $d < 0$, the norm $N(\alpha) = |\alpha|^2$ is always multiplicative and positive. This makes norms powerful: if $N(p)$ is prime, then $p$ is irreducible (no nontrivial factorization survives taking norms). This technique is the main way to certify irreducibles in these rings.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>$\mathbb{Z}[\sqrt{10}]$ is not a UFD.</strong>
+  $10 = 2 \cdot 5 = \sqrt{10} \cdot \sqrt{10}$. With norm $N(a + b\sqrt{10}) = |a^2 - 10b^2|$ (note the real quadratic case): $N(2) = 4$, $N(5) = 25$, $N(\sqrt{10}) = 10$. Since $a^2 - 10b^2 = \pm 2$ has no integer solutions, $2$ is irreducible. But $2 \mid 10 = \sqrt{10} \cdot \sqrt{10}$ while $2 \nmid \sqrt{10}$, so $2$ is an irreducible that is not prime. This kills UFD property directly.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>$\mathbb{C}[x^2, x^3]$ is not a UFD.</strong>
+  The fraction field is $\mathbb{C}(x)$ (since $x = x^3 / x^2 \in \mathrm{Frac}$). The element $x \in \mathbb{C}(x)$ satisfies $t^2 = x^2$ over $\mathbb{C}[x^2, x^3]$ but $x \notin \mathbb{C}[x^2, x^3]$ (everything has even or $\geq 3$ degree in $x$). Ring isn't integrally closed. Concretely, $x^6 = (x^2)^3 = (x^3)^2$ shows $x^2, x^3$ are "irreducibles" with two factorizations of their product.
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> <strong>$\mathbb{Z}[\sqrt{-11}]$ is not a UFD.</strong>
+  $12 = 2 \cdot 6 = (1 + \sqrt{-11})(1 - \sqrt{-11})$. With norm $N(a + b\sqrt{-11}) = a^2 + 11b^2$: $N(2) = 4$, $N(6) = 36$, $N(1 \pm \sqrt{-11}) = 12$. Since no element has norm $2, 3,$ or $6$, the four factors $2, 6, 1 \pm \sqrt{-11}$ are all irreducible. Two distinct factorizations of $12$ use these irreducibles.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm (Gauss's lemma).</span> <span class="cite">(D&amp;F &sect;9.3, Thm. 7)</span>
+  <em>UFD is closed under polynomial rings:</em> if $R$ is a UFD then $R[x]$ is a UFD.
+</div>
+
+<div class="thm-block thm">
+  <span class="thm-label">Thm.</span> <strong>Irreducibility tests in $\mathbb{Z}[x]$.</strong> <span class="cite">(D&amp;F &sect;9.4)</span>
+  <ul>
+    <li><strong>Eisenstein.</strong> If a prime $p$ divides all $a_0, \ldots, a_{n-1}$ but $p \nmid a_n$ and $p^2 \nmid a_0$, then $f = \sum a_i x^i$ is irreducible over $\mathbb{Q}$. (This is the power-series collapse test: modulo $p$, you get $f \equiv a_n x^n$, forcing no factorization to survive.)</li>
+    <li><strong>Reduction mod $p$.</strong> If $\bar f \in \mathbb{F}_p[x]$ is irreducible with $\deg \bar f = \deg f$, then $f$ is irreducible over $\mathbb{Q}$. (Degree preservation kills factorizations when reducing.)</li>
+    <li><strong>Rational roots.</strong> Rational roots of $f \in \mathbb{Z}[x]$ are $\pm \frac{\text{divisor of } a_0}{\text{divisor of } a_n}$. (From Gauss's lemma applied to linear factors.)</li>
+  </ul>
+</div>
+
+
+<div class="qual-section">
+
+<div class="part-nav"><a href="rings-3.html">&larr; Localization</a><a href="rings.html">Ring Theory contents</a><a href="rings-5.html">Qual problems &middot; Ring Theory &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

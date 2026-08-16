@@ -1,0 +1,440 @@
+================================================================================
+CGVERTEX
+================================================================================
+
+  makeCGVertex
+    INPUTS:  ZZ (degree), ZZ (index) [, Thing (weight) [, Thing (label)]]
+    OUTPUTS: CGVertex
+
+  getVertexDegree, getVertexIndex, getVertexWeight, getVertexLabel
+    INPUTS:  CGVertex
+    OUTPUTS: ZZ, ZZ, Thing or null, Thing or null
+
+  getVertexKey
+    INPUTS:  CGVertex
+    OUTPUTS: List   -- {degree, index}
+
+  isWeighted, isLabeled
+    INPUTS:  CGVertex
+    OUTPUTS: Boolean
+
+  addWeight, addLabel, addWeightAndLabel
+    INPUTS:  CGVertex, Thing [, Thing]
+    OUTPUTS: CGVertex
+
+  stripWeight, stripLabel, stripDecorations
+    INPUTS:  CGVertex
+    OUTPUTS: CGVertex
+
+  vertexEqual
+    INPUTS:  CGVertex, CGVertex
+    OUTPUTS: Boolean
+
+  vertexLabelSortKey
+    INPUTS:  CGVertex
+    OUTPUTS: List
+
+
+================================================================================
+CGEDGE
+================================================================================
+
+  makeCGEdge
+    INPUTS:  CGVertex, CGVertex, Thing   (or List, List, Thing)
+    OUTPUTS: CGEdge
+
+  getEdgeSource, getEdgeTarget, getEdgeWeight
+  getEdgeSourceDegree, getEdgeTargetDegree
+  setEdgeWeight
+    INPUTS:  CGEdge [, Thing]
+    OUTPUTS: CGEdge or Thing or ZZ
+
+  intEdgeCoeff
+    INPUTS:  CGEdge
+    OUTPUTS: ZZ
+
+  flipEdge
+    INPUTS:  CGEdge
+    OUTPUTS: CGEdge   -- reverses direction; weight becomes -1/weight
+
+  stripEdgeWeight
+    INPUTS:  CGEdge
+    OUTPUTS: CGEdge
+
+  edgeEqual, edgeEndpointsEqual
+    INPUTS:  CGEdge, CGEdge
+    OUTPUTS: Boolean
+
+
+================================================================================
+CGGRAPH
+================================================================================
+
+  makeCGGraph
+    INPUTS:  List of CGVertex, List of CGEdge
+    OUTPUTS: CGGraph
+
+  getGraphVertices, getGraphEdges
+  getGraphVertexCount, getGraphEdgeCount
+  getGraphVerticesByDegree   -- HashTable degree => list
+  getGraphVerticesAtDegree   -- (CGGraph, ZZ) => List
+  getGraphMinDegree, getGraphMaxDegree
+  getOutgoingEdges, getIncomingEdges
+  getOutgoingVertices, getIncomingVertices
+  findVertexByKey            -- (CGGraph, {d, i}) => CGVertex or null
+  findVertexByLabel          -- (CGGraph, Thing) => CGVertex or null
+  hasEdge                    -- (CGGraph, CGVertex, CGVertex) => Boolean
+  edgesBetweenDegrees        -- (CGGraph, ZZ, ZZ) => List
+  subgraph                   -- (CGGraph, List of CGVertex) => CGGraph
+
+  flipGraphEdges
+    INPUTS:  CGGraph, List of CGEdge
+    OUTPUTS: CGGraph
+
+  addGraphVertexWeights, addGraphVertexLabels
+    INPUTS:  CGGraph, HashTable (vertexKey => value)
+    OUTPUTS: CGGraph
+
+  addEdges
+    INPUTS:  CGGraph, List of CGEdge
+    OUTPUTS: CGGraph
+
+  stripEdgeWeights
+    INPUTS:  CGGraph
+    OUTPUTS: CGGraph
+
+  sortByKey
+    INPUTS:  List, Function
+    OUTPUTS: List
+
+
+================================================================================
+MUTABLEFREECOMPLEX
+================================================================================
+
+  makeMutableFreeComplex
+    INPUTS:  List of (ZZ, ZZ) pairs, Ring
+    OUTPUTS: MutableFreeComplex
+
+  getMFCRing, getMFCMinDegree, getMFCMaxDegree
+  getMFCRank          -- (MFC, ZZ) => ZZ
+  getMFCModule        -- (MFC, ZZ) => Module
+  getMFCDifferential  -- (MFC, ZZ) => MutableMatrix or null
+  getMFCEntry         -- (MFC, HashTable{"d", "row", "col"}) => Thing
+  mfcMatrixAt         -- (MFC, ZZ) => Matrix or null
+  mfcRankList         -- (MFC) => List of (degree, rank)
+
+  setMFCEntry, addToMFCEntry
+    INPUTS:  MutableFreeComplex, HashTable{"d", "row", "col", "val"}
+
+  permuteMFCAtDegree
+    INPUTS:  MutableFreeComplex, ZZ (degree), List (permutation)
+
+  isComplex
+    INPUTS:  MutableFreeComplex
+    OUTPUTS: Boolean   -- d ∘ d = 0
+
+
+================================================================================
+COMPLEXGRAPH
+================================================================================
+
+  makeComplexGraph
+    INPUTS:  CGGraph, MutableFreeComplex
+    OUTPUTS: ComplexGraph
+
+  complexGraphFromMFC
+    INPUTS:  MutableFreeComplex
+    OUTPUTS: ComplexGraph
+
+  mGrdComplexGraph is a child of ComplexGraph whose vertices carry a numeric
+  multidegree (the exponent vector of the vertex monomial). Combinatorial
+  ComplexGraph methods are inherited; methods that read the multigrading take an
+  mGrdComplexGraph. Any constructor that labels its vertices returns one.
+
+  makeMGrdComplexGraph
+    INPUTS:  CGGraph, MutableFreeComplex
+    OUTPUTS: mGrdComplexGraph
+
+  getVertexMultidegree
+    INPUTS:  mGrdComplexGraph, CGVertex   (or mGrdComplexGraph, ZZ, ZZ)
+    OUTPUTS: List (exponent vector), or null if unweighted
+
+  taylorComplexGraph
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: mGrdComplexGraph
+    NOTES:   builds the differentials, vertex weights, and edges in parallel
+             across allowableThreads; a hash subset-index gives O(1) face
+             lookup. DiskComplex provides the disk-backed parallel variant.
+
+  buildComplexGraph
+    INPUTS:  CGGraph, MutableFreeComplex, Ring
+    OUTPUTS: ComplexGraph
+
+  buildTaylorVertices
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: List of CGVertex
+
+  edgesFromMFCWithVertices
+    INPUTS:  MutableFreeComplex, List of CGVertex
+    OUTPUTS: List of CGEdge
+
+  assignVertexLabels
+    INPUTS:  MutableFreeComplex
+    OUTPUTS: mGrdComplexGraph
+
+  getCGGraph, getCGMFC, getCGRing
+  getCGEdgeWeight   -- (ComplexGraph, CGEdge) => Thing
+  setCGEdgeWeight   -- (ComplexGraph, CGEdge, Thing)
+
+  syncGraphFromMFC  -- ComplexGraph => mGrdComplexGraph
+  graphFromMFC      -- MFC => CGGraph
+
+  reorderVerticesAtDegree
+    INPUTS:  ComplexGraph, ZZ (degree), List (permutation)
+    OUTPUTS: mGrdComplexGraph
+
+  orderedTaylorMFC
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: MutableFreeComplex
+
+
+================================================================================
+ACYCLICMATCHING
+================================================================================
+
+  makeAcyclicMatching
+    INPUTS:  List of CGEdge, CGGraph or ComplexGraph
+    OUTPUTS: AcyclicMatching
+
+  getMatchingEdges, getMatchingEdgeCount
+  isMatchedVertex, getMatchedEdge
+  isMatchingHomogeneous, isMatchingAcyclic, isMatchingMorse
+
+  criticalVertices
+    INPUTS:  CGGraph or ComplexGraph, List or AcyclicMatching
+    OUTPUTS: List of CGVertex
+
+
+================================================================================
+MATCHING ALGORITHMS
+================================================================================
+
+  bmMatchingDown, greedyDown, bmMatchingUp, prunedMatching
+    INPUTS:  ComplexGraph or CGGraph
+    OUTPUTS: AcyclicMatching
+
+  cubePrunedBetti
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: BettiTally
+    OPTION:  ReturnMatching => false (default)
+             when true, returns (BettiTally, List of {src, tgt})
+
+  cubePrunedMatching
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: HashTable, keys "matching", "critical", "multidegree"
+    A mcc-maximal matching on the subset cube, built bottom-up without the
+    Taylor complex. Cells are generator subsets, multidegree is the lcm support.
+
+  cubePrunedResolution
+    INPUTS:  List of RingElement, Ring
+    OUTPUTS: HashTable, keys "ranks", "badPrimes", "sccs"
+    Minimal free resolution data of R/I read from the cube-pruning matching:
+    Betti numbers over QQ, the primes where they jump, and the obstruction
+    sccs with their integer cokernels. Tractable where the Taylor build is not.
+
+  cubeMCCCells
+    INPUTS:  ZZ (n), Function (supportOf), Thing (b)
+    OUTPUTS: (bySize, degs, shift, indexOf)
+    The subsets of {0..n-1} whose lcm support is the multidegree b, bucketed
+    by size with a per-size index. Building block of cubePrunedResolution.
+
+  cubeMCCComplex
+    INPUTS:  (bySize, degs, shift, indexOf)   (output of cubeMCCCells)
+    OUTPUTS: MutableFreeComplex   -- the mcc complex for one multidegree, over QQ
+
+  cubePrunedResolutionPrimes
+    List of small primes {2,3,5,7,11,13} tested for torsion in each scc.
+
+
+================================================================================
+GRADIENT PATHS
+================================================================================
+
+  gradientPaths
+    INPUTS:  CGGraph or ComplexGraph, CGVertex, CGVertex
+    OUTPUTS: List of List of CGEdge
+
+  computeGamma
+    INPUTS:  CGGraph or ComplexGraph (gradient-flow graph), CGVertex, CGVertex
+    OUTPUTS: Thing   -- intSum_paths * m_src // m_tgt
+
+  nontrivialGradientPaths
+    INPUTS:  CGGraph, CGVertex, CGVertex
+    OUTPUTS: List of (path, weight)
+
+  gradientPathSummary
+    INPUTS:  CGGraph or ComplexGraph, CGVertex, CGVertex
+    OUTPUTS: List of {set S_0, ..., set S_k, totalWeight}
+
+  reachableDegreeOne
+    INPUTS:  CGGraph or ComplexGraph, CGVertex
+    OUTPUTS: List of CGVertex
+
+
+================================================================================
+REDUCTION
+================================================================================
+
+  reduceComplexGraph
+    INPUTS:  ComplexGraph, List or AcyclicMatching
+    OUTPUTS: mGrdComplexGraph
+
+  GammaMatrixDown
+    INPUTS:  CGGraph or ComplexGraph, List or AcyclicMatching, ZZ
+    OUTPUTS: Matrix   -- C_i -> C^M_i
+
+  GammaMatrixUp
+    INPUTS:  CGGraph or ComplexGraph, List or AcyclicMatching, ZZ
+    OUTPUTS: Matrix   -- C^M_i -> C_i
+
+
+================================================================================
+COMBINATORICS
+================================================================================
+
+  lexSubsets
+    INPUTS:  ZZ (n), ZZ (k)
+    OUTPUTS: List of List   -- k-subsets of {0..n-1} in lex order
+
+  buildSubsetIndex
+    INPUTS:  ZZ (n), ZZ (d)
+    OUTPUTS: HashTable   -- subset => lex position
+
+  lexSubsetAtIndex
+    INPUTS:  ZZ (n), ZZ (d), ZZ (idx)
+    OUTPUTS: List
+
+  expVecLcm, expVecDiv, expVecToString, stringToExpVec
+
+
+================================================================================
+DISKCOMPLEX
+================================================================================
+
+    makeDiskComplex      =>  state = "taylor"
+    computeDiskMatching  =>  state = "matched"
+    reduceDiskComplex    =>  state = "reduced"
+
+  --- Construction ---
+
+  makeDiskComplex
+    INPUTS:  List of RingElement, Ring
+    INPUTS:  List of RingElement, Ring, String (baseDir)
+    OUTPUTS: DiskComplex   -- state = "taylor"
+
+  openDiskComplex
+    INPUTS:  String (dbDir), Ring
+    OUTPUTS: DiskComplex
+
+  --- Accessors ---
+
+  getDCRing, getDCState, getDCRanks, getDCNumGens, getDCGens, getDCDbPath
+  getDCMatchPairs        -- List of {src, tgt} match pairs, or null
+  getDCCriticalSubsets   -- HashTable degree => list of subsets
+
+  getDCDifferentialMatrix
+    INPUTS:  DiskComplex, ZZ (degree)
+    OUTPUTS: Matrix
+
+  buildKeyToSubsetFromDC
+    INPUTS:  DiskComplex
+    OUTPUTS: HashTable   -- {d, idx} => List of generator indices
+
+  --- Matching ---
+
+  computeDiskMatching
+    INPUTS:  DiskComplex (state = "taylor")
+    OUTPUTS: DiskComplex (state = "matched")
+
+  matchingDiskToEdgeList
+    INPUTS:  DiskComplex, ComplexGraph
+    OUTPUTS: List of CGEdge
+
+  --- Reduction ---
+
+  reduceDiskComplex
+    INPUTS:  DiskComplex (state = "matched")
+    OUTPUTS: DiskComplex (state = "reduced")
+
+  --- Conversion ---
+
+  diskComplexToMFC
+    INPUTS:  DiskComplex
+    OUTPUTS: MutableFreeComplex
+
+  diskComplexToComplexGraph
+    INPUTS:  DiskComplex
+    OUTPUTS: ComplexGraph
+
+  --- Adjacency list persistence ---
+
+  persistAdjList
+    INPUTS:  DiskComplex, MutableHashTable (adjacency list)
+
+  loadAdjList
+    INPUTS:  DiskComplex
+    OUTPUTS: HashTable
+
+  --- Disk gradient paths ---
+
+  traceGradientPathsDisk
+    INPUTS:  HashTable (adjList), List (srcKey), List (tgtKey),
+             HashTable (keyToSubset)
+    OUTPUTS: List of {set S_0, ..., set S_k, intWeight}
+
+  diskGradientPathLabels
+    INPUTS:  DiskComplex, List (srcKey), List (tgtKey)
+    OUTPUTS: List
+
+
+================================================================================
+DISKCOMPLEX SCHEMA
+================================================================================
+
+    meta.db        ring, numGens, gens, state, ranks
+    match.db       matching pairs and matched-subset flags
+    taylor/dN.db   Taylor entries + vertex weights, per degree
+    red/dN.db      reduced entries + critical subsets, per degree
+    adj/dN.db      adjacency list entries, per degree (optional)
+
+
+================================================================================
+LATEX OUTPUT
+================================================================================
+
+  vertexToLatex, vertexSubscript
+  ringEltToLatex
+  matrixToLatex, labeledMatrixToLatex
+  mfcDifferentialToLatex
+  mfcAllDifferentialsToLatex, mfcToLatex
+  mfcAllDifferentialsToLatexLabeled
+  gradientPathsToLatex
+  matchingToLatex, graphToTikz
+  gradPathToLatex
+  signOf
+
+
+================================================================================
+FILES
+================================================================================
+
+  Packages/ComplexGraph/
+    ComplexGraph.m2       header, exports, load order
+    Types.m2              CGVertex, CGEdge, CGGraph, MFC, ComplexGraph,
+                          combinatorics
+    Algorithms.m2         matchings, gradient paths, reduction
+    LatexOutput.m2        LaTeX, TikZ
+    DiskDB.m2             GDBM / flat-file abstractions
+    DiskComplex.m2        disk-backed complexes
+    ComplexGraphAPI.txt   this file

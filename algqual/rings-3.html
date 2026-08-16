@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 2. Ring Theory &middot; Localization</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="algqual.css">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Localization</span></div>
+<div class="part-nav"><a href="rings-2.html">&larr; Local rings and power series</a><a href="rings.html">Ring Theory contents</a><a href="rings-4.html">Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Localization</h2>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Localization.</strong> <span class="cite">(D&amp;F &sect;7.5)</span>
+  Let $S \subseteq R$ be multiplicatively closed, containing $1$. Then $S^{-1}R$ is the set of pairs $(r, s)$, $s \in S$, written $r/s$, under $r/s \sim r'/s' \iff t(rs' - r's) = 0$ for some $t \in S$. <em>We formally invert all of $S$:</em> addition and multiplication mimic fractions, and $R \to S^{-1}R$ sends $r \mapsto r/1$. When there are zero divisors in $R$, the "for some $t \in S$" is essential for transitivity.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Example.</span> For $R = \mathbb{Z}$, $S = \mathbb{Z} \setminus \{0\}$ gives $S^{-1}R = \mathbb{Q}$. $S = \{1, p, p^2, \ldots\}$ gives $\mathbb{Z}[1/p]$ (rationals with only $p$ in the denominator). $S = \mathbb{Z} \setminus (p)$ gives the local ring $\mathbb{Z}_{(p)}$, where only primes $\neq p$ are invertible.<br>
+  <span class="thm-label">Non-example / caution.</span> If $0 \in S$ then $S^{-1}R = 0$. The "for some $t \in S$" in the equivalence relation is essential when $R$ has zero divisors: without it, the relation isn't transitive.
+</div>
+
+<div class="thm-block ex">
+  <span class="thm-label">Fun fact.</span> <strong>Localization kills bad elements.</strong> If $r \in S$ then $r$ becomes a unit in $S^{-1}R$. If $t \in R$ would cause problems (like zero divisors), we can remove it from our "good set" and localize at the complement to make it vanish.
+</div>
+
+<div class="thm-block note">
+  <span class="thm-label">Rules.</span> <strong>Behavior of ideals under localization.</strong>
+  <ul>
+    <li>$S^{-1}(I + J) = S^{-1}I + S^{-1}J$, $S^{-1}(I \cap J) = S^{-1}I \cap S^{-1}J$, $S^{-1}(IJ) = (S^{-1}I)(S^{-1}J)$.</li>
+    <li>Primes of $S^{-1}R$ are exactly $S^{-1}\mathfrak{p}$ for primes $\mathfrak{p}$ of $R$ with $\mathfrak{p} \cap S = \emptyset$.</li>
+    <li>Localizing at the complement of a prime $\mathfrak{p}$ produces a local ring $R_\mathfrak{p}$ with maximal ideal $\mathfrak{p} R_\mathfrak{p}$.</li>
+  </ul>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Universal property of localization.</strong> <span class="cite">(D&amp;F &sect;15.4, Prop. 36)</span>
+  The map $\iota \colon R \to S^{-1}R$, $r \mapsto r/1$, sends each $s \in S$ to a unit, and is universal for this: any $\phi \colon R \to T$ with $\phi(S) \subseteq T^\times$ factors uniquely as $\bar\phi \colon S^{-1}R \to T$ with $\bar\phi \circ \iota = \phi$, namely $\bar\phi(r/s) = \phi(r) \phi(s)^{-1}$.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <span class="cite">(D&amp;F &sect;7.5, Ex. 3)</span>
+  For $S = \{1, f, f^2, \ldots\}$ with $f$ a nonzerodivisor, $S^{-1}R \cong R[x]/(fx - 1)$ via $r/f^n \mapsto r x^n$. <em>Formally inverting powers of $f$ is equivalent to adjoining a polynomial variable $x$ and imposing $fx = 1$.</em> (By universal property: $R[x] \to S^{-1}R$, $x \mapsto 1/f$, kills $fx - 1$ and factors through.)
+</div>
+
+<div class="thm-block comp">
+  <span class="thm-label">Computation.</span> Primes of $\mathbb{Z}[1/6] = S^{-1}\mathbb{Z}$, $S = \{6^n\}$. Primes of $\mathbb{Z}$ are $(0)$ and $(p)$; drop those meeting $S$ (containing $2$ or $3$). So the primes of $\mathbb{Z}[1/6]$ are $(0)$ and $(p)$ for $p \neq 2, 3$, the maximal ones being the $(p)$ with $p \neq 2, 3$.
+</div>
+
+<div class="part-nav"><a href="rings-2.html">&larr; Local rings and power series</a><a href="rings.html">Ring Theory contents</a><a href="rings-4.html">Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD &rarr;</a></div>
+</div>
+
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>
+<script>
+function toggleNav() { var x = document.getElementById("myTopnav"); x.classList.toggle("responsive"); }
+</script>
+<script src="algqual.js"></script>
+<script>initDotTriggers();</script>
+</body>
+</html>

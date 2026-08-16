@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algebra Qual Prep: Ben Betts</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <h2>Algebra Qualifying Exam Prep</h2>
+
+  <h3>Study Materials</h3>
+  <ul>
+    <li><a href="notes.html">Main Notes (five parts)</a></li>
+    <li><a href="problems.html">30 Most Frequent Problem Types</a></li>
+    <li><a href="unm_exam_alge_qual_syllabus.pdf">Algebra Qualifying Exam Syllabus</a></li>
+  </ul>
+
+  <h3>Past Qualifying Exams</h3>
+  <table class="teaching-table">
+    <thead>
+      <tr><th>Exam</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>August 2024</td><td><a href="quals/unm_exam_202408_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2024</td><td><a href="quals/unm_exam_202401_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2023</td><td><a href="quals/unm_exam_202308_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2023</td><td><a href="quals/unm_exam_202301_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2022</td><td><a href="quals/unm_exam_202208_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2022</td><td><a href="quals/unm_exam_202201_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2021</td><td><a href="quals/unm_exam_202108_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2021</td><td><a href="quals/unm_exam_202101_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2020</td><td><a href="quals/unm_exam_202008_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2020</td><td><a href="quals/unm_exam_202001_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2019</td><td><a href="quals/unm_exam_201908_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2019</td><td><a href="quals/unm_exam_201901_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2018</td><td><a href="quals/unm_exam_201808_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2018</td><td><a href="quals/unm_exam_201801_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2017</td><td><a href="quals/unm_exam_201708_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2017</td><td><a href="quals/unm_exam_201701_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2016</td><td><a href="quals/unm_exam_201608_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2015</td><td><a href="quals/unm_exam_201508_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2014</td><td><a href="quals/unm_exam_201408_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2014</td><td><a href="quals/unm_exam_201401_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2013</td><td><a href="quals/unm_exam_201308_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2013</td><td><a href="quals/unm_exam_201301_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2010</td><td><a href="quals/unm_exam_201008_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2009</td><td><a href="quals/unm_exam_200908_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2009</td><td><a href="quals/unm_exam_200901_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2008</td><td><a href="quals/unm_exam_200808_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2007</td><td><a href="quals/unm_exam_200708_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>January 2006</td><td><a href="quals/unm_exam_200601_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2005</td><td><a href="quals/unm_exam_200508_alge_qual.pdf">PDF</a></td></tr>
+      <tr><td>August 2004</td><td><a href="quals/unm_exam_200408_alge_qual.pdf">PDF</a></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>
