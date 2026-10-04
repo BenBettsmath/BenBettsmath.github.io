@@ -1,11 +1,13 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage[margin=1in]{geometry}
-\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage[margin = .75in]{geometry}
+
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usetikzlibrary{calc,arrows.meta,decorations.pathreplacing}
+\definecolor{purple}{RGB}{51,0,111} % Official UW color scheme
+\usepackage[colorlinks=true, allcolors=purple]{hyperref} %% For links
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
@@ -27,17 +29,17 @@
 \newcommand{\khat}{\hat{\mathbf{k}}}
 
 \begin{document}
-
+\raggedright
 \begin{center}
-{\LARGE\bfseries Math 2531 Outline}\\[4pt]
-{\large Multivariable Calculus . Stewart 9th ed.}
+      {\large Math 2531 Calculus 3 Outline}\\
+  {Multivariable Calculus, Stewart 9th ed.}\\
 \end{center}
 
 \tableofcontents
 \newpage
 
 %=======================================================================
-\section{Definitions and Results . Quick Reference}
+\section{Definitions and Results: Quick Reference}
 %=======================================================================
 
 \subsection{Ch.\ 10: Parametric \& Polar}
@@ -65,7 +67,7 @@
   \item \textbf{Area parallelogram} $=|\vec{a}\times\vec{b}|$. \textbf{Volume parallelepiped} $=|\vec{a}\cdot(\vec{b}\times\vec{c})|$.
   \item \textbf{Line}: $\vec{r}=\vec{r}_0+t\vec{v}$; parametric $x=x_0+at$, $y=y_0+bt$, $z=z_0+ct$.
   \item \textbf{Plane} (normal $\vec{n}$): $\vec{n}\cdot(\vec{r}-\vec{r}_0)=0$, i.e.\ $a(x-x_0)+b(y-y_0)+c(z-z_0)=0$.
-  \item \textbf{Distance, point $P$ to plane}: pick any $Q_0$ on the plane; $D=\bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr|=|ax_1+by_1+cz_1+d|/|\vec{n}|$.
+  \item \textbf{Distance, point $P=(x_1,y_1,z_1)$ to plane $ax+by+cz+d=0$}: pick any $Q_0$ on the plane; $D=\bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr|=|ax_1+by_1+cz_1+d|/|\vec{n}|$.
   \item \textbf{Quadric surfaces}: ellipsoid, elliptic/hyperbolic paraboloid, cone, hyperboloid (1- and 2-sheet). Identify by traces.
 \end{enumerate}
 
@@ -212,7 +214,7 @@ x = x_0+(x_1-x_0)t,\quad y = y_0+(y_1-y_0)t,\quad 0\le t\le 1
 L = \int_\alpha^\beta \sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt
 \]
 
-\textit{Derivation.} pythagoras on the infinitesimal step gives $ds^2=dx^2+dy^2=\left(\frac{dx}{dt}\right)^2dt^2+\left(\frac{dy}{dt}\right)^2dt^2$ so $ds=\sqrt{(dx/dt)^2+(dy/dt)^2}\,dt$.
+\textit{Derivation.} Pythagoras on the infinitesimal step gives $ds^2=dx^2+dy^2=\left(\frac{dx}{dt}\right)^2dt^2+\left(\frac{dy}{dt}\right)^2dt^2$ so $ds=\sqrt{(dx/dt)^2+(dy/dt)^2}\,dt$.
 
 \textbf{Area under a parametric curve} (curve traversed left to right):
 \[
@@ -701,7 +703,7 @@ $\vec{a}\cdot\vec{b} = |\vec{a}||\vec{b}|\cos\theta$ where $\theta\in[0,\pi]$ is
   % Side dimensions
   \draw[<->,gray] (0,-0.4)--(3.3,-0.4) node[midway,below,font=\small]{$a+c$};
   \draw[<->,gray] (3.8,0)--(3.8,2.4) node[midway,right,font=\small]{$b+d$};
-  % Piece labels — well separated outside the rectangle
+  % Piece labels, well separated outside the rectangle
   \node[red,font=\small] at (2.9,0.32){$bc$};
   \node[red,font=\small] at (0.4,2.08){$bc$};
   \node[orange!70!black,font=\small] at (1.25,-0.18){$\tfrac12 ab$};
@@ -740,7 +742,7 @@ $\vec{a}\cdot\vec{b} = |\vec{a}||\vec{b}|\cos\theta$ where $\theta\in[0,\pi]$ is
 \end{tikzpicture}
 \end{center}
 
-\textit{check.} For $\vec u=(1,0)$, $\vec v=(0,1)$: $ad-bc=1\cdot 1-0\cdot 0=1$ — the unit square has area 1, CCW orientation.
+\textit{check.} For $\vec u=(1,0)$, $\vec v=(0,1)$: $ad-bc=1\cdot 1-0\cdot 0=1$, so the unit square has area 1, CCW orientation.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=0.9]
@@ -869,7 +871,7 @@ $|\vec a\times\vec b|$ is the area of the parallelogram. direction is perp by th
 \vec{n}\cdot(\vec{r}-\vec{r}_0)=0, \qquad a(x-x_0)+b(y-y_0)+c(z-z_0)=0
 \]
 
-\textbf{Distance from $P$ to plane.} Pick \emph{any} point $Q_0$ on the plane; project $\overrightarrow{Q_0P}$ onto unit normal $\hat{\vec n}$:
+\textbf{Distance from $P=(x_1,y_1,z_1)$ to the plane $ax+by+cz+d=0$.} Pick \emph{any} point $Q_0$ on the plane; project $\overrightarrow{Q_0P}$ onto unit normal $\hat{\vec n}$:
 \[
 D = \bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr| = \frac{|ax_1+by_1+cz_1+d|}{\sqrt{a^2+b^2+c^2}}
 \]
@@ -922,7 +924,7 @@ D = \bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr| = \frac{|ax_1+by_1+cz_1+
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.0]
-  % Left: Method 1 — D = | orth_v QP | as the perpendicular component
+  % Left: Method 1, D = | orth_v QP | as the perpendicular component
   \begin{scope}
     \node[font=\small,below] at (1.5,-0.85) {Method 1: $D = |\mathrm{orth}_{\vec v}\,\overrightarrow{QP}|$};
     \draw[-,thick,teal!60!black] (-0.6,-0.3) -- (3.4,0.9);
@@ -930,10 +932,10 @@ D = \bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr| = \frac{|ax_1+by_1+cz_1+
     \filldraw[teal!60!black] (0.5,0.1) circle (1.3pt) node[below,teal!60!black]{$Q$};
     \filldraw[red] (1.2,2.0) circle (1.3pt) node[right,red]{$P$};
     \draw[->,thick,blue] (0.5,0.1) -- (1.2,2.0) node[pos=0.55,left,blue]{$\overrightarrow{QP}$};
-    % proj_v QP — component along the line
+    % proj_v QP, component along the line
     \coordinate (proj) at (1.78,0.49);
     \draw[->,blue!40,line width=1.2pt] (0.5,0.1) -- (proj) node[pos=0.6,below,blue!40!black,font=\footnotesize]{$\mathrm{proj}_{\vec v}\overrightarrow{QP}$};
-    % orth_v QP — perpendicular component, drawn from proj to P
+    % orth_v QP, perpendicular component, drawn from proj to P
     \draw[->,purple,line width=1.4pt] (proj) -- (1.2,2.0)
       node[pos=0.55,right,purple,font=\small]{$\mathrm{orth}_{\vec v}\overrightarrow{QP}$};
     % D label on the orthogonal component
@@ -941,7 +943,7 @@ D = \bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr| = \frac{|ax_1+by_1+cz_1+
       node[pos=0.5,left,red,font=\large\bfseries]{$D$};
     \draw[gray,thin] ($(proj)+(0.07,0.21)$) -- ($(proj)+(0.2,0.18)$) -- ($(proj)+(0.13,0.05)$);
   \end{scope}
-  % Right: Method 2 — D as the height of the parallelogram spanned by QP and v
+  % Right: Method 2, D as the height of the parallelogram spanned by QP and v
   \begin{scope}[xshift=5.6cm]
     \node[font=\small,below] at (1.7,-0.85){Method 2: $D = |\overrightarrow{QP}\times\vec v|/|\vec v|$};
     \draw[-,thick,teal!60!black] (-0.6,-0.3) -- (3.4,0.9);
@@ -1326,7 +1328,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
   % Dashed component legs (no yellow fill)
   \draw[teal!70,dashed,thick] (P)--++(0.7,0.1);
   \draw[red!70,dashed,thick] ($(P)+(0.7,0.1)$)--++(0.0,-0.68);
-  % Acceleration vector (purple) — hypotenuse
+  % Acceleration vector (purple), hypotenuse
   \draw[->,purple,line width=1.8pt] (P)--++(0.7,-0.58) node[below right,font=\large\bfseries,purple]{a};
   % Component labels along the legs
   \node[teal!60!black,font=\small] at ({1.7+0.35},{1.4+0.27}){$a_T\vec T$};
@@ -1334,7 +1336,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 \end{tikzpicture}
 \end{center}
 
-\textbf{Projectile motion.} $\vec{a}=-g\jhat$. integrate twice with initial $\vec r(0)$ and $\vec v(0)$.
+\textbf{Projectile motion.} $\vec{a}=-g\jhat$, where $g$ is the acceleration due to gravity. integrate twice with initial $\vec r(0)$ and $\vec v(0)$.
 
 \textit{Example.} fire from origin with $\vec v(0)=(v_0\cos\alpha)\ihat+(v_0\sin\alpha)\jhat$. then $\vec v(t)=\vv{v_0\cos\alpha,\;v_0\sin\alpha-gt}$ and $\vec r(t)=\vv{v_0\cos\alpha\cdot t,\;v_0\sin\alpha\cdot t-\tfrac{g}{2}t^2}$. range $=v_0^2\sin 2\alpha/g$.
 
@@ -1378,7 +1380,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 
 \textbf{Derivation.} Apply scalar Taylor expansion componentwise. Since $\vec{r}(t)=\vv{f(t),g(t),h(t)}$, each component satisfies $f(t_0+\delta)=f(t_0)+\delta f'(t_0)+\frac{\delta^2}{2}f''(t_0)+\cdots$ Similarly for $g$ and $h$, so:
 \[
-\vec{r}(t_0+h) = \vec{r}(t_0) + h\vec{r}'(t_0) + \frac{h^2}{2}\vec{r}''(t_0) + \frac{h^3}{6}\vec{r}'''(t_0) + \cdots
+\vec{r}(t_0+\delta) = \vec{r}(t_0) + \delta\vec{r}'(t_0) + \frac{\delta^2}{2}\vec{r}''(t_0) + \frac{\delta^3}{6}\vec{r}'''(t_0) + \cdots
 \]
 
 \textbf{Geometric meaning.} Linear truncation gives tangent line. Quadratic adds osculating parabola. Cubic hugs curve even closer.
@@ -1555,11 +1557,11 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 
 \textbf{DNE.} find two paths that disagree.
 
-\textbf{Polar trick.} set $x=r\cos\theta,y=r\sin\theta$. if the value only depends on $r\to 0$ thats the limit.
+\textbf{Polar trick.} set $x=r\cos\theta,y=r\sin\theta$. if the value only depends on $r\to 0$ that's the limit.
 
 \textbf{Continuity.} $f$ is continuous at $(a,b)$ if $\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b)$. polynomials and rationals are continuous on their domains.
 
-\textit{lines through origin.} for $f(x,y)=\dfrac{xy}{x^2+y^2}$ set $y=mx$. then $f=\dfrac{mx^2}{x^2+m^2x^2}=\dfrac{m}{1+m^2}$. value depends on $m$ so the limit doesnt exist.
+\textit{lines through origin.} for $f(x,y)=\dfrac{xy}{x^2+y^2}$ set $y=mx$. then $f=\dfrac{mx^2}{x^2+m^2x^2}=\dfrac{m}{1+m^2}$. value depends on $m$ so the limit doesn't exist.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.2]
@@ -1579,7 +1581,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 \end{tikzpicture}
 \end{center}
 
-\textit{lines arent enough.} for $f(x,y)=\dfrac{xy^2}{x^2+y^4}$ every line $y=mx$ gives $f\to 0$. but along the parabola $x=y^2$ we get $f=\dfrac{y^4}{y^4+y^4}=\tfrac12$. so all lines agreeing is not enough for the limit to exist.
+\textit{lines aren't enough.} for $f(x,y)=\dfrac{xy^2}{x^2+y^4}$ every line $y=mx$ gives $f\to 0$. but along the parabola $x=y^2$ we get $f=\dfrac{y^4}{y^4+y^4}=\tfrac12$. so all lines agreeing is not enough for the limit to exist.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.0]
@@ -1619,7 +1621,7 @@ similarly $f_y$ holds $x$ fixed. notations $\partial f/\partial x$, $f_x$, $\par
   \draw[->,gray!50] (0,0,0)--(2.4,0,0) node[right,font=\tiny]{$x$};
   \draw[->,gray!50] (0,0,0)--(0,2.4,0) node[right,font=\tiny]{$y$};
   \draw[->,gray!50] (0,0,0)--(0,0,2.8) node[above,font=\tiny]{$z$};
-  % Surface z = 2 - 0.3(x^2+y^2) — gridded
+  % Surface z = 2 - 0.3(x^2+y^2), gridded
   \foreach \u in {-1.4,-0.7,0,0.7,1.4}{
     \draw[blue!40,thin,domain=-1.4:1.4,samples=24,variable=\v] plot (\u,\v,{2-0.3*(\u*\u+\v*\v)});
   }
@@ -1974,7 +1976,7 @@ $\grad f \perp$ level curves in $\R^2$, $\grad F \perp$ level surfaces in $\R^3$
 
 \subsection{14.7 Maximum and Minimum Values}
 
-\medskip\textbf{calc 1 recap.} for $y=f(x)$ extrema sit at $f'(x)=0$, classified by sign of $f''$. in 2 variables we use $f_x,f_y$ instead and the hessian (2nd partials) classifies.
+\medskip\textbf{calc 1 recap.} for $y=f(x)$ extrema sit at $f'(x)=0$, classified by sign of $f''$. in 2 variables we use $f_x,f_y$ instead and the Hessian (2nd partials) classifies.
 
 \textbf{Critical point.} $(a,b)$ with $f_x=f_y=0$, or a partial DNE.
 
@@ -2033,7 +2035,7 @@ Let $D = f_{xx}f_{yy}-(f_{xy})^2$ at critical point $(a,b)$:
 \end{tikzpicture}
 \end{center}
 
-\medskip\textbf{Hessian and eigenvalues.} the hessian $H = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{xy} & f_{yy} \end{pmatrix}$ captures the second-order behavior at a critical point. its eigenvalues $\lambda_1,\lambda_2$ are the curvatures along the principal directions.
+\medskip\textbf{Hessian and eigenvalues.} the Hessian $H = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{xy} & f_{yy} \end{pmatrix}$ captures the second-order behavior at a critical point. its eigenvalues $\lambda_1,\lambda_2$ are the curvatures along the principal directions.
 \begin{itemize}[noitemsep]
 \item both $\lambda_i > 0$, local min, paraboloid opens up everywhere.
 \item both $\lambda_i < 0$, local max, opens down everywhere.
@@ -2195,7 +2197,7 @@ At $(0,0)$: $L(x,y)=1+x$ (tangent plane, tilts in $x$, flat in $y$), $Q(x,y)=1+x
     \draw[green!55!black,line width=1.0pt,domain=-0.9:0.9,samples=26,variable=\u] plot (\u,\v,{1+\u-0.5*\v*\v});
   \foreach \u in {-0.9,-0.6,-0.3,0,0.3,0.6,0.9}
     \draw[green!55!black,line width=0.8pt,domain=-1.0:1.0,samples=26,variable=\v] plot (\u,\v,{1+\u-0.5*\v*\v});
-  % Actual z = sin x + cos y — blue mesh, slightly opaque
+  % Actual z = sin x + cos y, blue mesh, slightly opaque
   \foreach \v in {-1.0,-0.5,0,0.5,1.0}
     \draw[blue,very thick,domain=-1.0:1.0,samples=30,variable=\u] plot (\u,\v,{sin(\u r)+cos(\v r)});
   % Base point
@@ -2250,7 +2252,7 @@ A = \int_a^b (f(x)-g(x))\,dx = \iint_D 1\,dA.
 \[
 V = \iint_D h(x,y)\,dA
 \]
-setting $h=f(x)-g(x)$ recovers part A as a prism of height equal to the gap.
+setting $h=1$ recovers part A: a prism of height $1$ over $D$ has volume equal to the area of $D$.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,
@@ -2546,7 +2548,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 \item Volume: $V=\iiint_E dV$ (integrand $\equiv 1$).
 \item Mass: $m=\iiint_E\rho\,dV$ for density $\rho(x,y,z)$.
 \item Charge in a region: $Q=\iiint_E\sigma\,dV$ for charge density $\sigma$.
-\item Center of mass: $\bar x=\frac{1}{m}\iiint x\rho\,dV$, similarly $\bar y,\bar z$. \textit{physics.} blob of mass $dm=\rho\,dV$ has torque $x\,dm$ about the $yz$-plane. balance point along $x$ is the mass-weighted avg of $x$ — multiply by $x$ because $x$ is the lever arm to the plane we balance against.
+\item Center of mass: $\bar x=\frac{1}{m}\iiint x\rho\,dV$, similarly $\bar y,\bar z$. \textit{physics.} blob of mass $dm=\rho\,dV$ has torque $x\,dm$ about the $yz$-plane. balance point along $x$ is the mass-weighted avg of $x$. multiply by $x$ because $x$ is the lever arm to the plane we balance against.
 \item Moments of inertia about coordinate axes: $I_x=\iiint(y^2+z^2)\rho\,dV$, etc.\ (distance-squared from axis).
 \end{itemize}
 
@@ -2649,7 +2651,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
     \pgfmathsetmacro{\zv}{\r*cos(\p)}
     \filldraw[black!70] (\xv,\yv,\zv) circle (0.6pt);
   }
-  % Inner sphere face (orange) — quadrilateral on rho=rA
+  % Inner sphere face (orange), quadrilateral on rho=rA
   \fill[orange!30,opacity=0.55]
     ({\rA*sin(\pA)*cos(\tA)},{\rA*sin(\pA)*sin(\tA)},{\rA*cos(\pA)})
     --({\rA*sin(\pA)*cos(\tB)},{\rA*sin(\pA)*sin(\tB)},{\rA*cos(\pA)})
@@ -2681,7 +2683,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
   % Draw rho from origin to one corner
   \draw[->,blue,thin] (0,0,0)--(C);
   \node[blue,font=\small] at (0.4,0.15,0.7){$\rho$};
-  % Label 2 coordinate corners — pushed further out
+  % Label 2 coordinate corners, pushed further out
   \node[font=\small] at ({\rB*sin(\pA)*cos(\tA)+0.3},{\rB*sin(\pA)*sin(\tA)+0.3},{\rB*cos(\pA)+0.4}){$(\rho{+}d\rho,\phi,\theta)$};
   \draw[gray,thin,->] ({\rB*sin(\pA)*cos(\tA)+0.2},{\rB*sin(\pA)*sin(\tA)+0.2},{\rB*cos(\pA)+0.25})--(Crho);
   \node[font=\small] at ({\rA*sin(\pA)*cos(\tA)-0.4},{\rA*sin(\pA)*sin(\tA)-0.4},{\rA*cos(\pA)-0.5}){$(\rho,\phi,\theta)$};
@@ -2733,7 +2735,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 \end{tikzpicture}
 \end{center}
 
-\textbf{Conservative field.} $\vec{F}=\grad f$ for some scalar $f$, called the \emph{potential}. on a simply connected domain this is the same as curl $\vec F=0$.
+\textbf{Conservative field.} $\vec{F}=\grad f$ for some scalar $f$, called the \emph{potential}. on a simply connected domain (one with no holes) this is the same as curl $\vec F=0$.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=0.65]
@@ -2810,7 +2812,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
     \node[font=\tiny] at (0,-2.5){$\vec F{=}\vv{2x,-2y}$};
     \node[green!60!black,font=\tiny] at (0,2.3){conservative};
   \end{scope}
-  % Non-conservative: F = (y, 0) — shear
+  % Non-conservative: F = (y, 0), shear
   \begin{scope}[xshift=10cm]
     \draw[->,gray!50] (-2,0)--(2,0); \draw[->,gray!50] (0,-2)--(0,2);
     \foreach \x in {-1.5,-0.5,0.5,1.5} \foreach \y in {-1.5,-0.5,0.5,1.5}{
@@ -2838,7 +2840,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 
 \textit{the fourth field has zero curl but is not conservative on $\R^2\setminus\{0\}$ because the domain has a hole.}
 
-\textbf{Simply connected.} a region $D$ with no holes. every closed loop in $D$ shrinks to a point inside $D$. disks rectangles and all of $\R^2$ work, but $\R^2\setminus\{(0,0)\}$ doesnt (theres a hole at the origin).
+\textbf{Simply connected.} a region $D$ with no holes. every closed loop in $D$ shrinks to a point inside $D$. disks rectangles and all of $\R^2$ work, but $\R^2\setminus\{(0,0)\}$ doesn't (there's a hole at the origin).
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=0.8]
@@ -2875,13 +2877,13 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 
 \textbf{Three line integrals over $C$.}
 
-\textbf{(1) Scalar.} $\displaystyle\int_C f\,ds = \int_a^b f(\vec{r}(t))|\vec{r}'(t)|\,dt$. arclength weighted average of $f$. mass of a wire with linear density $f$. geometric, area of a fence of height $f$ over $C$.
+\textbf{(1) Scalar.} $\displaystyle\int_C f\,ds = \int_a^b f(\vec{r}(t))|\vec{r}'(t)|\,dt$. arclength weighted total of $f$. mass of a wire with linear density $f$. geometric, area of a fence of height $f$ over $C$.
 
 \textbf{(2) Vector.} $\displaystyle\int_C \vec{F}\cdot d\vec{r} = \int_a^b \vec{F}(\vec{r}(t))\cdot\vec{r}'(t)\,dt = \int_C P\,dx+Q\,dy+R\,dz$. integrates the tangent component of $\vec F$. equals work done by $\vec F$.
 
 \textbf{(3) Flux (2D).} $\displaystyle\int_C \vec{F}\cdot\vec{n}\,ds$. integrates the normal component, how much field crosses $C$.
 
-\textbf{Orientation.} reversing $C$ flips $\int\vec F\cdot d\vec r$ and the flux. $\int f\,ds$ doesnt change.
+\textbf{Orientation.} reversing $C$ flips $\int\vec F\cdot d\vec r$ and the flux. $\int f\,ds$ doesn't change.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.4]
@@ -3057,11 +3059,11 @@ Let $C$ be a positively oriented (counterclockwise), piecewise-smooth, simple cl
 
 \textbf{Area formula.} $A = \dfrac{1}{2}\oint_C (x\,dy - y\,dx)$.
 
-\textbf{Green with a hole.} for $D$ with outer boundary $C_{\text{out}}$ (CCW) and inner $C_{\text{in}}$ (CW),
+\textbf{Green with a hole.} for $D$ with outer boundary $C_{\text{out}}$ (CCW) and inner $C_{\text{in}}$ (CCW),
 \[
 \oint_{C_{\text{out}}} P\,dx+Q\,dy - \oint_{C_{\text{in}}} P\,dx+Q\,dy = \iint_D (Q_x-P_y)\,dA.
 \]
-or, traverse outer CCW and inner CW so $D$ is always on the left.
+or, traverse outer CCW and inner CW so $D$ is always on the left, and add the two integrals.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1]
@@ -3081,7 +3083,7 @@ or, traverse outer CCW and inner CW so $D$ is always on the left.
 \end{tikzpicture}
 \end{center}
 
-\textit{example with a hole.} compute $\oint_C \tfrac{-y\,dx+x\,dy}{x^2+y^2}$ for any simple CCW curve $C$ around the origin. the integrand blows up at $(0,0)$ so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. on the region between $C$ and $C_\varepsilon$ we have $Q_x-P_y=0$, so green gives $\oint_C-\oint_{C_\varepsilon}=0$. parametrize $C_\varepsilon$ directly to get $\oint_{C_\varepsilon}=2\pi$ so $\oint_C=2\pi$.
+\textit{example with a hole.} compute $\oint_C \tfrac{-y\,dx+x\,dy}{x^2+y^2}$ for any simple CCW curve $C$ around the origin. the integrand blows up at $(0,0)$ so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. on the region between $C$ and $C_\varepsilon$ we have $Q_x-P_y=0$, so Green's Theorem gives $\oint_C-\oint_{C_\varepsilon}=0$. parametrize $C_\varepsilon$ directly to get $\oint_{C_\varepsilon}=2\pi$ so $\oint_C=2\pi$.
 
 \medskip\textbf{Practice.}
 \begin{enumerate}[noitemsep]

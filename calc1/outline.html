@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc I · Material Outline</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<style>/* at phone width, wide math scrolls inside its own block instead of the page */
+.formula, .thm, .defn, .pitfall, .note, .page-content p, .page-content li { overflow-x: auto; overflow-y: hidden; }</style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Calculus I. Material outline</h2>
+<p>pick a chapter. each page has the full notes, worked examples, practice problems, and interactive figures (drag a slider to take control, press play to resume the animation).</p>
+<a class="chapter-card" href="ch1.html"><h4>Chapter 1 · Functions and Limits</h4><p>Tangent and velocity problems, limits (one-sided and infinite), the limit laws and the Squeeze Theorem, the precise definition, continuity, and the Intermediate Value Theorem.</p></a>
+<a class="chapter-card" href="ch2.html"><h4>Chapter 2 · Derivatives and Rates of Change</h4><p>The derivative as a limit of secant slopes and as a function, differentiability, the power, product, quotient, and chain rules, trigonometric derivatives, implicit differentiation, related rates, and linear approximation.</p></a>
+<a class="chapter-card" href="ch3.html"><h4>Chapter 3 · Applications of Differentiation</h4><p>Extreme values and the Closed Interval Method, the Mean Value Theorem, increasing/decreasing and concavity tests, limits at infinity, curve sketching, optimization, and antiderivatives.</p></a>
+<a class="chapter-card" href="ch4.html"><h4>Chapter 4 · Integrals</h4><p>Riemann sums, the definite integral, both parts of the Fundamental Theorem of Calculus, indefinite integrals and net change, and the Substitution Rule.</p></a>
+<a class="chapter-card" href="ch5.html"><h4>Chapter 5 · Applications of Integration</h4><p>Areas between curves, volumes by slicing (disks and washers), work, and the average value of a function.</p></a>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc1_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+.page-content { max-width: 1100px; }
+.chapter-nav { display: flex; justify-content: space-between; padding: 0.7em 1em; background: #f4f4f4; border-radius: 4px; margin: 0.8em 0; }
+.chapter-nav a { text-decoration: none; }
+.chapter-nav a.disabled { color: #aaa; pointer-events: none; }
+.tikz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.2em; margin: 0.8em 0; }
+.tikz-grid figure { margin: 0; padding: 0.5em; background: #fff; border: 1px solid #ddd; border-radius: 4px; }
+.tikz-grid img { display: block; width: 100%; height: auto; }
+.tikz-grid figcaption { font-size: 0.85em; color: #555; margin-top: 0.3em; }
+.fig-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1em; margin: 0.8em 0; }
+.fig { border: 1px solid #ccc; border-radius: 6px; overflow: hidden; background: #fafafa; }
+.fig canvas { display: block; width: 100%; height: 280px; cursor: grab; background: #111; }
+.fig canvas:active { cursor: grabbing; }
+.fig-cap { padding: 0.5em 0.7em; font-size: 0.9em; border-top: 1px solid #ddd; }
+.fig-cap b { display: block; }
+.section { margin-top: 1.4em; }
+.dimtag { display: inline-block; font-size: 0.7em; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; color: #3a5a8a; background: #eaf0f8; border: 1px solid #c5d4e8; border-radius: 3px; padding: 0.05em 0.45em; vertical-align: middle; margin-right: 0.4em; }
+.part { margin: 1em 0; }
+.part > p:first-child { margin-top: 0.2em; }
+.spine { border-left: 4px solid #8a6acc; background: #f6f3fc; padding: 0.5em 0.9em; margin: 0.7em 0; border-radius: 0 4px 4px 0; }
+.spine-name { font-weight: bold; text-transform: uppercase; font-size: 0.78em; letter-spacing: 0.06em; color: #6a4ab0; }
+.formula { background: #fbfbfb; padding: 0.4em 0.8em; border-left: 3px solid #88a; margin: 0.6em 0; }
+ul.tight { margin: 0.3em 0; } ul.tight li { margin-bottom: 0.15em; }
+.chapter-card { display: block; padding: 1em 1.2em; margin: 0.6em 0; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; text-decoration: none; color: inherit; }
+.chapter-card:hover { background: #eef3fa; }
+.chapter-card h4 { margin: 0 0 0.3em 0; }
+.chapter-card p { margin: 0; color: #444; }
+.thm, .defn, .prop, .keybox, .pitfall, .note {
+  border-left: 4px solid #5a78a8;
+  background: #f4f7fb;
+  padding: 0.5em 0.9em;
+  margin: 0.7em 0;
+  border-radius: 0 4px 4px 0;
+}
+.defn { border-color: #6aa86a; background: #f3faf3; }
+.prop { border-color: #c08a4a; background: #fbf6ee; }
+.keybox { border-color: #8a6acc; background: #f6f3fc; }
+.pitfall { border-color: #c0504a; background: #fdf3f1; }
+.note { border-color: #d6a93f; background: #fdf8ec; }
+.thm-name, .defn-name, .prop-name, .keybox-name, .pitfall-name, .note-name { font-weight: bold; text-transform: uppercase; font-size: 0.78em; letter-spacing: 0.06em; color: #555; }
+.pitfall-name { color: #b23; }
+.note-name { color: #a76b16; }
+.thm em, .defn em, .prop em, .pitfall em, .note em { font-style: italic; color: #333; }
+.pitfall p, .note p { margin: 0.35em 0; }
+.pitfall p:first-of-type, .note p:first-of-type { margin-top: 0; }
+.pitfall p:last-child, .note p:last-child { margin-bottom: 0; }
+/* Inline figure helpers */
+.fig-right { float: right; margin: 0 0 1em 1.4em; max-width: 320px; }
+.fig-left  { float: left;  margin: 0 1.4em 1em 0; max-width: 320px; }
+.fig-right figure, .fig-left figure { margin: 0; }
+.fig-right img, .fig-left img { display: block; width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+.fig-right figcaption, .fig-left figcaption { font-size: 0.82em; color: #555; margin-top: 0.25em; }
+.fig-inline { margin: 1.2em auto; max-width: 640px; }
+.fig-inline figure { margin: 0; }
+.fig-inline img { display: block; width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+.fig-inline figcaption { font-size: 0.82em; color: #555; margin-top: 0.25em; text-align: center; }
+.fig-inline-canvas { margin: 1.2em auto; max-width: 560px; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; background: #fafafa; }
+.fig-inline-canvas canvas { display: block; width: 100%; height: 360px; background: #111; }
+.fig-inline-canvas .fig-cap { padding: 0.4em 0.7em; font-size: 0.88em; border-top: 1px solid #ddd; }
+.fig-inline-canvas .fig-cap b { display: block; }
+.fig-pair { display: flex; gap: 1em; margin: 0.9em 0; flex-wrap: wrap; }
+.fig-pair > * { flex: 1 1 240px; }
+.clearfix::after { content: ''; display: table; clear: both; }
+/* Collapsible figure groups. Animations inside load only when opened. */
+.fig-fold { margin: 0.9em 0; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; }
+.fig-fold > summary { cursor: pointer; padding: 0.55em 0.9em; font-weight: bold; color: #3a5a8a; list-style: none; }
+.fig-fold > summary::-webkit-details-marker { display: none; }
+.fig-fold > summary::before { content: '▸ '; }
+.fig-fold[open] > summary::before { content: '▾ '; }
+.fig-fold > summary:hover { background: #eef3fa; }
+.fig-fold > .fig-inline-canvas { margin: 0.8em auto; }

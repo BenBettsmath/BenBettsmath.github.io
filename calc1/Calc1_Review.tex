@@ -1,0 +1,456 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[margin = .75in]{geometry}
+\definecolor{purple}{RGB}{51,0,111} % Official UW color scheme
+\usepackage[colorlinks=true, allcolors=purple]{hyperref} %% For links
+\pagestyle{empty} %% Gets rid of the page number
+%% New Commands
+%% For our common number systems.
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand\set[1]{\{ #1 \}} %%\set{abc} ==> {abc}
+\newcommand\abs[1]{\left| #1 \right|} %% \abs{abc} ==> |abc|
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\brac[1]{\left[ #1 \right]}
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\begin{document}
+\raggedright
+\begin{center}
+      {\large Math 1512 Calculus 1 Review}\\
+  {Fall 2026}\\
+
+\end{center}
+
+
+\begin{enumerate}
+\item Memorization:
+    \begin{enumerate}
+        \item The definition of ``$f$ is continuous at $x=a$''
+        \item Both limit definitions of $f'(a)$, the derivative of $f$ at $x=a$ (as $x \to a$ and as $h \to 0$)
+        \item $\lim_{\theta \to 0} \frac{\sin \theta}{\theta}$ and $\lim_{\theta \to 0} \frac{\cos \theta - 1}{\theta}$
+        \item Derivatives of $\sin(x)$, $\cos(x)$, $\tan(x)$, $\sec(x)$, $\csc(x)$, $\cot(x)$
+        \item Power rule, product rule, quotient rule, chain rule
+        \item The linearization $L(x)$ of $f$ at $x=a$, and the differential $dy$
+        \item Definition of a critical number of $f$
+        \item State the Intermediate Value Theorem, the Extreme Value Theorem, Fermat's Theorem, and the Mean Value Theorem
+        \item First derivative test, second derivative test, and the definition of an inflection point
+        \item Antiderivatives of $x^n$ ($n \neq -1$), $\sin(x)$, $\cos(x)$, $\sec^2(x)$, $\sec(x)\tan(x)$
+        \item The definite integral $\int_a^b f(x) dx$ as a limit of Riemann sums
+        \item State both parts of the Fundamental Theorem of Calculus
+        \item The average value of $f$ on $[a,b]$
+        \item Volume of a cylinder, a cone, and a sphere. Area of a circle. Surface area of a sphere.
+    \end{enumerate}
+
+    \newpage
+
+\item Limits from a graph. Let $g$ be the function graphed below. A filled dot is a point on the graph, an open dot is not.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=7cm, xmin=-3.5, xmax=4.5, ymin=-0.5, ymax=5, axis lines=middle, grid=major, xtick={-3,...,4}, ytick={0,...,4}, xlabel={$x$}, ylabel={$y$}]
+    \addplot[blue, thick, domain=-3:-1]{x+4};
+    \addplot[blue, thick, domain=-1:2, samples=40]{(x-1)^2};
+    \addplot[blue, thick, domain=2.22:4.4, samples=40]{1/(x-2)};
+    \addplot[blue, only marks, mark=*, fill=white] coordinates {(-1,3) (-1,4) (0,1)};
+    \addplot[blue, only marks, mark=*] coordinates {(-1,1) (0,3) (2,1)};
+    \addplot[gray, dashed] coordinates {(2,-0.5) (2,5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+    \begin{enumerate}
+        \item $g(-1)$, $\lim_{x \to -1^-} g(x)$, $\lim_{x \to -1^+} g(x)$, $\lim_{x \to -1} g(x)$
+        \item $g(0)$ and $\lim_{x \to 0} g(x)$
+        \item $\lim_{x \to 2^-} g(x)$, $\lim_{x \to 2^+} g(x)$, $\lim_{x \to 2} g(x)$
+        \item At which $x$ values in $(-3,4)$ is $g$ not continuous? For each, say whether the discontinuity is removable, a jump, or infinite.
+        \item At which of these $x$ values is $g$ continuous from the left? From the right?
+        \item Suppose $\lim_{x \to a} f(x) = 4$ and $\lim_{x \to a} h(x) = -2$. Use the limit laws to evaluate $\lim_{x \to a} [3f(x) - 5h(x)]$, $\lim_{x \to a} f(x)h(x)$, $\lim_{x \to a} \frac{f(x)}{h(x)}$, and $\lim_{x \to a} \parens{\sqrt{f(x)} + h(x)^2}$.
+    \end{enumerate}
+
+    \newpage
+
+\item Computing limits. Evaluate the limit, or explain why it does not exist. Use $\infty$ or $-\infty$ when appropriate.
+    \begin{enumerate}
+        \item $\lim_{x \to 2} \frac{x^2+x-6}{x^2-4}$
+        \item $\lim_{x \to -3} \frac{x+3}{x^2-9}$
+        \item $\lim_{x \to 4} \frac{\sqrt{x}-2}{x-4}$
+        \item $\lim_{h \to 0} \frac{(2+h)^2-4}{h}$
+        \item $\lim_{x \to 2} \frac{\frac{1}{x} - \frac{1}{2}}{x-2}$
+        \item $\lim_{r \to 0} \frac{\sqrt{4+r} - \sqrt{4-r}}{r}$
+        \item $\lim_{x \to 3^+} \frac{x+1}{3-x}$
+        \item $\lim_{x \to 2^-} \frac{x+2}{x^2+x-6}$
+        \item $\lim_{x \to -2} \frac{6}{x^2-4}$ (consider the one-sided limits)
+        \item $\lim_{t \to 3} \frac{t^3}{(t-1)(t-3)^2}$
+    \end{enumerate}
+
+\item Squeeze Theorem.
+    \begin{enumerate}
+        \item $\lim_{x \to 0} x^2 \sin\parens{\frac{3}{x}}$
+        \item $\lim_{x \to \infty} \frac{3 + \cos(x)}{x^2}$
+        \item If $2x - 1 \leq f(x) \leq x^2 - 2x + 3$ for all $x$, find $\lim_{x \to 2} f(x)$.
+        \item Explain why we cannot use the product law to evaluate the limit in (a).
+    \end{enumerate}
+
+    \newpage
+
+\item Limits at infinity and asymptotes. Evaluate the limit.
+    \begin{enumerate}
+        \item $\lim_{x \to \infty} \frac{3x^2-x+2}{5x^2+4}$
+        \item $\lim_{x \to -\infty} \frac{2x^3+1}{x^4-x}$
+        \item $\lim_{x \to \infty} \frac{\sqrt{9x^2+x}}{2x-1}$
+        \item $\lim_{x \to -\infty} \frac{\sqrt{4x^2+1}}{x+3}$ (Recall $\sqrt{x^2} = \abs{x}$)
+        \item $\lim_{x \to \infty} \parens{\sqrt{x^2+6x} - x}$
+        \item Find all vertical and horizontal asymptotes of $f(x) = \frac{6x-3x^2}{x^2-16}$.
+        \item Find all vertical and horizontal asymptotes of $f(x) = \frac{x^2-x-2}{x^2-4}$. Why is $x=2$ not a vertical asymptote?
+    \end{enumerate}
+
+\item Continuity and the Intermediate Value Theorem.
+    \begin{enumerate}
+        \item Give an example of a function $f(x)$ and a value $x=a$ where $f$ has a removable discontinuity. Sketch the graph.
+        \item Give an example of a function $f(x)$ and a value $x=a$ where $f$ has a non-removable discontinuity and $\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = \infty$. Sketch the graph.
+        \item Give an example of a function $f(x)$ and a value $x=a$ where $f$ has a non-removable discontinuity and $\lim_{x \to a^-} f(x) \neq \lim_{x \to a^+} f(x)$.
+        \item Let $f(x) = \begin{cases} x+2 & x < -1 \\ x^2 & -1 \leq x \leq 1 \\ 3-x & x > 1 \end{cases}$. Sketch the graph of $f$. Use the definition of continuity to decide whether $f$ is continuous at $x=-1$ and at $x=1$. At which $x$ values is $f$ not differentiable?
+        \item Where is $g(x) = \frac{\sqrt{x-3}}{x^2-25}$ continuous?
+        \item Find $c$ so that $f(x) = \begin{cases} \frac{x^2}{x+2} & x \leq 2 \\ 3x + c & x > 2 \end{cases}$ is continuous at $x=2$.
+        \item Find $a$ and $b$ so that $f(x) = \begin{cases} 2 & x < 1 \\ ax + b & 1 \leq x < 4 \\ 8 & x \geq 4 \end{cases}$ is continuous everywhere.
+        \item Is $f(x) = \begin{cases} \frac{x^2-9}{x-3} & x \neq 3 \\ 5 & x = 3 \end{cases}$ continuous at $x=3$? Use the definition.
+        \item Show that $x^3 + x - 1 = 0$ has a solution in $(0,1)$.
+        \item Show that $\cos(x) = x$ has a solution in $(0, \frac{\pi}{2})$.
+    \end{enumerate}
+
+    \newpage
+
+\item The derivative as a limit.
+    \begin{enumerate}
+        \item Find the equation of the line tangent to $f(x)=\sqrt{x}$ at $x=4$.
+        \begin{enumerate}
+            \item Sketch the graph of $f(x)$. Plot the point $(4,f(4))$, and draw the line tangent to this point. Draw another point $(x,f(x))$ and find the slope of the secant line between these two points. Set up a limit of the slopes of secant lines that represents the slope of the tangent line.
+            \item Evaluate the limit in part (i) to determine the slope of the tangent line.
+            \item Write an equation for the tangent line.
+        \end{enumerate}
+        \item Use the limit definition of the derivative to find $f'(x)$ if $f(x) = 3x^2 - x + 4$.
+        \item Use the limit definition of the derivative to find $f'(x)$ if $f(x) = \frac{2}{x^2}$.
+        \item Use the limit definition of the derivative to find $f'(x)$ if $f(x) = \sqrt{2x+1}$. Then find the tangent line at $(4,3)$.
+        \item Use the limit definition of the derivative to find $f'(x)$ if $f(x) = x^3 + 2$.
+        \item A ball's height is $h(t) = 200 - 16t^2$ feet after $t$ seconds. Find the slope of the secant line between $t=1$ and $t=3$, with units. Then find the instantaneous velocity at $t=2$ as a limit.
+        \item Is $f(x)=\sqrt{x}$ differentiable at $x=0$? Why or why not? Reference what it means for a function to be differentiable. What is the line tangent to $f(x)$ at $x=0$?
+        \item Each limit is the derivative of some function $f$ at some number $a$. Find $f$ and $a$, then evaluate. $\lim_{h \to 0} \frac{(1+h)^3 -1}{h}$ and $\lim_{x \to 3} \frac{\frac{1}{x} - \frac{1}{3}}{x-3}$.
+        \item If $f(x) = \frac{1}{x}$, draw a graph of $f'(x)$ without calculating it explicitly.
+        \item Sketch the graph of $f'$ for the function $f$ graphed below. Where is $f'$ zero, positive, negative?
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8cm, height=6cm, xmin=-2.5, xmax=2.5, ymin=-2.5, ymax=2.5, axis lines=middle, grid=major, xlabel={$x$}, ylabel={$y$}]
+    \addplot[blue, thick, domain=-2.1:2.1, samples=60]{(x^3-3*x)/2};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+    \end{enumerate}
+
+    \newpage
+
+\item Differentiation rules. You may use any of the derivative rules.
+    \begin{enumerate}
+        \item Find $f'(x)$ if $f(x) = 6x^4 - \frac{2}{x^2} + 3\sqrt[3]{x} - 7$
+        \item Find $g'(x)$ if $g(x) = (x^3+2x)(4-x^2)$
+        \item Find $y'$ if $y = \frac{x^2+1}{2x+1}$
+        \item Find $h'(x)$ if $h(x) = \frac{A}{x^2} + \frac{B}{x^4}$, where $A$ and $B$ are constants
+        \item Use quotient rule to find the derivative of $g(s) = \frac{2s}{s^2+1}$. Then use product rule to find it again, and check that your answers agree.
+        \item At what points $(x,y)$ is the tangent line to $g(x) = \frac{x}{x^2+4}$ horizontal?
+        \item Find the tangent line to $f(x) = x^3 - 3x + 1$ at $x=2$. Find all points where the tangent line is horizontal.
+        \item A particle has position $s(t) = t^3 - 9t^2 + 24t$ meters at time $t$ seconds. Find the velocity $v(t)$ and acceleration $a(t)$, with units. When is the particle at rest?
+    \end{enumerate}
+
+\item Trig derivatives.
+    \begin{enumerate}
+        \item Using the derivatives of $\sin(x)$ and $\cos(x)$, calculate the derivatives of $\tan(x)$, $\sec(x)$, $\csc(x)$, and $\cot(x)$.
+        \item Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$, $\lim_{x \to 0} \frac{\tan(2x)}{x}$, and $\lim_{x \to 0} \frac{\sin(3x)}{\sin(5x)}$.
+        \item Find $k'(x)$ if $k(x) = x^2 \sin x + 3x + 2$
+        \item Find $f'(\theta)$ if $f(\theta) = \theta^2 \cos \theta - 4 \tan \theta$
+        \item Find $y'$ if $y = \frac{\sec x}{1 + \tan x}$
+        \item Find the tangent line to $y = x\cos x$ at the point $(\pi, -\pi)$.
+        \item Find all points $(x,y)$ with $0 \leq x < 2\pi$ where $y = x + 2\cos x$ has a horizontal tangent line.
+    \end{enumerate}
+
+    \newpage
+
+\item Chain rule.
+    \begin{enumerate}
+        \item Given a composition of functions $f(x)= (g \circ h)(x) = g(h(x))$, what does the chain rule say about $f'(x)$?
+        \item Use the table to find $f'(2)$ for $f(x) = g(h(x))$. Then find $f'(2)$ for $f(x) = g(x)h(x)$.
+        \[
+        \begin{array}{c|cccccc}
+        x & -1 & 0 & 1 & 2 & 3 & 4 \\ \hline
+        h(x) & 2 & 1 & 0 & 3 & -1 & 5 \\
+        h'(x)& -1 & 2 & 1 & 4 & 0 & -2 \\
+        g(x) & 0 & -2 & 1 & 5 & 3 & -1 \\
+        g'(x)& 3 & 0 & -1 & 5 & 2 & 4
+        \end{array}
+        \]
+        \item Find the equation of the line tangent to $x(t) = \sin(\sin(\sin(t)))$ when $t = \pi$
+        \item Find the equation of the line tangent to $h(t)=(1+2t^2)^4$ when $t=0$
+        \item Find $f'(x)$ if $f(x) = \sqrt{x^4+3x^2+5}$
+        \item Find $g'(x)$ if $g(x) = 3x^2 \sec(x^3-1)$
+        \item Find $h'(x)$ if $h(x) = \frac{\cos^2(x)}{(2x+3)^3}$
+        \item Find $y'$ if $y = \sin\parens{(3x^2-1)^4}$
+        \item Find all points $(x,y)$ with $0 \leq x < 2\pi$ where $y = 2\sin x + \cos(2x)$ has a horizontal tangent line.
+    \end{enumerate}
+
+\item Implicit differentiation.
+    \begin{enumerate}
+        \item Sketch the curve $x^2+y^2=4$. Use implicit differentiation to find $\frac{dy}{dx}$ as a function of $x$ and $y$. Where are the horizontal and vertical tangent lines? Answer from the formula for $\frac{dy}{dx}$, not just the picture.
+        \item Find the equation of the tangent line at $(\pi/8, \pi/8)$ for the curve $\tan(x+y)+\sec(x-y)=2$
+        \item Find the tangent line to $x^3 + y^3 = 9xy$ at $(2,4)$.
+        \item Find the tangent line to $x^2 y + y^3 = 2$ at $(1,1)$.
+        \item For the curve $y^2 = x^3 - 3x + 2$, find $\frac{dy}{dx}$, the tangent line at $(2,2)$, and all points with a horizontal tangent line.
+    \end{enumerate}
+
+    \newpage
+
+\item Related rates. Draw a picture, name the quantities that change, and write the equation relating them before differentiating.
+    \begin{enumerate}
+        \item If $x,y,z$ are implicitly functions of $t$, and $x(1-y)+5z^3=y^2z^2+x^2-3$, find $z'$ when $x=4, y=-2, z=1, x'=9, y' = -3$
+        \item A 13 ft ladder leans against a wall. The bottom slides away from the wall at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?
+        \item A tank is an inverted cone with radius 3 m at the top and height 6 m. Water is pumped in at 4 $\text{m}^3$/min. How fast is the water level rising when the water is 4 m deep?
+        \item The height of a cylinder increases at 3 cm/min while its radius decreases at 0.5 cm/min. How fast is the volume $V=\pi r^2 h$ changing when $r=2$ cm and $h=4$ cm? Is it increasing or decreasing?
+        \item A rectangle's length increases at 3 in/min and its width decreases at 2 in/min. When the length is 10 in and the width is 4 in, how fast is the area changing? Is it increasing or decreasing?
+        \item A marble moves along the curve $x^2 + xy + y^2 = 9$ ($x, y$ in feet). At $(3,0)$, $x$ is decreasing at 2 ft/s. Is $y$ increasing or decreasing, and how fast?
+    \end{enumerate}
+
+\item Linear approximation and differentials.
+    \begin{enumerate}
+        \item Draw the graph of a function $f(x)$. Also draw $L(x) = f'(a)(x-a)+f(a)$. For $x$ close to $a$, $f(x) \approx L(x)$. Use this to approximate $\Delta f = f(a+\Delta x) - f(a)$. Label $\Delta f$ and your approximation for it in your picture.
+        \item If $f(1)=1$ and $f'(1)=\frac{1}{2}$, without calculating the linearization of $f$ at $1$, what do you expect $f(\frac{3}{2})$ to be? Now calculate the linearization and verify your answer.
+        \item Find the linearization of $f(x) = \sqrt{x+5}$ at $a=4$. Use it to approximate $\sqrt{9.1}$.
+        \item Find the linearization of $f(x) = \sqrt[3]{x}$ at $a=27$. Use it to approximate $\sqrt[3]{27.27}$.
+        \item Find the linearization of $f(x) = \sin x$ at $a = \frac{\pi}{6}$. Use it to approximate $\sin\parens{\frac{\pi}{6} + 0.02}$.
+        \item The radius of a sphere is measured as 10 cm with a possible error of 0.05 cm. Use differentials to estimate the maximum error in the computed volume.
+    \end{enumerate}
+
+    \newpage
+
+\item Extreme values. Use the closed interval method to find the absolute maximum and minimum values.
+    \begin{enumerate}
+        \item Summarize the closed interval method for finding the absolute extrema of a function over a closed interval.
+        \item Give an example of a function that has a critical number $a$ with $f'(a)=0$, but $(a,f(a))$ is not a local max or min.
+        \item Give an example of a function that has a local max or min even though it has no horizontal tangent lines.
+        \item $f(x) = 2x^3 - 9x^2 + 12x + 1$ on $[0,3]$
+        \item $f(x) = x^4 - 8x^2 + 3$ on $[-1,3]$
+        \item $f(x) = \frac{4x}{x^2+4}$ on $[-4,0]$
+        \item $f(x) = \sqrt{9-x^2}$ on $[-1,3]$
+        \item $f(x) = 2\cos x + \sin(2x)$ on $[0, \pi]$
+    \end{enumerate}
+
+\item Mean Value Theorem.
+    \begin{enumerate}
+        \item Find every $c$ guaranteed by the MVT for $f(x) = x^2 - 4x + 1$ on $[1,5]$.
+        \item Find every $c$ guaranteed by the MVT for $f(x) = \sqrt{x}$ on $[0,4]$.
+        \item If $f(2) = -1$ and $f'(x) \leq 3$ for all $x$, how large can $f(6)$ be?
+        \item Show that $f(x) = \abs{x}$ on $[-1,1]$ has no $c$ with $f'(c) = \frac{f(1)-f(-1)}{1-(-1)}$. Which hypothesis of the MVT fails?
+        \item Show that $x^3 + 5x - 2 = 0$ has exactly one real solution.
+    \end{enumerate}
+
+    \newpage
+
+\item Shape of a graph. Find the intervals of increase and decrease, the local extrema, the intervals of concavity, and the inflection points.
+    \begin{enumerate}
+        \item $f(x) = x^3 - 6x^2 + 9x + 1$
+        \item $f(x) = 3x^4 - 4x^3$
+        \item $f(x) = x + 2\sin x$ on $[0, 2\pi]$
+        \item Use the second derivative test to classify the critical numbers of $f(x) = x^4 - 2x^2$.
+        \item Sketch a function with $f' > 0$ and $f'' < 0$ everywhere. Sketch one with $f' < 0$ and $f'' > 0$ everywhere.
+        \item Assume $a$ is a positive constant, $c$ is a negative constant, and $b$ is a constant. Let $f(x)=x(ax^2+bx+c)$, a cubic through $(0,0)$ whose inflection point is the origin.
+        \begin{enumerate}
+            \item See what $f''(0)=0$ means, then use this to simplify $f(x)$.
+            \item Use the quadratic formula to find the roots of $f(x)$.
+            \item Find the roots of $f'(x)$.
+            \item Draw the graph of $f$. Label the local max and min by $(x_0, f(x_0))$ for each critical number $x_0$ you found.
+        \end{enumerate}
+    \end{enumerate}
+
+\item Curve sketching. Find the domain, intercepts, asymptotes, intervals of increase and decrease, local extrema, concavity, and inflection points. Then sketch the graph and label all of these.
+    \begin{enumerate}
+        \item $f(x) = \frac{1}{x^2+3}$
+        \item $f(x) = \frac{x^2-1}{x^2-4}$
+        \item $f(x) = (x+2)(x-1)^2$
+        \item $f(x) = \frac{x+1}{x-2}$
+    \end{enumerate}
+
+    \newpage
+
+\item Optimization. Draw a picture, introduce variables, write the quantity to optimize as a function of one variable, and verify that your answer is a max or min.
+    \begin{enumerate}
+        \item A box is twice as long as it is wide. Find the dimensions that maximize the volume of the box, if you have 40 square feet of material to build it.
+        \item A farmer has 2000 feet of fencing to build a rectangular field, fenced on 3 sides, along a straight river. What dimensions maximize the area?
+        \item Maximize the product $xy$ if the point $(x,y)$ is on the upper half of the unit circle.
+        \item A box with a square base and an open top is made from 300 $\text{cm}^2$ of material. Find the largest possible volume.
+        \item A rectangular pen is split in half by a divider parallel to one side. The outer fence costs \$4 per meter and the divider costs \$2 per meter. With \$200, what is the largest possible area?
+        \item Find the points on the parabola $y = x^2$ closest to the point $(0,2)$.
+    \end{enumerate}
+
+\item Antiderivatives and initial value problems. Find the most general antiderivative.
+    \begin{enumerate}
+        \item $4x^3$, \quad $2x^{-3}$, \quad $\sqrt{x^3}$, \quad $x^{-3/4}$, \quad $\sin x$, \quad $\cos x$, \quad $\sec^2(x)$, \quad $\sec(x)\tan(x)$
+        \item $g(s)=\frac{4-2s+\sqrt{s^3}}{\sqrt{s}}$
+        \item $f(s) = \frac{s^3-s^2+s\sqrt{s}}{s^{3/2}}$
+        \item $h(x) = abcx+d^2ef^3x^2$, where $a,b,c,d,e,f$ are constants
+        \item $f(x) = \sin(4x)$
+        \item If $f'(x) = x^2-1$ and $f(1)=1$, find $f(x)$.
+        \item If $f''(t) = 2\cos t - 6\sin t$, $f(0) = 1$, and $f'(0) = 4$, find $f(t)$.
+        \item If $\frac{ds}{dt} = 4\sin(2t) - \cos(2t)$ and $s(\frac{\pi}{4}) = 3$, find $s(t)$.
+        \item A particle has acceleration $a(t) = 6t - 4$, initial velocity $v(0) = 3$, and initial position $s(0) = 1$. Find $s(t)$.
+        \item Carefully draw $y = 2x$ and 2 of its antiderivatives on the same set of axes. When a function has an $x$-intercept, what does this mean about the shape of its antiderivative?
+        \item Carefully draw $y=1-3x^2$ and 2 different antiderivatives on the same set of axes. If a function has a local min or max, what does it mean about the shape of its antiderivative?
+        \item Graph an antiderivative of the function graphed below.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8cm, height=6cm, xmin=-6, xmax=8, ymin=-6, ymax=6, xlabel={$x$}, ylabel={$y$}, axis lines=middle, grid=major]
+    \addplot[blue, thick, domain=-5:8, samples=30]{2-(.5*x-1)^2};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+    \end{enumerate}
+
+    \newpage
+
+\item Riemann sums.
+    \begin{enumerate}
+        \item Use 6 rectangles with the right endpoint rule to approximate the area under $\sin(x)$ over $[0,\pi]$. Graph $\sin(x)$ and draw each rectangle.
+        \item Approximate the area under $f(x) = x^2$ on $[0,4]$ with $n=4$ rectangles using right endpoints, left endpoints, and midpoints. Which are over estimates, and which are under estimates?
+        \item Use $n=3$ rectangles with midpoints as sample points to approximate the area under $f(x) = x^2+1$ on $[0,6]$.
+        \item Write $\int_1^4 (x^2+3x) dx$ as a limit of Riemann sums using right endpoints. Do not evaluate.
+        \item Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.
+    \end{enumerate}
+
+\item The definite integral as area. Evaluate by interpreting the integral in terms of areas. Do not use the Fundamental Theorem.
+    \begin{enumerate}
+        \item $\int_0^2 \parens{3x + \sqrt{4-x^2}} dx$
+        \item $\int_{-4}^4 \parens{2 - \sqrt{16-x^2}} dx$
+        \item $\int_{-2}^2 \parens{x^3 + \sqrt{4-x^2}} dx$
+        \item $\int_0^5 \abs{2x-4} dx$
+        \item If $\int_0^5 f(x) dx = 7$ and $\int_0^2 f(x) dx = 3$, find $\int_2^5 f(x) dx$, $\int_5^2 f(x) dx$, and $\int_2^5 (3f(x)-1) dx$.
+        \item The velocity $v(t)$ (in m/s) of a particle moving on a line is graphed below, for $t$ in seconds.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=6cm, xmin=0, xmax=10.5, ymin=-3, ymax=5, axis lines=middle, grid=major, xtick={0,...,10}, ytick={-2,...,4}, xlabel={$t$}, ylabel={$v$}]
+    \addplot[blue, thick] coordinates {(0,0) (2,4) (4,4) (7,-2) (10,-2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+        \begin{enumerate}
+            \item What is the displacement of the particle from $t=0$ to $t=10$?
+            \item What is the total distance traveled from $t=0$ to $t=10$?
+            \item If the particle is at $x=3$ m at $t=0$, where is it at $t=10$?
+            \item What is the acceleration at $t=5$? When is the particle farthest from where it started?
+        \end{enumerate}
+    \end{enumerate}
+
+    \newpage
+
+\item Fundamental Theorem of Calculus, Part 1. Find the derivative.
+    \begin{enumerate}
+        \item Calculate $f'(\pi/4)$ if $f(x) = \int_{-x}^x \cos(t) dt$, without calculating the antiderivative.
+        \item $g(x) = \int_1^x \sqrt{t^3+2}\, dt$
+        \item $g(x) = \int_{x^2}^4 t\sqrt{1+t^2}\, dt$
+        \item $F(x) = \int_1^{\sqrt{x}} \sin(s^2) ds$
+        \item $g(x) = \int_{2x}^{x^3} \frac{1}{1+t^4} dt$
+        \item Let $g(x) = \int_0^x f(t) dt$, where $f$ is graphed below. Find $g(4)$, $g'(4)$, and $g''(4)$. Where on $[0,6]$ does $g$ have its maximum?
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8cm, height=5.5cm, xmin=0, xmax=6.5, ymin=-2.5, ymax=3, axis lines=middle, grid=major, xtick={0,...,6}, ytick={-2,...,2}, xlabel={$t$}, ylabel={$y$}]
+    \addplot[blue, thick] coordinates {(0,2) (2,2) (6,-2)};
+    \node at (axis cs:1,1.3) {$y=f(t)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+        \item FTC part 1 says slopes undo areas: the rate the area $\int_0^x f(t)dt$ changes with an increase in $x$ is equal to (\textit{blank}). FTC part 2 says areas undo slopes. Fill in the blank, and explain why FTC part 2 makes sense.
+    \end{enumerate}
+
+\item Fundamental Theorem of Calculus, Part 2. Evaluate the integral.
+    \begin{enumerate}
+        \item Calculate $\int_{32}^{34} 2x dx$ as an area (without calculus). Then calculate it using part 2 of the Fundamental Theorem of Calculus.
+        \item $\int_1^4 \parens{3\sqrt{x} - \frac{2}{x^2}} dx$
+        \item $\int_0^{\pi/4} \sec x \tan x\, dx$
+        \item $\int_0^{\pi} (\sin x + 2\cos x) dx$
+        \item $\int_1^8 x^{-1/3} dx$
+        \item What is wrong with the calculation $\int_{-1}^2 \frac{1}{x^2} dx = \brac{-\frac{1}{x}}_{-1}^2 = -\frac{3}{2}$?
+    \end{enumerate}
+
+    \newpage
+
+\item U-sub. Clearly declare each substitution. For definite integrals, change the bounds to $u$-bounds.
+    \begin{enumerate}
+        \item $\int_1^2 x\sqrt{x-1}dx$
+        \item If $f'(t) = (\sin(t)+1)^3 \cos(t)$, find the family of possible $f(t)$'s.
+        \item Demonstrate that $u$-substitution undoes chain rule by calculating $\int_a^b g'(h(x))h'(x)dx$.
+        \item $\int \frac{x^3}{(x^4+1)^2} dx$
+        \item $\int_0^1 x \cos\parens{\frac{\pi x^2}{2}} dx$
+        \item $\int \sqrt{x}\, \sin\parens{x^{3/2}} dx$
+        \item $\int \frac{\sin(1/x)}{x^2} dx$
+        \item $\int_0^4 \frac{x}{\sqrt{x^2+9}} dx$
+        \item $\int_{-2}^1 x\sqrt{x+3}\, dx$
+        \item $\int_{-\pi/2}^{\pi/2} x^2 \sin x\, dx$ (look for symmetry first)
+        \item Perform the substitution $u=2x-1$ in $\int_{1/2}^1 (2x-1) dx$ without evaluating. Approximate the area represented by the $x$-integral and by the $u$-integral using 2 rectangles with right endpoints. Draw the picture for each.
+    \end{enumerate}
+
+\item Area between curves. Sketch the region and find its area.
+    \begin{enumerate}
+        \item $y = x$ and $y = x^2 - 6$
+        \item $y = x$ and $y = 5x - x^2$
+        \item $y = x^2$ and $y = 8 - x^2$. Set up the area integrating with respect to $x$, then with respect to $y$.
+        \item $x = y^2$ and $x = y + 2$ (integrate with respect to $y$)
+        \item $y = \sin x$ and $y = \cos x$ for $0 \leq x \leq \frac{\pi}{2}$
+    \end{enumerate}
+
+\item Average value.
+    \begin{enumerate}
+        \item Find the average value of $f(x) = \frac{1}{x^2}$ on $[1,3]$.
+        \item Find the average value of $f(x) = \sin x$ on $[0,\pi]$.
+        \item Find the average value of $f(x) = x^2$ on $[0,3]$, and find $c$ in $[0,3]$ with $f(c)$ equal to the average value.
+    \end{enumerate}
+
+    \newpage
+
+\item Volumes. Sketch the region and a representative slice. Set up an integral for the volume, then evaluate it.
+    \begin{enumerate}
+        \item Set up (do not evaluate). Draw the relevant $dV$ and where it lives in the total volume.
+        \begin{enumerate}
+            \item The region enclosed by the $x$-axis, $x=\pi$, and $y=\sin x$, revolved around the $x$-axis
+            \item The region enclosed by $y=1$, $y=4$, $y=x$, and $y=2x+1$, revolved around the $y$-axis
+            \item The region enclosed by $y = \sin x$ and $y=1-\sin x$, $x \in [0,\pi]$, revolved around $y=-1$
+        \end{enumerate}
+        \item The region between $y = x$ and $y = x^2$, revolved around the $x$-axis
+        \item The region bounded by $y = x+1$, $y=0$, $x=0$, and $x=3$, revolved around the $x$-axis
+        \item The region bounded by $x = y^2$, $x=0$, and $y=2$, revolved around the $y$-axis
+        \item The region between $y = 3x$ and $y = x^2$, revolved around the $y$-axis, and then around the line $y=-1$
+    \end{enumerate}
+
+\item Work.
+    \begin{enumerate}
+        \item If $2$ J of work is needed to stretch a spring from 30 cm (natural length) to 42 cm, how much work is needed to stretch it from 35 cm to 40 cm? When the spring is pulled with 30 N of force, what will its length be?
+        \item A force of 12 N holds a spring stretched from its natural length of 10 cm to 14 cm. How much work is done stretching it from 12 cm to 16 cm?
+        \item A spring has natural length 10 cm and spring constant $k$. Find the work $W_1$ to stretch it from 10 cm to 15 cm and the work $W_2$ to stretch it from 15 cm to 20 cm, in terms of $k$. How are $W_1$ and $W_2$ related?
+        \item A force of $f(x) = 3\sqrt{x}$ pounds acts on an object $x$ feet from the origin. Find the work done moving the object from $x=1$ to $x=4$.
+        \item The linear density of a wire is $\rho (x) = (x/100)^2+1$ g/cm for $0 \leq x \leq 100$, where $x$ is the distance in cm from the light end. Find the total mass of the wire and its average density. The wire hangs over the edge of a building, heavy side down. How much work does it take to pull the wire to the roof? Use $F=mg$ with $g=981\ \text{cm}/\text{s}^2$.
+        \item A particle moves along a straight line, acted on by a force of $F(x)= (x-1)\sin\parens{2(x-1)^2-\frac{\pi}{4}}$ pounds when it is $x$ feet from its starting position. How much work does the force do as the particle moves from its starting position to $x=1$?
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

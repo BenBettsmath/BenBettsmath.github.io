@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc II · Techniques of Integration</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Chapter 7 · Techniques of Integration</h2>
+<div class="chapter-nav"><a href="ch6.html">← previous</a><a href="outline.html">outline</a><a href="ch9.html">next →</a></div>
+<p>Methods for finding antiderivatives that substitution alone cannot reach, a way to estimate integrals we cannot do exactly, and integrals over infinite intervals or of unbounded functions. Each technique undoes a differentiation rule or exploits an identity. By parts undoes the product rule, trig substitution uses the Pythagorean identities, and partial fractions breaks a rational function into pieces we already know how to integrate.</p>
+<div class="section"><h3>7.1 Integration by Parts</h3>
+
+<p class="part"><b>The rule.</b> For differentiable functions $u = f(x)$ and $v = g(x)$,</p>
+<div class="formula">$\displaystyle \int u\,dv = uv - \int v\,du, \qquad \int_a^b f(x)g'(x)\,dx = f(x)g(x)\Big|_a^b - \int_a^b g(x)f'(x)\,dx.$</div>
+<p><em>Why.</em> The product rule says $(fg)' = f'g + fg'$. Integrate both sides and solve for $\int fg'$. In a picture, let the point $(u, v)$ run along a curve from $(u_1, v_1)$ to $(u_2, v_2)$ with both coordinates increasing. The area under the curve, $\int v\,du$, and the area to its left, $\int u\,dv$, together fill the big rectangle $u_2v_2$ minus the small one $u_1v_1$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="byParts"></canvas><div class="fig-cap"><b>$\int u\,dv + \int v\,du = u_2v_2 - u_1v_1$.</b>Slide the right endpoint $u_2$. The two shaded areas always add up to the difference of the rectangles.</div></div>
+
+<p><b>Choosing $u$ and $dv$.</b> Pick $u$ so that $du$ is simpler than $u$, and $dv$ so that $v$ is easy to find. A rough order of preference for $u$ is <b>LIATE</b>: Logarithms, Inverse trig, Algebraic (polynomials), Trig, Exponentials.</p>
+
+<p><b>Examples.</b></p>
+<ul class="tight">
+  <li>$\int xe^x\,dx$: $u = x$, $dv = e^x dx$, so $du = dx$, $v = e^x$, and $\int xe^x\,dx = xe^x - \int e^x\,dx = (x - 1)e^x + C$.</li>
+  <li>$\int \ln x\,dx$: $u = \ln x$, $dv = dx$, so $du = dx/x$, $v = x$, and $\int\ln x\,dx = x\ln x - \int 1\,dx = x\ln x - x + C$. The same trick handles $\int\tan^{-1}x\,dx$.</li>
+  <li>$\int x^2\sin x\,dx$ needs two rounds, each lowering the power of $x$: $-x^2\cos x + 2x\sin x + 2\cos x + C$.</li>
+  <li>$\int e^x\sin x\,dx$ returns to itself after two rounds: $I = e^x\sin x - e^x\cos x - I$, so $I = \tfrac12e^x(\sin x - \cos x) + C$.</li>
+</ul>
+
+<div class="note"><div class="note-name">Shortcut</div><p>For a polynomial times $e^{ax}$, $\sin ax$, or $\cos ax$, a table does repeated parts at once. List the derivatives of the polynomial down to $0$ in one column and repeated antiderivatives of the other factor in the next, then add the diagonal products with alternating signs $+, -, +, \dots$</p></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The minus sign in $-\int v\,du$ applies to the whole integral, and with repeated parts the signs alternate. A bad choice of $u$ is easy to spot: in $\int xe^x\,dx$, taking $u = e^x$ gives $\int \tfrac12x^2e^x\,dx$, which is worse. Switch the choice when the new integral is harder.</p></div>
+</div>
+<div class="section"><h3>7.2 Trigonometric Integrals</h3>
+
+<p class="part"><b>Powers of sine and cosine,</b> $\int\sin^m x\cos^n x\,dx$ with $m, n \ge 0$ integers.</p>
+<ul class="tight">
+  <li>If $n$ is odd: save one $\cos x$, write the rest with $\cos^2 x = 1 - \sin^2 x$, and let $u = \sin x$.</li>
+  <li>If $m$ is odd: save one $\sin x$, write the rest with $\sin^2 x = 1 - \cos^2 x$, and let $u = \cos x$.</li>
+  <li>If both are even: use the half-angle identities $\sin^2 x = \tfrac12(1 - \cos 2x)$, $\cos^2 x = \tfrac12(1 + \cos 2x)$, and sometimes $\sin x\cos x = \tfrac12\sin 2x$.</li>
+</ul>
+<p><em>Why.</em> The saved factor becomes $du$, and the Pythagorean identity turns everything else into powers of $u$. When both powers are even there is nothing to save, so we lower the powers by doubling the angle instead.</p>
+
+<p><b>Example.</b> $\int\sin^3x\cos^2x\,dx = \int(1 - \cos^2 x)\cos^2 x\,\sin x\,dx$. With $u = \cos x$, $du = -\sin x\,dx$, this is $-\int(u^2 - u^4)\,du = -\tfrac13\cos^3x + \tfrac15\cos^5x + C$.</p>
+<p><b>Example.</b> Both powers even:</p>
+<div class="formula">$\displaystyle\int_0^\pi\sin^2x\,dx = \frac12\int_0^\pi(1 - \cos 2x)\,dx = \frac12\Bigl[x - \frac12\sin 2x\Bigr]_0^\pi = \frac{\pi}{2}.$</div>
+
+<p><b>Powers of tangent and secant,</b> $\int\tan^m x\sec^n x\,dx$.</p>
+<ul class="tight">
+  <li>If $n$ is even ($n \ge 2$): save $\sec^2 x$, write the rest with $\sec^2 x = 1 + \tan^2 x$, and let $u = \tan x$.</li>
+  <li>If $m$ is odd: save $\sec x\tan x$, write the rest with $\tan^2 x = \sec^2 x - 1$, and let $u = \sec x$.</li>
+</ul>
+<p>The same reason applies, since $\frac{d}{dx}\tan x = \sec^2 x$ and $\frac{d}{dx}\sec x = \sec x\tan x$. Two integrals worth knowing:</p>
+<div class="formula">$\displaystyle\int\tan x\,dx = \ln|\sec x| + C, \qquad \int\sec x\,dx = \ln|\sec x + \tan x| + C.$</div>
+<p>The second comes from multiplying by $\dfrac{\sec x + \tan x}{\sec x + \tan x}$. The numerator becomes the derivative of the denominator.</p>
+
+<p><b>Products with different angles.</b> For $\int\sin mx\cos nx\,dx$ and similar, use</p>
+<div class="formula">$\sin A\cos B = \tfrac12[\sin(A - B) + \sin(A + B)], \quad \sin A\sin B = \tfrac12[\cos(A - B) - \cos(A + B)], \quad \cos A\cos B = \tfrac12[\cos(A - B) + \cos(A + B)].$</div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Keep the factor from the doubled angle. $\int\cos 2x\,dx = \tfrac12\sin 2x + C$, not $\sin 2x + C$. Also $\sin^2 x$ is $(\sin x)^2$, while $\sin x^2$ is $\sin(x^2)$, which has no elementary antiderivative.</p></div>
+</div>
+<div class="section"><h3>7.3 Trigonometric Substitution</h3>
+
+<p class="part"><b>The idea.</b> A root of the form $\sqrt{a^2 \pm x^2}$ or $\sqrt{x^2 - a^2}$ (with $a &gt; 0$) disappears if $x$ is replaced by a trig function of a new variable $\theta$, because of a Pythagorean identity. This is an <em>inverse substitution</em>: we set $x = g(\theta)$ rather than $u = g(x)$, so $g$ must be one-to-one, and that is what the restriction on $\theta$ ensures.</p>
+<div class="formula">$\begin{array}{lll}
+\text{expression} &amp; \text{substitution} &amp; \text{identity}\\ \hline
+\sqrt{a^2 - x^2} &amp; x = a\sin\theta,\ \ -\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2} &amp; 1 - \sin^2\theta = \cos^2\theta\\
+\sqrt{a^2 + x^2} &amp; x = a\tan\theta,\ \ -\tfrac{\pi}{2} &lt; \theta &lt; \tfrac{\pi}{2} &amp; 1 + \tan^2\theta = \sec^2\theta\\
+\sqrt{x^2 - a^2} &amp; x = a\sec\theta,\ \ 0 \le \theta &lt; \tfrac{\pi}{2} \text{ or } \pi \le \theta &lt; \tfrac{3\pi}{2} &amp; \sec^2\theta - 1 = \tan^2\theta
+\end{array}$</div>
+<p>On each range of $\theta$ the trig function under the root is $\ge 0$, so for example $\sqrt{a^2 - a^2\sin^2\theta} = a\cos\theta$ with no absolute value.</p>
+
+<p><b>Back to $x$.</b> Draw the right triangle that encodes the substitution, with angle $\theta$, and label the sides by Pythagoras. Every trig function of $\theta$ in the answer can be read off as a ratio of sides in terms of $x$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="trigSub"></canvas><div class="fig-cap"><b>The reference triangle for each substitution.</b>Choose the form of the root. The third side always comes from Pythagoras.</div></div>
+
+<p><b>Example.</b> $\displaystyle\int\frac{dx}{x^2\sqrt{x^2 + 4}}$. Let $x = 2\tan\theta$, so $dx = 2\sec^2\theta\,d\theta$ and $\sqrt{x^2 + 4} = 2\sec\theta$. Then</p>
+<div class="formula">$\displaystyle\int\frac{2\sec^2\theta\,d\theta}{4\tan^2\theta\cdot 2\sec\theta} = \frac14\int\frac{\sec\theta}{\tan^2\theta}\,d\theta = \frac14\int\frac{\cos\theta}{\sin^2\theta}\,d\theta = -\frac{1}{4\sin\theta} + C.$</div>
+<p>The triangle has opposite side $x$, adjacent side $2$, hypotenuse $\sqrt{x^2 + 4}$, so $\sin\theta = x/\sqrt{x^2 + 4}$ and the answer is $-\dfrac{\sqrt{x^2 + 4}}{4x} + C$.</p>
+
+<p><b>Completing the square.</b> A quadratic $x^2 + bx + c$ under a root becomes one of the three forms after completing the square. For example $\sqrt{x^2 + 2x + 5} = \sqrt{(x + 1)^2 + 4}$, and then $x + 1 = 2\tan\theta$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Do not stop with an answer in $\theta$. Convert back with the triangle, and if $\theta$ itself appears, use $\theta = \sin^{-1}(x/a)$ (or $\tan^{-1}$, $\sec^{-1}$). For a definite integral, either convert back or change the limits to $\theta$ values, but not a mix. Also check whether plain substitution works first: $\int\frac{x}{\sqrt{x^2 + 4}}\,dx$ only needs $u = x^2 + 4$.</p></div>
+</div>
+<div class="section"><h3>7.4 Integration of Rational Functions by Partial Fractions</h3>
+
+<p class="part"><b>Setup.</b> A rational function is $R(x) = P(x)/Q(x)$ with $P$, $Q$ polynomials. It is <em>proper</em> if $\deg P &lt; \deg Q$. If it is not proper, divide first: long division gives $R(x) = S(x) + \frac{\tilde P(x)}{Q(x)}$ with $S$ a polynomial and $\deg\tilde P &lt; \deg Q$ (the tilde is our notation for the remainder).</p>
+<p>Next factor $Q$ into linear factors $ax + b$ and <em>irreducible</em> quadratics $ax^2 + bx + c$, meaning $b^2 - 4ac &lt; 0$, so they have no real roots. Then the proper fraction is a sum of the following pieces.</p>
+<ul class="tight">
+  <li><b>Distinct linear factors</b> $(x - r)$: one term $\dfrac{A}{x - r}$ each.</li>
+  <li><b>Repeated linear factor</b> $(x - r)^k$: $\dfrac{A_1}{x - r} + \dfrac{A_2}{(x - r)^2} + \cdots + \dfrac{A_k}{(x - r)^k}$.</li>
+  <li><b>Irreducible quadratic</b> $ax^2 + bx + c$: one term $\dfrac{Ax + B}{ax^2 + bx + c}$. A repeated quadratic gets one such term for each power, as in the linear case.</li>
+</ul>
+<p><em>Why it works.</em> Algebra guarantees such a decomposition exists, and each piece has a known integral: $\frac{A}{x - r}$ gives $A\ln|x - r|$, higher powers give powers of $x - r$, and a quadratic piece gives a logarithm plus an arctangent.</p>
+<div class="formula">$\displaystyle\int\frac{Ax + B}{x^2 + a^2}\,dx = \frac{A}{2}\ln(x^2 + a^2) + \frac{B}{a}\tan^{-1}\frac{x}{a} + C.$</div>
+<p>To find the constants, multiply through by $Q(x)$ and either compare coefficients or plug in convenient values of $x$. For a distinct linear factor $x - r$, plugging in $x = r$ kills every other term, so $A$ is the value at $r$ of $(x - r)R(x)$ (the <b>cover-up</b> method).</p>
+
+<p><b>Example.</b> $\displaystyle\int\frac{x + 5}{x^2 + x - 2}\,dx$. Here $x^2 + x - 2 = (x - 1)(x + 2)$, so $\dfrac{x + 5}{(x - 1)(x + 2)} = \dfrac{A}{x - 1} + \dfrac{B}{x + 2}$. Cover-up: $A = \frac{1 + 5}{1 + 2} = 2$ and $B = \frac{-2 + 5}{-2 - 1} = -1$. So the integral is $2\ln|x - 1| - \ln|x + 2| + C$.</p>
+
+<p><b>Rationalizing substitutions.</b> An integrand with $\sqrt[n]{g(x)}$ can sometimes be made rational by $u = \sqrt[n]{g(x)}$. Example: in $\int\frac{dx}{1 + \sqrt x}$, put $u = \sqrt x$, so $x = u^2$ and $dx = 2u\,du$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Three common setup errors. Skipping long division when $\deg P \ge \deg Q$. Giving a repeated factor $(x - r)^2$ only the term $\frac{A}{(x - r)^2}$ and forgetting $\frac{B}{x - r}$. Giving a quadratic factor a constant numerator $A$ instead of $Ax + B$.</p></div>
+</div>
+<div class="section"><h3>7.5 Strategy for Integration</h3>
+
+<p class="part">No single method always works. A reasonable order of attack:</p>
+<ol class="tight">
+  <li><b>Simplify.</b> Expand, cancel, split a fraction, or use an identity. $\int\frac{\tan\theta}{\sec^2\theta}\,d\theta = \int\sin\theta\cos\theta\,d\theta$.</li>
+  <li><b>Look for an obvious substitution.</b> A function and (a constant multiple of) its derivative both appear, such as $\int\frac{x}{x^2 - 1}\,dx$ with $u = x^2 - 1$.</li>
+  <li><b>Classify the integrand.</b> Powers of trig functions: 7.2. Rational function: 7.4. Product of two different kinds of function: by parts, 7.1. A root of $\pm x^2 \pm a^2$: 7.3. A root of a linear expression: rationalizing substitution.</li>
+  <li><b>Try again.</b> Try a different substitution, multiply by a clever form of $1$, or combine methods (a substitution followed by parts is common: $\int e^{\sqrt x}\,dx$ with $u = \sqrt x$ becomes $\int 2ue^u\,du$).</li>
+</ol>
+<p><b>Not every integral has an elementary answer.</b> A function is <em>elementary</em> if it is built from polynomials, roots, exponentials, logarithms, trig and inverse trig functions by arithmetic and composition. The antiderivatives of $e^{x^2}$, $\sin(x^2)$, $\frac{\sin x}{x}$, $\frac{1}{\ln x}$, and $\sqrt{1 + x^3}$ exist (they are continuous) but are not elementary. For definite integrals of these we approximate, which is the next section.</p>
+</div>
+<div class="section"><h3>7.7 Approximate Integration</h3>
+
+<p class="part"><b>The rules.</b> Divide $[a, b]$ into $n$ subintervals of width $\Delta x = (b - a)/n$, with endpoints $x_i = a + i\,\Delta x$ and midpoints $\bar x_i = \tfrac12(x_{i-1} + x_i)$.</p>
+<div class="formula">$\begin{aligned}
+L_n &amp;= \Delta x\,[f(x_0) + f(x_1) + \cdots + f(x_{n-1})] &amp;&amp;\text{left endpoints}\\
+R_n &amp;= \Delta x\,[f(x_1) + f(x_2) + \cdots + f(x_n)] &amp;&amp;\text{right endpoints}\\
+M_n &amp;= \Delta x\,[f(\bar x_1) + f(\bar x_2) + \cdots + f(\bar x_n)] &amp;&amp;\text{midpoints}\\
+T_n &amp;= \tfrac{\Delta x}{2}\,[f(x_0) + 2f(x_1) + 2f(x_2) + \cdots + 2f(x_{n-1}) + f(x_n)] &amp;&amp;\text{trapezoids}\\
+S_n &amp;= \tfrac{\Delta x}{3}\,[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \cdots + 4f(x_{n-1}) + f(x_n)] &amp;&amp;\text{Simpson, } n \text{ even}
+\end{aligned}$</div>
+<p><em>Where they come from.</em> $T_n = \tfrac12(L_n + R_n)$ replaces $f$ on each subinterval by the chord. Simpson's rule replaces $f$ on each <em>pair</em> of subintervals by the parabola through three points, which is why $n$ must be even. It also equals $S_{2n} = \tfrac13T_n + \tfrac23M_n$.</p>
+
+<p><b>Over or under?</b></p>
+<ul class="tight">
+  <li>If $f$ is increasing on $[a, b]$, then $L_n \le \int_a^b f\,dx \le R_n$. Each left rectangle sits below the graph and each right rectangle reaches above it. If $f$ is decreasing, the inequalities reverse.</li>
+  <li>If $f$ is concave up on $[a, b]$ ($f'' \ge 0$), then $M_n \le \int_a^b f\,dx \le T_n$. The chords lie above the graph, so trapezoids overestimate. A midpoint rectangle has the same area as the trapezoid under the tangent line at the midpoint, and that tangent lies below the graph. If $f$ is concave down, the inequalities reverse.</li>
+</ul>
+
+<div class="fig-inline-canvas"><canvas data-fig="riemann"></canvas><div class="fig-cap"><b>Five rules, with the error shaded.</b>Red marks where the shape is above the curve, green where it is below. Pick a function and a rule, and slide $n$. Simpson rounds $n$ up to the next even number.</div></div>
+
+<p><b>Error bounds.</b> Let $E$ denote the exact integral minus the estimate. If $|f''(x)| \le K$ on $[a, b]$, then</p>
+<div class="formula">$|E_T| \le \dfrac{K(b - a)^3}{12n^2}, \qquad |E_M| \le \dfrac{K(b - a)^3}{24n^2}.$</div>
+<p>If $|f^{(4)}(x)| \le K$ on $[a, b]$, then $|E_S| \le \dfrac{K(b - a)^5}{180n^4}$.</p>
+<p><em>Why the powers of $n$.</em> On one subinterval the chord misses a curve of bounded bending by an area of size about $(\Delta x)^3$. There are $n$ subintervals, so the total is about $n(\Delta x)^3 \sim 1/n^2$. Doubling $n$ cuts the trapezoid error by about $4$ and the Simpson error by about $16$. The midpoint bound is half the trapezoid bound, matching the picture where the midpoint error is the smaller one.</p>
+
+<p><b>Example.</b> How large must $n$ be for $T_n$ to approximate $\int_1^3\frac{dx}{x}$ within $0.001$? Here $f''(x) = 2/x^3 \le 2$ on $[1, 3]$, so take $K = 2$. We need $\dfrac{2\cdot 2^3}{12n^2} = \dfrac{4}{3n^2} \le 0.001$, that is $n^2 \ge 1333.\overline{3}$. So $n = 37$ is enough ($36^2 = 1296$ is too small).</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$K$ must bound $|f''|$ (or $|f^{(4)}|$) on the <em>whole</em> interval, so take the largest value of $|f''|$, not its value at one point. Simpson's rule with odd $n$ is undefined. And the error bound gives a guaranteed $n$, not the smallest $n$ that happens to work.</p></div>
+</div>
+<div class="section"><h3>7.8 Improper Integrals</h3>
+
+<p class="part"><b>Type 1: infinite interval.</b> If $\int_a^t f(x)\,dx$ exists for every $t \ge a$, define</p>
+<div class="formula">$\displaystyle\int_a^\infty f(x)\,dx = \lim_{t\to\infty}\int_a^t f(x)\,dx,$</div>
+<p>and similarly $\int_{-\infty}^b f\,dx = \lim_{t\to-\infty}\int_t^b f\,dx$. The integral is <b>convergent</b> if the limit exists as a finite number and <b>divergent</b> otherwise. For $\int_{-\infty}^\infty f\,dx$ pick any $c$ and write it as $\int_{-\infty}^c f\,dx + \int_c^\infty f\,dx$. It converges only if both pieces converge.</p>
+
+<p><b>The $p$-integrals.</b></p>
+<div class="formula">$\displaystyle\int_1^\infty\frac{dx}{x^p} \ \text{ converges (to } \tfrac{1}{p - 1}\text{) if } p &gt; 1 \text{ and diverges if } p \le 1.$</div>
+<p><em>Why.</em> For $p \ne 1$, $\int_1^t x^{-p}\,dx = \dfrac{t^{1 - p} - 1}{1 - p}$, and $t^{1-p} \to 0$ exactly when $1 - p &lt; 0$. For $p = 1$ the integral is $\ln t \to \infty$. The curve $1/x$ goes to $0$, but not fast enough to enclose finite area.</p>
+
+<p><b>Type 2: unbounded integrand.</b> If $f$ is continuous on $[a, b)$ and unbounded near $b$, define $\int_a^b f\,dx = \lim_{t\to b^-}\int_a^t f\,dx$. Similarly at $a$ with $t \to a^+$. If the bad point $c$ is inside $(a, b)$, split: $\int_a^b = \int_a^c + \int_c^b$, and both must converge. The mirror image of the $p$-integral result is</p>
+<div class="formula">$\displaystyle\int_0^1\frac{dx}{x^p} \ \text{ converges (to } \tfrac{1}{1 - p}\text{) if } p &lt; 1 \text{ and diverges if } p \ge 1.$</div>
+
+<div class="fig-inline-canvas"><canvas data-fig="improper"></canvas><div class="fig-cap"><b>Finite or infinite area under $1/x^p$.</b>Push the bound toward $\infty$ (type 1) or toward $0$ (type 2) and watch whether the area settles. Change $p$ across $1$.</div></div>
+
+<p><b>Examples.</b> Using parts, and then L'Hôpital for $te^{-t} \to 0$,</p>
+<div class="formula">$\displaystyle\int_0^\infty xe^{-x}\,dx = \lim_{t\to\infty}\bigl[-(x + 1)e^{-x}\bigr]_0^t = \lim_{t\to\infty}\bigl(1 - (t + 1)e^{-t}\bigr) = 1.$</div>
+<p>And $\int_{-1}^8 x^{-2/3}\,dx$ is improper at $0$. Since $\int x^{-2/3}\,dx = 3x^{1/3}$, the piece on $[-1, 0]$ is $\lim_{t \to 0^-}(3t^{1/3} + 3) = 3$ and the piece on $[0, 8]$ is $\lim_{t\to 0^+}(6 - 3t^{1/3}) = 6$. Total $9$.</p>
+
+<p><b>Comparison theorem.</b> Suppose $f$ and $g$ are continuous with $f(x) \ge g(x) \ge 0$ for $x \ge a$.</p>
+<ul class="tight">
+  <li>If $\int_a^\infty f\,dx$ converges, then $\int_a^\infty g\,dx$ converges.</li>
+  <li>If $\int_a^\infty g\,dx$ diverges, then $\int_a^\infty f\,dx$ diverges.</li>
+</ul>
+<p><em>Why.</em> The region under $g$ sits inside the region under $f$. A finite area cannot contain an infinite one. The same holds for type 2 integrals.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="comparison"></canvas><div class="fig-cap"><b>Comparison.</b>$e^{-x^2}$ has no elementary antiderivative, but its area on $[1, \infty)$ sits inside the finite area under $e^{-x}$.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Look for hidden bad points before using the Fundamental Theorem. $\int_{-1}^1\frac{dx}{x^2}$ is not $\bigl[-\tfrac1x\bigr]_{-1}^1 = -2$ (a negative area for a positive function). The integrand blows up at $0$, and $\int_0^1 x^{-2}\,dx$ diverges, so the whole integral diverges.</p>
+<p>Also $\int_{-\infty}^\infty x\,dx$ diverges, even though $\int_{-t}^t x\,dx = 0$ for every $t$. The two halves must converge separately.</p>
+<p>In the comparison theorem, being smaller than a divergent integral, or bigger than a convergent one, tells us nothing.</p></div>
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Evaluate $\int x\cos 3x\,dx$ and $\int_1^e x^2\ln x\,dx$.</li>
+  <li>Evaluate $\int e^{2x}\cos x\,dx$.</li>
+  <li>Evaluate $\int\sin^2x\cos^3x\,dx$ and $\int\cos^4x\,dx$.</li>
+  <li>Evaluate $\int\tan^3x\sec^4x\,dx$.</li>
+  <li>Evaluate $\displaystyle\int\frac{\sqrt{9 - x^2}}{x^2}\,dx$ and $\displaystyle\int_0^{1}\frac{dx}{(x^2 + 1)^{3/2}}$.</li>
+  <li>Evaluate $\displaystyle\int\frac{3x - 1}{x^2 - x - 6}\,dx$ and $\displaystyle\int\frac{x^2 + 1}{x(x - 1)^2}\,dx$.</li>
+  <li>Evaluate $\displaystyle\int\frac{x^3}{x^2 + 4}\,dx$ (divide first).</li>
+  <li>Compute $T_4$ and $M_4$ for $\int_0^2 e^{x^2}\,dx$. Which is an overestimate, and why?</li>
+  <li>Decide convergence, and evaluate when convergent: $\int_1^\infty\frac{dx}{x^3}$, $\int_0^1\frac{dx}{\sqrt x}$, $\int_0^\infty\frac{dx}{1 + x^2}$, $\int_2^\infty\frac{dx}{x\ln x}$.</li>
+  <li>Use comparison to decide whether $\displaystyle\int_1^\infty\frac{2 + \sin x}{x}\,dx$ converges.</li>
+</ol>
+
+</div>
+<div class="chapter-nav"><a href="ch6.html">← previous</a><a href="outline.html">outline</a><a href="ch9.html">next →</a></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc2_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</div></body></html>

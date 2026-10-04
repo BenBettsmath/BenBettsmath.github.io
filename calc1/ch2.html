@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc I · Derivatives and Rates of Change</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<style>/* at phone width, wide math scrolls inside its own block instead of the page */
+.formula, .thm, .defn, .pitfall, .note, .page-content p, .page-content li { overflow-x: auto; overflow-y: hidden; }</style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Chapter 2 · Derivatives and Rates of Change</h2>
+<div class="chapter-nav"><a href="ch1.html">← previous</a><a href="outline.html">outline</a><a href="ch3.html">next →</a></div>
+<p>The derivative is the tangent slope of Chapter 1, now computed at every point at once. This chapter defines it as a limit, then builds rules (power, product, quotient, chain) so we rarely need the limit again, and finishes with three uses: implicit curves, related rates, and linear approximation.</p>
+<div class="section"><h3>2.1 Derivatives and Rates of Change</h3>
+
+<p class="part"><span class="dimtag">Geometry</span>The <b>derivative of $f$ at $a$</b> is the slope of the tangent line at $(a, f(a))$, the limit of the secant slopes:</p>
+<div class="formula">$\displaystyle f'(a) = \lim_{h \to 0}\frac{f(a + h) - f(a)}{h} = \lim_{x \to a}\frac{f(x) - f(a)}{x - a},$</div>
+<p>provided the limit exists. The two forms are the same limit with $x = a + h$. The <b>tangent line</b> to $y = f(x)$ at $(a, f(a))$ is</p>
+<div class="formula">$y - f(a) = f'(a)(x - a).$</div>
+
+<p><b>Rate of change.</b> If $y = f(x)$, the <b>average rate of change</b> of $y$ over $[x_1, x_2]$ is $\dfrac{\Delta y}{\Delta x} = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$, and the <b>instantaneous rate of change</b> at $x = a$ is $f'(a)$. Its units are (units of $y$) per (unit of $x$). If $s(t)$ is position, $s'(a)$ is the velocity at time $a$ and $|s'(a)|$ is the speed.</p>
+
+<p><b>Example.</b> $f(x) = \dfrac{1}{x}$ at $a = 2$. $\displaystyle f'(2) = \lim_{h \to 0}\frac{\frac{1}{2 + h} - \frac12}{h} = \lim_{h \to 0}\frac{2 - (2 + h)}{2h(2 + h)} = \lim_{h \to 0}\frac{-1}{2(2 + h)} = -\frac14.$ The tangent line is $y - \tfrac12 = -\tfrac14(x - 2)$.</p>
+</div>
+
+<div class="section"><h3>2.2 The Derivative as a Function</h3>
+
+<p class="part"><span class="dimtag">Concept</span>Letting $a$ vary gives a new function, the <b>derivative</b> $f'$:</p>
+<div class="formula">$\displaystyle f'(x) = \lim_{h \to 0}\frac{f(x + h) - f(x)}{h}.$</div>
+<p>Other notations for $f'(x)$ with $y = f(x)$: $y'$, $\dfrac{dy}{dx}$, $\dfrac{d}{dx}f(x)$. The symbol $\dfrac{dy}{dx}$ is a reminder that $f'$ is a limit of $\dfrac{\Delta y}{\Delta x}$.</p>
+
+<p><b>Reading $f'$ off the graph of $f$.</b> The height of $f'$ at $x$ is the slope of $f$ at $x$. Where $f$ rises, $f' &gt; 0$. Where $f$ falls, $f' &lt; 0$. Where $f$ has a horizontal tangent, $f' = 0$. Steep means $|f'|$ is large.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="fAndFprime"></canvas><div class="fig-cap"><b>Slope becomes height.</b> Top: $f(x) = x^3/3 - x$ and its tangent line. Bottom: $f'(x) = x^2 - 1$, traced by recording each tangent slope as a height. The tangent is horizontal at $x = \pm 1$, where $f'$ crosses $0$.</div></div>
+
+<p><b>Example.</b> $f(x) = \sqrt x$. Rationalizing, $\dfrac{\sqrt{x + h} - \sqrt x}{h} = \dfrac{1}{\sqrt{x + h} + \sqrt x} \to \dfrac{1}{2\sqrt x}$, so $f'(x) = \dfrac{1}{2\sqrt x}$ for $x &gt; 0$. At $x = 0$ the one-sided quotient $\dfrac{\sqrt h}{h} = \dfrac{1}{\sqrt h} \to \infty$, so $f'(0)$ does not exist.</p>
+
+<p><b>Differentiability.</b> $f$ is <b>differentiable at</b> $a$ if $f'(a)$ exists, and <b>differentiable on</b> an open interval if it is differentiable at every number in it.</p>
+<div class="thm"><div class="thm-name">Theorem</div>If $f$ is differentiable at $a$, then $f$ is continuous at $a$.</div>
+<p><em>Why.</em> $f(a + h) - f(a) = \dfrac{f(a + h) - f(a)}{h}\cdot h \to f'(a)\cdot 0 = 0$ as $h \to 0$, so $f(a + h) \to f(a)$.</p>
+
+<p><b>How differentiability fails.</b> A differentiable function looks more and more like a straight line as we zoom in on a point (the tangent line). It fails at</p>
+<ul class="tight">
+  <li>a <em>discontinuity</em> (by the theorem above),</li>
+  <li>a <em>corner</em>, where the left and right secant slopes approach different values, as for $|x|$ at $0$ (slopes $-1$ and $1$),</li>
+  <li>a <em>cusp</em>, where the slopes approach $-\infty$ on one side and $\infty$ on the other, as for $x^{2/3}$ at $0$,</li>
+  <li>a <em>vertical tangent</em>, where the slopes approach $\infty$ (or $-\infty$) from both sides, as for $x^{1/3}$ at $0$. The function is continuous there.</li>
+</ul>
+
+<div class="fig-inline-canvas"><canvas data-fig="cornerCusp"></canvas><div class="fig-cap"><b>Zoom in at the origin.</b> The smooth graph straightens into its tangent line. The corner stays a V, the cusp stays a point, and the vertical tangent stays vertical, so none of these has a derivative at $0$.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Continuity does not imply differentiability. $|x|$ is continuous at $0$ but not differentiable there. Only the converse, differentiable implies continuous, is true.</p></div>
+
+<p><b>Higher derivatives.</b> $f'' = (f')'$ is the <b>second derivative</b>, also written $\dfrac{d^2y}{dx^2}$. If $s(t)$ is position, $v(t) = s'(t)$ is velocity and $a(t) = v'(t) = s''(t)$ is acceleration.</p>
+</div>
+
+<div class="section"><h3>2.3 Basic Differentiation Formulas</h3>
+
+<p class="part"><span class="dimtag">Rules</span>For constants $c$ and $n$, and differentiable $f$, $g$:</p>
+<div class="formula">$\dfrac{d}{dx}(c) = 0, \qquad \dfrac{d}{dx}(x^n) = n x^{n - 1}, \qquad (cf)' = c f', \qquad (f \pm g)' = f' \pm g'.$</div>
+<p><em>Why the power rule.</em> For a positive integer $n$, $(x + h)^n = x^n + n x^{n - 1}h + (\text{terms with } h^2, h^3, \ldots)$ by the binomial theorem. Subtract $x^n$, divide by $h$, and every term except $n x^{n - 1}$ still contains $h$, so it goes to $0$. The rule holds for every real $n$ (where $x^n$ is defined), e.g. $\dfrac{d}{dx}\sqrt x = \dfrac{d}{dx}x^{1/2} = \tfrac12 x^{-1/2}$ and $\dfrac{d}{dx}\dfrac{1}{x^3} = \dfrac{d}{dx}x^{-3} = -3x^{-4}$.</p>
+
+<p><b>Two trigonometric limits</b> ($\theta$ in radians):</p>
+<div class="formula">$\displaystyle\lim_{\theta \to 0}\frac{\sin\theta}{\theta} = 1, \qquad \lim_{\theta \to 0}\frac{\cos\theta - 1}{\theta} = 0.$</div>
+<p><em>Why the first.</em> On the unit circle with $0 &lt; \theta &lt; \pi/2$, the arc of length $\theta$ is longer than its height $\sin\theta$ and shorter than the tangent segment $\tan\theta$. So $\sin\theta &lt; \theta &lt; \tan\theta$, which rearranges to $\cos\theta &lt; \dfrac{\sin\theta}{\theta} &lt; 1$. Both bounds approach $1$, so the Squeeze Theorem gives $1$ (the left side follows from evenness). For the second, multiply by $\dfrac{\cos\theta + 1}{\cos\theta + 1}$ to get $-\dfrac{\sin\theta}{\theta}\cdot\dfrac{\sin\theta}{\cos\theta + 1} \to -1\cdot 0 = 0$.</p>
+
+<p><b>Sine and cosine.</b></p>
+<div class="formula">$\dfrac{d}{dx}\sin x = \cos x, \qquad \dfrac{d}{dx}\cos x = -\sin x.$</div>
+<p><em>Why.</em> $\dfrac{\sin(x + h) - \sin x}{h} = \sin x\cdot\dfrac{\cos h - 1}{h} + \cos x\cdot\dfrac{\sin h}{h} \to \sin x\cdot 0 + \cos x\cdot 1$, using $\sin(x + h) = \sin x\cos h + \cos x\sin h$. Picture: the slope of $\sin$ is $1$ at $0$, $0$ at the peak $\pi/2$, and $-1$ at $\pi$, exactly the values of $\cos$.</p>
+
+<p><b>Example.</b> $\dfrac{d}{dx}\left(4x^3 - \dfrac{2}{\sqrt x} + 5\cos x\right) = 12x^2 + x^{-3/2} - 5\sin x.$ Limits like $\displaystyle\lim_{x \to 0}\frac{\sin 5x}{x} = \lim_{x \to 0} 5\cdot\frac{\sin 5x}{5x} = 5$ come from the first trig limit with $\theta = 5x$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The power rule needs a constant exponent on the variable. It does not apply to $2^x$ (variable exponent), and $\dfrac{d}{dx}\pi^2 = 0$ since $\pi^2$ is a constant. Rewrite roots and reciprocals as powers first: $\dfrac{1}{x^3} = x^{-3}$, $\sqrt[3]{x^2} = x^{2/3}$.</p></div>
+</div>
+
+<div class="section"><h3>2.4 The Product and Quotient Rules</h3>
+
+<p class="part"><span class="dimtag">Rules</span>For differentiable $f$ and $g$:</p>
+<div class="formula">$(fg)' = f'g + fg', \qquad \left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2} \quad (g \neq 0).$</div>
+<p><em>Why the product rule.</em> Think of $f g$ as the area of an $f$ by $g$ rectangle. Changing $x$ by $h$ changes the sides by $\Delta f$ and $\Delta g$. The area gains two strips, $\Delta f\cdot g$ and $f\cdot\Delta g$, plus a corner $\Delta f\,\Delta g$. Dividing by $h$ and letting $h \to 0$, the strips give $f'g + fg'$ and the corner gives $f'\cdot\Delta g \to 0$.</p>
+<p>The quotient rule follows by applying the product rule to $f = \dfrac{f}{g}\cdot g$ and solving for $\left(\dfrac{f}{g}\right)'$.</p>
+
+<p><b>The other trigonometric derivatives</b> follow from the quotient rule:</p>
+<div class="formula">$\dfrac{d}{dx}\tan x = \sec^2 x, \quad \dfrac{d}{dx}\sec x = \sec x\tan x, \quad \dfrac{d}{dx}\csc x = -\csc x\cot x, \quad \dfrac{d}{dx}\cot x = -\csc^2 x.$</div>
+<p><em>Example.</em> $\dfrac{d}{dx}\dfrac{\sin x}{\cos x} = \dfrac{\cos x\cos x - \sin x(-\sin x)}{\cos^2 x} = \dfrac{1}{\cos^2 x} = \sec^2 x$. The "co" functions get the minus signs.</p>
+
+<p><b>Example.</b> $\dfrac{d}{dx}\dfrac{x}{x^2 + 1} = \dfrac{1\cdot(x^2 + 1) - x\cdot 2x}{(x^2 + 1)^2} = \dfrac{1 - x^2}{(x^2 + 1)^2}.$ And $\dfrac{d}{dx}(x^3\sin x) = 3x^2\sin x + x^3\cos x$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$(fg)' \neq f'g'$ and $\left(\dfrac fg\right)' \neq \dfrac{f'}{g'}$. Test with $f = g = x$: $(x\cdot x)' = 2x$, but $f'g' = 1$. In the quotient rule, the order in the numerator matters. It is $f'g - fg'$, "low d-high minus high d-low".</p></div>
+</div>
+
+<div class="section"><h3>2.5 The Chain Rule</h3>
+
+<p class="part"><span class="dimtag">Rules</span>If $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$, then the composition $F = f \circ g$, $F(x) = f(g(x))$, is differentiable at $x$ and</p>
+<div class="formula">$F'(x) = f'(g(x))\, g'(x). \qquad\text{In Leibniz notation, with } u = g(x),\ y = f(u):\quad \dfrac{dy}{dx} = \dfrac{dy}{du}\,\dfrac{du}{dx}.$</div>
+<p><em>Why.</em> A derivative is a stretch factor: near $x$, $g$ multiplies small changes by $g'(x)$. Then near $u = g(x)$, $f$ multiplies small changes by $f'(u)$. Doing one after the other multiplies the factors. If $u$ changes twice as fast as $x$ and $y$ three times as fast as $u$, then $y$ changes six times as fast as $x$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="chainStretch"></canvas><div class="fig-cap"><b>Stretch factors multiply.</b> A short interval on the $x$-line is sent by $u = x^2$ to an interval about $2x$ times as long, then by $y = \sin u$ to one about $|\cos u|$ times as long again. A negative factor ($\cos u &lt; 0$) also flips the interval's direction.</div></div>
+
+<p><b>Outside-inside.</b> Differentiate the outer function, leave the inside alone, then multiply by the derivative of the inside. Power form: $\dfrac{d}{dx}[g(x)]^n = n[g(x)]^{n - 1}g'(x)$.</p>
+<p><b>Examples.</b> $\dfrac{d}{dx}(1 + 3x^2)^5 = 5(1 + 3x^2)^4\cdot 6x = 30x(1 + 3x^2)^4$. $\dfrac{d}{dx}\sin(x^2) = \cos(x^2)\cdot 2x$, while $\dfrac{d}{dx}\sin^2 x = 2\sin x\cos x$. Longer chains multiply more factors: $\dfrac{d}{dx}\cos(\sin 3x) = -\sin(\sin 3x)\cdot\cos 3x\cdot 3$.</p>
+<p><b>From a table.</b> If $g(2) = 5$, $g'(2) = 4$, and $f'(5) = -1$, then $(f \circ g)'(2) = f'(g(2))\,g'(2) = f'(5)\cdot 4 = -4$. Note $f'$ is evaluated at $g(2)$, not at $2$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting the inner derivative: $\dfrac{d}{dx}\sin(4x) = 4\cos(4x)$, not $\cos(4x)$. And evaluating the outer derivative at the wrong place: $f'(g(x))$, not $f'(x)$.</p></div>
+</div>
+
+<div class="section"><h3>2.6 Implicit Differentiation</h3>
+
+<p class="part"><span class="dimtag">Technique</span>An equation in $x$ and $y$, such as $x^2 + y^2 = 25$, defines curves that need not be graphs of one function. Near most points, though, the curve is the graph of some differentiable function $y = y(x)$. To find $\dfrac{dy}{dx}$ without solving for $y$:</p>
+<ol class="tight">
+  <li>Differentiate both sides with respect to $x$, treating $y$ as a function of $x$. Every time $y$ is differentiated, the chain rule attaches a factor $\dfrac{dy}{dx}$: $\dfrac{d}{dx}y^2 = 2y\dfrac{dy}{dx}$.</li>
+  <li>Solve the result for $\dfrac{dy}{dx}$.</li>
+</ol>
+<p><em>Why it is legal.</em> Both sides are equal as functions of $x$ along the curve, so their derivatives are equal.</p>
+<p><b>Example.</b> $x^2 + y^2 = 25$ gives $2x + 2y\,y' = 0$, so $y' = -\dfrac{x}{y}$. At $(3, 4)$ the slope is $-\tfrac34$. Picture: the tangent to a circle is perpendicular to the radius, whose slope is $\tfrac{y}{x}$, and $-\tfrac xy$ is its negative reciprocal.</p>
+
+<p><b>Example (a folium).</b> $x^3 + y^3 = 9xy$. Differentiating, $3x^2 + 3y^2 y' = 9y + 9x y'$ (product rule on the right). Collect the $y'$ terms: $y'(3y^2 - 9x) = 9y - 3x^2$, so</p>
+<div class="formula">$\dfrac{dy}{dx} = \dfrac{3y - x^2}{y^2 - 3x}.$</div>
+<p>The point $(2, 4)$ is on the curve ($8 + 64 = 72 = 9\cdot 8$), and the slope there is $\dfrac{12 - 4}{16 - 6} = \dfrac45$. The tangent is horizontal where the numerator is $0$ (and the denominator is not) and vertical where the denominator is $0$ (and the numerator is not).</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="implicitTangent"></canvas><div class="fig-cap"><b>Tangents to an implicit curve.</b> The folium $x^3 + y^3 = 9xy$ fails the vertical line test, yet $\dfrac{dy}{dx} = \dfrac{3y - x^2}{y^2 - 3x}$ gives the tangent slope at each point. At the origin the formula is $0/0$: the curve crosses itself there.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Dropping the factor $y'$: $\dfrac{d}{dx}y^3 = 3y^2y'$, not $3y^2$. And a product such as $xy$ needs the product rule: $\dfrac{d}{dx}(xy) = y + xy'$.</p></div>
+</div>
+
+<div class="section"><h3>2.7 Related Rates</h3>
+
+<p class="part"><span class="dimtag">Application</span>In a <b>related rates</b> problem several quantities change with time $t$ and are tied together by an equation. Differentiating the equation with respect to $t$ (implicit differentiation in $t$) ties their rates together, so a known rate gives an unknown one.</p>
+<ol class="tight">
+  <li>Draw a picture. Name every quantity that changes with a variable, and every fixed quantity with its number.</li>
+  <li>Write down the given rates and the wanted rate as derivatives with respect to $t$.</li>
+  <li>Write an equation relating the variables (geometry: Pythagoras, similar triangles, area, volume).</li>
+  <li>Differentiate with respect to $t$.</li>
+  <li>Only now substitute the values at the instant in question, and solve.</li>
+</ol>
+
+<p><b>Example.</b> A $13$ ft ladder leans on a wall, and its foot slides away at $2$ ft/s. How fast does the top slide down when the foot is $5$ ft from the wall? Let $x$ be the distance from the wall to the foot and $y$ the height of the top. Then $x^2 + y^2 = 169$, so $2x\dfrac{dx}{dt} + 2y\dfrac{dy}{dt} = 0$, i.e. $\dfrac{dy}{dt} = -\dfrac{x}{y}\dfrac{dx}{dt}$. At $x = 5$, $y = 12$ and $\dfrac{dx}{dt} = 2$, giving $\dfrac{dy}{dt} = -\dfrac{5}{12}\cdot 2 = -\dfrac56$ ft/s. The top slides down at $\tfrac56$ ft/s.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="ladder"></canvas><div class="fig-cap"><b>Same speed at the foot, faster and faster at the top.</b> $\dfrac{dy}{dt} = -\dfrac{x}{y}\dfrac{dx}{dt}$, and $\dfrac xy$ grows without bound as the top nears the floor.</div></div>
+
+<p><b>Example.</b> A circular ripple's radius $r$ grows at $2$ cm/s. With $A = \pi r^2$, $\dfrac{dA}{dt} = 2\pi r\dfrac{dr}{dt}$, so at $r = 5$ the area grows at $2\pi(5)(2) = 20\pi$ cm²/s.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Substituting the instant's values before differentiating. If we set $x = 5$ first, $x$ becomes a constant and $\dfrac{dx}{dt}$ disappears. Fixed quantities (the ladder's $13$ ft) may be substituted early. Changing ones may not.</p></div>
+</div>
+
+<div class="section"><h3>2.8 Linear Approximations and Differentials</h3>
+
+<p class="part"><span class="dimtag">Approximation</span>Near $x = a$ the graph of a differentiable $f$ is nearly its tangent line. The <b>linearization</b> of $f$ at $a$ is that line,</p>
+<div class="formula">$L(x) = f(a) + f'(a)(x - a), \qquad f(x) \approx L(x) \text{ for } x \text{ near } a.$</div>
+<p><em>Why it works.</em> This is the zooming picture from 2.2. Close enough to $a$, the graph and the tangent line are indistinguishable, and the error shrinks faster than $x - a$ does.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="linApprox"></canvas><div class="fig-cap"><b>Zooming in on $(9, 3)$.</b> $f(x) = \sqrt x$ and $L(x) = 3 + \tfrac16(x - 9)$. Each zoom shrinks the gap $L - f$ (pink) much faster than the window.</div></div>
+
+<p><b>Example.</b> Estimate $\sqrt{9.3}$. With $f(x) = \sqrt x$ and $a = 9$: $f(9) = 3$, $f'(9) = \dfrac{1}{2\sqrt 9} = \dfrac16$, so $\sqrt{9.3} \approx L(9.3) = 3 + \tfrac16(0.3) = 3.05$. (The true value is $3.0496\ldots$) The estimate is too big since $\sqrt x$ bends below its tangent lines.</p>
+
+<p><b>Differentials.</b> Let $dx$ be a change in $x$ (an independent variable). The <b>differential</b> $dy$ is the corresponding change along the tangent line,</p>
+<div class="formula">$dy = f'(x)\,dx, \qquad \Delta y = f(x + dx) - f(x) \approx dy.$</div>
+<p>Here $\Delta y$ is the actual change in $y$. <b>Example.</b> A cube's side is measured as $10$ cm with possible error $0.1$ cm. With $V = s^3$, $dV = 3s^2\,ds = 3(100)(0.1) = 30$ cm³, so the computed volume $1000$ cm³ may be off by about $30$ cm³. The <b>relative error</b> is $\dfrac{dV}{V} = \dfrac{30}{1000} = 3\%$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Choose $a$ so that $f(a)$ and $f'(a)$ are easy to compute exactly and $a$ is close to the target. For $\sqrt{26}$ use $a = 25$, not $a = 26$.</p></div>
+</div>
+
+<div class="section"><h3>Worked example</h3>
+
+<p><b>Tangent line by every method.</b> Find the tangent line to $f(x) = \dfrac{2x}{x^2 + 1}$ at $x = 1$.<br>
+Quotient rule: $f'(x) = \dfrac{2(x^2 + 1) - 2x\cdot 2x}{(x^2 + 1)^2} = \dfrac{2 - 2x^2}{(x^2 + 1)^2}$, so $f'(1) = 0$.<br>
+Product rule check: $f = 2x\,(x^2 + 1)^{-1}$, so $f' = 2(x^2 + 1)^{-1} + 2x\cdot(-1)(x^2 + 1)^{-2}\cdot 2x$, which at $x = 1$ is $1 - 1 = 0$.<br>
+$f(1) = 1$, so the tangent line is the horizontal line $y = 1$.</p>
+
+<p><b>Implicit differentiation with three variables.</b> If $x$, $y$, $z$ are functions of $t$ with $xy + z^2 = 10$, find $\dfrac{dz}{dt}$ when $x = 2$, $y = 3$, $z = 2$, $\dfrac{dx}{dt} = 1$, $\dfrac{dy}{dt} = -2$.<br>
+Differentiate in $t$: $\dfrac{dx}{dt}y + x\dfrac{dy}{dt} + 2z\dfrac{dz}{dt} = 0$. Substitute: $3 + 2(-2) + 4\dfrac{dz}{dt} = 0$, so $\dfrac{dz}{dt} = \dfrac14$.</p>
+</div>
+
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Use the limit definition to find $f'(x)$ for $f(x) = x^2 - 3x$, then check with the power rule.</li>
+  <li>Use the limit definition to find $f'(1)$ for $f(x) = \dfrac{1}{x + 3}$.</li>
+  <li>Sketch the graph of $f'$ for $f(x) = |x - 2|$. Where is $f$ not differentiable, and why?</li>
+  <li>Differentiate $y = x^3\cos x$, $y = \dfrac{x^2}{1 + x}$, $y = (2x^3 - 1)^4$, and $y = \tan(\sqrt x)$.</li>
+  <li>Evaluate $\displaystyle\lim_{x \to 0}\frac{\sin 3x}{2x}$.</li>
+  <li>Find the tangent line to $x^2 + xy + y^2 = 7$ at $(1, 2)$.</li>
+  <li>A spherical balloon is inflated at $8\pi$ cm³/s. How fast is the radius growing when $r = 2$ cm? ($V = \tfrac43\pi r^3$.)</li>
+  <li>Find the linearization of $f(x) = \sqrt[3]{x}$ at $a = 8$ and use it to estimate $\sqrt[3]{8.3}$.</li>
+</ol>
+</div>
+
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Limit definition problems.</b> Write $\dfrac{f(a + h) - f(a)}{h}$ in full, simplify until a factor of $h$ cancels (expand, combine fractions, or rationalize), then let $h \to 0$.</p>
+
+<p><b>Choosing a rule.</b> Look at the last operation in the formula. A sum: differentiate term by term. A product: product rule. A quotient: quotient rule (or rewrite as a product with a negative power). A function of something other than $x$: chain rule. Rewrite roots and reciprocals as powers first.</p>
+
+<p><b>Tangent line.</b> Needs a point $(a, f(a))$ and a slope $f'(a)$, then $y - f(a) = f'(a)(x - a)$.</p>
+
+<p><b>Implicit curves.</b> Differentiate, collect every $y'$ term on one side, factor out $y'$, divide.</p>
+
+<p><b>Related rates.</b> Picture, variables, equation, differentiate in $t$, then substitute. For cones and similar shapes, use similar triangles to remove a variable before differentiating.</p>
+
+<p><b>Approximations.</b> $f(a + \Delta x) \approx f(a) + f'(a)\Delta x$. The change $\Delta f$ is approximately $f'(a)\,\Delta x$.</p>
+</div>
+<div class="chapter-nav"><a href="ch1.html">← previous</a><a href="outline.html">outline</a><a href="ch3.html">next →</a></div>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc1_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

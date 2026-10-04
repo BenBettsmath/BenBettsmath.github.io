@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc I · Selected Solutions</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .page-content { max-width: 1000px; }
+    .backlinks { margin: -0.4em 0 1.1em; font-size: 0.95em; }
+    .backlinks a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; margin-right: 1.2em; }
+    .backlinks a:hover { border-bottom-color: #007A86; }
+    .chapter { margin-top: 2.4em; padding: 0.5em 0 0.2em; border-top: none; font-size: 1.45em; color: #143d42; display: flex; align-items: center; gap: 0.55em; }
+    .chapter::before { content: ""; width: 0.42em; height: 1.05em; background: #007A86; border-radius: 2px; display: inline-block; }
+    .toc { padding: 0.85em 1.1em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.4em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); line-height: 2; }
+    .toc b { color: #143d42; margin-right: 0.6em; }
+    .toc a { margin-right: 1.1em; color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; white-space: nowrap; }
+    .toc a:hover { border-bottom-color: #007A86; }
+    .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
+    .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; overflow-x: auto; }
+    .problem:hover { border-left-color: #007A86; box-shadow: 0 4px 16px rgba(25,35,60,0.08); }
+    .problem .stmt { margin-bottom: 0.7em; color: #2a2d33; }
+    .problem .stmt b { color: #007A86; font-weight: 700; letter-spacing: 0.01em; }
+    .sol { margin-left: 0.2em; padding-left: 0.9em; border-left: 2px solid #eef0f3; }
+    .sol .sollabel { font-variant: small-caps; color: #007A86; font-weight: 600; font-size: 0.9em; letter-spacing: 0.03em; margin-bottom: 0.2em; }
+    .fig { margin: 0.8em auto; text-align: center; }
+    .fig svg { max-width: 100%; height: auto; display: inline-block; font-family: sans-serif; }
+    .fig .cap { font-size: 0.85em; color: #555; margin-top: 0.2em; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']],
+        macros: {
+          Rr: '\\mathbb{R}',
+          abs: ['\\left| #1 \\right|', 1],
+          parens: ['\\left( #1 \\right)', 1],
+          brac: ['\\left[ #1 \\right]', 1]
+        }
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <h2>Calc I · Selected Solutions</h2>
+  <p class="backlinks"><a href="index.html">&larr; Calculus I home</a><a href="Calc1_Review.pdf">Review sheet (PDF)</a><a href="Calc1_Review_Solutions.pdf">These solutions (PDF)</a></p>
+  <p>Problem numbers match the review sheet. Each problem is restated before its solution.</p>
+  <div class="toc">
+    <b>Jump to</b>
+    <a href="#sec1">Memorization</a>
+    <a href="#sec2">Graphs</a>
+    <a href="#sec3">Limits</a>
+    <a href="#sec4">Squeeze</a>
+    <a href="#sec5">At infinity</a>
+    <a href="#sec6">Continuity</a>
+    <a href="#sec7">Derivative</a>
+    <a href="#sec8">Rules</a>
+    <a href="#sec9">Trig</a>
+    <a href="#sec10">Chain rule</a>
+    <a href="#sec11">Implicit</a>
+    <a href="#sec12">Related rates</a>
+    <a href="#sec13">Linearization</a>
+    <a href="#sec14">Extrema</a>
+    <a href="#sec15">MVT</a>
+    <a href="#sec16">Shape</a>
+    <a href="#sec17">Sketching</a>
+    <a href="#sec18">Optimization</a>
+    <a href="#sec19">Antiderivatives</a>
+    <a href="#sec20">Riemann sums</a>
+    <a href="#sec21">Area</a>
+    <a href="#sec22">FTC 1</a>
+    <a href="#sec23">FTC 2</a>
+    <a href="#sec24">U-sub</a>
+    <a href="#sec25">Between curves</a>
+    <a href="#sec26">Average</a>
+    <a href="#sec27">Volumes</a>
+    <a href="#sec28">Work</a>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec1" class="chapter">1. Memorization</h3>
+  <p class="lede">The definitions everything else is built from. Each one is a sentence you should be able to write and also a picture you should be able to draw.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(a).</b> State the definition of $f$ is continuous at $x=a$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f$ is continuous at $x=a$ if $\lim_{x\to a} f(x) = f(a)$.</p>
+      <p>This one equation hides three requirements: $f(a)$ is defined, $\lim_{x\to a} f(x)$ exists, and the two are equal. A hole fails the third, a jump fails the second, a vertical asymptote fails all three.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(b).</b> State both limit definitions of $f'(a)$, the derivative of $f$ at $x=a$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ f'(a) = \lim_{x \to a} \frac{f(x)-f(a)}{x-a} = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}. $$</p>
+      <p>Both are limits of slopes of secant lines through $(a,f(a))$. The second form just names the horizontal gap $h = x - a$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(l).</b> State both parts of the Fundamental Theorem of Calculus.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $f$ be continuous on $[a,b]$.</p>
+      <p>Part 1. If $g(x) = \int_a^x f(t)\,dt$, then $g'(x) = f(x)$. The rate the area grows is the height of the graph at the moving edge.</p>
+      <p>Part 2. If $F$ is any antiderivative of $f$, meaning $F' = f$, then $\int_a^b f(x)\,dx = F(b) - F(a)$. Adding up tiny changes in $F$ gives the total change in $F$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec2" class="chapter">2. Limits from a graph</h3>
+  <p class="lede">A limit asks where the graph is heading, not where the dot is. Cover the point $x=a$ with your thumb and read the heights on each side.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(a&ndash;c).</b> Let $g$ be the function graphed below (a filled dot is a point on the graph, an open dot is not). Find $g(-1)$, $\lim_{x \to -1^-} g(x)$, $\lim_{x \to -1^+} g(x)$, $\lim_{x \to -1} g(x)$, then $g(0)$ and $\lim_{x \to 0} g(x)$, then $\lim_{x \to 2^-} g(x)$, $\lim_{x \to 2^+} g(x)$, $\lim_{x \to 2} g(x)$.</p>
+    <div class="fig"><svg viewBox="0 0 440 280" width="440" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="50.2" y1="254.0" x2="50.2" y2="26.0"/><line x1="98.8" y1="254.0" x2="98.8" y2="26.0"/><line x1="147.2" y1="254.0" x2="147.2" y2="26.0"/><line x1="195.8" y1="254.0" x2="195.8" y2="26.0"/><line x1="244.2" y1="254.0" x2="244.2" y2="26.0"/><line x1="292.8" y1="254.0" x2="292.8" y2="26.0"/><line x1="341.2" y1="254.0" x2="341.2" y2="26.0"/><line x1="389.8" y1="254.0" x2="389.8" y2="26.0"/><line x1="26.0" y1="233.3" x2="414.0" y2="233.3"/><line x1="26.0" y1="191.8" x2="414.0" y2="191.8"/><line x1="26.0" y1="150.4" x2="414.0" y2="150.4"/><line x1="26.0" y1="108.9" x2="414.0" y2="108.9"/><line x1="26.0" y1="67.5" x2="414.0" y2="67.5"/><line x1="26.0" y1="26.0" x2="414.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="233.3" x2="414.0" y2="233.3"/><line x1="195.8" y1="254.0" x2="195.8" y2="26.0"/></g><g font-size="10" fill="#555"><text x="50.2" y="246.3" text-anchor="middle">-3</text><text x="98.8" y="246.3" text-anchor="middle">-2</text><text x="147.2" y="246.3" text-anchor="middle">-1</text><text x="244.2" y="246.3" text-anchor="middle">1</text><text x="292.8" y="246.3" text-anchor="middle">2</text><text x="341.2" y="246.3" text-anchor="middle">3</text><text x="389.8" y="246.3" text-anchor="middle">4</text><text x="190.8" y="195.8" text-anchor="end">1</text><text x="190.8" y="154.4" text-anchor="end">2</text><text x="190.8" y="112.9" text-anchor="end">3</text><text x="190.8" y="71.5" text-anchor="end">4</text><text x="190.8" y="30.0" text-anchor="end">5</text><text x="410.0" y="227.3" text-anchor="end" font-style="italic">x</text><text x="201.8" y="36.0" font-style="italic">y</text></g><path d="M 50.2,191.8 L 51.1,191.1 L 51.9,190.4 L 52.7,189.7 L 53.5,189.1 L 54.3,188.4 L 55.1,187.7 L 55.9,187.0 L 56.7,186.3 L 57.5,185.6 L 58.3,184.9 L 59.1,184.2 L 60.0,183.5 L 60.8,182.8 L 61.6,182.1 L 62.4,181.5 L 63.2,180.8 L 64.0,180.1 L 64.8,179.4 L 65.6,178.7 L 66.4,178.0 L 67.2,177.3 L 68.0,176.6 L 68.8,175.9 L 69.7,175.2 L 70.5,174.5 L 71.3,173.9 L 72.1,173.2 L 72.9,172.5 L 73.7,171.8 L 74.5,171.1 L 75.3,170.4 L 76.1,169.7 L 76.9,169.0 L 77.7,168.3 L 78.5,167.6 L 79.3,166.9 L 80.2,166.3 L 81.0,165.6 L 81.8,164.9 L 82.6,164.2 L 83.4,163.5 L 84.2,162.8 L 85.0,162.1 L 85.8,161.4 L 86.6,160.7 L 87.4,160.0 L 88.2,159.3 L 89.0,158.7 L 89.9,158.0 L 90.7,157.3 L 91.5,156.6 L 92.3,155.9 L 93.1,155.2 L 93.9,154.5 L 94.7,153.8 L 95.5,153.1 L 96.3,152.4 L 97.1,151.7 L 97.9,151.1 L 98.8,150.4 L 99.6,149.7 L 100.4,149.0 L 101.2,148.3 L 102.0,147.6 L 102.8,146.9 L 103.6,146.2 L 104.4,145.5 L 105.2,144.8 L 106.0,144.1 L 106.8,143.5 L 107.6,142.8 L 108.5,142.1 L 109.3,141.4 L 110.1,140.7 L 110.9,140.0 L 111.7,139.3 L 112.5,138.6 L 113.3,137.9 L 114.1,137.2 L 114.9,136.5 L 115.7,135.9 L 116.5,135.2 L 117.3,134.5 L 118.1,133.8 L 119.0,133.1 L 119.8,132.4 L 120.6,131.7 L 121.4,131.0 L 122.2,130.3 L 123.0,129.6 L 123.8,128.9 L 124.6,128.3 L 125.4,127.6 L 126.2,126.9 L 127.0,126.2 L 127.9,125.5 L 128.7,124.8 L 129.5,124.1 L 130.3,123.4 L 131.1,122.7 L 131.9,122.0 L 132.7,121.3 L 133.5,120.7 L 134.3,120.0 L 135.1,119.3 L 135.9,118.6 L 136.7,117.9 L 137.6,117.2 L 138.4,116.5 L 139.2,115.8 L 140.0,115.1 L 140.8,114.4 L 141.6,113.7 L 142.4,113.1 L 143.2,112.4 L 144.0,111.7 L 144.8,111.0 L 145.6,110.3 L 146.4,109.6 L 147.2,108.9" fill="none" stroke="#06a" stroke-width="2"/><path d="M 147.2,67.5 L 148.5,71.6 L 149.7,75.6 L 150.9,79.7 L 152.1,83.6 L 153.3,87.5 L 154.5,91.4 L 155.7,95.2 L 157.0,99.0 L 158.2,102.7 L 159.4,106.3 L 160.6,109.9 L 161.8,113.5 L 163.0,117.0 L 164.2,120.4 L 165.4,123.8 L 166.7,127.1 L 167.9,130.4 L 169.1,133.7 L 170.3,136.9 L 171.5,140.0 L 172.7,143.1 L 173.9,146.1 L 175.1,149.1 L 176.3,152.0 L 177.6,154.9 L 178.8,157.7 L 180.0,160.5 L 181.2,163.2 L 182.4,165.9 L 183.6,168.5 L 184.8,171.1 L 186.0,173.6 L 187.3,176.0 L 188.5,178.4 L 189.7,180.8 L 190.9,183.1 L 192.1,185.4 L 193.3,187.6 L 194.5,189.7 L 195.8,191.8 L 197.0,193.9 L 198.2,195.9 L 199.4,197.8 L 200.6,199.7 L 201.8,201.5 L 203.0,203.3 L 204.2,205.1 L 205.5,206.7 L 206.7,208.4 L 207.9,210.0 L 209.1,211.5 L 210.3,213.0 L 211.5,214.4 L 212.7,215.8 L 213.9,217.1 L 215.2,218.3 L 216.4,219.6 L 217.6,220.7 L 218.8,221.8 L 220.0,222.9 L 221.2,223.9 L 222.4,224.9 L 223.6,225.8 L 224.8,226.6 L 226.1,227.4 L 227.3,228.2 L 228.5,228.9 L 229.7,229.5 L 230.9,230.1 L 232.1,230.7 L 233.3,231.2 L 234.5,231.6 L 235.8,232.0 L 237.0,232.3 L 238.2,232.6 L 239.4,232.9 L 240.6,233.0 L 241.8,233.2 L 243.0,233.2 L 244.2,233.3 L 245.5,233.2 L 246.7,233.2 L 247.9,233.0 L 249.1,232.9 L 250.3,232.6 L 251.5,232.3 L 252.7,232.0 L 254.0,231.6 L 255.2,231.2 L 256.4,230.7 L 257.6,230.1 L 258.8,229.5 L 260.0,228.9 L 261.2,228.2 L 262.4,227.4 L 263.6,226.6 L 264.9,225.8 L 266.1,224.9 L 267.3,223.9 L 268.5,222.9 L 269.7,221.8 L 270.9,220.7 L 272.1,219.6 L 273.4,218.3 L 274.6,217.1 L 275.8,215.8 L 277.0,214.4 L 278.2,213.0 L 279.4,211.5 L 280.6,210.0 L 281.8,208.4 L 283.1,206.7 L 284.3,205.1 L 285.5,203.3 L 286.7,201.5 L 287.9,199.7 L 289.1,197.8 L 290.3,195.9 L 291.5,193.9 L 292.8,191.8" fill="none" stroke="#06a" stroke-width="2"/><path d="M 303.4,44.8 L 304.3,59.2 L 305.2,71.6 L 306.1,82.3 L 306.9,91.6 L 307.8,99.9 L 308.7,107.3 L 309.6,113.9 L 310.5,119.8 L 311.3,125.2 L 312.2,130.1 L 313.1,134.5 L 314.0,138.6 L 314.9,142.4 L 315.8,145.9 L 316.6,149.1 L 317.5,152.1 L 318.4,154.9 L 319.3,157.5 L 320.2,159.9 L 321.0,162.2 L 321.9,164.4 L 322.8,166.4 L 323.7,168.3 L 324.6,170.1 L 325.4,171.8 L 326.3,173.4 L 327.2,174.9 L 328.1,176.4 L 329.0,177.8 L 329.9,179.1 L 330.7,180.3 L 331.6,181.5 L 332.5,182.7 L 333.4,183.8 L 334.3,184.8 L 335.1,185.8 L 336.0,186.8 L 336.9,187.7 L 337.8,188.6 L 338.7,189.5 L 339.5,190.3 L 340.4,191.1 L 341.3,191.9 L 342.2,192.6 L 343.1,193.3 L 343.9,194.0 L 344.8,194.7 L 345.7,195.3 L 346.6,195.9 L 347.5,196.5 L 348.4,197.1 L 349.2,197.7 L 350.1,198.2 L 351.0,198.8 L 351.9,199.3 L 352.8,199.8 L 353.6,200.3 L 354.5,200.7 L 355.4,201.2 L 356.3,201.6 L 357.2,202.1 L 358.0,202.5 L 358.9,202.9 L 359.8,203.3 L 360.7,203.7 L 361.6,204.1 L 362.5,204.4 L 363.3,204.8 L 364.2,205.1 L 365.1,205.5 L 366.0,205.8 L 366.9,206.1 L 367.7,206.5 L 368.6,206.8 L 369.5,207.1 L 370.4,207.4 L 371.3,207.7 L 372.1,207.9 L 373.0,208.2 L 373.9,208.5 L 374.8,208.8 L 375.7,209.0 L 376.5,209.3 L 377.4,209.5 L 378.3,209.8 L 379.2,210.0 L 380.1,210.2 L 381.0,210.5 L 381.8,210.7 L 382.7,210.9 L 383.6,211.1 L 384.5,211.4 L 385.4,211.6 L 386.2,211.8 L 387.1,212.0 L 388.0,212.2 L 388.9,212.4 L 389.8,212.5 L 390.6,212.7 L 391.5,212.9 L 392.4,213.1 L 393.3,213.3 L 394.2,213.4 L 395.1,213.6 L 395.9,213.8 L 396.8,214.0 L 397.7,214.1 L 398.6,214.3 L 399.5,214.4 L 400.3,214.6 L 401.2,214.7 L 402.1,214.9 L 403.0,215.0 L 403.9,215.2 L 404.7,215.3 L 405.6,215.5 L 406.5,215.6 L 407.4,215.7 L 408.3,215.9 L 409.2,216.0" fill="none" stroke="#06a" stroke-width="2"/><line x1="292.8" y1="254.0" x2="292.8" y2="26.0" stroke="#999" stroke-dasharray="4 3"/><circle cx="147.2" cy="108.9" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="147.2" cy="67.5" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="195.8" cy="191.8" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="147.2" cy="191.8" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/><circle cx="195.8" cy="108.9" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/><circle cx="292.8" cy="191.8" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/></svg><div class="cap">The graph of $g$. Open dots are not on the graph, filled dots are.</div></div>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>At $x=-1$ the filled dot gives $g(-1)=1$. From the left the line climbs to the open dot at height $3$, from the right the parabola comes down from the open dot at height $4$.</p>
+      <p>$$ \lim_{x\to-1^-} g(x) = 3, \qquad \lim_{x\to-1^+} g(x) = 4, $$</p>
+      <p>so $\lim_{x\to-1} g(x)$ does not exist, since the one-sided limits disagree.</p>
+      <p>At $x=0$ the dot sits at $g(0)=3$, but the curve on both sides heads to the open dot at height $1$. So $\lim_{x\to 0} g(x) = 1$. The value of $g$ at $0$ has no effect on the limit.</p>
+      <p>At $x=2$ the parabola arrives at the filled dot, so $\lim_{x\to2^-} g(x) = 1$. To the right the graph shoots up along the dashed asymptote, so $\lim_{x\to 2^+} g(x) = \infty$. The two-sided limit does not exist.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(d&ndash;e).</b> At which $x$ values in $(-3,4)$ is $g$ not continuous? Classify each discontinuity. At which of these is $g$ continuous from the left, or from the right?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$g$ is not continuous at $x=-1$, $0$, $2$.</p>
+      <p>At $x=-1$ the one-sided limits are $3$ and $4$: a jump. At $x=0$ the limit exists ($=1$) but is not $g(0)=3$: removable, since redefining one point fixes it. At $x=2$ the right-hand limit is infinite: an infinite discontinuity.</p>
+      <p>Continuous from the left at $a$ means $\lim_{x\to a^-} g(x) = g(a)$. This holds only at $x=2$, where both equal $1$. No point is continuous from the right: at $-1$ we compare $4$ with $1$, at $0$ we compare $1$ with $3$, and at $2$ the right limit is infinite.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(f).</b> Suppose $\lim_{x \to a} f(x) = 4$ and $\lim_{x \to a} h(x) = -2$. Evaluate $\lim_{x \to a} [3f(x) - 5h(x)]$, $\lim_{x \to a} f(x)h(x)$, $\lim_{x \to a} \frac{f(x)}{h(x)}$, and $\lim_{x \to a} \parens{\sqrt{f(x)} + h(x)^2}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The limit laws say limits pass through sums, constant multiples, products, quotients (with nonzero bottom limit), powers and roots. So we can replace $f(x)$ by $4$ and $h(x)$ by $-2$.</p>
+      <p>$$ 3(4) - 5(-2) = 22, \qquad 4(-2) = -8, \qquad \frac{4}{-2} = -2, \qquad \sqrt{4} + (-2)^2 = 6. $$</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec3" class="chapter">3. Computing limits</h3>
+  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(a).</b> Evaluate $\lim_{x \to 2} \frac{x^2+x-6}{x^2-4}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Plugging in gives $\frac{0}{0}$, so $x-2$ divides both.</p>
+      <p>$$ \lim_{x \to 2} \frac{(x+3)(x-2)}{(x+2)(x-2)} = \lim_{x \to 2} \frac{x+3}{x+2} = \frac{5}{4}. $$</p>
+      <p>Canceling is allowed because the limit never uses $x=2$ itself.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(c).</b> Evaluate $\lim_{x \to 4} \frac{\sqrt{x}-2}{x-4}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\frac{0}{0}$ again. Multiply by the conjugate $\sqrt x + 2$, or notice $x - 4 = (\sqrt{x}-2)(\sqrt{x}+2)$.</p>
+      <p>$$ \lim_{x \to 4} \frac{\sqrt{x}-2}{(\sqrt{x}-2)(\sqrt{x}+2)} = \lim_{x\to 4}\frac{1}{\sqrt{x}+2} = \frac{1}{4}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(f).</b> Evaluate $\lim_{r \to 0} \frac{\sqrt{4+r} - \sqrt{4-r}}{r}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Rationalize the numerator with the conjugate $\sqrt{4+r}+\sqrt{4-r}$.</p>
+      <p>$$ \frac{(4+r)-(4-r)}{r\parens{\sqrt{4+r}+\sqrt{4-r}}} = \frac{2}{\sqrt{4+r}+\sqrt{4-r}} \longrightarrow \frac{2}{2+2} = \frac{1}{2}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(i).</b> Evaluate $\lim_{x \to -2} \frac{6}{x^2-4}$, considering the one-sided limits.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The top is $6$ and the bottom $(x-2)(x+2)$ goes to $0$, so each one-sided limit is $\pm\infty$. Track signs.</p>
+      <p>For $x$ slightly less than $-2$: $x+2&lt;0$ and $x-2&lt;0$, so the bottom is a small positive number and $\lim_{x\to-2^-} = \infty$. For $x$ slightly more than $-2$: $x+2&gt;0$ and $x-2&lt;0$, so the bottom is a small negative number and $\lim_{x\to-2^+} = -\infty$.</p>
+      <p>The one-sided limits disagree, so the limit does not exist.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(j).</b> Evaluate $\lim_{t \to 3} \frac{t^3}{(t-1)(t-3)^2}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Near $t=3$ the top is near $27$ and $t-1$ is near $2$. The factor $(t-3)^2$ is a small positive number on both sides of $3$, because it is a square.</p>
+      <p>So the quotient is a large positive number on both sides and $\lim_{t\to 3} \frac{t^3}{(t-1)(t-3)^2} = \infty$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec4" class="chapter">4. Squeeze Theorem</h3>
+  <p class="lede">If $f$ is trapped between two functions that head to the same height $L$, then $f$ has nowhere else to go.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(a).</b> Evaluate $\lim_{x \to 0} x^2 \sin\parens{\frac{3}{x}}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\sin\parens{\frac{3}{x}}$ oscillates and has no limit, so the product law does not apply (this answers (d)). But it is bounded: $-1 \le \sin\parens{\frac3x} \le 1$. Multiplying by $x^2 \ge 0$,</p>
+      <p>$$ -x^2 \le x^2 \sin\parens{\frac{3}{x}} \le x^2. $$</p>
+      <p>Both bounds go to $0$, so by the Squeeze Theorem the limit is $0$. The $x^2$ crushes the oscillation.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(c).</b> If $2x - 1 \leq f(x) \leq x^2 - 2x + 3$ for all $x$, find $\lim_{x \to 2} f(x)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\lim_{x\to2}(2x-1) = 3$ and $\lim_{x\to2}(x^2-2x+3) = 3$. Since $f$ is squeezed between them, $\lim_{x\to2} f(x) = 3$.</p>
+      <p>The bounds touch at $x=2$ because $(x^2-2x+3)-(2x-1) = (x-2)^2$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec5" class="chapter">5. Limits at infinity</h3>
+  <p class="lede">As $x \to \pm\infty$ only the biggest power matters. Divide top and bottom by the highest power of $x$ in the bottom.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(d).</b> Evaluate $\lim_{x \to -\infty} \frac{\sqrt{4x^2+1}}{x+3}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Pull $x^2$ out of the root: $\sqrt{4x^2+1} = \sqrt{x^2}\sqrt{4+\frac{1}{x^2}} = \abs{x}\sqrt{4+\frac{1}{x^2}}$. For $x&lt;0$, $\abs{x} = -x$.</p>
+      <p>$$ \frac{-x\sqrt{4+\frac{1}{x^2}}}{x\parens{1+\frac{3}{x}}} = \frac{-\sqrt{4+\frac{1}{x^2}}}{1+\frac{3}{x}} \longrightarrow -2. $$</p>
+      <p>The sign makes sense: the top is positive and the bottom is negative for very negative $x$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(e).</b> Evaluate $\lim_{x \to \infty} \parens{\sqrt{x^2+6x} - x}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>This is $\infty - \infty$, which is not determined yet. Multiply by the conjugate over itself.</p>
+      <p>$$ \frac{(x^2+6x) - x^2}{\sqrt{x^2+6x}+x} = \frac{6x}{x\parens{\sqrt{1+\frac{6}{x}}+1}} = \frac{6}{\sqrt{1+\frac6x}+1} \longrightarrow \frac{6}{2} = 3. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(g).</b> Find all vertical and horizontal asymptotes of $f(x) = \frac{x^2-x-2}{x^2-4}$. Why is $x=2$ not a vertical asymptote?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Factor: $f(x) = \frac{(x-2)(x+1)}{(x-2)(x+2)} = \frac{x+1}{x+2}$ for $x \ne 2$.</p>
+      <p>At $x=-2$ the top is $-1 \ne 0$ and the bottom is $0$, so $x=-2$ is a vertical asymptote. At $x=2$ the bad factor cancels and $\lim_{x\to 2} f(x) = \frac34$, a finite number. So the graph has a hole at $\parens{2,\frac34}$, not an asymptote.</p>
+      <p>The leading terms are both $x^2$, so $\lim_{x\to\pm\infty} f(x) = 1$ and $y=1$ is the horizontal asymptote.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec6" class="chapter">6. Continuity and the IVT</h3>
+  <p class="lede">To check continuity at a point compute three things: the value, the left limit, the right limit. All three must agree.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(d).</b> Let $f(x) = \begin{cases} x+2 &amp; x &lt; -1 \\ x^2 &amp; -1 \leq x \leq 1 \\ 3-x &amp; x &gt; 1 \end{cases}$. Is $f$ continuous at $x=-1$ and at $x=1$? Where is $f$ not differentiable?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>At $x=-1$: $f(-1) = 1$, $\lim_{x\to-1^-}(x+2) = 1$, $\lim_{x\to-1^+}x^2 = 1$. All agree, so $f$ is continuous at $-1$.</p>
+      <p>At $x=1$: $f(1) = 1$ and $\lim_{x\to1^-}x^2 = 1$, but $\lim_{x\to1^+}(3-x) = 2$. The limit does not exist, so $f$ is not continuous at $1$ (a jump).</p>
+      <p>$f$ is not differentiable at $x=1$, since a differentiable function is continuous. It is also not differentiable at $x=-1$: the graph is continuous there but has a corner, with slope $1$ from the left and slope $2x = -2$ from the right.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(f).</b> Find $c$ so that $f(x) = \begin{cases} \frac{x^2}{x+2} &amp; x \leq 2 \\ 3x + c &amp; x &gt; 2 \end{cases}$ is continuous at $x=2$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f(2) = \frac{4}{4} = 1$, and this is also the left limit. The right limit is $\lim_{x\to2^+}(3x+c) = 6 + c$. Continuity needs $6 + c = 1$, so $c = -5$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(g).</b> Find $a$ and $b$ so that $f(x) = \begin{cases} 2 &amp; x &lt; 1 \\ ax + b &amp; 1 \leq x &lt; 4 \\ 8 &amp; x \geq 4 \end{cases}$ is continuous everywhere.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Each piece is continuous, so only the seams at $x=1$ and $x=4$ matter. The middle line must start at height $2$ and end at height $8$.</p>
+      <p>$$ a + b = 2, \qquad 4a + b = 8. $$</p>
+      <p>Subtracting, $3a = 6$, so $a = 2$ and $b = 0$. The middle piece is $2x$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(i).</b> Show that $x^3 + x - 1 = 0$ has a solution in $(0,1)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $f(x) = x^3+x-1$. It is a polynomial, so it is continuous on $[0,1]$. $f(0) = -1 &lt; 0$ and $f(1) = 1 &gt; 0$.</p>
+      <p>Since $0$ is between $f(0)$ and $f(1)$, the Intermediate Value Theorem gives a number $c$ in $(0,1)$ with $f(c) = 0$. A continuous graph cannot get from below the axis to above it without crossing.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec7" class="chapter">7. The derivative as a limit</h3>
+  <p class="lede">The tangent slope is the limit of secant slopes. Every limit-definition problem has the same shape: write the difference quotient, simplify until the $h$ in the bottom cancels, then let $h\to0$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(a).</b> Find the equation of the line tangent to $f(x)=\sqrt{x}$ at $x=4$, as a limit of slopes of secant lines.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The secant line through $(4,2)$ and $(x,\sqrt{x})$ has slope $\frac{\sqrt x - 2}{x - 4}$. As $x\to 4$ the second point slides onto the first and the secant turns into the tangent.</p>
+      <p>$$ m = \lim_{x\to4}\frac{\sqrt x - 2}{x-4} = \lim_{x\to 4}\frac{1}{\sqrt x + 2} = \frac14. $$</p>
+      <p>The tangent line is $y - 2 = \frac14(x-4)$, that is $y = \frac{x}{4} + 1$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(c).</b> Use the limit definition of the derivative to find $f'(x)$ if $f(x) = \frac{2}{x^2}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Combine the fractions in the numerator first.</p>
+      <p>$$ \frac{f(x+h)-f(x)}{h} = \frac{1}{h}\parens{\frac{2}{(x+h)^2}-\frac{2}{x^2}} = \frac{2\parens{x^2-(x+h)^2}}{h\,x^2(x+h)^2} = \frac{-2(2x+h)}{x^2(x+h)^2}. $$</p>
+      <p>Now $h$ is gone from the bottom, so let $h\to0$: $f'(x) = \frac{-4x}{x^4} = -\frac{4}{x^3}$. This matches the power rule applied to $2x^{-2}$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(f).</b> A ball's height is $h(t) = 200 - 16t^2$ feet after $t$ seconds. Find the slope of the secant line between $t=1$ and $t=3$, then the instantaneous velocity at $t=2$ as a limit.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$h(1) = 184$ and $h(3) = 56$, so the average velocity is $\frac{56-184}{3-1} = -64$ ft/s.</p>
+      <p>For the instantaneous velocity at $t=2$ we use a small time step $k$ (not $h$, which already names the height).</p>
+      <p>$$ \lim_{k\to0}\frac{h(2+k)-h(2)}{k} = \lim_{k\to 0}\frac{-16(4k+k^2)}{k} = \lim_{k\to0}(-64-16k) = -64 \text{ ft/s}. $$</p>
+      <p>The two agree. For a parabola the secant slope over an interval equals the tangent slope at the midpoint.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(h).</b> Each limit is the derivative of some $f$ at some $a$. Find $f$ and $a$, then evaluate: $\lim_{h \to 0} \frac{(1+h)^3 -1}{h}$ and $\lim_{x \to 3} \frac{\frac{1}{x} - \frac{1}{3}}{x-3}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The first has the shape $\frac{f(a+h)-f(a)}{h}$ with $f(x) = x^3$, $a=1$. So it equals $f'(1) = 3(1)^2 = 3$.</p>
+      <p>The second has the shape $\frac{f(x)-f(a)}{x-a}$ with $f(x)=\frac1x$, $a = 3$. So it equals $f'(3) = -\frac{1}{3^2} = -\frac19$. Each is the slope of the tangent line to $y=f(x)$ at $x=a$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec8" class="chapter">8. Differentiation rules</h3>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(c).</b> Find $y'$ if $y = \frac{x^2+1}{2x+1}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Quotient rule: bottom times derivative of top, minus top times derivative of bottom, over bottom squared.</p>
+      <p>$$ y' = \frac{2x(2x+1) - (x^2+1)(2)}{(2x+1)^2} = \frac{2x^2+2x-2}{(2x+1)^2}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(f).</b> At what points $(x,y)$ is the tangent line to $g(x) = \frac{x}{x^2+4}$ horizontal?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>A horizontal tangent means $g'(x) = 0$.</p>
+      <p>$$ g'(x) = \frac{(x^2+4) - x(2x)}{(x^2+4)^2} = \frac{4-x^2}{(x^2+4)^2}. $$</p>
+      <p>The bottom is never $0$, so $g'(x)=0$ exactly when $x = \pm 2$. The points are $\parens{2,\frac14}$ and $\parens{-2,-\frac14}$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(h).</b> A particle has position $s(t) = t^3 - 9t^2 + 24t$ meters at time $t$ seconds. Find $v(t)$ and $a(t)$, with units. When is the particle at rest?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ v(t) = s'(t) = 3t^2 - 18t + 24 \ \text{m/s}, \qquad a(t) = v'(t) = 6t - 18\ \text{m/s}^2. $$</p>
+      <p>At rest means $v=0$: $3(t-2)(t-4) = 0$, so $t = 2$ s and $t = 4$ s. Between these times $v&lt;0$ and the particle moves backward.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec9" class="chapter">9. Trig derivatives</h3>
+  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. The trick is to make the angle inside the sine match the denominator exactly.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(b).</b> Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$, $\lim_{x \to 0} \frac{\tan(2x)}{x}$, and $\lim_{x \to 0} \frac{\sin(3x)}{\sin(5x)}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ \frac{\sin(4x)}{3x} = \frac43\cdot\frac{\sin(4x)}{4x} \longrightarrow \frac43. $$</p>
+      <p>$$ \frac{\tan(2x)}{x} = 2\cdot\frac{\sin(2x)}{2x}\cdot\frac{1}{\cos(2x)} \longrightarrow 2\cdot1\cdot1 = 2. $$</p>
+      <p>$$ \frac{\sin(3x)}{\sin(5x)} = \frac{3x}{5x}\cdot\frac{\sin(3x)/(3x)}{\sin(5x)/(5x)} \longrightarrow \frac35. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(e).</b> Find $y'$ if $y = \frac{\sec x}{1 + \tan x}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ y' = \frac{\sec x\tan x\,(1+\tan x) - \sec x\,\sec^2 x}{(1+\tan x)^2} = \frac{\sec x\parens{\tan x + \tan^2 x - \sec^2 x}}{(1+\tan x)^2}. $$</p>
+      <p>Since $\sec^2 x = 1 + \tan^2 x$, the parentheses simplify to $\tan x - 1$, and $y' = \frac{\sec x\,(\tan x - 1)}{(1+\tan x)^2}$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(g).</b> Find all points $(x,y)$ with $0 \leq x &lt; 2\pi$ where $y = x + 2\cos x$ has a horizontal tangent line.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$y' = 1 - 2\sin x = 0$ gives $\sin x = \frac12$, so $x = \frac\pi6$ or $x=\frac{5\pi}{6}$.</p>
+      <p>The points are $\parens{\frac{\pi}{6}, \frac{\pi}{6} + \sqrt3}$ and $\parens{\frac{5\pi}{6}, \frac{5\pi}{6} - \sqrt3}$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec10" class="chapter">10. Chain rule</h3>
+  <p class="lede">The chain rule says rates multiply: if $u$ changes $3$ times as fast as $x$ and $y$ changes $2$ times as fast as $u$, then $y$ changes $6$ times as fast as $x$. In symbols, $\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(c).</b> Find the equation of the line tangent to $x(t) = \sin(\sin(\sin(t)))$ when $t = \pi$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Differentiate from the outside in, one layer at a time.</p>
+      <p>$$ x'(t) = \cos(\sin(\sin t))\cdot\cos(\sin t)\cdot\cos t. $$</p>
+      <p>At $t=\pi$, $\sin\pi = 0$, so $x'(\pi) = \cos 0\cdot\cos0\cdot\cos\pi = -1$ and $x(\pi) = 0$. The tangent line is $x = -(t-\pi) = \pi - t$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(d).</b> Find the equation of the line tangent to $h(t)=(1+2t^2)^4$ when $t=0$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$h'(t) = 4(1+2t^2)^3\cdot 4t$, so $h'(0) = 0$ and $h(0) = 1$. The tangent line is horizontal: $h = 1$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(i).</b> Find all points $(x,y)$ with $0 \leq x &lt; 2\pi$ where $y = 2\sin x + \cos(2x)$ has a horizontal tangent line.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The chain rule gives $\frac{d}{dx}\cos(2x) = -2\sin(2x)$. Then use $\sin(2x) = 2\sin x\cos x$ to factor.</p>
+      <p>$$ y' = 2\cos x - 2\sin(2x) = 2\cos x - 4\sin x\cos x = 2\cos x\,(1-2\sin x). $$</p>
+      <p>$\cos x = 0$ gives $x = \frac\pi2, \frac{3\pi}2$, and $\sin x = \frac12$ gives $x = \frac\pi6, \frac{5\pi}{6}$. The points are $\parens{\frac\pi6, \frac32}$, $\parens{\frac\pi2, 1}$, $\parens{\frac{5\pi}6, \frac32}$, $\parens{\frac{3\pi}2, -3}$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec11" class="chapter">11. Implicit differentiation</h3>
+  <p class="lede">Treat $y$ as an unknown function of $x$. Every time you differentiate something with $y$ in it, the chain rule leaves a factor of $y'$. Then solve for $y'$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(b).</b> Find the equation of the tangent line at $(\pi/8, \pi/8)$ for the curve $\tan(x+y)+\sec(x-y)=2$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ \sec^2(x+y)\,(1+y') + \sec(x-y)\tan(x-y)\,(1-y') = 0. $$</p>
+      <p>At the point, $x+y = \frac\pi4$ so $\sec^2(x+y) = 2$, and $x - y = 0$ so $\tan(x-y) = 0$. The equation becomes $2(1+y') = 0$, so $y' = -1$.</p>
+      <p>The tangent line is $y - \frac\pi8 = -\parens{x-\frac\pi8}$, that is $y = -x + \frac\pi4$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(c).</b> Find the tangent line to $x^3 + y^3 = 9xy$ at $(2,4)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Check the point: $8 + 64 = 72 = 9(2)(4)$. Differentiate, using the product rule on $9xy$.</p>
+      <p>$$ 3x^2 + 3y^2y' = 9y + 9xy' \quad\Longrightarrow\quad y' = \frac{3y - x^2}{y^2 - 3x}. $$</p>
+      <p>At $(2,4)$, $y' = \frac{12-4}{16-6} = \frac45$, and the tangent line is $y = 4 + \frac45(x-2)$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(e).</b> For $y^2 = x^3 - 3x + 2$, find $\frac{dy}{dx}$, the tangent line at $(2,2)$, and all points with a horizontal tangent line.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$2yy' = 3x^2 - 3$, so $y' = \frac{3x^2-3}{2y}$. At $(2,2)$, $y' = \frac{9}{4}$ and the tangent line is $y = 2 + \frac94(x-2)$.</p>
+      <p>A horizontal tangent needs the top to be $0$ and the bottom not $0$: $x = \pm1$ with $y \ne 0$. At $x=1$, $y^2 = 0$, so that point is excluded (the formula gives $\frac00$ there). At $x = -1$, $y^2 = 4$, giving $(-1,2)$ and $(-1,-2)$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec12" class="chapter">12. Related rates</h3>
+  <p class="lede">Write one equation that holds at every instant, differentiate it with respect to $t$, and only then plug in the numbers for the instant you care about. Plugging in first freezes the quantities and kills their rates.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(a).</b> If $x,y,z$ are functions of $t$ and $x(1-y)+5z^3=y^2z^2+x^2-3$, find $z'$ when $x=4$, $y=-2$, $z=1$, $x'=9$, $y' = -3$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Differentiate every term with respect to $t$.</p>
+      <p>$$ x'(1-y) - xy' + 15z^2z' = 2yy'z^2 + 2y^2zz' + 2xx'. $$</p>
+      <p>Plug in: $27 + 12 + 15z' = 12 + 8z' + 72$, so $7z' = 45$ and $z' = \frac{45}{7}$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(b).</b> A 13 ft ladder leans against a wall. The bottom slides away at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $x$ be the distance from the wall to the bottom and $y$ the height of the top. Then $x^2 + y^2 = 169$ at every instant, so $2xx' + 2yy' = 0$.</p>
+      <p>When $x=5$, $y = 12$. So $y' = -\frac{xx'}{y} = -\frac{5\cdot 2}{12} = -\frac56$ ft/s. The top slides down at $\frac56$ ft/s.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(c).</b> A tank is an inverted cone with radius 3 m at the top and height 6 m. Water is pumped in at 4 $\text{m}^3$/min. How fast is the water level rising when the water is 4 m deep?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $h$ be the depth and $r$ the radius of the water surface. Similar triangles give $\frac{r}{h} = \frac36$, so $r = \frac h2$ and</p>
+      <p>$$ V = \frac13\pi r^2 h = \frac{\pi h^3}{12}, \qquad \frac{dV}{dt} = \frac{\pi h^2}{4}\frac{dh}{dt}. $$</p>
+      <p>At $h=4$: $4 = 4\pi \frac{dh}{dt}$, so $\frac{dh}{dt} = \frac{1}{\pi}$ m/min. The factor $\frac{\pi h^2}{4}$ is the area of the water surface, which is why the level rises more slowly as the tank fills.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(f).</b> A marble moves along $x^2 + xy + y^2 = 9$. At $(3,0)$, $x$ is decreasing at 2 ft/s. Is $y$ increasing or decreasing, and how fast?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ 2xx' + x'y + xy' + 2yy' = 0. $$</p>
+      <p>At $(3,0)$ with $x' = -2$: $2(3)(-2) + 0 + 3y' + 0 = 0$, so $y' = 4$. The $y$-coordinate is increasing at $4$ ft/s.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec13" class="chapter">13. Linear approximation</h3>
+  <p class="lede">Near $x=a$ a differentiable curve looks like its tangent line, so we use $L(x) = f(a) + f'(a)(x-a)$ in place of $f(x)$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(b).</b> If $f(1)=1$ and $f'(1)=\frac{1}{2}$, what do you expect $f(\frac{3}{2})$ to be? Verify with the linearization.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Moving right by $\frac12$ at slope $\frac12$ raises the height by about $\frac14$, so $f\parens{\frac32} \approx \frac54$.</p>
+      <p>The linearization is $L(x) = 1 + \frac12(x-1)$, and $L\parens{\frac32} = 1 + \frac14 = \frac54$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(c).</b> Find the linearization of $f(x) = \sqrt{x+5}$ at $a=4$. Use it to approximate $\sqrt{9.1}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f(4) = 3$ and $f'(x) = \frac{1}{2\sqrt{x+5}}$, so $f'(4) = \frac16$. Then $L(x) = 3 + \frac16(x-4)$.</p>
+      <p>$\sqrt{9.1} = f(4.1) \approx L(4.1) = 3 + \frac{0.1}{6} = \frac{181}{60} \approx 3.0167$. The true value is $3.01662\ldots$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(d).</b> Find the linearization of $f(x) = \sqrt[3]{x}$ at $a=27$. Use it to approximate $\sqrt[3]{27.27}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f(27) = 3$ and $f'(x) = \frac13 x^{-2/3}$, so $f'(27) = \frac{1}{27}$. Then $L(x) = 3 + \frac{x-27}{27}$ and $L(27.27) = 3 + \frac{0.27}{27} = 3.01$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(f).</b> The radius of a sphere is measured as 10 cm with a possible error of 0.05 cm. Estimate the maximum error in the computed volume.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$V = \frac43\pi r^3$, so $dV = 4\pi r^2\,dr = 4\pi(100)(0.05) = 20\pi \approx 62.8\ \text{cm}^3$.</p>
+      <p>Here $4\pi r^2$ is the surface area: an error $dr$ in the radius adds a thin shell of that area and thickness $dr$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec14" class="chapter">14. Extreme values</h3>
+  <p class="lede">A continuous function on a closed interval attains a max and a min (Extreme Value Theorem), and they can only occur at critical numbers or endpoints (Fermat's Theorem). So list those candidates and compare the values of $f$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(e).</b> Find the absolute max and min of $f(x) = x^4 - 8x^2 + 3$ on $[-1,3]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f'(x) = 4x^3 - 16x = 4x(x-2)(x+2)$. The critical numbers in $[-1,3]$ are $0$ and $2$ (we drop $-2$).</p>
+      <p>$$ f(-1) = -4,\quad f(0) = 3,\quad f(2) = -13,\quad f(3) = 12. $$</p>
+      <p>The absolute max is $12$ at $x=3$ and the absolute min is $-13$ at $x=2$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(g).</b> Find the absolute max and min of $f(x) = \sqrt{9-x^2}$ on $[-1,3]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f'(x) = \frac{-x}{\sqrt{9-x^2}}$ is $0$ at $x=0$ and undefined at $x=3$, an endpoint anyway.</p>
+      <p>$f(-1) = 2\sqrt2$, $f(0) = 3$, $f(3) = 0$. Max $3$ at $x=0$, min $0$ at $x=3$. The graph is the top of the circle of radius $3$, so this matches the picture.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(h).</b> Find the absolute max and min of $f(x) = 2\cos x + \sin(2x)$ on $[0, \pi]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Use $\cos(2x) = 1 - 2\sin^2 x$ to write $f'$ in terms of $\sin x$ only.</p>
+      <p>$$ f'(x) = -2\sin x + 2\cos(2x) = -2\parens{2\sin^2x + \sin x - 1} = -2(2\sin x - 1)(\sin x + 1). $$</p>
+      <p>On $[0,\pi]$, $\sin x = -1$ never happens, and $\sin x = \frac12$ at $x = \frac\pi6, \frac{5\pi}6$.</p>
+      <p>$$ f(0) = 2,\quad f\parens{\tfrac\pi6} = \tfrac{3\sqrt3}{2},\quad f\parens{\tfrac{5\pi}6} = -\tfrac{3\sqrt3}{2},\quad f(\pi) = -2. $$</p>
+      <p>Max $\frac{3\sqrt3}{2} \approx 2.60$ at $x=\frac\pi6$, min $-\frac{3\sqrt3}{2}$ at $x = \frac{5\pi}6$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec15" class="chapter">15. Mean Value Theorem</h3>
+  <p class="lede">If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then somewhere the tangent slope equals the average slope: $f'(c) = \frac{f(b)-f(a)}{b-a}$ for some $c$ in $(a,b)$. If your average speed on a trip was 60 mph, at some instant the speedometer read exactly 60.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(a).</b> Find every $c$ guaranteed by the MVT for $f(x) = x^2 - 4x + 1$ on $[1,5]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f(1) = -2$ and $f(5) = 6$, so the average slope is $\frac{8}{4} = 2$. Solve $f'(c) = 2c - 4 = 2$: $c = 3$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(c).</b> If $f(2) = -1$ and $f'(x) \leq 3$ for all $x$, how large can $f(6)$ be?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>By the MVT on $[2,6]$, $f(6) - f(2) = f'(c)(6-2)$ for some $c$. Since $f'(c) \le 3$, $f(6) \le -1 + 3\cdot 4 = 11$.</p>
+      <p>The bound is reached by the line $f(x) = -1 + 3(x-2)$, so $11$ is the best possible.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(e).</b> Show that $x^3 + 5x - 2 = 0$ has exactly one real solution.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $f(x) = x^3 + 5x - 2$. At least one: $f(0) = -2 &lt; 0 &lt; 4 = f(1)$, so the IVT gives a root in $(0,1)$.</p>
+      <p>At most one: if $f(a) = f(b) = 0$ with $a&lt;b$, the MVT gives $c$ with $f'(c) = \frac{0-0}{b-a} = 0$. But $f'(x) = 3x^2 + 5 \ge 5$. So a second root is impossible.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec16" class="chapter">16. Shape of a graph</h3>
+  <p class="lede">The sign of $f'$ says whether $f$ goes up or down. The sign of $f''$ says whether $f'$ goes up or down, which is whether the graph bends up or down. Find where each is zero or undefined, then test signs between.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(a).</b> For $f(x) = x^3 - 6x^2 + 9x + 1$, find the intervals of increase and decrease, local extrema, concavity, and inflection points.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3)$. So $f' &gt; 0$ on $(-\infty,1)$ and $(3,\infty)$ (increasing) and $f'&lt;0$ on $(1,3)$ (decreasing).</p>
+      <p>$f'$ changes from $+$ to $-$ at $1$: local max $f(1) = 5$. From $-$ to $+$ at $3$: local min $f(3) = 1$.</p>
+      <p>$f''(x) = 6x - 12$: concave down on $(-\infty,2)$, concave up on $(2,\infty)$, inflection point $(2,3)$. The inflection point sits halfway between the max and min, as for every cubic.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(b).</b> Do the same for $f(x) = 3x^4 - 4x^3$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f'(x) = 12x^3 - 12x^2 = 12x^2(x-1)$. The factor $12x^2 \ge 0$, so the sign of $f'$ is the sign of $x - 1$: decreasing on $(-\infty,1)$, increasing on $(1,\infty)$.</p>
+      <p>Local min $f(1) = -1$. The critical number $x=0$ is not an extremum, since $f'$ does not change sign there. The tangent is flat but the graph keeps falling.</p>
+      <p>$f''(x) = 36x^2 - 24x = 12x(3x-2)$: concave up on $(-\infty,0)$ and $\parens{\frac23,\infty}$, concave down on $\parens{0,\frac23}$. Inflection points $(0,0)$ and $\parens{\frac23, -\frac{16}{27}}$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(f).</b> Let $a&gt;0$, $c&lt;0$, and $f(x)=x(ax^2+bx+c)$ have its inflection point at the origin. Simplify $f$, then find the roots of $f$ and of $f'$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f(x) = ax^3 + bx^2 + cx$, so $f''(x) = 6ax + 2b$ and $f''(0) = 2b$. The inflection point at $0$ forces $b = 0$, and $f(x) = x(ax^2 + c)$.</p>
+      <p>Roots of $f$: $x = 0$, and the quadratic formula on $ax^2 + 0x + c$ gives $x = \frac{\pm\sqrt{-4ac}}{2a} = \pm\sqrt{-\frac ca}$. These are real since $-\frac ca &gt; 0$.</p>
+      <p>Roots of $f'(x) = 3ax^2 + c$: $x = \pm\sqrt{-\frac{c}{3a}}$. Since $a &gt; 0$ the graph rises on the far right, so the local max is at $-\sqrt{-\frac{c}{3a}}$ and the local min at $+\sqrt{-\frac{c}{3a}}$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec17" class="chapter">17. Curve sketching</h3>
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(a).</b> Sketch $f(x) = \frac{1}{x^2+3}$, labeling intercepts, asymptotes, extrema, and inflection points.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Domain $\Rr$, since $x^2 + 3 &gt; 0$. No $x$-intercept, $y$-intercept $\parens{0,\frac13}$. No vertical asymptote, and $f \to 0$ as $x\to\pm\infty$, so $y = 0$ is the horizontal asymptote. $f$ is even.</p>
+      <p>$$ f'(x) = \frac{-2x}{(x^2+3)^2}, \qquad f''(x) = \frac{6(x^2-1)}{(x^2+3)^3}. $$</p>
+      <p>Increasing on $(-\infty,0)$, decreasing on $(0,\infty)$, local max $\parens{0,\frac13}$. Concave up on $(-\infty,-1)$ and $(1,\infty)$, concave down on $(-1,1)$, inflection points $\parens{\pm1, \frac14}$. The graph is a bump that flattens toward the $x$-axis.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(b).</b> Sketch $f(x) = \frac{x^2-1}{x^2-4}$, labeling all key features.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Domain $x \ne \pm 2$. Intercepts $(\pm1, 0)$ and $\parens{0,\frac14}$. Vertical asymptotes $x = \pm 2$ (the top is $3 \ne 0$ there), horizontal asymptote $y = 1$. $f$ is even.</p>
+      <p>$$ f'(x) = \frac{-6x}{(x^2-4)^2}, \qquad f''(x) = \frac{6(3x^2+4)}{(x^2-4)^3}. $$</p>
+      <p>Increasing on $(-\infty,-2)$ and $(-2,0)$, decreasing on $(0,2)$ and $(2,\infty)$, local max $\parens{0,\frac14}$.</p>
+      <p>$3x^2 + 4 &gt; 0$, so $f''$ has the sign of $x^2 - 4$: concave up for $\abs{x} &gt; 2$, concave down on $(-2,2)$. No inflection points, since concavity only changes at the asymptotes.</p>
+      <p>Near the asymptotes: $f\to-\infty$ as $x\to 2^-$ and $f\to\infty$ as $x\to2^+$, and symmetrically at $-2$. The middle piece is an upside-down bowl through $(\pm1,0)$ with top $\parens{0,\frac14}$, and the outer pieces come down from $\infty$ toward $y=1$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec18" class="chapter">18. Optimization</h3>
+  <p class="lede">Write the quantity as a function of one variable using the constraint, find its critical numbers, and check that the one you pick really is the max or min (endpoints, first derivative test, or second derivative test).</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(b).</b> A farmer has 2000 feet of fencing to build a rectangular field, fenced on 3 sides, along a straight river. What dimensions maximize the area?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $x$ be each side perpendicular to the river and $y$ the side parallel to it. Then $2x + y = 2000$ and</p>
+      <p>$$ A(x) = x(2000 - 2x), \qquad 0 \le x \le 1000. $$</p>
+      <p>$A'(x) = 2000 - 4x = 0$ at $x = 500$, and $A'' = -4 &lt; 0$, so this is the max. The field is $500$ ft by $1000$ ft with area $500{,}000\ \text{ft}^2$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(d).</b> A box with a square base and an open top is made from 300 $\text{cm}^2$ of material. Find the largest possible volume.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $x$ be the base side and $h$ the height. Material: $x^2 + 4xh = 300$, so $h = \frac{300-x^2}{4x}$. Then</p>
+      <p>$$ V(x) = x^2 h = \frac{300x - x^3}{4}, \qquad V'(x) = \frac{300-3x^2}{4}. $$</p>
+      <p>$V' = 0$ at $x = 10$, and $V'' = -\frac{3x}{2} &lt; 0$, a max. Then $h = 5$ and $V = 500\ \text{cm}^3$. The best box is twice as wide as it is tall.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(e).</b> A rectangular pen is split in half by a divider parallel to one side. The outer fence costs \$4 per meter and the divider \$2 per meter. With \$200, what is the largest possible area?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let the pen be $x$ by $y$ meters with the divider of length $y$. Cost: $4(2x + 2y) + 2y = 8x + 10y = 200$, so $y = 20 - 0.8x$.</p>
+      <p>$$ A(x) = x(20 - 0.8x) = 20x - 0.8x^2, \qquad A'(x) = 20 - 1.6x. $$</p>
+      <p>$A' = 0$ at $x = 12.5$, and $A'' &lt; 0$. Then $y = 10$, and the largest area is $125\ \text{m}^2$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(f).</b> Find the points on the parabola $y = x^2$ closest to the point $(0,2)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Minimize the squared distance (it has the same minimizer and no root).</p>
+      <p>$$ D(x) = x^2 + (x^2-2)^2 = x^4 - 3x^2 + 4, \qquad D'(x) = 4x^3 - 6x = 2x(2x^2-3). $$</p>
+      <p>Critical numbers $x = 0$ and $x = \pm\frac{\sqrt6}{2}$. $D(0) = 4$ while $D\parens{\pm\frac{\sqrt6}{2}} = \frac74$, so the closest points are $\parens{\pm\frac{\sqrt6}{2}, \frac32}$, at distance $\frac{\sqrt7}{2}$. The bottom of the parabola, $(0,0)$, is a local max of the distance here, not the min.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec19" class="chapter">19. Antiderivatives</h3>
+  <p class="lede">An antiderivative undoes a derivative, and it is only determined up to a constant $C$, because constants have derivative $0$. An initial condition picks out the one value of $C$ that fits.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(b).</b> Find the most general antiderivative of $g(s)=\frac{4-2s+\sqrt{s^3}}{\sqrt{s}}$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Split the fraction into powers of $s$ first: $g(s) = 4s^{-1/2} - 2s^{1/2} + s$.</p>
+      <p>$$ G(s) = 8s^{1/2} - \frac43 s^{3/2} + \frac{s^2}{2} + C. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(g).</b> If $f''(t) = 2\cos t - 6\sin t$, $f(0) = 1$, and $f'(0) = 4$, find $f(t)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f'(t) = 2\sin t + 6\cos t + C_1$, and $f'(0) = 6 + C_1 = 4$ gives $C_1 = -2$.</p>
+      <p>$f(t) = -2\cos t + 6\sin t - 2t + C_2$, and $f(0) = -2 + C_2 = 1$ gives $C_2 = 3$.</p>
+      <p>$$ f(t) = -2\cos t + 6\sin t - 2t + 3. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(i).</b> A particle has $a(t) = 6t - 4$, $v(0) = 3$, $s(0) = 1$. Find $s(t)$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$v(t) = 3t^2 - 4t + 3$ (the constant is $v(0)$), and $s(t) = t^3 - 2t^2 + 3t + 1$ (the constant is $s(0)$).</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec20" class="chapter">20. Riemann sums</h3>
+  <p class="lede">A Riemann sum adds up rectangles of width $\Delta x$ and height $f(x_i)$. The definite integral is what these sums approach as the rectangles get thin.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(a).</b> Use 6 rectangles with right endpoints to approximate the area under $\sin(x)$ on $[0,\pi]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\Delta x = \frac\pi6$ and the right endpoints are $\frac{k\pi}{6}$ for $k = 1,\dots,6$, with heights $\frac12, \frac{\sqrt3}{2}, 1, \frac{\sqrt3}2, \frac12, 0$.</p>
+      <p>$$ R_6 = \frac\pi6\parens{2 + \sqrt3} \approx 1.954. $$</p>
+      <p>The exact area is $2$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(b).</b> Approximate the area under $f(x) = x^2$ on $[0,4]$ with $n=4$ using right endpoints, left endpoints, and midpoints. Which are over and which are under?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\Delta x = 1$.</p>
+      <p>$$ R_4 = 1 + 4 + 9 + 16 = 30, \quad L_4 = 0 + 1 + 4 + 9 = 14, \quad M_4 = 0.25 + 2.25 + 6.25 + 12.25 = 21. $$</p>
+      <p>The exact area is $\frac{64}{3} \approx 21.33$. $f$ is increasing, so the right endpoint is the tallest point of each strip and $R_4$ is an over estimate, while $L_4$ is an under estimate. $M_4$ comes out under here because the graph is concave up.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(e).</b> Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Read $\Delta x = \frac3n$ and $x_i = 1 + \frac{3i}{n}$, so the interval starts at $1$ and has length $3$, and the height is $\sqrt{x_i}$.</p>
+      <p>$$ \int_1^4 \sqrt{x}\,dx = \frac23\brac{x^{3/2}}_1^4 = \frac23(8-1) = \frac{14}{3}. $$</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec21" class="chapter">21. The integral as area</h3>
+  <p class="lede">$\int_a^b f(x)\,dx$ is the area above the axis minus the area below it. For lines and circles we can find these areas with geometry.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(a).</b> Evaluate $\int_0^2 \parens{3x + \sqrt{4-x^2}} dx$ using areas.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\int_0^2 3x\,dx$ is a triangle with base $2$ and height $6$: area $6$. $y = \sqrt{4-x^2}$ is the top half of the circle of radius $2$, so $\int_0^2\sqrt{4-x^2}\,dx$ is a quarter disk: area $\pi$.</p>
+      <p>Total: $6 + \pi$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(b).</b> Evaluate $\int_{-4}^4 \parens{2 - \sqrt{16-x^2}} dx$ using areas.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$\int_{-4}^4 2\,dx$ is a $8 \times 2$ rectangle, area $16$. $\int_{-4}^4\sqrt{16-x^2}\,dx$ is a half disk of radius $4$, area $8\pi$. So the integral is $16 - 8\pi$, which is negative because most of the semicircle rises above the line $y=2$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(d).</b> Evaluate $\int_0^5 \abs{2x-4} dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The graph is a V with its tip at $x=2$. On $[0,2]$ it is a triangle with base $2$, height $4$, area $4$. On $[2,5]$ it is a triangle with base $3$, height $6$, area $9$. Total $13$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(f).</b> For the velocity graph below ($v$ in m/s, $t$ in s), find the displacement and total distance from $t=0$ to $t=10$, the position at $t=10$ if $x(0)=3$ m, the acceleration at $t=5$, and when the particle is farthest from its start.</p>
+    <div class="fig"><svg viewBox="0 0 460 260" width="460" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="26.0" y1="234.0" x2="26.0" y2="26.0"/><line x1="64.9" y1="234.0" x2="64.9" y2="26.0"/><line x1="103.7" y1="234.0" x2="103.7" y2="26.0"/><line x1="142.6" y1="234.0" x2="142.6" y2="26.0"/><line x1="181.4" y1="234.0" x2="181.4" y2="26.0"/><line x1="220.3" y1="234.0" x2="220.3" y2="26.0"/><line x1="259.1" y1="234.0" x2="259.1" y2="26.0"/><line x1="298.0" y1="234.0" x2="298.0" y2="26.0"/><line x1="336.9" y1="234.0" x2="336.9" y2="26.0"/><line x1="375.7" y1="234.0" x2="375.7" y2="26.0"/><line x1="414.6" y1="234.0" x2="414.6" y2="26.0"/><line x1="26.0" y1="234.0" x2="434.0" y2="234.0"/><line x1="26.0" y1="208.0" x2="434.0" y2="208.0"/><line x1="26.0" y1="182.0" x2="434.0" y2="182.0"/><line x1="26.0" y1="156.0" x2="434.0" y2="156.0"/><line x1="26.0" y1="130.0" x2="434.0" y2="130.0"/><line x1="26.0" y1="104.0" x2="434.0" y2="104.0"/><line x1="26.0" y1="78.0" x2="434.0" y2="78.0"/><line x1="26.0" y1="52.0" x2="434.0" y2="52.0"/><line x1="26.0" y1="26.0" x2="434.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="156.0" x2="434.0" y2="156.0"/><line x1="26.0" y1="234.0" x2="26.0" y2="26.0"/></g><g font-size="10" fill="#555"><text x="64.9" y="169.0" text-anchor="middle">1</text><text x="103.7" y="169.0" text-anchor="middle">2</text><text x="142.6" y="169.0" text-anchor="middle">3</text><text x="181.4" y="169.0" text-anchor="middle">4</text><text x="220.3" y="169.0" text-anchor="middle">5</text><text x="259.1" y="169.0" text-anchor="middle">6</text><text x="298.0" y="169.0" text-anchor="middle">7</text><text x="336.9" y="169.0" text-anchor="middle">8</text><text x="375.7" y="169.0" text-anchor="middle">9</text><text x="414.6" y="169.0" text-anchor="middle">10</text><text x="21.0" y="238.0" text-anchor="end">-3</text><text x="21.0" y="212.0" text-anchor="end">-2</text><text x="21.0" y="186.0" text-anchor="end">-1</text><text x="21.0" y="134.0" text-anchor="end">1</text><text x="21.0" y="108.0" text-anchor="end">2</text><text x="21.0" y="82.0" text-anchor="end">3</text><text x="21.0" y="56.0" text-anchor="end">4</text><text x="21.0" y="30.0" text-anchor="end">5</text><text x="430.0" y="150.0" text-anchor="end" font-style="italic">t</text><text x="32.0" y="36.0" font-style="italic">v</text></g><path d="M 26.0,156.0 L 103.7,52.0 L 181.4,52.0 L 259.1,156.0 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 259.1,156.0 L 298.0,208.0 L 414.6,208.0 L 414.6,156.0 Z" fill="#c33" fill-opacity="0.2" stroke="none"/><path d="M 26.0,156.0 L 103.7,52.0 L 181.4,52.0 L 298.0,208.0 L 414.6,208.0" fill="none" stroke="#06a" stroke-width="2"/><text x="142.6" y="114.4" fill="#06a" font-size="12" text-anchor="middle">+16</text><text x="352.4" y="187.2" fill="#c33" font-size="12" text-anchor="middle">&#8722;7</text></svg><div class="cap">Blue area counts forward motion, red area backward motion. Displacement subtracts them, distance adds them.</div></div>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Displacement is the signed area under $v$. Above the axis (blue): triangle $4$, rectangle $8$, triangle $4$, total $16$. Below (red): triangle $1$ and rectangle $6$, total $7$.</p>
+      <p>$$ \text{displacement} = 16 - 7 = 9\ \text{m}, \qquad \text{distance} = 16 + 7 = 23\ \text{m}. $$</p>
+      <p>The position at $t = 10$ is $3 + 9 = 12$ m. The acceleration at $t=5$ is the slope of the segment from $(4,4)$ to $(7,-2)$, which is $-2\ \text{m/s}^2$.</p>
+      <p>The particle moves forward while $v&gt;0$ and backward after $t=6$, so it is farthest from the start at $t = 6$, $16$ m away.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec22" class="chapter">22. FTC, Part 1</h3>
+  <p class="lede">$\frac{d}{dx}\int_a^x f(t)\,dt = f(x)$: the area grows at a rate equal to the height of the graph at the moving edge. When the upper limit is $u(x)$ instead of $x$, the chain rule adds a factor $u'(x)$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(a).</b> Calculate $f'(\pi/4)$ if $f(x) = \int_{-x}^x \cos(t) dt$, without finding an antiderivative.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Split at $0$: $f(x) = \int_0^x \cos t\,dt - \int_0^{-x}\cos t\,dt$. By FTC 1 and the chain rule,</p>
+      <p>$$ f'(x) = \cos x - \cos(-x)\cdot(-1) = 2\cos x. $$</p>
+      <p>So $f'\parens{\frac\pi4} = \sqrt2$. Both edges move outward as $x$ grows, so the area gains $\cos$ at each end.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(c).</b> Find $g'(x)$ if $g(x) = \int_{x^2}^4 t\sqrt{1+t^2}\, dt$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Flip the limits so the variable is on top: $g(x) = -\int_4^{x^2} t\sqrt{1+t^2}\,dt$. Then</p>
+      <p>$$ g'(x) = -x^2\sqrt{1+x^4}\cdot 2x = -2x^3\sqrt{1+x^4}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(e).</b> Find $g'(x)$ if $g(x) = \int_{2x}^{x^3} \frac{1}{1+t^4} dt$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Split at $0$ and apply FTC 1 with the chain rule to each piece.</p>
+      <p>$$ g'(x) = \frac{3x^2}{1+x^{12}} - \frac{2}{1+16x^4}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(f).</b> Let $g(x) = \int_0^x f(t) dt$, where $f$ is graphed below. Find $g(4)$, $g'(4)$, $g''(4)$, and where on $[0,6]$ $g$ is largest.</p>
+    <div class="fig"><svg viewBox="0 0 400 240" width="400" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0"/><line x1="79.5" y1="214.0" x2="79.5" y2="26.0"/><line x1="133.1" y1="214.0" x2="133.1" y2="26.0"/><line x1="186.6" y1="214.0" x2="186.6" y2="26.0"/><line x1="240.2" y1="214.0" x2="240.2" y2="26.0"/><line x1="293.7" y1="214.0" x2="293.7" y2="26.0"/><line x1="347.2" y1="214.0" x2="347.2" y2="26.0"/><line x1="26.0" y1="196.9" x2="374.0" y2="196.9"/><line x1="26.0" y1="162.7" x2="374.0" y2="162.7"/><line x1="26.0" y1="128.5" x2="374.0" y2="128.5"/><line x1="26.0" y1="94.4" x2="374.0" y2="94.4"/><line x1="26.0" y1="60.2" x2="374.0" y2="60.2"/><line x1="26.0" y1="26.0" x2="374.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="128.5" x2="374.0" y2="128.5"/><line x1="26.0" y1="214.0" x2="26.0" y2="26.0"/></g><g font-size="10" fill="#555"><text x="79.5" y="141.5" text-anchor="middle">1</text><text x="133.1" y="141.5" text-anchor="middle">2</text><text x="186.6" y="141.5" text-anchor="middle">3</text><text x="240.2" y="141.5" text-anchor="middle">4</text><text x="293.7" y="141.5" text-anchor="middle">5</text><text x="347.2" y="141.5" text-anchor="middle">6</text><text x="21.0" y="200.9" text-anchor="end">-2</text><text x="21.0" y="166.7" text-anchor="end">-1</text><text x="21.0" y="98.4" text-anchor="end">1</text><text x="21.0" y="64.2" text-anchor="end">2</text><text x="21.0" y="30.0" text-anchor="end">3</text><text x="370.0" y="122.5" text-anchor="end" font-style="italic">t</text><text x="32.0" y="36.0" font-style="italic">y</text></g><path d="M 26.0,128.5 L 26.0,60.2 L 133.1,60.2 L 240.2,128.5 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 26.0,60.2 L 133.1,60.2 L 347.2,196.9" fill="none" stroke="#06a" stroke-width="2"/><text x="79.5" y="85.8" fill="#06a" font-size="11" text-anchor="middle">y = f(t)</text></svg><div class="cap">The shaded area is $g(4) = 6$. Past $t = 4$ the area counts negative and $g$ starts to drop.</div></div>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$g(4)$ is the area from $0$ to $4$: a $2\times2$ square plus a triangle with base $2$ and height $2$, so $g(4) = 4 + 2 = 6$.</p>
+      <p>By FTC 1, $g'(4) = f(4) = 0$, and $g''(4) = f'(4) = -1$, the slope of the line.</p>
+      <p>$g$ increases while $f &gt; 0$ and decreases once $f&lt;0$, so $g$ is largest at $x = 4$, with $g(4) = 6$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec23" class="chapter">23. FTC, Part 2</h3>
+  <p class="lede">To integrate $f$ over $[a,b]$, find any antiderivative $F$ and compute $F(b) - F(a)$. The constant $C$ cancels, so we leave it out.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(a).</b> Calculate $\int_{32}^{34} 2x\, dx$ as an area, then with FTC 2.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The region under $y=2x$ from $32$ to $34$ is a trapezoid with width $2$ and heights $64$ and $68$: area $2\cdot\frac{64+68}{2} = 132$.</p>
+      <p>With FTC 2, $x^2$ is an antiderivative: $34^2 - 32^2 = (34-32)(34+32) = 132$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(b).</b> Evaluate $\int_1^4 \parens{3\sqrt{x} - \frac{2}{x^2}} dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ \int_1^4\parens{3x^{1/2} - 2x^{-2}}dx = \brac{2x^{3/2} + \frac{2}{x}}_1^4 = \parens{16 + \frac12} - (2 + 2) = \frac{25}{2}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(f).</b> What is wrong with $\int_{-1}^2 \frac{1}{x^2} dx = \brac{-\frac{1}{x}}_{-1}^2 = -\frac{3}{2}$?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>FTC 2 needs $f$ continuous on $[a,b]$, and $\frac{1}{x^2}$ blows up at $x=0$, inside $[-1,2]$. The answer cannot be right anyway, because $\frac1{x^2} &gt; 0$ and the integral of a positive function cannot be negative. (This integral is improper, and it diverges. Improper integrals come in Calculus 2.)</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec24" class="chapter">24. Substitution</h3>
+  <p class="lede">Substitution is the chain rule read backward. Look for an inside function $u$ whose derivative $du$ also appears as a factor.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(a).</b> Evaluate $\int_1^2 x\sqrt{x-1}\,dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $u = x - 1$, so $du = dx$ and $x = u + 1$. The bounds become $u=0$ and $u=1$.</p>
+      <p>$$ \int_0^1 (u+1)u^{1/2}\,du = \brac{\frac25u^{5/2} + \frac23u^{3/2}}_0^1 = \frac25 + \frac23 = \frac{16}{15}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(c).</b> Show that $u$-substitution undoes the chain rule by computing $\int_a^b g'(h(x))h'(x)\,dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $u = h(x)$, so $du = h'(x)\,dx$, and the bounds become $h(a)$ and $h(b)$.</p>
+      <p>$$ \int_a^b g'(h(x))h'(x)\,dx = \int_{h(a)}^{h(b)} g'(u)\,du = g(h(b)) - g(h(a)). $$</p>
+      <p>By the chain rule, $g'(h(x))h'(x)$ is the derivative of $g(h(x))$, and FTC 2 gives the same answer directly.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(e).</b> Evaluate $\int_0^1 x \cos\parens{\frac{\pi x^2}{2}} dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $u = \frac{\pi x^2}{2}$, so $du = \pi x\,dx$ and $x\,dx = \frac{du}{\pi}$. The bounds become $0$ and $\frac\pi2$.</p>
+      <p>$$ \frac1\pi\int_0^{\pi/2}\cos u\,du = \frac1\pi\brac{\sin u}_0^{\pi/2} = \frac1\pi. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(i).</b> Evaluate $\int_{-2}^1 x\sqrt{x+3}\, dx$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Let $u = x+3$, so $du = dx$, $x = u - 3$, and the bounds become $1$ and $4$.</p>
+      <p>$$ \int_1^4 (u-3)u^{1/2}\,du = \brac{\frac25u^{5/2} - 2u^{3/2}}_1^4 = \parens{\frac{64}{5} - 16} - \parens{\frac25 - 2} = -\frac85. $$</p>
+      <p>The answer is negative because $x\sqrt{x+3}$ is negative on most of $[-2,1]$.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(k).</b> Substitute $u=2x-1$ in $\int_{1/2}^1 (2x-1)\, dx$ without evaluating. Approximate both the $x$-integral and the $u$-integral with 2 right-endpoint rectangles.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$du = 2\,dx$, so $dx = \frac{du}{2}$, and $x = \frac12, 1$ become $u = 0, 1$. The integral becomes $\int_0^1 \frac u2\,du$.</p>
+      <p>The $x$-integral: $\Delta x = \frac14$, right endpoints $\frac34, 1$, heights $\frac12, 1$, sum $\frac14\cdot\frac32 = \frac38$. The $u$-integral: $\Delta u = \frac12$, right endpoints $\frac12, 1$, heights $\frac14, \frac12$, sum $\frac12\cdot\frac34 = \frac38$.</p>
+      <p>They agree. The substitution makes every rectangle twice as wide and half as tall, so each area is unchanged. (Both integrals equal $\frac14$.)</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec25" class="chapter">25. Area between curves</h3>
+  <p class="lede">Area between curves is the integral of (top minus bottom), between the points where the curves meet. If the region is easier to describe left to right, integrate (right minus left) in $y$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(a).</b> Sketch the region between $y = x$ and $y = x^2 - 6$ and find its area.</p>
+    <div class="fig"><svg viewBox="0 0 360 300" width="360" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="46.5" y1="274.0" x2="46.5" y2="26.0"/><line x1="87.6" y1="274.0" x2="87.6" y2="26.0"/><line x1="128.7" y1="274.0" x2="128.7" y2="26.0"/><line x1="169.7" y1="274.0" x2="169.7" y2="26.0"/><line x1="210.8" y1="274.0" x2="210.8" y2="26.0"/><line x1="251.9" y1="274.0" x2="251.9" y2="26.0"/><line x1="292.9" y1="274.0" x2="292.9" y2="26.0"/><line x1="334.0" y1="274.0" x2="334.0" y2="26.0"/><line x1="26.0" y1="274.0" x2="334.0" y2="274.0"/><line x1="26.0" y1="253.3" x2="334.0" y2="253.3"/><line x1="26.0" y1="232.7" x2="334.0" y2="232.7"/><line x1="26.0" y1="212.0" x2="334.0" y2="212.0"/><line x1="26.0" y1="191.3" x2="334.0" y2="191.3"/><line x1="26.0" y1="170.7" x2="334.0" y2="170.7"/><line x1="26.0" y1="150.0" x2="334.0" y2="150.0"/><line x1="26.0" y1="129.3" x2="334.0" y2="129.3"/><line x1="26.0" y1="108.7" x2="334.0" y2="108.7"/><line x1="26.0" y1="88.0" x2="334.0" y2="88.0"/><line x1="26.0" y1="67.3" x2="334.0" y2="67.3"/><line x1="26.0" y1="46.7" x2="334.0" y2="46.7"/><line x1="26.0" y1="26.0" x2="334.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="129.3" x2="334.0" y2="129.3"/><line x1="169.7" y1="274.0" x2="169.7" y2="26.0"/></g><g font-size="10" fill="#555"><text x="46.5" y="142.3" text-anchor="middle">-3</text><text x="87.6" y="142.3" text-anchor="middle">-2</text><text x="128.7" y="142.3" text-anchor="middle">-1</text><text x="210.8" y="142.3" text-anchor="middle">1</text><text x="251.9" y="142.3" text-anchor="middle">2</text><text x="292.9" y="142.3" text-anchor="middle">3</text><text x="334.0" y="142.3" text-anchor="middle">4</text><text x="164.7" y="278.0" text-anchor="end">-7</text><text x="164.7" y="257.3" text-anchor="end">-6</text><text x="164.7" y="236.7" text-anchor="end">-5</text><text x="164.7" y="216.0" text-anchor="end">-4</text><text x="164.7" y="195.3" text-anchor="end">-3</text><text x="164.7" y="174.7" text-anchor="end">-2</text><text x="164.7" y="154.0" text-anchor="end">-1</text><text x="164.7" y="112.7" text-anchor="end">1</text><text x="164.7" y="92.0" text-anchor="end">2</text><text x="164.7" y="71.3" text-anchor="end">3</text><text x="164.7" y="50.7" text-anchor="end">4</text><text x="164.7" y="30.0" text-anchor="end">5</text><text x="330.0" y="123.3" text-anchor="end" font-style="italic">x</text><text x="175.7" y="36.0" font-style="italic">y</text></g><path d="M 87.6,170.7 L 90.2,169.4 L 92.7,168.1 L 95.3,166.8 L 97.9,165.5 L 100.4,164.2 L 103.0,162.9 L 105.6,161.6 L 108.1,160.3 L 110.7,159.0 L 113.3,157.8 L 115.8,156.5 L 118.4,155.2 L 121.0,153.9 L 123.5,152.6 L 126.1,151.3 L 128.7,150.0 L 131.2,148.7 L 133.8,147.4 L 136.4,146.1 L 138.9,144.8 L 141.5,143.5 L 144.1,142.2 L 146.6,141.0 L 149.2,139.7 L 151.8,138.4 L 154.3,137.1 L 156.9,135.8 L 159.5,134.5 L 162.0,133.2 L 164.6,131.9 L 167.2,130.6 L 169.7,129.3 L 172.3,128.0 L 174.9,126.8 L 177.4,125.5 L 180.0,124.2 L 182.6,122.9 L 185.1,121.6 L 187.7,120.3 L 190.3,119.0 L 192.8,117.7 L 195.4,116.4 L 198.0,115.1 L 200.5,113.8 L 203.1,112.5 L 205.7,111.2 L 208.2,110.0 L 210.8,108.7 L 213.4,107.4 L 215.9,106.1 L 218.5,104.8 L 221.1,103.5 L 223.6,102.2 L 226.2,100.9 L 228.8,99.6 L 231.3,98.3 L 233.9,97.0 L 236.5,95.8 L 239.0,94.5 L 241.6,93.2 L 244.2,91.9 L 246.7,90.6 L 249.3,89.3 L 251.9,88.0 L 254.4,86.7 L 257.0,85.4 L 259.6,84.1 L 262.1,82.8 L 264.7,81.5 L 267.3,80.2 L 269.8,79.0 L 272.4,77.7 L 275.0,76.4 L 277.5,75.1 L 280.1,73.8 L 282.7,72.5 L 285.2,71.2 L 287.8,69.9 L 290.4,68.6 L 292.9,67.3 L 292.9,67.3 L 290.4,75.0 L 287.8,82.5 L 285.2,89.9 L 282.7,97.0 L 280.1,104.1 L 277.5,110.9 L 275.0,117.6 L 272.4,124.2 L 269.8,130.5 L 267.3,136.8 L 264.7,142.8 L 262.1,148.7 L 259.6,154.4 L 257.0,160.0 L 254.4,165.4 L 251.9,170.7 L 249.3,175.8 L 246.7,180.7 L 244.2,185.4 L 241.6,190.0 L 239.0,194.5 L 236.5,198.8 L 233.9,202.9 L 231.3,206.8 L 228.8,210.6 L 226.2,214.3 L 223.6,217.7 L 221.1,221.0 L 218.5,224.2 L 215.9,227.2 L 213.4,230.0 L 210.8,232.7 L 208.2,235.2 L 205.7,237.5 L 203.1,239.7 L 200.5,241.7 L 198.0,243.6 L 195.4,245.3 L 192.8,246.8 L 190.3,248.2 L 187.7,249.4 L 185.1,250.4 L 182.6,251.3 L 180.0,252.0 L 177.4,252.6 L 174.9,253.0 L 172.3,253.3 L 169.7,253.3 L 167.2,253.3 L 164.6,253.0 L 162.0,252.6 L 159.5,252.0 L 156.9,251.3 L 154.3,250.4 L 151.8,249.4 L 149.2,248.2 L 146.6,246.8 L 144.1,245.3 L 141.5,243.6 L 138.9,241.7 L 136.4,239.7 L 133.8,237.5 L 131.2,235.2 L 128.7,232.7 L 126.1,230.0 L 123.5,227.2 L 121.0,224.2 L 118.4,221.0 L 115.8,217.7 L 113.3,214.3 L 110.7,210.6 L 108.1,206.8 L 105.6,202.9 L 103.0,198.8 L 100.4,194.5 L 97.9,190.0 L 95.3,185.4 L 92.7,180.7 L 90.2,175.8 L 87.6,170.7 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 38.3,195.5 L 40.7,194.3 L 43.1,193.1 L 45.5,191.9 L 47.9,190.6 L 50.3,189.4 L 52.7,188.2 L 55.1,187.0 L 57.5,185.8 L 59.9,184.6 L 62.3,183.4 L 64.7,182.2 L 67.1,181.0 L 69.5,179.8 L 71.9,178.6 L 74.3,177.4 L 76.6,176.2 L 79.0,175.0 L 81.4,173.8 L 83.8,172.6 L 86.2,171.4 L 88.6,170.1 L 91.0,168.9 L 93.4,167.7 L 95.8,166.5 L 98.2,165.3 L 100.6,164.1 L 103.0,162.9 L 105.4,161.7 L 107.8,160.5 L 110.2,159.3 L 112.6,158.1 L 115.0,156.9 L 117.4,155.7 L 119.8,154.5 L 122.2,153.3 L 124.6,152.1 L 127.0,150.9 L 129.4,149.7 L 131.7,148.4 L 134.1,147.2 L 136.5,146.0 L 138.9,144.8 L 141.3,143.6 L 143.7,142.4 L 146.1,141.2 L 148.5,140.0 L 150.9,138.8 L 153.3,137.6 L 155.7,136.4 L 158.1,135.2 L 160.5,134.0 L 162.9,132.8 L 165.3,131.6 L 167.7,130.4 L 170.1,129.2 L 172.5,128.0 L 174.9,126.8 L 177.3,125.5 L 179.7,124.3 L 182.1,123.1 L 184.4,121.9 L 186.8,120.7 L 189.2,119.5 L 191.6,118.3 L 194.0,117.1 L 196.4,115.9 L 198.8,114.7 L 201.2,113.5 L 203.6,112.3 L 206.0,111.1 L 208.4,109.9 L 210.8,108.7 L 213.2,107.5 L 215.6,106.3 L 218.0,105.0 L 220.4,103.8 L 222.8,102.6 L 225.2,101.4 L 227.6,100.2 L 230.0,99.0 L 232.4,97.8 L 234.8,96.6 L 237.2,95.4 L 239.5,94.2 L 241.9,93.0 L 244.3,91.8 L 246.7,90.6 L 249.1,89.4 L 251.5,88.2 L 253.9,87.0 L 256.3,85.8 L 258.7,84.6 L 261.1,83.4 L 263.5,82.1 L 265.9,80.9 L 268.3,79.7 L 270.7,78.5 L 273.1,77.3 L 275.5,76.1 L 277.9,74.9 L 280.3,73.7 L 282.7,72.5 L 285.1,71.3 L 287.5,70.1 L 289.9,68.9 L 292.2,67.7 L 294.6,66.5 L 297.0,65.3 L 299.4,64.1 L 301.8,62.9 L 304.2,61.7 L 306.6,60.4 L 309.0,59.2 L 311.4,58.0 L 313.8,56.8 L 316.2,55.6 L 318.6,54.4 L 321.0,53.2 L 323.4,52.0 L 325.8,50.8" fill="none" stroke="#06a" stroke-width="2"/><path d="M 38.3,41.7 L 40.6,48.9 L 42.8,56.0 L 45.1,63.0 L 47.4,69.8 L 49.6,76.5 L 51.9,83.1 L 54.1,89.6 L 56.4,95.9 L 58.6,102.1 L 60.9,108.2 L 63.2,114.2 L 65.4,120.0 L 67.7,125.7 L 69.9,131.3 L 72.2,136.8 L 74.5,142.1 L 76.7,147.3 L 79.0,152.4 L 81.2,157.4 L 83.5,162.2 L 85.8,166.9 L 88.0,171.5 L 90.3,176.0 L 92.5,180.3 L 94.8,184.5 L 97.0,188.6 L 99.3,192.5 L 101.6,196.4 L 103.8,200.1 L 106.1,203.7 L 108.3,207.1 L 110.6,210.5 L 112.9,213.7 L 115.1,216.8 L 117.4,219.7 L 119.6,222.6 L 121.9,225.3 L 124.1,227.9 L 126.4,230.3 L 128.7,232.7 L 130.9,234.9 L 133.2,237.0 L 135.4,238.9 L 137.7,240.8 L 140.0,242.5 L 142.2,244.1 L 144.5,245.5 L 146.7,246.9 L 149.0,248.1 L 151.3,249.1 L 153.5,250.1 L 155.8,250.9 L 158.0,251.7 L 160.3,252.2 L 162.5,252.7 L 164.8,253.0 L 167.1,253.2 L 169.3,253.3 L 171.6,253.3 L 173.8,253.1 L 176.1,252.8 L 178.4,252.4 L 180.6,251.9 L 182.9,251.2 L 185.1,250.4 L 187.4,249.5 L 189.7,248.5 L 191.9,247.3 L 194.2,246.0 L 196.4,244.6 L 198.7,243.1 L 200.9,241.4 L 203.2,239.6 L 205.5,237.7 L 207.7,235.7 L 210.0,233.5 L 212.2,231.2 L 214.5,228.8 L 216.8,226.2 L 219.0,223.6 L 221.3,220.8 L 223.5,217.9 L 225.8,214.8 L 228.0,211.7 L 230.3,208.4 L 232.6,205.0 L 234.8,201.4 L 237.1,197.7 L 239.3,194.0 L 241.6,190.0 L 243.9,186.0 L 246.1,181.8 L 248.4,177.5 L 250.6,173.1 L 252.9,168.6 L 255.2,163.9 L 257.4,159.1 L 259.7,154.2 L 261.9,149.2 L 264.2,144.0 L 266.4,138.7 L 268.7,133.3 L 271.0,127.8 L 273.2,122.1 L 275.5,116.3 L 277.7,110.4 L 280.0,104.3 L 282.3,98.2 L 284.5,91.9 L 286.8,85.5 L 289.0,78.9 L 291.3,72.3 L 293.5,65.5 L 295.8,58.6 L 298.1,51.5 L 300.3,44.3 L 302.6,37.1 L 304.8,29.6 L 307.1,22.1 L 309.4,14.4" fill="none" stroke="#c33" stroke-width="2"/><text x="71.2" y="216.1" fill="#06a" font-size="11" text-anchor="middle">y = x</text><text x="292.9" y="224.4" fill="#c33" font-size="11" text-anchor="middle">y = x&#178; &#8722; 6</text></svg><div class="cap">The line is on top between $x=-2$ and $x=3$.</div></div>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>They meet where $x = x^2 - 6$, that is $(x-3)(x+2) = 0$: $x = -2, 3$. Between them the line is on top (at $x=0$: $0 &gt; -6$).</p>
+      <p>$$ \int_{-2}^3 \parens{x - x^2 + 6}dx = \brac{\frac{x^2}{2} - \frac{x^3}{3} + 6x}_{-2}^3 = \frac{27}{2} + \frac{22}{3} = \frac{125}{6}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(c).</b> For $y = x^2$ and $y = 8 - x^2$, set up the area integrating with respect to $x$, then $y$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>They meet at $x = \pm 2$, $y = 4$. In $x$: $\int_{-2}^2 \parens{(8-x^2) - x^2}dx = \frac{64}{3}$.</p>
+      <p>In $y$ the right and left edges change formula at $y=4$. For $0\le y\le4$ the width is $\sqrt y - (-\sqrt y)$, and for $4\le y\le 8$ it is $2\sqrt{8-y}$.</p>
+      <p>$$ \int_0^4 2\sqrt{y}\,dy + \int_4^8 2\sqrt{8-y}\,dy = \frac{32}{3} + \frac{32}{3} = \frac{64}{3}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(d).</b> Find the area between $x = y^2$ and $x = y + 2$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>They meet where $y^2 = y + 2$: $y = -1, 2$. The line is to the right (at $y = 0$: $2 &gt; 0$).</p>
+      <p>$$ \int_{-1}^{2}\parens{y + 2 - y^2}dy = \brac{\frac{y^2}{2} + 2y - \frac{y^3}{3}}_{-1}^2 = \frac{10}{3} + \frac76 = \frac92. $$</p>
+      <p>In $x$ this region would need two integrals, since the bottom edge changes formula at $x = 1$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec26" class="chapter">26. Average value</h3>
+  <p class="lede">The average value $f_{\text{ave}} = \frac{1}{b-a}\int_a^b f(x)\,dx$ is the height of the rectangle on $[a,b]$ with the same area as the region under $f$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(a).</b> Find the average value of $f(x) = \frac{1}{x^2}$ on $[1,3]$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ \frac{1}{3-1}\int_1^3 x^{-2}\,dx = \frac12\brac{-\frac1x}_1^3 = \frac12\parens{1 - \frac13} = \frac13. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(c).</b> Find the average value of $f(x) = x^2$ on $[0,3]$ and a $c$ in $[0,3]$ with $f(c)$ equal to it.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$f_{\text{ave}} = \frac13\int_0^3x^2\,dx = \frac13\cdot 9 = 3$. Then $c^2 = 3$ gives $c = \sqrt3$, which is in $[0,3]$. The Mean Value Theorem for integrals says such a $c$ always exists for continuous $f$.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec27" class="chapter">27. Volumes</h3>
+  <p class="lede">Slice the solid perpendicular to the axis. Each slice is a disk or a washer, with volume $\pi(R^2 - r^2)$ times its thickness, where $R$ is the outer radius and $r$ the inner radius, both measured from the axis.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(b).</b> Find the volume when the region between $y = x$ and $y = x^2$ is revolved around the $x$-axis.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>The curves meet at $x = 0, 1$, and $x \ge x^2$ there. A slice at $x$ is a washer with $R = x$, $r = x^2$.</p>
+      <p>$$ V = \pi\int_0^1\parens{x^2 - x^4}dx = \pi\parens{\frac13 - \frac15} = \frac{2\pi}{15}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(e).</b> Revolve the region between $y = 3x$ and $y = x^2$ around the $y$-axis, and then around the line $y=-1$.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>They meet at $(0,0)$ and $(3,9)$. Around the $y$-axis, slice horizontally. At height $y$ the region runs from the line $x = \frac y3$ out to the parabola $x = \sqrt y$, so $R = \sqrt y$ and $r = \frac y3$.</p>
+      <p>$$ V = \pi\int_0^9\parens{y - \frac{y^2}{9}}dy = \pi\parens{\frac{81}{2} - 27} = \frac{27\pi}{2}. $$</p>
+      <p>Around $y = -1$, slice vertically. The radii are distances to $y=-1$: $R = 3x + 1$ and $r = x^2 + 1$.</p>
+      <p>$$ V = \pi\int_0^3\parens{(3x+1)^2 - (x^2+1)^2}dx = \pi\int_0^3\parens{-x^4 + 7x^2 + 6x}dx = \frac{207\pi}{5}. $$</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec28" class="chapter">28. Work</h3>
+  <p class="lede">Work is force times distance when the force is constant. When it varies, chop the motion into small pieces and add them: $W = \int_a^b F(x)\,dx$. For a spring, Hooke's Law says $F(x) = kx$, where $x$ is the stretch beyond natural length.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(a).</b> If 2 J of work stretches a spring from 30 cm (natural length) to 42 cm, how much work stretches it from 35 cm to 40 cm? When pulled with 30 N, what is its length?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>Work in meters: stretching $0.12$ m takes $\int_0^{0.12}kx\,dx = 0.0072k = 2$, so $k = \frac{2500}{9}$ N/m.</p>
+      <p>$$ W = \int_{0.05}^{0.10}kx\,dx = \frac k2\parens{0.01 - 0.0025} = \frac{25}{24} \approx 1.04\ \text{J}. $$</p>
+      <p>With $30$ N, $x = \frac{30}{k} = 0.108$ m, so the spring is $30 + 10.8 = 40.8$ cm long.</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(b).</b> A force of 12 N holds a spring stretched from its natural length of 10 cm to 14 cm. How much work stretches it from 12 cm to 16 cm?</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$12 = k(0.04)$ gives $k = 300$ N/m. The stretch goes from $0.02$ m to $0.06$ m.</p>
+      <p>$$ W = \int_{0.02}^{0.06}300x\,dx = 150\parens{0.0036 - 0.0004} = 0.48\ \text{J}. $$</p>
+    </div>
+  </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(c).</b> A spring has natural length 10 cm and spring constant $k$. Compare the work $W_1$ from 10 cm to 15 cm with $W_2$ from 15 cm to 20 cm.</p>
+    <div class="sol">
+      <p class="sollabel">Solution</p>
+      <p>$$ W_1 = \int_0^{0.05}kx\,dx = \frac{k}{800}, \qquad W_2 = \int_{0.05}^{0.10}kx\,dx = \frac{3k}{800}. $$</p>
+      <p>So $W_2 = 3W_1$. The force grows with the stretch, so the second 5 cm is pulled against a larger force. On the graph of $F = kx$, $W_1$ is a triangle and $W_2$ is a trapezoid three times its size.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

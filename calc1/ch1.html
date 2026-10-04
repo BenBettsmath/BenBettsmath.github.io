@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc I · Functions and Limits</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<style>/* at phone width, wide math scrolls inside its own block instead of the page */
+.formula, .thm, .defn, .pitfall, .note, .page-content p, .page-content li { overflow-x: auto; overflow-y: hidden; }</style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Chapter 1 · Functions and Limits</h2>
+<div class="chapter-nav"><span class="disabled">← previous</span><a href="outline.html">outline</a><a href="ch2.html">next →</a></div>
+<p>Limits are the one new idea in Calculus I. Every later definition (derivative, integral) is a limit. This chapter builds the limit from the slope of a tangent line, gives the rules for computing limits, and uses limits to define continuity.</p>
+<div class="section"><h3>1.1 The Tangent and Velocity Problems</h3>
+
+<p class="part"><span class="dimtag">Geometry</span>A <b>secant line</b> to the graph of $f$ is a line through two points of the graph. Through $P = (a, f(a))$ and $Q = (x, f(x))$ its slope is</p>
+<div class="formula">$m_{PQ} = \dfrac{f(x) - f(a)}{x - a}.$</div>
+<p>The <b>tangent line</b> at $P$ is the line through $P$ whose slope is the value the secant slopes $m_{PQ}$ approach as $Q$ slides along the curve toward $P$. Writing $x = a + h$, so $h$ is the horizontal gap between $Q$ and $P$, the tangent slope is the value $\dfrac{f(a + h) - f(a)}{h}$ approaches as $h \to 0$.</p>
+
+<p><em>Why we cannot just plug in $h = 0$.</em> A slope needs two points. At $h = 0$ the two points coincide and the quotient is $0/0$. The limit is how we get a slope from one point: we use nearby second points and watch what the slopes settle on.</p>
+
+<p><b>Example.</b> $f(x) = \sqrt x$ at $P = (4, 2)$. The secant slope is $\dfrac{\sqrt{4 + h} - 2}{h}$. Multiply top and bottom by $\sqrt{4 + h} + 2$ to get $\dfrac{(4 + h) - 4}{h(\sqrt{4 + h} + 2)} = \dfrac{1}{\sqrt{4 + h} + 2}$, which approaches $\tfrac14$ as $h \to 0$. The tangent line is $y - 2 = \tfrac14 (x - 4)$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="secantTangent"></canvas><div class="fig-cap"><b>Secants to the tangent.</b> $Q$ approaches $P$ from the right ($h &gt; 0$) and from the left ($h &lt; 0$). The secant slope approaches $\tfrac14$ either way.</div></div>
+
+<p><b>Velocity.</b> If $s(t)$ is the position of an object at time $t$, its <b>average velocity</b> over $[a, a + h]$ is $\dfrac{s(a + h) - s(a)}{h}$, the slope of a secant line on the graph of $s$. Its <b>instantaneous velocity</b> at time $a$ is the value these average velocities approach as $h \to 0$, the slope of the tangent line. Tangent slope and velocity are the same limit.</p>
+</div>
+
+<div class="section"><h3>1.2 The Limit of a Function</h3>
+
+<p class="part"><span class="dimtag">Concept</span>We write $\displaystyle\lim_{x \to a} f(x) = L$ and say "the limit of $f(x)$ as $x$ approaches $a$ is $L$" if we can make $f(x)$ as close to $L$ as we like by taking $x$ close enough to $a$, but not equal to $a$.</p>
+
+<p><em>Why "not equal to $a$".</em> The limit describes what $f$ does near $a$. The value $f(a)$ may differ from $L$, or $f(a)$ may not exist at all (as in the secant slope at $h = 0$). The limit ignores it.</p>
+
+<p><b>One-sided limits.</b> $\displaystyle\lim_{x \to a^-} f(x) = L$ means $f(x)$ gets close to $L$ as $x$ approaches $a$ from the left ($x &lt; a$), and $\displaystyle\lim_{x \to a^+} f(x) = L$ means the same from the right ($x &gt; a$).</p>
+<div class="formula">$\displaystyle\lim_{x \to a} f(x) = L \quad\text{if and only if}\quad \lim_{x \to a^-} f(x) = L \ \text{ and } \ \lim_{x \to a^+} f(x) = L.$</div>
+<p>If the two one-sided limits differ, $\lim_{x \to a} f(x)$ does not exist (DNE).</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="oneSided"></canvas><div class="fig-cap"><b>A jump.</b> $f(x) = x + 1$ for $x &lt; 1$, $f(x) = \tfrac12 + (x - 1)^2$ for $x &gt; 1$, and $f(1) = 3$. The left limit is $2$, the right limit is $\tfrac12$, so the two-sided limit does not exist. The value $f(1) = 3$ plays no role.</div></div>
+
+<p><b>Infinite limits.</b> $\displaystyle\lim_{x \to a} f(x) = \infty$ means $f(x)$ becomes arbitrarily large (and positive) as $x$ approaches $a$, $x \neq a$. Similarly for $-\infty$ and for one-sided versions. The limit still does not exist as a number. Writing $\infty$ records how it fails.</p>
+
+<p><b>Vertical asymptote.</b> The line $x = a$ is a <b>vertical asymptote</b> of $y = f(x)$ if at least one of $\lim_{x \to a^-} f(x)$ or $\lim_{x \to a^+} f(x)$ is $\infty$ or $-\infty$.</p>
+
+<p><em>How to find the sign.</em> For a quotient whose denominator approaches $0$ while the numerator approaches a nonzero number, the size blows up. The sign comes from the signs of the numerator and denominator on the side we approach from. Example: $\displaystyle\lim_{x \to 3^-}\frac{x + 3}{x - 3}$. The numerator approaches $6 &gt; 0$, and for $x &lt; 3$ the denominator is a small negative number, so the limit is $-\infty$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="vertAsym"></canvas><div class="fig-cap"><b>Vertical asymptote at $x = 2$.</b> $f(x) = \dfrac{1}{x - 2}$. From the left the denominator is small and negative, so $f \to -\infty$. From the right it is small and positive, so $f \to \infty$.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A table of values or a calculator can mislead. $\sin(\pi/x)$ equals $0$ at every $x = 1, \tfrac12, \tfrac13, \ldots$, yet $\lim_{x \to 0}\sin(\pi/x)$ does not exist since $\sin(\pi/x)$ also equals $1$ at $x = \tfrac{2}{5}, \tfrac{2}{9}, \ldots$. Limits are settled by algebra and theorems, not by a few sample points.</p></div>
+</div>
+
+<div class="section"><h3>1.3 Calculating Limits Using the Limit Laws</h3>
+
+<p class="part"><span class="dimtag">Algebra</span><b>Limit laws.</b> Suppose $c$ is a constant and $\lim_{x \to a} f(x)$ and $\lim_{x \to a} g(x)$ both exist. Then</p>
+<ul class="tight">
+  <li>$\lim (f \pm g) = \lim f \pm \lim g$ and $\lim (c f) = c \lim f$</li>
+  <li>$\lim (f g) = \lim f \cdot \lim g$</li>
+  <li>$\lim (f / g) = \lim f / \lim g$, provided $\lim g \neq 0$</li>
+  <li>$\lim f^n = (\lim f)^n$ and $\lim \sqrt[n]{f} = \sqrt[n]{\lim f}$ ($n$ a positive integer, and $\lim f &gt; 0$ when $n$ is even)</li>
+</ul>
+<p><em>Why.</em> If $f$ is close to $L$ and $g$ is close to $M$, then $f + g$ is close to $L + M$, $fg$ is close to $LM$, and so on. Arithmetic does not destroy closeness (except division by something close to $0$).</p>
+
+<p><b>Direct substitution.</b> If $f$ is a polynomial or a rational function and $a$ is in the domain of $f$, then $\lim_{x \to a} f(x) = f(a)$. The same holds for roots and trigonometric functions at numbers in their domains.</p>
+
+<p><b>When substitution gives $0/0$.</b> The form $0/0$ says nothing yet. Rewrite $f$ as a function $g$ with $f(x) = g(x)$ for $x \neq a$, then substitute into $g$. This is legal because the limit ignores $x = a$.</p>
+<ul class="tight">
+  <li><em>Factor and cancel.</em> $\displaystyle\lim_{x \to 5}\frac{x^2 - 25}{x - 5} = \lim_{x \to 5}(x + 5) = 10.$</li>
+  <li><em>Rationalize.</em> Multiply by the conjugate, as in the $\sqrt{4 + h}$ example of 1.1.</li>
+  <li><em>Combine fractions.</em> $\displaystyle\lim_{x \to 2}\frac{\frac1x - \frac12}{x - 2} = \lim_{x \to 2}\frac{2 - x}{2x(x - 2)} = \lim_{x \to 2}\frac{-1}{2x} = -\frac14.$</li>
+  <li><em>Expand.</em> $\displaystyle\lim_{h \to 0}\frac{(2 + h)^2 - 4}{h} = \lim_{h \to 0}\frac{4h + h^2}{h} = \lim_{h \to 0}(4 + h) = 4.$</li>
+</ul>
+
+<p><b>Piecewise functions.</b> At a break point, compute each one-sided limit with the formula that applies on that side, then compare.</p>
+
+<div class="thm"><div class="thm-name">Squeeze Theorem</div>If $g(x) \le f(x) \le h(x)$ for all $x$ near $a$ (except possibly at $a$) and $\displaystyle\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L$, then $\displaystyle\lim_{x \to a} f(x) = L$.</div>
+<p><em>Why.</em> $f$ is trapped between two functions that are both forced to $L$, so it has nowhere else to go.</p>
+
+<p><b>Example.</b> $\displaystyle\lim_{x \to 0} x^2\sin(1/x)$. The limit laws fail since $\lim_{x \to 0}\sin(1/x)$ does not exist. But $-1 \le \sin(1/x) \le 1$, so $-x^2 \le x^2\sin(1/x) \le x^2$ for $x \neq 0$. Both bounds approach $0$, so the limit is $0$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="squeeze"></canvas><div class="fig-cap"><b>Squeezed to zero.</b> $y = x^2\sin(1/x)$ oscillates infinitely often near $0$ but stays between $y = -x^2$ and $y = x^2$. Zoom in and both bounds flatten onto the $x$-axis.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The laws apply only when the individual limits exist. $\lim_{x \to 0} x \cdot \tfrac{1}{x} = 1$, but splitting it as $\lim x \cdot \lim \tfrac1x$ is meaningless since $\lim_{x \to 0}\tfrac1x$ does not exist. Likewise $\dfrac{\lim f}{\lim g}$ needs $\lim g \neq 0$.</p></div>
+</div>
+
+<div class="section"><h3>1.4 The Precise Definition of a Limit</h3>
+
+<p class="part"><span class="dimtag">Concept</span>"Close" in 1.2 is made exact with two tolerances. $\varepsilon$ (epsilon) is how close we demand $f(x)$ be to $L$, and $\delta$ (delta) is how close $x$ must be to $a$ to guarantee it.</p>
+<div class="defn"><div class="defn-name">Definition</div>$\displaystyle\lim_{x \to a} f(x) = L$ means: for every $\varepsilon &gt; 0$ there is a $\delta &gt; 0$ such that if $0 &lt; |x - a| &lt; \delta$, then $|f(x) - L| &lt; \varepsilon$.</div>
+<p><em>Picture.</em> Draw the horizontal band $L - \varepsilon &lt; y &lt; L + \varepsilon$. The limit is $L$ if, however thin the band, some vertical band $a - \delta &lt; x &lt; a + \delta$ (minus $x = a$) keeps the graph inside it. The condition $0 &lt; |x - a|$ is the "$x \neq a$" of 1.2.</p>
+<p><b>Example.</b> $\lim_{x \to 3}(2x + 1) = 7$. Given $\varepsilon &gt; 0$, we need $|(2x + 1) - 7| = 2|x - 3| &lt; \varepsilon$. Choosing $\delta = \varepsilon/2$ works: $|x - 3| &lt; \varepsilon/2$ gives $2|x - 3| &lt; \varepsilon$.</p>
+</div>
+
+<div class="section"><h3>1.5 Continuity</h3>
+
+<p class="part"><span class="dimtag">Concept</span>A function $f$ is <b>continuous at</b> $a$ if</p>
+<div class="formula">$\displaystyle\lim_{x \to a} f(x) = f(a).$</div>
+<p>This one equation asks for three things: $f(a)$ is defined, $\lim_{x \to a} f(x)$ exists, and the two are equal. To show continuity at a point, check all three. $f$ is <b>continuous from the left</b> at $a$ if $\lim_{x \to a^-} f(x) = f(a)$, and <b>from the right</b> if $\lim_{x \to a^+} f(x) = f(a)$. $f$ is <b>continuous on an interval</b> if it is continuous at every number in it (one-sided at an endpoint).</p>
+<p><em>Picture.</em> The graph can be drawn through $x = a$ without lifting the pencil. Continuity is exactly what makes direct substitution correct.</p>
+
+<p><b>Kinds of discontinuity.</b> A <em>removable</em> discontinuity is a hole: the limit exists but $f(a)$ is missing or wrong (fixable by redefining one value). A <em>jump</em> has unequal one-sided limits. An <em>infinite</em> discontinuity is at a vertical asymptote.</p>
+
+<p><b>Continuous functions.</b> Polynomials, rational functions, roots, and trigonometric functions are continuous on their domains. Sums, differences, products, constant multiples, and quotients (where the denominator is not $0$) of continuous functions are continuous, and so are compositions: if $g$ is continuous at $a$ and $f$ is continuous at $g(a)$, then $f \circ g$ is continuous at $a$.</p>
+
+<p><b>Example.</b> Choose $c$ so that $f(x) = cx + 1$ for $x \le 2$ and $f(x) = x^2 - 1$ for $x &gt; 2$ is continuous. Each piece is a polynomial, so only $x = 2$ matters. The left limit and $f(2)$ are $2c + 1$, the right limit is $3$. Setting $2c + 1 = 3$ gives $c = 1$.</p>
+
+<div class="thm"><div class="thm-name">Intermediate Value Theorem (IVT)</div>Suppose $f$ is continuous on the closed interval $[a, b]$ and $N$ is any number between $f(a)$ and $f(b)$, with $f(a) \neq f(b)$. Then there is at least one number $c$ in $(a, b)$ with $f(c) = N$.</div>
+<p><em>Why.</em> A graph drawn without lifting the pencil from height $f(a)$ to height $f(b)$ must cross every horizontal line $y = N$ in between.</p>
+<p><b>Use: locating roots.</b> If $f$ is continuous on $[a, b]$ and $f(a)$, $f(b)$ have opposite signs, then $N = 0$ is between them, so $f$ has a root in $(a, b)$. Example: $f(x) = x^3 + x - 1$ has $f(0) = -1 &lt; 0$ and $f(1) = 1 &gt; 0$, so $x^3 + x - 1 = 0$ has a solution between $0$ and $1$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="ivt"></canvas><div class="fig-cap"><b>Every height is reached.</b> $f(x) = x^3 - 3x + 1$ on $[-2, 2]$. Each $N$ between $f(-2) = -1$ and $f(2) = 3$ is hit at least once, sometimes three times. The theorem promises existence, not how many.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The IVT needs continuity on the whole closed interval. $f(x) = 1/x$ has $f(-1) = -1$ and $f(1) = 1$ but never equals $0$, because of the discontinuity at $x = 0$. Also, the IVT says a $c$ exists. It does not find $c$.</p></div>
+</div>
+
+<div class="section"><h3>Worked example</h3>
+
+<p><b>A piecewise function, checked three ways.</b> Let $f(x) = \dfrac{x^2 - x - 2}{x - 2}$ for $x \neq 2$ and $f(2) = 1$.<br>
+Limit: for $x \neq 2$, $\dfrac{x^2 - x - 2}{x - 2} = \dfrac{(x - 2)(x + 1)}{x - 2} = x + 1$, so $\lim_{x \to 2} f(x) = 3$.<br>
+Continuity: $f(2) = 1 \neq 3$, so $f$ is not continuous at $2$. The limit exists, so the discontinuity is removable: redefining $f(2) = 3$ makes $f$ continuous.<br>
+Tangent: on $x \neq 2$ the graph is the line $y = x + 1$, so at $x = 0$ the tangent slope is $\lim_{h \to 0}\dfrac{(h + 1) - 1}{h} = 1$.</p>
+
+<p><b>An infinite limit.</b> $\displaystyle\lim_{t \to 1}\frac{t + 1}{(t - 1)^2}$. The numerator approaches $2$ and the denominator approaches $0$ through positive values from both sides (it is a square). So the limit is $\infty$, and $t = 1$ is a vertical asymptote.</p>
+</div>
+
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Find $\displaystyle\lim_{x \to 0^+}\frac{5}{x}$ and $\displaystyle\lim_{x \to 0^-}\frac{5}{x}$. Does $\displaystyle\lim_{x \to 0}\frac5x$ exist?</li>
+  <li>Write the slope of the tangent line to $f(x) = x^2 + 1$ at $x = 3$ as a limit of secant slopes, evaluate it, and find the tangent line.</li>
+  <li>Evaluate $\displaystyle\lim_{x \to 4}\frac{x^2 - 16}{x - 4}$, $\displaystyle\lim_{h \to 0}\frac{\sqrt{9 + h} - 3}{h}$, and $\displaystyle\lim_{x \to 5}\frac{\frac1x - \frac15}{x - 5}$.</li>
+  <li>Evaluate $\displaystyle\lim_{x \to 2^+}\frac{x + 1}{x(x - 2)}$ and name the vertical asymptotes of $\dfrac{x + 1}{x(x - 2)}$.</li>
+  <li>Use the Squeeze Theorem to find $\displaystyle\lim_{x \to 0} x^4\cos(2/x)$.</li>
+  <li>Find $k$ so that $f(x) = x^2 + k$ for $x &lt; 1$ and $f(x) = 3x$ for $x \ge 1$ is continuous everywhere.</li>
+  <li>Show that $x^3 - 2x - 5 = 0$ has a root between $2$ and $3$.</li>
+</ol>
+</div>
+
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Evaluating $\lim_{x \to a} f(x)$.</b> Try direct substitution first. A number means done (if $f$ is continuous at $a$). $0/0$ means rewrite: factor, rationalize, or combine fractions. (nonzero)/$0$ means an infinite limit or DNE, and the signs of the one-sided limits decide which.</p>
+
+<p><b>Piecewise and absolute value.</b> Compute both one-sided limits separately. Rewrite $|x - a|$ as $x - a$ for $x &gt; a$ and $-(x - a)$ for $x &lt; a$.</p>
+
+<p><b>Bounded times something going to $0$.</b> Use the Squeeze Theorem with $-1 \le \sin(\cdot), \cos(\cdot) \le 1$.</p>
+
+<p><b>Proving continuity at a point.</b> State the definition $\lim_{x \to a} f(x) = f(a)$, then verify each of the three parts with a computation.</p>
+
+<p><b>Showing an equation has a solution.</b> Move everything to one side, $f(x) = 0$. Check $f$ is continuous on $[a, b]$, find a sign change, and cite the IVT.</p>
+</div>
+<div class="chapter-nav"><span class="disabled">← previous</span><a href="outline.html">outline</a><a href="ch2.html">next →</a></div>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc1_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

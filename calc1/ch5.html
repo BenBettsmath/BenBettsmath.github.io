@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc I · Applications of Integration</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<style>/* at phone width, wide math scrolls inside its own block instead of the page */
+.formula, .thm, .defn, .pitfall, .note, .page-content p, .page-content li { overflow-x: auto; overflow-y: hidden; }</style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Chapter 5 · Applications of Integration</h2>
+<div class="chapter-nav"><a href="ch4.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+<p>The definite integral adds up many small pieces. Every application in this chapter follows one pattern: cut the quantity into thin slices, approximate one slice by something simple (a rectangle, a disk, a constant force), and integrate. Area between curves, volume, work, and average value are four instances.</p>
+<div class="section"><h3>5.1 Areas Between Curves</h3>
+
+<p class="part"><span class="dimtag">Slices</span>Let $f$ and $g$ be continuous with $f(x) \ge g(x)$ on $[a, b]$. The region between $y = f(x)$ (top) and $y = g(x)$ (bottom) from $x = a$ to $x = b$ has area</p>
+<div class="formula">$\displaystyle A = \int_a^b \big[f(x) - g(x)\big]\,dx = \int_a^b (\text{top} - \text{bottom})\,dx.$</div>
+<p><em>Why.</em> A vertical strip at $x$ of width $\Delta x$ is nearly a rectangle of height $f(x) - g(x)$. Adding the strips is a Riemann sum, and its limit is the integral. The height $f - g$ is correct even when the curves dip below the $x$-axis.</p>
+
+<p><b>Example.</b> The region between $y = 3 + 2x - x^2$ and $y = x + 1$. The curves meet where $3 + 2x - x^2 = x + 1$, i.e. $x^2 - x - 2 = (x - 2)(x + 1) = 0$, so $x = -1$ and $x = 2$. Testing $x = 0$ shows the parabola is on top. So</p>
+<div class="formula">$\displaystyle A = \int_{-1}^{2}\big(2 + x - x^2\big)\,dx = \Big[2x + \tfrac{x^2}{2} - \tfrac{x^3}{3}\Big]_{-1}^{2} = \tfrac{10}{3} - \left(-\tfrac76\right) = \tfrac92.$</div>
+
+<div class="fig-inline-canvas"><canvas data-fig="areaBetween"></canvas><div class="fig-cap"><b>One strip, then all of them.</b> The yellow strip has height $(3 + 2x - x^2) - (x + 1) = 2 + x - x^2$. Integrating that height from $x = -1$ to $x = 2$ gives the area $\tfrac92$.</div></div>
+
+<p><b>Curves that cross.</b> If the top and bottom curves switch, split the interval at the crossing points, or integrate $|f(x) - g(x)|$. Example: between $y = x^2$ and $y = x$ on $[0, 2]$, the line is on top on $[0, 1]$ and the parabola on $[1, 2]$, so $A = \int_0^1(x - x^2)\,dx + \int_1^2(x^2 - x)\,dx = \tfrac16 + \tfrac56 = 1$.</p>
+
+<p><b>Horizontal strips.</b> If the region is bounded by curves $x = f(y)$ (right) and $x = g(y)$ (left) for $c \le y \le d$, then</p>
+<div class="formula">$\displaystyle A = \int_c^d\big[f(y) - g(y)\big]\,dy = \int_c^d (\text{right} - \text{left})\,dy.$</div>
+<p><b>Example.</b> Between $x = y^2$ and $x = y + 6$: they meet where $y^2 - y - 6 = (y - 3)(y + 2) = 0$, so $y = -2$ and $y = 3$, and the line is on the right in between. So $A = \int_{-2}^{3}(y + 6 - y^2)\,dy = \tfrac{125}{6}$. With vertical strips the bottom boundary changes formula at $x = 4$ (from $y = -\sqrt x$ to $y = x - 6$), so that way needs two integrals.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Sketch first. The limits come from the intersection points, and the order (top minus bottom, or right minus left) from the picture. A negative answer means the order was wrong. Choose $dy$ when the left and right boundaries are each a single curve but the top or bottom changes formula.</p></div>
+</div>
+
+<div class="section"><h3>5.2 Volumes</h3>
+
+<p class="part"><span class="dimtag">Slices</span>Slice a solid by planes perpendicular to the $x$-axis. If the slice at $x$ has area $A(x)$, a slab of thickness $\Delta x$ has volume about $A(x)\,\Delta x$, so the solid between $x = a$ and $x = b$ has volume</p>
+<div class="formula">$\displaystyle V = \int_a^b A(x)\,dx.$</div>
+<p><b>Example (pyramid).</b> A pyramid with a square base of side $b$ and height $h$. Measure $x$ down from the apex. By similar triangles the slice at $x$ is a square of side $\tfrac{b}{h}x$, so $A(x) = \tfrac{b^2}{h^2}x^2$ and $V = \int_0^h\tfrac{b^2}{h^2}x^2\,dx = \tfrac13 b^2 h$.</p>
+
+<p><b>Solids of revolution: disks.</b> Rotate the region under $y = f(x) \ge 0$, $a \le x \le b$, about the $x$-axis. Each slice is a disk of radius $R(x) = f(x)$, so $A(x) = \pi R(x)^2$ and</p>
+<div class="formula">$\displaystyle V = \int_a^b \pi\,[R(x)]^2\,dx.$</div>
+<p>Example: rotating the region under $y = \sqrt x$, $0 \le x \le 4$, about the $x$-axis gives $V = \int_0^4\pi x\,dx = 8\pi$.</p>
+
+<p><b>Washers.</b> If the region lies between an outer curve and an inner curve, each slice is a disk with a hole, a <b>washer</b>, with outer radius $R(x)$ and inner radius $r(x)$ measured from the axis of rotation:</p>
+<div class="formula">$\displaystyle V = \int_a^b \pi\Big([R(x)]^2 - [r(x)]^2\Big)\,dx.$</div>
+
+<p><b>Example.</b> The region between $y = x$ and $y = x^2$ ($0 \le x \le 1$) rotated about the $x$-axis: $R = x$, $r = x^2$, and $V = \pi\int_0^1(x^2 - x^4)\,dx = \pi\left(\tfrac13 - \tfrac15\right) = \tfrac{2\pi}{15}$. About the line $y = -1$ instead, each radius gains $1$: $R = x + 1$, $r = x^2 + 1$, and $V = \pi\int_0^1\big[(x + 1)^2 - (x^2 + 1)^2\big]\,dx = \pi\int_0^1(2x - x^2 - x^4)\,dx = \tfrac{7\pi}{15}$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="washer"></canvas><div class="fig-cap"><b>A washer slice.</b> The region between $y = x$ (outer) and $y = x^2$ (inner) spun about a horizontal axis (purple). The slice at $x$ is a ring with area $\pi(R^2 - r^2)$. Switching the axis to $y = -1$ adds $1$ to both radii.</div></div>
+
+<p><b>Rotating about a vertical line.</b> Slice perpendicular to that line, i.e. horizontally, and write the radii as functions of $y$. Example: the same region rotated about the $y$-axis. For $0 \le y \le 1$ the region runs from $x = y$ (from $y = x$) to $x = \sqrt y$ (from $y = x^2$), so $R(y) = \sqrt y$, $r(y) = y$, and $V = \pi\int_0^1(y - y^2)\,dy = \tfrac{\pi}{6}$.</p>
+
+<div class="note"><div class="note-name">Radius from an axis</div><p>A radius is a distance from the axis, so it is always (farther value) minus (axis value). About $y = c$ with the region above the axis, $R = (\text{outer } y) - c$. About $y = 4$ with the region below the axis, $R = 4 - (\text{outer } y)$, where "outer" now means the curve farther from $y = 4$.</p></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\pi(R^2 - r^2)$ is not $\pi(R - r)^2$. Square each radius separately, then subtract. Also match the variable to the slices: slices perpendicular to the $x$-axis use $dx$ and radii in terms of $x$, and slices perpendicular to the $y$-axis use $dy$ and radii in terms of $y$.</p></div>
+</div>
+
+<div class="section"><h3>5.3 Work</h3>
+
+<p class="part"><span class="dimtag">Physics</span>A constant force $F$ moving an object a distance $d$ along its line does <b>work</b> $W = Fd$. Units: newton-meters, called joules (J), or foot-pounds (ft-lb). If the force varies with position, $F = F(x)$, then on a short piece $[x_{i - 1}, x_i]$ it is nearly constant, the work there is about $F(x_i^*)\,\Delta x$, and</p>
+<div class="formula">$\displaystyle W = \int_a^b F(x)\,dx.$</div>
+<p>Example: a force $F(x) = 3x^2$ newtons moving an object from $x = 1$ m to $x = 2$ m does $W = \int_1^2 3x^2\,dx = 7$ J.</p>
+
+<p><b>Hooke's Law.</b> The force needed to hold a spring stretched $x$ units beyond its natural length is $F(x) = kx$, where $k &gt; 0$ is the <b>spring constant</b>. Here $x$ is the stretch, not the length.</p>
+<p><b>Example.</b> A force of $10$ N holds a spring stretched from its natural length $20$ cm to $25$ cm. Then $10 = k(0.05)$, so $k = 200$ N/m. The work to stretch it from $25$ cm to $30$ cm is</p>
+<div class="formula">$\displaystyle W = \int_{0.05}^{0.10}200x\,dx = \Big[100x^2\Big]_{0.05}^{0.10} = 1 - 0.25 = 0.75\ \text{J}.$</div>
+
+<div class="fig-inline-canvas"><canvas data-fig="spring"></canvas><div class="fig-cap"><b>Work is area under the force graph.</b> A spring with $k = 30$ N/m. Stretching it $x$ meters takes $W = \int_0^x 30s\,ds = 15x^2$ J, the triangle under $F = 30s$. Each extra centimeter costs more than the last.</div></div>
+
+<p><b>Lifting a cable.</b> A $20$ m cable weighing $3$ N/m hangs from the top of a building. A piece of length $\Delta x$ at depth $x$ weighs $3\,\Delta x$ N and must be lifted $x$ m, so $W = \int_0^{20}3x\,dx = 600$ J. The same idea (weight of a slice times the distance that slice moves) handles pumping liquid from a tank.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In Hooke's Law, convert lengths to stretches by subtracting the natural length first, and keep units consistent (meters with newtons gives joules). Stretching from $25$ cm to $30$ cm means $x$ from $0.05$ to $0.10$ m, not from $0.25$ to $0.30$.</p></div>
+</div>
+
+<div class="section"><h3>5.4 Average Value of a Function</h3>
+
+<p class="part"><span class="dimtag">Mean</span>The average of $n$ numbers $y_1, \ldots, y_n$ is $\tfrac{1}{n}(y_1 + \cdots + y_n)$. Sampling $f$ at $n$ equally spaced points of $[a, b]$ and writing $\tfrac1n = \tfrac{\Delta x}{b - a}$ turns this average into $\tfrac{1}{b - a}\sum f(x_i)\Delta x$, a Riemann sum divided by $b - a$. Letting $n \to \infty$, the <b>average value</b> of $f$ on $[a, b]$ is</p>
+<div class="formula">$\displaystyle f_{\text{ave}} = \frac{1}{b - a}\int_a^b f(x)\,dx.$</div>
+<p><em>Picture.</em> $f_{\text{ave}}$ is the height of the rectangle on $[a, b]$ with the same area as the region under $f$. The part of the region above the line $y = f_{\text{ave}}$ exactly fills the gaps below it.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="avgValue"></canvas><div class="fig-cap"><b>Leveling off.</b> $f(x) = 3x - x^2$ on $[0, 3]$. Blue is where $f$ is above the level $h$, pink where it is below. $\int_0^3(f - h)\,dx = 0$ exactly when $h = f_{\text{ave}} = \tfrac32$.</div></div>
+
+<p><b>Example.</b> For $f(x) = 3x - x^2$ on $[0, 3]$, $\int_0^3(3x - x^2)\,dx = \tfrac{27}{2} - 9 = \tfrac92$, so $f_{\text{ave}} = \tfrac13\cdot\tfrac92 = \tfrac32$.</p>
+
+<div class="thm"><div class="thm-name">Mean Value Theorem for Integrals</div>If $f$ is continuous on $[a, b]$, then there is a number $c$ in $[a, b]$ with $f(c) = f_{\text{ave}}$, that is, $\displaystyle\int_a^b f(x)\,dx = f(c)(b - a)$.</div>
+<p><em>Why.</em> $f_{\text{ave}}$ lies between the minimum and maximum values of $f$ on $[a, b]$ (by the comparison property of 4.2), so the IVT gives a $c$ where $f$ takes that value. In the example, $3c - c^2 = \tfrac32$ gives $c = \tfrac{3 \pm \sqrt 3}{2}$, both in $[0, 3]$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The average value of $f$ is not $\tfrac{f(a) + f(b)}{2}$, and it is not the average rate of change $\tfrac{f(b) - f(a)}{b - a}$. Remember the factor $\tfrac{1}{b - a}$ in front of the integral.</p></div>
+</div>
+
+<div class="section"><h3>Worked example</h3>
+
+<p><b>One region, three questions.</b> Let $\mathcal R$ be the region between $y = 2\sqrt x$ and $y = x$. The curves meet where $2\sqrt x = x$, i.e. $x = 0$ and $x = 4$, with $2\sqrt x$ on top in between.<br>
+Area: $\displaystyle\int_0^4\left(2\sqrt x - x\right)dx = \Big[\tfrac43 x^{3/2} - \tfrac{x^2}{2}\Big]_0^4 = \tfrac{32}{3} - 8 = \tfrac83$.<br>
+Volume about the $x$-axis: $R = 2\sqrt x$, $r = x$, so $V = \pi\displaystyle\int_0^4\left(4x - x^2\right)dx = \pi\left(32 - \tfrac{64}{3}\right) = \tfrac{32\pi}{3}$.<br>
+Volume about $y = -1$: $R = 2\sqrt x + 1$, $r = x + 1$, so $V = \pi\displaystyle\int_0^4\Big[(2\sqrt x + 1)^2 - (x + 1)^2\Big]dx = \pi\int_0^4\big(2x + 4\sqrt x - x^2\big)\,dx = \pi\left(16 + \tfrac{64}{3} - \tfrac{64}{3}\right) = 16\pi$.</p>
+</div>
+
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Sketch and find the area of the region bounded by $y = x^2 - 2x$ and $y = x$.</li>
+  <li>Find the area between $x = y^2 - 1$ and $x = 1 - y^2$ using horizontal strips.</li>
+  <li>Find the area between $y = x^3$ and $y = x$ on $[-1, 1]$. (The curves cross.)</li>
+  <li>Rotate the region under $y = 3 - x$, $0 \le x \le 3$, about the $x$-axis. Find the volume, and check it against the cone formula $V = \tfrac13\pi r^2 h$.</li>
+  <li>Set up (do not evaluate) the volume when the region between $y = x^2$ and $y = 4$ is rotated about the $y$-axis, about $y = 4$, and about $y = -1$.</li>
+  <li>A force of $8$ N holds a spring stretched $0.2$ m beyond its natural length. How much work stretches it from $0.2$ m to $0.5$ m beyond natural length?</li>
+  <li>Find the average value of $f(x) = \sin x$ on $[0, \pi]$, and of $f(x) = x^2$ on $[0, 3]$. Find every $c$ the Mean Value Theorem for Integrals promises for the second.</li>
+</ol>
+</div>
+
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Always sketch.</b> The picture gives the intersection points (limits), which curve is on top or outside, and whether to slice with $dx$ or $dy$.</p>
+
+<p><b>Area.</b> $\int(\text{top} - \text{bottom})\,dx$ or $\int(\text{right} - \text{left})\,dy$. Split where the curves cross.</p>
+
+<p><b>Volume of revolution.</b> Slice perpendicular to the axis. Disk: $\pi R^2$. Washer: $\pi(R^2 - r^2)$. Radii are distances from the axis, so shift them when the axis is not a coordinate axis.</p>
+
+<p><b>Work.</b> Force times distance on a small piece, then integrate. Springs: find $k$ from the given data first, using stretches.</p>
+
+<p><b>Average value.</b> Integrate and divide by the length of the interval. To find $c$, solve $f(c) = f_{\text{ave}}$ and keep the solutions in $[a, b]$.</p>
+</div>
+<div class="chapter-nav"><a href="ch4.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc1_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

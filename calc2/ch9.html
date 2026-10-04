@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc II · Differential Equations</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Chapter 9 · Differential Equations</h2>
+<div class="chapter-nav"><a href="ch7.html">← previous</a><a href="outline.html">outline</a><a href="ch11.html">next →</a></div>
+<p>Equations whose unknown is a function, related to its own derivatives. We build them from statements about rates, read their solutions off a picture (the direction field), approximate them numerically (Euler's method), and solve two important families exactly: separable equations and the logistic equation. The main idea is that $y' = F(x, y)$ prescribes a slope at every point of the plane, and a solution is a curve that follows those slopes.</p>
+<div class="section"><h3>9.1 Modeling with Differential Equations</h3>
+
+<p class="part"><b>Definitions.</b> A <b>differential equation</b> is an equation involving an unknown function and one or more of its derivatives. Its <b>order</b> is the order of the highest derivative that appears. A <b>solution</b> is a function that makes the equation true on some interval. The <b>general solution</b> is the family of all solutions, usually written with arbitrary constants. An <b>initial value problem</b> (IVP) is a differential equation together with an <b>initial condition</b> $y(t_0) = y_0$, which picks one member of the family.</p>
+
+<p><b>Models.</b> Each model is a sentence about a rate, translated into symbols.</p>
+<ul class="tight">
+  <li><b>Natural growth.</b> "The population $P(t)$ grows at a rate proportional to its size": $\dfrac{dP}{dt} = kP$. Solutions $P = P(0)e^{kt}$ (6.5).</li>
+  <li><b>Logistic growth.</b> "Growth is proportional to $P$ when $P$ is small, and stops at a carrying capacity $M$": $\dfrac{dP}{dt} = kP\Bigl(1 - \dfrac{P}{M}\Bigr)$.</li>
+  <li><b>Spring.</b> Hooke's law, restoring force $-kx$, and Newton's second law give $m\dfrac{d^2x}{dt^2} = -kx$, a second order equation.</li>
+  <li><b>Cooling.</b> "Temperature changes at a rate proportional to the difference from the surroundings": $\dfrac{dT}{dt} = k(T - T_s)$.</li>
+</ul>
+
+<p><b>Reading an equation without solving it.</b> For the logistic equation with $k &gt; 0$: if $0 &lt; P &lt; M$ the right side is positive, so $P$ increases. If $P &gt; M$ it is negative, so $P$ decreases. If $P = 0$ or $P = M$ it is zero, so $P$ stays constant. These constant solutions are called <b>equilibrium solutions</b>.</p>
+
+<p><b>Example.</b> Show $y = Ce^{x^2}$ solves $y' = 2xy$ for every constant $C$, and solve the IVP with $y(0) = 3$. Differentiating, $y' = 2xCe^{x^2} = 2xy$. The condition gives $C = 3$, so $y = 3e^{x^2}$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Checking a solution means substituting it into <em>both</em> sides of the equation and simplifying until they agree, and separately checking the initial condition. A function can satisfy the equation and miss the initial condition, or the reverse.</p></div>
+</div>
+<div class="section"><h3>9.2 Direction Fields and Euler's Method</h3>
+
+<p class="part"><b>Direction field.</b> A first order equation $y' = F(x, y)$ says: at the point $(x, y)$, a solution curve through that point has slope $F(x, y)$. Draw a short segment of that slope at each point of a grid. The result is a <b>direction field</b> (or slope field). A solution curve is tangent to the field everywhere, so we can sketch solutions by following the segments.</p>
+
+<p><b>Autonomous equations.</b> If the right side depends only on $y$, $y' = f(y)$, the equation is <b>autonomous</b>. Its field is the same along every horizontal line, and each root $c$ of $f(c) = 0$ gives a horizontal equilibrium solution $y = c$.</p>
+
+<p><b>Euler's method.</b> Start at $(x_0, y_0)$, choose a <b>step size</b> $h$, and follow the tangent line for one step, then recompute the slope and repeat.</p>
+<div class="formula">$x_n = x_{n-1} + h, \qquad y_n = y_{n-1} + h\,F(x_{n-1}, y_{n-1}).$</div>
+<p><em>Why.</em> The update is the linear approximation</p>
+<div class="formula">$y(x_{n-1} + h) \approx y(x_{n-1}) + h\,y'(x_{n-1}),$</div>
+<p>with $y_{n-1}$ in place of $y(x_{n-1})$ and the slope $y'(x_{n-1})$ supplied by the equation as $F(x_{n-1}, y_{n-1})$. When the solution is concave up the tangent lines lie below it, so Euler underestimates, and when concave down it overestimates. Halving $h$ roughly halves the error.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="euler"></canvas><div class="fig-cap"><b>Euler steps follow the field.</b>Drag the start point and change $h$. Orange is Euler's polygon, green is the true solution of $y' = x + y$ through the start point.</div></div>
+
+<p><b>Example.</b> $y' = x + y$, $y(0) = 1$, with $h = 0.5$. Then $y_1 = 1 + 0.5(0 + 1) = 1.5$ at $x = 0.5$, and $y_2 = 1.5 + 0.5(0.5 + 1.5) = 2.5$ at $x = 1$. The exact solution is $y = 2e^x - x - 1$, with $y(1) = 2e - 2 \approx 3.44$. The estimate is low because this solution is concave up.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Each step uses the slope at the <em>previous</em> point $(x_{n-1}, y_{n-1})$, not at the new one. Keep a table with columns $n$, $x_n$, $y_n$, $F(x_n, y_n)$ so the slope used for the next step is always in the row above.</p></div>
+</div>
+<div class="section"><h3>9.3 Separable Equations</h3>
+
+<p class="part"><b>Definition.</b> A first order equation is <b>separable</b> if it can be written $\dfrac{dy}{dx} = g(x)f(y)$, a function of $x$ times a function of $y$.</p>
+<p><b>Method.</b> For $f(y) \ne 0$, separate and integrate both sides.</p>
+<div class="formula">$\displaystyle\frac{dy}{f(y)} = g(x)\,dx \quad\Longrightarrow\quad \int\frac{dy}{f(y)} = \int g(x)\,dx.$</div>
+<p>This gives $y$ implicitly as a function of $x$. Solve for $y$ when possible, then use the initial condition to find the constant.</p>
+<p><em>Why it is legitimate.</em> Writing the equation as $\dfrac{1}{f(y)}\dfrac{dy}{dx} = g(x)$ and integrating both sides with respect to $x$, the left side is $\int\frac{1}{f(y)}\frac{dy}{dx}\,dx = \int\frac{dy}{f(y)}$ by the substitution rule. Moving $dx$ across is shorthand for that.</p>
+
+<p><b>Example.</b> $\dfrac{dy}{dx} = -\dfrac{x}{y}$. Separate: $y\,dy = -x\,dx$. Integrate: $\tfrac12y^2 = -\tfrac12x^2 + C$, so $x^2 + y^2 = 2C$. The solution curves are circles centered at the origin. Each solution $y = \pm\sqrt{r^2 - x^2}$ is a half circle, with the sign set by the initial condition.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="circles"></canvas><div class="fig-cap"><b>Implicit solutions of $y' = -x/y$.</b>Drag the point. The solution through it is the half circle on its side of the $x$-axis, where $y \ne 0$.</div></div>
+
+<p><b>Example.</b> $\dfrac{dy}{dx} = xy^2$, $y(0) = 1$. Separate: $y^{-2}\,dy = x\,dx$, so $-\dfrac1y = \dfrac{x^2}{2} + C$. At $x = 0$, $-1 = C$, and solving gives $y = \dfrac{2}{2 - x^2}$, valid on $-\sqrt2 &lt; x &lt; \sqrt2$, the interval containing $0$ where the formula is defined.</p>
+
+<p><b>Mixing problems.</b> A tank holds a solution, and $y(t)$ is the amount of dissolved substance. Then $\dfrac{dy}{dt} = (\text{rate in}) - (\text{rate out})$, where rate in is (concentration in)(flow in) and rate out is $\dfrac{y(t)}{V(t)}\,$(flow out), with $V(t)$ the volume.
+<em>Example.</em> A $100$ L tank of pure water receives brine with $0.2$ kg of salt per liter at $5$ L/min, and the mixture drains at $5$ L/min. Then $\dfrac{dy}{dt} = 1 - \dfrac{5y}{100} = \dfrac{20 - y}{20}$, $y(0) = 0$. Separating, $-\ln|20 - y| = \dfrac{t}{20} + C$, and the initial condition gives $y = 20\bigl(1 - e^{-t/20}\bigr)$. The salt approaches $20$ kg, the amount at the incoming concentration.</p>
+
+<p><b>Orthogonal trajectories.</b> Curves that cross every member of a family at right angles. Find the differential equation $y' = F(x, y)$ satisfied by the family (eliminate the constant), then solve $y' = -1/F(x, y)$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Dividing by $f(y)$ assumes $f(y) \ne 0$. Each root $c$ of $f$ gives a constant solution $y = c$ that the separated formula may miss (for $y' = xy^2$ this is $y = 0$).</p>
+<p>One constant is enough. Write $+C$ on one side only. After exponentiating, $\ln|y| = kt + C$ becomes $y = Ae^{kt}$ with $A = \pm e^C$, and $A = 0$ restores the lost equilibrium.</p></div>
+</div>
+<div class="section"><h3>9.4 Models for Population Growth</h3>
+
+<p class="part"><b>The logistic equation.</b> For constants $k &gt; 0$ and $M &gt; 0$ (the <b>carrying capacity</b>),</p>
+<div class="formula">$\dfrac{dP}{dt} = kP\Bigl(1 - \dfrac{P}{M}\Bigr).$</div>
+<p>When $P$ is small, $1 - P/M \approx 1$ and the growth is nearly exponential with rate $k$. As $P$ approaches $M$ the factor $1 - P/M$ shuts growth down. The equilibria are $P = 0$ and $P = M$.</p>
+
+<p><b>Solution.</b> The equation is separable. Using partial fractions, $\dfrac{M}{P(M - P)} = \dfrac1P + \dfrac{1}{M - P}$, so</p>
+<div class="formula">$\displaystyle\int\Bigl(\frac1P + \frac{1}{M - P}\Bigr)dP = \int k\,dt \quad\Longrightarrow\quad \ln\Bigl|\frac{P}{M - P}\Bigr| = kt + C \quad\Longrightarrow\quad P(t) = \frac{M}{1 + Ae^{-kt}}, \qquad A = \frac{M - P_0}{P_0},$</div>
+<p>where $P_0 = P(0)$. As $t \to \infty$, $e^{-kt} \to 0$, so $P(t) \to M$ from any $P_0 &gt; 0$.</p>
+
+<p><b>Fastest growth.</b> The rate $kP(1 - P/M)$ is a downward parabola in $P$ with roots $0$ and $M$, so it is largest at $P = M/2$. That is where the solution curve has its inflection point. It happens at time $t = \frac{\ln A}{k}$ when $P_0 &lt; M/2$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="logistic"></canvas><div class="fig-cap"><b>Logistic solutions with $M = 10$.</b>Every positive start approaches $M$. Below $M/2$ the curve is concave up, between $M/2$ and $M$ concave down. Starting above $M$ the population decreases to $M$.</div></div>
+
+<div class="fig-inline-canvas"><canvas data-fig="logisticRate"></canvas><div class="fig-cap"><b>The rate as a function of $P$.</b>Where the parabola is above the axis, $P$ moves right, and below it $P$ moves left. The yellow dots move by the equation.</div></div>
+
+<p><b>Example.</b> $M = 1000$, $P_0 = 100$, $k = 0.4$. Then $A = 9$ and $P(t) = \dfrac{1000}{1 + 9e^{-0.4t}}$. The population reaches $500$ when $9e^{-0.4t} = 1$, that is $t = \dfrac{\ln 9}{0.4} \approx 5.49$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In the logistic model $k$ is the growth rate only for small $P$. The actual relative growth rate $\frac{1}{P}\frac{dP}{dt} = k(1 - P/M)$ decreases linearly in $P$. And a solution starting below $M$ never reaches or crosses $M$, since two solutions of the equation cannot cross.</p></div>
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Verify that $y = \sin x\cos x - \cos x$ solves $y' + (\tan x)y = \cos^2 x$, and find all equilibrium solutions of $y' = y^2 - 4y$.</li>
+  <li>Sketch the direction field of $y' = y - x$ and the solution with $y(0) = 1$. Which solution is a straight line?</li>
+  <li>Use Euler's method with $h = 0.25$ to estimate $y(1)$ for $y' = 2xy$, $y(0) = 1$. Compare with the exact value $e$.</li>
+  <li>Solve $\dfrac{dy}{dx} = \dfrac{x^2}{y}$ with $y(0) = -2$.</li>
+  <li>Solve $\dfrac{dy}{dt} = y\cos t$ with $y(0) = 3$.</li>
+  <li>Solve $(1 + x^2)\,y' = 1 + y^2$ with $y(0) = 1$.</li>
+  <li>A $50$ L tank holds water with $5$ kg of dissolved salt. Pure water enters at $2$ L/min and the mixture drains at $2$ L/min. Find the salt after $t$ minutes.</li>
+  <li>A population satisfies $\dfrac{dP}{dt} = 0.5P - 0.001P^2$. Find $k$ and $M$, and the solution with $P(0) = 50$. When is it growing fastest?</li>
+</ol>
+
+</div>
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Recognize the type.</b> If $y'$ factors as (function of $x$)(function of $y$), separate. If the equation is autonomous, $y' = f(y)$, draw its <b>phase line</b> before solving anything: a $y$-axis with the roots of $f$ marked, and an arrow up where $f &gt; 0$ and down where $f &lt; 0$.</p>
+
+<p><b>Solving a separable IVP.</b> Separate, integrate with one constant, use the initial condition right away to find the constant, then solve for $y$. Choosing the sign of a square root or the branch of a log is easiest after the constant is known.</p>
+
+<p><b>Translating a word problem.</b> Name the unknown function and its units. Each phrase "rate of change of ... is proportional to ..." becomes $\frac{d(\cdot)}{dt} = k(\cdot)$. For tanks, write rate in minus rate out, with concentration $=$ amount over volume.</p>
+
+<p><b>Checking an answer.</b> Plug it back in. Then compare with the direction field: equilibria, increasing or decreasing, and long-term behavior should match.</p>
+
+</div>
+<div class="chapter-nav"><a href="ch7.html">← previous</a><a href="outline.html">outline</a><a href="ch11.html">next →</a></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc2_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</div></body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc I · Applications of Differentiation</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<style>/* at phone width, wide math scrolls inside its own block instead of the page */
+.formula, .thm, .defn, .pitfall, .note, .page-content p, .page-content li { overflow-x: auto; overflow-y: hidden; }</style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+<h2>Chapter 3 · Applications of Differentiation</h2>
+<div class="chapter-nav"><a href="ch2.html">← previous</a><a href="outline.html">outline</a><a href="ch4.html">next →</a></div>
+<p>What the derivative tells us about the function. The sign of $f'$ says where $f$ rises and falls, the sign of $f''$ says which way it bends, and the zeros of $f'$ locate the highest and lowest points. These answer optimization problems and let us sketch graphs by hand. The chapter ends by running differentiation backward: antiderivatives.</p>
+<div class="section"><h3>3.1 Maximum and Minimum Values</h3>
+
+<p class="part"><span class="dimtag">Concept</span>Let $c$ be a number in the domain $D$ of $f$. Then $f(c)$ is the</p>
+<ul class="tight">
+  <li><b>absolute maximum</b> value of $f$ on $D$ if $f(c) \ge f(x)$ for all $x$ in $D$, and the <b>absolute minimum</b> if $f(c) \le f(x)$ for all $x$ in $D$,</li>
+  <li><b>local maximum</b> value if $f(c) \ge f(x)$ for all $x$ near $c$ (in some open interval containing $c$), and <b>local minimum</b> if $f(c) \le f(x)$ for all $x$ near $c$.</li>
+</ul>
+<p>Maximum and minimum values together are <b>extreme values</b>. Local is a comparison with neighbors only. Absolute is a comparison with the whole domain.</p>
+
+<div class="thm"><div class="thm-name">Extreme Value Theorem</div>If $f$ is continuous on a closed interval $[a, b]$, then $f$ attains an absolute maximum value $f(c)$ and an absolute minimum value $f(d)$ at some numbers $c$ and $d$ in $[a, b]$.</div>
+<p><em>Why both hypotheses.</em> $f(x) = x$ on the open interval $(0, 1)$ has no largest value (it creeps toward $1$ but never reaches it). $f(x) = 1/x$ on $[-1, 1]$ with a discontinuity at $0$ is unbounded. Closed and continuous rule both out.</p>
+
+<div class="thm"><div class="thm-name">Fermat's Theorem</div>If $f$ has a local maximum or minimum at $c$, and $f'(c)$ exists, then $f'(c) = 0$.</div>
+<p><em>Why.</em> At a local maximum, secant slopes to points on the right are $\le 0$ (the graph is not higher there) and to points on the left are $\ge 0$. The common limit $f'(c)$ is both $\le 0$ and $\ge 0$, so it is $0$. Picture: the tangent at a peak is horizontal.</p>
+
+<p>A <b>critical number</b> of $f$ is a number $c$ in the domain of $f$ with $f'(c) = 0$ or $f'(c)$ undefined. By Fermat, every local extreme value occurs at a critical number.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The converse of Fermat is false. $f(x) = x^3$ has $f'(0) = 0$ but no maximum or minimum at $0$ (it keeps rising). And an extremum can occur where $f'$ does not exist: $|x|$ has a minimum at $0$ with no tangent line there. Critical numbers are candidates, not guarantees.</p></div>
+
+<p><b>The Closed Interval Method.</b> To find the absolute maximum and minimum values of a continuous $f$ on a closed interval $[a, b]$:</p>
+<ol class="tight">
+  <li>Find the values of $f$ at the critical numbers of $f$ in $(a, b)$.</li>
+  <li>Find the values $f(a)$ and $f(b)$ at the endpoints.</li>
+  <li>The largest value from steps 1 and 2 is the absolute maximum value, the smallest is the absolute minimum value.</li>
+</ol>
+<p><em>Why it works.</em> By the Extreme Value Theorem the extremes exist. An extreme in the interior is a local extreme, so by Fermat it is at a critical number. Otherwise it is at an endpoint. So the list of candidates is complete.</p>
+
+<p><b>Example.</b> $f(x) = x^3 - 3x^2 + 1$ on $[-\tfrac12, 4]$. $f'(x) = 3x^2 - 6x = 3x(x - 2)$, so the critical numbers are $0$ and $2$. The values are $f(-\tfrac12) = \tfrac18$, $f(0) = 1$, $f(2) = -3$, $f(4) = 17$. The absolute maximum is $f(4) = 17$ and the absolute minimum is $f(2) = -3$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="closedInterval"></canvas><div class="fig-cap"><b>Which candidate wins depends on the interval.</b> $f(x) = x^3 - 3x^2 + 1$ on $[-1, b]$. For small $b$ the absolute maximum is at the critical number $0$. Once $b &gt; 3$ the right endpoint takes over. The critical number $2$ counts only once it lies inside the interval.</div></div>
+</div>
+
+<div class="section"><h3>3.2 The Mean Value Theorem</h3>
+
+<div class="thm"><div class="thm-name">Rolle's Theorem</div>Suppose $f$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $f(a) = f(b)$. Then there is a number $c$ in $(a, b)$ with $f'(c) = 0$.</div>
+<p><em>Why.</em> By the Extreme Value Theorem $f$ has a maximum and a minimum on $[a, b]$. If both are at the endpoints, $f$ is constant and $f' = 0$ everywhere. Otherwise one of them is in the interior, and Fermat gives $f'(c) = 0$ there.</p>
+
+<div class="thm"><div class="thm-name">Mean Value Theorem (MVT)</div>Suppose $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$. Then there is a number $c$ in $(a, b)$ with
+$$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
+<p><em>Picture.</em> Somewhere between $a$ and $b$ the tangent line is parallel to the secant line through $(a, f(a))$ and $(b, f(b))$. Tilt the picture of Rolle's Theorem so the secant is no longer horizontal. <em>Motion.</em> If a car's average velocity over a trip is $60$ mph, then at some instant its speedometer read exactly $60$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="mvt"></canvas><div class="fig-cap"><b>Tangent parallel to secant.</b> $f(x) = x^3 - 3x$ on $[-2, 2.5]$ has secant slope $2.25$. Slide $c$: the tangent turns yellow where $f'(c) = 3c^2 - 3 = 2.25$, at $c = \pm\sqrt{1.75}$. There can be more than one such $c$.</div></div>
+
+<p><b>Example.</b> $f(x) = x^3 - x$ on $[0, 2]$. The secant slope is $\dfrac{6 - 0}{2 - 0} = 3$, and $f'(c) = 3c^2 - 1 = 3$ gives $c = \tfrac{2}{\sqrt 3}$, which is in $(0, 2)$.</p>
+
+<p><b>Consequences.</b></p>
+<ul class="tight">
+  <li>If $f'(x) = 0$ for all $x$ in an interval $(a, b)$, then $f$ is constant on $(a, b)$. (For any $x_1 &lt; x_2$ there, the MVT gives $f(x_2) - f(x_1) = f'(c)(x_2 - x_1) = 0$.)</li>
+  <li>If $f'(x) = g'(x)$ for all $x$ in $(a, b)$, then $f - g$ is constant on $(a, b)$: $f(x) = g(x) + C$.</li>
+  <li>Bounds: if $f(0) = 1$ and $f'(x) \le 4$ for all $x$, then $f(3) - f(0) = 3f'(c) \le 12$, so $f(3) \le 13$.</li>
+</ul>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Check the hypotheses. $f(x) = |x|$ on $[-1, 1]$ has $f(-1) = f(1)$ but $f'(c) = 0$ nowhere, since $f$ is not differentiable at $0$. The theorems guarantee a $c$ only when $f$ is continuous on the closed interval and differentiable on the open one.</p></div>
+</div>
+
+<div class="section"><h3>3.3 How Derivatives Affect the Shape of a Graph</h3>
+
+<p class="part"><span class="dimtag">Shape</span>$f$ is <b>increasing</b> on an interval if $x_1 &lt; x_2$ implies $f(x_1) &lt; f(x_2)$ there, and <b>decreasing</b> if $x_1 &lt; x_2$ implies $f(x_1) &gt; f(x_2)$.</p>
+<p><b>Increasing/Decreasing Test.</b> If $f'(x) &gt; 0$ on an interval, $f$ is increasing there. If $f'(x) &lt; 0$ on an interval, $f$ is decreasing there. <em>Why.</em> By the MVT, $f(x_2) - f(x_1) = f'(c)(x_2 - x_1)$, which has the sign of $f'(c)$.</p>
+
+<p><b>First Derivative Test.</b> Let $c$ be a critical number of a continuous $f$.</p>
+<ul class="tight">
+  <li>If $f'$ changes from positive to negative at $c$, then $f$ has a local maximum at $c$.</li>
+  <li>If $f'$ changes from negative to positive at $c$, then $f$ has a local minimum at $c$.</li>
+  <li>If $f'$ has the same sign on both sides of $c$, then $f$ has no local extremum at $c$.</li>
+</ul>
+<p><em>Picture.</em> Up then down is a peak, down then up is a valley.</p>
+
+<p><b>Concavity.</b> $f$ is <b>concave upward</b> on an interval if its graph lies above all of its tangent lines there, and <b>concave downward</b> if the graph lies below all of its tangent lines there. An <b>inflection point</b> is a point $(c, f(c))$ on a continuous curve where the concavity changes (from upward to downward or the reverse).</p>
+<p><b>Concavity Test.</b> If $f''(x) &gt; 0$ on an interval, $f$ is concave upward there. If $f''(x) &lt; 0$, concave downward. <em>Why.</em> $f'' &gt; 0$ means $f'$ is increasing, so the tangent slopes keep growing, and the graph turns left (upward) away from each tangent line.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="concavity"></canvas><div class="fig-cap"><b>Tangent below, tangent above.</b> $f(x) = x^3 - 3x$ has $f''(x) = 6x$. On the green part ($x &gt; 0$) each tangent lies below the graph, on the pink part ($x &lt; 0$) above it. At the inflection point $(0, 0)$ the tangent cuts through the graph.</div></div>
+
+<p><b>Second Derivative Test.</b> Suppose $f''$ is continuous near $c$ and $f'(c) = 0$. If $f''(c) &gt; 0$, $f$ has a local minimum at $c$ (concave up, a valley). If $f''(c) &lt; 0$, a local maximum. If $f''(c) = 0$, the test says nothing.</p>
+
+<p><b>Example.</b> $f(x) = x^4 - 4x^3$. $f'(x) = 4x^3 - 12x^2 = 4x^2(x - 3)$, critical numbers $0$ and $3$. Since $4x^2 \ge 0$, the sign of $f'$ is the sign of $x - 3$: $f$ is decreasing on $(-\infty, 3)$ and increasing on $(3, \infty)$. So $f(3) = -27$ is a local (in fact absolute) minimum and there is no extremum at $0$. $f''(x) = 12x^2 - 24x = 12x(x - 2)$: concave upward on $(-\infty, 0)$ and $(2, \infty)$, downward on $(0, 2)$, with inflection points $(0, 0)$ and $(2, -16)$. Note $f''(0) = 0$, so the Second Derivative Test is silent at $0$, while the First Derivative Test answers.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$f''(c) = 0$ does not make $(c, f(c))$ an inflection point. $f(x) = x^4$ has $f''(0) = 0$ but is concave upward on both sides. Check that $f''$ actually changes sign. Also, increasing/decreasing and concavity are properties of intervals of $x$, so answer with intervals, not points.</p></div>
+</div>
+
+<div class="section"><h3>3.4 Limits at Infinity; Horizontal Asymptotes</h3>
+
+<p class="part"><span class="dimtag">Concept</span>$\displaystyle\lim_{x \to \infty} f(x) = L$ means $f(x)$ can be made as close to $L$ as we like by taking $x$ large enough. Similarly $\lim_{x \to -\infty} f(x) = L$ for $x$ large and negative. The line $y = L$ is a <b>horizontal asymptote</b> of $y = f(x)$ if $\lim_{x \to \infty} f(x) = L$ or $\lim_{x \to -\infty} f(x) = L$.</p>
+
+<p><b>Basic fact.</b> For $r &gt; 0$, $\displaystyle\lim_{x \to \infty}\frac{1}{x^r} = 0$ (and the same as $x \to -\infty$ when $x^r$ is defined). <em>Why.</em> Dividing $1$ by a huge number gives a tiny one.</p>
+
+<p><b>Rational functions.</b> Divide numerator and denominator by the highest power of $x$ in the denominator, then use the basic fact.</p>
+<div class="formula">$\displaystyle\lim_{x \to \infty}\frac{3x^2 - x}{5x^2 + 2} = \lim_{x \to \infty}\frac{3 - 1/x}{5 + 2/x^2} = \frac{3}{5}.$</div>
+<p>In general, with $p$ the degree of the numerator and $q$ the degree of the denominator: if $p &lt; q$ the limit is $0$, if $p = q$ it is the ratio of leading coefficients, and if $p &gt; q$ it is $\infty$ or $-\infty$ (no horizontal asymptote). <em>Why.</em> For large $|x|$ each polynomial is dominated by its leading term.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="horizAsym"></canvas><div class="fig-cap"><b>Zoom out.</b> $f(x) = \dfrac{2x^2 + 3x}{x^2 + 1}$ approaches $y = 2$ as $x \to \pm\infty$. Near the origin it crosses that line at $x = \tfrac23$.</div></div>
+
+<p><b>Roots.</b> Use $\sqrt{x^2} = |x|$, which is $x$ for $x &gt; 0$ and $-x$ for $x &lt; 0$. Example: for $x &lt; 0$, $\dfrac{\sqrt{4x^2 + 1}}{x + 3} = \dfrac{|x|\sqrt{4 + 1/x^2}}{x(1 + 3/x)} = \dfrac{-\sqrt{4 + 1/x^2}}{1 + 3/x}$, so $\displaystyle\lim_{x \to -\infty}\frac{\sqrt{4x^2 + 1}}{x + 3} = -2$, while the limit as $x \to \infty$ is $2$.</p>
+
+<p><b>Oscillation.</b> $\lim_{x \to \infty}\sin x$ does not exist. But $\dfrac{\sin x}{x}$ is squeezed between $-\dfrac1x$ and $\dfrac1x$, so it approaches $0$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A graph may cross a horizontal asymptote, as in the figure. An asymptote describes the behavior for large $|x|$ only. And $\infty - \infty$ is not $0$: rewrite first, e.g. $\sqrt{x^2 + x} - x = \dfrac{x}{\sqrt{x^2 + x} + x} \to \tfrac12$.</p></div>
+</div>
+
+<div class="section"><h3>3.5 Curve Sketching</h3>
+
+<p class="part"><span class="dimtag">Checklist</span>To sketch $y = f(x)$ by hand, collect:</p>
+<ol class="tight">
+  <li><b>Domain.</b> Where is $f$ defined?</li>
+  <li><b>Intercepts.</b> $y$-intercept $f(0)$, $x$-intercepts from $f(x) = 0$.</li>
+  <li><b>Symmetry.</b> Even ($f(-x) = f(x)$, mirror in the $y$-axis) or odd ($f(-x) = -f(x)$, symmetric about the origin).</li>
+  <li><b>Asymptotes.</b> Vertical (where a denominator is $0$ and the numerator is not), horizontal ($\lim_{x \to \pm\infty}$).</li>
+  <li><b>Increasing/decreasing</b> from the sign of $f'$, and <b>local extrema</b> by the First Derivative Test.</li>
+  <li><b>Concavity</b> from the sign of $f''$, and <b>inflection points</b>.</li>
+  <li><b>Sketch.</b> Plot the special points, draw the asymptotes, and join them following the shape information.</li>
+</ol>
+
+<p><b>Example.</b> $f(x) = \dfrac{x^2}{x^2 - 4}$.</p>
+<ul class="tight">
+  <li>Domain: $x \neq \pm 2$. Intercept: $(0, 0)$ only. Even, so symmetric about the $y$-axis.</li>
+  <li>Vertical asymptotes $x = \pm 2$. Horizontal asymptote $y = 1$ (equal degrees, leading coefficients $1$ and $1$).</li>
+  <li>$f'(x) = \dfrac{2x(x^2 - 4) - x^2\cdot 2x}{(x^2 - 4)^2} = \dfrac{-8x}{(x^2 - 4)^2}$. Increasing on $(-\infty, -2)$ and $(-2, 0)$, decreasing on $(0, 2)$ and $(2, \infty)$. Local maximum $f(0) = 0$.</li>
+  <li>$f''(x) = \dfrac{8(3x^2 + 4)}{(x^2 - 4)^3}$. The numerator is always positive, so $f''$ has the sign of $(x^2 - 4)^3$: concave upward for $|x| &gt; 2$, downward for $|x| &lt; 2$. No inflection points, since $x = \pm 2$ are not in the domain.</li>
+</ul>
+
+<div class="note"><div class="note-name">Sign charts</div><p>To find the sign of $f'$ (or $f''$), factor it, mark its zeros and undefined points on a number line, and test one number in each piece. The sign is constant on each piece because $f'$ can only change sign where it is $0$ or undefined (by the IVT, if it is continuous between them).</p></div>
+</div>
+
+<div class="section"><h3>3.6 Optimization Problems</h3>
+
+<p class="part"><span class="dimtag">Application</span>An <b>optimization problem</b> asks for the largest or smallest value of a quantity. The method turns words into a function of one variable on an interval, then applies 3.1 or 3.3.</p>
+<ol class="tight">
+  <li>Draw a picture and name the quantities with variables.</li>
+  <li>Write the quantity $Q$ to be maximized or minimized (the <em>objective</em>) in terms of the variables.</li>
+  <li>Use the given conditions (the <em>constraint</em>) to write $Q$ as a function of one variable, and find that variable's domain.</li>
+  <li>Find the absolute max or min of $Q$: the Closed Interval Method on a closed domain, or the First Derivative Test (one critical number, with $Q'$ changing sign there, gives an absolute extremum).</li>
+  <li>Answer the question asked, with units.</li>
+</ol>
+
+<p><b>Example (open box).</b> From a $12$ by $12$ inch sheet, cut a square of side $x$ from each corner and fold up the sides. The box has base $(12 - 2x)$ by $(12 - 2x)$ and height $x$, so $V(x) = x(12 - 2x)^2$ for $0 \le x \le 6$. $V'(x) = (12 - 2x)^2 - 4x(12 - 2x) = (12 - 2x)(12 - 6x)$, which is $0$ at $x = 2$ and $x = 6$. Values: $V(0) = 0$, $V(2) = 128$, $V(6) = 0$. The largest box has $x = 2$ in and volume $128$ in³.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="optBox"></canvas><div class="fig-cap"><b>Too shallow or too narrow.</b> Small $x$ gives a flat box, large $x$ a tall thin one. The volume $V(x) = x(12 - 2x)^2$ peaks in between, at $x = 2$.</div></div>
+
+<p><b>Example (fence along a river).</b> $1200$ ft of fence encloses a rectangle on three sides, the river forming the fourth. With $x$ the two sides perpendicular to the river and $y$ the side parallel, the constraint is $2x + y = 1200$ and the area is $A = xy = x(1200 - 2x)$ for $0 \le x \le 600$. $A'(x) = 1200 - 4x = 0$ at $x = 300$, and $A(0) = A(600) = 0$, so the maximum area is $A(300) = 180{,}000$ ft² with $y = 600$ ft.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A critical number is not automatically the answer. Verify that it gives a maximum (or minimum), by comparing with endpoints or by a derivative test, and make sure it is in the domain the picture allows.</p></div>
+</div>
+
+<div class="section"><h3>3.7 Antiderivatives</h3>
+
+<p class="part"><span class="dimtag">Backward</span>A function $F$ is an <b>antiderivative</b> of $f$ on an interval $I$ if $F'(x) = f(x)$ for all $x$ in $I$.</p>
+<div class="thm"><div class="thm-name">Theorem</div>If $F$ is an antiderivative of $f$ on an interval $I$, then the most general antiderivative of $f$ on $I$ is $F(x) + C$, where $C$ is an arbitrary constant.</div>
+<p><em>Why.</em> If $G' = f = F'$ on $I$, then $G - F$ is constant by the MVT consequence in 3.2. Picture: the graphs of all antiderivatives are vertical shifts of one another, with the same slope at each $x$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="antiFamily"></canvas><div class="fig-cap"><b>One slope pattern, many curves.</b> The purple segments have slope $x^2 - 1$ at each point. Every curve $F(x) = \tfrac{x^3}{3} - x + C$ follows them. Fixing one value, such as $F(0)$, picks out one curve.</div></div>
+
+<p><b>Antiderivative table</b> (read the derivative table backward, with $n \neq -1$):</p>
+<div class="formula">$x^n \mapsto \dfrac{x^{n + 1}}{n + 1}, \quad \cos x \mapsto \sin x, \quad \sin x \mapsto -\cos x, \quad \sec^2 x \mapsto \tan x, \quad \sec x\tan x \mapsto \sec x,$</div>
+<p>each plus $C$. Constants multiply through and sums split term by term. Check any antiderivative by differentiating it.</p>
+<p><b>Example.</b> The most general antiderivative of $f(x) = 6x^2 - \dfrac{3}{\sqrt x} + \cos 2x$ is $F(x) = 2x^3 - 6\sqrt x + \tfrac12\sin 2x + C$. (Check: $\dfrac{d}{dx}\tfrac12\sin 2x = \cos 2x$ by the chain rule.)</p>
+
+<p><b>Initial value problems.</b> Given $f'$ and one value of $f$, find $f$. Example: $f'(x) = 3x^2 - 4x$, $f(1) = 2$. Then $f(x) = x^3 - 2x^2 + C$ and $1 - 2 + C = 2$, so $C = 3$ and $f(x) = x^3 - 2x^2 + 3$. Given $f''$, antidifferentiate twice with two constants: $f''(x) = 6x$, $f'(0) = 2$, $f(0) = 1$ give $f'(x) = 3x^2 + 2$ and $f(x) = x^3 + 2x + 1$.</p>
+
+<p><b>Motion.</b> With position $s$, velocity $v = s'$, and acceleration $a = v'$: velocity is an antiderivative of acceleration and position an antiderivative of velocity. A ball thrown up at $20$ m/s from height $5$ m, with $a = -10$ m/s², has $v(t) = -10t + 20$ and $s(t) = -5t^2 + 20t + 5$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting $+ C$, and antidifferentiating a product or quotient factor by factor. There is no product rule for antiderivatives: an antiderivative of $\dfrac{x^3 + \sqrt x}{x}$ comes from first splitting it as $x^2 + x^{-1/2}$, giving $\tfrac{x^3}{3} + 2\sqrt x + C$.</p></div>
+</div>
+
+<div class="section"><h3>Worked example</h3>
+
+<p><b>A complete analysis.</b> $f(x) = x^3 - 6x^2 + 9x$ on $[0, 4]$.<br>
+$f'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)$, critical numbers $1$ and $3$. Sign chart: $f' &gt; 0$ on $(0, 1)$, $f' &lt; 0$ on $(1, 3)$, $f' &gt; 0$ on $(3, 4)$. So $f$ has a local maximum $f(1) = 4$ and a local minimum $f(3) = 0$.<br>
+$f''(x) = 6x - 12$, negative for $x &lt; 2$ and positive for $x &gt; 2$: concave downward on $(0, 2)$, upward on $(2, 4)$, with inflection point $(2, 2)$. The Second Derivative Test agrees: $f''(1) = -6 &lt; 0$ (max) and $f''(3) = 6 &gt; 0$ (min).<br>
+Closed Interval Method: $f(0) = 0$, $f(1) = 4$, $f(3) = 0$, $f(4) = 4$. Absolute maximum $4$ (at $x = 1$ and $x = 4$), absolute minimum $0$ (at $x = 0$ and $x = 3$).<br>
+MVT on $[0, 4]$: the secant slope is $\tfrac{4 - 0}{4} = 1$, and $3c^2 - 12c + 9 = 1$ gives $c = 2 \pm \tfrac{2}{\sqrt 3}$, both in $(0, 4)$.</p>
+</div>
+
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Find the absolute maximum and minimum values of $f(x) = x^3 - 12x + 1$ on $[-3, 5]$.</li>
+  <li>Find the critical numbers of $f(x) = x^{2/3}(x - 5)$ and classify each.</li>
+  <li>Verify that $f(x) = x^2 - 4x + 1$ satisfies the hypotheses of the MVT on $[0, 3]$ and find every $c$ the theorem promises.</li>
+  <li>For $f(x) = 3x^4 - 4x^3$, find the intervals of increase and decrease, the local extrema, the intervals of concavity, and the inflection points.</li>
+  <li>Find $\displaystyle\lim_{x \to \infty}\frac{4x^3 - x}{2x^3 + 7}$ and $\displaystyle\lim_{x \to -\infty}\frac{\sqrt{9x^2 + 1}}{2x - 1}$.</li>
+  <li>Sketch $f(x) = \dfrac{x}{x^2 + 1}$ using the checklist.</li>
+  <li>An open box with a square base must have volume $32$ ft³. Find the dimensions that use the least material.</li>
+  <li>Find $f$ if $f'(x) = 4x^3 - \sin x$ and $f(0) = 3$.</li>
+</ol>
+</div>
+
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Absolute vs local.</b> Absolute extrema on a closed interval: Closed Interval Method (critical numbers and endpoints). Local extrema: First or Second Derivative Test at the critical numbers.</p>
+
+<p><b>Finding critical numbers.</b> Factor $f'$. Include numbers in the domain where $f'$ is undefined (e.g. where a fractional power has $0$ in the denominator of its derivative).</p>
+
+<p><b>Sign charts.</b> Mark where $f'$ (or $f''$) is $0$ or undefined, test one point per piece, read off the shape.</p>
+
+<p><b>Second Derivative Test or First?</b> The second is quick when $f''$ is easy and nonzero at $c$. The first always works at a critical number and also handles points where $f'$ is undefined.</p>
+
+<p><b>Limits at infinity.</b> Divide by the highest power of $x$ in the denominator. With roots, remember $\sqrt{x^2} = |x|$, which matters as $x \to -\infty$.</p>
+
+<p><b>Optimization.</b> Picture, objective, constraint, one-variable function with its domain, then verify the maximum or minimum.</p>
+
+<p><b>Antiderivatives.</b> Rewrite as a sum of powers and basic trig functions, antidifferentiate each term, add $C$, and check by differentiating. Use the given values to find the constants.</p>
+</div>
+<div class="chapter-nav"><a href="ch2.html">← previous</a><a href="outline.html">outline</a><a href="ch4.html">next →</a></div>
+</div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc1_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</body>
+</html>

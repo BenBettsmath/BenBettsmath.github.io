@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc II · Complex Numbers</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Appendix H · Complex Numbers</h2>
+<div class="chapter-nav"><a href="ch11.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+<p>Numbers of the form $a + bi$ with $i^2 = -1$, drawn as points in a plane. Addition is vector addition. Multiplication is less obvious in coordinates but becomes simple in polar form: multiply the lengths and add the angles. That one fact gives De Moivre's theorem, the $n$th roots of a complex number, and, together with the Maclaurin series of 11.10, Euler's formula $e^{i\theta} = \cos\theta + i\sin\theta$.</p>
+<div class="section"><h3>Arithmetic</h3>
+
+<p class="part"><b>Complex numbers.</b> A complex number is an expression $z = a + bi$ with $a, b$ real and $i$ a symbol satisfying $i^2 = -1$. The <b>real part</b> is $\operatorname{Re} z = a$ and the <b>imaginary part</b> is $\operatorname{Im} z = b$. Two complex numbers are equal when both parts are equal. We draw $a + bi$ as the point $(a, b)$ in the <b>complex plane</b>, with the real axis horizontal and the imaginary axis vertical.</p>
+
+<p><b>Addition and multiplication.</b> Add parts separately. Multiply by distributing and replacing $i^2$ with $-1$.</p>
+<div class="formula">$(a + bi) + (c + di) = (a + c) + (b + d)i, \qquad (a + bi)(c + di) = (ac - bd) + (ad + bc)i.$</div>
+<p>Addition is the parallelogram rule for the vectors $\langle a, b\rangle$ and $\langle c, d\rangle$.</p>
+
+<p><b>Conjugate and division.</b> The <b>conjugate</b> of $z = a + bi$ is $\bar z = a - bi$, the reflection of $z$ across the real axis. Then $z\bar z = a^2 + b^2$ is real and $\ge 0$. To divide, multiply top and bottom by the conjugate of the bottom:</p>
+<div class="formula">$\dfrac{a + bi}{c + di} = \dfrac{(a + bi)(c - di)}{c^2 + d^2}.$</div>
+<p>Example: $\dfrac{1 + 3i}{2 - i} = \dfrac{(1 + 3i)(2 + i)}{4 + 1} = \dfrac{-1 + 7i}{5}$.</p>
+<p>Conjugation respects arithmetic: $\overline{z + w} = \bar z + \bar w$, $\overline{zw} = \bar z\,\bar w$, and $\overline{z^n} = \bar z^{\,n}$.</p>
+
+<p><b>Modulus.</b> The <b>modulus</b> (absolute value) of $z = a + bi$ is $|z| = \sqrt{a^2 + b^2}$, its distance from $0$. So $z\bar z = |z|^2$.</p>
+
+<p><b>Square roots of negatives and quadratics.</b> For $r &gt; 0$, the principal square root of $-r$ is $\sqrt{-r} = \sqrt r\,i$. So every quadratic $ax^2 + bx + c$ with real coefficients has roots $\dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$, and when $b^2 - 4ac &lt; 0$ these are a conjugate pair. Example: $x^2 + 2x + 5 = 0$ has roots $-1 \pm 2i$. More generally every polynomial of degree $n \ge 1$ with complex coefficients has $n$ complex roots counted with multiplicity (the Fundamental Theorem of Algebra).</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The rule $\sqrt a\sqrt b = \sqrt{ab}$ fails when both are negative. $\sqrt{-4}\,\sqrt{-9} = (2i)(3i) = -6$, while $\sqrt{(-4)(-9)} = \sqrt{36} = 6$. Convert each root to the form $\sqrt r\,i$ before multiplying.</p></div>
+</div>
+<div class="section"><h3>Polar Form</h3>
+
+<p class="part"><b>Polar form.</b> A nonzero $z = a + bi$ is the point at distance $r = |z|$ from $0$ in some direction $\theta$, so $a = r\cos\theta$, $b = r\sin\theta$, and</p>
+<div class="formula">$z = r(\cos\theta + i\sin\theta), \qquad r = |z| = \sqrt{a^2 + b^2}, \qquad \tan\theta = \dfrac ba.$</div>
+<p>The angle $\theta$ is an <b>argument</b> of $z$, written $\arg z$. It is not unique: adding any multiple of $2\pi$ gives the same point.</p>
+<p><b>Example.</b> $z = 1 + i$ has $r = \sqrt 2$ and $\theta = \pi/4$, so $1 + i = \sqrt2\bigl(\cos\frac\pi4 + i\sin\frac\pi4\bigr)$. And $z = -\sqrt3 + i$ has $r = 2$, $\theta = 5\pi/6$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\tan^{-1}(b/a)$ only returns angles in $(-\pi/2, \pi/2)$, the right half plane. For $-\sqrt3 + i$ it gives $-\pi/6$, which points the wrong way. Plot the point and pick the angle in the correct quadrant ($5\pi/6$).</p></div>
+
+<p><b>Multiplication in polar form.</b> If $z_1 = r_1(\cos\theta_1 + i\sin\theta_1)$ and $z_2 = r_2(\cos\theta_2 + i\sin\theta_2)$, then</p>
+<div class="formula">$z_1z_2 = r_1r_2\bigl[\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)\bigr], \qquad \dfrac{z_1}{z_2} = \dfrac{r_1}{r_2}\bigl[\cos(\theta_1 - \theta_2) + i\sin(\theta_1 - \theta_2)\bigr]\ \ (z_2 \ne 0).$</div>
+<p><em>Why.</em> Multiply out: the real part is $r_1r_2(\cos\theta_1\cos\theta_2 - \sin\theta_1\sin\theta_2)$ and the imaginary part is $r_1r_2(\sin\theta_1\cos\theta_2 + \cos\theta_1\sin\theta_2)$. These are the angle addition formulas for $\cos(\theta_1 + \theta_2)$ and $\sin(\theta_1 + \theta_2)$.</p>
+<p>So <b>multiplying by $w$ rotates by $\arg w$ and scales by $|w|$</b>. In particular $|zw| = |z|\,|w|$, and multiplying by $i$ (modulus $1$, argument $\pi/2$) is a quarter turn counterclockwise.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="complexMult"></canvas><div class="fig-cap"><b>Moduli multiply, arguments add.</b>Drag $z$ and $w$. The green arrow $zw$ has length $|z||w|$ and angle $\arg z + \arg w$.</div></div>
+</div>
+<div class="section"><h3>Powers and Roots</h3>
+
+<p class="part"><b>De Moivre's theorem.</b> If $z = r(\cos\theta + i\sin\theta)$ and $n$ is a positive integer, then</p>
+<div class="formula">$z^n = r^n(\cos n\theta + i\sin n\theta).$</div>
+<p><em>Why.</em> Apply the multiplication rule $n$ times: the lengths multiply to $r^n$ and the angles add to $n\theta$. The powers $1, z, z^2, \dots$ step around the origin by the same angle $\theta$ each time, on a spiral that grows if $r &gt; 1$ and shrinks if $r &lt; 1$.</p>
+<p><b>Example.</b> $1 + i = \sqrt2\bigl(\cos\frac\pi4 + i\sin\frac\pi4\bigr)$, so</p>
+<div class="formula">$(1 + i)^{10} = (\sqrt2)^{10}\Bigl(\cos\dfrac{10\pi}{4} + i\sin\dfrac{10\pi}{4}\Bigr) = 32\Bigl(\cos\dfrac{5\pi}{2} + i\sin\dfrac{5\pi}{2}\Bigr) = 32i.$</div>
+
+<p><b>$n$th roots.</b> Let $w = r(\cos\theta + i\sin\theta)$ be nonzero and $n$ a positive integer. Then $w$ has exactly $n$ distinct $n$th roots (numbers $z$ with $z^n = w$),</p>
+<div class="formula">$z_k = r^{1/n}\Bigl[\cos\Bigl(\dfrac{\theta + 2k\pi}{n}\Bigr) + i\sin\Bigl(\dfrac{\theta + 2k\pi}{n}\Bigr)\Bigr], \qquad k = 0, 1, \dots, n - 1.$</div>
+<p><em>Why.</em> By De Moivre, $z_k^n$ has modulus $r$ and argument $\theta + 2k\pi$, which is the same point as $w$. Different $k$ from $0$ to $n - 1$ give different angles, and $k = n$ starts repeating. The roots all have modulus $r^{1/n}$ and are spaced $2\pi/n$ apart, so they are the vertices of a regular $n$-gon.</p>
+<p><b>Example.</b> The cube roots of $-8 = 8(\cos\pi + i\sin\pi)$ are $2\bigl[\cos\frac{\pi + 2k\pi}{3} + i\sin\frac{\pi + 2k\pi}{3}\bigr]$ for $k = 0, 1, 2$: that is $1 + \sqrt3\,i$, $-2$, and $1 - \sqrt3\,i$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="complexPowers"></canvas><div class="fig-cap"><b>Powers spiral, roots form a polygon.</b>Drag $z$. In "powers" mode the dots are $1, z, \dots, z^n$. In "roots" mode they are the $n$ values whose $n$th power is $z$.</div></div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting the $2k\pi$ gives only one root. There are always $n$ of them, and the real one (when it exists) is just one vertex of the polygon.</p></div>
+</div>
+<div class="section"><h3>Euler's Formula</h3>
+
+<p class="part"><b>Definition.</b> For real $y$,</p>
+<div class="formula">$e^{iy} = \cos y + i\sin y, \qquad\text{and for } z = x + iy, \qquad e^{z} = e^x(\cos y + i\sin y).$</div>
+<p><em>Why this is the right definition.</em> Put $iy$ into the Maclaurin series $e^x = \sum\frac{x^n}{n!}$ from 11.10. The powers of $i$ cycle $1, i, -1, -i, 1, \dots$, so</p>
+<div class="formula">$\displaystyle e^{iy} = 1 + iy - \frac{y^2}{2!} - i\frac{y^3}{3!} + \frac{y^4}{4!} + \cdots = \Bigl(1 - \frac{y^2}{2!} + \frac{y^4}{4!} - \cdots\Bigr) + i\Bigl(y - \frac{y^3}{3!} + \frac{y^5}{5!} - \cdots\Bigr) = \cos y + i\sin y.$</div>
+<p>The real terms are the series for $\cos y$ and the imaginary terms the series for $\sin y$. With this definition the usual law $e^{z_1 + z_2} = e^{z_1}e^{z_2}$ still holds, because it is exactly the multiplication rule in polar form.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="eulerSeries"></canvas><div class="fig-cap"><b>The series for $e^{i\theta}$, head to tail.</b>Each term is the previous one turned $90^\circ$ and scaled by $\theta/k$. Add terms and the path spirals in to the point $\cos\theta + i\sin\theta$ on the unit circle.</div></div>
+
+<p><b>Consequences.</b> Every complex number is $z = re^{i\theta}$, with $r = |z|$ and $\theta = \arg z$. The multiplication rule becomes $r_1e^{i\theta_1}\cdot r_2e^{i\theta_2} = r_1r_2e^{i(\theta_1 + \theta_2)}$, De Moivre becomes $(re^{i\theta})^n = r^ne^{in\theta}$, and $\theta = \pi$ gives</p>
+<div class="formula">$e^{i\pi} + 1 = 0.$</div>
+<p><b>Example.</b> $e^{1 + i\pi/2} = e\bigl(\cos\frac\pi2 + i\sin\frac\pi2\bigr) = ei$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In $e^{x + iy} = e^x(\cos y + i\sin y)$ the real part $x$ sets the modulus $e^x$ and the imaginary part $y$ sets the angle. Mixing them up, as in $e^{x + iy} = e^y(\cos x + i\sin x)$, is wrong. Also $\theta$ is in radians.</p></div>
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Write in the form $a + bi$: $(3 - 2i)(4 + i)$, $\dfrac{2 + i}{1 - 3i}$, $i^{27}$, $\overline{(1 + i)^2}$.</li>
+  <li>Find all solutions of $x^2 - 4x + 13 = 0$ and of $x^4 = 16$.</li>
+  <li>Write in polar form with $0 \le \theta &lt; 2\pi$: $-3 + 3i$, $-2i$, $1 - \sqrt3\,i$.</li>
+  <li>Let $z = 2\bigl(\cos\frac\pi6 + i\sin\frac\pi6\bigr)$ and $w = 3\bigl(\cos\frac\pi3 + i\sin\frac\pi3\bigr)$. Find $zw$, $z/w$, and $1/z$.</li>
+  <li>Use De Moivre's theorem to compute $(1 - i)^8$ and $(\sqrt3 + i)^6$.</li>
+  <li>Find the fourth roots of $-16$ and the cube roots of $i$, and plot them.</li>
+  <li>Write $e^{2 - i\pi/3}$ in the form $a + bi$.</li>
+  <li>Use $e^{i\theta} = \cos\theta + i\sin\theta$ to show $\cos\theta = \dfrac{e^{i\theta} + e^{-i\theta}}{2}$, and compare with the definition of $\cosh$ in 6.7.</li>
+</ol>
+
+</div>
+<div class="chapter-nav"><a href="ch11.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc2_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</div></body></html>

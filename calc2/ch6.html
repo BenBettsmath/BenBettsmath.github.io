@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc II · Inverse Functions</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="chapter.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">☰</a>
+</div>
+<div class="page-content">
+<h2>Chapter 6 · Inverse Functions</h2>
+<div class="chapter-nav"><span class="disabled">← previous</span><a href="outline.html">outline</a><a href="ch7.html">next →</a></div>
+<p>Inverse functions and the new functions they produce: logarithms as inverses of exponentials, inverse trig functions, and the hyperbolic functions. The chapter ends with L'Hôpital's rule for indeterminate limits. One picture runs through all of it. The graph of $f^{-1}$ is the graph of $f$ reflected across the line $y = x$, so a tangent line of slope $m$ becomes a tangent line of slope $1/m$.</p>
+<div class="section"><h3>6.1 Inverse Functions</h3>
+
+<p class="part"><b>One-to-one.</b> A function $f$ with domain $A$ is <em>one-to-one</em> if it never takes the same value twice: $f(x_1) \ne f(x_2)$ whenever $x_1 \ne x_2$ in $A$. On a graph this is the <b>horizontal line test</b>. $f$ is one-to-one exactly when no horizontal line meets its graph more than once.</p>
+
+<p><b>Inverse function.</b> Let $f$ be one-to-one with domain $A$ and range $B$. Its inverse $f^{-1}$ has domain $B$ and range $A$, and is defined by</p>
+<div class="formula">$f^{-1}(y) = x \iff f(x) = y \qquad (y \in B).$</div>
+<p>So $f^{-1}$ undoes $f$. The <b>cancellation equations</b> say exactly that: $f^{-1}(f(x)) = x$ for every $x \in A$ and $f(f^{-1}(y)) = y$ for every $y \in B$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The $-1$ in $f^{-1}$ is not an exponent. $f^{-1}(x)$ means the inverse function evaluated at $x$, while $\dfrac{1}{f(x)} = [f(x)]^{-1}$ is the reciprocal. For example $\sin^{-1}(1) = \pi/2$ but $1/\sin(1) \approx 1.19$.</p></div>
+
+<p><b>Finding a formula.</b> Write $y = f(x)$, solve for $x$ in terms of $y$, then interchange $x$ and $y$ to get $y = f^{-1}(x)$. Example: $y = 3x - 2$ gives $x = (y + 2)/3$, so $f^{-1}(x) = (x + 2)/3$.</p>
+
+<p><b>Graph.</b> The point $(a, b)$ is on the graph of $f$ exactly when $(b, a)$ is on the graph of $f^{-1}$. Swapping coordinates is reflection across $y = x$, so the graph of $f^{-1}$ is the mirror image of the graph of $f$ in that line.</p>
+
+<p><b>A test for one-to-one.</b> If $f'(x) &gt; 0$ for all $x$ in an interval (or $f'(x) &lt; 0$ for all of them), then $f$ is increasing (or decreasing) there, so it cannot return to a value it already took. Hence $f$ is one-to-one on that interval.</p>
+
+<p><b>Theorem (derivative of an inverse).</b> If $f$ is one-to-one and differentiable on an interval, $f^{-1}$ is continuous, and $f'(f^{-1}(a)) \ne 0$, then $f^{-1}$ is differentiable at $a$ and</p>
+<div class="formula">$\displaystyle (f^{-1})'(a) = \frac{1}{f'\bigl(f^{-1}(a)\bigr)}.$</div>
+<p><em>Why.</em> Differentiate $f(f^{-1}(x)) = x$ with the chain rule to get $f'(f^{-1}(x))\,(f^{-1})'(x) = 1$, then divide. In the picture, reflecting across $y = x$ swaps rise and run, so if $b = f^{-1}(a)$, a tangent of slope $m = f'(b)$ at $(b, a)$ on $f$ becomes a tangent of slope $1/m$ at $(a, b)$ on $f^{-1}$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="inverseSlope"></canvas><div class="fig-cap"><b>Reflection turns slope $m$ into slope $1/m$.</b>Drag either point. The dashed tangents always have reciprocal slopes.</div></div>
+
+<p><b>Example.</b> Let $f(x) = x^5 + 2x + 1$. Since $f'(x) = 5x^4 + 2 &gt; 0$, $f$ is one-to-one. To find $(f^{-1})'(4)$, first find $f^{-1}(4)$: we need $x$ with $x^5 + 2x + 1 = 4$, and $x = 1$ works. So $(f^{-1})'(4) = 1/f'(1) = 1/7$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Evaluate $f'$ at $f^{-1}(a)$, not at $a$. In the example, $1/f'(4)$ is wrong. The input $4$ is a <em>height</em> on the graph of $f$, and we need the slope of $f$ at the point with that height.</p></div>
+</div>
+<div class="section"><h3>6.2–6.4 Exponential and Logarithmic Functions</h3>
+
+<p class="part"><b>Exponential functions.</b> For a base $b &gt; 0$, the function $f(x) = b^x$ is defined for rational $x$ by roots and powers, and for irrational $x$ by filling in the gaps continuously. If $b &gt; 1$ it is increasing, with $b^x \to \infty$ as $x \to \infty$ and $b^x \to 0$ as $x \to -\infty$. If $0 &lt; b &lt; 1$ it is decreasing. The laws of exponents hold for all real exponents.</p>
+<div class="formula">$b^{x+y} = b^x b^y, \qquad b^{x-y} = \dfrac{b^x}{b^y}, \qquad (b^x)^y = b^{xy}, \qquad (ab)^x = a^x b^x.$</div>
+
+<p><b>Why $e$ is the natural base.</b> The difference quotient of $b^x$ factors,</p>
+<div class="formula">$\displaystyle \frac{b^{x+h} - b^x}{h} = b^x \cdot \frac{b^h - 1}{h}, \qquad\text{so}\qquad \frac{d}{dx}\,b^x = b^x \cdot \lim_{h\to 0}\frac{b^h - 1}{h}.$</div>
+<p>The limit is the slope of $b^x$ at $x = 0$. Every exponential is its own derivative up to this constant. The number $e \approx 2.71828$ is defined as the base for which that slope is exactly $1$, that is $\lim_{h \to 0} (e^h - 1)/h = 1$. Then</p>
+<div class="formula">$\dfrac{d}{dx}\,e^x = e^x, \qquad \displaystyle\int e^x\,dx = e^x + C, \qquad \frac{d}{dx}\,e^{g(x)} = e^{g(x)}\,g'(x).$</div>
+
+<div class="fig-inline-canvas"><canvas data-fig="expBase"></canvas><div class="fig-cap"><b>The slope of $b^x$ at $0$ is $\ln b$.</b>Slide $b$. The tangent at $(0, 1)$ has slope exactly $1$ only when $b = e$. The orange curve is the reflection of the blue one across $y = x$.</div></div>
+
+<p><b>Logarithms.</b> For $b &gt; 0$, $b \ne 1$, the function $b^x$ is one-to-one, and its inverse is $\log_b x$. So $\log_b x = y \iff b^y = x$, for $x &gt; 0$. The <b>natural logarithm</b> is $\ln x = \log_e x$. Its cancellation equations are</p>
+<div class="formula">$\ln(e^x) = x \ \ (x \in \mathbb R), \qquad e^{\ln x} = x \ \ (x &gt; 0).$</div>
+<p><b>Laws of logarithms</b> (for $x, y &gt; 0$ and $r$ real) come from the laws of exponents read backwards.</p>
+<div class="formula">$\ln(xy) = \ln x + \ln y, \qquad \ln\dfrac{x}{y} = \ln x - \ln y, \qquad \ln(x^r) = r\ln x.$</div>
+<p><b>Change of base.</b> $\log_b x = \dfrac{\ln x}{\ln b}$ and $b^x = e^{x\ln b}$. So every exponential and every logarithm is a rescaled $e^x$ or $\ln x$.</p>
+
+<p><b>Derivatives of logarithms.</b></p>
+<div class="formula">$\dfrac{d}{dx}\ln x = \dfrac1x \ \ (x &gt; 0), \qquad \dfrac{d}{dx}\ln|x| = \dfrac1x \ \ (x \ne 0), \qquad \displaystyle\int \frac{dx}{x} = \ln|x| + C.$</div>
+<p><em>Why.</em> If $y = \ln x$ then $e^y = x$. Differentiate implicitly: $e^y\,y' = 1$, so $y' = 1/e^y = 1/x$. This is the inverse function theorem with $f = e^x$, whose slope at height $x$ is $x$ itself.</p>
+<p>With change of base and the chain rule,</p>
+<div class="formula">$\dfrac{d}{dx}\,b^x = b^x \ln b, \qquad \dfrac{d}{dx}\log_b x = \dfrac{1}{x\ln b}, \qquad \displaystyle\int b^x\,dx = \frac{b^x}{\ln b} + C, \qquad \frac{d}{dx}\ln g(x) = \frac{g'(x)}{g(x)}.$</div>
+<p>The last rule gives $\int \tan x\,dx = -\ln|\cos x| + C = \ln|\sec x| + C$, with $u = \cos x$.</p>
+
+<p><b>Example.</b> $\displaystyle\int \frac{\ln x}{x}\,dx$. Let $u = \ln x$, $du = dx/x$. The integral is $\int u\,du = \tfrac12(\ln x)^2 + C$.</p>
+
+<p><b>Logarithmic differentiation.</b> To differentiate a messy product, quotient, or power $y = f(x)$, take $\ln$ of both sides, expand with the log laws, differentiate implicitly, and solve for $y'$. This is the only way to handle a variable base raised to a variable exponent.</p>
+<p><b>Example.</b> $y = x^{\sin x}$ for $x &gt; 0$. Then $\ln y = \sin x \ln x$, so $\dfrac{y'}{y} = \cos x\ln x + \dfrac{\sin x}{x}$ and $y' = x^{\sin x}\Bigl(\cos x \ln x + \dfrac{\sin x}{x}\Bigr)$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Three different rules, decided by where the variable is. Variable base, constant exponent: $\frac{d}{dx}x^n = n x^{n-1}$. Constant base, variable exponent: $\frac{d}{dx}b^x = b^x\ln b$. Variable in both: logarithmic differentiation. Applying the power rule to $2^x$ or to $x^x$ is wrong.</p>
+<p>Also $\ln(a + b) \ne \ln a + \ln b$. The log of a sum has no simplification.</p></div>
+
+<p><b>$e$ as a limit.</b></p>
+<div class="formula">$\displaystyle e = \lim_{x \to 0}(1 + x)^{1/x} = \lim_{n\to\infty}\Bigl(1 + \frac1n\Bigr)^n.$</div>
+<p><em>Why.</em> The derivative of $\ln$ at $1$ is $1$. As a limit of difference quotients that says $\frac{\ln(1 + x)}{x} \to 1$ as $x \to 0$. That quotient equals $\ln\bigl((1 + x)^{1/x}\bigr)$, so exponentiating gives $(1 + x)^{1/x} \to e$.</p>
+</div>
+<div class="section"><h3>6.5 Exponential Growth and Decay</h3>
+
+<p class="part"><b>The model.</b> If a quantity $y(t)$ changes at a rate proportional to its size, $\dfrac{dy}{dt} = ky$ for a constant $k$, then</p>
+<div class="formula">$y(t) = y(0)\,e^{kt}.$</div>
+<p><em>Why these are the only solutions.</em> $\dfrac{d}{dt}\bigl[y e^{-kt}\bigr] = (y' - ky)e^{-kt} = 0$, so $y e^{-kt}$ is constant, equal to its value $y(0)$ at $t = 0$.</p>
+<p>The constant $k = \dfrac{1}{y}\dfrac{dy}{dt}$ is the <b>relative growth rate</b>. $k &gt; 0$ is growth (populations, compound interest), $k &lt; 0$ is decay (radioactive material).</p>
+
+<p><b>Doubling time and half-life.</b> Solving $e^{kT} = 2$ (or $\tfrac12$) gives $T = \dfrac{\ln 2}{|k|}$. Over any time interval of length $T$ the quantity doubles (or halves), no matter where the interval starts. Equal time steps multiply $y$ by equal factors.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="doubling"></canvas><div class="fig-cap"><b>Equal steps in time, equal ratios in $y$.</b>Slide $k$ through $0$ to switch from growth to decay.</div></div>
+
+<p><b>Example.</b> A substance has half-life $10$ years. After $25$ years the fraction left is $\bigl(\tfrac12\bigr)^{25/10} = 2^{-5/2} = \tfrac{\sqrt 2}{8} \approx 0.177$. Here $k = -\ln 2/10$, and $e^{25k} = 2^{-5/2}$.</p>
+
+<p><b>Newton's law of cooling.</b> An object at temperature $T(t)$ in surroundings at constant temperature $T_s$ satisfies $\dfrac{dT}{dt} = k(T - T_s)$. Setting $y = T - T_s$ gives $y' = ky$, so $T(t) = T_s + (T(0) - T_s)\,e^{kt}$, with $k &lt; 0$.</p>
+
+<p><b>Continuous compounding.</b> $A_0$ invested at annual rate $r$, compounded $n$ times a year, gives $A_0(1 + r/n)^{nt}$ after $t$ years. As $n \to \infty$ this tends to $A_0e^{rt}$, by the limit for $e$ in 6.4.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Find $k$ from data with logarithms and keep it exact ($k = \tfrac{1}{t}\ln\tfrac{y(t)}{y(0)}$) until the last step. Rounding $k$ early compounds error through the exponential. For decay $k$ comes out negative automatically, so do not add a sign by hand on top of it.</p></div>
+</div>
+<div class="section"><h3>6.6 Inverse Trigonometric Functions</h3>
+
+<p class="part"><b>Restricting the domain.</b> The trig functions are periodic, so they fail the horizontal line test. Each is restricted to an interval where it is one-to-one and still takes every value, and the inverse is the inverse of that restricted piece.</p>
+<div class="formula">$\begin{aligned}
+\sin^{-1}x = y &amp;\iff \sin y = x \ \text{ and } \ -\tfrac{\pi}{2} \le y \le \tfrac{\pi}{2}, &amp;&amp; -1 \le x \le 1,\\
+\cos^{-1}x = y &amp;\iff \cos y = x \ \text{ and } \ 0 \le y \le \pi, &amp;&amp; -1 \le x \le 1,\\
+\tan^{-1}x = y &amp;\iff \tan y = x \ \text{ and } \ -\tfrac{\pi}{2} &lt; y &lt; \tfrac{\pi}{2}, &amp;&amp; x \in \mathbb R.
+\end{aligned}$</div>
+<p>Also written $\arcsin$, $\arccos$, $\arctan$. Since $\tan$ has vertical asymptotes at $\pm\pi/2$, $\tan^{-1}$ has horizontal asymptotes: $\lim_{x\to\pm\infty}\tan^{-1}x = \pm\pi/2$. For $\sec^{-1}$ we follow Stewart and restrict $\sec$ to $[0, \pi/2) \cup [\pi, 3\pi/2)$, which makes its derivative formula below hold with no absolute value.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="invTrig"></canvas><div class="fig-cap"><b>Restrict, then reflect.</b>The sweeping horizontal line meets the full graph many times but the restricted piece once. Switch between $\sin$, $\cos$, $\tan$.</div></div>
+
+<p><b>Cancellation.</b> $\sin(\sin^{-1}x) = x$ for $-1 \le x \le 1$, but $\sin^{-1}(\sin x) = x$ only for $-\pi/2 \le x \le \pi/2$.</p>
+
+<p><b>Derivatives.</b></p>
+<div class="formula">$\dfrac{d}{dx}\sin^{-1}x = \dfrac{1}{\sqrt{1 - x^2}}, \qquad \dfrac{d}{dx}\cos^{-1}x = -\dfrac{1}{\sqrt{1 - x^2}}, \qquad \dfrac{d}{dx}\tan^{-1}x = \dfrac{1}{1 + x^2}, \qquad \dfrac{d}{dx}\sec^{-1}x = \dfrac{1}{x\sqrt{x^2 - 1}}.$</div>
+<p><em>Why.</em> Let $y = \sin^{-1}x$, so $\sin y = x$. Differentiate: $\cos y\cdot y' = 1$, so $y' = 1/\cos y$. On $[-\pi/2, \pi/2]$ we have $\cos y \ge 0$, so $\cos y = \sqrt{1 - \sin^2 y} = \sqrt{1 - x^2}$. The others go the same way, using $\sec^2 y = 1 + \tan^2 y$ for $\tan^{-1}$.</p>
+
+<p><b>Integrals</b> (with $a &gt; 0$), read off from the derivatives after the substitution $x = au$.</p>
+<div class="formula">$\displaystyle \int \frac{dx}{\sqrt{a^2 - x^2}} = \sin^{-1}\frac{x}{a} + C, \qquad \int \frac{dx}{x^2 + a^2} = \frac1a\tan^{-1}\frac{x}{a} + C.$</div>
+
+<p><b>Example.</b> Simplify $\cos(\tan^{-1}x)$. Let $\theta = \tan^{-1}x$, so $\tan\theta = x$ with $-\pi/2 &lt; \theta &lt; \pi/2$. Draw a right triangle with opposite side $x$, adjacent side $1$, and hypotenuse $\sqrt{1 + x^2}$. Then $\cos\theta = 1/\sqrt{1 + x^2}$, which is positive, as it must be on that interval.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\sin^{-1}(\sin\tfrac{3\pi}{4})$ is $\tfrac{\pi}{4}$, not $\tfrac{3\pi}{4}$. The output of $\sin^{-1}$ must lie in $[-\pi/2, \pi/2]$, so we look for the angle in that range with the same sine, $\tfrac{\sqrt2}{2}$.</p></div>
+</div>
+<div class="section"><h3>6.7 Hyperbolic Functions</h3>
+
+<p class="part"><b>Definitions.</b></p>
+<div class="formula">$\sinh x = \dfrac{e^x - e^{-x}}{2}, \qquad \cosh x = \dfrac{e^x + e^{-x}}{2}, \qquad \tanh x = \dfrac{\sinh x}{\cosh x},$</div>
+<p>with $\operatorname{csch} x = 1/\sinh x$, $\operatorname{sech} x = 1/\cosh x$, $\coth x = 1/\tanh x$. $\cosh$ is even and $\sinh$ is odd, since they are the even and odd parts of $e^x$: $e^x = \cosh x + \sinh x$.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="coshSinh"></canvas><div class="fig-cap"><b>$\cosh$ and $\sinh$ from two exponentials.</b>At each $x$, $\cosh x$ is the sum and $\sinh x$ the difference of the dashed curves $\tfrac12e^x$ and $\tfrac12e^{-x}$.</div></div>
+
+<p><b>Identities.</b> $\cosh^2 x - \sinh^2 x = 1$ (expand the squares, the cross terms give $\tfrac{2}{4} + \tfrac24$). Dividing by $\cosh^2 x$ gives $1 - \tanh^2 x = \operatorname{sech}^2 x$. Also $\sinh(x + y) = \sinh x\cosh y + \cosh x\sinh y$ and $\cosh(x + y) = \cosh x\cosh y + \sinh x\sinh y$.</p>
+
+<p><b>Why "hyperbolic".</b> The identity says the point $(\cosh t, \sinh t)$ lies on the right branch of the hyperbola $x^2 - y^2 = 1$, just as $(\cos t, \sin t)$ lies on the circle $x^2 + y^2 = 1$. In both cases the region swept from the origin to the point, bounded by the curve, has area $t/2$. So $t$ plays the role of an angle.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="hyperbola"></canvas><div class="fig-cap"><b>$(\cosh t, \sinh t)$ on $x^2 - y^2 = 1$.</b>Slide $t$. The shaded region has area $|t|/2$.</div></div>
+
+<p><b>Derivatives.</b> Differentiate the exponentials directly.</p>
+<div class="formula">$\begin{aligned}
+&amp;\tfrac{d}{dx}\sinh x = \cosh x, &amp;&amp; \tfrac{d}{dx}\cosh x = \sinh x, &amp;&amp; \tfrac{d}{dx}\tanh x = \operatorname{sech}^2 x,\\
+&amp;\tfrac{d}{dx}\operatorname{csch} x = -\operatorname{csch} x\coth x, &amp;&amp; \tfrac{d}{dx}\operatorname{sech} x = -\operatorname{sech} x\tanh x, &amp;&amp; \tfrac{d}{dx}\coth x = -\operatorname{csch}^2 x.
+\end{aligned}$</div>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\frac{d}{dx}\cosh x = +\sinh x$. There is no minus sign, unlike $\frac{d}{dx}\cos x = -\sin x$. The sign pattern of the trig derivatives does not carry over.</p></div>
+
+<p><b>Inverse hyperbolic functions.</b> $\sinh$ and $\tanh$ are one-to-one. $\cosh$ is one-to-one on $[0, \infty)$, and $\cosh^{-1}$ is the inverse of that piece. Since they are built from $e^x$, the inverses are logarithms.</p>
+<div class="formula">$\sinh^{-1}x = \ln\bigl(x + \sqrt{x^2 + 1}\bigr), \qquad \cosh^{-1}x = \ln\bigl(x + \sqrt{x^2 - 1}\bigr)\ (x \ge 1), \qquad \tanh^{-1}x = \tfrac12\ln\dfrac{1 + x}{1 - x}\ (|x| &lt; 1).$</div>
+<p><em>Why, for $\sinh^{-1}$.</em> $y = \sinh^{-1}x$ means $x = (e^y - e^{-y})/2$. Multiply by $2e^y$: $(e^y)^2 - 2x\,e^y - 1 = 0$, a quadratic in $e^y$. Its positive root is $e^y = x + \sqrt{x^2 + 1}$.</p>
+<div class="formula">$\dfrac{d}{dx}\sinh^{-1}x = \dfrac{1}{\sqrt{1 + x^2}}, \qquad \dfrac{d}{dx}\cosh^{-1}x = \dfrac{1}{\sqrt{x^2 - 1}}, \qquad \dfrac{d}{dx}\tanh^{-1}x = \dfrac{1}{1 - x^2}.$</div>
+
+<p><b>Example.</b> $\sinh(\ln x) = \dfrac{e^{\ln x} - e^{-\ln x}}{2} = \dfrac{x - 1/x}{2} = \dfrac{x^2 - 1}{2x}$ for $x &gt; 0$. And $\frac{d}{dx}\tanh(3x) = 3\operatorname{sech}^2(3x)$ by the chain rule.</p>
+
+<p><b>Where they show up.</b> A cable hanging under its own weight takes the shape $y = a\cosh(x/a)$ (a catenary), and $\tanh$ describes velocity under air resistance.</p>
+</div>
+<div class="section"><h3>6.8 Indeterminate Forms and L'Hôpital's Rule</h3>
+
+<p class="part"><b>Indeterminate forms.</b> A limit $\lim_{x\to a}\frac{f(x)}{g(x)}$ with $f(x) \to 0$ and $g(x) \to 0$ is of type $\tfrac00$. If $f(x) \to \pm\infty$ and $g(x) \to \pm\infty$ it is of type $\tfrac{\infty}{\infty}$. The type alone does not decide the value: $\frac{x}{x}$, $\frac{x^2}{x}$, $\frac{x}{x^2}$ are all $\tfrac00$ at $0$ with limits $1$, $0$, $\infty$.</p>
+
+<p><b>L'Hôpital's rule.</b> Suppose $f$ and $g$ are differentiable and $g'(x) \ne 0$ near $a$ (except possibly at $a$), and $\frac{f}{g}$ is of type $\tfrac00$ or $\tfrac{\infty}{\infty}$ at $a$. Then</p>
+<div class="formula">$\displaystyle \lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}$</div>
+<p>provided the limit on the right exists or is $\pm\infty$. The same holds for one-sided limits and for $x \to \pm\infty$.</p>
+<p><em>Why, for $\tfrac00$.</em> Near $a$, each function is close to its tangent line: $f(x) \approx f'(a)(x - a)$ and $g(x) \approx g'(a)(x - a)$. The factors $x - a$ cancel, leaving $f'(a)/g'(a)$. A ratio of two quantities that both vanish is a ratio of the rates at which they vanish.</p>
+
+<div class="fig-inline-canvas"><canvas data-fig="lhopital"></canvas><div class="fig-cap"><b>Ratio of heights near $0$ is a ratio of slopes.</b>Move $x$ toward $0$. The vertical bars are $f(x)$ and $g(x)$, and their ratio approaches $f'(0)/g'(0) = 1/2$.</div></div>
+
+<p><b>Example.</b> $\displaystyle\lim_{x\to\infty}\frac{\ln x}{\sqrt x}$ is $\tfrac{\infty}{\infty}$. L'Hôpital gives $\displaystyle\lim_{x\to\infty}\frac{1/x}{1/(2\sqrt x)} = \lim_{x\to\infty}\frac{2}{\sqrt x} = 0$. In general $\ln x$ grows slower than any positive power $x^p$, which grows slower than $e^x$.</p>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Check the form first. $\displaystyle\lim_{x \to \pi^-}\frac{\sin x}{1 - \cos x} = \frac{0}{2} = 0$, but applying L'Hôpital anyway gives $\lim \frac{\cos x}{\sin x} = -\infty$, which is wrong.</p>
+<p>The rule uses $f'/g'$, the quotient of derivatives. It is not the quotient rule $(f/g)'$.</p></div>
+
+<p><b>Other forms.</b> Convert to $\tfrac00$ or $\tfrac{\infty}{\infty}$ first.</p>
+<ul class="tight">
+  <li><b>Product</b> $0\cdot\infty$: write $fg = \dfrac{f}{1/g}$ or $\dfrac{g}{1/f}$. Example: <div class="formula">$\displaystyle\lim_{x\to 0^+}x\ln x = \lim_{x \to 0^+}\frac{\ln x}{1/x} = \lim_{x\to0^+}\frac{1/x}{-1/x^2} = \lim_{x\to0^+}(-x) = 0.$</div></li>
+  <li><b>Difference</b> $\infty - \infty$: combine into one fraction (common denominator, rationalize, or factor).</li>
+  <li><b>Powers</b> $0^0$, $\infty^0$, $1^\infty$: if $y = f(x)^{g(x)}$, then $\ln y = g(x)\ln f(x)$ is a product of type $0\cdot\infty$. Find $\lim \ln y = L$, then $\lim y = e^L$. Example: $\displaystyle\lim_{x\to\infty}\Bigl(1 + \frac3x\Bigr)^x$. Here $\ln y = x\ln(1 + 3/x) = \dfrac{\ln(1 + 3/x)}{1/x} \to 3$, so the limit is $e^3$.</li>
+</ul>
+
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>L'Hôpital can loop. For $\displaystyle\lim_{x\to\infty}\frac{\sqrt{x^2 + 1}}{x}$ it produces $\frac{x}{\sqrt{x^2 + 1}}$, then the original quotient again. Algebra settles it: divide top and bottom by $x$ to get $\sqrt{1 + 1/x^2} \to 1$.</p></div>
+</div>
+<div class="section"><h3>Practice problems</h3>
+
+<ol class="tight">
+  <li>Show that $f(x) = x^3 + 4x - 2$ is one-to-one, then find $(f^{-1})'(3)$.</li>
+  <li>Find $f^{-1}(x)$ for $f(x) = \dfrac{2x + 1}{x - 3}$ and state its domain.</li>
+  <li>Differentiate $y = \ln\dfrac{(x^2 + 1)^3}{\sqrt{2x - 1}}$ by first expanding with the log laws.</li>
+  <li>Use logarithmic differentiation to find $y'$ for $y = (\ln x)^x$.</li>
+  <li>Evaluate $\displaystyle\int_0^1 \frac{x}{x^2 + 1}\,dx$ and $\displaystyle\int \frac{e^{2x}}{1 + e^{2x}}\,dx$.</li>
+  <li>A culture grows from $200$ cells to $1600$ cells in $6$ hours. Find its doubling time.</li>
+  <li>Find the exact value of $\tan(\sin^{-1}\tfrac{3}{5})$ and of $\cos^{-1}(\cos\tfrac{5\pi}{3})$.</li>
+  <li>Prove $\dfrac{d}{dx}\tan^{-1}x = \dfrac{1}{1 + x^2}$.</li>
+  <li>Show that $\cosh x + \sinh x = e^x$ and find $\dfrac{d}{dx}\sinh^{-1}(2x)$.</li>
+  <li>Evaluate $\displaystyle\lim_{x\to0}\frac{e^{2x} - 1 - 2x}{x^2}$, $\displaystyle\lim_{x\to\infty}x^2e^{-x}$, and $\displaystyle\lim_{x\to0^+}x^{x}$.</li>
+</ol>
+
+</div>
+<div class="section"><h3>Strategies</h3>
+
+<p><b>Showing $f$ is one-to-one.</b> Compute $f'$ and show it has one sign on the domain. For a formula, show $f(x_1) = f(x_2)$ forces $x_1 = x_2$.</p>
+
+<p><b>$(f^{-1})'(a)$ without a formula for $f^{-1}$.</b> Find $b$ with $f(b) = a$ by inspection (try small integers), then $(f^{-1})'(a) = 1/f'(b)$.</p>
+
+<p><b>Choosing a derivative rule for powers.</b> Variable only in the base: power rule. Variable only in the exponent: $b^x \ln b$. Variable in both: logarithmic differentiation.</p>
+
+<p><b>Simplifying an inverse trig expression.</b> Name the angle, $\theta = \sin^{-1}x$ (or $\tan^{-1}x$, ...), draw the right triangle with the known ratio, and read the other ratio from the sides. Check the sign against the allowed range of $\theta$.</p>
+
+<p><b>Indeterminate limits.</b> Identify the form. $\tfrac00$ or $\tfrac\infty\infty$: L'Hôpital. $0\cdot\infty$: rewrite as a quotient. $\infty - \infty$: combine. $0^0$, $\infty^0$, $1^\infty$: take $\ln$ and exponentiate at the end.</p>
+
+</div>
+<div class="chapter-nav"><span class="disabled">← previous</span><a href="outline.html">outline</a><a href="ch7.html">next →</a></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math &amp; Statistics</footer>
+<script type="module">
+import { initFigures } from './calc2_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
+</div></body></html>
