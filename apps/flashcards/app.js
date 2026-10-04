@@ -43,12 +43,12 @@ function mkCard(type, prompt, answer, translation, explanation) {
 // A card whose key doesn't match anything in the bundle at all is a genuine
 // user-added custom card and is never touched. Bump CONTENT_VERSION whenever
 // new bundled content or a re-leveling ships so existing installs pick it up.
-const CONTENT_VERSION = 3;
+const CONTENT_VERSION = 6;
 
 function applyContentUpdates(d) {
   if ((d.contentVersion || 0) >= CONTENT_VERSION) return d;
   const lvl = d.languages.german.levels;
-  const bundle = (typeof GERMAN_CONTENT !== 'undefined') ? GERMAN_CONTENT : {};
+  const bundle = fullBundle();
 
   const bundleKeyToLevel = {};
   ['beginner', 'medium', 'hard'].forEach(levelKey => {
@@ -89,11 +89,28 @@ function loadData() {
   return applyContentUpdates(d);
 }
 
+// One-time migration: sets for today or later that were never studied were built
+// from the whole level, so drop them and let them be rebuilt by topic.
+function resetUnstartedSetsForTopics() {
+  if (data.topicsVersion >= 3) return;
+  const now = new Date();
+  const todayKey = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
+  Object.values(data.languages[ACTIVE_LANGUAGE].levels).forEach(lvl => {
+    Object.keys(lvl.dailySets || {}).forEach(key => {
+      if (key < todayKey) return;
+      const hist = (lvl.setHistory || {})[key] || [];
+      if (hist.every(h => !h || h.length === 0)) { delete lvl.dailySets[key]; if (lvl.setHistory) delete lvl.setHistory[key]; }
+    });
+  });
+  data.topicsVersion = 3;
+}
+
 function saveData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 let data = loadData();
+resetUnstartedSetsForTopics();
 saveData(); // persist any content merge from loadData() so it isn't recomputed every load
 
 function currentLevel() {
@@ -173,6 +190,124 @@ manageBtn.addEventListener('click', () => {
   render();
 });
 
+// ---------- Topics ----------
+// The bundled cards come in the order of the sections of Bens_German.tex, so a
+// topic is a list of index ranges into that order. Hand-written themed decks
+// (content-german-topics.js) carry their own topic. Each day of the schedule is
+// one topic, and each topic lasts 2 days, or 3 if it has more than 60 cards.
+const TOPICS = {
+  beginner: [
+    ['Pronouns and possessives', [[0, 24]]],
+    ['Everyday verbs', [[25, 73]]],
+    ['Present tense, what the forms mean', [[519, 572]]],
+    ['Everyday nouns', [[74, 109]]],
+    ['Numbers, math and university', [[292, 316], [110, 133]]],
+    ['Telling time', 'extra'],
+    ['Adjectives', [[134, 187]]],
+    ['Colors', 'extra'],
+    ['Shopping', 'extra'],
+    ['Clothing', 'extra'],
+    ['Food and drink', [[424, 450]]],
+    ['Eating out', 'extra'],
+    ['Household', 'extra'],
+    ['Paperwork and bureaucracy', 'extra'],
+    ['Family', [[370, 396]]],
+    ['Body', 'extra'],
+    ['Feelings and health', [[397, 423], [473, 487]]],
+    ['Emergencies', 'extra'],
+    ['Hobbies and free time', 'extra'],
+    ['Phone and computer', 'extra'],
+    ['Time words', [[188, 217]]],
+    ['Days, months and seasons', [[488, 518]]],
+    ['Nature and animals', 'extra'],
+    ['Around town and directions', [[218, 237]]],
+    ['Transportation and travel', [[451, 472]]],
+    ['Greetings, small talk and weather', [[331, 369]]],
+    ['Conversation phrases', 'extra'],
+    ['Countries and languages', 'extra'],
+    ['Question words, articles and small words', [[268, 291], [317, 330]]],
+    ['Degree words and connectors', [[238, 267]]],
+  ],
+  medium: [
+    ['Dative verbs and common verbs', [[0, 56]]],
+    ['Math', [[57, 113], [151, 160], [218, 225]]],
+    ['Adjectives', [[114, 150]]],
+    ['Prepositions', [[161, 190]]],
+    ['Conjunctions and particles', [[191, 217]]],
+    ['Work and office', [[226, 251]]],
+    ['University', [[252, 274]]],
+    ['Past tense and subjunctive', [[275, 295]]],
+    ['Irregular verb forms, part 1', [[296, 358]]],
+    ['Irregular verb forms, part 2', [[359, 418]]],
+    ['Present tense of irregular verbs', [[419, 458]]],
+  ],
+  hard: [
+    ['What the forms mean, part 1', [[0, 83]]],
+    ['Correct conjugation?, part 1', [[251, 332]]],
+    ['Sentences, part 1', [[737, 804]]],
+    ['What the forms mean, part 2', [[84, 167]]],
+    ['Correct conjugation?, part 2', [[333, 414]]],
+    ['Grammar rules', [[660, 736]]],
+    ['What the forms mean, part 3', [[168, 250]]],
+    ['Correct conjugation?, part 3', [[415, 496]]],
+    ['Sentences, part 2', [[805, 871]]],
+    ['Correct conjugation?, part 4', [[497, 578]]],
+    ['Math tutor dialogues', [[872, 923]]],
+    ['Correct conjugation?, part 5', [[579, 659]]],
+    ['Math sentences', [[924, 997]]],
+  ],
+};
+const CUSTOM_TOPIC = 'Your own cards';
+const SCHEDULE_START = Date.UTC(2026, 9, 3); // day 0 of every level's schedule (Oct 3, 2026)
+
+function fullBundle() {
+  const base = (typeof GERMAN_CONTENT !== 'undefined') ? GERMAN_CONTENT : {};
+  const extra = (typeof GERMAN_TOPIC_CONTENT !== 'undefined') ? GERMAN_TOPIC_CONTENT : {};
+  const out = {};
+  ['beginner', 'medium', 'hard'].forEach(k => { out[k] = (base[k] || []).concat(extra[k] || []); });
+  return out;
+}
+
+const topicCache = {};
+function topicMap(levelKey) { // card key -> topic name
+  if (topicCache[levelKey]) return topicCache[levelKey];
+  const map = {};
+  const base = ((typeof GERMAN_CONTENT !== 'undefined') ? GERMAN_CONTENT : {})[levelKey] || [];
+  (TOPICS[levelKey] || []).forEach(([name, ranges]) => {
+    if (ranges === 'extra') return;
+    ranges.forEach(([a, b]) => { for (let i = a; i <= b && i < base.length; i++) map[base[i].type + '||' + base[i].prompt] = name; });
+  });
+  const extra = ((typeof GERMAN_TOPIC_CONTENT !== 'undefined') ? GERMAN_TOPIC_CONTENT : {})[levelKey] || [];
+  extra.forEach(c => { map[c.type + '||' + c.prompt] = c.topic; });
+  return (topicCache[levelKey] = map);
+}
+function cardTopic(levelKey, card) {
+  return topicMap(levelKey)[card.type + '||' + card.prompt] || CUSTOM_TOPIC;
+}
+
+// The day-by-day schedule for a level: each topic repeated for its number of days.
+function topicSchedule(levelKey) {
+  const lvl = data.languages[ACTIVE_LANGUAGE].levels[levelKey];
+  const counts = {};
+  lvl.cards.forEach(c => { const t = cardTopic(levelKey, c); counts[t] = (counts[t] || 0) + 1; });
+  const names = (TOPICS[levelKey] || []).map(t => t[0]);
+  if ((counts[CUSTOM_TOPIC] || 0) >= 10) names.push(CUSTOM_TOPIC);
+  const days = [];
+  names.forEach(n => {
+    if (!counts[n]) return;
+    const len = counts[n] > 60 ? 3 : 2;
+    for (let i = 0; i < len; i++) days.push(n);
+  });
+  return days;
+}
+function topicForDate(levelKey, key) {
+  const days = topicSchedule(levelKey);
+  if (!days.length) return null;
+  const [y, m, d] = key.split('-').map(Number);
+  const idx = Math.round((Date.UTC(y, m - 1, d) - SCHEDULE_START) / 86400000);
+  return days[((idx % days.length) + days.length) % days.length];
+}
+
 // ---------- Daily set generation ----------
 // Builds the 3 sets one at a time. Each pick prefers whichever card(s) have
 // been used LEAST so far today (a running frequency count, not just a
@@ -182,9 +317,12 @@ manageBtn.addEventListener('click', () => {
 // card within the same set unless the pool itself has fewer than 10 cards.
 function generateDailySets(dateKey) {
   const lvl = currentLevel();
-  const pool = lvl.cards;
-  if (pool.length === 0) return null;
+  if (lvl.cards.length === 0) return null;
+  const topic = topicForDate(state.level, dateKey);
+  let pool = topic ? lvl.cards.filter(c => cardTopic(state.level, c) === topic) : lvl.cards;
+  if (pool.length < 10) pool = lvl.cards; // a topic too small to fill a set falls back to the whole level
 
+  const seenById = new Map(pool.map(c => [c.id, c.seen || 0]));
   const allIds = pool.map(c => c.id);
   const usageCount = new Map(allIds.map(id => [id, 0]));
   const sets = [[], [], []];
@@ -194,13 +332,17 @@ function generateDailySets(dateKey) {
       const notInSet = allIds.filter(id => !sets[s].includes(id));
       const eligible = notInSet.length > 0 ? notInSet : allIds; // pool < 10: repeats within a set are unavoidable
       const minCount = Math.min(...eligible.map(id => usageCount.get(id)));
-      const candidates = eligible.filter(id => usageCount.get(id) === minCount);
+      let candidates = eligible.filter(id => usageCount.get(id) === minCount);
+      const minSeen = Math.min(...candidates.map(id => seenById.get(id)));
+      candidates = candidates.filter(id => seenById.get(id) === minSeen); // least-studied cards first, so repeat visits to a topic cover new cards
       const pick = candidates[Math.floor(Math.random() * candidates.length)];
       sets[s].push(pick);
       usageCount.set(pick, usageCount.get(pick) + 1);
     }
   }
   lvl.dailySets[dateKey] = sets;
+  if (!lvl.dailyTopics) lvl.dailyTopics = {};
+  lvl.dailyTopics[dateKey] = topic;
   if (!lvl.setHistory) lvl.setHistory = {};
   lvl.setHistory[dateKey] = [[], [], []];
   saveData();
@@ -259,7 +401,7 @@ function renderCalendar() {
     </div>
     <div id="weekdayRow" class="weekday-row"></div>
     <div id="calendarGrid" class="calendar-grid"></div>
-    <p class="hint">Tap a day to lock in and study its 3 sets of 10. Green = already opened. ${lvl.cards.length} cards in this level's pool.</p>
+    <p class="hint">Today's topic: <b>${escapeHtml(topicForDate(state.level, todayKey) || 'all cards')}</b>. Tap a day to lock in and study its 3 sets of 10. Green = already opened. ${lvl.cards.length} cards in this level's pool.</p>
   `;
 
   document.getElementById('monthLabel').textContent = `${MONTH_NAMES[state.calMonth]} ${state.calYear}`;
@@ -328,7 +470,8 @@ function renderDayDetail() {
   const lvl = currentLevel();
   const sets = lvl.dailySets[state.selectedDateKey] || [];
 
-  appEl.innerHTML = '<div class="set-list" id="setList"></div>';
+  const dayTopic = (lvl.dailyTopics && lvl.dailyTopics[state.selectedDateKey]) || null;
+  appEl.innerHTML = (dayTopic ? `<p class="hint">Topic: <b>${escapeHtml(dayTopic)}</b></p>` : '') + '<div class="set-list" id="setList"></div>';
   const listEl = document.getElementById('setList');
 
   sets.forEach((setIds, i) => {

@@ -1,11 +1,17 @@
-const CACHE_NAME = 'daycolors-v2';
+const CACHE_NAME = 'games-chess-v5';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
+  './chess.js',
+  './attack.js',
+  './bot.js',
   './manifest.json',
   './icon.svg',
+  './puzzles/easy.json',
+  './puzzles/medium.json',
+  './puzzles/hard.json',
 ];
 
 self.addEventListener('install', (event) => {
@@ -18,7 +24,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k.startsWith('games-chess-') && k !== CACHE_NAME).map((k) => caches.delete(k)))
     )
   );
   self.clients.claim();
