@@ -292,3 +292,11 @@ body {
 }
 
 .empty { text-align: center; color: #94a3b8; margin-top: 40px; }
+
+/* ---------- Puzzles ---------- */
+#levelSeg button { padding: 10px 6px; font-size: 0.85rem; }
+.puzzle-note { margin-top: 8px; font-size: 0.85rem; color: #94a3b8; }
+.puzzle-info { text-align: center; font-size: 0.85rem; color: #94a3b8; margin: 4px 0 10px; }
+.puzzle-info a { color: #38bdf8; }
+.next-btn { display: block; width: 100%; margin-top: 4px; }
+.next-btn:disabled { opacity: 0.4; }

@@ -19,13 +19,16 @@ function algFromRC(r, c) { return FILES[c] + (8 - r); }
 function defaultUI() {
   return {
     screen: 'setup', // setup | game
-    mode: 'bot', // local | bot
+    mode: 'bot', // local | bot | puzzle
     botDifficulty: 'medium',
     humanColor: 'w', // w | b | random (setup preference)
     activeHumanColor: 'w', // resolved color for the current game
     boardFlipped: false,
     showAttacks: true,
     moveHistorySAN: [],
+    puzzleLevel: 'easy',
+    puzzle: null, // the puzzle in progress, see startPuzzle
+    puzzleStats: {}, // level -> { next, tried, clean }
   };
 }
 
@@ -39,16 +42,52 @@ function loadUI() {
 
 let ui = loadUI();
 let chess = Chess();
-if (ui.moveHistorySAN && ui.moveHistorySAN.length) {
+if (ui.mode === 'puzzle' && ui.puzzle) {
+  // a puzzle is rebuilt from its start position and the moves played so far
+  chess.load(ui.puzzle.fen);
+  for (let i = 0; i < ui.puzzle.step; i++) chess.move(uciToMove(ui.puzzle.moves[i]));
+} else if (ui.moveHistorySAN && ui.moveHistorySAN.length) {
   for (const san of ui.moveHistorySAN) {
-    if (!chess.move(san)) { ui = defaultUI(); chess = Chess(); break; }
+    if (!chess.move(san)) { chess = Chess(); ui.moveHistorySAN = []; break; }
   }
 }
 
-const runtime = { selectedSquare: null, legalTargets: [], hints: [], pendingPromotion: null, thinking: false };
+const runtime = { selectedSquare: null, legalTargets: [], hints: [], pendingPromotion: null, thinking: false, wrong: false };
+
+// ---------- Puzzles ----------
+// Puzzles come from the Lichess puzzle database (CC0, database.lichess.org).
+// Each entry is [id, fen, moves, rating, themes]. As in the Lichess format,
+// the fen is the position BEFORE the opponent's move moves[0]; the player
+// then answers with moves[1], the opponent replies with moves[2], and so on.
+const PUZZLE_LEVELS = {
+  easy: { label: 'Easy–Medium', range: '1000–1500' },
+  medium: { label: 'Medium–Medium-hard', range: '1500–2000' },
+  hard: { label: 'Hard', range: '2000–2500' },
+};
+const puzzleSets = {};
+
+function uciToMove(u) {
+  const m = { from: u.slice(0, 2), to: u.slice(2, 4) };
+  if (u.length > 4) m.promotion = u[4];
+  return m;
+}
+function moveToUci(m) { return m.from + m.to + (m.promotion || ''); }
+
+async function loadPuzzleSet(level) {
+  if (!puzzleSets[level]) {
+    const res = await fetch(`puzzles/${level}.json`);
+    puzzleSets[level] = await res.json();
+  }
+  return puzzleSets[level];
+}
+
+function levelStats(level) {
+  if (!ui.puzzleStats[level]) ui.puzzleStats[level] = { next: 0, tried: 0, clean: 0 };
+  return ui.puzzleStats[level];
+}
 
 function persist() {
-  ui.moveHistorySAN = chess.history();
+  ui.moveHistorySAN = ui.mode === 'puzzle' ? [] : chess.history();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(ui));
 }
 
@@ -58,17 +97,22 @@ const topTitle = document.getElementById('topTitle');
 const backBtn = document.getElementById('backBtn');
 const flipBtn = document.getElementById('flipBtn');
 
-backBtn.addEventListener('click', () => { ui.screen = 'setup'; persist(); render(); });
+backBtn.addEventListener('click', () => {
+  // from the setup screen, Back goes to the Games menu
+  if (ui.screen === 'setup') { location.href = '../index.html'; return; }
+  ui.screen = 'setup'; persist(); render();
+});
 flipBtn.addEventListener('click', () => { ui.boardFlipped = !ui.boardFlipped; persist(); render(); });
 
 function modeLabel() {
   if (ui.mode === 'local') return 'Local 2-Player';
+  if (ui.mode === 'puzzle') return `Puzzle · ${PUZZLE_LEVELS[ui.puzzle ? ui.puzzle.level : ui.puzzleLevel].label}`;
   return `vs Bot (${ui.botDifficulty[0].toUpperCase() + ui.botDifficulty.slice(1)})`;
 }
 
 function render() {
   if (ui.screen === 'setup') {
-    backBtn.classList.add('hidden');
+    backBtn.classList.remove('hidden');
     flipBtn.classList.add('hidden');
     topTitle.textContent = 'Chess';
     renderSetup();
@@ -88,7 +132,15 @@ function renderSetup() {
       <div class="segmented" id="modeSeg">
         <button data-val="local" class="${ui.mode === 'local' ? 'active' : ''}">Local 2-Player</button>
         <button data-val="bot" class="${ui.mode === 'bot' ? 'active' : ''}">vs Bot</button>
+        <button data-val="puzzle" class="${ui.mode === 'puzzle' ? 'active' : ''}">Puzzles</button>
       </div>
+    </div>
+    <div class="setup-section ${ui.mode === 'puzzle' ? '' : 'hidden'}">
+      <div class="setup-label">Level</div>
+      <div class="segmented" id="levelSeg">
+        ${Object.entries(PUZZLE_LEVELS).map(([k, v]) => `<button data-val="${k}" class="${ui.puzzleLevel === k ? 'active' : ''}">${v.label}</button>`).join('')}
+      </div>
+      <div class="puzzle-note">Lichess rating ${PUZZLE_LEVELS[ui.puzzleLevel].range}. ${(() => { const st = levelStats(ui.puzzleLevel); return st.tried ? `Solved cleanly ${st.clean} of ${st.tried}.` : 'None tried yet.'; })()}</div>
     </div>
     <div class="setup-section ${ui.mode === 'bot' ? '' : 'hidden'}" id="botOptions">
       <div class="setup-label">Difficulty</div>
@@ -104,19 +156,172 @@ function renderSetup() {
         <button data-val="random" class="${ui.humanColor === 'random' ? 'active' : ''}">Random</button>
       </div>
     </div>
-    <button id="startBtn" class="primary-btn">Start Game</button>
+    <button id="startBtn" class="primary-btn">${ui.mode === 'puzzle' ? (ui.puzzle && !ui.puzzle.done && ui.puzzle.level === ui.puzzleLevel ? 'Resume Puzzle' : 'Start Puzzles') : 'Start Game'}</button>
   `;
 
   document.getElementById('modeSeg').querySelectorAll('button').forEach(b =>
     b.addEventListener('click', () => { ui.mode = b.dataset.val; persist(); render(); }));
   document.getElementById('diffSeg').querySelectorAll('button').forEach(b =>
     b.addEventListener('click', () => { ui.botDifficulty = b.dataset.val; persist(); render(); }));
+  document.getElementById('levelSeg').querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => { ui.puzzleLevel = b.dataset.val; persist(); render(); }));
   document.getElementById('colorSeg').querySelectorAll('button').forEach(b =>
     b.addEventListener('click', () => { ui.humanColor = b.dataset.val; persist(); render(); }));
   document.getElementById('startBtn').addEventListener('click', startGame);
 }
 
+function resetRuntime() {
+  runtime.selectedSquare = null;
+  runtime.legalTargets = [];
+  runtime.hints = [];
+  runtime.pendingPromotion = null;
+  runtime.thinking = false;
+  runtime.wrong = false;
+}
+
+async function startPuzzle() {
+  if (ui.puzzle && !ui.puzzle.done && ui.puzzle.level === ui.puzzleLevel) {
+    // resume the unfinished puzzle on this level
+    const pz = ui.puzzle;
+    chess = Chess(pz.fen);
+    for (let i = 0; i < pz.step; i++) chess.move(uciToMove(pz.moves[i]));
+    resetRuntime();
+    ui.screen = 'game';
+    persist();
+    render();
+    resumeOpponentIfNeeded();
+    return;
+  }
+  const level = ui.puzzleLevel;
+  let set;
+  try { set = await loadPuzzleSet(level); }
+  catch (e) { alertStatus('Could not load puzzles. Are you offline?'); return; }
+  const st = levelStats(level);
+  const [id, fen, moves, rating, themes] = set[st.next % set.length];
+  st.next += 1;
+  st.tried += 1;
+  ui.puzzle = { level, id, fen, moves, rating, themes, step: 0, failed: false, hintStage: 0, done: false };
+  chess = Chess(fen);
+  resetRuntime();
+  // the side to move in the fen makes the first move, so the player is the other side
+  ui.activeHumanColor = chess.turn() === 'w' ? 'b' : 'w';
+  ui.boardFlipped = ui.activeHumanColor === 'b';
+  ui.screen = 'game';
+  runtime.thinking = true;
+  persist();
+  render();
+  setTimeout(() => playOpponentPuzzleMove(), 700);
+}
+
+function alertStatus(text) {
+  appEl.insertAdjacentHTML('afterbegin', `<div class="status-bar check">${escapeHtml(text)}</div>`);
+}
+
+// after a reload or Back, the opponent may still owe a move
+function resumeOpponentIfNeeded() {
+  const pz = ui.puzzle;
+  if (ui.mode !== 'puzzle' || !pz || pz.done || ui.screen !== 'game') return;
+  if (chess.turn() === ui.activeHumanColor) return;
+  runtime.thinking = true;
+  render();
+  setTimeout(() => playOpponentPuzzleMove(), 700);
+}
+
+// plays moves[step] for the opponent
+function playOpponentPuzzleMove() {
+  const pz = ui.puzzle;
+  if (!pz || ui.screen !== 'game' || ui.mode !== 'puzzle') return;
+  chess.move(uciToMove(pz.moves[pz.step]));
+  pz.step += 1;
+  runtime.thinking = false;
+  persist();
+  render();
+}
+
+function finishPuzzle() {
+  const pz = ui.puzzle;
+  pz.done = true;
+  if (!pz.failed) levelStats(pz.level).clean += 1;
+}
+
+function onPuzzleMove(move) {
+  const pz = ui.puzzle;
+  const expected = pz.moves[pz.step];
+  chess.move(move);
+  // any mating move is accepted, as on Lichess
+  const correct = moveToUci(move) === expected || chess.in_checkmate();
+  runtime.selectedSquare = null;
+  runtime.legalTargets = [];
+  runtime.hints = [];
+  if (!correct) {
+    pz.failed = true;
+    runtime.wrong = true;
+    runtime.thinking = true;
+    render();
+    setTimeout(() => { chess.undo(); runtime.thinking = false; persist(); render(); }, 700);
+    return;
+  }
+  runtime.wrong = false;
+  pz.step += 1;
+  pz.hintStage = 0;
+  if (pz.step >= pz.moves.length || chess.in_checkmate()) {
+    finishPuzzle();
+    persist();
+    render();
+    return;
+  }
+  runtime.thinking = true;
+  persist();
+  render();
+  setTimeout(() => playOpponentPuzzleMove(), 500);
+}
+
+// first press selects the piece to move, the second shows the move
+function onPuzzleHint() {
+  const pz = ui.puzzle;
+  if (!pz || pz.done || runtime.thinking) return;
+  const m = uciToMove(pz.moves[pz.step]);
+  pz.failed = true;
+  if (pz.hintStage === 0) {
+    pz.hintStage = 1;
+    persist();
+    selectSquare(m.from);
+    return;
+  }
+  const verbose = chess.moves({ square: m.from, verbose: true })
+    .find(v => v.to === m.to && (v.promotion || '') === (m.promotion || ''));
+  runtime.selectedSquare = null;
+  runtime.legalTargets = [];
+  runtime.hints = verbose ? [{ move: verbose }] : [];
+  persist();
+  render();
+}
+
+// plays out the rest of the line, one move every 700 ms
+function onPuzzleSolution() {
+  const pz = ui.puzzle;
+  if (!pz || pz.done || runtime.thinking) return;
+  pz.failed = true;
+  resetRuntime();
+  runtime.thinking = true;
+  const stepOnce = () => {
+    if (pz.step >= pz.moves.length) {
+      runtime.thinking = false;
+      finishPuzzle();
+      persist();
+      render();
+      return;
+    }
+    chess.move(uciToMove(pz.moves[pz.step]));
+    pz.step += 1;
+    render();
+    setTimeout(stepOnce, 700);
+  };
+  stepOnce();
+}
+
 function startGame() {
+  if (ui.mode === 'puzzle') { startPuzzle(); return; }
   chess = Chess();
   runtime.selectedSquare = null;
   runtime.legalTargets = [];
@@ -138,7 +343,17 @@ function startGame() {
 }
 
 // ---------- Game screen ----------
+function puzzleStatus() {
+  const pz = ui.puzzle;
+  const side = ui.activeHumanColor === 'w' ? 'White' : 'Black';
+  if (pz.done) return { text: pz.failed ? 'Solved, with some help' : 'Solved!', cls: 'over' };
+  if (runtime.wrong) return { text: 'Not the move. Try again', cls: 'check' };
+  if (runtime.thinking) return { text: pz.step === 0 ? 'Opponent moves…' : 'Opponent replies…', cls: 'thinking' };
+  return { text: `${side} to move. Find the best move`, cls: '' };
+}
+
 function statusInfo() {
+  if (ui.mode === 'puzzle' && ui.puzzle) return puzzleStatus();
   if (runtime.thinking) return { text: 'Bot is thinking…', cls: 'thinking' };
   if (chess.in_checkmate()) {
     const winner = chess.turn() === 'w' ? 'Black' : 'White';
@@ -188,16 +403,27 @@ function renderGame() {
   const lastMove = lastMoveSquares();
   const status = statusInfo();
   const gameOver = chess.game_over();
+  const pz = ui.mode === 'puzzle' ? ui.puzzle : null;
+  const controls = pz ? `
+    <div class="board-controls">
+      <button id="hintBtn" ${runtime.thinking || pz.done ? 'disabled' : ''}>${pz.hintStage ? 'Show move' : 'Hint'}</button>
+      <button id="solutionBtn" ${runtime.thinking || pz.done ? 'disabled' : ''}>Solution</button>
+      <button id="atkToggleBtn" class="${ui.showAttacks ? 'toggle-on' : ''}">Attacks: ${ui.showAttacks ? 'On' : 'Off'}</button>
+    </div>
+    <div class="puzzle-info">Puzzle rating ${pz.rating}${pz.done ? ` · ${pz.themes.map(escapeHtml).join(', ')} · <a href="https://lichess.org/training/${escapeHtml(pz.id)}" target="_blank" rel="noopener">on Lichess</a>` : ''}</div>
+    <button id="nextPuzzleBtn" class="${pz.done ? 'primary-btn' : 'secondary-btn next-btn'}" ${runtime.thinking && !pz.done ? 'disabled' : ''}>${pz.done ? 'Next puzzle' : 'Skip'}</button>
+  ` : `
+    <div class="board-controls">
+      <button id="hintBtn" ${runtime.thinking || gameOver ? 'disabled' : ''}>Hint</button>
+      <button id="undoBtn" ${chess.history().length === 0 || runtime.thinking ? 'disabled' : ''}>Undo</button>
+      <button id="atkToggleBtn" class="${ui.showAttacks ? 'toggle-on' : ''}">Attacks: ${ui.showAttacks ? 'On' : 'Off'}</button>
+    </div>`;
 
   appEl.innerHTML = `
     <div class="status-bar ${status.cls}">${status.text}</div>
     <div class="captured-row" id="capturedRow"></div>
     <div class="board-wrap"><div class="board-grid" id="boardGrid"></div></div>
-    <div class="board-controls">
-      <button id="hintBtn" ${runtime.thinking || gameOver ? 'disabled' : ''}>Hint</button>
-      <button id="undoBtn" ${chess.history().length === 0 || runtime.thinking ? 'disabled' : ''}>Undo</button>
-      <button id="atkToggleBtn" class="${ui.showAttacks ? 'toggle-on' : ''}">Attacks: ${ui.showAttacks ? 'On' : 'Off'}</button>
-    </div>
+    ${controls}
     <div id="controlSummary"></div>
     <div class="legend-row ${ui.showAttacks ? '' : 'hidden'}">
       <span class="legend-item"><span class="legend-swatch sq-atk-w"></span>White attacks</span>
@@ -213,8 +439,18 @@ function renderGame() {
   renderControlSummary(wAtk, bAtk);
   renderHintList();
 
-  document.getElementById('hintBtn').addEventListener('click', onHintPressed);
-  document.getElementById('undoBtn').addEventListener('click', onUndo);
+  if (pz) {
+    document.getElementById('hintBtn').addEventListener('click', onPuzzleHint);
+    document.getElementById('solutionBtn').addEventListener('click', onPuzzleSolution);
+    document.getElementById('nextPuzzleBtn').addEventListener('click', () => {
+      ui.puzzle.done = true; // a skipped puzzle counts as tried, not solved
+      ui.puzzleLevel = ui.puzzle.level;
+      startPuzzle();
+    });
+  } else {
+    document.getElementById('hintBtn').addEventListener('click', onHintPressed);
+    document.getElementById('undoBtn').addEventListener('click', onUndo);
+  }
   document.getElementById('atkToggleBtn').addEventListener('click', () => { ui.showAttacks = !ui.showAttacks; persist(); render(); });
 
   if (runtime.pendingPromotion) renderPromotionPicker();
@@ -360,6 +596,7 @@ function renderPromotionPicker() {
 // ---------- Interaction ----------
 function isHumanTurn() {
   if (ui.mode === 'local') return true;
+  if (ui.mode === 'puzzle') return !!ui.puzzle && !ui.puzzle.done && chess.turn() === ui.activeHumanColor;
   return chess.turn() === ui.activeHumanColor;
 }
 
@@ -400,10 +637,12 @@ function selectSquare(square) {
   runtime.selectedSquare = square;
   runtime.legalTargets = chess.moves({ square, verbose: true });
   runtime.hints = [];
+  runtime.wrong = false;
   render();
 }
 
 function performMove(move) {
+  if (ui.mode === 'puzzle' && ui.puzzle) { onPuzzleMove(move); return; }
   chess.move(move);
   runtime.selectedSquare = null;
   runtime.legalTargets = [];
@@ -478,4 +717,4 @@ if ('serviceWorker' in navigator) {
 
 // ---------- Init ----------
 render();
-if (ui.screen === 'game') maybeTriggerBotMove();
+if (ui.screen === 'game') { maybeTriggerBotMove(); resumeOpponentIfNeeded(); }
