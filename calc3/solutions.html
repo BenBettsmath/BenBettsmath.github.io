@@ -80,14 +80,14 @@
     <div class="sol">
       <p>A point on a segment is a weighted average of the ends, and the weights are the opposite pieces. Here $C$ cuts $AB$ so that $AC:CB=1:2$, so $C$ sits one third of the way from $A$ to $B$.</p>
       <p>$$ \vec c=\vec a+\tfrac13(\vec b-\vec a)=\tfrac23\vec a+\tfrac13\vec b. $$</p>
-      <p>The end you are closer to gets the bigger weight. Standing nearer $A$ means $\vec a$ carries $\tfrac23$. This is the whole content of the midpoint formula and of every center of mass to come.</p>
+      <p>The end we're closer to gets the bigger weight, so since $C$ is nearer $A$, $\vec a$ gets $\tfrac23$. The midpoint formula and every center of mass later on work the same way.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Let $\vec a=\langle 1,0,2\rangle$, $\vec b=\langle -1,3,1\rangle$, $\vec c=\langle 2,1,0\rangle$. Find the volume of the parallelepiped they span, then the length of its main diagonal.</p>
     <div class="sol">
-      <p>The scalar triple product is the signed volume, base area times height in one stroke. $\vec b\times\vec c$ is the base normal, and dotting $\vec a$ onto it reads off the height.</p>
+      <p>The scalar triple product is the signed volume, base area times height all at once. $\vec b\times\vec c$ is the base normal, and dotting $\vec a$ onto it reads off the height.</p>
       <p>$$ \vec b\times\vec c=\begin{vmatrix}\hat\imath&amp;\hat\jmath&amp;\hat k\\-1&amp;3&amp;1\\2&amp;1&amp;0\end{vmatrix}=\langle -1,2,-7\rangle $$</p>
       <p>$$ \vec a\cdot(\vec b\times\vec c)=-1+0-14=-15,\qquad V=15. $$</p>
       <p>The sign just records orientation. The main diagonal runs to $\vec a+\vec b+\vec c=\langle 2,4,3\rangle$, of length $\sqrt{4+16+9}=\sqrt{29}$.</p>
@@ -104,7 +104,7 @@
     <div class="sol">
       <p>Two edges out of $A$ span the plane, and their cross product is the normal that turns the picture into one equation.</p>
       <p>$$ \overrightarrow{AB}=\langle -1,2,0\rangle,\quad \overrightarrow{AC}=\langle -1,0,3\rangle,\quad \vec n=\overrightarrow{AB}\times\overrightarrow{AC}=\langle 6,3,2\rangle. $$</p>
-      <p>Anchoring at $A$ gives $6(x-1)+3y+2z=0$, that is $6x+3y+2z=6$. The cross product earns its keep here, it is not a number for its own sake but the direction the plane faces.</p>
+      <p>Anchoring at $A$ gives $6(x-1)+3y+2z=0$, that is $6x+3y+2z=6$. Here the cross product isn't just a computation, it's the direction the plane faces.</p>
       <div class="solfig"><canvas data-fig="planeThreePoints"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> The two edge vectors out of $P$ sweep the shaded plane, the purple arrow is their cross product standing perpendicular to it.</div>
     </div>
@@ -113,9 +113,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Are the lines $\vec r_1=\langle 1,2,0\rangle+t\langle 1,-1,2\rangle$ and $\vec r_2=\langle 2,1,3\rangle+s\langle 2,1,-1\rangle$ parallel, intersecting, or skew?</p>
     <div class="sol">
-      <p>Two lines in space generically miss each other. Run the decision in order. The directions $\langle 1,-1,2\rangle$ and $\langle 2,1,-1\rangle$ are not multiples, so not parallel. To meet they must agree in all three coordinates at once. Match $x$ and $y$.</p>
+      <p>Two random lines in space usually miss each other, so we check things in order. The directions $\langle 1,-1,2\rangle$ and $\langle 2,1,-1\rangle$ are not multiples, so not parallel. To meet they must agree in all three coordinates at once. Match $x$ and $y$.</p>
       <p>$$ 1+t=2+2s,\qquad 2-t=1+s\ \Longrightarrow\ s=0,\ t=1. $$</p>
-      <p>Now test $z$. The first line gives $2t=2$, the second gives $3-s=3$. They disagree, so no parameters land on a common point. Not parallel and not meeting means skew, the two rails of a staircase.</p>
+      <p>Now test $z$. The first line gives $2t=2$, the second gives $3-s=3$. They disagree, so no parameters land on a common point. Not parallel and not meeting means skew.</p>
       <div class="solfig"><canvas data-fig="skewLines"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> The lines pass at different depths. The dashed segment is the shortest gap between them, perpendicular to both.</div>
     </div>
@@ -124,23 +124,23 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find the line where the planes $x+2y+z=4$ and $2x-y+z=3$ meet, and the angle between them.</p>
     <div class="sol">
-      <p>The common line lies in both planes, so it is perpendicular to both normals at once. That forces its direction to be the cross product, no algebra needed to see it.</p>
+      <p>The common line lies in both planes, so it is perpendicular to both normals at once. So its direction has to be the cross product of the normals.</p>
       <p>$$ \vec n_1=\langle 1,2,1\rangle,\quad \vec n_2=\langle 2,-1,1\rangle,\quad \vec n_1\times\vec n_2=\langle 3,1,-5\rangle. $$</p>
       <p>For one point set $z=0$ and solve $x+2y=4,\ 2x-y=3$, giving $(2,1,0)$. So</p>
       <p>$$ x=2+3t,\quad y=1+t,\quad z=-5t. $$</p>
       <p>The angle between the planes is the angle between the normals.</p>
       <p>$$ \cos\theta=\frac{\vec n_1\cdot\vec n_2}{|\vec n_1||\vec n_2|}=\frac{2-2+1}{\sqrt6\,\sqrt6}=\frac16,\qquad \theta\approx 80.4^\circ. $$</p>
       <div class="solfig"><canvas data-fig="planeIntersect"></canvas></div>
-      <div class="cap2"><b>Drag to rotate.</b> The two planes crease along their shared line, which runs perpendicular to both normals. That is why the cross product hands you its direction.</div>
+      <div class="cap2"><b>Drag to rotate.</b> The two planes crease along their shared line, which runs perpendicular to both normals. That's why the cross product gives its direction.</div>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Does the line $x=1+t,\ y=2-t,\ z=3t$ cross the plane $2x+y-z=5$, run parallel to it, or lie inside it?</p>
     <div class="sol">
-      <p>The fast test is the direction against the normal. If the line points across the normal it pierces the plane, if it points along the plane it is parallel or contained. Here feed the line into the plane and watch the parameter.</p>
+      <p>The quick test is to dot the direction with the normal. If the dot product isn't $0$ the line crosses the plane, and if it is $0$ the line is parallel to the plane or inside it. We can also just plug the line into the plane and see what happens to the parameter.</p>
       <p>$$ 2(1+t)+(2-t)-3t=5\ \Longrightarrow\ 4-2t=5\ \Longrightarrow\ t=-\tfrac12. $$</p>
-      <p>A single solution for $t$ means one clean hit, at $\bigl(\tfrac12,\tfrac52,-\tfrac32\bigr)$. Had the $t$ terms cancelled to give a false statement the line would be parallel and outside, and to a true statement it would lie in the plane.</p>
+      <p>One solution for $t$ means the line hits the plane once, at $\bigl(\tfrac12,\tfrac52,-\tfrac32\bigr)$. Had the $t$ terms cancelled to give a false statement the line would be parallel and outside, and to a true statement it would lie in the plane.</p>
       <div class="solfig"><canvas data-fig="linePlaneHit"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> A dot rides the line and crosses the plane once, at the point the algebra found.</div>
     </div>
@@ -152,7 +152,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Sketch the ellipsoid $\dfrac{x^2}{4}+y^2+\dfrac{z^2}{9}=1$.</p>
     <div class="sol">
-      <p>Read a quadric by slicing it. Set one variable to a constant and see what curve falls out. Every coordinate plane here cuts an ellipse, with semi axes $2,1,3$ along $x,y,z$.</p>
+      <p>We read a quadric by slicing it. Set one variable equal to a constant and see what curve we get. Every coordinate plane here cuts an ellipse, with semi axes $2,1,3$ along $x,y,z$.</p>
       <div class="solfig"><canvas data-fig="ellipsoid"></canvas></div>
       <div class="fig">
         <svg viewBox="0 0 540 130" width="540">
@@ -173,7 +173,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Identify and sketch $z=y^2-x^2$, the saddle, by assembling it from slices.</p>
     <div class="sol">
-      <p>Build it from its companion curves. Walk along $y=0$ and you ride the downward parabola $z=-x^2$. Walk along $x=0$ and you ride the upward parabola $z=y^2$. One way down, the other way up, so the origin is neither a peak nor a pit.</p>
+      <p>Build it from its slices. Along $y=0$ we get the downward parabola $z=-x^2$, and along $x=0$ we get the upward parabola $z=y^2$. One way down, the other way up, so the origin is neither a peak nor a pit.</p>
       <ul class="tight">
         <li>$z=k&gt;0$, hyperbola $y^2-x^2=k$ opening along $\pm y$.</li>
         <li>$z=k&lt;0$, hyperbola opening along $\pm x$.</li>
@@ -195,7 +195,7 @@
         <li>$x=0$, $z^2-\dfrac{y^2}{4}=1$, hyperbola opening along $\pm z$.</li>
         <li>$y=k$, $\dfrac{x^2}{9}+z^2=1+\dfrac{k^2}{4}$, an ellipse that grows with $|k|$.</li>
       </ul>
-      <p>The slices perpendicular to one axis stay ellipses while the other two directions are hyperbolas. That signature is a hyperboloid of one sheet, here with its waist along the $y$ axis.</p>
+      <p>The slices perpendicular to one axis stay ellipses while the other two directions are hyperbolas. That pattern is a hyperboloid of one sheet, here with its waist along the $y$ axis.</p>
       <div class="solfig"><canvas data-fig="hyp1"></canvas></div>
     </div>
   </div>
@@ -205,7 +205,7 @@
     <div class="sol">
       <p>At height $z=k$,</p>
       <p>$$ x^2+y^2=1+k^2, $$</p>
-      <p>a circle of radius $\sqrt{1+k^2}$. The waist at $z=0$ is the unit circle, and the circles grow as you leave it either way. The vertical slice $x=0$ is $y^2-z^2=1$, a hyperbola flaring open. Circles that widen from a waist plus flaring sides is the cooling tower, a hyperboloid of one sheet with axis along $z$.</p>
+      <p>a circle of radius $\sqrt{1+k^2}$. The waist at $z=0$ is the unit circle, and the circles grow as we move away from it in either direction. The vertical slice $x=0$ is $y^2-z^2=1$, a hyperbola flaring open. Circles that widen from a waist with hyperbolas on the sides make a hyperboloid of one sheet with axis along $z$.</p>
       <div class="solfig"><canvas data-fig="hyperboloidTrace"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> A horizontal plane sweeps up and down. The circular trace is smallest at the waist and grows as $\sqrt{1+k^2}$ either way.</div>
     </div>
@@ -237,14 +237,14 @@
     <div class="sol">
       <p>Integrate component by component, then pin the constant with the start.</p>
       <p>$$ \vec r(t)=\bigl\langle\cos t,\tfrac{\sin t}{\sqrt2},\tfrac{\sin t}{\sqrt2}\bigr\rangle,\qquad |\vec r|^2=\cos^2 t+\tfrac{\sin^2 t}{2}+\tfrac{\sin^2 t}{2}=1. $$</p>
-      <p>The length is locked at $1$ for all time, so the electron rides the unit sphere. A constant length is the signature of motion on a sphere, and it happens exactly because velocity stays perpendicular to position here. The path is the great circle in the plane $y=z$.</p>
+      <p>The length is locked at $1$ for all time, so the electron rides the unit sphere. The length stays constant because the velocity is always perpendicular to the position here, which is the theorem from 13.2 run backwards. The path is the great circle in the plane $y=z$.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> The cylinder $x^2+y^2=1$ and the plane $z=x+y$ meet in a curve. Parametrize it and find the tangent line at $(1,0,1)$.</p>
     <div class="sol">
-      <p>Let the cylinder carry the parametrization and let the plane set the height. On the cylinder $x=\cos t,\ y=\sin t$, and the plane then forces $z=\cos t+\sin t$.</p>
+      <p>We let the cylinder give the parametrization and the plane give the height. On the cylinder $x=\cos t,\ y=\sin t$, and the plane then forces $z=\cos t+\sin t$.</p>
       <p>$$ \vec r(t)=\langle\cos t,\sin t,\cos t+\sin t\rangle,\qquad \vec r\,'(t)=\langle -\sin t,\cos t,-\sin t+\cos t\rangle. $$</p>
       <p>The point $(1,0,1)$ is $t=0$, where $\vec r\,'(0)=\langle 0,1,1\rangle$. So the tangent line is</p>
       <p>$$ \langle 1,0,1\rangle+u\langle 0,1,1\rangle. $$</p>
@@ -258,8 +258,8 @@
     <p class="stmt"><b>Problem.</b> Working from the definitions, find the unit tangent $\vec T$ and unit normal $\vec N$ for the circle $\vec r(t)=\langle a\cos t,a\sin t\rangle$ and the helix $\vec r(t)=\langle\cos t,\sin t,t\rangle$. Which way does $\vec N$ point?</p>
     <div class="sol">
       <p>$\vec T$ is the direction of travel, the velocity made unit length. $\vec N$ is where $\vec T$ is turning, which always points to the inside of the bend.</p>
-      <p><span class="label">Circle.</span> $\vec r\,'=\langle -a\sin t,a\cos t\rangle$ has length $a$, so $\vec T=\langle -\sin t,\cos t\rangle$. Then $\vec T\,'=\langle -\cos t,-\sin t\rangle$, already unit, so $\vec N=\langle -\cos t,-\sin t\rangle$. That points straight at the center. On a circle the inside of the turn is the middle, every time.</p>
-      <p><span class="label">Helix.</span> $\vec r\,'=\langle -\sin t,\cos t,1\rangle$ has length $\sqrt2$, so $\vec T=\tfrac{1}{\sqrt2}\langle -\sin t,\cos t,1\rangle$. Differentiating and normalizing gives $\vec N=\langle -\cos t,-\sin t,0\rangle$. The normal is horizontal and aims at the central axis, even though the curve climbs. The climb lives entirely in $\vec T$.</p>
+      <p><span class="label">Circle.</span> $\vec r\,'=\langle -a\sin t,a\cos t\rangle$ has length $a$, so $\vec T=\langle -\sin t,\cos t\rangle$. Then $\vec T\,'=\langle -\cos t,-\sin t\rangle$, already unit, so $\vec N=\langle -\cos t,-\sin t\rangle$. That points straight at the center. On a circle the inside of the turn is always the center.</p>
+      <p><span class="label">Helix.</span> $\vec r\,'=\langle -\sin t,\cos t,1\rangle$ has length $\sqrt2$, so $\vec T=\tfrac{1}{\sqrt2}\langle -\sin t,\cos t,1\rangle$. Differentiating and normalizing gives $\vec N=\langle -\cos t,-\sin t,0\rangle$. The normal is horizontal and aims at the central axis, even though the curve climbs. All of the climbing is in $\vec T$.</p>
       <div class="solfig"><canvas data-fig="frenetHelix"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> The frame rides the helix. Green is $\vec T$ along the curve, pink is $\vec N$ pointing in to the axis, blue is the binormal $\vec B=\vec T\times\vec N$.</div>
     </div>
@@ -268,11 +268,11 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> A ball is launched from $(0,2)$ at $20$ m/s, aimed $60^\circ$ above horizontal, under gravity $\vec a=\langle 0,-10\rangle$. Split the acceleration into its tangential and normal parts, and read off what each does at launch and at the top.</p>
     <div class="sol">
-      <p>Gravity is one fixed downward vector, but the curve feels it two ways. The part along $\vec T$ changes the speed, the part along $\vec N$ bends the path. They trade off as the ball flies.</p>
+      <p>Gravity is one fixed downward vector, but it does two different things to the path. The part along $\vec T$ changes the speed, the part along $\vec N$ bends the path. They trade off as the ball flies.</p>
       <p>$$ \vec v(t)=\langle 10,\,10\sqrt3-10t\rangle,\qquad |\vec v|=\sqrt{100+(10\sqrt3-10t)^2}. $$</p>
       <p>Since $\vec a=\langle 0,-10\rangle$, the tangential part is $a_T=\dfrac{\vec a\cdot\vec v}{|\vec v|}$ and the bending part is $a_N=\dfrac{|\,\vec a\times\vec v\,|}{|\vec v|}$, which here is $a_N=\dfrac{100}{|\vec v|}$ since the horizontal speed never changes.</p>
       <p><span class="label">At launch.</span> $\vec v=\langle 10,10\sqrt3\rangle$, $|\vec v|=20$. Then $a_T=\dfrac{-100\sqrt3}{20}=-5\sqrt3\approx-8.7$, the ball is slowing as it climbs, and $a_N=\dfrac{100}{20}=5$, gravity is also curving the path.</p>
-      <p><span class="label">At the top.</span> The vertical speed is zero, $\vec v=\langle 10,0\rangle$, $|\vec v|=10$. Now $a_T=0$, the speed is momentarily steady, and $a_N=\dfrac{100}{10}=10$, all of gravity is doing the turning. At the apex every bit of the pull goes into bending the arc.</p>
+      <p><span class="label">At the top.</span> The vertical speed is zero, $\vec v=\langle 10,0\rangle$, $|\vec v|=10$. Now $a_T=0$, the speed is momentarily steady, and $a_N=\dfrac{100}{10}=10$, all of gravity goes into turning the path.</p>
       <div class="solfig"><canvas data-fig="projectileTNa"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> The body rides the arc with $\vec T$ green and $\vec N$ pink. The purple arrow is the full downward $\vec a$, split into its green tangential and pink normal pieces. Near the top the tangential piece vanishes.</div>
     </div>
@@ -281,13 +281,13 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Curvature of $y=x^2$ at the origin, then the same idea on the ellipse $\dfrac{x^2}{4}+y^2=1$ at $(2,0)$ and $(0,1)$.</p>
     <div class="sol">
-      <p>Curvature is how hard the curve bends, and its reciprocal is the radius of the circle that fits snugly there. Start in one dimension. For $y=x^2$,</p>
+      <p>Curvature is how hard the curve bends, and its reciprocal is the radius of the circle that fits the curve best there. Start in one dimension. For $y=x^2$,</p>
       <p>$$ \kappa=\frac{|y''|}{(1+(y')^2)^{3/2}},\qquad \text{at }x=0,\ y'=0,\ y''=2,\ \kappa=2. $$</p>
       <p>So the best fitting circle at the vertex has radius $\tfrac12$. Now the ellipse, $\vec r(t)=\langle 2\cos t,\sin t\rangle$. The plane curvature is $\kappa=\dfrac{|x'y''-y'x''|}{|\vec r\,'|^3}=\dfrac{2}{|\vec r\,'|^3}$ with $|\vec r\,'|^2=4\sin^2t+\cos^2t$.</p>
-      <p><span class="label">At $(2,0)$, $t=0$.</span> $|\vec r\,'|=1$, so $\kappa=2$, radius $\tfrac12$. The pointy end bends hard. The normal points to $(-1,0)$, so the kissing circle is centered at $\bigl(\tfrac32,0\bigr)$.</p>
+      <p><span class="label">At $(2,0)$, $t=0$.</span> $|\vec r\,'|=1$, so $\kappa=2$, radius $\tfrac12$. The ends of the ellipse bend sharply. The normal points to $(-1,0)$, so the osculating circle is centered at $\bigl(\tfrac32,0\bigr)$.</p>
       <p><span class="label">At $(0,1)$, $t=\pi/2$.</span> $|\vec r\,'|=2$, so $\kappa=\tfrac14$, radius $4$. The flat top bends gently, with center $(0,-3)$.</p>
       <div class="solfig"><canvas data-fig="osculatingEllipse"></canvas></div>
-      <div class="cap2"><b>The kissing circle.</b> Its center sits on the inward normal, tight where the curve bends hard at the ends and loose where it bends gently along the top.</div>
+      <div class="cap2"><b>The osculating circle.</b> Its center sits on the inward normal, tight where the curve bends hard at the ends and loose where it bends gently along the top.</div>
     </div>
   </div>
 
@@ -297,27 +297,27 @@
       <p>$$ \vec R\,'=\langle 1,1,-4t\rangle,\qquad \vec R\,''=\langle 0,0,-4\rangle. $$</p>
       <p>At $t=\tfrac12$, $\vec R\,'=\langle 1,1,-2\rangle$ with $|\vec R\,'|=\sqrt6$, and the acceleration $\langle 0,0,-4\rangle$ points straight down. Then</p>
       <p>$$ \vec R\,'\times\vec R\,''=\langle -4,4,0\rangle,\qquad \kappa=\frac{|\vec R\,'\times\vec R\,''|}{|\vec R\,'|^3}=\frac{\sqrt{32}}{6\sqrt6}=\frac{2\sqrt3}{9}. $$</p>
-      <p>The radius is $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far from $P$ along the inward normal, down into the bowl, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle -\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle 1,1,1\rangle$. Here the two genuinely agree as a line, the slice bends back toward the same side the surface faces. Hold this picture against the warning later that the gradient does not in general point along the position vector. Agreement here is special, not the rule.</p>
+      <p>The radius is $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far from $P$ along the inward normal, down into the bowl, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle -\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle 1,1,1\rangle$. So here the two lie on the same line, and the slice bends down into the dome, away from the side the normal points to. This happens because the plane $y=x$ contains the surface normal $\langle 1,1,1\rangle$, and for slices like that the two always line up. For a slice whose plane doesn't contain the normal, they don't have to.</p>
     </div>
   </div>
 
   <!-- ============================================================ -->
   <h3 id="sec5" class="chapter">Functions of Multiple Variables</h3>
 
-  <p class="lede">The gradient is one object you read four ways. Dot it with a small displacement and you get the linear approximation. Dot it with a velocity and you get the chain rule. Dot it with a unit direction and you get the directional derivative. Set it to zero and you get the candidates for a max or min. The problems below build each reading in one dimension first, then lift it. The recurring object is the downward dome $z=1-x^2-y^2$ studied at $P=(\tfrac12,\tfrac12,\tfrac12)$.</p>
+  <p class="lede">The gradient is one object we use four ways. Dotting it with a small displacement gives the linear approximation, dotting it with a velocity gives the chain rule, dotting it with a unit direction gives the directional derivative, and setting it to zero gives the candidates for a max or min. The problems below build each one in one dimension first, then lift it. The running example is the downward dome $z=1-x^2-y^2$ studied at $P=(\tfrac12,\tfrac12,\tfrac12)$.</p>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> The dome $z=1-x^2-y^2$ at $P=(\tfrac12,\tfrac12,\tfrac12)$. (a) Find $\nabla f(P)$. (b) Use it to write the tangent plane and estimate $f(0.51,0.49)$. (c) Find the rate of climb at $P$ along the diagonal $\vec u=\tfrac{1}{\sqrt2}\langle 1,1\rangle$. (d) Where is the gradient zero, and what is there?</p>
     <div class="sol">
       <p>$\nabla f=\langle -2x,-2y\rangle$, so at $P$</p>
       <p>$$ \nabla f(P)=\langle -1,-1\rangle. $$</p>
-      <p>One vector. Now read it four ways.</p>
+      <p>Now we use this one vector four ways.</p>
       <p><span class="label">(b) Dot with a displacement to linearize.</span> The tangent plane is $z=f(P)+\nabla f(P)\cdot\langle x-\tfrac12,y-\tfrac12\rangle$,</p>
       <p>$$ L(x,y)=\tfrac12-(x-\tfrac12)-(y-\tfrac12)=\tfrac32-x-y. $$</p>
       <p>At $(0.51,0.49)$ the displacement is $\langle 0.01,-0.01\rangle$, and $\nabla f(P)\cdot\langle 0.01,-0.01\rangle=0$, so $L=\tfrac12$. The true value is $f(0.51,0.49)=0.4998$, just under. The plane sits above the dome, so the estimate runs high.</p>
       <p><span class="label">(c) Dot with a unit direction for the directional derivative.</span></p>
       <p>$$ D_{\vec u}f(P)=\nabla f(P)\cdot\vec u=\langle -1,-1\rangle\cdot\tfrac{1}{\sqrt2}\langle 1,1\rangle=-\sqrt2. $$</p>
-      <p>Same number you would get by walking the diagonal slice. Parametrize $y=x$ by $\langle t,t\rangle$, so $z=1-2t^2$ and arc length is $s=\sqrt2\,t$. Then $\dfrac{dz}{ds}=\dfrac{dz/dt}{ds/dt}=\dfrac{-4t}{\sqrt2}$, which at $t=\tfrac12$ is $-\sqrt2$.</p>
+      <p>This is the same number we get by walking along the diagonal slice. Parametrize $y=x$ by $\langle t,t\rangle$, so $z=1-2t^2$ and arc length is $s=\sqrt2\,t$. Then $\dfrac{dz}{ds}=\dfrac{dz/dt}{ds/dt}=\dfrac{-4t}{\sqrt2}$, which at $t=\tfrac12$ is $-\sqrt2$.</p>
       <p><span class="label">(d) Set it to zero to optimize.</span> $\nabla f=\langle -2x,-2y\rangle=\vec 0$ only at the origin, the peak $(0,0,1)$. There the dome has a maximum.</p>
       <div class="solfig"><canvas data-fig="gradFourWays"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> One gradient at $P$ (red, in the floor) drives all four readings. Orange is the level curve through $P$, green is the diagonal slice the surface climbs, purple is the unit step $\vec u$.</div>
@@ -327,10 +327,10 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Build the tangent plane to the dome at $P$ from scratch, out of the two trace tangents, and confirm it is the linearization.</p>
     <div class="sol">
-      <p>Before the gradient hands you a formula, see where the plane comes from. Hold $y=\tfrac12$ and the dome becomes a curve in a vertical plane, whose tangent at $P$ has slope $f_x(P)=-1$. So the vector $\vec a=\langle 1,0,-1\rangle$ rides that trace. Hold $x=\tfrac12$ and the trace tangent is $\vec b=\langle 0,1,-1\rangle$ with slope $f_y(P)=-1$.</p>
+      <p>Before using the formula, let's see where the plane comes from. Hold $y=\tfrac12$ and the dome becomes a curve in a vertical plane, whose tangent at $P$ has slope $f_x(P)=-1$. So the vector $\vec a=\langle 1,0,-1\rangle$ rides that trace. Hold $x=\tfrac12$ and the trace tangent is $\vec b=\langle 0,1,-1\rangle$ with slope $f_y(P)=-1$.</p>
       <p>The plane through $P$ spanned by $\vec a$ and $\vec b$ has normal</p>
       <p>$$ \vec a\times\vec b=\langle 1,1,1\rangle, $$</p>
-      <p>so $1(x-\tfrac12)+1(y-\tfrac12)+1(z-\tfrac12)=0$, that is $z=\tfrac32-x-y$. Exactly the linearization from the previous problem. The two trace slopes are the two partials, and the plane is the unique flat thing matching both at once.</p>
+      <p>so $1(x-\tfrac12)+1(y-\tfrac12)+1(z-\tfrac12)=0$, that is $z=\tfrac32-x-y$. Exactly the linearization from the previous problem. The two trace slopes are the two partials, and the plane is the only plane containing both tangent lines.</p>
       <div class="solfig"><canvas data-fig="domeTangent"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> The orange plane touches the blue dome at $P$ and lies above it everywhere, which is why its estimate runs high. The red arrow in the floor is the gradient $\langle -1,-1\rangle$.</div>
     </div>
@@ -342,7 +342,7 @@
       <p>Take $f(x)=\sqrt x$ at $a=4$. Then $f'(x)=\tfrac{1}{2\sqrt x}$, so $f'(4)=\tfrac14$ and</p>
       <p>$$ L(x)=2+\tfrac14(x-4),\qquad L(4.1)=2.025. $$</p>
       <p>The true value $\sqrt{4.1}=2.0249$ is a touch lower. The graph is concave down, so it bends away beneath its tangent line, and the line predicts too much. Flip the concavity and the line predicts too little. The sign of the error is the sign of the bend.</p>
-      <p>The same logic lifts. A surface estimate from the tangent plane is too high where the surface bends below the plane and too low where it bends above. The dome bends below its tangent plane everywhere, so its linearization always over estimates, which is why part (b) above came out high. A saddle bends below in one direction and above in another, so its tangent plane neither over nor under estimates outright.</p>
+      <p>The same logic lifts. A surface estimate from the tangent plane is too high where the surface bends below the plane and too low where it bends above. The dome bends below its tangent plane everywhere, so its linearization always over estimates, which is why part (b) above came out high. A saddle bends below in one direction and above in another, so its tangent plane is too high in some directions and too low in others.</p>
       <div class="solfig"><canvas data-fig="overUnder1D"></canvas></div>
       <div class="cap2">Concave down (top) the tangent rides above and over estimates. Concave up (bottom) it rides below and under estimates.</div>
     </div>
@@ -353,14 +353,14 @@
     <div class="sol">
       <p>$f_x=2x+y$ and $f_y=x-2y$, so at $(1,1)$ the gradient is $\langle 3,-1\rangle$ and</p>
       <p>$$ z=1+3(x-1)-1(y-1)=3x-y-1. $$</p>
-      <p>Whether the estimate runs high or low is a question about shape, not arithmetic. This surface is a saddle, it rises in one direction and falls in another, so it crosses through its tangent plane rather than staying on one side. The estimate is too high along the falling direction and too low along the rising one. Neither verdict holds outright, the way it did for the dome.</p>
+      <p>Whether the estimate is high or low depends on the shape of the surface. This surface is a saddle, it rises in one direction and falls in another, so it crosses through its tangent plane rather than staying on one side. The estimate is too high along the falling direction and too low along the rising one. So the answer is neither, unlike the dome.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Read partial derivatives off a contour map. The level curves of $f$ near $(2,1)$ are the ellipses of $f=x^2/4+y^2$. Estimate $f_x(2,1)$ and $f_y(2,1)$ from the picture, then check against calculus.</p>
     <div class="sol">
-      <p>A partial derivative is rise over run, and on a contour map the rise is the gap between labels and the run is how far you step. Stepping a little to the right from $(2,1)$ you climb across contours, and the closer they are packed the steeper that climb. The same step upward crosses them faster still, since the ellipses crowd in the $y$ direction.</p>
+      <p>A partial derivative is rise over run, and on a contour map the rise is the gap between labels and the run is how far we step. Stepping a little to the right from $(2,1)$ we climb across contours, and the closer they are packed the steeper that climb. The same step upward crosses them faster still, since the ellipses crowd in the $y$ direction.</p>
       <p>Calculus confirms the reading. $f_x=\tfrac{x}{2}=1$ and $f_y=2y=2$ at $(2,1)$. Twice as steep going up as going right, exactly the crowding the contours show. The gradient $\langle 1,2\rangle$ crosses every contour at a right angle and points the steepest way uphill.</p>
       <div class="solfig"><canvas data-fig="contourRead"></canvas></div>
       <div class="cap2">Red is the rightward step reading $f_x$, blue the upward step reading $f_y$. Green is the gradient, crossing the contours square and aiming straight uphill.</div>
@@ -404,10 +404,10 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Evaluate $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^3+y^3}{x^2+y^2}$, and show $\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^2-y^2}{x^2+y^2}$ does not exist.</p>
     <div class="sol">
-      <p>Polar coordinates expose the difference between these two. The first becomes</p>
+      <p>Polar coordinates show the difference between these two. The first becomes</p>
       <p>$$ \frac{r^3(\cos^3\theta+\sin^3\theta)}{r^2}=r(\cos^3\theta+\sin^3\theta), $$</p>
       <p>and since $|\cos^3\theta+\sin^3\theta|\le 2$ the whole thing is squeezed to $0$ as $r\to0$, no matter the angle. The limit is $0$.</p>
-      <p>The second becomes $\cos^2\theta-\sin^2\theta=\cos2\theta$, with no $r$ at all. The value is whatever angle you came in on, $1$ along $y=0$ and $-1$ along $x=0$. A limit that depends on direction does not exist.</p>
+      <p>The second becomes $\cos^2\theta-\sin^2\theta=\cos2\theta$, with no $r$ at all. The value depends on the angle we come in on, $1$ along $y=0$ and $-1$ along $x=0$. A limit that depends on direction does not exist.</p>
     </div>
   </div>
 
@@ -424,7 +424,7 @@
     <div class="sol">
       <p>In polar the dome is $z=1-x^2-y^2=1-s^2$. The height depends on $s$ alone.</p>
       <p>$$ \frac{\partial z}{\partial s}=-2s,\qquad \frac{\partial z}{\partial t}=0. $$</p>
-      <p>The chain rule says the same. Spinning $t$ moves you around a circle of fixed radius, a level curve, where the height never changes, so $\partial z/\partial t=0$ is the radial symmetry of the dome stated in one equation. At $(s,t)=(\tfrac{1}{\sqrt2},\tfrac{\pi}{4})$ you sit at $P$, and $\partial z/\partial s=-2\cdot\tfrac{1}{\sqrt2}=-\sqrt2$, the same steepest descent rate as the directional derivative found.</p>
+      <p>The chain rule says the same. Changing $t$ moves us around a circle of fixed radius, a level curve, where the height never changes, so $\partial z/\partial t=0$ is just the radial symmetry of the dome. At $(s,t)=(\tfrac{1}{\sqrt2},\tfrac{\pi}{4})$ we're at $P$, and $\partial z/\partial s=-2\cdot\tfrac{1}{\sqrt2}=-\sqrt2$, the same steepest descent rate as the directional derivative found.</p>
     </div>
   </div>
 
@@ -433,7 +433,7 @@
     <div class="sol">
       <p>The volume $V=\ell w h$ depends on three moving quantities, so its rate is the chain rule summed over the three paths.</p>
       <p>$$ \frac{dV}{dt}=wh\,\frac{d\ell}{dt}+\ell h\,\frac{dw}{dt}+\ell w\,\frac{dh}{dt}=(2\cdot2)(2)+(1\cdot2)(2)+(1\cdot2)(-3)=8+4-6=6. $$</p>
-      <p>Growing at $6$ cubic meters per second. Each term is a face area times how fast the opposite dimension is moving, the volume swept by that face. Two faces are pushing out and one is pulling in, and the pushers win.</p>
+      <p>Growing at $6$ cubic meters per second. Each term is a face area times how fast the opposite dimension is moving, the volume swept by that face. Two faces are pushing out and one is pulling in, and overall the volume grows.</p>
     </div>
   </div>
 
@@ -442,19 +442,19 @@
     <div class="sol">
       <p>A right mover plus a left mover. With $\xi=x-at$ and $\eta=x+at$, the chain rule gives $u_t=-af'(\xi)+ag'(\eta)$ and $u_x=f'(\xi)+g'(\eta)$, so</p>
       <p>$$ u_{tt}=a^2 f''(\xi)+a^2 g''(\eta),\qquad u_{xx}=f''(\xi)+g''(\eta), $$</p>
-      <p>and $u_{tt}=a^2u_{xx}$. <span class="check">&#10003;</span> Any shape you like, sent left and right at speed $a$, solves the wave equation.</p>
+      <p>and $u_{tt}=a^2u_{xx}$. <span class="check">&#10003;</span> Any shape at all, sent left or right at speed $a$, solves the wave equation.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find the tangent plane to $x^2+2y^2+3z^2=21$ at $(2,2,1)$, and the linearization of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ to estimate $f(1.95,1.08)$.</p>
     <div class="sol">
-      <p>For a surface written as a level set $F=c$, the gradient $\nabla F$ is the normal, no solving for $z$ needed. Here $\nabla F=\langle 2x,4y,6z\rangle=\langle 4,8,6\rangle$ at the point, so the plane is</p>
+      <p>For a surface written as a level set $F=c$, the gradient $\nabla F$ is the normal, so we don't need to solve for $z$. Here $\nabla F=\langle 2x,4y,6z\rangle=\langle 4,8,6\rangle$ at the point, so the plane is</p>
       <p>$$ 4(x-2)+8(y-2)+6(z-1)=0\ \Longleftrightarrow\ 2x+4y+3z=15. $$</p>
       <p>For the explicit graph, the partials at $(2,1)$ are $f_x=-2/3$ and $f_y=-7/3$ with $f(2,1)=3$, so</p>
       <p>$$ L(x,y)=3-\tfrac23(x-2)-\tfrac73(y-1),\qquad f(1.95,1.08)\approx 3-\tfrac23(-0.05)-\tfrac73(0.08)\approx 2.847. $$</p>
       <div class="solfig"><canvas data-fig="tangentPlane"></canvas></div>
-      <div class="cap2"><b>Drag to rotate.</b> The orange plane is tangent to the blue surface at the marked point. The same plane is the linearization, the best flat stand in nearby.</div>
+      <div class="cap2"><b>Drag to rotate.</b> The orange plane is tangent to the blue surface at the marked point. The same plane is the linearization, the best flat approximation nearby.</div>
     </div>
   </div>
 
@@ -463,7 +463,7 @@
     <div class="sol">
       <p>The gradient of the defining function gives both at once, the plane and the line, because it is the one direction perpendicular to the surface.</p>
       <p>$$ \nabla F=\langle 2x,2y,2z\rangle=\langle 2,4,4\rangle\ \parallel\ \langle 1,2,2\rangle. $$</p>
-      <p>The tangent plane is $1(x-1)+2(y-2)+2(z-2)=0$, that is $x+2y+2z=9$. The normal line runs along the same vector, $\langle 1,2,2\rangle+t\langle 1,2,2\rangle$, which is just the radius extended. On a sphere the outward normal is always the radial direction, the gradient confirming the geometry.</p>
+      <p>The tangent plane is $1(x-1)+2(y-2)+2(z-2)=0$, that is $x+2y+2z=9$. The normal line runs along the same vector, $\langle 1,2,2\rangle+t\langle 1,2,2\rangle$, which is just the radius extended. On a sphere the outward normal is always the radial direction.</p>
     </div>
   </div>
 
@@ -479,7 +479,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Show $\nabla f$ is perpendicular to the level curve through a point, and that it need not point toward the origin. Use $f(x,y)=x^2+3y^2$.</p>
     <div class="sol">
-      <p>Walk along a level curve and $f$ holds steady, so the directional derivative along it is zero. But $D_{\hat u}f=\nabla f\cdot\hat u$, and that vanishes exactly when $\nabla f$ is perpendicular to the tangent direction. So the gradient meets every level curve at a right angle and points the way $f$ grows fastest, straight across the contours.</p>
+      <p>If we walk along a level curve, $f$ stays the same, so the directional derivative along it is zero. But $D_{\hat u}f=\nabla f\cdot\hat u$, and that vanishes exactly when $\nabla f$ is perpendicular to the tangent direction. So the gradient meets every level curve at a right angle and points the way $f$ grows fastest, straight across the contours.</p>
       <p>It is tempting to think the gradient aims at the origin. Test it on $f=x^2+3y^2$, whose level curves are ellipses squashed in $y$. Here $\nabla f=\langle 2x,6y\rangle$, and at $(1,1)$,</p>
       <p>$$ \nabla f=\langle 2,6\rangle, $$</p>
       <p>which is not a multiple of the position vector $\langle 1,1\rangle$. It leans toward the $y$ axis, because the surface climbs harder in $y$ than in $x$. Only on the axes, where the ellipse is symmetric, does the gradient line up with the radius.</p>
@@ -501,11 +501,11 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Read the second derivative test by shape. Compare the bowl $z=x^2+y^2$, the elliptic bowl $z=x^2+3y^2$, the same bowl turned $45^\circ$ as $z=2x^2+2xy+2y^2$, the saddle $z=x^2-y^2$, and the dome. What does each tell the eye, and what role does the cross term play?</p>
     <div class="sol">
-      <p>Every critical point is a max, a min, or a saddle, and you can sort them by looking at the slices instead of computing a determinant.</p>
+      <p>Every critical point is a max, a min, or a saddle, and we can sort them by looking at the slices instead of computing a determinant.</p>
       <ul class="tight">
         <li>$z=x^2+y^2$ is a round bowl. Every slice through the bottom is an upward parabola, so it is a minimum. The level curves are circles with no special direction.</li>
         <li>$z=x^2+3y^2$ is the same bowl squashed. It still climbs in every direction, still a minimum, but now it rises gently along $x$ and steeply along $y$. Two perpendicular special directions appear, the gentlest and the steepest.</li>
-        <li>$z=2x^2+2xy+2y^2$ is that elliptic bowl rotated $45^\circ$. Still a minimum, still one gentle and one steep direction, but they now lie along the diagonals. The $xy$ term is the signature of the turn. Set it to zero and the special directions snap back to the axes.</li>
+        <li>$z=2x^2+2xy+2y^2$ is that elliptic bowl rotated $45^\circ$. Still a minimum, still one gentle and one steep direction, but they now lie along the diagonals. The $xy$ term is what records the rotation. Without it the special directions are back on the axes.</li>
         <li>$z=x^2-y^2$ is the saddle. Up along $x$, down along $y$, so it is neither a max nor a min. The two zero height lines $y=\pm x$ split high ground from low.</li>
         <li>The dome $z=1-x^2-y^2$ is the round bowl flipped, a maximum, the circular case with no special direction.</li>
       </ul>
@@ -513,17 +513,17 @@
       <div class="solfig"><canvas data-fig="paraboloidTurn"></canvas></div>
       <div class="cap2"><b>Drag to rotate.</b> A downward elliptic paraboloid turning about its peak. Yellow marks the steepest drop, blue the gentlest. They rotate with the surface while the shape stays the same, which is what the cross term records.</div>
       <div class="solfig"><canvas data-fig="contourZoo"></canvas></div>
-      <div class="cap2">The contour signature of each shape in turn. Circles for the round bowl, tilted ellipses once the cross term turns on, hyperbolas for the saddle.</div>
+      <div class="cap2">The contours of each shape in turn. Circles for the round bowl, tilted ellipses once the cross term turns on, hyperbolas for the saddle.</div>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find and classify all critical points of $f(x,y)=x^3-3x+y^2-2y$.</p>
     <div class="sol">
-      <p>Start one dimension down. The cubic $g(x)=x^3-3x$ has $g'=3x^2-3=0$ at $x=\pm1$, a local max at $x=-1$ and a local min at $x=1$. Adding $y^2-2y$ bends the picture upward in the $y$ direction. At $x=1$ the surface already curves up in $x$, and now up in $y$ too, so that point becomes a genuine bowl. At $x=-1$ the surface curves down in $x$ but up in $y$, so the local max of the cubic is pulled into a saddle.</p>
+      <p>Start one dimension down. The cubic $g(x)=x^3-3x$ has $g'=3x^2-3=0$ at $x=\pm1$, a local max at $x=-1$ and a local min at $x=1$. Adding $y^2-2y$ bends the picture upward in the $y$ direction. At $x=1$ the surface already curves up in $x$, and now up in $y$ too, so that point becomes a bowl. At $x=-1$ the surface curves down in $x$ but up in $y$, so the local max of the cubic is pulled into a saddle.</p>
       <p>$f_x=3x^2-3=0$ at $x=\pm 1$, and $f_y=2y-2=0$ at $y=1$. So critical points are $(1,1)$ and $(-1,1)$.</p>
       <p>$D=f_{xx}f_{yy}-f_{xy}^2=(6x)(2)-0=12x$.</p>
-      <p>At $(1,1)$, $D=12&gt;0$ and $f_{xx}=6&gt;0$, a local min with $f=-3$. At $(-1,1)$, $D=-12&lt;0$, a saddle with $f=1$. The mixed sign is the saddle making itself known.</p>
+      <p>At $(1,1)$, $D=12&gt;0$ and $f_{xx}=6&gt;0$, a local min with $f=-3$. At $(-1,1)$, $D=-12&lt;0$, a saddle with $f=1$. The negative $D$ is what makes it a saddle.</p>
       <div class="solfig"><canvas data-fig="hessSaddle"></canvas></div>
     </div>
   </div>
@@ -531,7 +531,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Classify the critical point of $f(x,y)=x^2+y^2-2x$, then find the absolute max and min on the closed disk $x^2+y^2\le 4$.</p>
     <div class="sol">
-      <p>On a closed region the extremes hide in two places, an interior critical point or the boundary. Check both.</p>
+      <p>On a closed region the max and min can only be in two places, at an interior critical point or on the boundary. Check both.</p>
       <p><span class="label">Interior.</span> $f_x=2x-2=0$, $f_y=2y=0$ give $(1,0)$. $D=4&gt;0$, $f_{xx}=2&gt;0$, a local min with $f(1,0)=-1$.</p>
       <p><span class="label">Boundary.</span> Parametrize $x=2\cos t,\ y=2\sin t$, so $f=4-4\cos t$. The max is at $\cos t=-1$, giving $f(-2,0)=8$, the min at $\cos t=1$, giving $f(2,0)=0$.</p>
       <p>Comparing, the absolute min is $-1$ at $(1,0)$ and the absolute max is $8$ at $(-2,0)$. The shifted bowl bottoms out inside and reaches highest on the far rim.</p>
@@ -578,9 +578,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> $\displaystyle\int_0^1\int_x^1 e^{y^2}\,dy\,dx$. Reverse the order.</p>
     <div class="sol">
-      <p>The inner integral $\int e^{y^2}\,dy$ has no elementary form, so the given order is a dead end. Reversing it puts the solvable variable inside. The region $\{0\le x\le1,\ x\le y\le1\}$ is the triangle below $y=1$ and above $y=x$, which read the other way is $0\le y\le1,\ 0\le x\le y$.</p>
+      <p>The inner integral $\int e^{y^2}\,dy$ has no elementary form, so the given order doesn't work. Reversing it puts the solvable variable inside. The region $\{0\le x\le1,\ x\le y\le1\}$ is the triangle below $y=1$ and above $y=x$, which read the other way is $0\le y\le1,\ 0\le x\le y$.</p>
       <p>$$ \int_0^1\int_0^y e^{y^2}\,dx\,dy=\int_0^1 y\,e^{y^2}\,dy=\Bigl[\tfrac{e^{y^2}}{2}\Bigr]_0^1=\tfrac{e-1}{2}. $$</p>
-      <p>The stray $y$ from the inner integral is exactly the factor that makes $e^{y^2}$ integrable. Reversing order is not bookkeeping here, it is the whole solution.</p>
+      <p>The stray $y$ from the inner integral is exactly the factor that makes $e^{y^2}$ integrable. Here reversing the order is what makes the problem solvable at all.</p>
       <div class="solfig"><canvas data-fig="reverseOrder"></canvas></div>
       <div class="cap2">The same triangle swept two ways, vertical strips for $dy\,dx$ and horizontal strips for $dx\,dy$. Only one order can be integrated.</div>
     </div>
@@ -591,14 +591,14 @@
     <div class="sol">
       <p>Again the inner integral is intractable as written, so flip it. The region becomes $0\le y\le\pi,\ 0\le x\le y$, and the inner integral over $x$ just multiplies by the length $y$.</p>
       <p>$$ \int_0^\pi\frac{\sin y}{y}\cdot y\,dy=\int_0^\pi\sin y\,dy=2. $$</p>
-      <p>The offending $y$ in the denominator cancels against the width of the strip.</p>
+      <p>The $y$ in the denominator cancels with the width of the strip.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> For the solid $E$ bounded by $y=x^2$, $z=0$, $y+z=1$, set up $\iiint_E f\,dV$ in all six orders.</p>
     <div class="sol">
-      <p>One solid, six ways to peel it. The natural description is $-1\le x\le 1$, $x^2\le y\le 1$, $0\le z\le 1-y$. Each order asks which variable to sweep first and reshapes the limits to match.</p>
+      <p>There are six ways to slice up the same solid. The natural description is $-1\le x\le 1$, $x^2\le y\le 1$, $0\le z\le 1-y$. Each order asks which variable to sweep first and reshapes the limits to match.</p>
       <ol class="tight">
         <li>$dz\,dy\,dx$, $\displaystyle\int_{-1}^1\int_{x^2}^1\int_0^{1-y} f\,dz\,dy\,dx$</li>
         <li>$dz\,dx\,dy$, $\displaystyle\int_0^1\int_{-\sqrt y}^{\sqrt y}\int_0^{1-y} f\,dz\,dx\,dy$</li>
@@ -607,14 +607,14 @@
         <li>$dx\,dy\,dz$, $\displaystyle\int_0^1\int_0^{1-z}\int_{-\sqrt y}^{\sqrt y} f\,dx\,dy\,dz$</li>
         <li>$dx\,dz\,dy$, $\displaystyle\int_0^1\int_0^{1-y}\int_{-\sqrt y}^{\sqrt y} f\,dx\,dz\,dy$</li>
       </ol>
-      <p>The bounds look different but enclose the same solid. Choosing the order that makes the limits simple is the whole art of setting up a triple integral.</p>
+      <p>The bounds look different but enclose the same solid. Choosing the order that makes the limits simple is most of the work in setting up a triple integral.</p>
     </div>
   </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Volume under $z=1-x^2-y^2$ above $z=0$, in polar.</p>
     <div class="sol">
-      <p>The dome meets the floor on the unit disk, a circle, so polar coordinates fit the region like a glove and turn $1-x^2-y^2$ into $1-r^2$. The extra $r$ is the area of a polar cell.</p>
+      <p>The dome meets the floor on the unit disk, a circle, so polar coordinates fit the region well and turn $1-x^2-y^2$ into $1-r^2$. The extra $r$ is the area of a polar cell.</p>
       <p>$$ V=\int_0^{2\pi}\int_0^1(1-r^2)\,r\,dr\,d\theta=2\pi\Bigl[\tfrac{r^2}{2}-\tfrac{r^4}{4}\Bigr]_0^1=\frac{\pi}{2}. $$</p>
     </div>
   </div>
@@ -632,7 +632,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Volume inside the cylinder $x^2+y^2=1$, below $z=4$, above $z=1-x^2-y^2$, in cylindrical.</p>
     <div class="sol">
-      <p>Cylindrical coordinates own this region, a disk in $x,y$ capped by two surfaces in $z$. The floor is the dome $z=1-r^2$ and the ceiling is flat at $z=4$.</p>
+      <p>Cylindrical coordinates fit this region, a disk in $x,y$ capped by two surfaces in $z$. The floor is the dome $z=1-r^2$ and the ceiling is flat at $z=4$.</p>
       <p>$$ V=\int_0^{2\pi}\int_0^1\int_{1-r^2}^{4} r\,dz\,dr\,d\theta=2\pi\int_0^1 r\,(3+r^2)\,dr=2\pi\Bigl[\tfrac{3r^2}{2}+\tfrac{r^4}{4}\Bigr]_0^1=\frac{7\pi}{2}. $$</p>
       <p>The height $3+r^2$ is the gap between ceiling and floor, taller near the rim where the dome has dropped away.</p>
     </div>
@@ -653,7 +653,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Evaluate $\displaystyle\int_C\vec F\cdot d\vec r$ for $\vec F=\langle xy,x^2\rangle$ along $y=x^2$ from $(0,0)$ to $(1,1)$. Is the work path independent?</p>
     <div class="sol">
-      <p>Test conservativeness first. $P_y=x$ but $Q_x=2x$, they disagree, so $\vec F$ is not a gradient and the work depends on the path. There is no shortcut, parametrize and integrate.</p>
+      <p>Test conservativeness first. $P_y=x$ but $Q_x=2x$, they disagree, so $\vec F$ is not a gradient and the work depends on the path. So there's no shortcut, we have to parametrize and integrate.</p>
       <p>Take $x=t,\ y=t^2$, so $d\vec r=\langle 1,2t\rangle\,dt$ and $\vec F=\langle t^3,t^2\rangle$.</p>
       <p>$$ \int_C\vec F\cdot d\vec r=\int_0^1\bigl(t^3+2t^3\bigr)\,dt=\int_0^1 3t^3\,dt=\frac34. $$</p>
       <p>A different route from $(0,0)$ to $(1,1)$ would give a different number, because the mismatch $P_y\ne Q_x$ means the field has swirl.</p>
@@ -663,10 +663,10 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Show $\vec F=\langle e^y,\,xe^y+e^z,\,ye^z\rangle$ is conservative and evaluate $\displaystyle\int_C\vec F\cdot d\vec r$ from $(0,0,0)$ to $(1,1,1)$.</p>
     <div class="sol">
-      <p>When the field is a gradient the work forgets the path and only sees the ends. Check the mixed partials, $P_y=e^y=Q_x$, $P_z=0=R_x$, $Q_z=e^z=R_y$. They match, so a potential exists.</p>
+      <p>When the field is a gradient, the work only depends on the endpoints, not the path. Check the mixed partials, $P_y=e^y=Q_x$, $P_z=0=R_x$, $Q_z=e^z=R_y$. They match, so a potential exists.</p>
       <p>Integrate $f_x=e^y$ to $f=xe^y+g(y,z)$. Then $f_y=xe^y+g_y=xe^y+e^z$ gives $g=ye^z+h(z)$, and $f_z=ye^z+h'=ye^z$ gives $h=0$. So $f=xe^y+ye^z$.</p>
       <p>$$ \int_C\vec F\cdot d\vec r=f(1,1,1)-f(0,0,0)=(e+e)-0=2e. $$</p>
-      <p>This is the fundamental theorem for line integrals, the gradient version of the one from first year calculus. Find the potential, subtract its values at the endpoints, done.</p>
+      <p>This is the fundamental theorem for line integrals, the gradient version of the one from first year calculus. So we find the potential and subtract its values at the endpoints.</p>
       <div class="solfig"><canvas data-fig="gradFlow"></canvas></div>
       <div class="cap2">A conservative field flows out of a potential. The work from one point to another is just the change in potential, no matter how the particle wanders.</div>
     </div>
@@ -685,9 +685,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Evaluate $\displaystyle\oint_C\vec F\cdot d\vec r$ for $\vec F=\langle e^x-y^3,\cos y+x^3\rangle$ around the unit circle, counterclockwise.</p>
     <div class="sol">
-      <p>The integrand looks ugly, but Green's theorem only cares about the curl. The friendly pieces $e^x$ and $\cos y$ contribute nothing to $Q_x-P_y$.</p>
+      <p>The integrand looks messy, but Green's theorem only cares about $Q_x-P_y$, and the pieces $e^x$ and $\cos y$ contribute nothing to it.</p>
       <p>$$ Q_x-P_y=3x^2+3y^2,\qquad \oint_C\vec F\cdot d\vec r=\iint_D 3(x^2+y^2)\,dA. $$</p>
-      <p>In polar this is $3\displaystyle\int_0^{2\pi}\int_0^1 r^3\,dr\,d\theta=\dfrac{3\pi}{2}$. Turning a hostile loop integral into a clean polar one is Green's theorem doing the heavy lifting.</p>
+      <p>In polar this is $3\displaystyle\int_0^{2\pi}\int_0^1 r^3\,dr\,d\theta=\dfrac{3\pi}{2}$. So Green's theorem turns a messy loop integral into an easy polar one.</p>
       <div class="solfig"><canvas data-fig="greens"></canvas></div>
       <div class="cap2">The loop $C$ bounds the disk $D$. Green's theorem swaps the circulation around $C$ for the curl summed over $D$.</div>
     </div>
@@ -709,9 +709,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Prove $\operatorname{div}(\operatorname{curl}\vec F)=0$ for any smooth $\vec F$.</p>
     <div class="sol">
-      <p>A pure spin field has nothing left over to spread, and the proof is the equality of mixed partials. Writing $\vec F=\langle P,Q,R\rangle$,</p>
+      <p>The idea is that a field that's all spin doesn't spread out, and the proof is just equality of mixed partials. Writing $\vec F=\langle P,Q,R\rangle$,</p>
       <p>$$ \operatorname{div}(\operatorname{curl}\vec F)=(R_{xy}-Q_{xz})+(P_{yz}-R_{yx})+(Q_{zx}-P_{zy}). $$</p>
-      <p>By Clairaut $R_{xy}=R_{yx}$, $Q_{xz}=Q_{zx}$, $P_{yz}=P_{zy}$, so the six terms cancel in pairs. The sum is $0$. <span class="check">&#10003;</span> This is why a curl can never have sources, a fact that runs straight into the divergence theorem.</p>
+      <p>By Clairaut $R_{xy}=R_{yx}$, $Q_{xz}=Q_{zx}$, $P_{yz}=P_{zy}$, so the six terms cancel in pairs. The sum is $0$. <span class="check">&#10003;</span> This is why a curl can never have sources, and by the divergence theorem its flux through any closed surface is $0$.</p>
       <div class="solfig"><canvas data-fig="curlFlow"></canvas></div>
       <div class="cap2">A swirling field. Particles circulate without ever piling up or thinning out, so its divergence is zero everywhere.</div>
     </div>
@@ -720,7 +720,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Compare what divergence sees in the outflow field $\vec F=\langle x,y\rangle$ and the rotation field $\vec G=\langle -y,x\rangle$.</p>
     <div class="sol">
-      <p>$\operatorname{div}\vec F=1+1=2$, positive everywhere, every point is a little source pushing outward. $\operatorname{div}\vec G=0$, the rotation neither spreads nor gathers. Meanwhile the curl flips the story, $\vec G$ spins and $\vec F$ does not. Divergence and curl are two independent questions you can ask of any field, spreading and spinning.</p>
+      <p>$\operatorname{div}\vec F=1+1=2$, positive everywhere, every point is a little source pushing outward. $\operatorname{div}\vec G=0$, the rotation neither spreads nor gathers. Meanwhile the curl flips the story, $\vec G$ spins and $\vec F$ does not. So divergence and curl answer two different questions about a field, how much it spreads and how much it spins.</p>
       <div class="solfig"><canvas data-fig="divPlusFlow"></canvas></div>
       <div class="cap2">The outflow field. Particles stream away from the origin, the mark of positive divergence.</div>
     </div>
@@ -729,14 +729,14 @@
   <!-- ============================================================ -->
   <h3 id="sec9" class="chapter">Lagrange Multipliers</h3>
 
-  <p class="lede">To optimize $f$ subject to a constraint $g=0$, the level curves of $f$ ride out until one just kisses the constraint. At that tangency the two gradients line up, $\nabla f=\lambda\nabla g$. Solve that together with the constraint, then compare values of $f$ at the candidates.</p>
+  <p class="lede">To optimize $f$ subject to a constraint $g=0$, we push the level curves of $f$ outward until one just touches the constraint. At that tangency the two gradients line up, $\nabla f=\lambda\nabla g$. Solve that together with the constraint, then compare values of $f$ at the candidates.</p>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find three positive numbers summing to $100$ with the largest product.</p>
     <div class="sol">
       <p>Maximize $P=xyz$ subject to $x+y+z=100$. The gradients align,</p>
       <p>$$ \langle yz,xz,xy\rangle=\lambda\langle 1,1,1\rangle\ \Longrightarrow\ yz=xz=xy. $$</p>
-      <p>Dividing, $x=y=z$, so each is $\tfrac{100}{3}$ and $P_{\max}=\bigl(\tfrac{100}{3}\bigr)^3$. The product is greatest when the numbers are equal, the recurring lesson of constrained symmetry.</p>
+      <p>Dividing, $x=y=z$, so each is $\tfrac{100}{3}$ and $P_{\max}=\bigl(\tfrac{100}{3}\bigr)^3$. The product is greatest when the numbers are equal, which happens a lot in symmetric problems like this.</p>
     </div>
   </div>
 
@@ -752,9 +752,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find the absolute max and min of $f(x,y)=xy$ on the ellipse $\dfrac{x^2}{4}+y^2=1$.</p>
     <div class="sol">
-      <p>The level curves $xy=k$ are hyperbolas. They swell outward until one grazes the ellipse, and there the tangency gives $\nabla f=\lambda\nabla g$.</p>
+      <p>The level curves $xy=k$ are hyperbolas. As $|k|$ grows they move outward until one just touches the ellipse, and there the tangency gives $\nabla f=\lambda\nabla g$.</p>
       <p>$$ \langle y,x\rangle=\lambda\bigl\langle\tfrac{x}{2},2y\bigr\rangle\ \Longrightarrow\ y=\tfrac{\lambda x}{2},\quad x=2\lambda y. $$</p>
-      <p>Substituting gives $x=\lambda^2 x$, so $\lambda=\pm1$. For $\lambda=1$, $y=\tfrac{x}{2}$ and the constraint forces $x=\pm\sqrt2$, landing on $(\sqrt2,\tfrac{1}{\sqrt2})$ and its opposite with $f=1$. For $\lambda=-1$ the points give $f=-1$. So the max is $1$ and the min is $-1$, at the four points where a hyperbola kisses the ellipse.</p>
+      <p>Substituting gives $x=\lambda^2 x$, so $\lambda=\pm1$. For $\lambda=1$, $y=\tfrac{x}{2}$ and the constraint forces $x=\pm\sqrt2$, landing on $(\sqrt2,\tfrac{1}{\sqrt2})$ and its opposite with $f=1$. For $\lambda=-1$ the points give $f=-1$. So the max is $1$ and the min is $-1$, at the four points where a hyperbola just touches the ellipse.</p>
       <div class="solfig"><canvas data-fig="lagrangeEllipse"></canvas></div>
       <div class="cap2"><b>Watch the arrows.</b> A point rides the ellipse with $\nabla f$ green and $\nabla g$ purple. They line up only at the four tangencies, the marked extrema.</div>
     </div>
@@ -765,9 +765,9 @@
     <div class="sol">
       <p>Minimize the squared distance $d^2=(x-1)^2+(y-2)^2+(z-3)^2$ subject to $g=x-y+z-4=0$. At the closest point the level spheres of $d^2$ touch the plane, so $\nabla(d^2)$ is along the plane's normal.</p>
       <p>$$ 2(x-1)=\lambda,\quad 2(y-2)=-\lambda,\quad 2(z-3)=\lambda, $$</p>
-      <p>so $x=1+\tfrac{\lambda}{2},\ y=2-\tfrac{\lambda}{2},\ z=3+\tfrac{\lambda}{2}$. The constraint gives $2+\tfrac{3\lambda}{2}=4$, so $\lambda=\tfrac43$ and the foot is $\bigl(\tfrac53,\tfrac43,\tfrac{11}{3}\bigr)$, at distance $\dfrac{2\sqrt3}{3}$. The shortest path to a plane runs straight along its normal, which is precisely what $\nabla(d^2)\parallel\nabla g$ says.</p>
+      <p>so $x=1+\tfrac{\lambda}{2},\ y=2-\tfrac{\lambda}{2},\ z=3+\tfrac{\lambda}{2}$. The constraint gives $2+\tfrac{3\lambda}{2}=4$, so $\lambda=\tfrac43$ and the foot is $\bigl(\tfrac53,\tfrac43,\tfrac{11}{3}\bigr)$, at distance $\dfrac{2\sqrt3}{3}$. The shortest path to a plane runs straight along its normal, which is exactly what $\nabla(d^2)\parallel\nabla g$ says.</p>
       <div class="solfig"><canvas data-fig="planeDist"></canvas></div>
-      <div class="cap2"><b>Drag to rotate.</b> The dashed drop from the point to the plane is perpendicular to it, the orange normal direction, which is why it is the shortest reach.</div>
+      <div class="cap2"><b>Drag to rotate.</b> The dashed drop from the point to the plane is perpendicular to it, the orange normal direction, which is why it's the shortest distance.</div>
     </div>
   </div>
 

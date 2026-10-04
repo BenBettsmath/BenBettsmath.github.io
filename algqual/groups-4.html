@@ -30,19 +30,19 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   $$\mathbb{Z}^r \oplus \mathbb{Z}/d_1\mathbb{Z} \oplus \cdots \oplus \mathbb{Z}/d_k\mathbb{Z}, \qquad d_1 \mid d_2 \mid \cdots \mid d_k, \quad d_i > 1$$
   (<em>invariant factor form</em>), or equivalently as
   $$\mathbb{Z}^r \oplus \mathbb{Z}/p_1^{a_1}\mathbb{Z} \oplus \cdots \oplus \mathbb{Z}/p_t^{a_t}\mathbb{Z}$$
-  (<em>elementary divisor form</em>). <em>One representation per group, in either guise. This is the complete classification.</em> The decomposition is unique in either form.
+  (<em>elementary divisor form</em>). <em>The decomposition is unique in either form, so two finitely generated abelian groups are isomorphic exactly when they have the same $r$ and the same list of $d_i$, or of prime powers.</em>
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> Order $12$ has two abelian groups: $\mathbb{Z}/12 \cong \mathbb{Z}/4 \oplus \mathbb{Z}/3$ (one generator of order $12$) and $\mathbb{Z}/2 \oplus \mathbb{Z}/6 \cong \mathbb{Z}/2 \oplus \mathbb{Z}/2 \oplus \mathbb{Z}/3$ (no element of order $>6$). <em>Different structures, same order.</em><br>
-  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ and $(\mathbb{Z}/2)^2$ both have order $4$ but aren't isomorphic. First has an element of order $4$; second doesn't.
+  <span class="thm-label">Example.</span> Order $12$ has two abelian groups: $\mathbb{Z}/12 \cong \mathbb{Z}/4 \oplus \mathbb{Z}/3$ (one generator of order $12$) and $\mathbb{Z}/2 \oplus \mathbb{Z}/6 \cong \mathbb{Z}/2 \oplus \mathbb{Z}/2 \oplus \mathbb{Z}/3$ (no element of order $>6$). <em>The easiest way to tell them apart is the largest order of an element, which is $12$ in the first one and $6$ in the second.</em><br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ and $(\mathbb{Z}/2)^2$ both have order $4$ but aren't isomorphic. since the first one has an element of order $4$ and every element of the second has order at most $2$.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Rules.</span> <strong>Converting between forms.</strong>
   <ul>
-    <li><em>Invariant factors $\to$ elementary divisors:</em> Factor each $d_i$ into prime powers. Done.</li>
-    <li><em>Elementary divisors $\to$ invariant factors:</em> Group the prime powers by prime. For each prime $p$, sort its power factors decreasing: $p^{a_1} \geq p^{a_2} \geq \cdots$. The largest invariant factor $d_k = \prod_p p^{a_1(p)}$ (the largest of each prime's list). Then $d_{k-1}$ is the product of each second-largest, and so on. Fill gaps with $1$s. <em>This repackaging is forced: the structure is the same either way.</em></li>
+    <li><em>Invariant factors $\to$ elementary divisors:</em> Factor each $d_i$ into prime powers, since $\mathbb{Z}/d \cong \bigoplus_p \mathbb{Z}/p^{a_p}$ when $d = \prod_p p^{a_p}$ by the Chinese remainder theorem.</li>
+    <li><em>Elementary divisors $\to$ invariant factors:</em> Group the prime powers by prime. For each prime $p$, sort its power factors decreasing: $p^{a_1} \geq p^{a_2} \geq \cdots$. The largest invariant factor $d_k = \prod_p p^{a_1(p)}$ (the largest of each prime's list). Then $d_{k-1}$ is the product of each second-largest, and so on. Fill gaps with $1$s. <em>This works because of the Chinese remainder theorem again, $\mathbb{Z}/m \oplus \mathbb{Z}/n \cong \mathbb{Z}/mn$ when $\gcd(m,n) = 1$, so one prime power from each prime glues into one cyclic factor. Taking the largest ones first is what makes $d_1 \mid \cdots \mid d_k$ work out.</em></li>
   </ul>
 </div>
 
@@ -62,13 +62,13 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   $$0 \to \mathbb{Z}^m \xrightarrow{\ M\ } \mathbb{Z}^n \to \mathbb{Z}^n/H \to 0.$$
   Reduce $M$ by integer row and column operations to Smith normal form $\mathrm{diag}(d_1, \ldots, d_r, 0, \ldots, 0)$ with $d_1 \mid d_2 \mid \cdots \mid d_r$. Then
   $$\mathbb{Z}^n/H \cong \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_r \oplus \mathbb{Z}^{n-r}.$$
-  Allowed operations are to swap two rows or columns, multiply a row or column by $\pm 1$, and add an integer multiple of one row or column to another. <em>Each zero diagonal entry gives a free $\mathbb{Z}$ summand in the quotient.</em>
+  Allowed operations are to swap two rows or columns, multiply a row or column by $\pm 1$, and add an integer multiple of one row or column to another. <em>The reason this works is that row and column operations are just changes of basis of $\mathbb{Z}^n$ and $\mathbb{Z}^m$, so they don't change the quotient. Once $M$ is diagonal, each $d_i$ just kills $d_i$ times one basis vector, and each basis vector that $M$ never hits gives a free $\mathbb{Z}$.</em>
 </div>
 
 <div class="thm-block comp">
   <span class="thm-label">Computation.</span> $\mathbb{Z}^4/H$ for $H = \langle (2,2,2,2), (2,4,8,0), (8,8,0,4) \rangle$ (Aug 2022 qual). The generators are the columns of
   $$M = \begin{pmatrix} 2 & 2 & 8 \\ 2 & 4 & 8 \\ 2 & 8 & 0 \\ 2 & 0 & 4 \end{pmatrix}.$$
-  Clear the first row off the other columns, $C_2 \leftarrow C_2 - C_1$ and $C_3 \leftarrow C_3 - 4C_1$, then clear the first column with row operations and continue. Padding with a fourth zero column to square it up, this reduces to $\mathrm{diag}(2, 2, 4, 0)$, so the invariant factors are $2, 2, 4$ and the zero pivot is one free direction,
+  Clear the first row off the other columns, $C_2 \leftarrow C_2 - C_1$ and $C_3 \leftarrow C_3 - 4C_1$, then clear the first column with row operations and keep going. This reduces to $\mathrm{diag}(2, 2, 4)$ with a row of zeros at the bottom, so the invariant factors are $2, 2, 4$. Since $M$ only has $3$ columns, there's one direction of $\mathbb{Z}^4$ it never hits, which gives the free $\mathbb{Z}$,
   $$\mathbb{Z}^4/H \cong \mathbb{Z}/2 \oplus \mathbb{Z}/2 \oplus \mathbb{Z}/4 \oplus \mathbb{Z}.$$
 </div>
 

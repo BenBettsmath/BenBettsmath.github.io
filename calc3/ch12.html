@@ -34,20 +34,20 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 12 · Vectors and the Geometry of Space</h2>
 <div class="chapter-nav"><a href="ch10.html">← previous</a><a href="outline.html">outline</a><a href="ch13.html">next →</a></div>
-<p>Geometry in space. Vectors, the dot and cross products, lines and planes, and the six quadric surfaces sorted by their traces. The dot product measures alignment and the cross product builds a perpendicular, and almost every distance and angle here is one of those two readings in disguise.</p>
+<p>Geometry in space. Vectors, the dot and cross products, lines and planes, and the six quadric surfaces sorted by their traces. The dot product measures alignment and the cross product builds a perpendicular, and almost every distance and angle in this chapter comes from one of those two.</p>
 <div class="section"><h3>12.1 Three-Dimensional Coordinate Systems</h3>
 
-<p>The coordinate planes $xy$, $yz$, $zx$ split $\mathbb R^3$ into eight <b>octants</b>, labelled by the signs of $(x, y, z)$. The first is $(+,+,+)$.</p>
+<p>The coordinate planes $xy$, $yz$, $zx$ split $\mathbb R^3$ into eight <b>octants</b>, labeled by the signs of $(x, y, z)$. The first is $(+,+,+)$.</p>
 
 <p><span class="dimtag">3D</span><b>Distance</b> between $P_1 = (x_1, y_1, z_1)$ and $P_2 = (x_2, y_2, z_2)$.</p>
 <div class="formula">$|P_1 P_2| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}.$</div>
-<p><em>Why.</em> Pythagoras applied twice. The diagonal across the floor has length $\sqrt{\Delta x^2 + \Delta y^2}$, and that diagonal together with the vertical rise $\Delta z$ forms a second right triangle. The figure shows both steps on a unit cube, where the floor diagonal is $\sqrt 2$ and the space diagonal is $\sqrt 3$.</p>
+<p><em>Why.</em> This is Pythagoras twice. The diagonal across the floor has length $\sqrt{\Delta x^2 + \Delta y^2}$, and that diagonal together with the vertical rise $\Delta z$ forms a second right triangle. The figure shows both steps on a unit cube, where the floor diagonal is $\sqrt 2$ and the space diagonal is $\sqrt 3$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="cubeDiagonal"></canvas></div>
 
-<p><b>Sphere</b> of radius $r$ centred at $(h, k, \ell)$.</p>
+<p><b>Sphere</b> of radius $r$ centered at $(h, k, \ell)$.</p>
 <div class="formula">$(x - h)^2 + (y - k)^2 + (z - \ell)^2 = r^2.$</div>
-<p>A sphere is the set of points at distance $r$ from the centre, so this is the distance formula squared.</p>
+<p>A sphere is the set of points at distance $r$ from the center, so this is the distance formula squared.</p>
 
 </div>
 <div class="section"><h3>12.2 Vectors</h3>
@@ -100,7 +100,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="triangleArea3D"></canvas></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Scalar versus vector.</b> $\vec a\cdot\vec b$ is a number and $\vec a\times\vec b$ is a vector. In the triple product $\vec a\cdot(\vec b\times\vec c)$ the cross product must be evaluated first, so the parentheses are essential. The grouping $(\vec a\cdot\vec b)\times\vec c$ is meaningless, since you cannot cross a scalar with a vector.</p></div>
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Scalar versus vector.</b> $\vec a\cdot\vec b$ is a number and $\vec a\times\vec b$ is a vector. In the triple product $\vec a\cdot(\vec b\times\vec c)$ the cross product must be evaluated first, so the parentheses are essential. The grouping $(\vec a\cdot\vec b)\times\vec c$ is meaningless, since we can't cross a number with a vector.</p></div>
 <p><b>Torque.</b> $\vec\tau = \vec r \times \vec F$, magnitude $|\vec r||\vec F|\sin\theta$, force times moment arm.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="tripleProduct"></canvas>
@@ -116,7 +116,7 @@ Symmetric form. $\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}.$
 </div>
 <p>All three describe the same motion, starting at $P_0$ with velocity $\vec v$. The symmetric form is each parametric equation solved for $t$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>A zero in a direction component.</b> You cannot divide by it. For direction $\vec v=\langle 3,0,-2\rangle$ through $(2,-1,4)$ the symmetric form is $\dfrac{x-2}{3}=\dfrac{z-4}{-2},\ \ y=-1$. Write the zero-slot variable as its own constant equation instead of putting $0$ in a denominator.</p></div>
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>A zero in a direction component.</b> We can't divide by it. For direction $\vec v=\langle 3,0,-2\rangle$ through $(2,-1,4)$ the symmetric form is $\dfrac{x-2}{3}=\dfrac{z-4}{-2},\ \ y=-1$. Write the zero-slot variable as its own constant equation instead of putting $0$ in a denominator.</p></div>
 <p><b>Skew lines</b> are non-parallel and non-intersecting, which only happens in $\mathbb R^3$. Two lines in the plane must cross or be parallel, but in space one can pass over the other.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="skewLines"></canvas></div>
@@ -134,7 +134,7 @@ Symmetric form. $\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}.$
 <div class="fig-inline-canvas"><canvas data-fig="planeIntersect"></canvas></div>
 <div class="fig-inline-canvas"><canvas data-fig="linePlaneHit"></canvas></div>
 
-<p><b>Distance from $P$ to a line</b> through $Q$ with direction $\vec v$, once with each product. The dot product splits $\overrightarrow{QP}$ into components along and across the line, and the across component is the distance. The cross product gives the area of the parallelogram spanned by $\overrightarrow{QP}$ and $\vec v$, whose base is $|\vec v|$ and whose height is the distance.</p>
+<p><b>Distance from $P$ to a line</b> through $Q$ with direction $\vec v$, which we can get with either product. The dot product splits $\overrightarrow{QP}$ into components along and across the line, and the across component is the distance. The cross product gives the area of the parallelogram spanned by $\overrightarrow{QP}$ and $\vec v$, whose base is $|\vec v|$ and whose height is the distance.</p>
 <div class="formula">Method 1. $D = |\mathrm{orth}_{\vec v}\,\overrightarrow{QP}| = \sqrt{|\overrightarrow{QP}|^2 - |\mathrm{proj}_{\vec v}\,\overrightarrow{QP}|^2}$.<br>
 Method 2. $D = \dfrac{|\overrightarrow{QP} \times \vec v|}{|\vec v|}$.</div>
 

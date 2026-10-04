@@ -30,16 +30,16 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <ol>
     <li><strong>Existence:</strong> Sylow $p$-subgroups (subgroups of order $p^a$) exist.</li>
     <li><strong>Conjugacy:</strong> All Sylow $p$-subgroups are conjugate. Any $p$-subgroup nests in some Sylow $p$-subgroup.</li>
-    <li><strong>Count:</strong> The number $n_p$ of Sylow $p$-subgroups satisfies $n_p \equiv 1 \pmod{p}$ and $n_p \mid m$. <em>Two congruences to squeeze out solutions.</em></li>
+    <li><strong>Count:</strong> The number $n_p$ of Sylow $p$-subgroups satisfies $n_p \equiv 1 \pmod{p}$ and $n_p \mid m$. <em>Most Sylow problems come down to using these two conditions to cut down the list of possible values of $n_p$.</em></li>
   </ol>
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Extra Sylow facts.</strong> <span class="cite">(D&amp;F &sect;4.5)</span>
   <ul>
-    <li>$P \in \mathrm{Syl}_p(G)$ and $P \leq H \leq G$ implies $P \in \mathrm{Syl}_p(H)$. (Syl$p$ subgroups descend.)</li>
-    <li>$N_G(P)/C_G(P) \hookrightarrow \mathrm{Aut}(P)$ constrains $n_p$ via $|N_G(P)/C_G(P)| \mid |\mathrm{Aut}(P)|$.</li>
-    <li>If $n_p = 1$ for *all* primes $p \mid |G|$, then $G \cong P_1 \times \cdots \times P_k$ where $P_i$ is the unique Sylow $p_i$-subgroup. (All Sylow subgroups normal means $G$ is their direct product.)</li>
+    <li>$P \in \mathrm{Syl}_p(G)$ and $P \leq H \leq G$ implies $P \in \mathrm{Syl}_p(H)$. (This is just because $p^a$ is still the largest power of $p$ dividing $|H|$.)</li>
+    <li>$N_G(P)/C_G(P) \hookrightarrow \mathrm{Aut}(P)$, since $N_G(P)$ acts on $P$ by conjugation and $C_G(P)$ is exactly the kernel. So $|N_G(P)/C_G(P)|$ divides $|\mathrm{Aut}(P)|$, and since $n_p = [G:N_G(P)]$ this can rule out some values of $n_p$.</li>
+    <li>If $n_p = 1$ for <em>all</em> primes $p \mid |G|$, then $G \cong P_1 \times \cdots \times P_k$ where $P_i$ is the unique Sylow $p_i$-subgroup. (This is because the Sylow subgroups are then all normal, they only share the identity, and their orders multiply to $|G|$.)</li>
   </ul>
 </div>
 
@@ -47,20 +47,20 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <span class="thm-label">Note.</span> <strong>Simplicity proof template (how to prove $G$ is not simple).</strong>
   <ol>
     <li>List $n_p$ candidates for each $p \mid |G|$ using $n_p \equiv 1 \pmod p$, $n_p \mid m$.</li>
-    <li>If $n_p = 1$ for some $p$, the unique Sylow is normal; done, $G$ is not simple.</li>
-    <li>Else count elements: each Sylow $p$-subgroup (if cyclic of prime order) contributes $p-1$ nonidentity elements of order $p$. If $n_p(p-1) + (\text{other elements}) > |G|$, contradiction: $n_p$ can't be that large.</li>
-    <li>If $n_p$ is small, use coset action: $G \to S_{n_p}$ has nontrivial kernel when $n_p! < |G|$, giving a nontrivial normal subgroup.</li>
+    <li>If $n_p = 1$ for some $p$, the unique Sylow $p$-subgroup is normal, so $G$ is not simple (as long as $|G|$ isn't a power of $p$).</li>
+    <li>Else count elements: each Sylow $p$-subgroup (if cyclic of prime order) contributes $p-1$ nonidentity elements of order $p$. Two different subgroups of order $p$ only share the identity, so these elements are all different. If $n_p(p-1) + (\text{other elements}) > |G|$ then we've counted too many elements, so $n_p$ can't be that large.</li>
+    <li>If $n_p$ is small, let $G$ act on its $n_p$ Sylow $p$-subgroups by conjugation. This gives $G \to S_{n_p}$, which can't be injective when $n_p! < |G|$, and its kernel isn't all of $G$ since the action moves the Sylow subgroups around. So the kernel is a nontrivial proper normal subgroup.</li>
     <li>Use automorphism constraint: $N_G(P)/C_G(P) \hookrightarrow \mathrm{Aut}(P)$ implies $|N_G(P)/C_G(P)| \mid |\mathrm{Aut}(P)|$, ruling out large $n_p$.</li>
   </ol>
 </div>
 
 <div class="thm-block comp">
   <span class="thm-label">Computation.</span> <strong>Worked Sylow examples.</strong>
-  <p><strong>$|G| = pq$, $p < q$.</strong> $n_q \equiv 1 \pmod q$ and $n_q \mid p$, so $n_q \in \{1, p\}$; $p < q$ forces $n_q = 1$. If also $p \nmid q-1$ then $n_p = 1$, so $G \cong \mathbb{Z}/pq$.</p>
-  <p><strong>$|G| = 30$.</strong> $n_5 \in \{1, 6\}$, $n_3 \in \{1, 10\}$. If both $>1$ then $6 \cdot 4 + 10 \cdot 2 = 44 > 30$, a contradiction, so $n_3 = 1$ or $n_5 = 1$.</p>
-  <p><strong>$|G| = 56 = 2^3 \cdot 7$.</strong> $n_7 \in \{1, 8\}$. If $n_7 = 8$ then $8 \cdot 6 = 48$ elements of order $7$, leaving just $8$ for the Sylow $2$-subgroup, so $n_2 = 1$.</p>
-  <p><strong>$|G| = 80 = 2^4 \cdot 5$.</strong> $n_5 \in \{1, 16\}$. If $n_5 = 16$ then $16 \cdot 4 = 64$ elements of order $5$, leaving $16$ for $2$-power elements, so $n_2 = 1$.</p>
-  <p><strong>$|G| = 132 = 4 \cdot 3 \cdot 11$.</strong> $n_{11} \in \{1, 12\}$. If $n_{11} = 12$ then $12 \cdot 10 = 120$ elements of order $11$, leaving $12$, too few for both $n_2 > 1$ and $n_3 > 1$. So one of those Sylows is normal.</p>
+  <p><strong>$|G| = pq$, $p < q$.</strong> $n_q \equiv 1 \pmod q$ and $n_q \mid p$, so $n_q \in \{1, p\}$, and $n_q = p$ is impossible since $p < q$ means $p \not\equiv 1 \pmod q$. So $n_q = 1$. If also $p \nmid q-1$ then $n_p = q$ is impossible for the same reason, so $n_p = 1$. Then both Sylow subgroups are normal and $G \cong \mathbb{Z}/p \times \mathbb{Z}/q \cong \mathbb{Z}/pq$.</p>
+  <p><strong>$|G| = 30$.</strong> $n_5 \in \{1, 6\}$, $n_3 \in \{1, 10\}$. If both are $>1$ then there are $6 \cdot 4 = 24$ elements of order $5$ and $10 \cdot 2 = 20$ of order $3$, which is $44 > 30$ elements. So $n_3 = 1$ or $n_5 = 1$.</p>
+  <p><strong>$|G| = 56 = 2^3 \cdot 7$.</strong> $n_7 \in \{1, 8\}$. If $n_7 = 8$ then there are $8 \cdot 6 = 48$ elements of order $7$, leaving only $8$ other elements. That's exactly enough room for one Sylow $2$-subgroup of order $8$, so $n_2 = 1$.</p>
+  <p><strong>$|G| = 80 = 2^4 \cdot 5$.</strong> $n_5 \in \{1, 16\}$. If $n_5 = 16$ then there are $16 \cdot 4 = 64$ elements of order $5$, leaving only $16$ other elements, which is exactly enough room for one Sylow $2$-subgroup of order $16$. So $n_2 = 1$.</p>
+  <p><strong>$|G| = 132 = 4 \cdot 3 \cdot 11$.</strong> $n_{11} \in \{1, 12\}$. If $n_{11} = 12$ then there are $12 \cdot 10 = 120$ elements of order $11$, leaving $12$. That's too few to fit more than one Sylow $2$-subgroup and more than one Sylow $3$-subgroup at the same time. So one of those is normal.</p>
   <p><strong>$|G| = p^2 q$ with $p > q$.</strong> $n_p \mid q$ and $n_p \equiv 1 \pmod p$. With $p > q$, only $n_p = 1$ works.</p>
 </div>
 

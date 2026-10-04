@@ -28,28 +28,28 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <span class="thm-label">Thm (RCF).</span> <span class="cite">(D&amp;F &sect;12.2, Thm. 16-17)</span>
   Every operator $T$ on an $n$-dimensional $k$-vector space has a unique rational canonical form: a block diagonal $\mathrm{diag}(C_{a_1}, \ldots, C_{a_r})$ with companion matrices for polynomials $a_1 \mid a_2 \mid \cdots \mid a_r$ in $k[x]$.
   Constraints: $\sum \deg a_i = n$, $\prod a_i = \chi_T$, and $a_r = m_T$.
-  <em>Invariant factors lock down similarity. Two operators similar iff their invariant factor sequences match.</em>
+  <em>So two operators are similar iff they have the same invariant factors. This comes from viewing $V$ as a $k[x]$-module where $x$ acts by $T$, and applying the structure theorem for modules over the PID $k[x]$.</em>
 </div>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Companion matrix.</strong> <span class="cite">(D&amp;F &sect;12.2)</span>
-  For monic $f = x^d + b_{d-1} x^{d-1} + \cdots + b_0 \in k[x]$, the companion matrix $C_f$ is the $d \times d$ matrix with $1$'s on the superdiagonal below the main diagonal, last column $(-b_0, -b_1, \ldots, -b_{d-1})^T$, zeros elsewhere.
-  Then $\chi_{C_f} = m_{C_f} = f$. <em>The companion matrix encodes $f$ as an operator.</em>
+  For monic $f = x^d + b_{d-1} x^{d-1} + \cdots + b_0 \in k[x]$, the companion matrix $C_f$ is the $d \times d$ matrix with $1$'s on the diagonal just below the main diagonal, last column $(-b_0, -b_1, \ldots, -b_{d-1})^T$, zeros elsewhere.
+  Then $\chi_{C_f} = m_{C_f} = f$. <em>It's the matrix of multiplication by $x$ on $k[x]/(f)$ in the basis $1, x, \ldots, x^{d-1}$, which is why $f$ is its minimal polynomial.</em>
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Fun fact.</span> <strong>Rational canonical form is computed in the base field.</strong> <span class="cite">(D&amp;F &sect;12.2, Cor. 18)</span>
-  Two matrices $A, B$ over $K$ are similar over $K$ if and only if they are similar over any extension field $L \supseteq K$. RCF is purely a polynomial computation in $k[x]$, so extending scalars does not create new similarity classes. Quals love the independence from field extensions.
+  Two matrices $A, B$ over $K$ are similar over $K$ if and only if they are similar over any extension field $L \supseteq K$. This is because the invariant factors are computed from $xI - A$ by row and column operations in $K[x]$, so they don't change when we pass to $L[x]$. This shows up on quals a lot.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Jordan canonical form).</span> <span class="cite">(D&amp;F &sect;12.3)</span>
-  Over an algebraically closed field, every operator $T$ is similar to a block diagonal of Jordan blocks $J_k(\lambda) = \lambda I_k + N_k$, where $N_k$ is the $k \times k$ nilpotent shift. One Jordan block per elementary divisor $(x - \lambda)^k$. <em>Over $\mathbb{C}$, Jordan blocks are the canonical form. Over $\mathbb{Q}$ or finite fields, use invariant factors instead.</em>
+  Over an algebraically closed field, every operator $T$ is similar to a block diagonal of Jordan blocks $J_k(\lambda) = \lambda I_k + N_k$, where $N_k$ is the $k \times k$ nilpotent shift. One Jordan block per elementary divisor $(x - \lambda)^k$. <em>Jordan form needs all the eigenvalues to be in $k$, so over $\mathbb{Q}$ or finite fields we usually use the rational canonical form instead.</em>
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Diagonalizability criterion.</strong> <span class="cite">(D&amp;F &sect;12.3, Prop. 23)</span>
-  An operator $T$ on a vector space over $k$ is diagonalizable if and only if $m_T$ splits into distinct linear factors in $k[x]$. No repeated roots.
+  An operator $T$ on a vector space over $k$ is diagonalizable if and only if $m_T$ splits into distinct linear factors in $k[x]$. This is because a repeated root of $m_T$ is exactly a Jordan block of size bigger than $1$.
 </div>
 
 <div class="thm-block ex">
@@ -72,9 +72,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <br>If $A^n = I$ then $m_A \mid x^n - 1$. Steps to enumerate similarity classes:
   <ol>
     <li>Factor $x^n - 1$ over $\mathbb{F}_q$ into irreducibles. These correspond to Frobenius orbits of $n$th roots of unity under $\zeta \mapsto \zeta^q$. An orbit's length is the degree of its irreducible factor. Roots of order $d$ have orbit size equal to the order of $q \pmod{d}$.</li>
-    <li>If $p = \mathrm{char}(\mathbb{F}_q)$ and $p \nmid n$, then $x^n - 1$ is squarefree. Every divisor is too, so all matrices with $A^n = I$ are diagonalizable. Similarity classes correspond to multisets of irreducible factors summing to degree $n$.</li>
-    <li>If $p \mid n$, write $n = p^s n'$ with $p \nmid n'$. Then $x^n - 1 = (x^{n'}-1)^{p^s}$. Irreducible factors now repeat. Invariant factor chains $a_1 \mid \cdots \mid a_r$ reappear, encoding the nilpotent structure in each Jordan block.</li>
-    <li>Count by partition type: split $n$ into parts matching degrees of available irreducibles, then count multisets of factors by repetition pattern for each partition.</li>
+    <li>If $p = \mathrm{char}(\mathbb{F}_q)$ and $p \nmid n$, then $x^n - 1$ is squarefree. Every divisor is too, so all matrices with $A^n = I$ are diagonalizable. Similarity classes correspond to multisets of irreducible factors whose degrees add up to the size of the matrix.</li>
+    <li>If $p \mid n$, write $n = p^s n'$ with $p \nmid n'$. Then $x^n - 1 = (x^{n'}-1)^{p^s}$. Irreducible factors now repeat, so the matrices don't have to be diagonalizable anymore, and we have to keep track of the invariant factor chains $a_1 \mid \cdots \mid a_r$, which see the Jordan blocks.</li>
+    <li>Count by partition type: split the size of the matrix into parts matching degrees of available irreducibles, then count multisets of factors by repetition pattern for each partition.</li>
   </ol>
 </div>
 

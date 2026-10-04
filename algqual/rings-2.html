@@ -26,7 +26,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Local ring.</strong> <span class="cite">(D&amp;F &sect;7.1)</span>
-  $R$ is <strong>local</strong> if it has a unique maximal ideal. <em>Equivalently, the non-units form an ideal:</em> an element is either a unit or lies in the maximal ideal, with no middle ground.
+  $R$ is <strong>local</strong> if it has a unique maximal ideal. <em>Equivalently, the non-units form an ideal.</em> So every element is either a unit or in the maximal ideal. This is because a non-unit generates a proper ideal, which sits inside some maximal ideal, and there's only one.
 </div>
 
 <div class="thm-block ex">
@@ -35,12 +35,12 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Local rings are "monoidal".</strong> In a local ring, there's one monopoly of "bad" elements: they all live in the unique maximal ideal $\mathfrak{m}$. This makes local rings much easier to work with than global rings, where different primes can interfere. Localization is the art of forcing a ring to become local.
+  <span class="thm-label">Fun fact.</span> <strong>Why local rings are nice.</strong> In a local ring every element that isn't a unit is in $\mathfrak{m}$, so there's only one maximal ideal to keep track of. This makes a lot of arguments easier than in a general ring, where different maximal ideals can get in each other's way. Localization is how we turn a ring into a local one, by looking at one prime at a time.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>$K[[x]]$ is a local PID.</strong> <span class="cite">(D&amp;F &sect;7.2, Ex. 3)</span>
-  $K[[x]]$ is the formal power series $\sum_{n \geq 0} a_n x^n$. <em>A series is a unit iff $a_0 \neq 0$:</em> invert coefficients from the constant term outward. Non-units form the ideal $(x)$, making the ring local. Any nonzero ideal has an element of minimal $x$-order $k$, so $I = (x^k)$. Hence $K[[x]]$ is a PID, in fact a discrete valuation ring.
+  $K[[x]]$ is the formal power series $\sum_{n \geq 0} a_n x^n$. <em>A series is a unit iff $a_0 \neq 0$.</em> This is because we can solve for the coefficients of the inverse one at a time, starting from the constant term, and the only thing we ever divide by is $a_0$. So the non-units are the series with $a_0 = 0$, which is the ideal $(x)$, and the ring is local. Any nonzero ideal $I$ has an element of smallest $x$-order $k$, which is $x^k$ times a unit, so $I = (x^k)$. Hence $K[[x]]$ is a PID, in fact a discrete valuation ring.
 </div>
 
 <div class="thm-block comp">

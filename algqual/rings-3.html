@@ -26,23 +26,23 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Localization.</strong> <span class="cite">(D&amp;F &sect;7.5)</span>
-  Let $S \subseteq R$ be multiplicatively closed, containing $1$. Then $S^{-1}R$ is the set of pairs $(r, s)$, $s \in S$, written $r/s$, under $r/s \sim r'/s' \iff t(rs' - r's) = 0$ for some $t \in S$. <em>We formally invert all of $S$:</em> addition and multiplication mimic fractions, and $R \to S^{-1}R$ sends $r \mapsto r/1$. When there are zero divisors in $R$, the "for some $t \in S$" is essential for transitivity.
+  Let $S \subseteq R$ be multiplicatively closed, containing $1$. Then $S^{-1}R$ is the set of pairs $(r, s)$, $s \in S$, written $r/s$, under $r/s \sim r'/s' \iff t(rs' - r's) = 0$ for some $t \in S$. <em>The idea is that we're making every element of $S$ invertible.</em> Addition and multiplication work the same way as for fractions, and $R \to S^{-1}R$ sends $r \mapsto r/1$. We need the extra $t$ when $R$ has zero divisors, see below.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Example.</span> For $R = \mathbb{Z}$, $S = \mathbb{Z} \setminus \{0\}$ gives $S^{-1}R = \mathbb{Q}$. $S = \{1, p, p^2, \ldots\}$ gives $\mathbb{Z}[1/p]$ (rationals with only $p$ in the denominator). $S = \mathbb{Z} \setminus (p)$ gives the local ring $\mathbb{Z}_{(p)}$, where only primes $\neq p$ are invertible.<br>
-  <span class="thm-label">Non-example / caution.</span> If $0 \in S$ then $S^{-1}R = 0$. The "for some $t \in S$" in the equivalence relation is essential when $R$ has zero divisors: without it, the relation isn't transitive.
+  <span class="thm-label">Non-example / caution.</span> If $0 \in S$ then $S^{-1}R = 0$, since taking $t = 0$ makes every $r/s$ equal to $0/1$. The "for some $t \in S$" in the equivalence relation is essential when $R$ has zero divisors: without it, the relation isn't transitive.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Localization kills bad elements.</strong> If $r \in S$ then $r$ becomes a unit in $S^{-1}R$. If $t \in R$ would cause problems (like zero divisors), we can remove it from our "good set" and localize at the complement to make it vanish.
+  <span class="thm-label">Fun fact.</span> <strong>What localization does to elements.</strong> If $s \in S$ then $s$ becomes a unit in $S^{-1}R$, with inverse $1/s$. The price is that anything killed by an element of $S$ becomes $0$, since $sr = 0$ means $r/1 = 0/1$. So localizing at a set containing zero divisors throws some elements away.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Rules.</span> <strong>Behavior of ideals under localization.</strong>
   <ul>
     <li>$S^{-1}(I + J) = S^{-1}I + S^{-1}J$, $S^{-1}(I \cap J) = S^{-1}I \cap S^{-1}J$, $S^{-1}(IJ) = (S^{-1}I)(S^{-1}J)$.</li>
-    <li>Primes of $S^{-1}R$ are exactly $S^{-1}\mathfrak{p}$ for primes $\mathfrak{p}$ of $R$ with $\mathfrak{p} \cap S = \emptyset$.</li>
+    <li>Primes of $S^{-1}R$ are exactly $S^{-1}\mathfrak{p}$ for primes $\mathfrak{p}$ of $R$ with $\mathfrak{p} \cap S = \emptyset$. The primes that meet $S$ disappear, since after localizing they contain a unit.</li>
     <li>Localizing at the complement of a prime $\mathfrak{p}$ produces a local ring $R_\mathfrak{p}$ with maximal ideal $\mathfrak{p} R_\mathfrak{p}$.</li>
   </ul>
 </div>
@@ -54,11 +54,11 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <span class="cite">(D&amp;F &sect;7.5, Ex. 3)</span>
-  For $S = \{1, f, f^2, \ldots\}$ with $f$ a nonzerodivisor, $S^{-1}R \cong R[x]/(fx - 1)$ via $r/f^n \mapsto r x^n$. <em>Formally inverting powers of $f$ is equivalent to adjoining a polynomial variable $x$ and imposing $fx = 1$.</em> (By universal property: $R[x] \to S^{-1}R$, $x \mapsto 1/f$, kills $fx - 1$ and factors through.)
+  For $S = \{1, f, f^2, \ldots\}$ with $f$ a nonzerodivisor, $S^{-1}R \cong R[x]/(fx - 1)$ via $r/f^n \mapsto r x^n$. <em>So inverting $f$ is the same as adding a new variable $x$ and forcing $fx = 1$, that is $x = 1/f$.</em> (To see this, the map $R[x] \to S^{-1}R$, $x \mapsto 1/f$, kills $fx - 1$ so it factors through the quotient, and the universal property gives the map in the other direction.)
 </div>
 
 <div class="thm-block comp">
-  <span class="thm-label">Computation.</span> Primes of $\mathbb{Z}[1/6] = S^{-1}\mathbb{Z}$, $S = \{6^n\}$. Primes of $\mathbb{Z}$ are $(0)$ and $(p)$; drop those meeting $S$ (containing $2$ or $3$). So the primes of $\mathbb{Z}[1/6]$ are $(0)$ and $(p)$ for $p \neq 2, 3$, the maximal ones being the $(p)$ with $p \neq 2, 3$.
+  <span class="thm-label">Computation.</span> Primes of $\mathbb{Z}[1/6] = S^{-1}\mathbb{Z}$, $S = \{6^n\}$. Primes of $\mathbb{Z}$ are $(0)$ and $(p)$; drop the ones that meet $S$, which are the ones containing $2$ or $3$. So the primes of $\mathbb{Z}[1/6]$ are $(0)$ and $(p)$ for $p \neq 2, 3$, the maximal ones being the $(p)$ with $p \neq 2, 3$.
 </div>
 
 <div class="part-nav"><a href="rings-2.html">&larr; Local rings and power series</a><a href="rings.html">Ring Theory contents</a><a href="rings-4.html">Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD &rarr;</a></div>

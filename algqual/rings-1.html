@@ -26,12 +26,12 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Prime and maximal ideals.</strong> <span class="cite">(D&amp;F &sect;7.4)</span>
-  In a commutative ring $R$ with $1$: an ideal $\mathfrak{p} \neq R$ is <strong>prime</strong> if $ab \in \mathfrak{p}$ implies $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$, i.e. $R/\mathfrak{p}$ is a domain. An ideal $\mathfrak{m} \neq R$ is <strong>maximal</strong> if nothing lies strictly between $\mathfrak{m}$ and $R$, i.e. $R/\mathfrak{m}$ is a field. <em>Maximal always forces prime, but prime doesn't force maximal (except in PIDs).</em> In a PID every nonzero prime is maximal.
+  In a commutative ring $R$ with $1$: an ideal $\mathfrak{p} \neq R$ is <strong>prime</strong> if $ab \in \mathfrak{p}$ implies $a \in \mathfrak{p}$ or $b \in \mathfrak{p}$, i.e. $R/\mathfrak{p}$ is a domain. An ideal $\mathfrak{m} \neq R$ is <strong>maximal</strong> if nothing lies strictly between $\mathfrak{m}$ and $R$, i.e. $R/\mathfrak{m}$ is a field. <em>Every maximal ideal is prime since every field is a domain, but primes don't have to be maximal.</em> In a PID every nonzero prime is maximal, because $(p) \subseteq (a)$ means $p = ab$ for some $b$, and then primality forces $a$ or $b$ to be a unit.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Example.</span> In $\mathbb{Z}$, $(p)$ is maximal iff $p$ is prime. In $\mathbb{Q}[x, y]$, $(x)$ is prime but not maximal ($\mathbb{Q}[x,y]/(x) \cong \mathbb{Q}[y]$, a domain not a field); $(x, y)$ is maximal ($\mathbb{Q}[x,y]/(x,y) \cong \mathbb{Q}$).<br>
-  <span class="thm-label">Non-example.</span> In $\mathbb{Z}$, $(6)$ is neither prime nor maximal: $6 = 2 \cdot 3$ but neither $2$ nor $3$ lies in $(6)$. In $\mathbb{Q}[x, y]$ the ideal $(x^2, xy)$ is not prime: the product $x \cdot xy = x^2y \in (x^2, xy)$, yet $x, y \notin (x^2, xy)$ (quotient $\mathbb{Q}[x,y]/(x^2,xy)$ has nilpotents).
+  <span class="thm-label">Non-example.</span> In $\mathbb{Z}$, $(6)$ is neither prime nor maximal, since $2 \cdot 3 = 6 \in (6)$ but neither $2$ nor $3$ is in $(6)$. In $\mathbb{Q}[x, y]$ the ideal $(x^2, xy)$ is not prime, since $x \cdot y = xy \in (x^2, xy)$ but $x, y \notin (x^2, xy)$. (Also the quotient $\mathbb{Q}[x,y]/(x^2,xy)$ has the nonzero nilpotent $x$, which a domain can't have.)
 </div>
 
 <div class="thm-block thm">
@@ -41,17 +41,17 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block ex">
   <span class="thm-label">Fun fact.</span> <strong>CRT recovers $\mathbb{Z}/n\mathbb{Z}$ from prime powers.</strong> <span class="cite">(D&amp;F &sect;7.6)</span>
-  The coprimality condition $I + J = R$ is exactly what you get when ideals are coprime. For $\mathbb{Z}$, the prime powers $p_i^{a_i}$ generate coprime ideals, so the CRT isomorphism is an algebraic manifestation of the prime factorization of integers. This is why the CRT is the workhorse for solving systems of congruences.
+  In $\mathbb{Z}$ we have $(a) + (b) = (\gcd(a,b))$, so $I + J = R$ is the ring version of two numbers being coprime. Powers of different primes are coprime, so the CRT splits $\mathbb{Z}/n$ up according to the prime factorization of $n$. This is also the same statement as saying a system of congruences with coprime moduli has exactly one solution mod the product.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Note.</span> <strong>Maximal ideals of $\mathbb{Z}/n\mathbb{Z}$.</strong>
-  The ideals of $\mathbb{Z}/n\mathbb{Z}$ correspond to divisors of $n$; the maximal ones are $(p)/(n)$ for primes $p \mid n$. For $n = 100 = 2^2 \cdot 5^2$, the maximal ideals are $(2)$ and $(5)$.
+  By the lattice isomorphism theorem, the ideals of $\mathbb{Z}/n\mathbb{Z}$ are the ideals of $\mathbb{Z}$ containing $(n)$, which are $(d)/(n)$ for divisors $d$ of $n$. So the maximal ones are $(p)/(n)$ for primes $p \mid n$. For $n = 100 = 2^2 \cdot 5^2$, the maximal ideals are $(2)$ and $(5)$.
 </div>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Radical of an ideal.</strong> <span class="cite">(D&amp;F &sect;7.4)</span>
-  The <strong>radical</strong> of $I \leq R$ is $\sqrt{I} := \{r \in R : r^n \in I \text{ for some } n\}$, an ideal with $I \subseteq \sqrt{I} = \bigcap_{\mathfrak{p} \supseteq I} \mathfrak{p}$ (intersection of primes containing $I$). <em>Radicals measure "invisible zeros": every prime over $I$ sees $\sqrt{I}$ as its minimal radical hull.</em> $I$ is <strong>radical</strong> if $I = \sqrt I$; primes are radical. The nilradical is $\mathrm{nil}(R) = \sqrt{(0)}$.
+  The <strong>radical</strong> of $I \leq R$ is $\sqrt{I} := \{r \in R : r^n \in I \text{ for some } n\}$, an ideal with $I \subseteq \sqrt{I} = \bigcap_{\mathfrak{p} \supseteq I} \mathfrak{p}$ (intersection of primes containing $I$). <em>The idea is that $\sqrt{I}$ is everything that becomes nilpotent in $R/I$. Since a prime can't contain $r^n$ without containing $r$, every prime containing $I$ also contains $\sqrt{I}$.</em> $I$ is <strong>radical</strong> if $I = \sqrt I$; primes are radical. The nilradical is $\mathrm{nil}(R) = \sqrt{(0)}$.
 </div>
 
 <div class="thm-block thm">
@@ -60,13 +60,13 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>The nilradical is the smallest radical ideal.</strong> The nilradical is the smallest ideal $I$ such that $R/I$ has no nonzero nilpotent elements (is reduced). Any prime ideal contains all nilpotents, so their intersection is the set of elements killed by every prime.
+  <span class="thm-label">Fun fact.</span> <strong>The nilradical is the smallest radical ideal.</strong> The nilradical is the smallest ideal $I$ such that $R/I$ has no nonzero nilpotent elements (is reduced). This is because $R/\mathrm{nil}(R)$ is reduced, and any $I$ with $R/I$ reduced has to contain every nilpotent of $R$.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Note.</span> <strong>Proof sketch.</strong>
-  $\subseteq$: if $r$ is nilpotent then $r^n = 0 \in \mathfrak{p}$ for every prime, and primes are radical.<br>
-  $\supseteq$: if $r$ isn't nilpotent then $S = \{1, r, r^2, \ldots\}$ avoids $0$. Apply Zorn to the ideals disjoint from $S$ to get a maximal such $\mathfrak{p}$; that $\mathfrak{p}$ is prime, and $r \notin \mathfrak{p}$.
+  $\subseteq$: if $r$ is nilpotent then $r^n = 0 \in \mathfrak{p}$ for every prime, and $r^n \in \mathfrak{p}$ forces $r \in \mathfrak{p}$.<br>
+  $\supseteq$: if $r$ isn't nilpotent then $S = \{1, r, r^2, \ldots\}$ avoids $0$. Apply Zorn to the ideals disjoint from $S$ to get a maximal such $\mathfrak{p}$. That $\mathfrak{p}$ is prime, since if $a, b \notin \mathfrak{p}$ then $\mathfrak{p} + (a)$ and $\mathfrak{p} + (b)$ both meet $S$, and multiplying those two elements gives an element of $S$ in $\mathfrak{p} + (ab)$. And $r \notin \mathfrak{p}$ since $r \in S$.
 </div>
 
 <div class="thm-block prop">
@@ -80,24 +80,24 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block note">
-  <span class="thm-label">Proof of surjectivity.</span> Say $M$ is an ideal in no $\mathfrak{m}_t$. For each $t \in [0,1]$ pick $f_t \in M$ with $f_t(t) \neq 0$. Each $f_t$ is nonzero near $t$, and by compactness of $[0,1]$ finitely many such neighborhoods at $t_1, \ldots, t_n$ cover it. Then $g = f_{t_1}^2 + \cdots + f_{t_n}^2 \in M$ is strictly positive on $[0,1]$, hence a unit in $R$, so $M = R$.
+  <span class="thm-label">Proof of surjectivity.</span> Say $M$ is an ideal in no $\mathfrak{m}_t$. For each $t \in [0,1]$ pick $f_t \in M$ with $f_t(t) \neq 0$. Each $f_t$ is nonzero near $t$, and by compactness of $[0,1]$ finitely many such neighborhoods at $t_1, \ldots, t_n$ cover it. Then $g = f_{t_1}^2 + \cdots + f_{t_n}^2 \in M$ is strictly positive on $[0,1]$, so $1/g$ is continuous and $g$ is a unit in $R$. So $M = R$.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Rings where $x^n = x$.</strong> <span class="cite">(D&amp;F &sect;7.1, Ex. 12-15)</span>
   <ul>
-    <li><strong>Boolean rings ($x^2 = x$).</strong> <em>These are precisely the commutative rings of characteristic 2.</em> From $(x+x)^2 = x + x$ we get $x + x = 0$, so char $2$. Expanding $(x+y)^2 = x+y$ to $x + xy + yx + y = x + y$ gives $xy + yx = 0$, and $-1 = 1$ forces $xy = yx$.</li>
-    <li><strong>$x^3 = x$.</strong> Setting $x = 2$ gives $8 = 2$, so $6 = 0$ and $\mathrm{char}(R) \mid 6$. There is one such ring per divisor of $6$: $\mathbb{Z}/2$ (char $2$), $\mathbb{Z}/3$ (char $3$), $\mathbb{Z}/6$ (char $6$).</li>
+    <li><strong>Boolean rings ($x^2 = x$).</strong> <em>These are always commutative with characteristic $2$, but not every commutative ring of characteristic $2$ is Boolean, for example $\mathbb{F}_4$.</em> From $(x+x)^2 = x + x$ we get $x + x = 0$, so char $2$. Expanding $(x+y)^2 = x+y$ to $x + xy + yx + y = x + y$ gives $xy + yx = 0$, and $-1 = 1$ forces $xy = yx$.</li>
+    <li><strong>$x^3 = x$.</strong> Setting $x = 2$ gives $8 = 2$, so $6 = 0$ and $\mathrm{char}(R) \mid 6$. So the characteristic is $2$, $3$ or $6$, and each one happens, for example $\mathbb{Z}/2$, $\mathbb{Z}/3$ and $\mathbb{Z}/6$. (These aren't the only ones, products like $(\mathbb{Z}/3)^n$ work too.)</li>
   </ul>
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> The power set $\mathcal{P}(X)$ of any set $X$ is a Boolean ring under symmetric difference and intersection. <span class="cite">(D&amp;F &sect;7.1 Ex. 15)</span> Elements (subsets) satisfy $A = A$ (idempotent), and commutativity is automatic.<br>
-  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ isn't Boolean: $2^2 = 0 \neq 2$. So "$x^2 = x$" is a real restriction.
+  <span class="thm-label">Example.</span> The power set $\mathcal{P}(X)$ of any set $X$ is a Boolean ring under symmetric difference and intersection. <span class="cite">(D&amp;F &sect;7.1 Ex. 15)</span> Every subset satisfies $A \cap A = A$, so every element is idempotent, and commutativity is automatic.<br>
+  <span class="thm-label">Non-example.</span> $\mathbb{Z}/4$ isn't Boolean, since $2^2 = 0 \neq 2$.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Boolean rings are products of copies of $\mathbb{Z}/2$.</strong> By the CRT, every Boolean ring is isomorphic to a direct product of copies of $\mathbb{Z}/2$ (one for each maximal ideal). So the structure of Boolean rings is completely determined: they are exactly $(\mathbb{Z}/2)^S$ for sets $S$.
+  <span class="thm-label">Fun fact.</span> <strong>Finite Boolean rings are products of copies of $\mathbb{Z}/2$.</strong> By the CRT, every finite Boolean ring is isomorphic to a direct product of copies of $\mathbb{Z}/2$, one for each maximal ideal. This is because $R/\mathfrak{m}$ is a field where $x^2 = x$, so $x(x-1) = 0$ and the only elements are $0$ and $1$. Infinite Boolean rings don't have to be products though, for example the finite and cofinite subsets of $\mathbb{N}$ form a countably infinite Boolean ring, and an infinite product of $\mathbb{Z}/2$'s is uncountable.
 </div>
 
 <div class="part-nav"><a href="groups.html">&larr; Part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>

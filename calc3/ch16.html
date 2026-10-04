@@ -34,7 +34,7 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 16 · Vector Calculus</h2>
 <div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
-<p>Vector fields and the calculus built on them. Conservative fields, line integrals for work and fence area, the Fundamental Theorem for Line Integrals, Green's Theorem, curl and divergence. The thread is the gradient again. A field that is a gradient stores its line integral in a potential, and the rest of the chapter measures how far a field is from being one.</p>
+<p>Vector fields and the calculus built on them. Conservative fields, line integrals for work and fence area, the Fundamental Theorem for Line Integrals, Green's Theorem, curl and divergence. The gradient shows up again here. If a field is a gradient, its line integrals only depend on the potential at the endpoints, and a lot of the rest of the chapter is about measuring how far a field is from being a gradient.</p>
 <div class="section"><h3>16.1 Vector Fields</h3>
 
 <p class="part"><span class="dimtag">2D</span>A <b>vector field</b> on $\mathbb R^n$ is a function $\vec F : \mathbb R^n \to \mathbb R^n$. To each point $\vec x$ in the domain we attach a vector $\vec F(\vec x)$, drawn as an arrow based at $\vec x$.</p>
@@ -45,7 +45,7 @@ window.MathJax = {
 
 <p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ is a source with $\nabla \cdot \vec F &gt; 0$. The swirl $\vec F = \langle -y, x, 0\rangle$ has nonzero curl. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
 
-<p><b>Why a potential can fail to exist.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl they are rays, every ray passes through the origin, and marching the value of $f$ once around the circle returns a larger value than it started with. A single-valued potential is impossible.</p>
+<p><b>Why a potential can fail to exist.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl the level curves would have to be rays out of the origin, with $f$ going up as we go counterclockwise. But then going once around a circle, $f$ keeps increasing the whole way and comes back to the starting point with a bigger value. So there's no single-valued potential.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="potentialContours"></canvas></div>
 
@@ -56,7 +56,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>16.2 Line Integrals</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span>Let $C$ be a smooth oriented curve parametrised by $\vec r(t)$ for $a \le t \le b$.</p>
+<p class="part"><span class="dimtag">1D in 3D</span>Let $C$ be a smooth oriented curve parametrized by $\vec r(t)$ for $a \le t \le b$.</p>
 
 <p><b>(1) Scalar line integral.</b></p>
 <div class="formula">$\displaystyle\int_C f\,ds = \int_a^b f(\vec r(t))\,|\vec r\,'(t)|\,dt.$</div>
@@ -70,10 +70,10 @@ window.MathJax = {
 
 <p><b>Orientation.</b> Reversing $C$ flips the sign of $\int \vec F \cdot d\vec r$ and the flux. The scalar integral $\int f\,ds$ does not change.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Two integrals share similar notation. The scalar $\int_C f\,ds$ uses $|\vec r\,'(t)|\,dt$ and does <em>not</em> change when you reverse $C$. The work $\int_C\vec F\cdot d\vec r$ uses $\vec r\,'(t)\,dt$ and flips sign when $C$ is reversed. Match the integrand to the right form.</p></div>
-<p><b>Wire mass and centre of mass.</b> For a wire $C$ with linear density $\rho(x, y, z)$,</p>
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Two integrals share similar notation. The scalar $\int_C f\,ds$ uses $|\vec r\,'(t)|\,dt$ and does <em>not</em> change when we reverse $C$. The work $\int_C\vec F\cdot d\vec r$ uses $\vec r\,'(t)\,dt$ and flips sign when $C$ is reversed. Match the integrand to the right form.</p></div>
+<p><b>Wire mass and center of mass.</b> For a wire $C$ with linear density $\rho(x, y, z)$,</p>
 <div class="formula">$m = \int_C \rho\,ds,\qquad \bar x = \dfrac{1}{m}\int_C x\,\rho\,ds,\qquad \bar y = \dfrac{1}{m}\int_C y\,\rho\,ds,\qquad \bar z = \dfrac{1}{m}\int_C z\,\rho\,ds.$</div>
-<p><em>Same lever-arm logic as the 2D case.</em> Chop the wire into small pieces, where the $i$-th has length $\Delta s_i$ and mass $\rho_i \Delta s_i$ at position $(x_i, y_i, z_i)$. The discrete centre of mass along $x$ is $\bar x = \sum \rho_i x_i \Delta s_i / \sum \rho_i \Delta s_i$, which in the limit becomes $\int_C x \rho\,ds / \int_C \rho\,ds$. The $x$ inside is the lever arm to the $yz$-plane.</p>
+<p><em>Same lever-arm logic as the 2D case.</em> Chop the wire into small pieces, where the $i$-th has length $\Delta s_i$ and mass $\rho_i \Delta s_i$ at position $(x_i, y_i, z_i)$. The discrete center of mass along $x$ is $\bar x = \sum \rho_i x_i \Delta s_i / \sum \rho_i \Delta s_i$, which in the limit becomes $\int_C x \rho\,ds / \int_C \rho\,ds$. The $x$ inside is the lever arm to the $yz$-plane.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="fence"></canvas></div>
 </div>
@@ -106,7 +106,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle\oint_{C_{\text{out}}} P\,dx + Q\,dy - \oint_{C_{\text{in}}} P\,dx + Q\,dy = \iint_D (Q_x - P_y)\,dA.$</div>
 <p>Equivalently, traverse outer CCW and inner CW so $D$ is always on the left.</p>
 
-<p><em>Example with a hole.</em> Compute $\oint_C \dfrac{-y\,dx + x\,dy}{x^2 + y^2}$ for any simple CCW curve $C$ around the origin. The integrand blows up at $(0, 0)$, so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. Between $C$ and $C_\varepsilon$ we have $Q_x - P_y = 0$, so Green gives $\oint_C - \oint_{C_\varepsilon} = 0$. Parametrising $C_\varepsilon$ gives $\oint_{C_\varepsilon} = 2\pi$, hence $\oint_C = 2\pi$.</p>
+<p><em>Example with a hole.</em> Compute $\oint_C \dfrac{-y\,dx + x\,dy}{x^2 + y^2}$ for any simple CCW curve $C$ around the origin. The integrand blows up at $(0, 0)$, so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. Between $C$ and $C_\varepsilon$ we have $Q_x - P_y = 0$, so Green gives $\oint_C - \oint_{C_\varepsilon} = 0$. Parametrizing $C_\varepsilon$ gives $\oint_{C_\varepsilon} = 2\pi$, hence $\oint_C = 2\pi$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="greens"></canvas></div>
 </div>
@@ -120,9 +120,9 @@ window.MathJax = {
 <p><b>Divergence.</b></p>
 <div class="formula">$\nabla \cdot \vec F = \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}.$</div>
 
-<p><b>Divergence of a curl is zero.</b> $\nabla \cdot (\nabla \times \vec F) = 0.$ Expand it and the mixed partials cancel in pairs, Clairaut again. Swirl has no sources.</p>
+<p><b>Divergence of a curl is zero.</b> $\nabla \cdot (\nabla \times \vec F) = 0.$ Expand it and the mixed partials cancel in pairs, Clairaut again. So a field that's all swirl has no sources or sinks.</p>
 
-<p>Physical pictures help. Divergence measures source and sink behaviour at a point, outward flow if positive and inward if negative. Curl measures local rotation, the paddle wheel picture.</p>
+<p>It helps to have a physical picture. Divergence measures source and sink behavior at a point, outward flow if positive and inward if negative. Curl measures local rotation, the paddle wheel picture.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="curlFlow"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="divPlusFlow"></canvas></div>
 <div class="fig-inline-canvas"><canvas data-fig="divMinusFlow"></canvas></div>
@@ -147,7 +147,7 @@ $P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_
 
 <ol class="tight">
   <li>Sketch the vector field $\vec F(x, y) = \langle -y, x\rangle$.</li>
-  <li>Determine whether $\vec F(x, y) = \langle 3 + 2 x y,\ x^2 - 3 y^2\rangle$ is conservative. if so, find a potential.</li>
+  <li>Determine whether $\vec F(x, y) = \langle 3 + 2 x y,\ x^2 - 3 y^2\rangle$ is conservative. If so, find a potential.</li>
   <li>Evaluate $\int_C y\,ds$ where $C$ is the right half of the unit circle from $(0, -1)$ to $(0, 1)$.</li>
   <li>Find the work done by $\vec F(x, y) = \langle x^2, -xy\rangle$ along the quarter-circle $\vec r(t) = \langle\cos t, \sin t\rangle$, $0 \le t \le \pi/2$.</li>
   <li>Evaluate $\int_C \vec F \cdot d\vec r$ where $\vec F = \langle z, x, y\rangle$ and $C$ is the helix $\vec r(t) = \langle\cos t, \sin t, t\rangle$, $0 \le t \le \pi$.</li>
@@ -170,9 +170,9 @@ $P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_
 
 <p><b>Finding a potential.</b> Integrate $f_x = P$ with respect to $x$, giving $f = \int P\,dx + g(y, z)$. Match $f_y = Q$ to determine $g_y$, then $f_z = R$ for the rest. The potential is unique up to a constant.</p>
 
-<p><b>Reducing a line integral to one variable.</b> Parametrise $C$ by $\vec r(t)$, $a \le t \le b$. Then $\int_C \vec F\cdot d\vec r = \int_a^b \vec F(\vec r(t))\cdot\vec r\,'(t)\,dt$, and for a scalar integral use $|\vec r\,'(t)|$ in place of the dot product.</p>
+<p><b>Reducing a line integral to one variable.</b> Parametrize $C$ by $\vec r(t)$, $a \le t \le b$. Then $\int_C \vec F\cdot d\vec r = \int_a^b \vec F(\vec r(t))\cdot\vec r\,'(t)\,dt$, and for a scalar integral use $|\vec r\,'(t)|$ in place of the dot product.</p>
 
-<p><b>Using FTLI.</b> If $\vec F$ is conservative with potential $f$, evaluate $f$ at the endpoints. No parametrisation is needed.</p>
+<p><b>Using FTLI.</b> If $\vec F$ is conservative with potential $f$, evaluate $f$ at the endpoints. No parametrization is needed.</p>
 
 <p><b>When to use Green's Theorem.</b> For a closed counterclockwise curve with $\vec F$ smooth on a region containing $\overline D$, convert $\oint_C P\,dx + Q\,dy$ to $\iint_D (Q_x - P_y)\,dA$ when the area integral is easier.</p>
 

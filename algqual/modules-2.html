@@ -26,26 +26,26 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Short exact sequence.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
-  A diagram $0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0$ is exact if $f$ is injective, $g$ is surjective, and $\mathrm{im}\, f = \ker g$. <em>Exactness says f embeds A as the kernel of the quotient map g: B ↠ C.</em> The sequence <strong>splits</strong> if $B \cong A \oplus C$ (as an isomorphism of the diagram), equivalently if there is a section $C \to B$ of $g$ or a retraction $B \to A$ of $f$.
+  A diagram $0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0$ is exact if $f$ is injective, $g$ is surjective, and $\mathrm{im}\, f = \ker g$. <em>So exactness says $f$ makes $A$ a submodule of $B$, and $C$ is what's left over, $C \cong B/f(A)$.</em> The sequence <strong>splits</strong> if $B \cong A \oplus C$ (as an isomorphism of the diagram), equivalently if there is a section $C \to B$ of $g$ or a retraction $B \to A$ of $f$.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example (split).</span> $0 \to \mathbb{Z}/2 \to \mathbb{Z}/2 \oplus \mathbb{Z}/3 \to \mathbb{Z}/3 \to 0$ splits trivially.<br>
+  <span class="thm-label">Example (split).</span> $0 \to \mathbb{Z}/2 \to \mathbb{Z}/2 \oplus \mathbb{Z}/3 \to \mathbb{Z}/3 \to 0$ splits, since the middle is already the direct sum.<br>
   <span class="thm-label">Non-example (non-split).</span> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would give $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ does not.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Most short exact sequences don't split.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
-  A split is an isomorphism $B \cong A \oplus C$ respecting the diagram. For this to hold, middle has to contain a copy of $C$ as a summand, requiring a section of $g$. But $B$ often encodes obstruction data: a hidden constraint that forces $B$ to be irreducibly between $A$ and $C$. Three canonically obstructed cases.
+  <span class="thm-label">Fun fact.</span> <strong>When sequences don't split.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
+  A splitting means $B$ is just $A$ and $C$ sitting side by side, so $B$ has to contain a copy of $C$ as a summand, which is what a section of $g$ gives. This fails when $B$ glues $A$ and $C$ together in a way that can't be undone, for example when $C$ has torsion but $B$ doesn't, or when some ring element moves part of $C$ into $A$. Here are the standard examples.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Remark.</span> <strong>Three standard non-split examples.</strong>
   <ul>
     <li><strong>Over $\mathbb{Z}$:</strong> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would need $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ doesn't.</li>
-    <li><strong>Over $\mathbb{C}[x]$:</strong> $0 \to (x)/(x^2) \to \mathbb{C}[x]/(x^2) \to \mathbb{C}[x]/(x) \to 0$. The obstruction is the action of $x$, not dimension. Element of the middle as $(c, d)$ for $c + dx \bmod x^2$. Multiply by $x$: $(c, d) \mapsto (0, c)$, the constant sliding forward and the $x$ slot vanishing. This nonzero action of $x$ on the middle cannot split into summands where $x$ dies (the two copies of $\mathbb{C}$).</li>
-    <li><strong>Over $\mathbb{Z}[i]$:</strong> $0 \to (1+i) \to \mathbb{Z}[i] \to \mathbb{Z}[i]/(1+i) \cong \mathbb{F}_2 \to 0$. A split would be an idempotent in $\mathbb{Z}[i]$ projecting to $\mathbb{F}_2$, but $\mathbb{Z}[i]$ has only idempotents $0, 1$.</li>
-    <li><strong>General principle (domains).</strong> If $R$ is a domain and $0 \neq I \subsetneq R$, then $0 \to I \to R \to R/I \to 0$ never splits. A split gives an idempotent $e$ with $eR = M$ and $(1-e)R = I$, so $e^2 = e$ in the domain forces $e \in \{0,1\}$, making $I = 0$ or $I = R$.</li>
+    <li><strong>Over $\mathbb{C}[x]$:</strong> $0 \to (x)/(x^2) \to \mathbb{C}[x]/(x^2) \to \mathbb{C}[x]/(x) \to 0$. As vector spaces this does split, both sides are $\mathbb{C}^2$, so the problem is the action of $x$. Write an element of the middle as $(c, d)$ for $c + dx \bmod x^2$. Multiplying by $x$ sends $(c, d) \mapsto (0, c)$, which isn't always $0$. But $x$ kills both $(x)/(x^2)$ and $\mathbb{C}[x]/(x)$, so it would kill their direct sum too.</li>
+    <li><strong>Over $\mathbb{Z}[i]$:</strong> $0 \to (1+i) \to \mathbb{Z}[i] \to \mathbb{Z}[i]/(1+i) \cong \mathbb{F}_2 \to 0$. A splitting would give an idempotent of $\mathbb{Z}[i]$ other than $0$ and $1$ (see the next bullet), but $\mathbb{Z}[i]$ is a domain, so it only has $0$ and $1$.</li>
+    <li><strong>General principle (domains).</strong> If $R$ is a domain and $0 \neq I \subsetneq R$, then $0 \to I \to R \to R/I \to 0$ never splits. A splitting writes $R = I \oplus J$ as ideals, so $1 = i + e$ with $i \in I$ and $e \in J$. Then $e = e \cdot 1 = ei + e^2$, and $ei \in I \cap J = 0$, so $e^2 = e$. In a domain this forces $e \in \{0,1\}$, which makes $I = R$ or $I = 0$.</li>
   </ul>
 </div>
 
@@ -53,7 +53,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <span class="thm-label">Prop.</span> <strong>Sequence from two maximal ideals.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
   If $I, J$ are distinct maximal ideals of $R$, then $I + J = R$, and the sequence
   $$0 \to IJ \to I \oplus J \xrightarrow{(a, b) \mapsto a - b} R \to 0$$
-  (with first map $x \mapsto (x, x)$) is exact. If $I$ and $J$ are projective, so is $IJ$, since the sequence splits.
+  (with first map $x \mapsto (x, x)$) is exact. The kernel of the second map is $I \cap J$, which equals $IJ$ since $I + J = R$. The sequence splits because $R$ is free, so $I \oplus J \cong IJ \oplus R$. So if $I$ and $J$ are projective, so is $IJ$, as a direct summand of a projective module.
 </div>
 
 <div class="thm-block thm">
@@ -65,7 +65,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block note">
   <span class="thm-label">Proof template (diagram chase).</span>
-  For $\beta$ injective: take $b \in \ker \beta$. Its image in $C$ lies in $\ker \gamma = 0$, so $b$ comes from some $a \in A$ via the top row. The image of $\alpha(a)$ in $B'$ is $\beta(b) = 0$, and $A' \hookrightarrow B'$ gives $\alpha(a) = 0$. With $\alpha$ injective, $a = 0$, so $b = 0$. Surjectivity dualizes.
+  For $\beta$ injective: take $b \in \ker \beta$. Its image in $C$ lies in $\ker \gamma = 0$, so $b$ comes from some $a \in A$ via the top row. The image of $\alpha(a)$ in $B'$ is $\beta(b) = 0$, and $A' \hookrightarrow B'$ gives $\alpha(a) = 0$. With $\alpha$ injective, $a = 0$, so $b = 0$. Surjectivity is a similar chase going the other way.
 </div>
 
 <div class="part-nav"><a href="modules-1.html">&larr; Basics</a><a href="modules.html">Module Theory contents</a><a href="modules-3.html">Structure theorem for f.g. modules over a PID &rarr;</a></div>

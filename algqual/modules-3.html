@@ -45,19 +45,19 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <span class="thm-label">How to read a quotient as a cokernel.</span>
   To find $\mathbb{Z}^n/H$ for $H = \langle v_1, \ldots, v_m \rangle$, write generators as the <strong>columns</strong> of an $n \times m$ matrix $M$. Then $M : \mathbb{Z}^m \to \mathbb{Z}^n$ has image $H$, and the quotient sits in
   $$0 \to \mathbb{Z}^m \xrightarrow{\ M\ } \mathbb{Z}^n \to \mathbb{Z}^n/H \to 0.$$
-  Columns, not rows. Row ops change target basis of $\mathbb{Z}^n$, column ops the source basis of $\mathbb{Z}^m$. Each invariant factor $d_i$ gives a cyclic block $\mathbb{Z}/d_i$. A coordinate that no column reaches gives a free $\mathbb{Z}$ summand.
+  It's columns, not rows. Row ops change the target basis of $\mathbb{Z}^n$, column ops the source basis of $\mathbb{Z}^m$. Each invariant factor $d_i$ gives a cyclic block $\mathbb{Z}/d_i$. A coordinate that no column reaches gives a free $\mathbb{Z}$ summand.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Fun fact.</span> <strong>Both forms are the same, seen differently.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
-  Invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ capture divisibility globally. Elementary divisors are the prime powers in the factorization of the $a_i$. Converting between them is easy: factor each $a_i$ into primes, then collect powers of the same prime. The two forms record the same data in different languages. Invariant factors are better for quotient structure; elementary divisors for Sylow-style analysis by prime.
+  The invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ and the elementary divisors carry the same information. To go from invariant factors to elementary divisors, factor each $a_i$ into prime powers. To go back, put the largest power of each prime into $a_m$, the next largest into $a_{m-1}$, and so on. Invariant factors are nicer for things like rational canonical form, and elementary divisors are nicer when we want to look at one prime at a time, like in Jordan form.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Two main applications.</span>
   <ul>
     <li><strong>Abelian groups</strong> ($R = \mathbb{Z}$): Every f.g. abelian group is $\mathbb{Z}^r \oplus \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_m$ with $d_1 \mid d_2 \mid \cdots \mid d_m$ (invariant factor form) or a sum of cyclic groups of prime-power order (elementary divisor form, the "canonical form" from group theory).</li>
-    <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a f.d. $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors that yield the Jordan normal form. The cyclic blocks $k[x]/(x - \lambda)^j$ are the generalized eigenspaces.</li>
+    <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a f.d. $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors, which give the rational canonical form, and elementary divisors, which give the Jordan normal form when $k$ has all the eigenvalues. Each $k[x]/(x - \lambda)^j$ is one Jordan block, and all the blocks for one $\lambda$ together make up its generalized eigenspace.</li>
   </ul>
 </div>
 

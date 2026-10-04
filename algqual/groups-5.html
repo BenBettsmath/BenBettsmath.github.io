@@ -26,34 +26,34 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Group action.</strong> <span class="cite">(D&amp;F &sect;4.1)</span>
-  An action of $G$ on a set $X$ is a homomorphism $G \to \mathrm{Sym}(X)$, equivalently a map $G \times X \to X$ with $1 \cdot x = x$ and $(gh) \cdot x = g \cdot (h \cdot x)$. <em>$G$ permutes $X$, respecting the group structure.</em> The <strong>orbit</strong> of $x$ is $Gx = \{gx : g \in G\}$; the <strong>stabilizer</strong> is $G_x = \{g : gx = x\}$, a subgroup of $G$.
+  An action of $G$ on a set $X$ is a homomorphism $G \to \mathrm{Sym}(X)$, equivalently a map $G \times X \to X$ with $1 \cdot x = x$ and $(gh) \cdot x = g \cdot (h \cdot x)$. <em>So each $g$ shuffles the points of $X$, and doing $h$ and then $g$ is the same as doing $gh$.</em> The <strong>orbit</strong> of $x$ is $Gx = \{gx : g \in G\}$; the <strong>stabilizer</strong> is $G_x = \{g : gx = x\}$, a subgroup of $G$.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> $S_n$ acts on $\{1, \ldots, n\}$ (one orbit, stabilizer of $i$ is $S_{n-1}$). $G$ acts on itself by left multiplication (one orbit, trivial stabilizer). By conjugation (orbits are conjugacy classes, stabilizers = centralizers). <em>Three of the most important actions.</em><br>
-  <span class="thm-label">Non-example.</span> The trivial action $g \cdot x = x$ is technically valid but useless. A common <em>mistake</em>: writing $g \cdot x = xg^{-1}$ for a left action of $G$. This is actually a *right* action (the formula multiplies on the right). Stick to $g \cdot x = gxg^{-1}$ for conjugation or $gx$ for left multiplication on $G$ itself.
+  <span class="thm-label">Example.</span> $S_n$ acts on $\{1, \ldots, n\}$ (one orbit, stabilizer of $i$ is $S_{n-1}$). $G$ acts on itself by left multiplication (one orbit, trivial stabilizer). And $G$ acts on itself by conjugation (orbits are conjugacy classes, and stabilizers are centralizers). <em>These three are the ones that come up the most.</em><br>
+  <span class="thm-label">Non-example.</span> The trivial action $g \cdot x = x$ is a fine action, it just doesn't tell us anything. A common <em>mistake</em> is writing $g \cdot x = xg$ and calling it a left action. It isn't one, since $(gh) \cdot x = xgh$ but $g \cdot (h \cdot x) = xhg$. Using $g \cdot x = xg^{-1}$ fixes the order, and for $G$ acting on itself we usually stick to $gxg^{-1}$ for conjugation or $gx$ for left multiplication.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Orbit-stabilizer).</span> <span class="cite">(D&amp;F &sect;4.1, Prop. 2)</span>
   $$|Gx| = [G:G_x].$$
-  <em>Size of an orbit equals the index of its stabilizer. Elegant formula underlying all group action applications.</em>
+  <em>This is because $gx = hx$ exactly when $h^{-1}g \in G_x$, so the points of the orbit match up with the cosets of $G_x$. Almost every counting argument with group actions comes back to this.</em>
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Class equation).</span> <span class="cite">(D&amp;F &sect;4.3, Thm. 7)</span>
   $$|G| = |Z(G)| + \sum_i [G:C_G(g_i)],$$
-  the sum running over one representative $g_i$ per conjugacy class of size $>1$. <em>Orbits under conjugation partition $G$. This equation detects nontrivial centers.</em>
+  the sum running over one representative $g_i$ per conjugacy class of size $>1$. <em>This is just orbit-stabilizer for the conjugation action. The orbits split $G$ into pieces, the center is exactly the elements whose orbit is only themselves, and every other orbit has size $[G:C_G(g_i)]$.</em>
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Cor.</span> <span class="cite">(D&amp;F &sect;4.3, Cor. 9)</span>
-  If $|G| = p^n$ then $Z(G) \neq 1$. <em>$p$-groups always have nontrivial center.</em> Groups of order $p^2$ are abelian.
+  If $|G| = p^n$ then $Z(G) \neq 1$. <em>This is because every term in the sum of the class equation is a power of $p$ bigger than $1$, so it's divisible by $p$, and so is $|G|$. So $p$ divides $|Z(G)|$ too.</em> Groups of order $p^2$ are abelian, since otherwise $G/Z(G)$ would have order $p$ and be cyclic, which forces $G$ to be abelian anyway.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Coset action / Cayley).</span> <span class="cite">(D&amp;F &sect;4.2, Thm. 3)</span>
-  $G$ acts on the left cosets of $H$ by left multiplication, giving $\phi\colon G \to S_{[G:H]}$. Then $\ker\phi = \text{Core}_G(H) = \bigcap_{g \in G} gHg^{-1}$ (the core of $H$), which is normal in $G$ and contained in $H$. If $[G:H] = n$ and $n! < |G|$, then $\ker\phi$ is nontrivial and proper, giving a nontrivial normal subgroup of $G$.
+  $G$ acts on the left cosets of $H$ by left multiplication, giving $\phi\colon G \to S_{[G:H]}$. Then $\ker\phi = \text{Core}_G(H) = \bigcap_{g \in G} gHg^{-1}$ (the core of $H$), which is normal in $G$ and contained in $H$. If $[G:H] = n$ and $n! < |G|$, then $\phi$ can't be injective, so $\ker\phi$ is nontrivial, and it's proper since it sits inside $H$. This gives a nontrivial normal subgroup of $G$.
 </div>
 
 <div class="part-nav"><a href="groups-4.html">&larr; Abelian groups and the structure theorem</a><a href="groups.html">Group Theory contents</a><a href="groups-6.html">Sylow theorems &rarr;</a></div>

@@ -33,15 +33,15 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
     <li><strong>Cayley-Hamilton:</strong> $\chi_T(T) = 0$. So $m_T \mid \chi_T$, and they share the same irreducible factors (up to multiplicity).</li>
     <li>$m_T$ is the largest invariant factor. Writing invariant factors as $a_1 \mid a_2 \mid \cdots \mid a_r$, their product is $\chi_T$.</li>
   </ul>
-  <em>The minimal polynomial captures the smallest algebraic relation on $T$, while the characteristic polynomial is the big picture. Cayley-Hamilton bridges them.</em>
+  <em>So $m_T$ is the smallest polynomial that kills $T$, and $\chi_T$ also kills $T$ by Cayley-Hamilton, which is why one divides the other.</em>
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> For the companion matrix of $f = x^3 + 2x + 1$, both $\chi$ and $m$ equal $f$. The companion matrix "sees" the full polynomial. For $T = \mathrm{diag}(2, 2, 3)$, $\chi = (x-2)^2 (x - 3)$ but $m = (x - 2)(x - 3)$ because repeated eigenvalues are diagonalizable here (distinct eigenvalues).
+  <span class="thm-label">Example.</span> For the companion matrix of $f = x^3 + 2x + 1$, both $\chi$ and $m$ equal $f$. The companion matrix is built so that $f$ is the smallest polynomial that kills it. For $T = \mathrm{diag}(2, 2, 3)$, $\chi = (x-2)^2 (x - 3)$ but $m = (x - 2)(x - 3)$, because $T$ is diagonal, so $(T - 2)(T - 3) = 0$ already, even though $2$ shows up twice.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. The minimal polynomial feels the Jordan structure, not just the size.
+  <span class="thm-label">Fun fact.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. So the minimal polynomial only sees the largest Jordan block for each eigenvalue, while $\chi$ sees the total size.
 </div>
 
 <div class="thm-block prop">
@@ -50,11 +50,11 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true for $\mathbb{C}$), the equation $AB - BA = I$ is algebraically impossible. This kills the noncommutative Heisenberg relation in finite dimension. Quals love this.
+  <span class="thm-label">Fun fact.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true over $\mathbb{C}$), there are no $A, B$ with $AB - BA = I$. This is why the Heisenberg relation from quantum mechanics needs infinite-dimensional spaces, and it shows up on quals a lot.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Compute $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. Over $k[x]$, the commutator relation works. Infinite-dimensional vector spaces have no trace, so the trace argument collapses.
+  <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Compute $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. So over $k[x]$ the commutator relation works. This doesn't contradict the above, since there's no trace on all operators of an infinite-dimensional space, so the trace argument doesn't go through.
 </div>
 
 <div class="part-nav"><a href="modules.html">&larr; Part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>

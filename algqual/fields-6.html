@@ -26,12 +26,12 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Discriminant of a polynomial.</strong> <span class="cite">(D&amp;F &sect;14.6)</span>
-  For monic $f \in F[x]$ with roots $\alpha_1, \ldots, \alpha_n$ in a splitting field, the <strong>discriminant</strong> is $\Delta(f) = \prod_{i < j} (\alpha_i - \alpha_j)^2$. <em>Discriminant lives in $F$ (it is a symmetric polynomial in the roots, so $F$-coefficients are preserved).</em> $\Delta \neq 0$ iff all roots are distinct, i.e., $f$ is separable. The square root $\sqrt{\Delta}$ is fixed by $\mathrm{Gal}(f)$ iff the Galois group is contained in $A_n$ (the alternating group). So $\sqrt{\Delta} \in F$ detects whether $\mathrm{Gal}(f) \subseteq A_n$.
+  For monic $f \in F[x]$ with roots $\alpha_1, \ldots, \alpha_n$ in a splitting field, the <strong>discriminant</strong> is $\Delta(f) = \prod_{i < j} (\alpha_i - \alpha_j)^2$. <em>$\Delta$ is in $F$ even though the roots usually aren't, since it's symmetric in the roots, so every automorphism fixes it.</em> $\Delta \neq 0$ iff all roots are distinct, i.e., $f$ is separable. The square root $\sqrt{\Delta} = \prod_{i<j}(\alpha_i - \alpha_j)$ is fixed by $\mathrm{Gal}(f)$ iff the Galois group is contained in $A_n$ (the alternating group), since swapping two roots flips its sign. So $\sqrt{\Delta} \in F$ detects whether $\mathrm{Gal}(f) \subseteq A_n$.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Cubic Galois group via discriminant.</strong> <span class="cite">(D&amp;F &sect;14.6)</span>
-  For $f = x^3 + px + q$ irreducible over $F$ with $\mathrm{char}(F) \neq 2,3$, the discriminant is $\Delta(f) = -4p^3 - 27q^2$. <em>Two cases: $\sqrt{\Delta} \in F$ or $\sqrt{\Delta} \notin F$.</em> If $\sqrt{\Delta} \in F$, then $\mathrm{Gal}(f) \cong \mathbb{Z}/3$ (cyclic, $f$ splits over the unique cubic extension). Otherwise $\mathrm{Gal}(f) \cong S_3$ (nonabelian, the generic case).
+  For $f = x^3 + px + q$ irreducible over $F$ with $\mathrm{char}(F) \neq 2,3$, the discriminant is $\Delta(f) = -4p^3 - 27q^2$. <em>Since $f$ is irreducible its Galois group is a transitive subgroup of $S_3$, so it's either $A_3 \cong \mathbb{Z}/3$ or $S_3$, and the discriminant tells us which.</em> If $\sqrt{\Delta} \in F$, then $\mathrm{Gal}(f) \subseteq A_3$, so $\mathrm{Gal}(f) \cong \mathbb{Z}/3$. Otherwise $\mathrm{Gal}(f) \cong S_3$ (nonabelian, the generic case).
 </div>
 
 <div class="thm-block comp">
@@ -40,30 +40,30 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Galois group of $x^n - a$ over $\mathbb{Q}$.</strong> <span class="cite">(D&amp;F &sect;14.7)</span>
-  Assume $x^n - a$ is irreducible over $\mathbb{Q}$ with $n \geq 3$. Let $\alpha = a^{1/n}$ and $\zeta_n$ a primitive $n$-th root. The splitting field is $K = \mathbb{Q}(\alpha, \zeta_n)$ of degree $[K:\mathbb{Q}] = n \cdot \varphi(n)$ (product of the two extension degrees, which are coprime). The Galois group $G = \mathrm{Gal}(K/\mathbb{Q})$ is a subgroup of the semidirect product $\mathbb{Z}/n \rtimes (\mathbb{Z}/n)^\times$. <em>The group is non-abelian when $n \geq 3$ because the conjugation action is nontrivial.</em>
+  Assume $x^n - a$ is irreducible over $\mathbb{Q}$ with $n \geq 3$. Let $\alpha = a^{1/n}$ and $\zeta_n$ a primitive $n$-th root. The splitting field is $K = \mathbb{Q}(\alpha, \zeta_n)$, since the roots are $\zeta_n^k \alpha$. For $n = p$ prime its degree is $[K:\mathbb{Q}] = p(p-1)$, since the two degrees $p$ and $p - 1$ are coprime. For general $n$ it can be smaller than $n\varphi(n)$, since $\mathbb{Q}(\alpha)$ and $\mathbb{Q}(\zeta_n)$ can overlap (for example $\sqrt 2 \in \mathbb{Q}(\zeta_8)$). The Galois group $G = \mathrm{Gal}(K/\mathbb{Q})$ is a subgroup of the semidirect product $\mathbb{Z}/n \rtimes (\mathbb{Z}/n)^\times$. <em>It's usually non-abelian. For example if $\alpha$ is real, then $\mathbb{Q}(\alpha) \subseteq \mathbb{R}$ misses the non-real roots $\zeta_n^k \alpha$, so $\mathbb{Q}(\alpha)/\mathbb{Q}$ isn't Galois, and in an abelian group every subgroup would be normal.</em>
 </div>
 
 <div class="thm-block comp">
-  <span class="thm-label">Computation.</span> <strong>Galois group of $x^5 - 2$ over $\mathbb{Q}$.</strong> Irreducibility: Eisenstein criterion at $p=2$ (leading coeff $1$ coprime to $2$, but $2 \mid 2$, $2^2 \nmid 2$). Splitting field: $K = \mathbb{Q}(\sqrt[5]{2}, \zeta_5)$. Degree: $[K:\mathbb{Q}] = 5 \cdot \varphi(5) = 5 \cdot 4 = 20$. Galois group: $\mathrm{Gal}(K/\mathbb{Q})$ is isomorphic to the non-abelian semidirect product $\mathbb{Z}/5 \rtimes \mathbb{Z}/4$, order $20$. It is non-abelian because $\mathbb{Z}/4$ acts nontrivially on $\mathbb{Z}/5$ by the action $g \cdot a \equiv a \cdot j^g \pmod{5}$ for some $j$.
+  <span class="thm-label">Computation.</span> <strong>Galois group of $x^5 - 2$ over $\mathbb{Q}$.</strong> Irreducibility: Eisenstein criterion at $p=2$ (leading coeff $1$ coprime to $2$, but $2 \mid 2$, $2^2 \nmid 2$). Splitting field: $K = \mathbb{Q}(\sqrt[5]{2}, \zeta_5)$. Degree: $[K:\mathbb{Q}] = 5 \cdot \varphi(5) = 5 \cdot 4 = 20$. Galois group: $\mathrm{Gal}(K/\mathbb{Q})$ is isomorphic to the non-abelian semidirect product $\mathbb{Z}/5 \rtimes \mathbb{Z}/4$, order $20$. It's non-abelian because $\mathbb{Z}/4 \cong (\mathbb{Z}/5)^\times$ acts on $\mathbb{Z}/5$ by multiplication. This is just how $\zeta_5 \mapsto \zeta_5^c$ moves the roots $\zeta_5^b \sqrt[5]{2}$ around, it sends $b$ to $cb$.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Cyclotomic and Kronecker-Weber theorem.</strong> <span class="cite">(D&amp;F &sect;13.6, &sect;14.5)</span>
-  $\mathrm{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$, always abelian (since units form an abelian group). <strong>Kronecker-Weber:</strong> Every finite abelian extension $K/\mathbb{Q}$ is contained in some cyclotomic field $\mathbb{Q}(\zeta_n)$. So cyclotomic fields exhaust all finite abelian Galois extensions of $\mathbb{Q}$.
+  $\mathrm{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$, always abelian (since units form an abelian group). <strong>Kronecker-Weber:</strong> Every finite abelian extension $K/\mathbb{Q}$ is contained in some cyclotomic field $\mathbb{Q}(\zeta_n)$. So every abelian extension of $\mathbb{Q}$ comes from roots of unity.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm.</span> <strong>Every finite group is a Galois group over function fields.</strong> <span class="cite">(D&amp;F &sect;14.6, Ex. 46)</span>
-  For any finite group $G$, there exists a Galois extension $L/K$ of fields with $\mathrm{Gal}(L/K) \cong G$. <em>Construction: embed $G \hookrightarrow S_n$ as a transitive subgroup. Take $L = \mathbb{Q}(x_1, \ldots, x_n)$ (purely transcendental), and let $G$ act by permuting variables. Set $K = L^G$ (fixed field). Then $L/K$ is Galois with group $G$.</em> Note: $K$ is not usually $\mathbb{Q}$. The inverse Galois problem over $\mathbb{Q}$ (whether all finite groups realize over $\mathbb{Q}$) remains open.
+  For any finite group $G$, there exists a Galois extension $L/K$ of fields with $\mathrm{Gal}(L/K) \cong G$. <em>To build it, embed $G \hookrightarrow S_n$ by Cayley's theorem. Take $L = \mathbb{Q}(x_1, \ldots, x_n)$ (purely transcendental), and let $G$ act by permuting the variables. Set $K = L^G$ (fixed field). Then $L/K$ is Galois with group $G$, since a finite group of automorphisms is always the Galois group over its fixed field (Artin).</em> Note: $K$ is not usually $\mathbb{Q}$. The inverse Galois problem over $\mathbb{Q}$ (whether all finite groups realize over $\mathbb{Q}$) remains open.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Galois-Abel-Ruffini).</span> <span class="cite">(D&amp;F &sect;14.7)</span>
-  A polynomial $f \in \mathbb{Q}[x]$ is solvable by radicals (i.e., roots expressible in $+, -, \times, \div, \sqrt[n]{\ }$) iff its Galois group $\mathrm{Gal}(f)$ is a solvable group. <em>Solvable means: a composition series where all quotients have prime order.</em> For $n \geq 5$, the symmetric group $S_n$ is not solvable. Therefore a generic degree-$n$ polynomial with $n \geq 5$ has Galois group $S_n$, hence is not solvable by radicals. This settles classical problems on quintic and higher-degree equations.
+  A polynomial $f \in \mathbb{Q}[x]$ is solvable by radicals (i.e., roots expressible in $+, -, \times, \div, \sqrt[n]{\ }$) iff its Galois group $\mathrm{Gal}(f)$ is a solvable group. <em>The idea is that adjoining an $n$-th root is a cyclic step, so a tower of radicals gives a chain of subgroups with cyclic quotients. For finite groups, solvable is the same as having a composition series with quotients of prime order.</em> For $n \geq 5$, the symmetric group $S_n$ is not solvable. A generic polynomial of degree $n$ has Galois group $S_n$, so for $n \geq 5$ it isn't solvable by radicals. This settles classical problems on quintic and higher-degree equations.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Computing Galois groups is an art.</strong> For small cases (cubics, quartics, $x^n - a$), discriminant or direct symmetry arguments work. For higher degrees, use Frobenius splitting in primes, Newton polygon factorizations, or reduction modulo $p$ to guess the Galois group, then verify. The problem is hard: no uniform algorithm is known.
+  <span class="thm-label">Fun fact.</span> <strong>Computing Galois groups in general.</strong> For small cases (cubics, quartics, $x^n - a$), the discriminant or a direct look at where the roots can go works. For higher degrees, a good trick is reducing mod primes $p$. The factorization of $f$ mod $p$ gives the cycle type of an element of the Galois group (Dedekind), which can be used to guess the group and sometimes prove it. There are algorithms that compute Galois groups in general, but they're much too slow to do by hand.
 </div>
 
 <div class="qual-section">

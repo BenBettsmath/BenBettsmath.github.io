@@ -18,6 +18,18 @@
 .homcx-scene { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; overflow: hidden; }
 .homcx-scene canvas { display: block; width: 100%; height: 500px; cursor: grab; touch-action: none; }
 @media screen and (max-width: 600px) { .homcx-scene canvas { height: 400px; } }
+.tmorse { margin: 2.6em 0 1.4em; }
+.tmorse h2 { font-size: 1.25em; font-weight: 600; margin: 0 0 .6em; }
+.tmorse p { max-width: 75ch; }
+.tm-bar { display: flex; gap: .5em; flex-wrap: wrap; align-items: center; margin: 1em 0 .6em; font-size: .9em; }
+.tm-bar button { font-family: 'STIX Two Text', Georgia, serif; font-size: .95em; padding: .35em .8em; border-radius: 5px; border: 1px solid #c9ccd0; background: #fff; cursor: pointer; }
+.tm-bar button:hover { background: #E8E9EA; }
+.tm-bar button.on { background: #007A86; border-color: #007A86; color: #fff; }
+.tm-bar label { display: inline-flex; align-items: center; gap: .35em; margin-left: .4em; }
+.tm-stepno { margin-left: auto; color: #6B7280; }
+.tm-cap { min-height: 3em; margin: .7em 0 .2em; }
+.tm-ranks { color: #444; font-variant-numeric: tabular-nums; }
+.tm-ranks s { color: #BA0C2F; }
 </style>
 </head>
 <body>
@@ -42,6 +54,22 @@
       &nbsp;&nbsp; &part;(<i>f</i>) = &part;<sup><i>N</i></sup><i>f</i> &minus; (&minus;1)<sup><i>i</i></sup><i>f</i>&thinsp;&part;<sup><i>M</i></sup>
     </p>
     <div class="homcx-scene"><canvas id="homcx-cv"></canvas></div>
+  </div>
+  <div class="tmorse">
+    <h2>Matching away the Taylor complex of (<i>xy</i>, <i>yz</i>, <i>zw</i>, <i>xw</i>)</h2>
+    <p>The Taylor complex of <i>I</i> = (<i>xy</i>, <i>yz</i>, <i>zw</i>, <i>xw</i>) is the full simplex on the four generators, where each face is labeled by the lcm of its vertices. Its ranks are 1, 4, 6, 4, 1, but the minimal free resolution of <i>S</i>/<i>I</i> has ranks 1, 4, 4, 1. All of the extra faces have multidegree <i>xyzw</i>.</p>
+    <p>A matching here is a set of disjoint pairs (&sigma;, &tau;) of faces, where &sigma; is a facet of &tau; and both have the same lcm. We use the matching {(<i>xy</i>&middot;<i>yz</i>&middot;<i>zw</i>, whole simplex), (<i>xy</i>&middot;<i>zw</i>, <i>xy</i>&middot;<i>zw</i>&middot;<i>xw</i>), (<i>yz</i>&middot;<i>xw</i>, <i>yz</i>&middot;<i>zw</i>&middot;<i>xw</i>)}, writing a face as the product of its vertices. It's acyclic, meaning there is no closed path that goes up along matched pairs and down along facets, and that is what lets us cancel the pairs one at a time. Cancelling (&sigma;, &tau;) is pictured as pushing &sigma; through &tau; until it lands on the rest of the boundary of &tau;.</p>
+    <p>The triangle <i>xy</i>&middot;<i>yz</i>&middot;<i>xw</i> is the only matched-degree face left unmatched. When the edge <i>yz</i>&middot;<i>xw</i> gets pushed away, this triangle gets dragged along with it, and at the end it's a disk glued along the 4-cycle <i>xy</i>, <i>yz</i>, <i>zw</i>, <i>xw</i>. That disk is the last syzygy of the minimal resolution.</p>
+    <div class="tm-bar">
+      <button id="tm-prev">&#9666; back</button>
+      <button id="tm-next" class="on">next &#9656;</button>
+      <button id="tm-replay">replay</button>
+      <label><input type="checkbox" id="tm-lcm" checked> lcm labels</label>
+      <span id="tm-step" class="tm-stepno"></span>
+    </div>
+    <div class="homcx-scene"><canvas id="tm-cv"></canvas></div>
+    <p class="tm-cap" id="tm-cap">&nbsp;</p>
+    <p class="tm-ranks" id="tm-ranks"></p>
   </div>
 </div>
 <footer>
@@ -405,6 +433,222 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
 
   resize();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
+<script>
+(function () {
+  const cv = document.getElementById('tm-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const layer = document.createElement('canvas'), lctx = layer.getContext('2d');
+  const COL = { ink: '#1E1E1E', soft: '#6B7280', base: '#007A86', p1: '#BA0C2F', p2: '#007A86', p3: '#B98C28', crit: '#3E4A5C', dim: '#C9CDD2' };
+  const s3 = 1 / Math.sqrt(3);
+  const V = { a: [s3, s3, s3], b: [s3, -s3, -s3], c: [-s3, -s3, s3], d: [-s3, s3, -s3] }; // the 4-cycle faces the camera, ac in front, bd behind
+  const GEN = { a: 'xy', b: 'yz', c: 'zw', d: 'xw' };
+  const add = (p, q) => [p[0] + q[0], p[1] + q[1], p[2] + q[2]];
+  const sub = (p, q) => [p[0] - q[0], p[1] - q[1], p[2] - q[2]];
+  const mul = (k, p) => [k * p[0], k * p[1], k * p[2]];
+  const lerp = (p, q, t) => add(p, mul(t, sub(q, p)));
+  const comb = (ws, ps) => ps.reduce((acc, p, i) => add(acc, mul(ws[i], p)), [0, 0, 0]);
+  const lcm = f => [...new Set(f.split('').map(v => GEN[v]).join(''))].sort((u, w) => 'xyzw'.indexOf(u) - 'xyzw'.indexOf(w)).join('');
+  const ease = t => t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t);
+
+  // steps: 0 Taylor, 1 matched part, 2..4 collapses, 5 done
+  const CAPS = [
+    'The Taylor complex. Every nonempty subset of the four generators is a face, labeled by the lcm of its vertices.',
+    'The faces of multidegree xyzw, colored by the matching. Red is the triangle xy·yz·zw with the whole simplex (the dot in the middle), teal is the edge xy·zw with the triangle xy·zw·xw, and gold is the edge yz·xw with the triangle yz·zw·xw. The dark triangle xy·yz·xw is unmatched.',
+    'First pair. The triangle xy·yz·zw gets pushed through the solid simplex onto the other three triangles, and both cells are gone.',
+    'Second pair. The edge xy·zw bends through the triangle xy·zw·xw until it lies on the edges xy·xw and zw·xw.',
+    'Third pair. The edge yz·xw bends through the triangle yz·zw·xw onto yz·zw and zw·xw, and the unmatched triangle gets dragged along with it.',
+    'What is left. Four vertices, the four edges of the cycle xy, yz, zw, xw, and one disk glued along that cycle, which matches the ranks 1, 4, 4, 1 of the minimal resolution.'
+  ];
+  const RANKS = [[1, 4, 6, 4, 1], [1, 4, 6, 4, 1], [1, 4, 6, 3, 0], [1, 4, 5, 2, 0], [1, 4, 4, 1, 0], [1, 4, 4, 1, 0]];
+  let step = 0, t = 1, anim = null;
+  let yaw = 0.28, pitch = 0.2;
+  const HOME = { yaw: 0.28, pitch: 0.2 };
+
+  // homotopies
+  const g = comb([1 / 3, 1 / 3, 1 / 3], [V.a, V.b, V.c]);
+  function pushABC(al, be, ga) { // point of abc with barycentric (al,be,ga) -> landing point on the other three faces
+    const m = Math.min(al, be, ga);
+    if (m === ga) return comb([al - ga, be - ga, 3 * ga], [V.a, V.b, V.d]);
+    if (m === al) return comb([be - al, ga - al, 3 * al], [V.b, V.c, V.d]);
+    return comb([ga - be, al - be, 3 * be], [V.c, V.a, V.d]);
+  }
+  const fold = (P, Q, R, u) => u < 0.5 ? lerp(P, Q, 2 * u) : lerp(Q, R, 2 * u - 1); // path P -> Q -> R
+  const acAt = (u, tt) => lerp(lerp(V.a, V.c, u), fold(V.a, V.d, V.c, u), tt);
+  const bdAt = (u, tt) => lerp(lerp(V.b, V.d, u), fold(V.b, V.c, V.d, u), tt);
+
+  // camera
+  let W = 0, H = 0, dpr = 1, f = 100;
+  function rot(p) {
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const x1 = p[0] * cy + p[2] * sy, z1 = -p[0] * sy + p[2] * cy;
+    return [x1, p[1] * cp - z1 * sp, p[1] * sp + z1 * cp];
+  }
+  function P(p) { const r = rot(p); const s = 6 / (6 - r[2]); return { x: W / 2 + f * r[0] * s, y: H / 2 - f * r[1] * s, z: r[2] }; }
+
+  // scene assembly
+  function scene() {
+    const groups = [], lines = [], dots = [];
+    let grp = null;
+    const begin = (col, al) => { grp = { tris: [], col, al }; groups.push(grp); };
+    const tri = (A, B, C, col, al) => { if (grp && grp.col === col && grp.al === al) grp.tris.push([A, B, C]); else { begin(col, al); grp.tris.push([A, B, C]); grp = null; } };
+    const mesh = (fn, col, al, n = 28) => { // fn(al,be,ga) -> point
+      begin(col, al);
+      for (let i = 0; i < n; i++) for (let j = 0; j < n - i; j++) {
+        const q = (a, b) => fn(a / n, b / n, 1 - (a + b) / n);
+        tri(q(i, j), q(i + 1, j), q(i, j + 1), col, al);
+        if (i + j < n - 1) tri(q(i + 1, j), q(i + 1, j + 1), q(i, j + 1), col, al);
+      }
+      grp = null;
+    };
+    const poly = (pts, col, w, dash) => lines.push({ pts, col, w, dash });
+    const seg = (A, B, col, w, dash) => poly([A, B], col, w, dash);
+    const T = ease(t);
+    const marked = step >= 1;
+    const cface = { abc: COL.p1, acd: COL.p2, bcd: COL.p3, abd: COL.crit };
+    const faceCol = k => marked ? cface[k] : COL.base;
+    const faceAl = k => marked ? (k === 'abd' ? 0.30 : 0.22) : 0.14;
+
+    // triangle abc (pair 1)
+    if (step < 2) tri(V.a, V.b, V.c, faceCol('abc'), faceAl('abc'));
+    else if (step === 2 && T < 1) mesh((al, be, ga) => lerp(comb([al, be, ga], [V.a, V.b, V.c]), pushABC(al, be, ga), T), COL.p1, 0.30);
+    // triangle acd (pair 2): the part not yet swept by the moving edge
+    if (step < 3) tri(V.a, V.c, V.d, faceCol('acd'), faceAl('acd'));
+    else if (step === 3 && T < 1) {
+      begin(COL.p2, 0.22);
+      for (let k = 0; k < 24; k++) {
+        const u0 = k / 24, u1 = (k + 1) / 24;
+        const A0 = acAt(u0, T), A1 = acAt(u1, T), B0 = fold(V.a, V.d, V.c, u0), B1 = fold(V.a, V.d, V.c, u1);
+        tri(A0, A1, B1, COL.p2, 0.22); tri(A0, B1, B0, COL.p2, 0.22);
+      }
+      grp = null;
+    }
+    // triangle bcd (pair 3)
+    if (step < 4) tri(V.b, V.c, V.d, faceCol('bcd'), faceAl('bcd'));
+    else if (step === 4 && T < 1) {
+      begin(COL.p3, 0.22);
+      for (let k = 0; k < 24; k++) {
+        const u0 = k / 24, u1 = (k + 1) / 24;
+        const A0 = bdAt(u0, T), A1 = bdAt(u1, T), B0 = fold(V.b, V.c, V.d, u0), B1 = fold(V.b, V.c, V.d, u1);
+        tri(A0, A1, B1, COL.p3, 0.22); tri(A0, B1, B0, COL.p3, 0.22);
+      }
+      grp = null;
+    }
+    // unmatched triangle abd, a fan from a over the (possibly moving) edge bd
+    const bdT = step < 4 ? 0 : step === 4 ? T : 1;
+    const nF = 24;
+    begin(faceCol('abd'), faceAl('abd'));
+    for (let k = 0; k < nF; k++) {
+      tri(V.a, bdAt(k / nF, bdT), bdAt((k + 1) / nF, bdT), faceCol('abd'), faceAl('abd'));
+    }
+    grp = null;
+
+    // edges
+    const plainEdges = ['ab', 'bc', 'cd', 'ad'];
+    for (const e of plainEdges) seg(V[e[0]], V[e[1]], COL.ink, 1.6);
+    const acT = step < 3 ? 0 : step === 3 ? T : 1;
+    if (step < 3 || (step === 3 && T < 1)) {
+      const pts = []; for (let k = 0; k <= 32; k++) pts.push(acAt(k / 32, acT));
+      poly(pts, marked ? COL.p2 : COL.ink, marked ? 2.6 : 1.6);
+    }
+    if (step < 4 || (step === 4 && T < 1)) {
+      const pts = []; for (let k = 0; k <= 32; k++) pts.push(bdAt(k / 32, bdT));
+      poly(pts, marked ? COL.p3 : COL.ink, marked ? 2.6 : 1.6);
+    }
+    // the 3-cell, a dot at the barycenter
+    const cen = comb([.25, .25, .25, .25], [V.a, V.b, V.c, V.d]);
+    let cellAl = step < 2 ? 1 : step === 2 ? 1 - T : 0;
+    if (cellAl > 0) dots.push({ p: cen, col: marked ? COL.p1 : COL.base, r: 6, al: cellAl });
+    for (const k of 'abcd') dots.push({ p: V[k], col: COL.ink, r: 4.5, al: 1, label: GEN[k] });
+    return { groups, lines, dots, cen };
+  }
+
+  function render() {
+    if (!W) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const S = scene();
+    // each group is drawn opaque on a layer, then composited with its alpha, so there are no seams
+    const gs = S.groups.map(gp => { const qs = gp.tris.map(tr => tr.map(P)); let z = 0, n = 0; qs.forEach(q => q.forEach(v => { z += v.z; n++; })); return { qs, z: z / n, col: gp.col, al: gp.al }; });
+    gs.sort((u, v) => u.z - v.z);
+    for (const o of gs) {
+      lctx.setTransform(1, 0, 0, 1, 0, 0); lctx.clearRect(0, 0, layer.width, layer.height);
+      lctx.setTransform(dpr, 0, 0, dpr, 0, 0); lctx.fillStyle = o.col; lctx.strokeStyle = o.col; lctx.lineWidth = 0.8; lctx.lineJoin = 'round';
+      lctx.beginPath();
+      for (let q of o.qs) {
+        if ((q[1].x - q[0].x) * (q[2].y - q[0].y) - (q[1].y - q[0].y) * (q[2].x - q[0].x) < 0) q = [q[0], q[2], q[1]]; // same orientation, so overlaps don't cancel
+        lctx.moveTo(q[0].x, q[0].y); lctx.lineTo(q[1].x, q[1].y); lctx.lineTo(q[2].x, q[2].y); lctx.closePath();
+      }
+      lctx.fill(); lctx.stroke();
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = o.al; ctx.drawImage(layer, 0, 0); ctx.globalAlpha = 1; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    for (const l of S.lines) {
+      ctx.strokeStyle = l.col; ctx.lineWidth = l.w; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.beginPath(); l.pts.forEach((p, i) => { const q = P(p); i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y); }); ctx.stroke();
+    }
+    for (const d of S.dots) {
+      const q = P(d.p); ctx.globalAlpha = d.al; ctx.fillStyle = d.col;
+      ctx.beginPath(); ctx.arc(q.x, q.y, d.r, 0, 7); ctx.fill(); ctx.globalAlpha = 1;
+      if (d.label) {
+        const c = P([0, 0, 0]); const dx = q.x - c.x, dy = q.y - c.y, L = Math.hypot(dx, dy) || 1;
+        label(d.label, q.x + dx / L * 20, q.y + dy / L * 20, 17, COL.ink);
+      }
+    }
+    if (document.getElementById('tm-lcm').checked) {
+      const lab = (e, col) => { const m = P(lerp(V[e[0]], V[e[1]], .5)), c = P(S.cen); const dx = m.x - c.x, dy = m.y - c.y, L = Math.hypot(dx, dy) || 1; label(lcm(e), m.x + dx / L * 15, m.y + dy / L * 15, 13, col); };
+      for (const e of ['ab', 'bc', 'cd', 'ad']) lab(e, COL.soft);
+      if (step < 3) lab('ac', step >= 1 ? COL.p2 : COL.soft);
+      if (step < 4) lab('bd', step >= 1 ? COL.p3 : COL.soft);
+      if (step < 2) { const q = P(S.cen); label('xyzw', q.x + 12, q.y - 12, 13, step >= 1 ? COL.p1 : COL.soft, 'left'); }
+    }
+  }
+  function label(s, x, y, size, col, align) {
+    ctx.font = 'italic ' + size + "px 'STIX Two Text', Georgia, serif";
+    ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle';
+    ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.lineJoin = 'round'; ctx.strokeText(s, x, y);
+    ctx.fillStyle = col; ctx.fillText(s, x, y);
+  }
+
+  // text panels
+  function updateText() {
+    document.getElementById('tm-cap').textContent = CAPS[step];
+    document.getElementById('tm-step').textContent = 'step ' + step + ' of ' + (CAPS.length - 1);
+    const r = RANKS[step], r0 = RANKS[0];
+    document.getElementById('tm-ranks').innerHTML = 'ranks by number of vertices, 0 through 4: ' +
+      r.map((v, i) => v === r0[i] ? String(v) : '<s>' + r0[i] + '</s> ' + v).join(', ');
+    document.getElementById('tm-next').disabled = step === CAPS.length - 1;
+    document.getElementById('tm-prev').disabled = step === 0;
+  }
+  function go(s, animate) {
+    step = Math.max(0, Math.min(CAPS.length - 1, s));
+    if (anim) cancelAnimationFrame(anim);
+    updateText();
+    const moving = step >= 2 && step <= 4;
+    if (!moving || !animate || matchMedia('(prefers-reduced-motion: reduce)').matches) { t = 1; render(); return; }
+    const t0 = performance.now(), dur = 2600;
+    const tick = now => { t = Math.min(1, (now - t0) / dur); render(); anim = t < 1 ? requestAnimationFrame(tick) : null; };
+    t = 0; anim = requestAnimationFrame(tick);
+  }
+  document.getElementById('tm-next').addEventListener('click', () => go(step + 1, true));
+  document.getElementById('tm-prev').addEventListener('click', () => go(step - 1, false));
+  document.getElementById('tm-replay').addEventListener('click', () => go(step, true));
+  document.getElementById('tm-lcm').addEventListener('change', render);
+
+  // orbit
+  let drag = null;
+  cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, yaw, pitch }; });
+  cv.addEventListener('pointermove', e => { if (!drag) return; yaw = drag.yaw + (e.clientX - drag.x) * 0.008; pitch = Math.max(-1.4, Math.min(1.4, drag.pitch + (e.clientY - drag.y) * 0.008)); render(); });
+  cv.addEventListener('pointerup', () => { drag = null; });
+  cv.addEventListener('dblclick', () => { yaw = HOME.yaw; pitch = HOME.pitch; render(); });
+  function resize() {
+    const r = cv.getBoundingClientRect(); dpr = window.devicePixelRatio || 1; W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); layer.width = cv.width; layer.height = cv.height; f = Math.min(W, H) * 0.43; render();
+  }
+  new ResizeObserver(resize).observe(cv);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  go(0, false); resize();
 })();
 </script>
 </body>
