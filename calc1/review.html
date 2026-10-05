@@ -120,7 +120,7 @@
 
   <!-- ============================================================ -->
   <h3 id="sec3" class="chapter">3. Computing limits</h3>
-  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
+  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is usually hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 3(a).</b> Evaluate $\lim_{x \to 3} \frac{x^2-2x-3}{x^2-9}$.</p>
     </div>
@@ -206,7 +206,7 @@
 
   <!-- ============================================================ -->
   <h3 id="sec9" class="chapter">9. Trig derivatives</h3>
-  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. The trick is to make the angle inside the sine match the denominator exactly.</p>
+  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. Make the angle inside the sine match the denominator exactly.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 9(a).</b> Starting only from $\frac{d}{dx}\sin x = \cos x$ and $\frac{d}{dx}\cos x = -\sin x$, derive $\frac{d}{dx}\sec x$. Then find $\frac{d^2}{dx^2}\tan x$.</p>
     </div>
@@ -369,7 +369,7 @@
 
   <!-- ============================================================ -->
   <h3 id="sec20" class="chapter">20. Riemann sums</h3>
-  <p class="lede">A Riemann sum adds up rectangles of width $\Delta x$ and height $f(x_i)$. The definite integral is what these sums approach as the rectangles get thin.</p>
+  <p class="lede">A Riemann sum on $[a,b]$ with $n$ subintervals adds up rectangles of width $\Delta x = \frac{b-a}{n}$ and height $f(x_i^*)$, where $x_i^*$ is a sample point in the $i$th subinterval. The definite integral is what these sums approach as the rectangles get thin.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 20(a).</b> Estimate $\int_0^\pi \sin x\, dx$ with the midpoint rule and $n=3$.</p>
     </div>

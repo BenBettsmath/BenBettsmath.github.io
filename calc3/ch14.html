@@ -34,17 +34,17 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 14 · Partial Derivatives and Gradients</h2>
 <div class="chapter-nav"><a href="ch13.html">← previous</a><a href="outline.html">outline</a><a href="ch15.html">next →</a></div>
-<p>Functions of several variables, partial derivatives, the gradient, tangent planes, the chain rule, optimization, and Taylor approximation of surfaces. The main character of this chapter is the gradient. It's a single vector, and dotting it with four different things answers four different questions.</p>
+<p>Functions of several variables, partial derivatives, the gradient, tangent planes, the chain rule, optimization, and Taylor approximation of surfaces. The central object of this chapter is the gradient. It's a single vector, and using it in four different ways answers four different questions.</p>
 
-<div class="spine"><div class="spine-name">The gradient, one object used four ways</div>
+<div class="spine"><div class="spine-name">Four uses of the gradient</div>
 <p>Dotting $\nabla f$ with a displacement gives the linear approximation, dotting it with a velocity gives the chain rule, dotting it with a unit direction gives the directional derivative, and setting it equal to zero finds the critical points. Our running example is the dome $z = 1 - x^2 - y^2$ at the point $(\tfrac12, \tfrac12, \tfrac12)$.</p>
 </div>
 
 <div class="section"><h3>14.1 Functions of Several Variables</h3>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> A function of two variables $f : D \subset \mathbb R^2 \to \mathbb R$ has a graph that is a surface $z = f(x, y)$. The level curves are the curves $f(x, y) = k$ for a fixed height $k$, the same as the lines on a topographic map. Drawing them for several values of $k$ gives a contour map. Contours that are close together mean the surface is steep there, and contours that are spread out mean it's shallow. A function of three variables $f(x, y, z)$ would need four dimensions to graph, so instead we picture its level surfaces $f(x, y, z) = k$.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> A function of two variables $f : D \subset \mathbb R^2 \to \mathbb R$, with domain $D$, has a graph that is a surface $z = f(x, y)$. The level curves are the curves $f(x, y) = k$ for a fixed height $k$, the same as the lines on a topographic map. Drawing them for several values of $k$ gives a contour map. Contours that are close together mean the surface is steep there, and contours that are spread out mean it's shallow. A function of three variables $f(x, y, z)$ would need four dimensions to graph, so instead we picture its level surfaces $f(x, y, z) = k$.</p>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Example.</b> The dome $z = 1 - x^2 - y^2$ is a cap over the unit disk, height $1$ at the center and dropping to $0$ on the circle $x^2 + y^2 = 1$. Its level curves $1 - x^2 - y^2 = k$ are circles of radius $\sqrt{1-k}$, tight near the rim where the cap falls fast and loose near the top where it is nearly flat. We'll come back to this one surface and its contour map for every idea in the chapter, starting at the point $(\tfrac12, \tfrac12, \tfrac12)$, which sits on the level curve $k = \tfrac12$.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Example.</b> The dome $z = 1 - x^2 - y^2$ is a cap over the unit disk, height $1$ at the center and dropping to $0$ on the circle $x^2 + y^2 = 1$. Its level curves $1 - x^2 - y^2 = k$ are circles of radius $\sqrt{1-k}$, tight near the rim where the cap falls fast and loose near the top where it is nearly flat. Each idea in the chapter is shown on this surface and its contour map, starting at the point $(\tfrac12, \tfrac12, \tfrac12)$, which sits on the level curve $k = \tfrac12$.</p>
 
 <p>Compare the dome with three other basic shapes. The bowl $f = x^2 + y^2$ has circular level curves and one low point. The saddle $f = x^2 - y^2$ has hyperbola level curves and the plane $f = x + y$ has parallel straight lines.</p>
 
@@ -55,7 +55,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>14.2 Limits and Continuity</h3>
 
-<p class="part"><span class="dimtag">2D</span><b>Intro.</b> The statement $\lim_{(x,y) \to (a,b)} f(x, y) = L$ means $f$ gets close to $L$ no matter which path we take toward $(a, b)$ inside the domain. In one variable there are only two directions to come from, but now there are infinitely many paths. So to show a limit doesn't exist, it's enough to find two paths that give different limits. Lines $y = mx$ and parabolas $y = x^2$ or $x = y^2$ are the usual ones to try. A polar substitution $x = r\cos\theta$, $y = r\sin\theta$ is useful because $(x, y) \to (0, 0)$ becomes just $r \to 0$, so if the $\theta$ part stays bounded we're done.</p>
+<p class="part"><span class="dimtag">2D</span><b>Intro.</b> The statement $\lim_{(x,y) \to (a,b)} f(x, y) = L$ means $f$ gets close to $L$ no matter which path we take toward $(a, b)$ inside the domain. In one variable there are only two directions to come from, but now there are infinitely many paths. So to show a limit doesn't exist, it's enough to find two paths that give different limits. Lines $y = mx$ and parabolas $y = x^2$ or $x = y^2$ are the usual ones to try. A polar substitution $x = r\cos\theta$, $y = r\sin\theta$ is useful because $(x, y) \to (0, 0)$ becomes just $r \to 0$, so if $f$ becomes a positive power of $r$ times a bounded function of $\theta$, the limit is $0$.</p>
 
 <p class="part"><span class="dimtag">1D in 2D</span><b>Example.</b> Checking every straight line isn't enough. For $f = \dfrac{xy^2}{x^2 + y^4}$ every line $y = mx$ sends $f \to 0$, yet along the parabola $x = y^2$ the value is $\tfrac12$. So the limit exists only when every path agrees, and one path that disagrees is enough to rule it out.</p>
 
@@ -69,7 +69,7 @@ window.MathJax = {
 <div class="formula">$f_x(x, y) = \displaystyle\lim_{h \to 0} \dfrac{f(x + h, y) - f(x, y)}{h}\quad (\text{hold } y \text{ fixed}).$</div>
 <p>Likewise $f_y$ holds $x$ fixed. The notations $\partial f/\partial x$, $f_x$, and $\partial z/\partial x$ all mean the same thing. Geometrically, $f_x$ is the slope of the trace we get by slicing with $y = $ const, and $f_y$ is the slope of the trace from slicing with $x = $ const.</p>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Example.</b> On the dome the trace $y = \tfrac12$ is the parabola $z = \tfrac34 - x^2$ with slope $f_x = -2x$, equal to $-1$ at $x = \tfrac12$. By symmetry $f_y = -1$ there too. The next section puts these two slopes together into a plane, and the section after that puts them into a vector.</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Example.</b> On the dome the trace $y = \tfrac12$ is the parabola $z = \tfrac34 - x^2$ with slope $f_x = -2x$, equal to $-1$ at $x = \tfrac12$. By symmetry $f_y = -1$ there too.</p>
 
 <p>Higher partials repeat the process, giving $f_{xx}$, $f_{xy} = (f_x)_y$, $f_{yx}$, and $f_{yy}$. Clairaut's theorem says the mixed partials agree, $f_{xy} = f_{yx}$, whenever both are continuous. This is because both measure the same thing, the second difference of $f$ over a small rectangle, just stepping in $x$ first for one and in $y$ first for the other.</p>
 
@@ -85,20 +85,20 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>Lift to a surface.</b> Each of the two traces has a tangent line, and the tangent plane is the plane containing both of them.</p>
 <div class="formula">$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0).$</div>
-<p>Cut with $y = y_0$ to get the trace $z = f(x, y_0)$ whose tangent line is $z - z_0 = f_x(x - x_0)$. Cut with $x = x_0$ to get the other tangent line $z - z_0 = f_y(y - y_0)$. The plane holding both is the formula above. The linearization $L(x, y) = f(a, b) + f_x(a, b)(x - a) + f_y(a, b)(y - b)$ is the same plane written as a function, and its error goes to zero faster than $|\Delta\vec x|$.</p>
+<p>Cut with $y = y_0$ to get the trace $z = f(x, y_0)$ whose tangent line is $z - z_0 = f_x(x - x_0)$. Cut with $x = x_0$ to get the other tangent line $z - z_0 = f_y(y - y_0)$. The plane holding both is the formula above. The linearization $L(x, y) = f(a, b) + f_x(a, b)(x - a) + f_y(a, b)(y - b)$ is the same plane written as a function. With $\Delta\vec x = \langle x - a, y - b\rangle$, when the error $f - L$ goes to zero faster than $|\Delta\vec x|$ we call $f$ <em>differentiable</em> at $(a, b)$.</p>
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>Example.</b> At $(\tfrac12, \tfrac12)$ the dome has $f_x = f_y = -1$ and $z_0 = \tfrac12$, so the tangent plane is $z = \tfrac32 - x - y$. The dome bends down in every direction, so the plane sits above the surface and the linearization overestimates. A saddle bends up in one direction and down in another, so its tangent plane cuts through the surface and the estimate is too high in some directions and too low in others.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The hypothesis is <em>continuous</em> partials. Just having $f_x$ and $f_y$ exist at a point isn't enough for differentiability, or even for continuity, since the partials only see the two directions along the axes. For $f(x,y)=\dfrac{xy}{x^2+y^2}$ with $f(0,0)=0$, both partials exist at the origin, yet $f$ is not even continuous there.</p></div>
-<p><b>Total differential.</b> The differential $dz = \dfrac{\partial z}{\partial x}\,dx + \dfrac{\partial z}{\partial y}\,dy$ estimates the change $\Delta z \approx dz$. Here $dz$ is how much we rise along the tangent plane and $\Delta z$ is how much we actually rise on the surface. The difference between them is second-order small, and for the dome it's the overestimate from before.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>A sufficient hypothesis for differentiability is that $f_x$ and $f_y$ exist near the point and are <em>continuous</em> there. Just having $f_x$ and $f_y$ exist at a point isn't enough for differentiability, or even for continuity, since the partials only see the two directions along the axes. For $f(x,y)=\dfrac{xy}{x^2+y^2}$ with $f(0,0)=0$, both partials exist at the origin, yet $f$ is not even continuous there.</p></div>
+<p><b>Total differential.</b> The differential $dz = \dfrac{\partial z}{\partial x}\,dx + \dfrac{\partial z}{\partial y}\,dy$ estimates the change $\Delta z \approx dz$. Here $dz$ is how much we rise along the tangent plane and $\Delta z$ is how much we rise on the surface. The difference between them is second-order small, and for the dome it's the overestimate from before.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="domeTangent"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="tangentPlane"></canvas></div>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(2, 2, 1)$. Find the linearization of $f = \sqrt{20 - x^2 - 7y^2}$ at $(2, 1)$ and estimate $f(1.95, 1.08)$. Say whether your estimate runs high or low by checking the bend.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Practice.</b> Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(4, -1, 1)$. Find the linearization of $f = \sqrt{20 - x^2 - 7y^2}$ at $(2, 1)$ and estimate $f(1.95, 1.08)$. Say whether your estimate runs high or low by checking the bend.</p>
 </div>
 <div class="section"><h3>14.5 The Chain Rule</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Intro.</b> If we walk along a path on the surface, the chain rule says the rate our height changes is the gradient dotted with our velocity. With $z = f(x, y)$, $x = g(t)$, $y = h(t)$,</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Intro.</b> If we walk along a path on the surface, the chain rule says the rate our height changes is the gradient $\nabla f = \langle f_x, f_y\rangle$, the vector of partial derivatives, dotted with our velocity. With $z = f(x, y)$, $x = g(t)$, $y = h(t)$,</p>
 <div class="formula">$\dfrac{dz}{dt} = \dfrac{\partial z}{\partial x}\dfrac{dx}{dt} + \dfrac{\partial z}{\partial y}\dfrac{dy}{dt} = \nabla f \cdot \langle x'(t),\ y'(t)\rangle.$</div>
 <p><em>Why.</em> In a small time $dt$ our position shifts by $dx = x'\,dt$ and $dy = y'\,dt$. Each shift changes the height by its slope times its step, $f_x\,dx$ from the $x$ move and $f_y\,dy$ from the $y$ move, and to first order the two changes just add up.</p>
 <p>The general version branches one level deeper. With $x = g(s, t)$ and $y = h(s, t)$,</p>
@@ -116,19 +116,19 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> If we put the two partials together into one vector, then the slope in any direction is just that vector dotted with a unit vector pointing that way.</p>
 <div class="formula">$\nabla f = \langle f_x, f_y\rangle,\qquad D_{\vec u} f = \nabla f \cdot \vec u = f_x a + f_y b\quad (\vec u = \langle a, b\rangle \text{ unit}).$</div>
-<p>Because $D_{\vec u} f = |\nabla f|\cos\theta$, the slope is largest along $\nabla f$, zero across it (along a level curve), and most negative against it. So $\max_{\vec u} D_{\vec u} f = |\nabla f|$, reached at $\vec u = \nabla f/|\nabla f|$. The gradient is perpendicular to level curves in $\mathbb R^2$ and to level surfaces in $\mathbb R^3$, since moving along a level set doesn't change $f$, so the slope in that direction is $0$.</p>
+<p>Because $D_{\vec u} f = |\nabla f|\cos\theta$, with $\theta$ the angle between $\nabla f$ and $\vec u$, the slope is largest along $\nabla f$, zero across it (along a level curve), and most negative against it. So $\max_{\vec u} D_{\vec u} f = |\nabla f|$, reached at $\vec u = \nabla f/|\nabla f|$ when $\nabla f \ne \vec 0$. The gradient is perpendicular to level curves in $\mathbb R^2$ and to level surfaces in $\mathbb R^3$, since moving along a level set doesn't change $f$, so the slope in that direction is $0$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$D_{\vec u}f=\nabla f\cdot\vec u$ requires $\vec u$ to be a <em>unit</em> vector. If we're given a direction $\vec v$ that isn't a unit vector, say $\vec v=\hat\imath+\hat\jmath$, normalize it first as $\vec u=\vec v/|\vec v|$. Otherwise the answer comes out $|\vec v|$ times too big.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$D_{\vec u}f=\nabla f\cdot\vec u$ requires $\vec u$ to be a <em>unit</em> vector. If we're given a direction $\vec v$ that isn't a unit vector, say $\vec v=\hat\imath+\hat\jmath$, normalize it first as $\vec u=\vec v/|\vec v|$. Otherwise the answer comes out $|\vec v|$ times too big.</p></div>
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>Tangent vectors sweep the tangent plane.</b> Slicing the surface with the vertical plane $y = y_0$ gives a trace whose tangent vector is $\langle 1, 0, f_x\rangle$, and the slice $x = x_0$ gives $\langle 0, 1, f_y\rangle$. Slicing in the unit direction $\vec u = \langle\cos\theta, \sin\theta\rangle$ gives the tangent vector $\langle\cos\theta,\ \sin\theta,\ D_{\vec u}f\rangle$. As $\theta$ turns this vector sweeps out the tangent plane of 14.4, which is exactly the set of all tangent vectors at the point.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="tangentVectors"></canvas></div>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>The gradient four ways.</b> At $(\tfrac12, \tfrac12)$ the dome gradient is $\nabla f = \langle -1, -1\rangle$. Dotting it with a small displacement gives back the tangent plane of 14.4. Dotting it with the velocity $\langle 1, 1\rangle$ gives the chain rule rate $-2$ of 14.5. Dotting it with the unit direction $\vec u = \tfrac{1}{\sqrt2}\langle 1, 1\rangle$ gives the slope $-\sqrt2$, which is the steepest descent, since $\langle -1, -1\rangle$ points straight downhill. If we step perpendicular, along $\tfrac{1}{\sqrt2}\langle 1, -1\rangle$, the slope is $0$, because that's the direction of the level curve $k = \tfrac12$ through the point. So the same vector answers all four questions.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>The gradient four ways.</b> At $(\tfrac12, \tfrac12)$ the dome gradient is $\nabla f = \langle -1, -1\rangle$. Dotting it with a small displacement gives back the tangent plane of 14.4. Dotting it with the velocity $\langle 1, 1\rangle$ gives the chain rule rate $-2$ of 14.5. Dotting it with the unit direction $\vec u = \tfrac{1}{\sqrt2}\langle 1, 1\rangle$ gives the slope $-\sqrt2 = -|\nabla f|$, which is the steepest descent, since $\langle 1, 1\rangle$ points straight downhill, opposite to $\nabla f$. If we step perpendicular, along $\tfrac{1}{\sqrt2}\langle 1, -1\rangle$, the slope is $0$, because that's the direction of the level curve $k = \tfrac12$ through the point. So the same vector answers all four questions.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="gradFourWays"></canvas></div>
 
-<p class="part"><span class="dimtag">2D</span><b>The gradient need not point at the origin.</b> For $f = x^2 + 3y^2$ the level curves are ellipses and $\nabla f = \langle 2x, 6y\rangle$. At $(1, 1)$ the gradient is $\langle 2, 6\rangle$ while the position vector is $\langle 1, 1\rangle$, not parallel. The gradient is perpendicular to the level curve through the point, and it only lines up with the position vector when the level curves are circles.</p>
+<p class="part"><span class="dimtag">2D</span><b>The gradient need not point at the origin.</b> For $f = x^2 + 3y^2$ the level curves are ellipses and $\nabla f = \langle 2x, 6y\rangle$. At $(1, 1)$ the gradient is $\langle 2, 6\rangle$ while the position vector is $\langle 1, 1\rangle$, not parallel. The gradient is perpendicular to the level curve through the point, and it lines up with the position vector at every point only when the level curves are circles centered at the origin.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="gradPerpLevel"></canvas></div>
 
@@ -149,7 +149,7 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">1D</span><b>One dimension first.</b> In one variable a critical point has $f'(a) = 0$ and the second derivative classifies it, positive for a minimum, negative for a maximum, zero inconclusive. In two variables a surface can curve up in one direction and down in another, so one second derivative isn't enough anymore.</p>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Lift to a surface.</b> A critical point has $\nabla f = \vec 0$, and the second derivatives test classifies it.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Lift to a surface.</b> A critical point has $\nabla f = \vec 0$, and when the second partials are continuous near it, the second derivatives test classifies it.</p>
 <div class="formula">$D = f_{xx} f_{yy} - (f_{xy})^2 \quad\text{at a critical point } (a, b).$</div>
 <ul class="tight">
   <li>$D &gt; 0$ and $f_{xx} &gt; 0$ gives a local minimum.</li>
@@ -168,7 +168,7 @@ window.MathJax = {
 
 <p><b>Hessian.</b> The matrix $H = \begin{pmatrix} f_{xx} &amp; f_{xy} \\ f_{xy} &amp; f_{yy}\end{pmatrix}$ holds all the second derivatives. Its eigenvalues are the two special curvatures, $D = \det H$ is their product, and the eigenvectors are the special directions. Both eigenvalues positive is a minimum, both negative a maximum, opposite signs a saddle.</p>
 
-<p class="part"><span class="dimtag">2D</span><b>Absolute extrema.</b> By the Extreme Value Theorem a continuous $f$ on a closed bounded $D$ attains its max and min. Find the interior critical points, treat the boundary as a one variable problem, and compare all the candidates.</p>
+<p class="part"><span class="dimtag">2D</span><b>Absolute extrema.</b> By the Extreme Value Theorem a continuous $f$ on a closed (containing its boundary) and bounded (contained in some disk) set $D$ attains its max and min. Find the interior critical points, treat the boundary as a one variable problem, and compare all the candidates.</p>
 
 <div class="fig-inline"><figure><img src="stewart_figs/p1090-1090.png" alt=""><figcaption>Stewart §14.7 Figure 12, region $D$ with boundary $L_1, L_2, L_3, L_4$. Evaluate $f$ separately on each segment.</figcaption></figure></div>
 <div class="fig-inline-canvas"><canvas data-fig="hessMin"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="hessMax"></canvas></div>
@@ -180,7 +180,7 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">2D in 3D</span>Near $(x_0, y_0)$, the degree 2 Taylor approximation is</p>
 <div class="formula">$f(x_0 + h,\ y_0 + k) \approx f(x_0, y_0) + f_x\,h + f_y\,k + \tfrac12\bigl(f_{xx} h^2 + 2 f_{xy} h k + f_{yy} k^2\bigr).$</div>
-<p>The linear terms give the tangent plane of 14.4 and the quadratic terms are set by the Hessian. At a critical point the linear terms vanish, so the surface is locally the graph of the quadratic part, a quadric surface, and the second derivatives test is just reading off what kind of quadric it is.</p>
+<p>The linear terms give the tangent plane of 14.4 and the quadratic terms are set by the Hessian. At a critical point the linear terms vanish, so near the point the surface is approximated by the graph of the quadratic part, a quadric surface, and the second derivatives test is just reading off what kind of quadric it is.</p>
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>At a critical point.</b> Take $f = x^3 - 3x + y^2$ from 14.7. At the critical point $(1, 0)$, $f = -2$ and $H = \begin{pmatrix}6&amp;0\\0&amp;2\end{pmatrix}$, so the degree 2 approximation is $Q = -2 + 3h^2 + k^2$, an upward elliptic paraboloid. At $(-1, 0)$, $f = 2$ and $H = \begin{pmatrix}-6&amp;0\\0&amp;2\end{pmatrix}$, giving $Q = 2 - 3h^2 + k^2$, a saddle. The figure draws both local quadrics against the surface. Near each critical point the surface and its quadric are almost the same, which is why the second derivatives test works.</p>
 
@@ -195,9 +195,9 @@ window.MathJax = {
 </div>
 <div class="section"><h3>14.8 Lagrange Multipliers</h3>
 
-<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> Suppose we want to optimize $f(x, y)$ along a constraint curve $g(x, y) = k$. At a constrained max or min, the level curve of $f$ just touches the constraint curve, since if it crossed it we could move along the constraint and make $f$ bigger or smaller. So their normals line up and $\nabla f \parallel \nabla g$.</p>
+<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> Suppose we want to optimize $f(x, y)$ along a constraint curve $g(x, y) = k$. At a constrained max or min, the level curve of $f$ just touches the constraint curve, since if it crossed it we could move along the constraint and make $f$ bigger or smaller. So, when $\nabla g \ne \vec 0$, their normals line up and $\nabla f \parallel \nabla g$.</p>
 <div class="formula">$\nabla f = \lambda\,\nabla g,\qquad g(x, y) = k.$</div>
-<p>Then we solve the system, plug every candidate into $f$, and compare. With two constraints in $\mathbb R^3$, $\nabla f$ has to lie in the plane spanned by the two normals, so $\nabla f = \lambda\nabla g + \mu\nabla h$.</p>
+<p>Then we solve the system, plug every candidate into $f$, and compare. With two constraints $g = k$ and $h = c$ in $\mathbb R^3$, $\nabla f$ has to lie in the plane spanned by the two normals, so $\nabla f = \lambda\nabla g + \mu\nabla h$ for some scalars $\lambda$, $\mu$.</p>
 
 <p class="part"><span class="dimtag">1D in 2D</span><b>Example.</b> Maximize and minimize $f = xy$ on $x^2 + y^2 = 8$. The system $\langle y, x\rangle = \lambda\langle 2x, 2y\rangle$ forces $x^2 = y^2$, so $2x^2 = 8$ and $x = \pm 2$. The maximum is $f = 4$ at the same-sign points and the minimum is $-4$ at the opposite-sign ones. The figure shows the same idea with $\nabla f$ and $\nabla g$ turning together and lining up only where the level curve just touches the constraint.</p>
 
@@ -208,7 +208,7 @@ window.MathJax = {
 <p><b>Classify the critical points of $f(x, y) = x^4 + y^4 - 4xy + 1$.</b><br>
 $f_x = 4x^3 - 4y = 0$ gives $y = x^3$. $f_y = 4y^3 - 4x = 0$ gives $x = y^3 = x^9$, so $x(x^8 - 1) = 0$, with critical points $(0, 0)$, $(1, 1)$, $(-1, -1)$.
 $f_{xx} = 12x^2$, $f_{yy} = 12y^2$, $f_{xy} = -4$, so $D = 144 x^2 y^2 - 16$.
-$D(0, 0) = -16 &lt; 0$, so the origin is a saddle. $D(\pm 1, \pm 1) = 128 &gt; 0$ with $f_{xx}(\pm 1, \pm 1) = 12 &gt; 0$, so both are local minima with value $f = -1$.</p>
+$D(0, 0) = -16 &lt; 0$, so the origin is a saddle. $D(1, 1) = D(-1, -1) = 128 &gt; 0$ with $f_{xx} = 12 &gt; 0$ at both, so both are local minima with value $f = -1$.</p>
 
 <p><b>A maximum that becomes a saddle.</b> $f(x, y) = x^3 - 3x + y^2$.<br>
 $f_x = 3x^2 - 3 = 0$ gives $x = \pm 1$, and $f_y = 2y = 0$ gives $y = 0$, so the critical points are $(1, 0)$ and $(-1, 0)$.
@@ -224,7 +224,7 @@ On $L_3$, $y = 2$, $0 \le x \le 3$, $f = (x - 2)^2$ with min $0$ at $x = 2$ and 
 On $L_4$, $x = 0$, $0 \le y \le 2$, $f = 2y$ with min $0$ at $y = 0$ and max $4$ at $y = 2$.<br>
 Candidate values are $0$ at $(0,0)$ and $(2,2)$, then $1$, then $4$ at $(0,2)$, then $9$ at $(3,0)$. The absolute max is $9$ at $(3, 0)$ and the absolute min is $0$ at $(0, 0)$ and $(2, 2)$.</p>
 
-<p><b>Absolute extrema on a disk.</b> Same $f(x, y) = x^2 - 2xy + 2y$ on the closed disk $D = \{x^2 + y^2 \le 4\}$.<br>Interior critical point $(1, 1)$ as before, with $f(1, 1) = 1$.<br>On the boundary $x^2 + y^2 = 4$ parametrize $x = 2\cos t$, $y = 2\sin t$, $0 \le t \le 2\pi$, so $g(t) = 4\cos^2 t - 8\cos t\sin t + 4\sin t = 2 + 2\cos 2t - 4\sin 2t + 4\sin t.$ Then $g'(t) = -4\sin 2t - 8\cos 2t + 4\cos t = 0$ has four solutions in $[0, 2\pi)$, $t \approx 0.87,\ 2.42,\ 4.26,\ 5.95$, giving $f \approx 0.78,\ 8.86,\ -5.98,\ 4.74$. Comparing with the interior value $f(1,1)=1$, the absolute maximum is $\approx 8.86$ at $\approx (-1.50,\ 1.32)$ and the absolute minimum is $\approx -5.98$ at $\approx (-0.88,\ -1.80)$. A closed boundary loop has no endpoints, so every candidate is either the interior critical point or a boundary critical point.</p>
+<p><b>Absolute extrema on a disk.</b> Same $f(x, y) = x^2 - 2xy + 2y$ on the closed disk $D = \{x^2 + y^2 \le 4\}$.<br>Interior critical point $(1, 1)$ as before, with $f(1, 1) = 1$.<br>On the boundary $x^2 + y^2 = 4$ parametrize $x = 2\cos t$, $y = 2\sin t$, $0 \le t \le 2\pi$, so $g(t) = 4\cos^2 t - 8\cos t\sin t + 4\sin t = 2 + 2\cos 2t - 4\sin 2t + 4\sin t.$ Then $g'(t) = -4\sin 2t - 8\cos 2t + 4\cos t = 0$ has four solutions in $[0, 2\pi)$, $t \approx 0.87,\ 2.42,\ 4.26,\ 5.95$, giving $f \approx 0.78,\ 8.86,\ -5.98,\ 4.74$. Comparing with the interior value $f(1,1)=1$, the absolute maximum is $\approx 8.86$ at $\approx (-1.50,\ 1.33)$ and the absolute minimum is $\approx -5.98$ at $\approx (-0.88,\ -1.80)$. A closed boundary loop has no endpoints, so every candidate is either the interior critical point or a boundary critical point.</p>
 </div>
 <div class="section"><h3>Practice problems</h3>
 
@@ -232,7 +232,7 @@ Candidate values are $0$ at $(0,0)$ and $(2,2)$, then $1$, then $4$ at $(0,2)$, 
   <li>Find the domain of $f(x, y) = \ln(y - x^2)$.</li>
   <li>Evaluate $\displaystyle\lim_{(x,y) \to (0,0)} \dfrac{x^3 + y^3}{x^2 + y^2}$ using polar coordinates.</li>
   <li>Find $f_x$ and $f_y$ for $f(x, y) = x^4 y^2 - 10 x^2 y + 7 y - 3$.</li>
-  <li>Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(2, 2, 1)$.</li>
+  <li>Find the tangent plane to $x^2 + 2y^2 + 3z^2 = 21$ at $(4, -1, 1)$.</li>
   <li>Find the linearization of $f(x, y) = \sqrt{20 - x^2 - 7 y^2}$ at $(2, 1)$ and use it to estimate $f(1.95, 1.08)$. Say whether the estimate runs high or low.</li>
   <li>If $w = f(x, y)$ with $x = s + t$ and $y = s - t$, show $w_s + w_t = 2 f_x$.</li>
   <li>Find $\partial z / \partial \theta$ for $z = x^2 y$, $x = r\cos\theta$, $y = r\sin\theta$.</li>
@@ -252,7 +252,7 @@ Candidate values are $0$ at $(0,0)$ and $(2,2)$, then $1$, then $4$ at $(0,2)$, 
 
 <p><b>Tangent plane, linearization, differential.</b> These are three ways of writing the same thing. The plane $z = z_0 + f_x(x - x_0) + f_y(y - y_0)$, the function $L(x, y)$ equal to its right side, and the differential $dz = f_x\,dx + f_y\,dy$.</p>
 
-<p><b>Tangent plane to a level surface.</b> For $F(x, y, z) = k$ at $P_0$ the plane is $\nabla F(P_0)\cdot\langle x - x_0, y - y_0, z - z_0\rangle = 0$ and the normal line is $\vec r(t) = P_0 + t\nabla F(P_0)$.</p>
+<p><b>Tangent plane to a level surface.</b> For $F(x, y, z) = k$ at $P_0$ the plane is $\nabla F(P_0)\cdot\langle x - x_0, y - y_0, z - z_0\rangle = 0$ and, with $P_0 = (x_0, y_0, z_0)$, the normal line is $\vec r(t) = \langle x_0, y_0, z_0\rangle + t\nabla F(P_0)$.</p>
 
 <p><b>Chain rule tree.</b> Branch from $z$ to its direct inputs, then to theirs. $\partial z/\partial s$ is the sum of products along every path from $z$ to $s$.</p>
 

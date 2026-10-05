@@ -46,7 +46,7 @@ window.MathJax = {
 
 <p><b>Square roots of negatives and quadratics.</b> For $r &gt; 0$, the principal square root of $-r$ is $\sqrt{-r} = \sqrt r\,i$. So every quadratic $ax^2 + bx + c$ with real coefficients has roots $\dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$, and when $b^2 - 4ac &lt; 0$ these are a conjugate pair. Example: $x^2 + 2x + 5 = 0$ has roots $-1 \pm 2i$. More generally every polynomial of degree $n \ge 1$ with complex coefficients has $n$ complex roots counted with multiplicity (the Fundamental Theorem of Algebra).</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The rule $\sqrt a\sqrt b = \sqrt{ab}$ fails when both are negative. $\sqrt{-4}\,\sqrt{-9} = (2i)(3i) = -6$, while $\sqrt{(-4)(-9)} = \sqrt{36} = 6$. Convert each root to the form $\sqrt r\,i$ before multiplying.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The rule $\sqrt a\sqrt b = \sqrt{ab}$ fails when both are negative. $\sqrt{-4}\,\sqrt{-9} = (2i)(3i) = -6$, while $\sqrt{(-4)(-9)} = \sqrt{36} = 6$. Convert each root to the form $\sqrt r\,i$ before multiplying.</p></div>
 </div>
 <div class="section"><h3>Polar Form</h3>
 
@@ -55,7 +55,7 @@ window.MathJax = {
 <p>The angle $\theta$ is an <b>argument</b> of $z$, written $\arg z$. It is not unique: adding any multiple of $2\pi$ gives the same point.</p>
 <p><b>Example.</b> $z = 1 + i$ has $r = \sqrt 2$ and $\theta = \pi/4$, so $1 + i = \sqrt2\bigl(\cos\frac\pi4 + i\sin\frac\pi4\bigr)$. And $z = -\sqrt3 + i$ has $r = 2$, $\theta = 5\pi/6$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\tan^{-1}(b/a)$ only returns angles in $(-\pi/2, \pi/2)$, the right half plane. For $-\sqrt3 + i$ it gives $-\pi/6$, which points the wrong way. Plot the point and pick the angle in the correct quadrant ($5\pi/6$).</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$\tan^{-1}(b/a)$ only returns angles in $(-\pi/2, \pi/2)$, the right half plane. For $-\sqrt3 + i$ it gives $-\pi/6$, which points the wrong way. Plot the point and pick the angle in the correct quadrant ($5\pi/6$).</p></div>
 
 <p><b>Multiplication in polar form.</b> If $z_1 = r_1(\cos\theta_1 + i\sin\theta_1)$ and $z_2 = r_2(\cos\theta_2 + i\sin\theta_2)$, then</p>
 <div class="formula">$z_1z_2 = r_1r_2\bigl[\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)\bigr], \qquad \dfrac{z_1}{z_2} = \dfrac{r_1}{r_2}\bigl[\cos(\theta_1 - \theta_2) + i\sin(\theta_1 - \theta_2)\bigr]\ \ (z_2 \ne 0).$</div>
@@ -79,7 +79,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="complexPowers"></canvas><div class="fig-cap"><b>Powers spiral, roots form a polygon.</b>Drag $z$. In "powers" mode the dots are $1, z, \dots, z^n$. In "roots" mode they are the $n$ values whose $n$th power is $z$.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting the $2k\pi$ gives only one root. There are always $n$ of them, and the real one (when it exists) is just one vertex of the polygon.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Forgetting the $2k\pi$ gives only one root. There are always $n$ of them, and the real one (when it exists) is just one vertex of the polygon.</p></div>
 </div>
 <div class="section"><h3>Euler's Formula</h3>
 
@@ -95,7 +95,7 @@ window.MathJax = {
 <div class="formula">$e^{i\pi} + 1 = 0.$</div>
 <p><b>Example.</b> $e^{1 + i\pi/2} = e\bigl(\cos\frac\pi2 + i\sin\frac\pi2\bigr) = ei$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In $e^{x + iy} = e^x(\cos y + i\sin y)$ the real part $x$ sets the modulus $e^x$ and the imaginary part $y$ sets the angle. Mixing them up, as in $e^{x + iy} = e^y(\cos x + i\sin x)$, is wrong. Also $\theta$ is in radians.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>In $e^{x + iy} = e^x(\cos y + i\sin y)$ the real part $x$ sets the modulus $e^x$ and the imaginary part $y$ sets the angle. Mixing them up, as in $e^{x + iy} = e^y(\cos x + i\sin x)$, is wrong. Also $\theta$ is in radians.</p></div>
 </div>
 <div class="section"><h3>Practice problems</h3>
 

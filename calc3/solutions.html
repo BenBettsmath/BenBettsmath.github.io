@@ -82,7 +82,7 @@
     <div class="sol">
       <p>A point on a segment is a weighted average of the ends, and the weights are the opposite pieces. Here $C$ cuts $AB$ so that $AC:CB=1:2$, so $C$ sits one third of the way from $A$ to $B$.</p>
       <p>$$ \vec c=\vec a+\tfrac13(\vec b-\vec a)=\tfrac23\vec a+\tfrac13\vec b. $$</p>
-      <p>The end we're closer to gets the bigger weight, so since $C$ is nearer $A$, $\vec a$ gets $\tfrac23$. The midpoint formula and every center of mass later on work the same way.</p>
+      <p>The end we're closer to gets the bigger weight, so since $C$ is nearer $A$, $\vec a$ gets $\tfrac23$. The midpoint formula works the same way.</p>
     </div>
   </div>
 
@@ -106,9 +106,9 @@
     <div class="sol">
       <p>Two edges out of $A$ span the plane, and their cross product is the normal that turns the picture into one equation.</p>
       <p>$$ \overrightarrow{AB}=\langle -1,2,0\rangle,\quad \overrightarrow{AC}=\langle -1,0,3\rangle,\quad \vec n=\overrightarrow{AB}\times\overrightarrow{AC}=\langle 6,3,2\rangle. $$</p>
-      <p>Anchoring at $A$ gives $6(x-1)+3y+2z=0$, that is $6x+3y+2z=6$. Here the cross product isn't just a computation, it's the direction the plane faces.</p>
+      <p>Anchoring at $A$ gives $6(x-1)+3y+2z=0$, that is $6x+3y+2z=6$.</p>
       <div class="solfig"><canvas data-fig="planeThreePoints"></canvas></div>
-      <div class="cap2"><b>Drag to rotate.</b> The two edge vectors out of $P$ sweep the shaded plane, the purple arrow is their cross product standing perpendicular to it.</div>
+      <div class="cap2"><b>Drag to rotate.</b> The two edge vectors out of one vertex sweep the shaded plane, the purple arrow is their cross product standing perpendicular to it.</div>
     </div>
   </div>
 
@@ -184,7 +184,7 @@
       </ul>
       <p>The two zero height lines $y=\pm x$ separate the high ground from the low. This is the shape the second derivative test calls a saddle.</p>
       <div class="solfig"><canvas data-fig="saddleTraces"></canvas></div>
-      <div class="cap2"><b>Drag to rotate.</b> Green is the up parabola along $x$, pink the down parabola along $y$. Where they cross is the saddle point, and the two grey lines are the zero height rulings $y=\pm x$.</div>
+      <div class="cap2"><b>Drag to rotate.</b> The figure draws $z=x^2-y^2$, the same saddle turned $90^\circ$ about the $z$ axis. Green is the up parabola along $x$, pink the down parabola along $y$. Where they cross is the saddle point, and the two grey lines are the zero height rulings $y=\pm x$.</div>
     </div>
   </div>
 
@@ -197,7 +197,7 @@
         <li>$x=0$, $z^2-\dfrac{y^2}{4}=1$, hyperbola opening along $\pm z$.</li>
         <li>$y=k$, $\dfrac{x^2}{9}+z^2=1+\dfrac{k^2}{4}$, an ellipse that grows with $|k|$.</li>
       </ul>
-      <p>The slices perpendicular to one axis stay ellipses while the other two directions are hyperbolas. That pattern is a hyperboloid of one sheet, here with its waist along the $y$ axis.</p>
+      <p>The slices perpendicular to one axis stay ellipses while the other two directions are hyperbolas. That pattern is a hyperboloid of one sheet, here with axis along the $y$ axis.</p>
       <div class="solfig"><canvas data-fig="hyp1"></canvas></div>
     </div>
   </div>
@@ -217,10 +217,10 @@
   <h3 id="sec4" class="chapter">Space curves and vector functions</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem.</b> Let $\vec r(t)=\langle\ln(t-1),\arctan t,\sqrt{4-t^2}\rangle$. Find the domain and sketch the $xy$ projection.</p>
+    <p class="stmt"><b>Problem.</b> Let $\vec r(t)=\langle\ln(t-1),\tan^{-1} t,\sqrt{4-t^2}\rangle$. Find the domain and sketch the $xy$ projection.</p>
     <div class="sol">
       <p>The domain is the overlap of what each component allows. $\ln(t-1)$ needs $t&gt;1$, and $\sqrt{4-t^2}$ needs $t\le 2$, so the domain is $(1,2]$.</p>
-      <p>As $t\to 1^+$, $x=\ln(t-1)\to -\infty$ while $y=\arctan t\to \pi/4$. At $t=2$, $(x,y)=(0,\arctan 2)$. The curve comes in from the far left along the line $y=\pi/4$ and ends at a single point.</p>
+      <p>As $t\to 1^+$, $x=\ln(t-1)\to -\infty$ while $y=\tan^{-1} t\to \pi/4$. At $t=2$, $(x,y)=(0,\tan^{-1} 2)$. The curve comes in from the far left along the line $y=\pi/4$ and ends at a single point.</p>
       <div class="fig">
         <svg viewBox="-220 -90 320 140" width="300">
           <g stroke="#888"><line x1="-200" y1="0" x2="40" y2="0"/><line x1="0" y1="-80" x2="0" y2="40"/></g>
@@ -299,7 +299,7 @@
       <p>$$ \vec R\,'=\langle 1,1,-4t\rangle,\qquad \vec R\,''=\langle 0,0,-4\rangle. $$</p>
       <p>At $t=\tfrac12$, $\vec R\,'=\langle 1,1,-2\rangle$ with $|\vec R\,'|=\sqrt6$, and the acceleration $\langle 0,0,-4\rangle$ points straight down. Then</p>
       <p>$$ \vec R\,'\times\vec R\,''=\langle -4,4,0\rangle,\qquad \kappa=\frac{|\vec R\,'\times\vec R\,''|}{|\vec R\,'|^3}=\frac{\sqrt{32}}{6\sqrt6}=\frac{2\sqrt3}{9}. $$</p>
-      <p>The radius is $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far from $P$ along the inward normal, down into the bowl, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle -\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle 1,1,1\rangle$. So here the two lie on the same line, and the slice bends down into the dome, away from the side the normal points to. This happens because the plane $y=x$ contains the surface normal $\langle 1,1,1\rangle$, and for slices like that the two always line up. For a slice whose plane doesn't contain the normal, they don't have to.</p>
+      <p>The radius is $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far from $P$ along the principal normal, below the dome, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle -\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle 1,1,1\rangle$. So here the two lie on the same line, and the slice bends down into the dome, away from the side the normal points to. This happens because the plane $y=x$ contains the surface normal $\langle 1,1,1\rangle$, and for slices like that the two always line up. For a slice whose plane doesn't contain the normal, they don't have to.</p>
     </div>
   </div>
 
@@ -313,7 +313,7 @@
     <div class="sol">
       <p>$\nabla f=\langle -2x,-2y\rangle$, so at $P$</p>
       <p>$$ \nabla f(P)=\langle -1,-1\rangle. $$</p>
-      <p>Now we use this one vector four ways.</p>
+      <p>Now we use this one vector three ways. The chain rule reading comes in the chain rule problems below.</p>
       <p><span class="label">(b) Dot with a displacement to linearize.</span> The tangent plane is $z=f(P)+\nabla f(P)\cdot\langle x-\tfrac12,y-\tfrac12\rangle$,</p>
       <p>$$ L(x,y)=\tfrac12-(x-\tfrac12)-(y-\tfrac12)=\tfrac32-x-y. $$</p>
       <p>At $(0.51,0.49)$ the displacement is $\langle 0.01,-0.01\rangle$, and $\nabla f(P)\cdot\langle 0.01,-0.01\rangle=0$, so $L=\tfrac12$. The true value is $f(0.51,0.49)=0.4998$, just under. The plane sits above the dome, so the estimate runs high.</p>
@@ -329,7 +329,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Build the tangent plane to the dome at $P$ from scratch, out of the two trace tangents, and confirm it is the linearization.</p>
     <div class="sol">
-      <p>Before using the formula, let's see where the plane comes from. Hold $y=\tfrac12$ and the dome becomes a curve in a vertical plane, whose tangent at $P$ has slope $f_x(P)=-1$. So the vector $\vec a=\langle 1,0,-1\rangle$ rides that trace. Hold $x=\tfrac12$ and the trace tangent is $\vec b=\langle 0,1,-1\rangle$ with slope $f_y(P)=-1$.</p>
+      <p>First, where the plane comes from. Hold $y=\tfrac12$ and the dome becomes a curve in a vertical plane, whose tangent at $P$ has slope $f_x(P)=-1$. So the vector $\vec a=\langle 1,0,-1\rangle$ rides that trace. Hold $x=\tfrac12$ and the trace tangent is $\vec b=\langle 0,1,-1\rangle$ with slope $f_y(P)=-1$.</p>
       <p>The plane through $P$ spanned by $\vec a$ and $\vec b$ has normal</p>
       <p>$$ \vec a\times\vec b=\langle 1,1,1\rangle, $$</p>
       <p>so $1(x-\tfrac12)+1(y-\tfrac12)+1(z-\tfrac12)=0$, that is $z=\tfrac32-x-y$. Exactly the linearization from the previous problem. The two trace slopes are the two partials, and the plane is the only plane containing both tangent lines.</p>
@@ -339,14 +339,14 @@
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem.</b> When does a tangent line over estimate and when does it under estimate? Build it in 1D, then lift to the dome.</p>
+    <p class="stmt"><b>Problem.</b> When does a tangent line overestimate and when does it underestimate? Build it in 1D, then lift to the dome.</p>
     <div class="sol">
       <p>Take $f(x)=\sqrt x$ at $a=4$. Then $f'(x)=\tfrac{1}{2\sqrt x}$, so $f'(4)=\tfrac14$ and</p>
       <p>$$ L(x)=2+\tfrac14(x-4),\qquad L(4.1)=2.025. $$</p>
       <p>The true value $\sqrt{4.1}=2.0249$ is a touch lower. The graph is concave down, so it bends away beneath its tangent line, and the line predicts too much. Flip the concavity and the line predicts too little. The sign of the error is the sign of the bend.</p>
-      <p>The same logic lifts. A surface estimate from the tangent plane is too high where the surface bends below the plane and too low where it bends above. The dome bends below its tangent plane everywhere, so its linearization always over estimates, which is why part (b) above came out high. A saddle bends below in one direction and above in another, so its tangent plane is too high in some directions and too low in others.</p>
+      <p>The same logic lifts. A surface estimate from the tangent plane is too high where the surface bends below the plane and too low where it bends above. The dome bends below its tangent plane everywhere, so its linearization always overestimates, which is why part (b) above came out high. A saddle bends below in one direction and above in another, so its tangent plane is too high in some directions and too low in others.</p>
       <div class="solfig"><canvas data-fig="overUnder1D"></canvas></div>
-      <div class="cap2">Concave down (top) the tangent rides above and over estimates. Concave up (bottom) it rides below and under estimates.</div>
+      <div class="cap2">Concave down (top) the tangent rides above and overestimates. Concave up (bottom) it rides below and underestimates.</div>
     </div>
   </div>
 
@@ -449,10 +449,10 @@
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem.</b> Find the tangent plane to $x^2+2y^2+3z^2=21$ at $(2,2,1)$, and the linearization of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ to estimate $f(1.95,1.08)$.</p>
+    <p class="stmt"><b>Problem.</b> Find the tangent plane to $x^2+2y^2+3z^2=21$ at $(4,-1,1)$, and the linearization of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ to estimate $f(1.95,1.08)$.</p>
     <div class="sol">
-      <p>For a surface written as a level set $F=c$, the gradient $\nabla F$ is the normal, so we don't need to solve for $z$. Here $\nabla F=\langle 2x,4y,6z\rangle=\langle 4,8,6\rangle$ at the point, so the plane is</p>
-      <p>$$ 4(x-2)+8(y-2)+6(z-1)=0\ \Longleftrightarrow\ 2x+4y+3z=15. $$</p>
+      <p>For a surface written as a level set $F=c$, the gradient $\nabla F$ is the normal, so we don't need to solve for $z$. Here $\nabla F=\langle 2x,4y,6z\rangle=\langle 8,-4,6\rangle$ at the point, so the plane is</p>
+      <p>$$ 8(x-4)-4(y+1)+6(z-1)=0\ \Longleftrightarrow\ 4x-2y+3z=21. $$</p>
       <p>For the explicit graph, the partials at $(2,1)$ are $f_x=-2/3$ and $f_y=-7/3$ with $f(2,1)=3$, so</p>
       <p>$$ L(x,y)=3-\tfrac23(x-2)-\tfrac73(y-1),\qquad f(1.95,1.08)\approx 3-\tfrac23(-0.05)-\tfrac73(0.08)\approx 2.847. $$</p>
       <div class="solfig"><canvas data-fig="tangentPlane"></canvas></div>
@@ -616,7 +616,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Volume under $z=1-x^2-y^2$ above $z=0$, in polar.</p>
     <div class="sol">
-      <p>The dome meets the floor on the unit disk, a circle, so polar coordinates fit the region well and turn $1-x^2-y^2$ into $1-r^2$. The extra $r$ is the area of a polar cell.</p>
+      <p>The dome meets the floor on the unit disk, a circle, so polar coordinates fit the region well and turn $1-x^2-y^2$ into $1-r^2$. The extra $r$ comes from the area $r\,dr\,d\theta$ of a polar cell.</p>
       <p>$$ V=\int_0^{2\pi}\int_0^1(1-r^2)\,r\,dr\,d\theta=2\pi\Bigl[\tfrac{r^2}{2}-\tfrac{r^4}{4}\Bigr]_0^1=\frac{\pi}{2}. $$</p>
     </div>
   </div>
@@ -643,9 +643,9 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> First octant region inside $x^2+y^2+z^2=4$, constant density. Find $\bar z$.</p>
     <div class="sol">
-      <p>Spherical coordinates suit a ball, with $0\le\rho\le 2$ and $0\le\phi,\theta\le\pi/2$ for the first octant. The volume element is $\rho^2\sin\phi$.</p>
+      <p>Spherical coordinates suit a ball, with $0\le\rho\le 2$ and $0\le\phi,\theta\le\pi/2$ for the first octant. The volume element is $dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$. Take the density to be $1$, since a constant density cancels in $\bar z$.</p>
       <p>$$ m=\tfrac18\cdot\tfrac43\pi(8)=\tfrac{4\pi}{3},\qquad M_{xy}=\iiint z\,dV=\int_0^{\pi/2}\!d\theta\int_0^{\pi/2}\!\cos\phi\sin\phi\,d\phi\int_0^2\!\rho^3\,d\rho=\tfrac{\pi}{2}\cdot\tfrac12\cdot4=\pi. $$</p>
-      <p>So $\bar z=M_{xy}/m=\dfrac{\pi}{4\pi/3}=\dfrac34$. The centroid sits below the top because the wedge holds more material low and wide than high and narrow.</p>
+      <p>So $\bar z=M_{xy}/m=\dfrac{\pi}{4\pi/3}=\dfrac34$. The centroid sits below the midpoint height $z=1$ because the wedge holds more material low and wide than high and narrow.</p>
     </div>
   </div>
 
@@ -658,7 +658,7 @@
       <p>Test conservativeness first. $P_y=x$ but $Q_x=2x$, they disagree, so $\vec F$ is not a gradient and the work depends on the path. So there's no shortcut, we have to parametrize and integrate.</p>
       <p>Take $x=t,\ y=t^2$, so $d\vec r=\langle 1,2t\rangle\,dt$ and $\vec F=\langle t^3,t^2\rangle$.</p>
       <p>$$ \int_C\vec F\cdot d\vec r=\int_0^1\bigl(t^3+2t^3\bigr)\,dt=\int_0^1 3t^3\,dt=\frac34. $$</p>
-      <p>A different route from $(0,0)$ to $(1,1)$ would give a different number, because the mismatch $P_y\ne Q_x$ means the field has swirl.</p>
+      <p>A different route from $(0,0)$ to $(1,1)$ can give a different number, because the mismatch $P_y\ne Q_x$ means the field has swirl.</p>
     </div>
   </div>
 
@@ -712,7 +712,7 @@
     <p class="stmt"><b>Problem.</b> Prove $\operatorname{div}(\operatorname{curl}\vec F)=0$ for any smooth $\vec F$.</p>
     <div class="sol">
       <p>The idea is that a field that's all spin doesn't spread out, and the proof is just equality of mixed partials. Writing $\vec F=\langle P,Q,R\rangle$,</p>
-      <p>$$ \operatorname{div}(\operatorname{curl}\vec F)=(R_{xy}-Q_{xz})+(P_{yz}-R_{yx})+(Q_{zx}-P_{zy}). $$</p>
+      <p>$$ \operatorname{div}(\operatorname{curl}\vec F)=(R_{yx}-Q_{zx})+(P_{zy}-R_{xy})+(Q_{xz}-P_{yz}). $$</p>
       <p>By Clairaut $R_{xy}=R_{yx}$, $Q_{xz}=Q_{zx}$, $P_{yz}=P_{zy}$, so the six terms cancel in pairs. The sum is $0$. <span class="check">&#10003;</span> This is why a curl can never have sources, and by the divergence theorem its flux through any closed surface is $0$.</p>
       <div class="solfig"><canvas data-fig="curlFlow"></canvas></div>
       <div class="cap2">A swirling field. Particles circulate without ever piling up or thinning out, so its divergence is zero everywhere.</div>
@@ -722,7 +722,7 @@
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Compare what divergence sees in the outflow field $\vec F=\langle x,y\rangle$ and the rotation field $\vec G=\langle -y,x\rangle$.</p>
     <div class="sol">
-      <p>$\operatorname{div}\vec F=1+1=2$, positive everywhere, every point is a little source pushing outward. $\operatorname{div}\vec G=0$, the rotation neither spreads nor gathers. Meanwhile the curl flips the story, $\vec G$ spins and $\vec F$ does not. So divergence and curl answer two different questions about a field, how much it spreads and how much it spins.</p>
+      <p>$\operatorname{div}\vec F=1+1=2$, positive everywhere, every point is a little source pushing outward. $\operatorname{div}\vec G=0$, the rotation neither spreads nor gathers. The curl does the opposite, $\vec G$ spins and $\vec F$ does not. So divergence and curl answer two different questions about a field, how much it spreads and how much it spins.</p>
       <div class="solfig"><canvas data-fig="divPlusFlow"></canvas></div>
       <div class="cap2">The outflow field. Particles stream away from the origin, the mark of positive divergence.</div>
     </div>

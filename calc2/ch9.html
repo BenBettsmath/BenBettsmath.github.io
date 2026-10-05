@@ -45,7 +45,7 @@ window.MathJax = {
 
 <p><b>Example.</b> Show $y = Ce^{x^2}$ solves $y' = 2xy$ for every constant $C$, and solve the IVP with $y(0) = 3$. Differentiating, $y' = 2xCe^{x^2} = 2xy$. The condition gives $C = 3$, so $y = 3e^{x^2}$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Checking a solution means substituting it into <em>both</em> sides of the equation and simplifying until they agree, and separately checking the initial condition. A function can satisfy the equation and miss the initial condition, or the reverse.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Checking a solution means substituting it into <em>both</em> sides of the equation and simplifying until they agree, and separately checking the initial condition. A function can satisfy the equation and miss the initial condition, or the reverse.</p></div>
 </div>
 <div class="section"><h3>9.2 Direction Fields and Euler's Method</h3>
 
@@ -63,7 +63,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $y' = x + y$, $y(0) = 1$, with $h = 0.5$. Then $y_1 = 1 + 0.5(0 + 1) = 1.5$ at $x = 0.5$, and $y_2 = 1.5 + 0.5(0.5 + 1.5) = 2.5$ at $x = 1$. The exact solution is $y = 2e^x - x - 1$, with $y(1) = 2e - 2 \approx 3.44$. The estimate is low because this solution is concave up.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Each step uses the slope at the <em>previous</em> point $(x_{n-1}, y_{n-1})$, not at the new one. Keep a table with columns $n$, $x_n$, $y_n$, $F(x_n, y_n)$ so the slope used for the next step is always in the row above.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Each step uses the slope at the <em>previous</em> point $(x_{n-1}, y_{n-1})$, not at the new one. Keep a table with columns $n$, $x_n$, $y_n$, $F(x_n, y_n)$ so the slope used for the next step is always in the row above.</p></div>
 </div>
 <div class="section"><h3>9.3 Separable Equations</h3>
 
@@ -73,7 +73,7 @@ window.MathJax = {
 <p>This gives $y$ implicitly as a function of $x$. Solve for $y$ when possible, then use the initial condition to find the constant.</p>
 <p><em>Why it is legitimate.</em> Writing the equation as $\dfrac{1}{f(y)}\dfrac{dy}{dx} = g(x)$ and integrating both sides with respect to $x$, the left side is $\int\frac{1}{f(y)}\frac{dy}{dx}\,dx = \int\frac{dy}{f(y)}$ by the substitution rule. Moving $dx$ across is shorthand for that.</p>
 
-<p><b>Example.</b> $\dfrac{dy}{dx} = -\dfrac{x}{y}$. Separate: $y\,dy = -x\,dx$. Integrate: $\tfrac12y^2 = -\tfrac12x^2 + C$, so $x^2 + y^2 = 2C$. The solution curves are circles centered at the origin. Each solution $y = \pm\sqrt{r^2 - x^2}$ is a half circle, with the sign set by the initial condition.</p>
+<p><b>Example.</b> $\dfrac{dy}{dx} = -\dfrac{x}{y}$. Separate: $y\,dy = -x\,dx$. Integrate: $\tfrac12y^2 = -\tfrac12x^2 + C$, so $x^2 + y^2 = 2C$, which we write as $r^2$ with $r &gt; 0$. The solution curves are circles centered at the origin. Each solution $y = \pm\sqrt{r^2 - x^2}$ is a half circle, with the sign set by the initial condition.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="circles"></canvas><div class="fig-cap"><b>Implicit solutions of $y' = -x/y$.</b>Drag the point. The solution through it is the half circle on its side of the $x$-axis, where $y \ne 0$.</div></div>
 
@@ -84,8 +84,8 @@ window.MathJax = {
 
 <p><b>Orthogonal trajectories.</b> Curves that cross every member of a family at right angles. Find the differential equation $y' = F(x, y)$ satisfied by the family (eliminate the constant), then solve $y' = -1/F(x, y)$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Dividing by $f(y)$ assumes $f(y) \ne 0$. Each root $c$ of $f$ gives a constant solution $y = c$ that the separated formula may miss (for $y' = xy^2$ this is $y = 0$).</p>
-<p>One constant is enough. Write $+C$ on one side only. After exponentiating, $\ln|y| = kt + C$ becomes $y = Ae^{kt}$ with $A = \pm e^C$, and $A = 0$ restores the lost equilibrium.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Dividing by $f(y)$ assumes $f(y) \ne 0$. Each root $c$ of $f$ gives a constant solution $y = c$ that the separated formula may miss (for $y' = xy^2$ this is $y = 0$).</p>
+<p>One constant is enough. Write $+C$ on one side only. For $y' = ky$, after exponentiating, $\ln|y| = kt + C$ becomes $y = Ae^{kt}$ with $A = \pm e^C$, and $A = 0$ restores the lost equilibrium.</p></div>
 </div>
 <div class="section"><h3>9.4 Models for Population Growth</h3>
 
@@ -105,7 +105,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $M = 1000$, $P_0 = 100$, $k = 0.4$. Then $A = 9$ and $P(t) = \dfrac{1000}{1 + 9e^{-0.4t}}$. The population reaches $500$ when $9e^{-0.4t} = 1$, that is $t = \dfrac{\ln 9}{0.4} \approx 5.49$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In the logistic model $k$ is the growth rate only for small $P$. The actual relative growth rate $\frac{1}{P}\frac{dP}{dt} = k(1 - P/M)$ decreases linearly in $P$. And a solution starting below $M$ never reaches or crosses $M$, since two solutions of the equation cannot cross.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>In the logistic model $k$ is the growth rate only for small $P$. The actual relative growth rate $\frac{1}{P}\frac{dP}{dt} = k(1 - P/M)$ decreases linearly in $P$. And a solution starting below $M$ never reaches or crosses $M$, since two solutions of the equation cannot cross.</p></div>
 </div>
 <div class="section"><h3>Practice problems</h3>
 

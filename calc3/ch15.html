@@ -37,24 +37,24 @@ window.MathJax = {
 <p>Double and triple integrals, with polar, cylindrical, and spherical coordinates and their volume elements. Applications run from mass and center of mass to probability density. The one idea behind all of it is to cut the region into tiny pieces, weight each piece, and add them up.</p>
 <div class="section"><h3>15.1 Double Integrals over Rectangles, Area, and Volume</h3>
 
-<p class="part"><span class="dimtag">3D</span><b>Riemann sum.</b> Chop the rectangle $R = [a, b] \times [c, d]$ into tiny tiles of area $\Delta A$. Put a column of height $f(x^*, y^*)$ above each, and add.</p>
+<p class="part"><span class="dimtag">3D</span><b>Riemann sum.</b> Chop the rectangle $R = [a, b] \times [c, d]$ into $mn$ subrectangles $R_{ij}$ ($m$ across in $x$, $n$ up in $y$), each of area $\Delta A$. Pick a sample point $(x_{ij}^*, y_{ij}^*)$ in each $R_{ij}$, put a column of height $f(x_{ij}^*, y_{ij}^*)$ above it, and add.</p>
 <div class="formula">$\displaystyle \iint_R f\,dA = \lim_{m, n \to \infty} \sum_{i, j} f(x_{ij}^*, y_{ij}^*)\,\Delta A.$</div>
 
-<p><b>Midpoint Rule.</b> Take $(x_{ij}^*, y_{ij}^*)$ at the center of each subrectangle, so $\iint_R f\,dA \approx \sum_{i, j} f(\bar x_i, \bar y_j)\,\Delta A$. This is the easiest way to actually estimate one by hand.</p>
+<p><b>Midpoint Rule.</b> Take $(x_{ij}^*, y_{ij}^*)$ at the center $(\bar x_i, \bar y_j)$ of each subrectangle $R_{ij}$, so $\iint_R f\,dA \approx \sum_{i, j} f(\bar x_i, \bar y_j)\,\Delta A$. This is the easiest way to estimate one by hand.</p>
 
-<p><b>Properties of double integrals.</b> For continuous or boundedly discontinuous $f$ and $g$ on a region $D$, and a constant $c$, the following hold.</p>
+<p><b>Properties of double integrals.</b> For $f$ and $g$ whose integrals over a region $D$ exist (continuous $f$ and $g$ suffice), and a constant $c$, the following hold.</p>
 <ul class="tight">
   <li>Linearity. $\iint_D (f + g)\,dA = \iint_D f\,dA + \iint_D g\,dA$ and $\iint_D cf\,dA = c\iint_D f\,dA$.</li>
   <li>Order. If $f \ge g$ on $D$ then $\iint_D f\,dA \ge \iint_D g\,dA$.</li>
-  <li>Bounds. If $m \le f \le M$ on $D$ then $m\,A(D) \le \iint_D f\,dA \le M\,A(D)$.</li>
   <li>$\iint_D 1\,dA = A(D)$, the area of $D$.</li>
+  <li>Bounds. If $m \le f \le M$ on $D$ then $m\,A(D) \le \iint_D f\,dA \le M\,A(D)$.</li>
   <li>Domain splitting. If $D = D_1 \cup D_2$ with $D_1, D_2$ overlapping only on their boundary, then $\iint_D f\,dA = \iint_{D_1} f\,dA + \iint_{D_2} f\,dA$.</li>
 </ul>
 
 <p><b>Area</b> of a planar region $D$ is $\iint_D 1\,dA$. If $D$ is bounded below by $y = g(x)$ and above by $y = f(x)$ on $[a, b]$, then</p>
 <div class="formula">$A = \int_a^b (f(x) - g(x))\,dx = \iint_D 1\,dA.$</div>
 
-<p><b>Volume</b> under a surface $z = h(x, y)$ above a region $D$ in the $xy$-plane is</p>
+<p><b>Volume</b> under a surface $z = h(x, y)$, with $h \ge 0$, above a region $D$ in the $xy$-plane is</p>
 <div class="formula">$V = \iint_D h(x, y)\,dA.$</div>
 <p>Taking $h = 1$ gives back the area of $D$, since a slab of height $1$ over $D$ has volume equal to the area of $D$.</p>
 
@@ -81,11 +81,11 @@ window.MathJax = {
 <div class="fig-inline-canvas"><canvas data-fig="reverseOrder"></canvas></div>
 </details>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Reversing the order is not just swapping $dy\,dx$ for $dx\,dy$. The limits change completely, so we have to redraw $D$ and read off new bounds. This is exactly what makes integrals like $\displaystyle\int_0^1\!\int_x^1 e^{y^2}\,dy\,dx$ workable, since the inner integral has no elementary antiderivative until the order is flipped.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Reversing the order is not just swapping $dy\,dx$ for $dx\,dy$. The limits change completely, so we have to redraw $D$ and read off new bounds. This is exactly what makes integrals like $\displaystyle\int_0^1\!\int_x^1 e^{y^2}\,dy\,dx$ workable, since the inner integral has no elementary antiderivative until the order is flipped.</p></div>
 </div>
 <div class="section"><h3>15.3 Double Integrals in Polar Coordinates</h3>
 
-<p class="part"><span class="dimtag">2D</span><b>Change of variables.</b> $x = r\cos\theta,\ y = r\sin\theta$, with $r \ge 0$ the distance from the origin and $\theta$ the angle from the positive $x$-axis.</p>
+<p class="part"><span class="dimtag">2D</span><b>Change of variables.</b> $x = r\cos\theta,\ y = r\sin\theta$, with $r \ge 0$ the distance from the origin and $\theta$ the angle from the positive $x$-axis. For a region $D = \{(r, \theta) : \alpha \le \theta \le \beta,\ r_1(\theta) \le r \le r_2(\theta)\}$ (Stewart writes $h_1$, $h_2$ for $r_1$, $r_2$),</p>
 
 <div class="formula">$\iint_D f(x, y)\,dA = \int_\alpha^\beta \int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta)\,r\,dr\,d\theta.$</div>
 
@@ -96,11 +96,11 @@ window.MathJax = {
 <div class="fig-inline-canvas"><canvas data-fig="circleArea"></canvas></div>
 </details>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Never drop the Jacobian factor.</b> $dA=r\,dr\,d\theta$ (not $dr\,d\theta$), $dV=r\,dz\,dr\,d\theta$ in cylindrical, and $dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$ in spherical. Leaving out the $r$ or the $\rho^2\sin\phi$ is the most common mistake with multiple integrals.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Never drop the factor $r$.</b> $dA=r\,dr\,d\theta$ (not $dr\,d\theta$). Leaving out the $r$ is the most common mistake with polar integrals.</p></div>
 </div>
 <div class="section"><h3>15.4 Applications of Double Integrals</h3>
 
-<p class="part"><span class="dimtag">2D</span>A lamina has density $\rho(x, y)$, mass per area, over a region $D$.</p>
+<p class="part"><span class="dimtag">2D</span>A lamina (a thin flat plate) has density $\rho(x, y)$, mass per area, over a region $D$.</p>
 
 <p><b>Mass.</b> $m = \iint_D \rho\,dA$.</p>
 
@@ -113,7 +113,7 @@ Each mass contributes its position weighted by its size. Chop the lamina into ti
 $$\bar x = \frac{\iint_D x\,dm}{\iint_D dm} = \frac{\iint_D x\,\rho\,dA}{\iint_D \rho\,dA}.$$
 The $x$ in the numerator is the tile position, its lever arm to the $y$-axis, and $\rho\,dA$ is the mass. Multiplying them is mass times position, exactly the discrete sum in the limit. The same logic gives $\bar y = \iint y\rho\,dA / m$ with $y$ the lever arm to the $x$-axis.</p>
 
-<p><b>Average value.</b> $\bar f = \dfrac{1}{\text{Area}(D)} \iint_D f\,dA.$</p>
+<p><b>Average value.</b> $\bar f = \dfrac{1}{A(D)} \iint_D f\,dA.$</p>
 
 <p><b>Probability density.</b> A function $p(x, y) \ge 0$ on $D$ with $\iint_D p\,dA = 1$. The probability that a random point lies in a sub-region is the integral of $p$ over that sub-region.</p>
 
@@ -124,8 +124,8 @@ The $x$ in the numerator is the tile position, its lever arm to the $y$-axis, an
 <div class="formula">$\iiint_B f\,dV = \int_r^s \int_c^d \int_a^b f(x, y, z)\,dx\,dy\,dz$</div>
 <p>in any order, by Fubini.</p>
 
-<p><b>General regions.</b> For a solid $E$ bounded below by $z = g_1(x, y)$ and above by $z = g_2(x, y)$, with $(x, y)$ in a 2D region $D$,</p>
-<div class="formula">$\iiint_E f\,dV = \iint_D \int_{g_1(x, y)}^{g_2(x, y)} f(x, y, z)\,dz\,dA.$</div>
+<p><b>General regions.</b> For a solid $E$ bounded below by $z = u_1(x, y)$ and above by $z = u_2(x, y)$, with $(x, y)$ in a 2D region $D$,</p>
+<div class="formula">$\iiint_E f\,dV = \iint_D \int_{u_1(x, y)}^{u_2(x, y)} f(x, y, z)\,dz\,dA.$</div>
 
 <p><em>Example.</em> Compute the volume of the tetrahedron with vertices $(0,0,0)$, $(1,0,0)$, $(0,1,0)$, $(0,0,1)$. The top is $z = 1 - x - y$, the bottom is $z = 0$, and the projection is the triangle $x + y \le 1$, $x, y \ge 0$.</p>
 <div class="formula">$V = \int_0^1 \int_0^{1 - x} \int_0^{1 - x - y} dz\,dy\,dx = \int_0^1 \int_0^{1 - x} (1 - x - y)\,dy\,dx = \tfrac{1}{6}.$</div>
@@ -165,12 +165,12 @@ The $x$ in the numerator is the tile position, its lever arm to the $y$-axis, an
 
 <p><b>Ranges.</b> $\rho \ge 0$ (distance from origin), $0 \le \phi \le \pi$ ($\phi$ is the angle from the positive $z$-axis), $0 \le \theta \le 2\pi$ (azimuthal angle in the $xy$-plane).</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Conventions differ between books. Here $\phi$ is the angle from the positive $z$-axis with $0\le\phi\le\pi$, and $\theta$ is the angle in the $xy$-plane. Some texts swap the two letters, so check which is which before substituting, and keep the $\sin\phi$ in the volume element.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Conventions differ between books. Here $\phi$ is the angle from the positive $z$-axis with $0\le\phi\le\pi$, and $\theta$ is the angle in the $xy$-plane. Some texts swap the two letters, so check which is which before substituting, and keep the $\sin\phi$ in the volume element.</p></div>
 <div class="formula">$\iiint_E f\,dV = \iiint_E f \cdot \rho^2 \sin\phi\,d\rho\,d\phi\,d\theta.$</div>
 
-<p><b>Volume element.</b> $dV = \rho^2 \sin\phi\,d\rho\,d\phi\,d\theta$. The spherical wedge is bounded by two concentric spheres at $\rho$ and $\rho + d\rho$, two cones with half-angles $\phi$ and $\phi + d\phi$, and two half-planes at azimuths $\theta$ and $\theta + d\theta$. Its edge lengths are the radial $d\rho$, the latitude $\rho\,d\phi$, and the longitude $\rho\sin\phi\,d\theta$.</p>
+<p><b>Volume element.</b> $dV = \rho^2 \sin\phi\,d\rho\,d\phi\,d\theta$. The spherical wedge is bounded by two concentric spheres at $\rho$ and $\rho + d\rho$, two cones with half-angles $\phi$ and $\phi + d\phi$, and two half-planes at azimuths $\theta$ and $\theta + d\theta$. Its edge lengths are the radial $d\rho$, the arc $\rho\,d\phi$ along a meridian, and the arc $\rho\sin\phi\,d\theta$ along a circle of latitude.</p>
 
-<p><b>Key relations.</b> $r = \rho\sin\phi$ (cylindrical radius from $z$-axis), $z = \rho\cos\phi$. The Jacobian $\rho^2\sin\phi$ is the product of the three edge lengths. The coordinate surfaces are spheres $\rho = c$, cones $\phi = c$, and half-planes $\theta = c$.</p>
+<p><b>Key relations.</b> $r = \rho\sin\phi$ (cylindrical radius from $z$-axis), $z = \rho\cos\phi$. The factor $\rho^2\sin\phi$ in $dV$ is the product of the three edge lengths divided by $d\rho\,d\phi\,d\theta$. The coordinate surfaces are spheres $\rho = c$, cones $\phi = c$, and half-planes $\theta = c$.</p>
 
 <details class="fig-fold"><summary>Figures, the spherical cell and the full coordinate grid</summary>
 <div class="fig-inline-canvas"><canvas data-fig="sphWedge"></canvas></div>
@@ -178,14 +178,14 @@ The $x$ in the numerator is the tile position, its lever arm to the $y$-axis, an
 </details>
 </div>
 <div class="section"><h3>The dome as a volume</h3>
-<p>The dome $z = 1 - x^2 - y^2$ from Chapter 14 sits over the unit disk. We'll compute its volume several different ways. Try drawing each step by hand.</p>
+<p>The dome $z = 1 - x^2 - y^2$ from Chapter 14 sits over the unit disk. Here its volume is computed several ways. Try drawing each step by hand.</p>
 <ol class="tight">
   <li><b>1D companion.</b> Sketch $y = 1 - x^2$ on $[-1,1]$, the dome's slice through the $x$-axis, and find $\int_{-1}^{1}(1-x^2)\,dx$.</li>
   <li><b>2D in 3D.</b> Sketch the dome and its shadow $x^2+y^2\le 1$, then set up $\iint_D (1-x^2-y^2)\,dA$ with the inner strip in $y$.</li>
   <li><b>Polar.</b> Evaluate $\int_0^{2\pi}\!\int_0^1 (1-r^2)\,r\,dr\,d\theta$ and say why the extra $r$ appears.</li>
   <li><b>Reverse.</b> Redraw the shadow the other way and rewrite the rectangular integral.</li>
   <li><b>Sweep.</b> Write the volume as a triple integral with $0\le z\le 1-x^2-y^2$, then in cylindrical, and check it matches.</li>
-  <li><b>Weigh.</b> With density $1$, symmetry gives $\bar x=\bar y=0$; find $\bar z$ and mark the balance height.</li>
+  <li><b>Weigh.</b> With density $1$, symmetry gives $\bar x=\bar y=0$. Find $\bar z$ and mark the balance height.</li>
   <li><b>Spherical.</b> Cap the disk with the hemisphere $z=\sqrt{1-x^2-y^2}$ and set up its volume as $\int_0^{2\pi}\!\int_0^{\pi/2}\!\int_0^1 \rho^2\sin\phi\,d\rho\,d\phi\,d\theta$.</li>
 </ol>
 </div>
@@ -219,7 +219,7 @@ $\bar y = M_x/m = \dfrac{4a}{3\pi}$.</p>
 
 <p><b>Setting up a double integral.</b> Sketch $D$, describe it as Type I ($a \le x \le b$, $g_1(x) \le y \le g_2(x)$) or Type II ($c \le y \le d$, $h_1(y) \le x \le h_2(y)$), whichever gives the simpler limits and antiderivative, and write the iterated integral.</p>
 
-<p><b>When to switch to polar.</b> Use polar when $D$ is a disk, annulus, or wedge, or the integrand contains $x^2 + y^2$, $\sqrt{x^2 + y^2}$, or $\arctan(y/x)$.</p>
+<p><b>When to switch to polar.</b> Use polar when $D$ is a disk, annulus, or wedge, or the integrand contains $x^2 + y^2$, $\sqrt{x^2 + y^2}$, or $\tan^{-1}(y/x)$.</p>
 
 <p><b>Surface area for $z = f(x, y)$ over $D$.</b>
 $\displaystyle S = \iint_D \sqrt{1 + f_x^2 + f_y^2}\,dA.$</p>
@@ -232,7 +232,7 @@ $\displaystyle S = \iint_D \sqrt{1 + f_x^2 + f_y^2}\,dA.$</p>
 
 <p><b>Mass, center of mass, moments.</b> $m = \iiint \rho\,dV$, $\bar x = \tfrac{1}{m}\iiint x\rho\,dV$ with $\bar y, \bar z$ alike, $I_x = \iiint(y^2 + z^2)\rho\,dV$ with $I_y, I_z$ alike.</p>
 
-<p><b>Probability density.</b> $p(x, y) \ge 0$ with $\iint p\,dA = 1$. Probabilities are integrals of $p$ over regions, and $E[X] = \iint x\,p\,dA$.</p>
+<p><b>Probability density.</b> $p(x, y) \ge 0$ with $\iint p\,dA = 1$. Probabilities are integrals of $p$ over regions, and the expected value of the $x$-coordinate $X$ of the random point is $E[X] = \iint x\,p\,dA$.</p>
 
 <p><b>Jacobian for a change of variables.</b> If $x = g(u, v)$, $y = h(u, v)$, then $dA = \left|\dfrac{\partial(x, y)}{\partial(u, v)}\right| du\,dv$. The determinant is the area of the small parallelogram that the map makes from a $du$ by $dv$ square. The polar $r$ is this determinant for $x = r\cos\theta$, $y = r\sin\theta$.</p>
 

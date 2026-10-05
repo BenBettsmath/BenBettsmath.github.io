@@ -45,16 +45,16 @@ window.MathJax = {
 
 <p><b>Example.</b> $f(x) = \tfrac{x^2}{4} + 1$ on $[0, 4]$ with $n = 4$, so $\Delta x = 1$. Midpoints $0.5, 1.5, 2.5, 3.5$ give $M_4 = (1.0625 + 1.5625 + 2.5625 + 4.0625)(1) = 9.25$. The exact area is $\tfrac{28}{3} \approx 9.33$.</p>
 
-<p><b>Distance.</b> If an object moves with velocity $v(t) \ge 0$, on a short time interval of length $\Delta t$ it travels about $v(t_i^*)\,\Delta t$ (speed times time, treating the speed as constant). So the distance traveled from $t = a$ to $t = b$ is $\displaystyle\lim_{n \to \infty}\sum_{i = 1}^n v(t_i^*)\,\Delta t$, the area under the velocity graph.</p>
+<p><b>Distance.</b> If an object moves with velocity $v(t) \ge 0$, on the $i$th of $n$ time intervals of length $\Delta t = \tfrac{b - a}{n}$ it travels about $v(t_i^*)\,\Delta t$, with $t_i^*$ a sample time in that interval (speed times time, treating the speed as constant). So the distance traveled from $t = a$ to $t = b$ is $\displaystyle\lim_{n \to \infty}\sum_{i = 1}^n v(t_i^*)\,\Delta t$, the area under the velocity graph.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>With $n$ rectangles there are $n + 1$ endpoints $x_0, \ldots, x_n$. The left sum uses $x_0, \ldots, x_{n - 1}$ and the right sum uses $x_1, \ldots, x_n$. Do not use all $n + 1$. And always multiply by $\Delta x$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>With $n$ rectangles there are $n + 1$ endpoints $x_0, \ldots, x_n$. The left sum uses $x_0, \ldots, x_{n - 1}$ and the right sum uses $x_1, \ldots, x_n$. Do not use all $n + 1$. And always multiply by $\Delta x$.</p></div>
 </div>
 
 <div class="section"><h3>4.2 The Definite Integral</h3>
 
 <p class="part"><span class="dimtag">Concept</span>If $f$ is defined on $[a, b]$, its <b>definite integral</b> from $a$ to $b$ is</p>
 <div class="formula">$\displaystyle\int_a^b f(x)\,dx = \lim_{n \to \infty}\sum_{i = 1}^{n} f(x_i^*)\,\Delta x,$</div>
-<p>provided the limit exists and is the same for all choices of sample points. Then $f$ is <b>integrable</b> on $[a, b]$. Every continuous $f$ is integrable. The sums are <b>Riemann sums</b>. In the notation, $\int$ is a stretched S for "sum", $a$ and $b$ are the <b>limits of integration</b>, $f(x)$ is the <b>integrand</b>, and $dx$ is the limit of $\Delta x$. With right endpoints, $x_i = a + i\,\Delta x$ and</p>
+<p>provided the limit exists and is the same for all choices of sample points. Then $f$ is <b>integrable</b> on $[a, b]$. Every continuous $f$ is integrable. The sums are <b>Riemann sums</b>. In the notation, $\int$ is a stretched S for "sum", $a$ and $b$ are the <b>limits of integration</b>, $f(x)$ is the <b>integrand</b>, and $dx$ plays the role of $\Delta x$ (it has no meaning by itself). With right endpoints, $x_i = a + i\,\Delta x$ and</p>
 <div class="formula">$\displaystyle\int_a^b f(x)\,dx = \lim_{n \to \infty}\sum_{i = 1}^{n} f\!\left(a + i\,\frac{b - a}{n}\right)\frac{b - a}{n}.$</div>
 
 <p><b>Net area.</b> Where $f &lt; 0$ the products $f(x_i^*)\Delta x$ are negative. So $\int_a^b f(x)\,dx$ is the <b>net (signed) area</b>: the area above the $x$-axis minus the area below.</p>
@@ -71,7 +71,7 @@ window.MathJax = {
 </ul>
 <p><em>Why.</em> Each property already holds for every Riemann sum, so it holds for the limit.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The definite integral is a number, and it is net area, not total area. $\int_0^{2\pi}\sin x\,dx = 0$ even though the region between $\sin x$ and the axis has area $4$. The variable is a dummy: $\int_a^b f(x)\,dx = \int_a^b f(t)\,dt$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The definite integral is a number, and it is net area, not total area. $\int_0^{2\pi}\sin x\,dx = 0$ even though the region between $\sin x$ and the axis has area $4$. The variable is a dummy: $\int_a^b f(x)\,dx = \int_a^b f(t)\,dt$.</p></div>
 </div>
 
 <div class="section"><h3>4.3 The Fundamental Theorem of Calculus</h3>
@@ -80,7 +80,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle g(x) = \int_a^x f(t)\,dt, \qquad a \le x \le b,$</div>
 <p>the net area under $f$ from $a$ up to $x$. (The integration variable is renamed $t$ since $x$ is now the upper limit.)</p>
 
-<div class="thm"><div class="thm-name">FTC, Part 1</div>If $f$ is continuous on $[a, b]$, then $g(x) = \int_a^x f(t)\,dt$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $g'(x) = f(x)$. In other words $\dfrac{d}{dx}\displaystyle\int_a^x f(t)\,dt = f(x)$.</div>
+<div class="thm"><div class="thm-name">FTC, Part 1</div>If $f$ is continuous on $[a, b]$, then $g(x) = \int_a^x f(t)\,dt$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $g'(x) = f(x)$. That is, $\dfrac{d}{dx}\displaystyle\int_a^x f(t)\,dt = f(x)$.</div>
 <p><em>Why.</em> Moving the right edge from $x$ to $x + h$ adds a thin strip under $f$, which is nearly a rectangle of height $f(x)$ and width $h$. Dividing the added area by $h$ leaves about $f(x)$, and the approximation becomes exact as $h \to 0$. The rate at which area accumulates is the height of the curve at the moving edge.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="ftcAccum"></canvas><div class="fig-cap"><b>Area so far, and its slope.</b> Top: $f(t) = 1 + 2\sin t$, with the net area from $0$ to $x$ shaded (blue counts $+$, pink counts $-$). Bottom: $g(x) = \int_0^x f(t)\,dt$. Its tangent slope at $x$ equals the height $f(x)$. $g$ decreases exactly while $f &lt; 0$.</div></div>
@@ -95,9 +95,9 @@ $$\int_a^b f(x)\,dx = F(b) - F(a).$$</div>
 <p><em>Why.</em> By Part 1, $g(x) = \int_a^x f(t)\,dt$ is an antiderivative of $f$, so $g = F + C$ (3.7). Then $\int_a^b f\,dx = g(b) - g(a) = (F(b) + C) - (F(a) + C) = F(b) - F(a)$. <em>Slope picture.</em> $F(b) - F(a)$ is the total change in $F$, and that is the sum of the small changes $F'(x)\,\Delta x = f(x)\,\Delta x$, which is a Riemann sum for $\int_a^b f\,dx$.</p>
 <p>Notation: $F(b) - F(a) = \big[F(x)\big]_a^b$. <b>Examples.</b> $\displaystyle\int_1^4\left(2x + \frac{1}{\sqrt x}\right)dx = \Big[x^2 + 2\sqrt x\Big]_1^4 = (16 + 4) - (1 + 2) = 17$. $\ \displaystyle\int_0^\pi\sin x\,dx = \Big[-\cos x\Big]_0^\pi = 1 - (-1) = 2$.</p>
 
-<div class="note"><div class="note-name">Two halves, one idea</div><p>Part 1: the area function $g$ changes at the rate $f(x)$, the height at its moving edge. Part 2: adding up the small changes $F'(x)\,\Delta x$ of $F$ across $[a, b]$ gives its total change $F(b) - F(a)$.</p></div>
+<div class="note"><div class="note-name">The two parts of the FTC</div><p>Part 1: the area function $g$ changes at the rate $f(x)$, the height at its moving edge. Part 2: adding up the small changes $F'(x)\,\Delta x$ of $F$ across $[a, b]$ gives its total change $F(b) - F(a)$.</p></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The integrand must be continuous on $[a, b]$. $\int_{-1}^{1} x^{-2}\,dx \neq \big[-x^{-1}\big]_{-1}^{1} = -2$. That answer is impossible for a positive integrand, and in fact the integral does not exist, because $x^{-2}$ has an infinite discontinuity at $0$. In Part 1, keep the chain rule factor $u'(x)$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The integrand must be continuous on $[a, b]$. $\int_{-1}^{1} x^{-2}\,dx \neq \big[-x^{-1}\big]_{-1}^{1} = -2$. That answer is impossible for a positive integrand, and in fact the integral does not exist, because $x^{-2}$ has an infinite discontinuity at $0$. In Part 1, keep the chain rule factor $u'(x)$.</p></div>
 </div>
 
 <div class="section"><h3>4.4 Indefinite Integrals and the Net Change Theorem</h3>
@@ -117,7 +117,7 @@ $$\int_a^b f(x)\,dx = F(b) - F(a).$$</div>
 <p><b>Example.</b> For $v(t) = (t - 1)(t - 4) = t^2 - 5t + 4$ on $[0, 5]$, split at the zeros $t = 1, 4$: $\int_0^1 v\,dt = \tfrac{11}{6}$, $\int_1^4 v\,dt = -\tfrac92$, $\int_4^5 v\,dt = \tfrac{11}{6}$. Displacement $\tfrac{11}{6} - \tfrac92 + \tfrac{11}{6} = -\tfrac56$ m. Distance $\tfrac{11}{6} + \tfrac92 + \tfrac{11}{6} = \tfrac{49}{6}$ m.</p>
 <p><b>Example (absolute value).</b> $\displaystyle\int_0^5|x - 2|\,dx = \int_0^2(2 - x)\,dx + \int_2^5(x - 2)\,dx = 2 + \tfrac92 = \tfrac{13}{2}.$ (Two triangles.)</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>For distance, find where $v$ changes sign and split the integral there. Computing $\left|\int_a^b v\,dt\right|$ instead of $\int_a^b|v|\,dt$ gives $\tfrac56$ in the example above, not $\tfrac{49}{6}$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>For distance, find where $v$ changes sign and split the integral there. Computing $\left|\int_a^b v\,dt\right|$ instead of $\int_a^b|v|\,dt$ gives $\tfrac56$ in the example above, not $\tfrac{49}{6}$.</p></div>
 </div>
 
 <div class="section"><h3>4.5 The Substitution Rule</h3>
@@ -139,9 +139,9 @@ $$\int f(g(x))\,g'(x)\,dx = \int f(u)\,du.$$</div>
 
 <div class="fig-inline-canvas"><canvas data-fig="substitution"></canvas><div class="fig-cap"><b>Substitution moves area without changing it.</b> With $u = x^2$, each colored strip of width $dx$ under $y = 2x\cos(x^2)$ (top) matches a strip of width $du = 2x\,dx$ under $y = \cos u$ (bottom) with the same net area. Both integrals equal $\sin(a^2)$.</div></div>
 
-<p><b>Symmetry.</b> If $f$ is even, $\int_{-a}^a f\,dx = 2\int_0^a f\,dx$. If $f$ is odd, $\int_{-a}^a f\,dx = 0$ (the two halves cancel), e.g. $\int_{-2}^2 x^3\cos x\,dx = 0$.</p>
+<p><b>Symmetry.</b> Let $f$ be continuous on $[-a, a]$. If $f$ is even, $\int_{-a}^a f\,dx = 2\int_0^a f\,dx$. If $f$ is odd, $\int_{-a}^a f\,dx = 0$ (the two halves cancel), e.g. $\int_{-2}^2 x^3\cos x\,dx = 0$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Every $x$ must go. An integral with both $x$ and $u$ in it, or with $dx$ left over, is not finished. For definite integrals either change the limits to $u$-values or switch back to $x$ before substituting the original limits. Mixing the two (old limits, new variable) is the most common error.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Every $x$ must go. An integral with both $x$ and $u$ in it, or with $dx$ left over, is not finished. For definite integrals either change the limits to $u$-values or switch back to $x$ before substituting the original limits. Mixing the two (old limits, new variable) is the most common error.</p></div>
 </div>
 
 <div class="section"><h3>Worked example</h3>

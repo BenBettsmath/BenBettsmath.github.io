@@ -26,7 +26,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Projective, injective, flat.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
-  <em>These are three different ways a module can be "nice". Projective and injective are dual to each other, and flat is the one that works well with tensor products.</em>
+  <em>These are three conditions on a module. Projective and injective are dual to each other, and flat is the one that works well with tensor products.</em>
   <ul>
     <li>$P$ is <strong>projective</strong> if every surjection $M \twoheadrightarrow N$ and every map $P \to N$ has a lift $P \to M$. Equivalently, $P$ is a direct summand of a free module. Over a PID, projective equals free, since submodules of free modules over a PID are free.</li>
     <li>$I$ is <strong>injective</strong> if every injection $N \hookrightarrow M$ and every map $N \to I$ extends to $M \to I$. Over $\mathbb{Z}$, injective equals divisible (every element divisible by all nonzero integers).</li>
@@ -81,7 +81,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
       $$\prod_{i=1}^k \bigl(p_i^{a_i}\bigr)^{k_i} \;\leq\; M.$$
       Each such tuple gives one module $\bigoplus_i (\mathbb{Z}/p_i^{a_i})^{k_i}$ of order $\prod_i (p_i^{a_i})^{k_i}$.</li>
   </ol>
-  Both directions: a P/I/F module is a direct sum of indecomposables (the prop), and any such sum is again P/I/F, since direct sums preserve all three. For projective, summands of a free module sum to a summand of a free module, and finite sums of injectives are injective; for flat, $- \otimes (M \oplus N) = (- \otimes M) \oplus (- \otimes N)$ preserves exactness summandwise.
+  Both directions: a P/I/F module is a direct sum of indecomposables (the prop), and any such sum is again P/I/F, since direct sums preserve all three. For projective, summands of a free module sum to a summand of a free module, and finite sums of injectives are injective. For flat, $- \otimes (M \oplus N) = (- \otimes M) \oplus (- \otimes N)$ preserves exactness summandwise.
 </div>
 
 <div class="thm-block warn">

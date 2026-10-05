@@ -37,7 +37,7 @@ window.MathJax = {
 <p>Parametric and polar curves. Slope, arc length, and area, each in both forms. The main object is a curve in the plane, traced out by a moving point, and almost every formula comes from using Pythagoras on a tiny step along it.</p>
 <div class="section"><h3>10.1 Parametric Curves</h3>
 
-<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> Give both coordinates as functions of one parameter, $x = f(t)$ and $y = g(t)$. As $t$ runs over an interval the point $\bigl(f(t), g(t)\bigr)$ traces a parametric curve. An arrowhead marks increasing $t$, and reversing the parameter by replacing $t$ with $-t$, or running from $b$ to $a$, flips the arrow.</p>
+<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> Give both coordinates as functions of one parameter, $x = f(t)$ and $y = g(t)$. As $t$ runs over an interval $[a, b]$ the point $\bigl(f(t), g(t)\bigr)$ traces a parametric curve. An arrowhead marks increasing $t$, and reversing the parameter by replacing $t$ with $-t$, or running from $b$ to $a$, flips the arrow.</p>
 
 <p><b>Eliminating the parameter.</b> Solve one equation for $t$ and substitute into the other to get $y = h(x)$ or $x = h(y)$. The parametric form remembers which way the point moves and how fast, while the Cartesian form forgets both and only keeps the shape.</p>
 
@@ -56,7 +56,7 @@ window.MathJax = {
 <p><b>Second derivative.</b> The second derivative is the derivative of the slope, so apply the same rule with $dy/dx$ in place of $y$,</p>
 <div class="formula">$\displaystyle \frac{d^2y}{dx^2} = \frac{\frac{d}{dt}\!\left(\frac{dy}{dx}\right)}{dx/dt}.$</div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The second derivative is <em>not</em> $\dfrac{d^2y/dt^2}{d^2x/dt^2}$. Differentiate the slope $\dfrac{dy}{dx}$ with respect to $t$, then divide by $\dfrac{dx}{dt}$ once more.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The second derivative is <em>not</em> $\dfrac{d^2y/dt^2}{d^2x/dt^2}$. Differentiate the slope $\dfrac{dy}{dx}$ with respect to $t$, then divide by $\dfrac{dx}{dt}$ once more.</p></div>
 <p><b>Arc length</b> with $f'$ and $g'$ continuous and the curve traced once on $[\alpha, \beta]$.</p>
 <div class="formula">$\displaystyle L = \int_{\alpha}^{\beta} \sqrt{\left(\tfrac{dx}{dt}\right)^2 + \left(\tfrac{dy}{dt}\right)^2}\,dt.$</div>
 <p><em>Why.</em> This is Pythagoras on a tiny step. The legs are $dx$ and $dy$, so $ds^2 = dx^2 + dy^2 = \bigl((dx/dt)^2 + (dy/dt)^2\bigr)\,dt^2$, and adding up the lengths of all the steps gives the integral. We need the curve traced once, since otherwise any piece we go over twice gets counted twice.</p>
@@ -69,12 +69,12 @@ window.MathJax = {
 </div>
 <div class="section"><h3>10.3 Polar Coordinates</h3>
 
-<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> A point $P$ in the plane is given as $(r, \theta)$ where $r = |OP|$ and $\theta$ is the angle measured from the polar axis, the positive $x$ direction. Negative $r$ is allowed, with $(-r, \theta) = (r, \theta + \pi)$.</p>
+<p class="part"><span class="dimtag">1D in 2D</span><b>Intro.</b> A point $P$ in the plane is given as $(r, \theta)$ where $O$ is the origin (the pole), $r = |OP|$, and $\theta$ is the angle measured from the polar axis, the positive $x$ direction. Negative $r$ is allowed, with $(-r, \theta) = (r, \theta + \pi)$.</p>
 
 <p><b>Conversion.</b></p>
 <div class="formula">$x = r\cos\theta,\quad y = r\sin\theta,\quad r^2 = x^2 + y^2,\quad \tan\theta = y/x.$</div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Picking $\theta$ when converting to polar.</b> Do not just set $\theta=\arctan(y/x)$. The arctangent only returns angles in $(-\tfrac\pi2,\tfrac\pi2)$, so it gives the wrong angle whenever $x&lt;0$. Sketch the point first, or add $\pi$ to the arctangent value for second and third quadrant points, so that $\theta$ sits in the quadrant of $(x,y)$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Picking $\theta$ when converting to polar.</b> Do not just set $\theta=\tan^{-1}(y/x)$. The arctangent only returns angles in $(-\tfrac\pi2,\tfrac\pi2)$, so it gives the wrong angle whenever $x&lt;0$. Sketch the point first, or add $\pi$ to the arctangent value for second and third quadrant points, so that $\theta$ sits in the quadrant of $(x,y)$.</p></div>
 <p><b>Common polar curves.</b></p>
 <ul class="tight">
   <li>Circle. $r = a$ has radius $a$, and $r = 2a\sin\theta$ passes through the origin centered on the $y$-axis.</li>
@@ -108,7 +108,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle L = \int_{\alpha}^{\beta} \sqrt{r^2 + (dr/d\theta)^2}\,d\theta.$</div>
 <p><em>Why.</em> In a step $d\theta$ the point moves $dr$ outward and $r\,d\theta$ sideways, two perpendicular legs, so $ds^2 = dr^2 + r^2\,d\theta^2$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Limits for loops and petals.</b> Integrate over exactly the $\theta$ range that traces the piece once. One petal of $r=\cos 3\theta$ runs from $\theta=-\tfrac\pi6$ to $\tfrac\pi6$ where $r\ge0$, and integrating $0$ to $2\pi$ over-counts or under-counts. When two polar curves meet, solving $f(\theta)=g(\theta)$ can miss crossings, at the pole or at points written with different $(r,\theta)$ labels, so sketch the curves before setting limits.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Limits for loops and petals.</b> Integrate over exactly the $\theta$ range that traces the piece once. One petal of $r=\cos 3\theta$ runs from $\theta=-\tfrac\pi6$ to $\tfrac\pi6$ where $r\ge0$, and integrating $0$ to $2\pi$ over-counts or under-counts. When two polar curves meet, solving $f(\theta)=g(\theta)$ can miss crossings, at the pole or at points written with different $(r,\theta)$ labels, so sketch the curves before setting limits.</p></div>
 </div>
 <div class="section"><h3>Worked example</h3>
 
@@ -116,7 +116,7 @@ window.MathJax = {
 They meet where $1 + \sin\theta = 1$, so $\sin\theta = 0$, giving $\theta = 0, \pi$. On $[0, \pi]$, $\sin\theta \ge 0$, so the cardioid sits outside the circle.
 $$A = \tfrac12 \int_0^\pi \bigl[(1+\sin\theta)^2 - 1^2\bigr]\,d\theta = \tfrac12 \int_0^\pi (2\sin\theta + \sin^2\theta)\,d\theta.$$
 $\int_0^\pi 2\sin\theta\,d\theta = 4$, and $\int_0^\pi \sin^2\theta\,d\theta = \pi/2$ (half-angle), so $A = \tfrac12 (4 + \pi/2) = 2 + \pi/4$.</p>
-<p><b>The polar area element.</b> The wedge has inner radius $r$, outer radius $r + dr$, angle $d\theta$, so its area is $r\,dr\,d\theta$ (a rectangle of sides $dr$ and $r\,d\theta$). Integrating gives $A = \tfrac12 \int r^2\,d\theta$.</p>
+<p><b>The polar area element.</b> A thin polar wedge with inner radius $r$, outer radius $r + dr$, angle $d\theta$, has area approximately $r\,dr\,d\theta$ (nearly a rectangle of sides $dr$ and $r\,d\theta$). Integrating $r\,dr$ from $0$ to $f(\theta)$ gives $A = \tfrac12 \int [f(\theta)]^2\,d\theta$.</p>
 
 </div>
 <div class="section"><h3>Practice problems</h3>
@@ -139,8 +139,8 @@ $\int_0^\pi 2\sin\theta\,d\theta = 4$, and $\int_0^\pi \sin^2\theta\,d\theta = \
 
 <p><b>Tangents at the pole.</b> If $f(\theta_0) = 0$ and $f'(\theta_0) \ne 0$, the curve passes through the origin along the line $\theta = \theta_0$.</p>
 
-<p><b>Surface area of revolution.</b> Each piece of arc revolved about the $x$-axis sweeps a hoop of circumference $2\pi y$ and width $ds$, so
-$S = \int_\alpha^\beta 2\pi y\,ds$ with $ds = \sqrt{(dx/dt)^2 + (dy/dt)^2}\,dt$. About the $y$-axis the hoop radius is $x$.</p>
+<p><b>Surface area of revolution.</b> For $y \ge 0$, each piece of arc revolved about the $x$-axis sweeps a hoop of circumference $2\pi y$ and width $ds$, so
+$S = \int_\alpha^\beta 2\pi y\,ds$ with $ds = \sqrt{(dx/dt)^2 + (dy/dt)^2}\,dt$. About the $y$-axis (with $x \ge 0$) the hoop radius is $x$.</p>
 
 <p><b>Limits check.</b> Integrate over the smallest interval that traces the curve once. Rose petals and lemniscate loops need care.</p>
 

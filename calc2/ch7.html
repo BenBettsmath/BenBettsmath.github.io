@@ -42,14 +42,14 @@ window.MathJax = {
 <p><b>Examples.</b></p>
 <ul class="tight">
   <li>$\int xe^x\,dx$: $u = x$, $dv = e^x dx$, so $du = dx$, $v = e^x$, and $\int xe^x\,dx = xe^x - \int e^x\,dx = (x - 1)e^x + C$.</li>
-  <li>$\int \ln x\,dx$: $u = \ln x$, $dv = dx$, so $du = dx/x$, $v = x$, and $\int\ln x\,dx = x\ln x - \int 1\,dx = x\ln x - x + C$. The same trick handles $\int\tan^{-1}x\,dx$.</li>
+  <li>$\int \ln x\,dx$: $u = \ln x$, $dv = dx$, so $du = dx/x$, $v = x$, and $\int\ln x\,dx = x\ln x - \int 1\,dx = x\ln x - x + C$. The same choice handles $\int\tan^{-1}x\,dx$.</li>
   <li>$\int x^2\sin x\,dx$ needs two rounds, each lowering the power of $x$: $-x^2\cos x + 2x\sin x + 2\cos x + C$.</li>
   <li>$\int e^x\sin x\,dx$ returns to itself after two rounds: $I = e^x\sin x - e^x\cos x - I$, so $I = \tfrac12e^x(\sin x - \cos x) + C$.</li>
 </ul>
 
 <div class="note"><div class="note-name">Shortcut</div><p>For a polynomial times $e^{ax}$, $\sin ax$, or $\cos ax$, a table does repeated parts at once. List the derivatives of the polynomial down to $0$ in one column and repeated antiderivatives of the other factor in the next, then add the diagonal products with alternating signs $+, -, +, \dots$</p></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The minus sign in $-\int v\,du$ applies to the whole integral, and with repeated parts the signs alternate. A bad choice of $u$ is easy to spot: in $\int xe^x\,dx$, taking $u = e^x$ gives $\int \tfrac12x^2e^x\,dx$, which is worse. Switch the choice when the new integral is harder.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The minus sign in $-\int v\,du$ applies to the whole integral, and with repeated parts the signs alternate. A bad choice of $u$ is easy to spot: in $\int xe^x\,dx$, taking $u = e^x$ gives $\int \tfrac12x^2e^x\,dx$, which is worse. Switch the choice when the new integral is harder.</p></div>
 </div>
 <div class="section"><h3>7.2 Trigonometric Integrals</h3>
 
@@ -77,7 +77,7 @@ window.MathJax = {
 <p><b>Products with different angles.</b> For $\int\sin mx\cos nx\,dx$ and similar, use</p>
 <div class="formula">$\sin A\cos B = \tfrac12[\sin(A - B) + \sin(A + B)], \quad \sin A\sin B = \tfrac12[\cos(A - B) - \cos(A + B)], \quad \cos A\cos B = \tfrac12[\cos(A - B) + \cos(A + B)].$</div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Keep the factor from the doubled angle. $\int\cos 2x\,dx = \tfrac12\sin 2x + C$, not $\sin 2x + C$. Also $\sin^2 x$ is $(\sin x)^2$, while $\sin x^2$ is $\sin(x^2)$, which has no elementary antiderivative.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Keep the factor from the doubled angle. $\int\cos 2x\,dx = \tfrac12\sin 2x + C$, not $\sin 2x + C$. Also $\sin^2 x$ is $(\sin x)^2$, while $\sin x^2$ is $\sin(x^2)$, which has no elementary antiderivative.</p></div>
 </div>
 <div class="section"><h3>7.3 Trigonometric Substitution</h3>
 
@@ -88,7 +88,7 @@ window.MathJax = {
 \sqrt{a^2 + x^2} &amp; x = a\tan\theta,\ \ -\tfrac{\pi}{2} &lt; \theta &lt; \tfrac{\pi}{2} &amp; 1 + \tan^2\theta = \sec^2\theta\\
 \sqrt{x^2 - a^2} &amp; x = a\sec\theta,\ \ 0 \le \theta &lt; \tfrac{\pi}{2} \text{ or } \pi \le \theta &lt; \tfrac{3\pi}{2} &amp; \sec^2\theta - 1 = \tan^2\theta
 \end{array}$</div>
-<p>On each range of $\theta$ the trig function under the root is $\ge 0$, so for example $\sqrt{a^2 - a^2\sin^2\theta} = a\cos\theta$ with no absolute value.</p>
+<p>On each range of $\theta$ the trig function the root simplifies to ($\cos\theta$, $\sec\theta$, or $\tan\theta$) is $\ge 0$, so for example $\sqrt{a^2 - a^2\sin^2\theta} = a\cos\theta$ with no absolute value.</p>
 
 <p><b>Back to $x$.</b> Draw the right triangle that encodes the substitution, with angle $\theta$, and label the sides by Pythagoras. Every trig function of $\theta$ in the answer can be read off as a ratio of sides in terms of $x$.</p>
 
@@ -100,7 +100,7 @@ window.MathJax = {
 
 <p><b>Completing the square.</b> A quadratic $x^2 + bx + c$ under a root becomes one of the three forms after completing the square. For example $\sqrt{x^2 + 2x + 5} = \sqrt{(x + 1)^2 + 4}$, and then $x + 1 = 2\tan\theta$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Do not stop with an answer in $\theta$. Convert back with the triangle, and if $\theta$ itself appears, use $\theta = \sin^{-1}(x/a)$ (or $\tan^{-1}$, $\sec^{-1}$). For a definite integral, either convert back or change the limits to $\theta$ values, but not a mix. Also check whether plain substitution works first: $\int\frac{x}{\sqrt{x^2 + 4}}\,dx$ only needs $u = x^2 + 4$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Do not stop with an answer in $\theta$. Convert back with the triangle, and if $\theta$ itself appears, use $\theta = \sin^{-1}(x/a)$ (or $\tan^{-1}$, $\sec^{-1}$). For a definite integral, either convert back or change the limits to $\theta$ values, but not a mix. Also check whether plain substitution works first: $\int\frac{x}{\sqrt{x^2 + 4}}\,dx$ only needs $u = x^2 + 4$.</p></div>
 </div>
 <div class="section"><h3>7.4 Integration of Rational Functions by Partial Fractions</h3>
 
@@ -119,7 +119,7 @@ window.MathJax = {
 
 <p><b>Rationalizing substitutions.</b> An integrand with $\sqrt[n]{g(x)}$ can sometimes be made rational by $u = \sqrt[n]{g(x)}$. Example: in $\int\frac{dx}{1 + \sqrt x}$, put $u = \sqrt x$, so $x = u^2$ and $dx = 2u\,du$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Three common setup errors. Skipping long division when $\deg P \ge \deg Q$. Giving a repeated factor $(x - r)^2$ only the term $\frac{A}{(x - r)^2}$ and forgetting $\frac{B}{x - r}$. Giving a quadratic factor a constant numerator $A$ instead of $Ax + B$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Three common setup errors. Skipping long division when $\deg P \ge \deg Q$. Giving a repeated factor $(x - r)^2$ only the term $\frac{A}{(x - r)^2}$ and forgetting $\frac{B}{x - r}$. Giving a quadratic factor a constant numerator $A$ instead of $Ax + B$.</p></div>
 </div>
 <div class="section"><h3>7.5 Strategy for Integration</h3>
 
@@ -130,7 +130,7 @@ window.MathJax = {
   <li><b>Classify the integrand.</b> Powers of trig functions: 7.2. Rational function: 7.4. Product of two different kinds of function: by parts, 7.1. A root of $\pm x^2 \pm a^2$: 7.3. A root of a linear expression: rationalizing substitution.</li>
   <li><b>Try again.</b> Try a different substitution, multiply by a clever form of $1$, or combine methods (a substitution followed by parts is common: $\int e^{\sqrt x}\,dx$ with $u = \sqrt x$ becomes $\int 2ue^u\,du$).</li>
 </ol>
-<p><b>Not every integral has an elementary answer.</b> A function is <em>elementary</em> if it is built from polynomials, roots, exponentials, logarithms, trig and inverse trig functions by arithmetic and composition. The antiderivatives of $e^{x^2}$, $\sin(x^2)$, $\frac{\sin x}{x}$, $\frac{1}{\ln x}$, and $\sqrt{1 + x^3}$ exist (they are continuous) but are not elementary. For definite integrals of these we approximate, which is the next section.</p>
+<p><b>Not every integral has an elementary answer.</b> A function is <em>elementary</em> if it is built from polynomials, roots, exponentials, logarithms, trig and inverse trig functions by arithmetic and composition. The antiderivatives of $e^{x^2}$, $\sin(x^2)$, $\frac{\sin x}{x}$, $\frac{1}{\ln x}$, and $\sqrt{1 + x^3}$ exist (the integrands are continuous on their domains) but are not elementary. For definite integrals of these we approximate.</p>
 </div>
 <div class="section"><h3>7.7 Approximate Integration</h3>
 
@@ -152,14 +152,14 @@ S_n &amp;= \tfrac{\Delta x}{3}\,[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \cdots +
 
 <div class="fig-inline-canvas"><canvas data-fig="riemann"></canvas><div class="fig-cap"><b>Five rules, with the error shaded.</b>Red marks where the shape is above the curve, green where it is below. Pick a function and a rule, and slide $n$. Simpson rounds $n$ up to the next even number.</div></div>
 
-<p><b>Error bounds.</b> Let $E$ denote the exact integral minus the estimate. If $|f''(x)| \le K$ on $[a, b]$, then</p>
+<p><b>Error bounds.</b> Let $E_T$, $E_M$, $E_S$ denote the exact integral minus $T_n$, $M_n$, $S_n$. If $|f''(x)| \le K$ on $[a, b]$, then</p>
 <div class="formula">$|E_T| \le \dfrac{K(b - a)^3}{12n^2}, \qquad |E_M| \le \dfrac{K(b - a)^3}{24n^2}.$</div>
 <p>If $|f^{(4)}(x)| \le K$ on $[a, b]$, then $|E_S| \le \dfrac{K(b - a)^5}{180n^4}$.</p>
 <p><em>Why the powers of $n$.</em> On one subinterval the chord misses a curve of bounded bending by an area of size about $(\Delta x)^3$. There are $n$ subintervals, so the total is about $n(\Delta x)^3 \sim 1/n^2$. Doubling $n$ cuts the trapezoid error by about $4$ and the Simpson error by about $16$. The midpoint bound is half the trapezoid bound, matching the picture where the midpoint error is the smaller one.</p>
 
 <p><b>Example.</b> How large must $n$ be for $T_n$ to approximate $\int_1^3\frac{dx}{x}$ within $0.001$? Here $f''(x) = 2/x^3 \le 2$ on $[1, 3]$, so take $K = 2$. We need $\dfrac{2\cdot 2^3}{12n^2} = \dfrac{4}{3n^2} \le 0.001$, that is $n^2 \ge 1333.\overline{3}$. So $n = 37$ is enough ($36^2 = 1296$ is too small).</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$K$ must bound $|f''|$ (or $|f^{(4)}|$) on the <em>whole</em> interval, so take the largest value of $|f''|$, not its value at one point. Simpson's rule with odd $n$ is undefined. And the error bound gives a guaranteed $n$, not the smallest $n$ that happens to work.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$K$ must bound $|f''|$ (or $|f^{(4)}|$) on the <em>whole</em> interval, so take the largest value of $|f''|$, not its value at one point. Simpson's rule with odd $n$ is undefined. And the error bound gives a guaranteed $n$, not the smallest $n$ that happens to work.</p></div>
 </div>
 <div class="section"><h3>7.8 Improper Integrals</h3>
 
@@ -189,7 +189,7 @@ S_n &amp;= \tfrac{\Delta x}{3}\,[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \cdots +
 
 <div class="fig-inline-canvas"><canvas data-fig="comparison"></canvas><div class="fig-cap"><b>Comparison.</b>$e^{-x^2}$ has no elementary antiderivative, but its area on $[1, \infty)$ sits inside the finite area under $e^{-x}$.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Look for hidden bad points before using the Fundamental Theorem. $\int_{-1}^1\frac{dx}{x^2}$ is not $\bigl[-\tfrac1x\bigr]_{-1}^1 = -2$ (a negative area for a positive function). The integrand blows up at $0$, and $\int_0^1 x^{-2}\,dx$ diverges, so the whole integral diverges.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Look for hidden bad points before using the Fundamental Theorem. $\int_{-1}^1\frac{dx}{x^2}$ is not $\bigl[-\tfrac1x\bigr]_{-1}^1 = -2$ (a negative area for a positive function). The integrand blows up at $0$, and $\int_0^1 x^{-2}\,dx$ diverges, so the whole integral diverges.</p>
 <p>Also $\int_{-\infty}^\infty x\,dx$ diverges, even though $\int_{-t}^t x\,dx = 0$ for every $t$. The two halves must converge separately.</p>
 <p>In the comparison theorem, being smaller than a divergent integral, or bigger than a convergent one, tells us nothing.</p></div>
 </div>

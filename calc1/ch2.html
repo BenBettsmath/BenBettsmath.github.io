@@ -70,7 +70,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="cornerCusp"></canvas><div class="fig-cap"><b>Zoom in at the origin.</b> The smooth graph straightens into its tangent line. The corner stays a V, the cusp stays a point, and the vertical tangent stays vertical, so none of these has a derivative at $0$.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Continuity does not imply differentiability. $|x|$ is continuous at $0$ but not differentiable there. Only the converse, differentiable implies continuous, is true.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Continuity does not imply differentiability. $|x|$ is continuous at $0$ but not differentiable there. Only the converse, differentiable implies continuous, is true.</p></div>
 
 <p><b>Higher derivatives.</b> $f'' = (f')'$ is the <b>second derivative</b>, also written $\dfrac{d^2y}{dx^2}$. If $s(t)$ is position, $v(t) = s'(t)$ is velocity and $a(t) = v'(t) = s''(t)$ is acceleration.</p>
 </div>
@@ -83,7 +83,7 @@ window.MathJax = {
 
 <p><b>Two trigonometric limits</b> ($\theta$ in radians):</p>
 <div class="formula">$\displaystyle\lim_{\theta \to 0}\frac{\sin\theta}{\theta} = 1, \qquad \lim_{\theta \to 0}\frac{\cos\theta - 1}{\theta} = 0.$</div>
-<p><em>Why the first.</em> On the unit circle with $0 &lt; \theta &lt; \pi/2$, the arc of length $\theta$ is longer than its height $\sin\theta$ and shorter than the tangent segment $\tan\theta$. So $\sin\theta &lt; \theta &lt; \tan\theta$, which rearranges to $\cos\theta &lt; \dfrac{\sin\theta}{\theta} &lt; 1$. Both bounds approach $1$, so the Squeeze Theorem gives $1$ (the left side follows from evenness). For the second, multiply by $\dfrac{\cos\theta + 1}{\cos\theta + 1}$ to get $-\dfrac{\sin\theta}{\theta}\cdot\dfrac{\sin\theta}{\cos\theta + 1} \to -1\cdot 0 = 0$.</p>
+<p><em>Why the first.</em> On the unit circle with $0 &lt; \theta &lt; \pi/2$, the arc of length $\theta$ is longer than its height $\sin\theta$ and shorter than the tangent segment $\tan\theta$. So $\sin\theta &lt; \theta &lt; \tan\theta$, which rearranges to $\cos\theta &lt; \dfrac{\sin\theta}{\theta} &lt; 1$. Both bounds approach $1$, so the Squeeze Theorem gives $1$ (the limit from the left follows because $\dfrac{\sin\theta}{\theta}$ is even). For the second, multiply by $\dfrac{\cos\theta + 1}{\cos\theta + 1}$ to get $-\dfrac{\sin\theta}{\theta}\cdot\dfrac{\sin\theta}{\cos\theta + 1} \to -1\cdot 0 = 0$.</p>
 
 <p><b>Sine and cosine.</b></p>
 <div class="formula">$\dfrac{d}{dx}\sin x = \cos x, \qquad \dfrac{d}{dx}\cos x = -\sin x.$</div>
@@ -91,7 +91,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $\dfrac{d}{dx}\left(4x^3 - \dfrac{2}{\sqrt x} + 5\cos x\right) = 12x^2 + x^{-3/2} - 5\sin x.$ Limits like $\displaystyle\lim_{x \to 0}\frac{\sin 5x}{x} = \lim_{x \to 0} 5\cdot\frac{\sin 5x}{5x} = 5$ come from the first trig limit with $\theta = 5x$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The power rule needs a constant exponent on the variable. It does not apply to $2^x$ (variable exponent), and $\dfrac{d}{dx}\pi^2 = 0$ since $\pi^2$ is a constant. Rewrite roots and reciprocals as powers first: $\dfrac{1}{x^4} = x^{-4}$, $\sqrt[3]{x^2} = x^{2/3}$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The power rule needs a constant exponent on the variable. It does not apply to $2^x$ (variable exponent), and $\dfrac{d}{dx}\pi^2 = 0$ since $\pi^2$ is a constant. Rewrite roots and reciprocals as powers first: $\dfrac{1}{x^4} = x^{-4}$, $\sqrt[3]{x^2} = x^{2/3}$.</p></div>
 </div>
 
 <div class="section"><h3>2.4 The Product and Quotient Rules</h3>
@@ -107,7 +107,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $\dfrac{d}{dx}\dfrac{3x - 1}{x^2 + 2} = \dfrac{3(x^2 + 2) - (3x - 1)\cdot 2x}{(x^2 + 2)^2} = \dfrac{-3x^2 + 2x + 6}{(x^2 + 2)^2}.$ And $\dfrac{d}{dx}(\sqrt x\,\sin x) = \dfrac{\sin x}{2\sqrt x} + \sqrt x\cos x$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$(fg)' \neq f'g'$ and $\left(\dfrac fg\right)' \neq \dfrac{f'}{g'}$. Test with $f = g = x$: $(x\cdot x)' = 2x$, but $f'g' = 1$. In the quotient rule, the order in the numerator matters. It is $f'g - fg'$, "low d-high minus high d-low".</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$(fg)' \neq f'g'$ and $\left(\dfrac fg\right)' \neq \dfrac{f'}{g'}$. Test with $f = g = x$: $(x\cdot x)' = 2x$, but $f'g' = 1$. In the quotient rule, the order in the numerator matters. It is $f'g - fg'$, "low d-high minus high d-low".</p></div>
 </div>
 
 <div class="section"><h3>2.5 The Chain Rule</h3>
@@ -122,7 +122,7 @@ window.MathJax = {
 <p><b>Examples.</b> $\dfrac{d}{dx}(x^2 - 4x)^3 = 3(x^2 - 4x)^2(2x - 4)$. $\dfrac{d}{dx}\sin(x^2) = \cos(x^2)\cdot 2x$, while $\dfrac{d}{dx}\sin^2 x = 2\sin x\cos x$. Longer chains multiply more factors: $\dfrac{d}{dx}\sin^3(2x) = 3\sin^2(2x)\cdot\cos(2x)\cdot 2$.</p>
 <p><b>Where $f'$ is evaluated.</b> With $f(u) = \sqrt u$ and $g(x) = x^2 + 1$, $f'(u) = \dfrac{1}{2\sqrt u}$ must be evaluated at $u = g(x)$: $\dfrac{d}{dx}\sqrt{x^2 + 1} = \dfrac{1}{2\sqrt{x^2 + 1}}\cdot 2x = \dfrac{x}{\sqrt{x^2 + 1}}$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting the inner derivative: $\dfrac{d}{dx}\sin(4x) = 4\cos(4x)$, not $\cos(4x)$. And evaluating the outer derivative at the wrong place: $f'(g(x))$, not $f'(x)$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Forgetting the inner derivative: $\dfrac{d}{dx}\sin(4x) = 4\cos(4x)$, not $\cos(4x)$. And evaluating the outer derivative at the wrong place: $f'(g(x))$, not $f'(x)$.</p></div>
 </div>
 
 <div class="section"><h3>2.6 Implicit Differentiation</h3>
@@ -141,7 +141,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="implicitTangent"></canvas><div class="fig-cap"><b>Tangents to an implicit curve.</b> The folium $x^3 + y^3 = 9xy$ fails the vertical line test, yet $\dfrac{dy}{dx} = \dfrac{3y - x^2}{y^2 - 3x}$ gives the tangent slope at each point. At the origin the formula is $0/0$: the curve crosses itself there.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Dropping the factor $y'$: $\dfrac{d}{dx}y^3 = 3y^2y'$, not $3y^2$. And a product such as $xy$ needs the product rule: $\dfrac{d}{dx}(xy) = y + xy'$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Dropping the factor $y'$: $\dfrac{d}{dx}y^3 = 3y^2y'$, not $3y^2$. And a product such as $xy$ needs the product rule: $\dfrac{d}{dx}(xy) = y + xy'$.</p></div>
 </div>
 
 <div class="section"><h3>2.7 Related Rates</h3>
@@ -157,11 +157,11 @@ window.MathJax = {
 
 <p><b>Example.</b> A $13$ ft ladder leans on a wall, and its foot slides away at $2$ ft/s. How fast does the top slide down when the foot is $5$ ft from the wall? Let $x$ be the distance from the wall to the foot and $y$ the height of the top. Then $x^2 + y^2 = 169$, so $2x\dfrac{dx}{dt} + 2y\dfrac{dy}{dt} = 0$, i.e. $\dfrac{dy}{dt} = -\dfrac{x}{y}\dfrac{dx}{dt}$. At $x = 5$, $y = 12$ and $\dfrac{dx}{dt} = 2$, giving $\dfrac{dy}{dt} = -\dfrac{5}{12}\cdot 2 = -\dfrac56$ ft/s. The top slides down at $\tfrac56$ ft/s.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="ladder"></canvas><div class="fig-cap"><b>Same speed at the foot, faster and faster at the top.</b> $\dfrac{dy}{dt} = -\dfrac{x}{y}\dfrac{dx}{dt}$, and $\dfrac xy$ grows without bound as the top nears the floor.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="ladder"></canvas><div class="fig-cap"><b>The sliding ladder.</b> $\dfrac{dy}{dt} = -\dfrac{x}{y}\dfrac{dx}{dt}$, and $\dfrac xy$ grows without bound as the top nears the floor.</div></div>
 
 <p><b>Example.</b> A circular ripple's radius $r$ grows at $2$ cm/s. With $A = \pi r^2$, $\dfrac{dA}{dt} = 2\pi r\dfrac{dr}{dt}$, so at $r = 5$ the area grows at $2\pi(5)(2) = 20\pi$ cm²/s.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Substituting the instant's values before differentiating. If we set $x = 5$ first, $x$ becomes a constant and $\dfrac{dx}{dt}$ disappears. Fixed quantities (the ladder's $13$ ft) may be substituted early. Changing ones may not.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Substituting the instant's values before differentiating. If we set $x = 5$ first, $x$ becomes a constant and $\dfrac{dx}{dt}$ disappears. Fixed quantities (the ladder's $13$ ft) may be substituted early. Changing ones may not.</p></div>
 </div>
 
 <div class="section"><h3>2.8 Linear Approximations and Differentials</h3>
@@ -178,7 +178,7 @@ window.MathJax = {
 <div class="formula">$dy = f'(x)\,dx, \qquad \Delta y = f(x + dx) - f(x) \approx dy.$</div>
 <p>Here $\Delta y$ is the actual change in $y$. <b>Example.</b> A cube's side is measured as $10$ cm with possible error $0.1$ cm. With $V = s^3$, $dV = 3s^2\,ds = 3(100)(0.1) = 30$ cm³, so the computed volume $1000$ cm³ may be off by about $30$ cm³. The <b>relative error</b> is $\dfrac{dV}{V} = \dfrac{30}{1000} = 3\%$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Choose $a$ so that $f(a)$ and $f'(a)$ are easy to compute exactly and $a$ is close to the target. For $\sqrt{26}$ use $a = 25$, not $a = 26$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Choose $a$ so that $f(a)$ and $f'(a)$ are easy to compute exactly and $a$ is close to the target. For $\sqrt{26}$ use $a = 25$, not $a = 26$.</p></div>
 </div>
 
 <div class="section"><h3>Worked example</h3>

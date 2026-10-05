@@ -119,7 +119,7 @@
   </div>
   <!-- ============================================================ -->
   <h3 id="sec3" class="chapter">3. Computing limits</h3>
-  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
+  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is usually hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 3(c).</b> Evaluate $\lim_{x \to -1} \frac{\frac{1}{x+3} - \frac{1}{2}}{x+1}$.</p>
     <div class="sol">
@@ -135,7 +135,7 @@
     <p class="stmt"><b>Problem 4(a).</b> Evaluate $\lim_{x \to 0} x^2 \sin\parens{\frac{3}{x}}$.</p>
     <div class="sol">
       <p class="sollabel">Solution</p>
-      <p>$\sin\parens{\frac{3}{x}}$ oscillates and has no limit, so the product law does not apply (this answers (c)). But it is bounded: $-1 \le \sin\parens{\frac3x} \le 1$. Multiplying by $x^2 \ge 0$,</p>
+      <p>$\sin\parens{\frac{3}{x}}$ oscillates and has no limit, so the product law does not apply. But it is bounded: $-1 \le \sin\parens{\frac3x} \le 1$. Multiplying by $x^2 \ge 0$,</p>
       <p>$$ -x^2 \le x^2 \sin\parens{\frac{3}{x}} \le x^2. $$</p>
       <p>Both bounds go to $0$, so by the Squeeze Theorem the limit is $0$. The $x^2$ crushes the oscillation.</p>
     </div>
@@ -189,7 +189,7 @@
   </div>
   <!-- ============================================================ -->
   <h3 id="sec9" class="chapter">9. Trig derivatives</h3>
-  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. The trick is to make the angle inside the sine match the denominator exactly.</p>
+  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. Make the angle inside the sine match the denominator exactly.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 9(b).</b> Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$ and $\lim_{x \to 0} \frac{1-\cos x}{x\sin x}$.</p>
     <div class="sol">
@@ -318,7 +318,7 @@
   </div>
   <!-- ============================================================ -->
   <h3 id="sec20" class="chapter">20. Riemann sums</h3>
-  <p class="lede">A Riemann sum adds up rectangles of width $\Delta x$ and height $f(x_i)$. The definite integral is what these sums approach as the rectangles get thin.</p>
+  <p class="lede">A Riemann sum on $[a,b]$ with $n$ subintervals adds up rectangles of width $\Delta x = \frac{b-a}{n}$ and height $f(x_i^*)$, where $x_i^*$ is a sample point in the $i$th subinterval. The definite integral is what these sums approach as the rectangles get thin.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 20(c).</b> Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.</p>
     <div class="sol">

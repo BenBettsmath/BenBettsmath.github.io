@@ -37,7 +37,7 @@ window.MathJax = {
 <div class="formula">$f^{-1}(y) = x \iff f(x) = y \qquad (y \in B).$</div>
 <p>So $f^{-1}$ undoes $f$. The <b>cancellation equations</b> say exactly that: $f^{-1}(f(x)) = x$ for every $x \in A$ and $f(f^{-1}(y)) = y$ for every $y \in B$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The $-1$ in $f^{-1}$ is not an exponent. $f^{-1}(x)$ means the inverse function evaluated at $x$, while $\dfrac{1}{f(x)} = [f(x)]^{-1}$ is the reciprocal. For example $\sin^{-1}(1) = \pi/2$ but $1/\sin(1) \approx 1.19$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The $-1$ in $f^{-1}$ is not an exponent. $f^{-1}(x)$ means the inverse function evaluated at $x$, while $\dfrac{1}{f(x)} = [f(x)]^{-1}$ is the reciprocal. For example $\sin^{-1}(1) = \pi/2$ but $1/\sin(1) \approx 1.19$.</p></div>
 
 <p><b>Finding a formula.</b> Write $y = f(x)$, solve for $x$ in terms of $y$, then interchange $x$ and $y$ to get $y = f^{-1}(x)$. Example: $y = 3x - 2$ gives $x = (y + 2)/3$, so $f^{-1}(x) = (x + 2)/3$.</p>
 
@@ -53,7 +53,7 @@ window.MathJax = {
 
 <p><b>Example.</b> Let $f(x) = x^5 + 2x + 1$. Since $f'(x) = 5x^4 + 2 &gt; 0$, $f$ is one-to-one. To find $(f^{-1})'(4)$, first find $f^{-1}(4)$: we need $x$ with $x^5 + 2x + 1 = 4$, and $x = 1$ works. So $(f^{-1})'(4) = 1/f'(1) = 1/7$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Evaluate $f'$ at $f^{-1}(a)$, not at $a$. In the example, $1/f'(4)$ is wrong. The input $4$ is a <em>height</em> on the graph of $f$, and we need the slope of $f$ at the point with that height.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Evaluate $f'$ at $f^{-1}(a)$, not at $a$. In the example, $1/f'(4)$ is wrong. The input $4$ is a <em>height</em> on the graph of $f$, and we need the slope of $f$ at the point with that height.</p></div>
 </div>
 <div class="section"><h3>6.2–6.4 Exponential and Logarithmic Functions</h3>
 
@@ -62,10 +62,8 @@ window.MathJax = {
 
 <p><b>Why $e$ is the natural base.</b> The difference quotient of $b^x$ factors,</p>
 <div class="formula">$\displaystyle \frac{b^{x+h} - b^x}{h} = b^x \cdot \frac{b^h - 1}{h}, \qquad\text{so}\qquad \frac{d}{dx}\,b^x = b^x \cdot \lim_{h\to 0}\frac{b^h - 1}{h}.$</div>
-<p>The limit is the slope of $b^x$ at $x = 0$. Every exponential is its own derivative up to this constant. The number $e \approx 2.71828$ is defined as the base for which that slope is exactly $1$, that is $\lim_{h \to 0} (e^h - 1)/h = 1$. Then</p>
+<p>The limit is the slope of $b^x$ at $x = 0$. So the derivative of every exponential is the exponential times this constant. The number $e \approx 2.71828$ is defined as the base for which that slope is exactly $1$, that is $\lim_{h \to 0} (e^h - 1)/h = 1$. Then</p>
 <div class="formula">$\dfrac{d}{dx}\,e^x = e^x, \qquad \displaystyle\int e^x\,dx = e^x + C, \qquad \frac{d}{dx}\,e^{g(x)} = e^{g(x)}\,g'(x).$</div>
-
-<div class="fig-inline-canvas"><canvas data-fig="expBase"></canvas><div class="fig-cap"><b>The slope of $b^x$ at $0$ is $\ln b$.</b>Slide $b$. The tangent at $(0, 1)$ has slope exactly $1$ only when $b = e$. The orange curve is the reflection of the blue one across $y = x$.</div></div>
 
 <p><b>Logarithms.</b> For $b &gt; 0$, $b \ne 1$, the function $b^x$ is one-to-one, and its inverse is $\log_b x$. So $\log_b x = y \iff b^y = x$, for $x &gt; 0$. The <b>natural logarithm</b> is $\ln x = \log_e x$. Its cancellation equations are</p>
 <div class="formula">$\ln(e^x) = x \ \ (x \in \mathbb R), \qquad e^{\ln x} = x \ \ (x &gt; 0).$</div>
@@ -75,17 +73,19 @@ window.MathJax = {
 
 <p><b>Derivatives of logarithms.</b></p>
 <div class="formula">$\dfrac{d}{dx}\ln x = \dfrac1x \ \ (x &gt; 0), \qquad \dfrac{d}{dx}\ln|x| = \dfrac1x \ \ (x \ne 0), \qquad \displaystyle\int \frac{dx}{x} = \ln|x| + C.$</div>
-<p><em>Why.</em> If $y = \ln x$ then $e^y = x$. Differentiate implicitly: $e^y\,y' = 1$, so $y' = 1/e^y = 1/x$. This is the inverse function theorem with $f = e^x$, whose slope at height $x$ is $x$ itself.</p>
+<p><em>Why.</em> If $y = \ln x$ then $e^y = x$. Differentiate implicitly: $e^y\,y' = 1$, so $y' = 1/e^y = 1/x$. This is the theorem on the derivative of an inverse (6.1) with $f = e^x$, whose slope at height $x$ is $x$ itself.</p>
 <p>With change of base and the chain rule,</p>
 <div class="formula">$\dfrac{d}{dx}\,b^x = b^x \ln b, \qquad \dfrac{d}{dx}\log_b x = \dfrac{1}{x\ln b}, \qquad \displaystyle\int b^x\,dx = \frac{b^x}{\ln b} + C, \qquad \frac{d}{dx}\ln g(x) = \frac{g'(x)}{g(x)}.$</div>
 <p>The last rule gives $\int \tan x\,dx = -\ln|\cos x| + C = \ln|\sec x| + C$, with $u = \cos x$.</p>
 
+<div class="fig-inline-canvas"><canvas data-fig="expBase"></canvas><div class="fig-cap"><b>The slope of $b^x$ at $0$ is $\ln b$.</b>Slide $b$. The tangent at $(0, 1)$ has slope exactly $1$ only when $b = e$. The orange curve is the reflection of the blue one across $y = x$.</div></div>
+
 <p><b>Example.</b> $\displaystyle\int \frac{\ln x}{x}\,dx$. Let $u = \ln x$, $du = dx/x$. The integral is $\int u\,du = \tfrac12(\ln x)^2 + C$.</p>
 
-<p><b>Logarithmic differentiation.</b> To differentiate a messy product, quotient, or power $y = f(x)$, take $\ln$ of both sides, expand with the log laws, differentiate implicitly, and solve for $y'$. This is the only way to handle a variable base raised to a variable exponent.</p>
+<p><b>Logarithmic differentiation.</b> To differentiate a messy product, quotient, or power $y = f(x)$, take $\ln$ of both sides, expand with the log laws, differentiate implicitly, and solve for $y'$. It also handles a variable base raised to a variable exponent.</p>
 <p><b>Example.</b> $y = x^{\sin x}$ for $x &gt; 0$. Then $\ln y = \sin x \ln x$, so $\dfrac{y'}{y} = \cos x\ln x + \dfrac{\sin x}{x}$ and $y' = x^{\sin x}\Bigl(\cos x \ln x + \dfrac{\sin x}{x}\Bigr)$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Three different rules, decided by where the variable is. Variable base, constant exponent: $\frac{d}{dx}x^n = n x^{n-1}$. Constant base, variable exponent: $\frac{d}{dx}b^x = b^x\ln b$. Variable in both: logarithmic differentiation. Applying the power rule to $2^x$ or to $x^x$ is wrong.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Three different rules, decided by where the variable is. Variable base, constant exponent: $\frac{d}{dx}x^n = n x^{n-1}$. Constant base, variable exponent: $\frac{d}{dx}b^x = b^x\ln b$. Variable in both: logarithmic differentiation. Applying the power rule to $2^x$ or to $x^x$ is wrong.</p>
 <p>Also $\ln(a + b) \ne \ln a + \ln b$. The log of a sum has no simplification.</p></div>
 
 <p><b>$e$ as a limit.</b></p>
@@ -109,7 +109,7 @@ window.MathJax = {
 
 <p><b>Continuous compounding.</b> $A_0$ invested at annual rate $r$, compounded $n$ times a year, gives $A_0(1 + r/n)^{nt}$ after $t$ years. As $n \to \infty$ this tends to $A_0e^{rt}$, by the limit for $e$ in 6.4.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Find $k$ from data with logarithms and keep it exact ($k = \tfrac{1}{t}\ln\tfrac{y(t)}{y(0)}$) until the last step. Rounding $k$ early compounds error through the exponential. For decay $k$ comes out negative automatically, so do not add a sign by hand on top of it.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Find $k$ from data with logarithms and keep it exact ($k = \tfrac{1}{t}\ln\tfrac{y(t)}{y(0)}$) until the last step. Rounding $k$ early compounds error through the exponential. For decay $k$ comes out negative automatically, so do not add a sign by hand on top of it.</p></div>
 </div>
 <div class="section"><h3>6.6 Inverse Trigonometric Functions</h3>
 
@@ -134,7 +134,7 @@ window.MathJax = {
 
 <p><b>Example.</b> Simplify $\cos(\tan^{-1}x)$. Let $\theta = \tan^{-1}x$, so $\tan\theta = x$ with $-\pi/2 &lt; \theta &lt; \pi/2$. Draw a right triangle with opposite side $x$, adjacent side $1$, and hypotenuse $\sqrt{1 + x^2}$. Then $\cos\theta = 1/\sqrt{1 + x^2}$, which is positive, as it must be on that interval.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\sin^{-1}(\sin\tfrac{3\pi}{4})$ is $\tfrac{\pi}{4}$, not $\tfrac{3\pi}{4}$. The output of $\sin^{-1}$ must lie in $[-\pi/2, \pi/2]$, so we look for the angle in that range with the same sine, $\tfrac{\sqrt2}{2}$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$\sin^{-1}(\sin\tfrac{3\pi}{4})$ is $\tfrac{\pi}{4}$, not $\tfrac{3\pi}{4}$. The output of $\sin^{-1}$ must lie in $[-\pi/2, \pi/2]$, so we look for the angle in that range with the same sine, $\tfrac{\sqrt2}{2}$.</p></div>
 </div>
 <div class="section"><h3>6.7 Hyperbolic Functions</h3>
 
@@ -146,7 +146,7 @@ window.MathJax = {
 
 <p><b>Identities.</b> $\cosh^2 x - \sinh^2 x = 1$ (expand the squares, the cross terms give $\tfrac{2}{4} + \tfrac24$). Dividing by $\cosh^2 x$ gives $1 - \tanh^2 x = \operatorname{sech}^2 x$. Also $\sinh(x + y) = \sinh x\cosh y + \cosh x\sinh y$ and $\cosh(x + y) = \cosh x\cosh y + \sinh x\sinh y$.</p>
 
-<p><b>Why "hyperbolic".</b> The identity says the point $(\cosh t, \sinh t)$ lies on the right branch of the hyperbola $x^2 - y^2 = 1$, just as $(\cos t, \sin t)$ lies on the circle $x^2 + y^2 = 1$. In both cases the region swept from the origin to the point, bounded by the curve, has area $t/2$. So $t$ plays the role of an angle.</p>
+<p><b>Why "hyperbolic".</b> The identity says the point $(\cosh t, \sinh t)$ lies on the right branch of the hyperbola $x^2 - y^2 = 1$, just as $(\cos t, \sin t)$ lies on the circle $x^2 + y^2 = 1$. For $t \ge 0$, in both cases the region bounded by the $x$-axis, the curve, and the segment from the origin to the point has area $t/2$. So $t$ plays the role of an angle.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="hyperbola"></canvas><div class="fig-cap"><b>$(\cosh t, \sinh t)$ on $x^2 - y^2 = 1$.</b>Slide $t$. The shaded region has area $|t|/2$.</div></div>
 
@@ -156,7 +156,7 @@ window.MathJax = {
 &amp;\tfrac{d}{dx}\operatorname{csch} x = -\operatorname{csch} x\coth x, &amp;&amp; \tfrac{d}{dx}\operatorname{sech} x = -\operatorname{sech} x\tanh x, &amp;&amp; \tfrac{d}{dx}\coth x = -\operatorname{csch}^2 x.
 \end{aligned}$</div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\frac{d}{dx}\cosh x = +\sinh x$. There is no minus sign, unlike $\frac{d}{dx}\cos x = -\sin x$. The sign pattern of the trig derivatives does not carry over.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$\frac{d}{dx}\cosh x = +\sinh x$. There is no minus sign, unlike $\frac{d}{dx}\cos x = -\sin x$. The sign pattern of the trig derivatives does not carry over.</p></div>
 
 <p><b>Inverse hyperbolic functions.</b> $\sinh$ and $\tanh$ are one-to-one. $\cosh$ is one-to-one on $[0, \infty)$, and $\cosh^{-1}$ is the inverse of that piece. Since they are built from $e^x$, the inverses are logarithms.</p>
 <div class="formula">$\sinh^{-1}x = \ln\bigl(x + \sqrt{x^2 + 1}\bigr), \qquad \cosh^{-1}x = \ln\bigl(x + \sqrt{x^2 - 1}\bigr)\ (x \ge 1), \qquad \tanh^{-1}x = \tfrac12\ln\dfrac{1 + x}{1 - x}\ (|x| &lt; 1).$</div>
@@ -169,7 +169,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>6.8 Indeterminate Forms and L'Hôpital's Rule</h3>
 
-<p class="part"><b>Indeterminate forms.</b> A limit $\lim_{x\to a}\frac{f(x)}{g(x)}$ with $f(x) \to 0$ and $g(x) \to 0$ is of type $\tfrac00$. If $f(x) \to \pm\infty$ and $g(x) \to \pm\infty$ it is of type $\tfrac{\infty}{\infty}$. The type alone does not decide the value: $\frac{x}{x}$, $\frac{x^2}{x}$, $\frac{x}{x^2}$ are all $\tfrac00$ at $0$ with limits $1$, $0$, $\infty$.</p>
+<p class="part"><b>Indeterminate forms.</b> A limit $\lim_{x\to a}\frac{f(x)}{g(x)}$ with $f(x) \to 0$ and $g(x) \to 0$ is of type $\tfrac00$. If $f(x) \to \pm\infty$ and $g(x) \to \pm\infty$ it is of type $\tfrac{\infty}{\infty}$. The type alone does not decide the value: $\frac{x}{x}$, $\frac{x^2}{x}$, $\frac{x}{x^3}$ are all $\tfrac00$ at $0$ with limits $1$, $0$, $\infty$.</p>
 
 <p><b>L'Hôpital's rule.</b> Suppose $f$ and $g$ are differentiable and $g'(x) \ne 0$ near $a$ (except possibly at $a$), and $\frac{f}{g}$ is of type $\tfrac00$ or $\tfrac{\infty}{\infty}$ at $a$. Then</p>
 <div class="formula">$\displaystyle \lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}$</div>
@@ -180,7 +180,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $\displaystyle\lim_{x\to\infty}\frac{\ln x}{\sqrt x}$ is $\tfrac{\infty}{\infty}$. L'Hôpital gives $\displaystyle\lim_{x\to\infty}\frac{1/x}{1/(2\sqrt x)} = \lim_{x\to\infty}\frac{2}{\sqrt x} = 0$. In general $\ln x$ grows slower than any positive power $x^p$, which grows slower than $e^x$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Check the form first. $\displaystyle\lim_{x \to \pi^-}\frac{\sin x}{1 - \cos x} = \frac{0}{2} = 0$, but applying L'Hôpital anyway gives $\lim \frac{\cos x}{\sin x} = -\infty$, which is wrong.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Check the form first. $\displaystyle\lim_{x \to \pi^-}\frac{\sin x}{1 - \cos x} = \frac{0}{2} = 0$, but applying L'Hôpital anyway gives $\lim \frac{\cos x}{\sin x} = -\infty$, which is wrong.</p>
 <p>The rule uses $f'/g'$, the quotient of derivatives. It is not the quotient rule $(f/g)'$.</p></div>
 
 <p><b>Other forms.</b> Convert to $\tfrac00$ or $\tfrac{\infty}{\infty}$ first.</p>
@@ -190,7 +190,7 @@ window.MathJax = {
   <li><b>Powers</b> $0^0$, $\infty^0$, $1^\infty$: if $y = f(x)^{g(x)}$, then $\ln y = g(x)\ln f(x)$ is a product of type $0\cdot\infty$. Find $\lim \ln y = L$, then $\lim y = e^L$. Example: $\displaystyle\lim_{x\to\infty}\Bigl(1 + \frac3x\Bigr)^x$. Here $\ln y = x\ln(1 + 3/x) = \dfrac{\ln(1 + 3/x)}{1/x} \to 3$, so the limit is $e^3$.</li>
 </ul>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>L'Hôpital can loop. For $\displaystyle\lim_{x\to\infty}\frac{\sqrt{x^2 + 1}}{x}$ it produces $\frac{x}{\sqrt{x^2 + 1}}$, then the original quotient again. Algebra settles it: divide top and bottom by $x$ to get $\sqrt{1 + 1/x^2} \to 1$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>L'Hôpital can loop. For $\displaystyle\lim_{x\to\infty}\frac{\sqrt{x^2 + 1}}{x}$ it produces $\frac{x}{\sqrt{x^2 + 1}}$, then the original quotient again. Algebra settles it: divide top and bottom by $x$ to get $\sqrt{1 + 1/x^2} \to 1$.</p></div>
 </div>
 <div class="section"><h3>Practice problems</h3>
 

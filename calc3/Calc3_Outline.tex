@@ -81,7 +81,7 @@
   \item \textbf{Curvature}: $\kappa=|\vec{T}'|/|\vec{r}'|=|\vec{r}'\times\vec{r}''|/|\vec{r}'|^3$. For $y=f(x)$: $\kappa=|f''|/(1+f'^2)^{3/2}$.
   \item \textbf{Principal unit normal}: $\vec{N}=\vec{T}'/|\vec{T}'|$ (toward center of curvature). Radius of curvature $\rho=1/\kappa$.
   \item \textbf{Velocity/speed/acceleration}: $\vec{v}=\vec{r}'$, speed$=|\vec{v}|=ds/dt$, $\vec{a}=\vec{v}'$.
-  \item \textbf{Acceleration decomposition}: $\vec{a}=a_T\vec{T}+a_N\vec{N}$; $a_T=\vec{r}'\cdot\vec{r}''/|\vec{r}'|$; $a_N=|\vec{r}'\times\vec{r}''|/|\vec{r}'|=\kappa v^2$.
+  \item \textbf{Acceleration decomposition}: $\vec{a}=a_T\vec{T}+a_N\vec{N}$; $a_T=\vec{r}'\cdot\vec{r}''/|\vec{r}'|$; $a_N=|\vec{r}'\times\vec{r}''|/|\vec{r}'|=\kappa|\vec{v}|^2$.
 \end{enumerate}
 
 \subsection{Ch.\ 14: Partial Derivatives}
@@ -248,7 +248,7 @@ A = \int_\alpha^\beta y\,\frac{dx}{dt}\,dt
 
 \subsection{10.3 Polar Coordinates}
 
-\textbf{Polar coordinates.} point $P$ is $(r,\theta)$ where $r=|OP|$ and $\theta$ is the angle from the polar axis. negative $r$ allowed: $(-r,\theta)=(r,\theta+\pi)$.
+\textbf{Polar coordinates.} point $P$ is $(r,\theta)$ where $O$ is the origin (the pole), $r=|OP|$, and $\theta$ is the angle from the polar axis (the positive $x$-axis). negative $r$ allowed: $(-r,\theta)=(r,\theta+\pi)$.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.2]
@@ -654,7 +654,7 @@ $\vec{a}\cdot\vec{b} = |\vec{a}||\vec{b}|\cos\theta$ where $\theta\in[0,\pi]$ is
 
 \textbf{Work.} $W = \vec{F}\cdot\vec{D} = |\vec{F}||\vec{D}|\cos\theta$.
 
-\textit{Geometrically.} dot product is length of projection of one vector onto the other.
+\textit{Geometrically.} $\vec a\cdot\vec b$ is $|\vec a|$ times the signed length $\mathrm{comp}_{\vec a}\vec b$ of the projection of $\vec b$ onto $\vec a$.
 
 \medskip\textbf{Practice.}
 \begin{enumerate}[noitemsep]
@@ -846,7 +846,7 @@ $|\vec a\times\vec b|$ is the area of the parallelogram. direction is perp by th
 
 \textbf{Volume of parallelepiped.} $V = |\vec{a}\cdot(\vec{b}\times\vec{c})|$.
 
-\textbf{Torque.} $\vec{\tau} = \vec{r}\times\vec{F}$, magnitude $|\vec r||\vec F|\sin\theta$, force times moment arm.
+\textbf{Torque.} for a force $\vec F$ applied at the tip of the position vector $\vec r$ from the pivot, $\vec{\tau} = \vec{r}\times\vec{F}$, magnitude $|\vec r||\vec F|\sin\theta$ with $\theta$ the angle between $\vec r$ and $\vec F$, force times moment arm.
 
 \medskip\textbf{Practice.}
 \begin{enumerate}[noitemsep]
@@ -918,7 +918,7 @@ D = \bigl|\overrightarrow{Q_0P}\cdot\hat{\vec{n}}\bigr| = \frac{|ax_1+by_1+cz_1+
 
 \textbf{Distance from $P$ to line.} Let the line pass through point $Q$ with direction $\vec{v}$. Two methods:
 
-\textit{Method 1.} $D = |\mathrm{orth}_{\vec{v}}\,\overrightarrow{QP}| = \sqrt{|\overrightarrow{QP}|^2 - |\mathrm{proj}_{\vec{v}}\,\overrightarrow{QP}|^2}$ \quad (orthogonal projection)
+\textit{Method 1.} $D = |\mathrm{orth}_{\vec{v}}\,\overrightarrow{QP}| = \sqrt{|\overrightarrow{QP}|^2 - |\mathrm{proj}_{\vec{v}}\,\overrightarrow{QP}|^2}$ \quad (orthogonal projection, $\mathrm{orth}_{\vec v}\overrightarrow{QP}=\overrightarrow{QP}-\mathrm{proj}_{\vec v}\overrightarrow{QP}$)
 
 \textit{Method 2.} $D = \dfrac{|\overrightarrow{QP}\times\vec{v}|}{|\vec{v}|}$ \quad (derived from $|\overrightarrow{QP}\times\vec{v}| = |\overrightarrow{QP}||\vec{v}|\sin\theta$, where $\sin\theta \cdot |\overrightarrow{QP}| = D$)
 
@@ -1145,7 +1145,7 @@ $\vec{r}(t) = \vv{f(t),g(t),h(t)}$; operations (addition, scaling, dot, cross) a
 \begin{enumerate}[noitemsep]
   \item Sketch the directed curve $\vec{r}(t)=\langle 3\cos t, 3\sin t, 2\rangle$ for $0\le t\le 2\pi$. Indicate the direction of motion.
   \item Sketch the curve $\vec{r}(t)=\langle t^2, t\rangle$ in 2D and describe its shape.
-  \item Find the domain of $\vec{r}(t)=\langle \ln(t-1),\; \arctan(t),\; \sqrt{4-t^2}\rangle$.
+  \item Find the domain of $\vec{r}(t)=\langle \ln(t-1),\; \tan^{-1}(t),\; \sqrt{4-t^2}\rangle$.
 \end{enumerate}
 
 \begin{center}
@@ -1233,7 +1233,7 @@ $|\vec{r}(t)|=c$ (constant) $\implies \vec{r}'(t)\perp\vec{r}(t)$.
 
 \textbf{Arc length.} Small arc element: $ds\approx |\vec{r}'(t)|\,dt$ (Pythagorean theorem).
 \[
-L = \int_a^b |\vec{r}'(t)|\,dt = \int_a^b \sqrt{(x')^2+(y')^2+(z')^2}\,dt
+L = \int_a^b |\vec{r}'(t)|\,dt = \int_a^b \sqrt{(f')^2+(g')^2+(h')^2}\,dt
 \]
 
 \textbf{Arc length function.} $s(t)=\int_a^t |\vec{r}'(u)|\,du$; \quad $ds/dt=|\vec{r}'(t)|$ (speed).
@@ -1385,7 +1385,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 
 \textbf{Geometric meaning.} Linear truncation gives tangent line. Quadratic adds osculating parabola. Cubic hugs curve even closer.
 
-\textit{Example.} Take $\vec r(t)=(t,\;t^2/2,\;t^3/6)$, a true 3D curve.
+\textit{Example.} Take $\vec r(t)=\vv{t,\;t^2/2,\;t^3/6}$, a true 3D curve.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=1.6,x={(0.6cm,-0.32cm)},y={(0.9cm,0.22cm)},z={(0cm,0.9cm)}]
@@ -1449,7 +1449,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
   \pgfmathsetmacro{\sa}{cos(45)}\pgfmathsetmacro{\sb}{sin(45)}
   \filldraw[black] (\sa,\sb,{0.6}) circle (1.3pt);
   % Outward normal in xy plane (which equals grad f direction up to z component)
-  \draw[->,red,very thick] (\sa,\sb,{0.6})--({\sa+0.7*\sa},{\sb+0.7*\sb},{0.6+0.7*1.2*0.6}) node[right,red,font=\tiny]{$\langle f_x,f_y,-1\rangle$ normal};
+  \draw[->,red,very thick] (\sa,\sb,{0.6})--({\sa+0.7*\sa},{\sb+0.7*\sb},{0.6}) node[right,red,font=\tiny]{$\nabla f$ direction};
 \end{tikzpicture}
 \qquad
 \begin{tikzpicture}[>=Latex,scale=1.0]
@@ -1518,7 +1518,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
       \draw[blue!70] (-1.6,{\k-1.6})--(1.6,{\k+1.6});
     }
     \draw[->,red,very thick] (0,0)--(0.7,-0.7) node[right]{$\nabla f$};
-    \node at (0,-2.5){\small $f=x+y$};
+    \node at (0,-2.5){\small $f=x-y$};
   \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -1557,7 +1557,7 @@ For $y=f(x)$: $\kappa = \dfrac{|f''|}{(1+(f')^2)^{3/2}}$
 
 \textbf{DNE.} find two paths that disagree.
 
-\textbf{Polar trick.} set $x=r\cos\theta,y=r\sin\theta$. if the value only depends on $r\to 0$ that's the limit.
+\textbf{Polar trick.} set $x=r\cos\theta,y=r\sin\theta$. if $|f-L|$ is bounded by a function of $r$ alone that goes to $0$ as $r\to 0$, the limit is $L$.
 
 \textbf{Continuity.} $f$ is continuous at $(a,b)$ if $\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b)$. polynomials and rationals are continuous on their domains.
 
@@ -1698,7 +1698,7 @@ z - z_0 = f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)
 \end{tikzpicture}
 \end{center}
 
-\textit{Tangent plane $=$ best linear approximation; error vanishes faster than $|\Delta\vec x|$.}
+\textit{Tangent plane $=$ best linear approximation; error vanishes faster than $|\Delta\vec x|$, where $\Delta\vec x=\langle x-a,y-b\rangle$.}
 
 \begin{thm}
 $f_x$, $f_y$ exist and are continuous near $(a,b)$ $\implies$ $f$ is differentiable at $(a,b)$.
@@ -1752,7 +1752,7 @@ $f_x$, $f_y$ exist and are continuous near $(a,b)$ $\implies$ $f$ is differentia
 
 \medskip\textbf{Practice.}
 \begin{enumerate}[noitemsep]
-  \item Find the tangent plane to $x^2+2y^2+3z^2=21$ at the point $(2,2,1)$.
+  \item Find the tangent plane to $x^2+2y^2+3z^2=21$ at the point $(4,-1,1)$.
   \item Find the linear approximation of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ and use it to estimate $f(1.95,1.08)$.
 \end{enumerate}
 
@@ -2128,12 +2128,12 @@ Solve the system; compare $f$ at all candidates.
   \node[red] at (1.55,1.4){$g=k$};
   % level curves of f
   \foreach \k in {-1.0,-0.5,0,0.5,1.0,1.5} {
-    \draw[blue!60] (\k+1.1,-2) -- (\k+1.1,2);
+    \draw[blue!60] (\k+1.0,-2) -- (\k+1.0,2);
   }
   % tangency point
   \filldraw[teal] (1.5,0) circle (1.7pt);
-  \draw[->,thick,teal] (1.5,0) -- (2.4,0.4) node[right]{$\nabla f$};
-  \draw[->,thick,orange] (1.5,0) -- (2.1,-0.1) node[below right,orange]{$\lambda\nabla g$};
+  \draw[->,thick,teal] (1.5,0.06) -- (2.4,0.06) node[above right]{$\nabla f$};
+  \draw[->,thick,orange] (1.5,-0.06) -- (2.1,-0.06) node[below right,orange]{$\lambda\nabla g$};
 \end{tikzpicture}
 \end{center}
 
@@ -2175,9 +2175,10 @@ Solve the system; compare $f$ at all candidates.
 \subsection{14.9 Taylor Approximation for Surfaces}
 
 \textbf{Taylor series for functions of two variables.} near a point $(x_0, y_0)$, the function $f(x,y)$ can be approximated by a polynomial:
-\[
-f(x_0+h, y_0+k) \approx f(x_0,y_0) + f_x(x_0,y_0) \cdot h + f_y(x_0,y_0) \cdot k + \tfrac{1}{2}\big(f_{xx}(x_0,y_0) h^2 + 2f_{xy}(x_0,y_0) hk + f_{yy}(x_0,y_0) k^2\big) + \cdots
-\]
+\begin{align*}
+f(x_0+h, y_0+k) \approx{}& f(x_0,y_0) + f_x(x_0,y_0) \cdot h + f_y(x_0,y_0) \cdot k\\
+&+ \tfrac{1}{2}\big(f_{xx}(x_0,y_0) h^2 + 2f_{xy}(x_0,y_0) hk + f_{yy}(x_0,y_0) k^2\big) + \cdots
+\end{align*}
 
 The first-order terms define the tangent plane; the second-order terms capture how the surface curves away from it (determined by the Hessian).
 
@@ -2310,7 +2311,7 @@ setting $h=1$ recovers part A: a prism of height $1$ over $D$ has volume equal t
 \end{tikzpicture}
 \end{center}
 
-Refining the tiles gives
+Refining the tiles ($m$ columns in $x$, $n$ rows in $y$, each tile $R_{ij}$ of area $\Delta A$ with sample point $(x_{ij}^*,y_{ij}^*)$) gives
 \[
 \iint_R f\,dA = \lim_{m,n\to\infty}\sum_{i,j}f(x_{ij}^*,y_{ij}^*)\Delta A.
 \]
@@ -2499,9 +2500,9 @@ The probability that a random point falls in a sub-region is the integral of $p$
 \iiint_B f\,dV = \int_r^s\int_c^d\int_a^b f(x,y,z)\,dx\,dy\,dz \quad \text{(any order by Fubini)}
 \]
 
-\textbf{General regions.} for a solid $E$ bounded below by $z=g_1(x,y)$, above by $z=g_2(x,y)$, with $(x,y)$ in a 2D region $D$,
+\textbf{General regions.} for a solid $E$ bounded below by $z=u_1(x,y)$, above by $z=u_2(x,y)$, with $(x,y)$ in a 2D region $D$,
 \[
-\iiint_E f\,dV = \iint_D \int_{g_1(x,y)}^{g_2(x,y)} f(x,y,z)\,dz\,dA.
+\iiint_E f\,dV = \iint_D \int_{u_1(x,y)}^{u_2(x,y)} f(x,y,z)\,dz\,dA.
 \]
 
 \textit{Example.} compute the volume of the tetrahedron with vertices $(0,0,0)$, $(1,0,0)$, $(0,1,0)$, $(0,0,1)$. top is $z=1-x-y$, bottom is $z=0$, projection is the triangle $x+y\le 1$, $x,y\ge 0$.
@@ -2691,7 +2692,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 \end{tikzpicture}
 \end{center}
 
-\textbf{Key relation.} $r=\rho\sin\phi$ (cylindrical radius from $z$-axis), $z=\rho\cos\phi$ (height). The Jacobian $\rho^2\sin\phi$ is the product of the three edge lengths.
+\textbf{Key relation.} $r=\rho\sin\phi$ (cylindrical radius from $z$-axis), $z=\rho\cos\phi$ (height). The factor $\rho^2\sin\phi$ is the product of the three edge lengths divided by $d\rho\,d\phi\,d\theta$.
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=0.9]
@@ -2840,7 +2841,7 @@ V=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\!dz\,dy\,dx
 
 \textit{the fourth field has zero curl but is not conservative on $\R^2\setminus\{0\}$ because the domain has a hole.}
 
-\textbf{Simply connected.} a region $D$ with no holes. every closed loop in $D$ shrinks to a point inside $D$. disks rectangles and all of $\R^2$ work, but $\R^2\setminus\{(0,0)\}$ doesn't (there's a hole at the origin).
+\textbf{Simply connected.} a region $D$ with no holes. every closed loop in $D$ shrinks to a point inside $D$. disks, rectangles, and all of $\R^2$ work, but $\R^2\setminus\{(0,0)\}$ doesn't (there's a hole at the origin).
 
 \begin{center}
 \begin{tikzpicture}[>=Latex,scale=0.8]
@@ -3004,7 +3005,7 @@ If $\vec{F}=\grad f$ and $C$ goes from $\vec{r}(a)$ to $\vec{r}(b)$:
 \end{tikzpicture}
 \end{center}
 
-\begin{thm}[Exactness test in $\R^2$]
+\begin{thm}[Conservative test in $\R^2$]
 On a simply-connected domain: $\vec{F}=\vv{P,Q}$ conservative $\iff$ $\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$.
 \end{thm}
 

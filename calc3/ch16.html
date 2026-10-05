@@ -46,9 +46,9 @@ window.MathJax = {
 
 <p><b>Gradient fields.</b> For $f(x,y) = x^2 + y^2$, the field $\nabla f = \langle 2x, 2y\rangle$ points straight out from the origin, perpendicular to the circles $f = c$. This is the picture to keep in mind. Walking along a level curve changes $f$ by nothing, and $\nabla f$ points in the direction of fastest increase, so the arrows of a gradient field always cross the level curves at right angles.</p>
 
-<p><b>Conservative field.</b> $\vec F = \nabla f$ for some scalar function $f$, called the <em>potential</em>. On a simply connected domain, $\vec F$ is conservative exactly when $\nabla \times \vec F = \vec 0$.</p>
+<p><b>Conservative field.</b> $\vec F = \nabla f$ for some scalar function $f$, called the <em>potential</em>.</p>
 
-<p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ is a source with $\nabla \cdot \vec F &gt; 0$. The swirl $\vec F = \langle -y, x, 0\rangle$ has nonzero curl. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
+<p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ points straight out from the origin, like a source. The swirl $\vec F = \langle -y, x, 0\rangle$ circles the $z$-axis. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
 
 <p><b>Reading a potential off the picture.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field $\langle x, y\rangle$ these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl $\langle -y, x\rangle$ the curves crossing every arrow at a right angle are rays out of the origin, which is the first sign of trouble.</p>
 
@@ -65,18 +65,18 @@ window.MathJax = {
 
 <p><b>(1) Scalar line integral.</b></p>
 <div class="formula">$\displaystyle\int_C f\,ds = \int_a^b f(\vec r(t))\,|\vec r\,'(t)|\,dt.$</div>
-<p>Geometrically this is the area of a fence of height $f$ standing on $C$, and physically it is the mass of a wire with linear density $f$.</p>
+<p>Geometrically, for $f \ge 0$, this is the area of a fence of height $f$ standing on $C$, and physically it is the mass of a wire with linear density $f$.</p>
 
 <p><b>(2) Vector line integral, the work.</b></p>
 <div class="formula">$\displaystyle\int_C \vec F \cdot d\vec r = \int_a^b \vec F(\vec r(t)) \cdot \vec r\,'(t)\,dt = \int_C P\,dx + Q\,dy + R\,dz.$</div>
 <p><em>Why.</em> A constant force $\vec F$ pushing along a straight displacement $\vec d$ does work $\vec F \cdot \vec d$, and only the component of $\vec F$ along $\vec d$ counts. Along a curve, chop $C$ into nearly straight steps $\Delta \vec r$, add up $\vec F \cdot \Delta \vec r$, and take the limit. Since $d\vec r = \vec T\,ds$ with $\vec T$ the unit tangent, this is the scalar line integral $\int_C \vec F \cdot \vec T\,ds$ of the tangential component of $\vec F$. A field perpendicular to the path does no work.</p>
-<p><b>Two loops with no computation.</b> On the unit circle traversed counterclockwise, the swirl $\langle -y, x\rangle$ is a unit vector pointing along the direction of travel, so $\vec F \cdot d\vec r = ds$ and $\oint_C \vec F \cdot d\vec r = 2\pi$, the length of the circle. The radial field $\langle x, y\rangle$ is perpendicular to the circle everywhere, so its loop integral is $0$.</p>
+<p><b>Two loops with no computation.</b> On the unit circle traversed counterclockwise, the swirl $\langle -y, x\rangle$ is a unit vector pointing along the direction of travel, so $\vec F \cdot d\vec r = ds$ and $\oint_C \vec F \cdot d\vec r = 2\pi$ (the symbol $\oint_C$ marks a line integral over a closed curve), the length of the circle. The radial field $\langle x, y\rangle$ is perpendicular to the circle everywhere, so its loop integral is $0$.</p>
 
-<p><b>(3) 2D flux.</b> The integral $\displaystyle\int_C \vec F \cdot \vec n\,ds$ takes the normal component, measuring how much of the field crosses $C$.</p>
+<p><b>(3) 2D flux.</b> The integral $\displaystyle\int_C \vec F \cdot \vec n\,ds$, with $\vec n$ the unit normal to $C$ (for a closed curve, pointing outward), takes the normal component, measuring how much of the field crosses $C$.</p>
 
 <p><b>Orientation.</b> Reversing $C$ flips the sign of $\int \vec F \cdot d\vec r$ and the flux. The scalar integral $\int f\,ds$ does not change.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Two integrals share similar notation. The scalar $\int_C f\,ds$ uses $|\vec r\,'(t)|\,dt$ and does <em>not</em> change when we reverse $C$. The work $\int_C\vec F\cdot d\vec r$ uses $\vec r\,'(t)\,dt$ and flips sign when $C$ is reversed. Match the integrand to the right form.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Two integrals share similar notation. The scalar $\int_C f\,ds$ uses $|\vec r\,'(t)|\,dt$ and does <em>not</em> change when we reverse $C$. The work $\int_C\vec F\cdot d\vec r$ uses $\vec r\,'(t)\,dt$ and flips sign when $C$ is reversed. Match the integrand to the right form.</p></div>
 <p><b>Wire mass and center of mass.</b> For a wire $C$ with linear density $\rho(x, y, z)$,</p>
 <div class="formula">$m = \int_C \rho\,ds,\qquad \bar x = \dfrac{1}{m}\int_C x\,\rho\,ds,\qquad \bar y = \dfrac{1}{m}\int_C y\,\rho\,ds,\qquad \bar z = \dfrac{1}{m}\int_C z\,\rho\,ds.$</div>
 <p><em>Same lever-arm logic as the 2D case.</em> Chop the wire into small pieces, where the $i$-th has length $\Delta s_i$ and mass $\rho_i \Delta s_i$ at position $(x_i, y_i, z_i)$. The discrete center of mass along $x$ is $\bar x = \sum \rho_i x_i \Delta s_i / \sum \rho_i \Delta s_i$, which in the limit becomes $\int_C x \rho\,ds / \int_C \rho\,ds$. The $x$ inside is the lever arm to the $yz$-plane.</p>
@@ -85,13 +85,13 @@ window.MathJax = {
 </div>
 <div class="section"><h3>16.3 The Fundamental Theorem for Line Integrals</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>The Fundamental Theorem for Line Integrals.</b> If $\vec F = \nabla f$ and $C$ goes from $\vec r(a)$ to $\vec r(b)$, then</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>The Fundamental Theorem for Line Integrals (FTLI).</b> If $C$ is a smooth curve given by $\vec r(t)$, $a \le t \le b$, and $\vec F = \nabla f$ with $\nabla f$ continuous on $C$, then</p>
 <div class="formula">$\displaystyle\int_C \nabla f \cdot d\vec r = f(\vec r(b)) - f(\vec r(a)).$</div>
 <p><em>Why.</em> By the chain rule of 14.5, $\frac{d}{dt} f(\vec r(t)) = \nabla f \cdot \vec r\,'(t)$, which is the integrand. The line integral therefore adds up every change in $f$ along the path, and the total change of $f$ over a trip is its final value minus its initial value.</p>
 
 <p>Next to the Fundamental Theorem of Calculus, $\int_a^b f'(x)\,dx = f(b) - f(a)$, the gradient plays the part of $f'$, the endpoints of $C$ play $a$ and $b$, and the curve plays the interval. The whole path drops out and only the endpoints are left.</p>
 
-<p><b>Path independence.</b> $\int_C \vec F \cdot d\vec r$ is independent of the path iff $\vec F$ is conservative iff $\oint_C \vec F \cdot d\vec r = 0$ for every closed $C$. If work depends only on endpoints then closed loops give zero, and work measured from a fixed base point defines the potential $f$.</p>
+<p><b>Path independence.</b> For $\vec F$ continuous on an open connected region, $\int_C \vec F \cdot d\vec r$ is independent of the path iff $\vec F$ is conservative iff $\oint_C \vec F \cdot d\vec r = 0$ for every closed $C$. If work depends only on endpoints then closed loops give zero, and work measured from a fixed base point defines the potential $f$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="pathIndependence"></canvas></div>
 
@@ -102,24 +102,24 @@ window.MathJax = {
   <li><em>The nonzero loop.</em> A gradient does zero work around every closed loop, but the loop integral above is $2\pi$.</li>
 </ul>
 
-<p><b>Exactness test in $\mathbb R^2$.</b> On a simply-connected domain, $\vec F = \langle P, Q\rangle$ is conservative iff $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$.</p>
+<p><b>Conservative test in $\mathbb R^2$.</b> A region is <em>simply connected</em> if it is connected and every simple closed curve in it (one that does not cross itself) encloses only points of the region. On a simply connected region, $\vec F = \langle P, Q\rangle$ with continuous first partials is conservative iff $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$P_y=Q_x$ is enough only on a <em>simply connected</em> domain with no holes. The field $\vec F=\dfrac{\langle -y,\,x\rangle}{x^2+y^2}$ satisfies $P_y=Q_x$ everywhere it is defined, yet $\oint_C\vec F\cdot d\vec r=2\pi\ne 0$ around the origin, since the punctured plane has a hole, worked out in 16.4.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$P_y=Q_x$ is enough only on a <em>simply connected</em> domain with no holes. The field $\vec F=\dfrac{\langle -y,\,x\rangle}{x^2+y^2}$ satisfies $P_y=Q_x$ everywhere it is defined, yet on the unit circle $\vec F=\langle -y, x\rangle$, so $\oint_C\vec F\cdot d\vec r=2\pi\ne 0$ as computed in 16.2. The punctured plane has a hole at the origin.</p></div>
 <p><b>Finding a potential function.</b> Integrate $f_x = P$ with respect to $x$, then differentiate with respect to $y$ and match $f_y = Q$ to determine the unknown function of $y$.</p>
 
 </div>
 <div class="section"><h3>16.4 Green's Theorem</h3>
 
-<p class="part"><span class="dimtag">2D</span><b>Green's Theorem.</b> Let $C$ be a positively oriented, counterclockwise, piecewise smooth, simple closed curve bounding a region $D$. If $P, Q$ have continuous partials on an open region containing $D$, then</p>
+<p class="part"><span class="dimtag">2D</span><b>Green's Theorem.</b> Let $C$ be a positively oriented (counterclockwise), piecewise smooth, simple closed curve bounding a region $D$. If $P, Q$ have continuous partials on an open region containing $D$, then</p>
 <div class="formula">$\displaystyle\oint_C P\,dx + Q\,dy = \iint_D \left(\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}\right)dA.$</div>
 <p><em>Why.</em> Tile $D$ with small counterclockwise squares. Each interior edge is traversed twice in opposite directions by the two squares sharing it, so the interior contributions cancel and only the outer boundary survives. The circulation around one small square works out to $(Q_x - P_y)\,dA$, so summing circulations over the tiles gives the double integral while the surviving boundary terms give the line integral.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Mind the order. The integrand is $Q_x-P_y$, the $x$-derivative of the second component minus the $y$-derivative of the first, and $C$ must be counterclockwise. A clockwise curve flips the sign.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Mind the order. The integrand is $Q_x-P_y$, the $x$-derivative of the second component minus the $y$-derivative of the first, and $C$ must be counterclockwise. A clockwise curve flips the sign.</p></div>
 <p><b>Area formula.</b> $A = \tfrac12 \oint_C (x\,dy - y\,dx)$.</p>
 
-<p><b>Green with a hole.</b> For $D$ with outer boundary $C_{\text{out}}$ (CCW) and inner $C_{\text{in}}$ (CW),</p>
+<p><b>Green with a hole.</b> For $D$ with outer boundary $C_{\text{out}}$ and inner boundary $C_{\text{in}}$, both counterclockwise (CCW),</p>
 <div class="formula">$\displaystyle\oint_{C_{\text{out}}} P\,dx + Q\,dy - \oint_{C_{\text{in}}} P\,dx + Q\,dy = \iint_D (Q_x - P_y)\,dA.$</div>
-<p>Equivalently, traverse outer CCW and inner CW so $D$ is always on the left.</p>
+<p>Equivalently, traverse the outer curve CCW and the inner curve clockwise (CW), so $D$ is always on the left, and add the two line integrals.</p>
 
 <p><em>Example with a hole.</em> Compute $\oint_C \dfrac{-y\,dx + x\,dy}{x^2 + y^2}$ for any simple CCW curve $C$ around the origin. The integrand blows up at $(0, 0)$, so cut out a small circle $C_\varepsilon$ of radius $\varepsilon$. Between $C$ and $C_\varepsilon$ we have $Q_x - P_y = 0$, so Green gives $\oint_C - \oint_{C_\varepsilon} = 0$. Parametrizing $C_\varepsilon$ gives $\oint_{C_\varepsilon} = 2\pi$, hence $\oint_C = 2\pi$.</p>
 
@@ -130,12 +130,12 @@ window.MathJax = {
 <p class="part"><span class="dimtag">3D</span><b>Curl.</b> For $\vec F = \langle P, Q, R\rangle$,</p>
 <div class="formula">$\nabla \times \vec F = \det\begin{pmatrix}\hat\imath&amp;\hat\jmath&amp;\hat k\\\partial_x&amp;\partial_y&amp;\partial_z\\P&amp;Q&amp;R\end{pmatrix} = \langle R_y - Q_z,\ P_z - R_x,\ Q_x - P_y\rangle.$</div>
 
-<p><b>Curl of a gradient is zero.</b> $\vec F = \nabla f$ (conservative) $\Rightarrow \nabla \times \vec F = \vec 0$, and the converse holds on simply-connected domains in $\mathbb R^3$. Each component of $\nabla\times\nabla f$ is a difference of mixed partials such as $f_{zy} - f_{yz}$, which vanishes by Clairaut.</p>
+<p><b>Curl of a gradient is zero.</b> $\vec F = \nabla f$ (conservative) $\Rightarrow \nabla \times \vec F = \vec 0$, and the converse holds on simply connected domains in $\mathbb R^3$. Each component of $\nabla\times\nabla f$ is a difference of mixed partials such as $f_{zy} - f_{yz}$, which vanishes by Clairaut.</p>
 
 <p><b>Divergence.</b></p>
 <div class="formula">$\nabla \cdot \vec F = \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}.$</div>
 
-<p><b>Divergence of a curl is zero.</b> $\nabla \cdot (\nabla \times \vec F) = 0.$ Expand it and the mixed partials cancel in pairs, Clairaut again. So a field that's all swirl has no sources or sinks.</p>
+<p><b>Divergence of a curl is zero.</b> $\nabla \cdot (\nabla \times \vec F) = 0.$ Expand it and the mixed partials cancel in pairs, Clairaut again. So the curl of any field has no sources or sinks.</p>
 
 <p>It helps to have a physical picture. Divergence measures source and sink behavior at a point, outward flow if positive and inward if negative. Curl measures local rotation, the paddle wheel picture.</p>
 
@@ -149,7 +149,7 @@ window.MathJax = {
   <li><b>Right angles.</b> Overlay the level circles of $f$ and check that each arrow crosses its circle at a right angle, longest where the circles crowd together.</li>
   <li><b>The swirl.</b> Draw $\vec G = \langle -y, x\rangle$ and verify it is not a gradient by computing $\oint \vec G\cdot d\vec r$ around the unit circle.</li>
   <li><b>Work as height.</b> Since $f$ is a potential for $\vec F$, the work from $(1,0)$ to $(0,0)$ is $f(0,0)-f(1,0)$ along any path.</li>
-  <li><b>Curl and divergence.</b> $\vec F$ has a sink at the peak and no spin. $\vec G$ has pure spin and no net outflow. Sketch a paddle wheel in each.</li>
+  <li><b>Curl and divergence.</b> $\vec F$ has divergence $-4$, a sink at every point, and no spin. $\vec G$ has pure spin and no net outflow. Sketch a paddle wheel in each.</li>
 </ol>
 </div>
 <div class="section"><h3>Worked example</h3>
@@ -189,7 +189,7 @@ $P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_
 
 <p><b>Using FTLI.</b> If $\vec F$ is conservative with potential $f$, evaluate $f$ at the endpoints. No parametrization is needed.</p>
 
-<p><b>When to use Green's Theorem.</b> For a closed counterclockwise curve with $\vec F$ smooth on a region containing $\overline D$, convert $\oint_C P\,dx + Q\,dy$ to $\iint_D (Q_x - P_y)\,dA$ when the area integral is easier.</p>
+<p><b>When to use Green's Theorem.</b> For a closed counterclockwise curve $C$ bounding a region $D$, with $\vec F$ smooth on an open region containing $D$, convert $\oint_C P\,dx + Q\,dy$ to $\iint_D (Q_x - P_y)\,dA$ when the area integral is easier.</p>
 
 <p><b>Green for area.</b> Any field with $Q_x - P_y = 1$ turns the area into a boundary integral, giving $A(D) = \tfrac12 \oint_C (x\,dy - y\,dx) = \oint_C x\,dy = -\oint_C y\,dx$.</p>
 
@@ -198,11 +198,11 @@ $P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_
 <p><b>Interpretations.</b> $\nabla\cdot\vec F$ is net outward flux per unit volume, a source if positive and a sink if negative. $\nabla\times\vec F$ is twice the local angular velocity of an infinitesimal paddle wheel.</p>
 
 </div>
+<div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
 <footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math and Statistics</footer>
 <script type="module">
 import { initFigures } from './calc3_figs.js';
 initFigures();
 </script>
 <script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
-<div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
 </div></body></html>

@@ -58,8 +58,8 @@ REPLACEMENT GRAPH AND MORSE MATCHING
     Maximal Morse, built mcc by mcc. Used by genAMTReduce(ComplexGraph).
 
   Matcher map.
-    MFC: greedyMorseMatching (not maximal), bmMatrixMatching,
-    antidiagonalBinaryMatching.
+    MFC (MutableFreeComplex): greedyMorseMatching (not maximal),
+    bmMatrixMatching, antidiagonalBinaryMatching.
     ComplexGraph: mccMatching, bmMatchingDown, greedyDown, bmMatchingUp,
     prunedMatching.
 
@@ -221,7 +221,8 @@ ONE PASS GENERALIZED AMT
     INPUTS: ComplexGraph
     INPUTS: ComplexGraph, ZZ (characteristic)
     OUTPUTS: HashTable
-    The ComplexGraph form gives the minimal resolution of R/I over the given
+    The ComplexGraph form gives the minimal resolution of R/I, with R the ring
+    and I the monomial ideal of the ComplexGraph, over the given
     characteristic. Keys "matching", "diffs", "critByDeg", "ranks", "sccs",
     "determinants", and for the ComplexGraph form "closing", "matchedDets",
     "matchedInvertible", "dSquaredZero".

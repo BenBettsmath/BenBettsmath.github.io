@@ -51,22 +51,22 @@ window.MathJax = {
 
 <p><b>Examples.</b> $\dfrac{n}{n + 1} = \dfrac{1}{1 + 1/n} \to 1$. $\dfrac{(-1)^n}{n} \to 0$ since $\bigl|\frac{(-1)^n}{n}\bigr| = \frac1n \to 0$. $(-1)^n$ diverges, alternating between $1$ and $-1$. $\bigl(1 + \frac1n\bigr)^n \to e$ (6.4).</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>L'Hôpital's rule does not apply to a sequence directly, since $a_n$ is defined only at integers and has no derivative. Apply it to the function $f(x)$ with $f(n) = a_n$, then use the theorem above. Also, the converse of that theorem fails: $\sin(\pi n) = 0$ for every integer $n$, but $\lim_{x\to\infty}\sin(\pi x)$ does not exist.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>L'Hôpital's rule does not apply to a sequence directly, since $a_n$ is defined only at integers and has no derivative. Apply it to the function $f(x)$ with $f(n) = a_n$, then use the theorem above. Also, the converse of that theorem fails: $\sin(\pi n) = 0$ for every integer $n$, but $\lim_{x\to\infty}\sin(\pi x)$ does not exist.</p></div>
 </div>
 <div class="section"><h3>11.2 Series</h3>
 
 <p class="part"><b>Series and partial sums.</b> Given a sequence $\{a_n\}$, the series $\sum_{n=1}^\infty a_n = a_1 + a_2 + \cdots$ is the "infinite sum" of its terms. Its <b>$n$th partial sum</b> is $s_n = \sum_{i=1}^n a_i = a_1 + \cdots + a_n$. If the sequence $\{s_n\}$ converges to a number $s$, the series is <b>convergent</b> with <b>sum</b> $s$, and we write $\sum a_n = s$. Otherwise the series is <b>divergent</b>. So a series is really the sequence of its partial sums.</p>
 
-<p><b>Geometric series.</b> For $a \ne 0$,</p>
+<p><b>Geometric series.</b> For a first term $a \ne 0$ and a common ratio $r$ of consecutive terms,</p>
 <div class="formula">$\displaystyle\sum_{n=1}^\infty ar^{n-1} = a + ar + ar^2 + \cdots = \frac{a}{1 - r} \ \text{ if } |r| &lt; 1, \qquad \text{divergent if } |r| \ge 1.$</div>
-<p><em>Why.</em> $s_n - rs_n = a - ar^n$, since everything else cancels. So $s_n = \dfrac{a(1 - r^n)}{1 - r}$ for $r \ne 1$, and $r^n \to 0$ exactly when $|r| &lt; 1$. The number $a$ is the first term and $r$ is the common ratio of consecutive terms.</p>
+<p><em>Why.</em> $s_n - rs_n = a - ar^n$, since everything else cancels. So $s_n = \dfrac{a(1 - r^n)}{1 - r}$ for $r \ne 1$, and $r^n \to 0$ exactly when $|r| &lt; 1$.</p>
 
 <p><b>Example.</b> $\displaystyle\sum_{n=1}^\infty 3\Bigl(\frac25\Bigr)^n$ has first term $a = \tfrac65$ and ratio $r = \tfrac25$, so its sum is $\dfrac{6/5}{1 - 2/5} = 2$. The repeating decimal $0.363636\ldots$ is geometric with $a = \tfrac{36}{100}$ and $r = \tfrac{1}{100}$:</p>
 <div class="formula">$0.363636\ldots = \dfrac{36}{100} + \dfrac{36}{100^2} + \cdots = \dfrac{36/100}{1 - 1/100} = \dfrac{4}{11}.$</div>
 
 <p><b>Telescoping series.</b> If each term is a difference $b_n - b_{n+1}$, the partial sums collapse to $s_n = b_1 - b_{n+1}$. Example: $\dfrac{1}{n(n + 1)} = \dfrac1n - \dfrac{1}{n + 1}$, so $s_n = 1 - \dfrac{1}{n + 1} \to 1$.</p>
 
-<p><b>The harmonic series diverges.</b> $\sum\frac1n = 1 + \tfrac12 + \bigl(\tfrac13 + \tfrac14\bigr) + \bigl(\tfrac15 + \cdots + \tfrac18\bigr) + \cdots$. Each group in parentheses is at least $\tfrac12$ (it has $2^k$ terms, each at least $\frac{1}{2^{k+1}}$), so $s_{2^k} \ge 1 + \tfrac k2 \to \infty$.</p>
+<p><b>The harmonic series diverges.</b> $\sum\frac1n = 1 + \tfrac12 + \bigl(\tfrac13 + \tfrac14\bigr) + \bigl(\tfrac15 + \cdots + \tfrac18\bigr) + \cdots$. Each group in parentheses is at least $\tfrac12$ (the group ending at $\frac{1}{2^{k+1}}$ has $2^k$ terms, each at least $\frac{1}{2^{k+1}}$), so $s_{2^k} \ge 1 + \tfrac k2 \to \infty$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="partialSums"></canvas><div class="fig-cap"><b>Terms and partial sums.</b>Slide $N$ and switch series. The harmonic terms shrink to $0$, but its partial sums keep climbing.</div></div>
 
@@ -74,7 +74,7 @@ window.MathJax = {
 <p><b>Test for divergence.</b> The contrapositive: if $\lim a_n$ does not exist or is not $0$, then $\sum a_n$ diverges.</p>
 <p><b>Linearity.</b> If $\sum a_n$ and $\sum b_n$ converge, so do $\sum ca_n = c\sum a_n$ and $\sum(a_n \pm b_n) = \sum a_n \pm \sum b_n$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$a_n \to 0$ does <em>not</em> imply convergence. The harmonic series is the standard counterexample. The test for divergence can only prove divergence.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$a_n \to 0$ does <em>not</em> imply convergence. The harmonic series is the standard counterexample. The test for divergence can only prove divergence.</p>
 <p>Keep the sequence and the series apart. $\frac{n}{n+1} \to 1$ as a sequence, so the series $\sum\frac{n}{n + 1}$ diverges.</p></div>
 </div>
 <div class="section"><h3>11.3 The Integral Test and Estimates of Sums</h3>
@@ -91,7 +91,7 @@ window.MathJax = {
 
 <p><b>Examples.</b> $\sum\frac{1}{n^2 + 1}$ converges, since $\int_1^\infty\frac{dx}{x^2 + 1} = \lim_{t\to\infty}\tan^{-1}t - \frac\pi4 = \frac\pi4$. $\sum_{n=2}^\infty\frac{1}{n\ln n}$ diverges, since $\int_2^t\frac{dx}{x\ln x} = \ln(\ln t) - \ln(\ln 2) \to \infty$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The integral test tells us <em>whether</em> the series converges, not its sum. $\int_1^\infty\frac{dx}{x^2} = 1$, but $\sum\frac{1}{n^2} = \frac{\pi^2}{6}$. Also check the hypotheses: $f$ must be positive and decreasing (at least for $x$ beyond some point).</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The integral test tells us <em>whether</em> the series converges, not its sum. $\int_1^\infty\frac{dx}{x^2} = 1$, but $\sum\frac{1}{n^2} = \frac{\pi^2}{6}$. Also check the hypotheses: $f$ must be positive and decreasing (at least for $x$ beyond some point).</p></div>
 </div>
 <div class="section"><h3>11.4 The Comparison Tests</h3>
 
@@ -107,7 +107,7 @@ window.MathJax = {
 
 <p><b>Choosing $b_n$.</b> Keep only the dominant term of the numerator and of the denominator. Example: $\displaystyle\sum\frac{2n + 3}{n^3 + 1}$ looks like $\frac{2n}{n^3} = \frac{2}{n^2}$. With $b_n = \frac{1}{n^2}$, $\dfrac{a_n}{b_n} = \dfrac{2n^3 + 3n^2}{n^3 + 1} \to 2$, and $\sum\frac{1}{n^2}$ converges, so the series converges.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A comparison in the wrong direction proves nothing. Showing $\frac{1}{n^2 + 1} \le \frac1n$ is true but useless, because being smaller than a divergent series says nothing. Before writing an inequality, decide whether you expect convergence (bound above by a convergent series) or divergence (bound below by a divergent one).</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>A comparison in the wrong direction proves nothing. Showing $\frac{1}{n^2 + 1} \le \frac1n$ is true but useless, because being smaller than a divergent series says nothing. Before writing an inequality, decide whether you expect convergence (bound above by a convergent series) or divergence (bound below by a divergent one).</p></div>
 </div>
 <div class="section"><h3>11.5 Alternating Series</h3>
 
@@ -123,7 +123,7 @@ window.MathJax = {
 
 <p><b>Examples.</b> The alternating harmonic series $1 - \frac12 + \frac13 - \cdots$ converges. (Its sum is $\ln 2$.) How many terms of $\sum_{n=1}^\infty\frac{(-1)^{n-1}}{n!}$ guarantee error at most $0.001$? We need $b_{n+1} = \frac{1}{(n + 1)!} \le 0.001$, that is $(n + 1)! \ge 1000$. Since $6! = 720$ and $7! = 5040$, $n + 1 = 7$, so $n = 6$ terms.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Check both conditions. If $b_n \not\to 0$, the series diverges by the test for divergence (for example $\sum(-1)^n\frac{n}{n + 1}$). If $b_n$ is not decreasing, the test does not apply, though the series might still converge by another test. The estimate $|R_n| \le b_{n+1}$ holds only for alternating series that pass the test.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Check both conditions. If $b_n \not\to 0$, the series diverges by the test for divergence (for example $\sum(-1)^n\frac{n}{n + 1}$). If $b_n$ is not decreasing, the test does not apply, though the series might still converge by another test. The estimate $|R_n| \le b_{n+1}$ holds only for alternating series that pass the test.</p></div>
 </div>
 <div class="section"><h3>11.6 Absolute Convergence and the Ratio and Root Tests</h3>
 
@@ -144,7 +144,7 @@ window.MathJax = {
 
 <p><b>Rearrangements.</b> The terms of an absolutely convergent series can be reordered without changing the sum. A conditionally convergent series can be rearranged to have any sum at all (Riemann). Order matters when convergence relies on cancellation.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The ratio test gives $L = 1$ for every $p$-series and for every rational function of $n$, whether they converge or not, so it tells nothing there. Use it for factorials and for constants raised to the $n$th power. Use the root test when the whole term is an $n$th power.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test gives $L = 1$ for every $p$-series and for every rational function of $n$, whether they converge or not, so it tells nothing there. Use it for factorials and for constants raised to the $n$th power. Use the root test when the whole term is an $n$th power.</p></div>
 </div>
 <div class="section"><h3>11.7 Strategy for Testing Series</h3>
 
@@ -182,7 +182,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="powerInterval"></canvas><div class="fig-cap"><b>Interval of convergence.</b>Drag the yellow point along the number line. Below it, the partial sums at that $x$ settle (blue) or run away (red). Endpoints snap into place.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The ratio test always gives $L = 1$ at the endpoints, so it cannot decide them. Substitute each endpoint and use another test (often $p$-series or alternating series). And $R$ is a radius, half the length of the interval, not the interval itself.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test always gives $L = 1$ at the endpoints, so it cannot decide them. Substitute each endpoint and use another test (often $p$-series or alternating series). And $R$ is a radius, half the length of the interval, not the interval itself.</p></div>
 </div>
 <div class="section"><h3>11.9 Representations of Functions as Power Series</h3>
 
@@ -200,7 +200,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle\tan^{-1}x = \sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n + 1} = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots, \qquad |x| &lt; 1.$</div>
 <p>Both also hold at $x = 1$ (by Abel's theorem, beyond this course), giving $\ln 2 = 1 - \frac12 + \frac13 - \cdots$ and $\frac\pi4 = 1 - \frac13 + \frac15 - \cdots$. Differentiating $\frac{1}{1 - x}$ gives $\dfrac{1}{(1 - x)^2} = \displaystyle\sum_{n=1}^\infty nx^{n-1}$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The radius stays the same, but the endpoints can change: $\sum x^n$ diverges at $x = -1$, while its integral series $\sum\frac{x^{n+1}}{n + 1}$ converges there. After integrating, find $C$ by evaluating both sides at the center ($\ln(1 + 0) = 0$ gives $C = 0$ above).</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The radius stays the same, but the endpoints can change: $\sum x^n$ diverges at $x = -1$, while its integral series $\sum\frac{x^{n+1}}{n + 1}$ converges there. After integrating, find $C$ by evaluating both sides at the center ($\ln(1 + 0) = 0$ gives $C = 0$ above).</p></div>
 </div>
 <div class="section"><h3>11.10 Taylor and Maclaurin Series</h3>
 
@@ -236,7 +236,7 @@ Series also evaluate limits: $\dfrac{\sin x - x}{x^3} = \dfrac{-x^3/3! + x^5/5! 
 And they sum series:</p>
 <div class="formula">$\displaystyle\sum_{n=0}^\infty\frac{(-1)^n\pi^{2n}}{4^n(2n)!} = \sum_{n=0}^\infty\frac{(-1)^n(\pi/2)^{2n}}{(2n)!} = \cos\frac\pi2 = 0.$</div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Do not drop the $n!$. The coefficient is $f^{(n)}(a)/n!$, not $f^{(n)}(a)$. And a Taylor series can converge without equaling $f$: the function equal to $e^{-1/x^2}$ for $x \ne 0$ and $0$ at $x = 0$ has every derivative $0$ at $0$, so its Maclaurin series is $0$. Equality needs $R_n \to 0$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Do not drop the $n!$. The coefficient is $f^{(n)}(a)/n!$, not $f^{(n)}(a)$. And a Taylor series can converge without equaling $f$: the function equal to $e^{-1/x^2}$ for $x \ne 0$ and $0$ at $x = 0$ has every derivative $0$ at $0$, so its Maclaurin series is $0$. Equality needs $R_n \to 0$.</p></div>
 </div>
 <div class="section"><h3>11.11 Applications of Taylor Polynomials</h3>
 
@@ -250,7 +250,7 @@ And they sum series:</p>
 
 <p><b>Physics.</b> Many formulas are first Taylor terms. For example the relativistic kinetic energy $mc^2\bigl[(1 - v^2/c^2)^{-1/2} - 1\bigr]$ becomes $\tfrac12mv^2$ when $(1 - v^2/c^2)^{-1/2}$ is replaced by the first two terms $1 + \frac{v^2}{2c^2}$ of its binomial series. Here $m$ is mass, $v$ speed, and $c$ the speed of light.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$M$ must bound $|f^{(n+1)}|$ on the whole interval from $a$ to $x$, not just at $a$. For $e^x$ on $[0, 0.5]$ take $M = e^{0.5}$ (or the cruder $M = 2$), not $M = e^0 = 1$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$M$ must bound $|f^{(n+1)}|$ on the whole interval from $a$ to $x$, not just at $a$. For $e^x$ on $[0, 0.5]$ take $M = e^{0.5}$ (or the cruder $M = 2$), not $M = e^0 = 1$.</p></div>
 </div>
 <div class="section"><h3>Practice problems</h3>
 

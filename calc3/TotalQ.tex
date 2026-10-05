@@ -226,7 +226,7 @@
 
 \item Dot Products and Projections
     \begin{enumerate}
-        \item \dimtag{1D in 2D} If $\vec{a}= \langle 1,1 \rangle$ and $\vec{b}= \langle -1,2 \rangle$, draw a picture of and calculate $\text{orth}_{\vec{a}} \vec{b}$ and $\text{proj}_{\vec{a}}\vec{b}$.
+        \item \dimtag{1D in 2D} If $\vec{a}= \langle 1,1 \rangle$ and $\vec{b}= \langle -1,2 \rangle$, draw a picture of and calculate $\text{orth}_{\vec{a}} \vec{b} = \vec b - \text{proj}_{\vec a}\vec b$ and $\text{proj}_{\vec{a}}\vec{b}$.
         \item Find the angle $\theta$ between the vectors $\vec a = \langle 2, -1, 1 \rangle$ and $\vec{b} = \langle 1, 1, 2 \rangle$.
         \item Determine if the vectors $\vec{u} = \langle 2, 6, -4 \rangle$ and $\vec{v} = \langle -3, 1, 0 \rangle$ are orthogonal, parallel, or neither.
         \item (Stewart \S12.3 \#45) Show that $\text{orth}_{\vec{a}}\vec{b} = \vec{b} - \text{proj}_{\vec{a}}\vec{b}$ is orthogonal to $\vec{a}$ (this is why it is called the \emph{orthogonal projection} of $\vec{b}$).
@@ -263,7 +263,7 @@
         (e) $(\vec{a}\cdot\vec{b})\times(\vec{c}\cdot\vec{d})$,\quad
         (f) $(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})$.
         \item Verify that $|\vec{a} \times \vec{b}|$ is the area of the parallelogram described by the 2 vectors.
-        \item Demonstrate that $\vec{a} \cdot (\vec{b} \times \vec{c})$ is the volume of the parallelepiped described by $\vec{a}, \vec{b}, \vec{c}$.
+        \item Demonstrate that $|\vec{a} \cdot (\vec{b} \times \vec{c})|$ is the volume of the parallelepiped described by $\vec{a}, \vec{b}, \vec{c}$.
         \item (Stewart \S12.4 \#4) Let $\vec{a} = 3\ihat + 3\jhat - 3\khat$ and $\vec{b} = 3\ihat - 3\jhat + 3\khat$. Find $\vec{a}\times\vec{b}$ and verify that it is orthogonal to both $\vec{a}$ and $\vec{b}$.
         \item Find a unit vector orthogonal to both $\vec{u} = \langle 1, 1, 0 \rangle$ and $\vec{v} = \langle 0, 1, 1 \rangle$.
         \item Let $\vec{a} = \langle 1, 0, 2 \rangle$, $\vec{b} = \langle -1, 3, 1 \rangle$, $\vec{c} = \langle 2, 1, 0 \rangle$.
@@ -411,7 +411,7 @@
 \item Graphing and Parameterization
     \begin{enumerate}
         \item \dimtag{1D in 3D} (Stewart \S13.1 \#1) Find the domain of $\vec{r}(t) = \left\langle \ln(t+1),\ \dfrac{t}{\sqrt{9-t^2}},\ 2^t \right\rangle$.
-        \item Let $\vec{r}(t) = \langle \ln(t-1),\ \arctan(t),\ \sqrt{4 - t^2} \rangle$.
+        \item Let $\vec{r}(t) = \langle \ln(t-1),\ \tan^{-1}(t),\ \sqrt{4 - t^2} \rangle$.
         \begin{enumerate}
             \item Find the domain of $\vec{r}(t)$.
             \item Sketch the projection of the curve onto the $xy$-plane for $t$ in the domain.
@@ -539,7 +539,7 @@
         \item \dimtag{2D in 3D} Sketch the level curves of $f(x,y) = x^2 + 4y^2$ for the values $k=1, k=4, k=9$.
         \item Sketch the domain of the function $f(x,y) = \ln(y - x^2)$.
         \item Describe the level surfaces of $f(x,y,z) = x^2 - y^2 - z^2$ for $k > 0$, $k = 0$, and $k < 0$.
-        \item Sketch the level curves for $f(x,y) = \frac{x}{x^2 + y^2}$. Show that these curves are all circles.
+        \item Sketch the level curves for $f(x,y) = \frac{x}{x^2 + y^2}$. Show that the level curves with $k \neq 0$ are all circles.
         \item Sketch three level surfaces of the function $f(x,y,z) = x^2 + y^2 + z^2$.
         \item (Stewart \S14.1 \#36) Two contour maps below are shown. One belongs to a function whose graph is a cone, the other to a function whose graph is a paraboloid. Decide which is which and justify your answer.
         \begin{center}
@@ -593,7 +593,7 @@
         \item Find $f_x$ and $f_y$ for $f(x, y) = \sin(x^2 y + y^3)$.
         \item Find $f_x$ and $f_y$ for $f(x, y) = e^{xy} \ln(x^2 + 1)$.
         \item Find $f_x$ and $f_y$ for $f(x, y) = \frac{x+y}{x-y}$.
-        \item Find $f_x$ and $f_y$ for $f(x, y) = \arctan(y/x)$.
+        \item Find $f_x$ and $f_y$ for $f(x, y) = \tan^{-1}(y/x)$.
         \item For $f(x, y) = e^{x} \sin(y)$, verify that $f_{xy} = f_{yx}$.
         \item (Stewart \S14.3 \#13) Find the first partial derivatives of $z = \ln(x + t^2)$ (treating $x$ and $t$ as the two independent variables).
         \item (Stewart \S14.3 \#14) Find the first partial derivatives of $w = u/v^2$.
@@ -629,9 +629,11 @@
             \draw[->] (-0.3,0) -- (5,0) node[right]{$x$};
             \draw[->] (0,-0.3) -- (0,4) node[above]{$y$};
             \foreach \k/\sh in {2/0, 6/0.4, 10/0.85, 12/1.3, 14/1.8, 16/2.3, 18/2.9}{
+                \begin{scope}\clip (0,0) rectangle (5,5);
                 \draw[blue!70] plot[smooth,samples=40,domain=0.2:3.5]
-                    (\x, {0.5 + 0.5*\x + \sh + 0.05*\x*\x});
-                \node[blue,font=\footnotesize] at (3.7+0.2*\sh, {0.5 + 0.5*3.5 + \sh + 0.05*3.5*3.5}) {\k};
+                    (\x, {-0.5 + 0.5*\x + \sh + 0.05*\x*\x});
+                \end{scope}
+                \node[blue,font=\footnotesize] at (3.7+0.2*\sh, {-0.5 + 0.5*3.5 + \sh + 0.05*3.5*3.5}) {\k};
             }
             \fill (2,1) circle (1.8pt) node[below right]{$(2,1)$};
         \end{tikzpicture}
@@ -653,7 +655,7 @@
         \item Find $\frac{\partial z}{\partial x}$ and $\frac{\partial z}{\partial y}$ for $x e^y + y z + z e^x = 0$.
         \item Find $\frac{\partial z}{\partial x}$ and $\frac{\partial z}{\partial y}$ for $\sin(x+y) + \sin(y+z) + \sin(x+z) = 0$.
         \item Find $\partial z/\partial x$ if $e^{z}=xyz$.
-        \item Find $dy/dx$ for $x^2+xy+y^2=3$ using the ratio of partials of $F$.
+        \item Find $dy/dx$ for $x^2+xy+y^2=3$ using the ratio of partials of $F(x,y)=x^2+xy+y^2-3$.
     \end{enumerate}
 \newpage
 
@@ -661,7 +663,7 @@
     \begin{enumerate}
         \item \dimtag{1D in 3D} (Stewart \S14.5 \#3) Use the chain rule to find $dz/dt$, where $z = xy^3 - x^2 y$, $x = t^2 + 1$, $y = t^2 - 1$.
         \item (Stewart \S14.5 \#5) Find $dz/dt$ for $z = \sin x \cos y$, $x = \sqrt{t}$, $y = 1/t$.
-        \item (Stewart \S14.5 \#6) Find $dw/dt$ for $w = \sqrt{1+xy}$, $x = \tan t$, $y = \arctan t$.
+        \item (Stewart \S14.5 \#6) Find $dw/dt$ for $w = \sqrt{1+xy}$, $x = \tan t$, $y = \tan^{-1} t$.
         \item (Stewart \S14.5 \#11) Find $\partial z/\partial s$ and $\partial z/\partial t$ for $z = (x-y)^5$, $x = s^2 t$, $y = st^2$.
         \item (Stewart \S14.5 \#13) Find $\partial z/\partial s$ and $\partial z/\partial t$ for $z = \ln(3x+2y)$, $x = s\sin t$, $y = t\cos s$.
         \item (Stewart \S14.5 \#15) Find $\partial z/\partial s$ and $\partial z/\partial t$ for $z = (\sin\theta)/r$, $r=st$, $\theta = s^2 + t^2$.
@@ -680,7 +682,7 @@
 
 \item Tangent Planes and Linearization
     \begin{enumerate}
-        \item \dimtag{2D in 3D} Find an equation of the tangent plane to the surface $x^2 + 2y^2 + 3z^2 = 21$ at the point $(2, 2, 1)$.
+        \item \dimtag{2D in 3D} Find an equation of the tangent plane to the surface $x^2 + 2y^2 + 3z^2 = 21$ at the point $(4, -1, 1)$.
         \item (Stewart \S14.4 \#2) Find an equation of the tangent plane to the surface $z = y^2 \sin x$ at the point $(\pi/2, -2, 4)$.
         \item (Stewart \S14.4 \#4) Find the tangent plane to $z = (x+2)^2 - 2(y-1)^2 - 5$ at $(2, 3, 3)$.
         \item (Stewart \S14.4 \#6) Find the tangent plane to $z = y^2 e^x$ at $(0, 3, 9)$.
@@ -698,7 +700,7 @@
 \item Directional Derivatives and Gradients
     \begin{enumerate}
         \item \dimtag{2D in 3D} Find the directional derivative of $f(x,y) = x^2 y^3$ at $P(1, 2)$ in the direction of $\vec{v} = \ihat + \jhat$.
-        \item (Stewart \S14.6 \#7) Find the directional derivative of $f(x,y) = \arctan(xy)$ at $(2,-3)$ in the direction indicated by the angle $\theta = 3\pi/4$.
+        \item (Stewart \S14.6 \#7) Find the directional derivative of $f(x,y) = \tan^{-1}(xy)$ at $(2,-3)$ in the direction indicated by the angle $\theta = 3\pi/4$.
         \item (Stewart \S14.6 \#9) For $f(x,y) = x/y$ at $P(2,1)$ with unit direction $\vec u = \tfrac{3}{5}\ihat + \tfrac{4}{5}\jhat$, do three things.
         (a) Find $\nabla f$. (b) Evaluate $\nabla f$ at $P$. (c) Find the rate of change of $f$ at $P$ in the direction $\vec u$.
         \item (Stewart \S14.6 \#10) Same parts (a)(b)(c) for $f(x,y) = x^2 \ln y$ at $P(3,1)$ with $\vec u = -\tfrac{5}{13}\ihat + \tfrac{12}{13}\jhat$.
@@ -732,7 +734,7 @@
             \item Show that the point $P(1, 2, 1)$ lies on the isothermal (constant temperature) surface $F(x, y, z) = 12$.
             \item Find the gradient vector $\nabla F$ at the point $P$.
             \item Find the equation of the tangent plane to this isothermal surface at point $P$.
-            \item Heat flows in the direction of the greatest temperature change. At point $P$, for what unit vector $\hat{u}$ is the magnitude of the directional derivative $|D_{\hat{u}} F|$ the largest?
+            \item Heat flows in the direction of the greatest temperature change. At point $P$, for what unit vector $\vec u$ is the magnitude of the directional derivative $|D_{\vec u} F|$ the largest?
         \end{enumerate}
         \item Find the maximum rate of change of $f(x,y)=\sin(xy)$ at $(1,0)$ and the direction in which it occurs.
         \item At $(1,2)$, in what direction does $f(x,y)=x^2+y^2$ decrease fastest, and in what directions is its rate of change zero?
@@ -745,18 +747,25 @@
         \item (Stewart \S14.7 \#3) The level curves of $f(x,y) = 4 + x^3 + y^3 - 3xy$ are shown below, each contour labeled with its $f$-value. Predict the location of the critical points and whether each is a saddle, local max, or local min. Then use the Second Derivatives Test to confirm.
         \begin{center}
         \begin{tikzpicture}[scale=1.1]
+            \begin{scope}
+            \clip (-2.4,-1.9) rectangle (2.4,2.4);
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.21) (-2.25,1.16) (-2.20,1.11) (-2.15,1.06) (-2.11,1.00) (-2.06,0.95) (-2.01,0.89) (-1.96,0.84) (-1.91,0.79) (-1.86,0.73) (-1.82,0.68) (-1.77,0.62) (-1.72,0.57) (-1.68,0.51) (-1.63,0.46) (-1.58,0.40) (-1.54,0.34) (-1.49,0.29) (-1.44,0.23) (-1.40,0.18) (-1.35,0.12) (-1.31,0.06) (-1.26,0.00) (-1.22,-0.05) (-1.17,-0.11) (-1.13,-0.17) (-1.08,-0.22) (-1.03,-0.28) (-0.99,-0.34) (-0.94,-0.39) (-0.89,-0.45) (-0.85,-0.50) (-0.80,-0.55) (-0.75,-0.60) (-0.70,-0.66) (-0.65,-0.71) (-0.60,-0.76) (-0.54,-0.81) (-0.49,-0.86) (-0.43,-0.90) (-0.38,-0.95) (-0.32,-1.00) (-0.26,-1.05) (-0.21,-1.09) (-0.15,-1.14) (-0.09,-1.18) (-0.03,-1.23) (0.02,-1.28) (0.08,-1.32) (0.13,-1.37) (0.20,-1.42) (0.25,-1.46) (0.31,-1.51) (0.36,-1.55) (0.42,-1.60) (0.48,-1.65) (0.53,-1.69) (0.59,-1.74) (0.64,-1.79) (0.70,-1.84) (0.76,-1.89) (0.77,-1.90)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (-2.30,1.21) {2};
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.32) (-2.25,1.26) (-2.19,1.21) (-2.14,1.16) (-2.09,1.11) (-2.04,1.06) (-1.99,1.01) (-1.94,0.96) (-1.89,0.91) (-1.83,0.86) (-1.78,0.81) (-1.73,0.76) (-1.68,0.71) (-1.62,0.66) (-1.57,0.61) (-1.52,0.55) (-1.47,0.51) (-1.41,0.46) (-1.36,0.41) (-1.31,0.36) (-1.26,0.31) (-1.20,0.25) (-1.15,0.20) (-1.09,0.15) (-1.04,0.11) (-0.99,0.06) (-0.94,0.01) (-0.88,-0.04) (-0.83,-0.09) (-0.78,-0.14) (-0.73,-0.19) (-0.67,-0.24) (-0.62,-0.29) (-0.56,-0.34) (-0.51,-0.39) (-0.46,-0.44) (-0.41,-0.49) (-0.36,-0.55) (-0.31,-0.60) (-0.26,-0.65) (-0.21,-0.70) (-0.16,-0.76) (-0.11,-0.81) (-0.06,-0.86) (-0.01,-0.92) (0.04,-0.97) (0.09,-1.02) (0.13,-1.07) (0.19,-1.13) (0.23,-1.18) (0.29,-1.23) (0.33,-1.29) (0.38,-1.34) (0.43,-1.39) (0.48,-1.44) (0.53,-1.50) (0.59,-1.55) (0.63,-1.60) (0.69,-1.65) (0.73,-1.70) (0.79,-1.76) (0.84,-1.81) (0.89,-1.86) (0.92,-1.90)};
+            \draw[blue!70] plot[smooth cycle] coordinates {(0.77,0.68) (0.75,0.69) (0.73,0.70) (0.70,0.72) (0.69,0.74) (0.68,0.77) (0.67,0.80) (0.67,0.83) (0.68,0.87) (0.69,0.90) (0.69,0.93) (0.70,0.95) (0.72,0.97) (0.73,1.00) (0.74,1.02) (0.76,1.04) (0.77,1.06) (0.79,1.08) (0.80,1.10) (0.82,1.12) (0.84,1.14) (0.86,1.16) (0.88,1.17) (0.90,1.19) (0.92,1.21) (0.95,1.22) (0.97,1.23) (0.99,1.25) (1.02,1.26) (1.05,1.27) (1.08,1.27) (1.11,1.28) (1.15,1.28) (1.18,1.27) (1.21,1.26) (1.23,1.25) (1.25,1.23) (1.26,1.21) (1.27,1.19) (1.28,1.15) (1.28,1.12) (1.28,1.09) (1.27,1.07) (1.26,1.04) (1.25,1.01) (1.24,0.98) (1.23,0.96) (1.22,0.94) (1.20,0.92) (1.19,0.90) (1.17,0.88) (1.15,0.86) (1.13,0.83) (1.12,0.82) (1.10,0.80) (1.08,0.78) (1.06,0.77) (1.03,0.75) (1.01,0.74) (0.99,0.72) (0.96,0.71) (0.94,0.70) (0.91,0.69) (0.88,0.68) (0.85,0.68) (0.81,0.67)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (1.23,1.25) {3.2};
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.35) (-2.25,1.30) (-2.19,1.25) (-2.14,1.20) (-2.09,1.15) (-2.04,1.10) (-1.99,1.05) (-1.93,1.00) (-1.88,0.95) (-1.82,0.90) (-1.77,0.85) (-1.72,0.80) (-1.66,0.75) (-1.61,0.71) (-1.56,0.66) (-1.50,0.61) (-1.44,0.56) (-1.39,0.51) (-1.33,0.47) (-1.28,0.42) (-1.22,0.37) (-1.16,0.33) (-1.11,0.28) (-1.05,0.23) (-0.99,0.19) (-0.93,0.15) (-0.87,0.10) (-0.81,0.06) (-0.76,0.01) (-0.69,-0.03) (-0.63,-0.08) (-0.58,-0.12) (-0.52,-0.16) (-0.46,-0.21) (-0.41,-0.26) (-0.35,-0.31) (-0.30,-0.36) (-0.25,-0.41) (-0.20,-0.47) (-0.16,-0.53) (-0.12,-0.58) (-0.07,-0.64) (-0.03,-0.70) (0.01,-0.76) (0.06,-0.81) (0.10,-0.88) (0.15,-0.93) (0.19,-0.99) (0.23,-1.05) (0.28,-1.11) (0.33,-1.16) (0.37,-1.22) (0.42,-1.28) (0.46,-1.33) (0.51,-1.38) (0.56,-1.44) (0.60,-1.49) (0.65,-1.55) (0.70,-1.60) (0.75,-1.66) (0.80,-1.71) (0.85,-1.77) (0.89,-1.82) (0.95,-1.87) (0.97,-1.90)};
+            \draw[blue!70] plot[smooth cycle] coordinates {(0.58,0.37) (0.52,0.38) (0.47,0.41) (0.43,0.44) (0.40,0.48) (0.38,0.53) (0.37,0.60) (0.37,0.66) (0.38,0.72) (0.40,0.78) (0.42,0.83) (0.44,0.88) (0.47,0.93) (0.49,0.97) (0.52,1.02) (0.55,1.06) (0.59,1.10) (0.62,1.14) (0.66,1.18) (0.69,1.21) (0.73,1.25) (0.77,1.28) (0.81,1.31) (0.86,1.34) (0.90,1.37) (0.95,1.40) (1.00,1.42) (1.06,1.44) (1.12,1.46) (1.19,1.47) (1.25,1.46) (1.31,1.45) (1.36,1.43) (1.40,1.39) (1.43,1.35) (1.45,1.30) (1.46,1.24) (1.46,1.17) (1.46,1.12) (1.44,1.06) (1.42,1.00) (1.40,0.95) (1.37,0.90) (1.35,0.86) (1.32,0.82) (1.29,0.78) (1.25,0.74) (1.22,0.70) (1.18,0.66) (1.14,0.62) (1.10,0.59) (1.06,0.56) (1.02,0.53) (0.98,0.50) (0.93,0.47) (0.88,0.44) (0.83,0.42) (0.78,0.40) (0.72,0.38) (0.65,0.37)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (1.36,1.43) {3.6};
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.38) (-2.19,1.28) (-2.08,1.18) (-1.96,1.07) (-1.85,0.97) (-1.74,0.88) (-1.62,0.78) (-1.50,0.68) (-1.38,0.59) (-1.26,0.50) (-1.13,0.41) (-1.00,0.32) (-0.87,0.25) (-0.73,0.17) (-0.57,0.11) (-0.41,0.06) (-0.23,0.02) (-0.02,0.00) (0.01,0.17) (0.04,0.34) (0.09,0.51) (0.14,0.65) (0.21,0.79) (0.29,0.93) (0.38,1.04) (0.48,1.16) (0.59,1.27) (0.70,1.36) (0.83,1.45) (0.97,1.52) (1.14,1.57) (1.34,1.58) (1.49,1.51) (1.57,1.38) (1.58,1.21) (1.55,1.04) (1.48,0.89) (1.40,0.76) (1.31,0.64) (1.21,0.53) (1.10,0.43) (0.98,0.33) (0.85,0.25) (0.71,0.17) (0.56,0.11) (0.40,0.05) (0.21,0.01) (0.01,0.00) (0.01,-0.19) (0.04,-0.36) (0.09,-0.52) (0.15,-0.67) (0.22,-0.81) (0.29,-0.95) (0.37,-1.08) (0.46,-1.20) (0.54,-1.33) (0.64,-1.44) (0.73,-1.56) (0.83,-1.68) (0.93,-1.79) (1.02,-1.90)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (1.14,1.57) {4};
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.42) (-2.19,1.33) (-2.09,1.23) (-1.98,1.14) (-1.87,1.05) (-1.76,0.96) (-1.65,0.88) (-1.54,0.79) (-1.42,0.71) (-1.30,0.63) (-1.18,0.55) (-1.04,0.48) (-0.90,0.43) (-0.74,0.38) (-0.56,0.37) (-0.40,0.41) (-0.27,0.49) (-0.17,0.59) (-0.08,0.69) (0.01,0.81) (0.10,0.91) (0.19,1.02) (0.28,1.13) (0.38,1.23) (0.48,1.32) (0.59,1.41) (0.71,1.49) (0.83,1.57) (0.97,1.63) (1.13,1.68) (1.30,1.70) (1.47,1.68) (1.60,1.60) (1.67,1.48) (1.70,1.32) (1.69,1.15) (1.64,1.00) (1.58,0.86) (1.51,0.74) (1.43,0.62) (1.34,0.51) (1.25,0.41) (1.15,0.31) (1.05,0.21) (0.94,0.12) (0.83,0.03) (0.72,-0.06) (0.61,-0.15) (0.51,-0.25) (0.43,-0.36) (0.38,-0.50) (0.37,-0.67) (0.41,-0.83) (0.46,-0.98) (0.52,-1.11) (0.59,-1.23) (0.66,-1.36) (0.74,-1.47) (0.83,-1.59) (0.91,-1.70) (1.00,-1.81) (1.07,-1.90)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (-1.04,0.48) {4.5};
+            \draw[blue!70] plot[smooth] coordinates {(-2.30,1.50) (-2.20,1.41) (-2.09,1.33) (-1.98,1.24) (-1.87,1.16) (-1.76,1.08) (-1.65,1.00) (-1.52,0.93) (-1.40,0.86) (-1.27,0.80) (-1.13,0.74) (-0.97,0.71) (-0.78,0.70) (-0.61,0.73) (-0.48,0.79) (-0.36,0.86) (-0.24,0.94) (-0.14,1.02) (-0.03,1.11) (0.07,1.20) (0.17,1.29) (0.27,1.38) (0.38,1.46) (0.50,1.54) (0.61,1.62) (0.73,1.69) (0.86,1.75) (1.00,1.81) (1.15,1.85) (1.32,1.88) (1.50,1.87) (1.65,1.82) (1.75,1.74) (1.83,1.62) (1.87,1.48) (1.88,1.30) (1.85,1.15) (1.81,1.00) (1.76,0.87) (1.69,0.74) (1.63,0.62) (1.55,0.51) (1.47,0.40) (1.39,0.29) (1.31,0.19) (1.22,0.08) (1.13,-0.01) (1.04,-0.12) (0.96,-0.22) (0.88,-0.33) (0.80,-0.44) (0.74,-0.57) (0.70,-0.72) (0.70,-0.90) (0.73,-1.06) (0.77,-1.20) (0.83,-1.33) (0.89,-1.45) (0.96,-1.57) (1.03,-1.69) (1.11,-1.80) (1.18,-1.90)};
+            \node[blue,font=\scriptsize,fill=white,inner sep=0.5pt] at (-0.97,0.71) {5.5};
+            \end{scope}
             \draw[->] (-2.5,0)--(2.5,0) node[right]{$x$};
             \draw[->] (0,-2)--(0,2.5) node[above]{$y$};
-            \foreach \k/\r/\ang in {3.2/0.18/0, 3.7/0.4/35, 4.2/0.7/55, 5/1.05/70, 6/1.5/80}{
-                \draw[blue!70] (0.7,0.7) circle (\r);
-                \node[blue,font=\scriptsize] at ({0.7 + \r*cos(\ang)},{0.7 + \r*sin(\ang)}) {\k};
-            }
-            \foreach \k/\r/\ang in {3.7/0.25/180, 3.2/0.55/200}{
-                \draw[red!70,dashed] (-0.7,-0.7) circle (\r);
-                \node[red,font=\scriptsize] at ({-0.7 + \r*cos(\ang) - 0.15},{-0.7 + \r*sin(\ang)}) {\k};
-            }
-            \fill (0.7,0.7) circle (1.2pt);
-            \fill (-0.7,-0.7) circle (1.2pt);
         \end{tikzpicture}
         \end{center}
         \item Find the absolute maximum and minimum of $f(x,y)=xy$ on the disk $x^2 + y^2 \le 1$.
@@ -827,7 +836,7 @@
     \begin{enumerate}
         \item \dimtag{2D} Evaluate $\int_0^4 \int_{\sqrt{y}}^2 \frac{y \cos(x^5)}{x} \, dx \, dy$.
         \item Evaluate $\int_0^1 \int_{x^2}^1 x^3 \sin(y^3) \, dy \, dx$.
-        \item Reverse the order and evaluate $\int_0^1 \int_{\arcsin y}^{\pi/2} \cos(x) \sqrt{1 + \cos^2 x} \, dx \, dy$.
+        \item Reverse the order and evaluate $\int_0^1 \int_{\sin^{-1} y}^{\pi/2} \cos(x) \sqrt{1 + \cos^2 x} \, dx \, dy$.
         \item Find the volume of the solid in the first octant bounded by $z = 1-x^2$, $y = 1-x^2$, $x=0, y=0, z=0$ by setting up the integral in two different orders.
         \item Evaluate $\int_0^{\pi} \int_x^{\pi} \frac{\sin y}{y} \, dy \, dx$.
         \item Reverse the order of integration for $\int_0^2 \int_{e^y}^{e^2} f(x,y) \, dx \, dy$.
@@ -944,7 +953,7 @@
         \item (Stewart \S15.7 \#26) Find the volume of the solid that lies between the paraboloid $z = x^2 + y^2$ and the sphere $x^2 + y^2 + z^2 = 2$.
         \item (Stewart \S15.7 \#32) Evaluate by changing to cylindrical coordinates.
         \[ \int_0^2 \int_0^{\sqrt{4-y^2}}\int_{-2}^{2} xz\, dz\,dx\,dy. \]
-        \item  Find the volume of the solid bounded by the cylinders $x^2+y^2=1$ and $x^2+z^2=1$ (the Steinmetz solid)
+        \item  Find the volume of the solid bounded by the cylinders $x^2+y^2=1$ and $x^2+z^2=1$ (the Steinmetz solid).
         \item Find the volume of the solid bounded below by $z=x^2+y^2$ and above by $z=8-x^2-y^2$.
         \item Find the mass of the cylinder $x^2+y^2\le 1$, $0\le z\le 2$, with density $\rho=z$.
     \end{enumerate}
@@ -959,12 +968,11 @@
             \draw[->] (0,0,0)--(3,0,0) node[right]{$x$};
             \draw[->] (0,0,0)--(0,3,0) node[below right]{$y$};
             \draw[->] (0,0,0)--(0,0,3.5) node[above]{$z$};
-            \draw[blue!70] (0,0,0) -- (1.5,0,2.6);
-            \draw[blue!70] (0,0,0) -- (-1.5,0,2.6);
-            \draw[blue!70] (0,1.5,2.6) arc[start angle=90,end angle=-90,x radius=1.5,y radius=0.4];
-            \draw[blue!70,dashed] (0,-1.5,2.6) arc[start angle=270,end angle=90,x radius=1.5,y radius=0.4];
-            \draw[red!70] (0,0,3) arc[start angle=90,end angle=270,radius=3];
-            \node at (1.5,0,1.5) {\small $E$};
+            \draw[blue!70] (0,0,0) -- (2.6,0,1.5);
+            \draw[blue!70] (0,0,0) -- (-2.6,0,1.5);
+            \draw[blue!70,domain=0:360,samples=60,variable=\t] plot ({2.6*cos(\t)},{2.6*sin(\t)},1.5);
+            \draw[red!70,domain=30:150,samples=40,variable=\t] plot ({3*cos(\t)},0,{3*sin(\t)});
+            \node at (0.6,0,1.8) {\small $E$};
         \end{tikzpicture}
         \end{center}
         \item (Stewart \S15.8 \#24) Evaluate $\iiint_E y^2 z^2\, dV$, where $E$ lies above the cone $\phi = \pi/3$ and below the sphere $\rho = 1$.
@@ -1142,9 +1150,9 @@
         (a) Explain why $\int_{C_i}\vec F\cdot d\vec r$ has the same value for all three. (b) Compute this common value.
         \item (Stewart \S16.3 \#12) Evaluate $\int_C \vec F\cdot d\vec r$ for $\vec F(x,y) = 2xy\,\ihat + (x^2 + \sin y)\,\jhat$ along (a) any path from $(0,0)$ to $(2, \pi/2)$ and (b) any path from $(0,0)$ to $(1,1)$ along $y = \sin(\pi x/2)$.
         \item (Stewart \S16.3 \#13) Let $\vec F(x,y) = (3x^2 + y^2)\,\ihat + 2xy\,\jhat$ and let $C$ be the upper half of the circle of radius $2$ centered at the origin, from $(-2,0)$ to $(2,0)$.
-        (a) Evaluate $\int_C \vec F\cdot d\vec r$ directly. (b) Show $\vec F$ is conservative and find $f$. (c) Re-evaluate using the FTC. (d) Replace $C$ by a simpler path with the same endpoints and re-evaluate.
+        (a) Evaluate $\int_C \vec F\cdot d\vec r$ directly. (b) Show $\vec F$ is conservative and find $f$. (c) Re-evaluate using the Fundamental Theorem for Line Integrals. (d) Replace $C$ by a simpler path with the same endpoints and re-evaluate.
         \item (Stewart \S16.3 \#14) Let $\vec F(x,y) = \langle \sin y + e^x,\ x\cos y\rangle$ and $C$ given by $x=t$, $y=t(3-t)$, $0\leq t\leq 3$.
-        (a) Show $\vec F$ is conservative, find $f$. (b) Use FTC. (c) Replace $C$ by a line segment with the same endpoints, then re-evaluate.
+        (a) Show $\vec F$ is conservative, find $f$. (b) Use the Fundamental Theorem for Line Integrals. (c) Replace $C$ by a line segment with the same endpoints, then re-evaluate.
         \item Find the work done by the field $\vec{F} = \langle 2xe^y, x^2e^y + \cos y \rangle$ along the path $y = \sin x$ from $(0,0)$ to $(\pi, 0)$.
         \item (Stewart \S16.3 \#18) Find $f$ with $\nabla f = \vec F$ for $\vec F = (3 + 2xy^2)\,\ihat + 2x^2 y\,\jhat$, and use it to evaluate $\int_C \vec F\cdot d\vec r$ where $C$ is the arc of $y = 1/x$ from $(1,1)$ to $(4, 1/4)$.
         \item (Stewart \S16.3 \#20) Find $f$ such that $\vec F = \nabla f$ for $\vec F = (1+xy)e^{xy}\,\ihat + x^2 e^{xy}\,\jhat$, then evaluate $\int_C \vec F\cdot d\vec r$ on $\vec r(t) = \cos t\,\ihat + 2\sin t\,\jhat$, $0\leq t\leq \pi/2$.
@@ -1178,9 +1186,9 @@
             \node at (2.5,0) {\small $D$};
         \end{tikzpicture}
         \end{center}
-        \item Use Green's Theorem to evaluate $\oint_C \vec{F} \cdot d\vec{r}$ where $\vec{F} = \langle e^x - y^3, \cos y + x^3 \rangle$ and $C$ is the unit circle.
+        \item Use Green's Theorem to evaluate $\oint_C \vec{F} \cdot d\vec{r}$ where $\vec{F} = \langle e^x - y^3, \cos y + x^3 \rangle$ and $C$ is the unit circle, oriented counterclockwise.
         \item Use Green's Theorem to find the work done by $\vec{F} = \langle y + e^{\sqrt{x}}, 2x + \cos(y^2) \rangle$ on a particle moving once counterclockwise around the unit circle.
-        \item Evaluate $\oint_C \frac{-y}{x^2+y^2} \, dx + \frac{x}{x^2+y^2} \, dy$ where $C$ is a circle of radius 1 centered at $(0,0)$. Why does Green's Theorem require care here?
+        \item Evaluate $\oint_C \frac{-y}{x^2+y^2} \, dx + \frac{x}{x^2+y^2} \, dy$ where $C$ is the counterclockwise circle of radius 1 centered at $(0,0)$. Why does Green's Theorem require care here?
         \item Use Green's Theorem to evaluate $\oint_C (y^2\,dx+x^2\,dy)$ around the unit square, counterclockwise.
         \item Use Green's Theorem to evaluate $\oint_C (xy\,dx+x^2\,dy)$ around the triangle $(0,0),(1,0),(1,1)$.
     \end{enumerate}
@@ -1193,7 +1201,7 @@
 
 \item Curl and Divergence
     \begin{enumerate}
-        \item \dimtag{2D} Return to the dome's two fields. For the gradient field $\vec F = \langle -2x, -2y\rangle$ compute $\operatorname{div}\vec F$ and $\operatorname{curl}\vec F$, and read the signs as a sink at the peak with no spin. For the swirl $\vec G = \langle -y, x\rangle$ compute both and read a pure spin with no net outflow. Sketch a tiny paddle wheel in each field at $(1,0)$.
+        \item \dimtag{2D} Return to the dome's two fields. For the gradient field $\vec F = \langle -2x, -2y\rangle$ compute $\operatorname{div}\vec F$ and $\operatorname{curl}\vec F$, and read the signs as a sink at every point with no spin. For the swirl $\vec G = \langle -y, x\rangle$ compute both and read a pure spin with no net outflow. Sketch a tiny paddle wheel in each field at $(1,0)$.
         \item \dimtag{3D} (Stewart \S16.5 \#1) Find (a) the curl and (b) the divergence of $\vec F(x,y,z) = xy^2 z^2\,\ihat + x^2 y z^2\,\jhat + x^2 y^2 z\,\khat$.
         \item Find the curl and divergence of the vector field $\vec{F}(x,y,z) = \langle xz, xyz, -y^2 \rangle$.
         \item (Stewart \S16.5 \#9--12, figure-based) For each planar vector field shown, independent of $z$ with zero $z$-component, determine the following at the marked point $P$. (a) Is $\operatorname{div}\vec F$ positive, negative, or zero? (b) Is $\operatorname{curl}\vec F$ nonzero, and if so does it point in $+\khat$ or $-\khat$ at $P$?
@@ -1365,7 +1373,7 @@
 \item Differential Forms, the Universal Calculus
     \begin{enumerate}
         \item For the $0$-form $f=x^2 y$ compute $df=f_x\,dx+f_y\,dy$ and match it to $\nabla f$.
-        \item For the $1$-form $\omega=-y\,dx+x\,dy$ the exterior derivative is $d\omega=(Q_x-P_y)\,dx\wedge dy$. Compute it and match it to the scalar curl of $\langle -y,x\rangle$.
+        \item For a $1$-form $\omega=P\,dx+Q\,dy$ the exterior derivative is $d\omega=(Q_x-P_y)\,dx\wedge dy$. Compute it for $\omega=-y\,dx+x\,dy$ and match it to the scalar curl of $\langle -y,x\rangle$.
         \item Show $d(df)=0$ for $f=x^2 y$, using $dx\wedge dx=0$ and $dx\wedge dy=-\,dy\wedge dx$. This is the statement that the curl of a gradient is zero.
         \item Write Green's Theorem as $\int_{\partial D}\omega=\int_D d\omega$ with $\omega=P\,dx+Q\,dy$, and identify $\omega$ and $d\omega$.
         \item For the $2$-form $\eta=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy$ compute $d\eta=(P_x+Q_y+R_z)\,dx\wedge dy\wedge dz$ and match it to the divergence, so the Divergence Theorem is again $\int_{\partial\Omega}\eta=\int_\Omega d\eta$.

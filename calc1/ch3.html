@@ -42,14 +42,14 @@ window.MathJax = {
 <p>Maximum and minimum values together are <b>extreme values</b>. Local is a comparison with neighbors only. Absolute is a comparison with the whole domain.</p>
 
 <div class="thm"><div class="thm-name">Extreme Value Theorem</div>If $f$ is continuous on a closed interval $[a, b]$, then $f$ attains an absolute maximum value $f(c)$ and an absolute minimum value $f(d)$ at some numbers $c$ and $d$ in $[a, b]$.</div>
-<p><em>Why both hypotheses.</em> $f(x) = x$ on the open interval $(0, 1)$ has no largest value (it creeps toward $1$ but never reaches it). $f(x) = 1/x$ on $[-1, 1]$ with a discontinuity at $0$ is unbounded. Closed and continuous rule both out.</p>
+<p><em>Why both hypotheses.</em> $f(x) = x$ on the open interval $(0, 1)$ has no largest value (it creeps toward $1$ but never reaches it). $f(x) = 1/x$ for $x \neq 0$, $f(0) = 0$, on $[-1, 1]$ is discontinuous at $0$ and unbounded. Closed and continuous rule both out.</p>
 
 <div class="thm"><div class="thm-name">Fermat's Theorem</div>If $f$ has a local maximum or minimum at $c$, and $f'(c)$ exists, then $f'(c) = 0$.</div>
 <p><em>Why.</em> At a local maximum, secant slopes to points on the right are $\le 0$ (the graph is not higher there) and to points on the left are $\ge 0$. The common limit $f'(c)$ is both $\le 0$ and $\ge 0$, so it is $0$. Picture: the tangent at a peak is horizontal.</p>
 
 <p>A <b>critical number</b> of $f$ is a number $c$ in the domain of $f$ with $f'(c) = 0$ or $f'(c)$ undefined. By Fermat, every local extreme value occurs at a critical number.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The converse of Fermat is false. $f(x) = (x - 1)^3$ has $f'(1) = 0$ but no maximum or minimum at $1$ (it keeps rising). And an extremum can occur where $f'$ does not exist: $f(x) = x^{2/3}$ has a minimum at $0$, a cusp, with $f'(0)$ undefined. Critical numbers are candidates, not guarantees.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The converse of Fermat is false. $f(x) = (x - 1)^3$ has $f'(1) = 0$ but no maximum or minimum at $1$ (it keeps rising). And an extremum can occur where $f'$ does not exist: $f(x) = x^{2/3}$ has a minimum at $0$, a cusp, with $f'(0)$ undefined. Critical numbers are candidates, not guarantees.</p></div>
 
 <p><b>The Closed Interval Method.</b> To find the absolute maximum and minimum values of a continuous $f$ on a closed interval $[a, b]$:</p>
 <ol class="tight">
@@ -84,7 +84,7 @@ $$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
   <li>Bounds: if $f(0) = 1$ and $f'(x) \le 4$ for all $x$, then $f(3) - f(0) = 3f'(c) \le 12$, so $f(3) \le 13$.</li>
 </ul>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Check the hypotheses. $f(x) = |x|$ on $[-1, 1]$ has $f(-1) = f(1)$ but $f'(c) = 0$ nowhere, since $f$ is not differentiable at $0$. The theorems guarantee a $c$ only when $f$ is continuous on the closed interval and differentiable on the open one.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Check the hypotheses. $f(x) = |x|$ on $[-1, 1]$ has $f(-1) = f(1)$ but $f'(c) = 0$ nowhere, since $f$ is not differentiable at $0$. The theorems guarantee a $c$ only when $f$ is continuous on the closed interval and differentiable on the open one.</p></div>
 </div>
 
 <div class="section"><h3>3.3 How Derivatives Affect the Shape of a Graph</h3>
@@ -109,7 +109,7 @@ $$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
 
 <p><b>Example.</b> $f(x) = x^4 - 4x^3$. $f'(x) = 4x^3 - 12x^2 = 4x^2(x - 3)$, critical numbers $0$ and $3$. Since $4x^2 \ge 0$, the sign of $f'$ is the sign of $x - 3$: $f$ is decreasing on $(-\infty, 3)$ and increasing on $(3, \infty)$. So $f(3) = -27$ is a local (in fact absolute) minimum and there is no extremum at $0$. $f''(x) = 12x^2 - 24x = 12x(x - 2)$: concave upward on $(-\infty, 0)$ and $(2, \infty)$, downward on $(0, 2)$, with inflection points $(0, 0)$ and $(2, -16)$. Note $f''(0) = 0$, so the Second Derivative Test is silent at $0$, while the First Derivative Test answers.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$f''(c) = 0$ does not make $(c, f(c))$ an inflection point. $f(x) = x^4$ has $f''(0) = 0$ but is concave upward on both sides. Check that $f''$ actually changes sign. Also, increasing/decreasing and concavity are properties of intervals of $x$, so answer with intervals, not points.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$f''(c) = 0$ does not make $(c, f(c))$ an inflection point. $f(x) = x^4$ has $f''(0) = 0$ but is concave upward on both sides. Check that $f''$ changes sign. Also, increasing/decreasing and concavity are properties of intervals of $x$, so answer with intervals, not points.</p></div>
 </div>
 
 <div class="section"><h3>3.4 Limits at Infinity; Horizontal Asymptotes</h3>
@@ -128,7 +128,7 @@ $$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
 
 <p><b>Oscillation.</b> $\lim_{x \to \infty}\sin x$ does not exist. But $\dfrac{\sin x}{x}$ is squeezed between $-\dfrac1x$ and $\dfrac1x$, so it approaches $0$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A graph may cross a horizontal asymptote, as in the figure. An asymptote describes the behavior for large $|x|$ only. And $\infty - \infty$ is not $0$: rewrite first, e.g. $\sqrt{x^2 + x} - x = \dfrac{x}{\sqrt{x^2 + x} + x} \to \tfrac12$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>A graph may cross a horizontal asymptote, as in the figure. An asymptote describes the behavior for large $|x|$ only. And $\infty - \infty$ is not $0$: rewrite first, e.g. $\sqrt{x^2 + x} - x = \dfrac{x}{\sqrt{x^2 + x} + x} \to \tfrac12$ as $x \to \infty$.</p></div>
 </div>
 
 <div class="section"><h3>3.5 Curve Sketching</h3>
@@ -168,11 +168,11 @@ $$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
 
 <p><b>Example (open box).</b> From a $12$ by $12$ inch sheet, cut a square of side $x$ from each corner and fold up the sides. The box has base $(12 - 2x)$ by $(12 - 2x)$ and height $x$, so $V(x) = x(12 - 2x)^2$ for $0 \le x \le 6$. $V'(x) = (12 - 2x)^2 - 4x(12 - 2x) = (12 - 2x)(12 - 6x)$, which is $0$ at $x = 2$ and $x = 6$. Values: $V(0) = 0$, $V(2) = 128$, $V(6) = 0$. The largest box has $x = 2$ in and volume $128$ in³.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="optBox"></canvas><div class="fig-cap"><b>Too shallow or too narrow.</b> Small $x$ gives a flat box, large $x$ a tall thin one. The volume $V(x) = x(12 - 2x)^2$ peaks in between, at $x = 2$.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="optBox"></canvas><div class="fig-cap"><b>Open box volume.</b> Small $x$ gives a flat box, large $x$ a tall thin one. The volume $V(x) = x(12 - 2x)^2$ peaks in between, at $x = 2$.</div></div>
 
 <p><b>Example (a product).</b> Find nonnegative numbers $x$ and $y$ with $x + y = 12$ that make $P = x y^2$ as large as possible. The constraint gives $x = 12 - y$, so $P(y) = (12 - y)y^2 = 12y^2 - y^3$ for $0 \le y \le 12$. $P'(y) = 24y - 3y^2 = 3y(8 - y)$ is $0$ at $y = 0$ and $y = 8$. Values: $P(0) = 0$, $P(8) = 256$, $P(12) = 0$. The maximum is $256$, at $y = 8$, $x = 4$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>A critical number is not automatically the answer. Verify that it gives a maximum (or minimum), by comparing with endpoints or by a derivative test, and make sure it is in the domain the picture allows.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>A critical number is not automatically the answer. Verify that it gives a maximum (or minimum), by comparing with endpoints or by a derivative test, and make sure it is in the domain the picture allows.</p></div>
 </div>
 
 <div class="section"><h3>3.7 Antiderivatives</h3>
@@ -192,7 +192,7 @@ $$f'(c) = \frac{f(b) - f(a)}{b - a}.$$</div>
 
 <p><b>Motion.</b> With position $s$, velocity $v = s'$, and acceleration $a = v'$: velocity is an antiderivative of acceleration and position an antiderivative of velocity. A ball thrown up at $20$ m/s from height $5$ m, with $a = -10$ m/s², has $v(t) = -10t + 20$ and $s(t) = -5t^2 + 20t + 5$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting $+ C$, and antidifferentiating a product or quotient factor by factor. There is no product rule for antiderivatives: an antiderivative of $(x^2 + 1)^2$ is not $\tfrac13(x^2 + 1)^3$ (differentiate that to see the extra factor $2x$). Expand first, $x^4 + 2x^2 + 1$, giving $\tfrac{x^5}{5} + \tfrac{2x^3}{3} + x + C$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Forgetting $+ C$, and antidifferentiating a product or quotient factor by factor. There is no product rule for antiderivatives: an antiderivative of $(x^2 + 1)^2$ is not $\tfrac13(x^2 + 1)^3$ (differentiate that to see the extra factor $2x$). Expand first, $x^4 + 2x^2 + 1$, giving $\tfrac{x^5}{5} + \tfrac{2x^3}{3} + x + C$.</p></div>
 </div>
 
 <div class="section"><h3>Worked example</h3>

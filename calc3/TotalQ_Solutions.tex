@@ -38,7 +38,7 @@
 \begin{center}
       {\large Math 2531 Calculus 3 Review: Selected Solutions}\\
   {Fall 2026}\\
-  \small A companion to \texttt{Calc3\_Outline.pdf}.
+  \small A companion to \texttt{TotalQ.pdf}.
 \end{center}
 
 \noindent\textit{Each problem here teaches an idea used later in the course. Two threads run through the set: the gradient, read four ways, and the downward dome $z=1-x^2-y^2$. Each surface is first studied through a companion curve, a one dimensional slice of the surface.}
@@ -57,7 +57,7 @@
     \[
       \vec c=\vec a+\tfrac13(\vec b-\vec a)=\tfrac23\vec a+\tfrac13\vec b.
     \]
-    The end you stand nearer gets the bigger weight. This is the whole content of the midpoint formula and of every center of mass to come.
+    The end you stand nearer gets the bigger weight. The midpoint formula and the center of mass formulas use the same weighting.
     \end{solution}
 
     \item \textit{Let $\vec a=\langle1,0,2\rangle$, $\vec b=\langle-1,3,1\rangle$, $\vec c=\langle2,1,0\rangle$. Find the volume of the parallelepiped they span and the length of its main diagonal.}
@@ -208,7 +208,7 @@
       \item at $x=0$, the hyperbola $z^2-\dfrac{y^2}{4}=1$ opening in $\pm z$,
       \item at $y=k$, the ellipse $\dfrac{x^2}{9}+z^2=1+\dfrac{k^2}{4}$ growing with $|k|$.
     \end{itemize}
-    Slices perpendicular to one axis stay ellipses while the other directions flare. That signature is a hyperboloid of one sheet, here with its waist along the $y$ axis.
+    Slices perpendicular to one axis stay ellipses while the other directions flare. That signature is a hyperboloid of one sheet, here with axis along the $y$ axis.
     \end{solution}
 
     \item \textit{Identify $x^2+y^2-z^2=1$ by its horizontal slices and its slice at $x=0$.}
@@ -223,10 +223,10 @@
 \item Space Curves and Vector Functions
 
     \begin{enumerate}
-    \item \textit{Let $\vec r(t)=\langle\ln(t-1),\,\arctan t,\,\sqrt{4-t^2}\rangle$. Find the domain and sketch the $xy$ projection.}
+    \item \textit{Let $\vec r(t)=\langle\ln(t-1),\,\tan^{-1} t,\,\sqrt{4-t^2}\rangle$. Find the domain and sketch the $xy$ projection.}
 
     \begin{solution}
-    The domain is the overlap of what each component allows. $\ln(t-1)$ needs $t>1$ and $\sqrt{4-t^2}$ needs $t\le2$, so the domain is $(1,2]$. As $t\to1^+$, $x\to-\infty$ while $y=\arctan t\to\pi/4$, and at $t=2$, $(x,y)=(0,\arctan 2)$. The curve enters from the far left along $y=\pi/4$ and ends at a point.
+    The domain is the overlap of what each component allows. $\ln(t-1)$ needs $t>1$ and $\sqrt{4-t^2}$ needs $t\le2$, so the domain is $(1,2]$. As $t\to1^+$, $x\to-\infty$ while $y=\tan^{-1} t\to\pi/4$, and at $t=2$, $(x,y)=(0,\tan^{-1} 2)$. The curve enters from the far left along $y=\pi/4$ and ends at a point.
     \end{solution}
 
     \item \textit{An electron has velocity $\vec v(t)=\langle -\sin t,\tfrac{1}{\sqrt2}\cos t,\tfrac{1}{\sqrt2}\cos t\rangle$ and starts at $\vec r(0)=\langle1,0,0\rangle$. Find $\vec r(t)$ and show it stays on a sphere.}
@@ -310,7 +310,7 @@
       \vec R\,'\times\vec R\,''=\langle-4,4,0\rangle,\qquad
       \kappa=\frac{\sqrt{32}}{6\sqrt6}=\frac{2\sqrt3}{9}.
     \]
-    So $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far along the inward normal, down into the bowl, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle-\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle1,1,1\rangle$. So the principal normal of the slice lies along the surface normal line. This is special to this slice: the plane $y=x$ contains the surface normal $\langle1,1,1\rangle$ at $P$.
+    So $\rho=1/\kappa=\tfrac{3\sqrt3}{2}$, and the center sits that far along the principal normal, below the dome, at $(-1,-1,-1)$. The direction from $P$ to the center is $\langle-\tfrac32,-\tfrac32,-\tfrac32\rangle$, exactly opposite the surface normal $\langle1,1,1\rangle$. So the principal normal of the slice lies along the surface normal line. This is special to this slice: the plane $y=x$ contains the surface normal $\langle1,1,1\rangle$ at $P$.
     \end{solution}
 
     \end{enumerate}
@@ -330,7 +330,7 @@
     \item \textit{The dome $z=f(x,y)=1-x^2-y^2$ at $P=(\tfrac12,\tfrac12,\tfrac12)$. (a) Find $\nabla f(P)$. (b) Use it to write the tangent plane and estimate $f(0.51,0.49)$. (c) Find the rate of climb at $P$ along $\vec u=\tfrac{1}{\sqrt2}\langle1,1\rangle$. (d) Where is the gradient zero, and what is there?}
 
     \begin{solution}
-    $\nabla f=\langle-2x,-2y\rangle$, so $\nabla f(P)=\langle-1,-1\rangle$. One vector, read four ways.
+    $\nabla f=\langle-2x,-2y\rangle$, so $\nabla f(P)=\langle-1,-1\rangle$. One vector, read three ways here, with the chain rule reading in the Chain Rule problems.
 
     \medskip\noindent\textbf{(b) Dot with a displacement to linearize.} The tangent plane is
     \[
@@ -357,12 +357,12 @@
     so $z=\tfrac32-x-y$, exactly the linearization. The two trace slopes are the two partials, and the tangent plane is the unique plane containing both trace tangent lines.
     \end{solution}
 
-    \item \textit{When does a tangent line over estimate and when does it under estimate? Build it in 1D, then lift to the dome.}
+    \item \textit{When does a tangent line overestimate and when does it underestimate? Build it in 1D, then lift to the dome.}
 
     \begin{solution}
     Take $f(x)=\sqrt x$ at $a=4$, so $f'(4)=\tfrac14$ and $L(4.1)=2.025$. The true value $\sqrt{4.1}=2.0249$ is a touch lower. The graph is concave down, so it bends beneath its tangent line and the line predicts too much. Flip the concavity and the line predicts too little. The sign of the error is the sign of the bend.
 
-    The same reasoning applies in two variables. A tangent plane estimate is too high where the surface bends below the plane and too low where it bends above. The dome bends below everywhere, so its linearization always over estimates. A saddle bends below in one direction and above in another, so its plane neither over nor under estimates outright.
+    The same reasoning applies in two variables. A tangent plane estimate is too high where the surface bends below the plane and too low where it bends above. The dome bends below everywhere, so its linearization always overestimates. A saddle bends below in one direction and above in another, so its plane neither overestimates nor underestimates outright.
     \end{solution}
 
     \item \textit{Find the tangent plane to the saddle $z=x^2+xy-y^2$ at $(1,1,1)$. Is the estimate from the plane always too high, always too low, or neither?}
@@ -444,10 +444,10 @@
 \item Tangent Planes, Directional Derivatives, and Gradients
 
     \begin{enumerate}
-    \item \textit{Tangent plane to $x^2+2y^2+3z^2=21$ at $(2,2,1)$, and the linearization of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ to estimate $f(1.95,1.08)$.}
+    \item \textit{Tangent plane to $x^2+2y^2+3z^2=21$ at $(4,-1,1)$, and the linearization of $f(x,y)=\sqrt{20-x^2-7y^2}$ at $(2,1)$ to estimate $f(1.95,1.08)$.}
 
     \begin{solution}
-    For a surface written as a level set, the gradient is the normal, no solving for $z$ needed. $\nabla F=\langle2x,4y,6z\rangle=\langle4,8,6\rangle$, so the plane is $2x+4y+3z=15$. For the explicit graph, $f_x=-2/3$ and $f_y=-7/3$ at $(2,1)$ with $f(2,1)=3$, so
+    For a surface written as a level set, the gradient is the normal, no solving for $z$ needed. $\nabla F=\langle2x,4y,6z\rangle=\langle8,-4,6\rangle$, so the plane is $8(x-4)-4(y+1)+6(z-1)=0$, that is $4x-2y+3z=21$. For the explicit graph, $f_x=-2/3$ and $f_y=-7/3$ at $(2,1)$ with $f(2,1)=3$, so
     \[
       L(x,y)=3-\tfrac23(x-2)-\tfrac73(y-1),\qquad f(1.95,1.08)\approx2.847.
     \]
@@ -584,7 +584,7 @@
     \item \textit{Volume under $z=1-x^2-y^2$ above $z=0$, in polar.}
 
     \begin{solution}
-    The dome meets the floor on the unit disk, so polar fits and turns $1-x^2-y^2$ into $1-r^2$. The extra $r$ is the area of a polar cell,
+    The dome meets the floor on the unit disk, so polar fits and turns $1-x^2-y^2$ into $1-r^2$. The extra $r$ comes from the area $r\,dr\,d\theta$ of a polar cell,
     \[
       V=\int_0^{2\pi}\int_0^1(1-r^2)\,r\,dr\,d\theta=2\pi\Bigl[\tfrac{r^2}{2}-\tfrac{r^4}{4}\Bigr]_0^1=\frac{\pi}{2}.
     \]
@@ -612,11 +612,11 @@
     \item \textit{First octant region inside $x^2+y^2+z^2=4$, constant density. Find $\bar z$.}
 
     \begin{solution}
-    Spherical suits a ball, with $0\le\rho\le2$ and $0\le\phi,\theta\le\pi/2$, element $\rho^2\sin\phi$. The mass is $m=\tfrac{4\pi}{3}$, and
+    Spherical suits a ball, with $0\le\rho\le2$ and $0\le\phi,\theta\le\pi/2$, and $dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$. A constant density cancels in $\bar z$, so take it to be $1$. The mass is $m=\tfrac{4\pi}{3}$, and
     \[
       M_{xy}=\int_0^{\pi/2}\!d\theta\int_0^{\pi/2}\!\cos\phi\sin\phi\,d\phi\int_0^2\!\rho^3\,d\rho=\frac{\pi}{2}\cdot\frac12\cdot4=\pi,
     \]
-    so $\bar z=M_{xy}/m=\dfrac{3}{4}$. The centroid sits below the top because the wedge holds more material low and wide than high and narrow.
+    so $\bar z=M_{xy}/m=\dfrac{3}{4}$. The centroid sits below the midpoint height $z=1$ because the wedge holds more material low and wide than high and narrow.
     \end{solution}
 
     \end{enumerate}
@@ -632,7 +632,7 @@
     \[
       \int_C\vec F\cdot d\vec r=\int_0^1(t^3+2t^3)\,dt=\int_0^1 3t^3\,dt=\frac34.
     \]
-    A different route would give a different number, because the mismatch $P_y\ne Q_x$ means the field has nonzero curl $Q_x-P_y$.
+    A different route can give a different number, because the mismatch $P_y\ne Q_x$ means the field has nonzero curl $Q_x-P_y$.
     \end{solution}
 
     \item \textit{Show $\vec F=\langle e^y,\,xe^y+e^z,\,ye^z\rangle$ is conservative and evaluate $\displaystyle\int_C\vec F\cdot d\vec r$ from $(0,0,0)$ to $(1,1,1)$.}
@@ -681,7 +681,7 @@
     \begin{solution}
     A pure spin field has nothing left to spread. Writing $\vec F=\langle P,Q,R\rangle$,
     \[
-      \operatorname{div}(\operatorname{curl}\vec F)=(R_{xy}-Q_{xz})+(P_{yz}-R_{yx})+(Q_{zx}-P_{zy}).
+      \operatorname{div}(\operatorname{curl}\vec F)=(R_{yx}-Q_{zx})+(P_{zy}-R_{xy})+(Q_{xz}-P_{yz}).
     \]
     By Clairaut the mixed partials are equal, so the six terms cancel in pairs and the sum is $0$. So a curl field has no sources.
     \end{solution}

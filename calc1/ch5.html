@@ -41,7 +41,7 @@ window.MathJax = {
 <p><b>Example.</b> The region between $y = 3 + 2x - x^2$ and $y = x + 1$. The curves meet where $3 + 2x - x^2 = x + 1$, i.e. $x^2 - x - 2 = (x - 2)(x + 1) = 0$, so $x = -1$ and $x = 2$. Testing $x = 0$ shows the parabola is on top. So</p>
 <div class="formula">$\displaystyle A = \int_{-1}^{2}\big(2 + x - x^2\big)\,dx = \Big[2x + \tfrac{x^2}{2} - \tfrac{x^3}{3}\Big]_{-1}^{2} = \tfrac{10}{3} - \left(-\tfrac76\right) = \tfrac92.$</div>
 
-<div class="fig-inline-canvas"><canvas data-fig="areaBetween"></canvas><div class="fig-cap"><b>One strip, then all of them.</b> The yellow strip has height $(3 + 2x - x^2) - (x + 1) = 2 + x - x^2$. Integrating that height from $x = -1$ to $x = 2$ gives the area $\tfrac92$.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="areaBetween"></canvas><div class="fig-cap"><b>Area by vertical strips.</b> The yellow strip has height $(3 + 2x - x^2) - (x + 1) = 2 + x - x^2$. Integrating that height from $x = -1$ to $x = 2$ gives the area $\tfrac92$.</div></div>
 
 <p><b>Curves that cross.</b> If the top and bottom curves switch, split the interval at the crossing points, or integrate $|f(x) - g(x)|$. Example: between $y = x^2$ and $y = 2x$ on $[0, 3]$, the line is on top on $[0, 2]$ and the parabola on $[2, 3]$, so $A = \int_0^2(2x - x^2)\,dx + \int_2^3(x^2 - 2x)\,dx = \tfrac43 + \tfrac43 = \tfrac83$.</p>
 
@@ -49,7 +49,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle A = \int_c^d\big[f(y) - g(y)\big]\,dy = \int_c^d (\text{right} - \text{left})\,dy.$</div>
 <p><b>Example.</b> Between $x = y^2$ and $x = y + 6$: they meet where $y^2 - y - 6 = (y - 3)(y + 2) = 0$, so $y = -2$ and $y = 3$, and the line is on the right in between. So $A = \int_{-2}^{3}(y + 6 - y^2)\,dy = \tfrac{125}{6}$. With vertical strips the bottom boundary changes formula at $x = 4$ (from $y = -\sqrt x$ to $y = x - 6$), so that way needs two integrals.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Sketch first. The limits come from the intersection points, and the order (top minus bottom, or right minus left) from the picture. A negative answer means the order was wrong. Choose $dy$ when the left and right boundaries are each a single curve but the top or bottom changes formula.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Sketch first. The limits come from the intersection points, and the order (top minus bottom, or right minus left) from the picture. A negative answer means the order was wrong. Choose $dy$ when the left and right boundaries are each a single curve but the top or bottom changes formula.</p></div>
 </div>
 
 <div class="section"><h3>5.2 Volumes</h3>
@@ -71,9 +71,9 @@ window.MathJax = {
 
 <p><b>Rotating about a vertical line.</b> Slice perpendicular to that line, i.e. horizontally, and write the radii as functions of $y$. Example: the same region rotated about the $y$-axis. For $0 \le y \le 1$ the region runs from $x = y$ (from $y = x$) to $x = \sqrt y$ (from $y = x^2$), so $R(y) = \sqrt y$, $r(y) = y$, and $V = \pi\int_0^1(y - y^2)\,dy = \tfrac{\pi}{6}$.</p>
 
-<div class="note"><div class="note-name">Radius from an axis</div><p>A radius is a distance from the axis, so it is always (farther value) minus (axis value). About $y = c$ with the region above the axis, $R = (\text{outer } y) - c$. About $y = 4$ with the region below the axis, $R = 4 - (\text{outer } y)$, where "outer" now means the curve farther from $y = 4$.</p></div>
+<div class="note"><div class="note-name">Radius from an axis</div><p>A radius is a distance from the axis, so it is (larger value) minus (smaller value), comparing the curve's value with the axis value. About $y = c$ with the region above the axis, $R = (\text{outer } y) - c$. About $y = 4$ with the region below the axis, $R = 4 - (\text{outer } y)$, where "outer" now means the curve farther from $y = 4$.</p></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$\pi(R^2 - r^2)$ is not $\pi(R - r)^2$. Square each radius separately, then subtract. Also match the variable to the slices: slices perpendicular to the $x$-axis use $dx$ and radii in terms of $x$, and slices perpendicular to the $y$-axis use $dy$ and radii in terms of $y$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$\pi(R^2 - r^2)$ is not $\pi(R - r)^2$. Square each radius separately, then subtract. Also match the variable to the slices: slices perpendicular to the $x$-axis use $dx$ and radii in terms of $x$, and slices perpendicular to the $y$-axis use $dy$ and radii in terms of $y$.</p></div>
 </div>
 
 <div class="section"><h3>5.3 Work</h3>
@@ -90,7 +90,7 @@ window.MathJax = {
 
 <p><b>A leaking bucket.</b> A bucket of water weighing $40$ N is lifted $10$ m at constant speed while it leaks, so that its weight drops steadily to $20$ N at the top. At height $x$ the weight is $F(x) = 40 - 2x$ N, so $W = \int_0^{10}(40 - 2x)\,dx = 400 - 100 = 300$ J. When different pieces of an object move different distances (a hanging chain, liquid pumped from a tank), slice the object instead and add (weight of a slice) times (distance that slice moves).</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In Hooke's Law, convert lengths to stretches by subtracting the natural length first, and keep units consistent (meters with newtons gives joules). Stretching from $25$ cm to $30$ cm means $x$ from $0.05$ to $0.10$ m, not from $0.25$ to $0.30$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>In Hooke's Law, convert lengths to stretches by subtracting the natural length first, and keep units consistent (meters with newtons gives joules). Stretching from $25$ cm to $30$ cm means $x$ from $0.05$ to $0.10$ m, not from $0.25$ to $0.30$.</p></div>
 </div>
 
 <div class="section"><h3>5.4 Average Value of a Function</h3>
@@ -99,14 +99,14 @@ window.MathJax = {
 <div class="formula">$\displaystyle f_{\text{ave}} = \frac{1}{b - a}\int_a^b f(x)\,dx.$</div>
 <p><em>Picture.</em> $f_{\text{ave}}$ is the height of the rectangle on $[a, b]$ with the same area as the region under $f$. The part of the region above the line $y = f_{\text{ave}}$ exactly fills the gaps below it.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="avgValue"></canvas><div class="fig-cap"><b>Leveling off.</b> $f(x) = 3x - x^2$ on $[0, 3]$. Blue is where $f$ is above the level $h$, pink where it is below. $\int_0^3(f - h)\,dx = 0$ exactly when $h = f_{\text{ave}} = \tfrac32$.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="avgValue"></canvas><div class="fig-cap"><b>Average value as a level.</b> $f(x) = 3x - x^2$ on $[0, 3]$. Blue is where $f$ is above the level $h$, pink where it is below. $\int_0^3(f - h)\,dx = 0$ exactly when $h = f_{\text{ave}} = \tfrac32$.</div></div>
 
 <p><b>Example.</b> For $f(x) = 3x - x^2$ on $[0, 3]$, $\int_0^3(3x - x^2)\,dx = \tfrac{27}{2} - 9 = \tfrac92$, so $f_{\text{ave}} = \tfrac13\cdot\tfrac92 = \tfrac32$.</p>
 
 <div class="thm"><div class="thm-name">Mean Value Theorem for Integrals</div>If $f$ is continuous on $[a, b]$, then there is a number $c$ in $[a, b]$ with $f(c) = f_{\text{ave}}$, that is, $\displaystyle\int_a^b f(x)\,dx = f(c)(b - a)$.</div>
 <p><em>Why.</em> $f_{\text{ave}}$ lies between the minimum and maximum values of $f$ on $[a, b]$ (by the comparison property of 4.2), so the IVT gives a $c$ where $f$ takes that value. In the example, $3c - c^2 = \tfrac32$ gives $c = \tfrac{3 \pm \sqrt 3}{2}$, both in $[0, 3]$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The average value of $f$ is not $\tfrac{f(a) + f(b)}{2}$, and it is not the average rate of change $\tfrac{f(b) - f(a)}{b - a}$. Remember the factor $\tfrac{1}{b - a}$ in front of the integral.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The average value of $f$ is not $\tfrac{f(a) + f(b)}{2}$, and it is not the average rate of change $\tfrac{f(b) - f(a)}{b - a}$. Remember the factor $\tfrac{1}{b - a}$ in front of the integral.</p></div>
 </div>
 
 <div class="section"><h3>Worked example</h3>

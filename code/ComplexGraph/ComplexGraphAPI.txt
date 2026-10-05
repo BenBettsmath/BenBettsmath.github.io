@@ -233,13 +233,14 @@ MATCHING ALGORITHMS
   cubePrunedMatching
     INPUTS:  List of RingElement, Ring
     OUTPUTS: HashTable, keys "matching", "critical", "multidegree"
-    A mcc-maximal matching on the subset cube, built bottom-up without the
+    An mcc-maximal matching on the subset cube, built bottom-up without the
     Taylor complex. Cells are generator subsets, multidegree is the lcm support.
 
   cubePrunedResolution
     INPUTS:  List of RingElement, Ring
     OUTPUTS: HashTable, keys "ranks", "badPrimes", "sccs"
-    Minimal free resolution data of R/I read from the cube-pruning matching:
+    Minimal free resolution data of R/I, with I the ideal of the input list in
+    the input Ring R, read from the cube-pruning matching:
     Betti numbers over QQ, the primes where they jump, and the obstruction
     sccs with their integer cokernels. Tractable where the Taylor build is not.
 
@@ -292,11 +293,11 @@ REDUCTION
 
   GammaMatrixDown
     INPUTS:  CGGraph or ComplexGraph, List or AcyclicMatching, ZZ
-    OUTPUTS: Matrix   -- C_i -> C^M_i
+    OUTPUTS: Matrix   -- C_i -> C^M_i, C^M the Morse complex of the matching
 
   GammaMatrixUp
     INPUTS:  CGGraph or ComplexGraph, List or AcyclicMatching, ZZ
-    OUTPUTS: Matrix   -- C^M_i -> C_i
+    OUTPUTS: Matrix   -- C^M_i -> C_i, C^M the Morse complex of the matching
 
 
 ================================================================================

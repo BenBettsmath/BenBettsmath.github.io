@@ -41,7 +41,7 @@ window.MathJax = {
 
 <p><span class="dimtag">3D</span><b>Distance</b> between $P_1 = (x_1, y_1, z_1)$ and $P_2 = (x_2, y_2, z_2)$.</p>
 <div class="formula">$|P_1 P_2| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}.$</div>
-<p><em>Why.</em> This is Pythagoras twice. The diagonal across the floor has length $\sqrt{\Delta x^2 + \Delta y^2}$, and that diagonal together with the vertical rise $\Delta z$ forms a second right triangle. The figure shows both steps on a unit cube, where the floor diagonal is $\sqrt 2$ and the space diagonal is $\sqrt 3$.</p>
+<p><em>Why.</em> This is Pythagoras twice. With $\Delta x = x_2 - x_1$, $\Delta y = y_2 - y_1$, $\Delta z = z_2 - z_1$, the diagonal across the floor has length $\sqrt{\Delta x^2 + \Delta y^2}$, and that diagonal together with the vertical rise $\Delta z$ forms a second right triangle. The figure shows both steps on a unit cube, where the floor diagonal is $\sqrt 2$ and the space diagonal is $\sqrt 3$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="cubeDiagonal"></canvas></div>
 
@@ -55,7 +55,7 @@ window.MathJax = {
 <p class="part"><span class="dimtag">3D</span>A <b>vector</b> $\vec a = \langle a_1, a_2, a_3\rangle$ has magnitude and direction. The magnitude is</p>
 <div class="formula">$|\vec a| = \sqrt{a_1^2 + a_2^2 + a_3^2}.$</div>
 
-<p><b>Operations</b> work component by component.</p>
+<p><b>Operations</b> work component by component. For $\vec b = \langle b_1, b_2, b_3\rangle$ and a scalar $c$,</p>
 <div class="formula">$\vec a + \vec b = \langle a_1 + b_1,\ a_2 + b_2,\ a_3 + b_3\rangle,\qquad c\vec a = \langle c a_1,\ c a_2,\ c a_3\rangle.$</div>
 
 <p><b>Unit vector.</b> If $\vec a \ne \vec 0$, then $\hat{\vec a} = \vec a / |\vec a|$ has length 1.</p>
@@ -73,10 +73,10 @@ window.MathJax = {
 
 <p><b>Orthogonality.</b> $\vec a \perp \vec b \iff \vec a \cdot \vec b = 0$.</p>
 
-<p><b>Direction angles / cosines.</b> $\cos\alpha = a_1/|\vec a|$, $\cos\beta = a_2/|\vec a|$, $\cos\gamma = a_3/|\vec a|$, and $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$.</p>
+<p><b>Direction angles / cosines.</b> The direction angles $\alpha, \beta, \gamma$ of $\vec a \ne \vec 0$ are the angles in $[0, \pi]$ it makes with the positive $x$-, $y$-, and $z$-axes. Then $\cos\alpha = a_1/|\vec a|$, $\cos\beta = a_2/|\vec a|$, $\cos\gamma = a_3/|\vec a|$, and $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$.</p>
 
 <p><b>Scalar projection</b> of $\vec b$ on $\vec a$ is $\;\mathrm{comp}_{\vec a}\vec b = \dfrac{\vec a \cdot \vec b}{|\vec a|}.$</p>
-<p><b>Vector projection.</b> $\;\mathrm{proj}_{\vec a}\vec b = \dfrac{\vec a \cdot \vec b}{|\vec a|^2}\,\vec a.$</p>
+<p><b>Vector projection.</b> $\;\mathrm{proj}_{\vec a}\vec b = \dfrac{\vec a \cdot \vec b}{|\vec a|^2}\,\vec a.$ The part of $\vec b$ perpendicular to $\vec a$ is $\mathrm{orth}_{\vec a}\vec b = \vec b - \mathrm{proj}_{\vec a}\vec b$.</p>
 
 <p><b>Work.</b> If a constant force $\vec F$ moves an object through displacement $\vec D$, the work done is $W = \vec F \cdot \vec D = |\vec F||\vec D|\cos\theta$.</p>
 
@@ -91,7 +91,7 @@ window.MathJax = {
 <ul class="tight">
   <li>$\vec a \times \vec b$ is perpendicular to both $\vec a$ and $\vec b$ (right-hand rule for direction).</li>
   <li>$|\vec a \times \vec b| = |\vec a||\vec b|\sin\theta$, the area of the parallelogram with sides $\vec a$ and $\vec b$.</li>
-  <li>$\vec a \parallel \vec b \iff \vec a \times \vec b = \vec 0$.</li>
+  <li>For nonzero $\vec a$, $\vec b$, $\vec a \parallel \vec b \iff \vec a \times \vec b = \vec 0$.</li>
   <li>$\vec a \times \vec b = -\vec b \times \vec a$ (anticommutative).</li>
 </ul>
 <p><em>Why the length is an area.</em> Take $\vec a$ as the base of the parallelogram. The height is the component of $\vec b$ perpendicular to the base, $|\vec b|\sin\theta$, so base times height is $|\vec a||\vec b|\sin\theta$. Parallel vectors span no area, which is why their cross product is $\vec 0$.</p>
@@ -100,15 +100,15 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="triangleArea3D"></canvas></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Scalar versus vector.</b> $\vec a\cdot\vec b$ is a number and $\vec a\times\vec b$ is a vector. In the triple product $\vec a\cdot(\vec b\times\vec c)$ the cross product must be evaluated first, so the parentheses are essential. The grouping $(\vec a\cdot\vec b)\times\vec c$ is meaningless, since we can't cross a number with a vector.</p></div>
-<p><b>Torque.</b> $\vec\tau = \vec r \times \vec F$, magnitude $|\vec r||\vec F|\sin\theta$, force times moment arm.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Scalar versus vector.</b> $\vec a\cdot\vec b$ is a number and $\vec a\times\vec b$ is a vector. In the triple product $\vec a\cdot(\vec b\times\vec c)$ the cross product must be evaluated first, so the parentheses are essential. The grouping $(\vec a\cdot\vec b)\times\vec c$ is meaningless, since we can't cross a number with a vector.</p></div>
+<p><b>Torque.</b> A force $\vec F$ applied at the tip of the position vector $\vec r$ (from the pivot) has torque $\vec\tau = \vec r \times \vec F$, magnitude $|\vec r||\vec F|\sin\theta$ with $\theta$ the angle between $\vec r$ and $\vec F$, force times moment arm.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="tripleProduct"></canvas>
 </div>
 </div>
 <div class="section"><h3>12.5 Equations of Lines and Planes</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Line</b> through $P_0 = (x_0, y_0, z_0)$ with direction $\vec v = \langle a, b, c\rangle$.</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Line</b> through $P_0 = (x_0, y_0, z_0)$ with direction $\vec v = \langle a, b, c\rangle$. Write $\vec r_0 = \langle x_0, y_0, z_0\rangle$ for the position vector of $P_0$ and $\vec r = \langle x, y, z\rangle$.</p>
 <div class="formula">
 Vector form. $\vec r(t) = \vec r_0 + t\,\vec v$.<br>
 Parametric form. $x = x_0 + at,\ y = y_0 + bt,\ z = z_0 + ct$.<br>
@@ -116,17 +116,17 @@ Symmetric form. $\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}.$
 </div>
 <p>All three describe the same motion, starting at $P_0$ with velocity $\vec v$. The symmetric form is each parametric equation solved for $t$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>A zero in a direction component.</b> We can't divide by it. For direction $\vec v=\langle 3,0,-2\rangle$ through $(2,-1,4)$ the symmetric form is $\dfrac{x-2}{3}=\dfrac{z-4}{-2},\ \ y=-1$. Write the zero-slot variable as its own constant equation instead of putting $0$ in a denominator.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>A zero in a direction component.</b> We can't divide by it. For direction $\vec v=\langle 3,0,-2\rangle$ through $(2,-1,4)$ the symmetric form is $\dfrac{x-2}{3}=\dfrac{z-4}{-2},\ \ y=-1$. Write the zero-slot variable as its own constant equation instead of putting $0$ in a denominator.</p></div>
 <p><b>Skew lines</b> are non-parallel and non-intersecting, which only happens in $\mathbb R^3$. Two lines in the plane must cross or be parallel, but in space one can pass over the other.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="skewLines"></canvas></div>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>Parallel, intersecting, or skew.</b> Two lines are parallel exactly when their direction vectors are scalar multiples. If the directions are not parallel, set the two parametrizations equal and solve. A consistent solution gives the intersection point, an inconsistent system means the lines are skew. Parallel directions together with a shared point mean the lines coincide.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Parallel, intersecting, or skew.</b> Two lines are parallel exactly when their direction vectors are scalar multiples. If the directions are not parallel, set the two parametrizations equal and solve. A consistent solution gives the intersection point, an inconsistent system means the lines are skew. Parallel directions together with a shared point mean the lines coincide.</p></div>
 <p><span class="dimtag">2D in 3D</span><b>Plane</b> through $P_0$ with normal $\vec n = \langle a, b, c\rangle$.</p>
 <div class="formula">$\vec n \cdot (\vec r - \vec r_0) = 0,\qquad a(x - x_0) + b(y - y_0) + c(z - z_0) = 0.$</div>
 <p><em>Why.</em> A point $\vec r$ lies in the plane exactly when the displacement from $\vec r_0$ to it is perpendicular to the normal, and the dot product tests exactly that. The coordinate version is the same dot product expanded.</p>
 
-<p><b>Distance from a point $P$ to a plane.</b> Pick any $Q_0$ on the plane. The distance is the projection of $\overrightarrow{Q_0 P}$ onto the unit normal $\hat{\vec n}$.</p>
+<p><b>Distance from a point $P = (x_1, y_1, z_1)$ to the plane $ax + by + cz + d = 0$.</b> Pick any $Q_0$ on the plane. The distance is the absolute value of the scalar projection of $\overrightarrow{Q_0 P}$ onto the unit normal $\hat{\vec n} = \vec n/|\vec n|$.</p>
 <div class="formula">$D = \left|\overrightarrow{Q_0 P} \cdot \hat{\vec n}\right| = \dfrac{|a x_1 + b y_1 + c z_1 + d|}{\sqrt{a^2 + b^2 + c^2}}.$</div>
 
 <p><b>Angle between planes</b> equals the angle between their normals, because turning a plane turns its normal by the same amount.</p>
@@ -143,7 +143,7 @@ Method 2. $D = \dfrac{|\overrightarrow{QP} \times \vec v|}{|\vec v|}$.</div>
 </div>
 <div class="section"><h3>12.6 Quadric Surfaces</h3>
 
-<p class="part"><span class="dimtag">2D in 3D</span>Identify a quadric by its <b>traces</b>. Cut it with planes $x = k$, $y = k$, $z = k$ and read off the plane curve. Do not stop at $k = 0$, since varying $k$ shows how the curve grows or shrinks along that axis. Six standard shapes turn up.</p>
+<p class="part"><span class="dimtag">2D in 3D</span>A <b>quadric surface</b> is the graph of a second-degree equation in $x$, $y$, $z$. Identify a quadric by its <b>traces</b>. Cut it with planes $x = k$, $y = k$, $z = k$ and read off the plane curve. Do not stop at $k = 0$, since varying $k$ shows how the curve grows or shrinks along that axis. Six standard shapes turn up. In each, $a$, $b$, $c$ are positive constants.</p>
 
 <p><b>Ellipsoid.</b> $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} + \tfrac{z^2}{c^2} = 1$.
 The trace $z = k$ gives $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1 - \tfrac{k^2}{c^2}$, an ellipse for $|k| &lt; c$, a single point at $|k| = c$, empty for $|k| &gt; c$.</p>
@@ -158,7 +158,7 @@ $y = k$ gives an upward parabola $z = \tfrac{x^2}{a^2} - \tfrac{k^2}{b^2}$, $x =
 $z = k$ gives the ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = \tfrac{k^2}{c^2}$, growing linearly with $|k|$ and shrinking to a point at $k = 0$. $y = k$ gives the hyperbola $\tfrac{x^2}{a^2} - \tfrac{z^2}{c^2} = -\tfrac{k^2}{b^2}$, which at $k = 0$ degenerates to crossing lines $x = \pm (a/c) z$.</p>
 
 <p><b>Hyperboloid of one sheet.</b> $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} - \tfrac{z^2}{c^2} = 1$.
-$z = k$ gives the ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1 + \tfrac{k^2}{c^2}$, always present and growing as $|k|\to\infty$. At $z = 0$ it's the waist ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1$. $y = k$ gives a hyperbola. The sweeping plane below traces this, a circle present at every height and smallest at the waist.</p>
+$z = k$ gives the ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1 + \tfrac{k^2}{c^2}$, always present and growing as $|k|\to\infty$. At $z = 0$ it's the waist ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1$. $y = k$ gives a hyperbola. The sweeping plane below traces this for $a = b$, where the ellipse is a circle, present at every height and smallest at the waist.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="hyperboloidTrace"></canvas></div>
 
@@ -166,6 +166,8 @@ $z = k$ gives the ellipse $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1 + \tfrac{k^2}
 $z = k$ gives $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = \tfrac{k^2}{c^2} - 1$, an ellipse for $|k| &gt; c$ and empty for $|k| &lt; c$. The gap is the region between the two cups.</p>
 
 <p><b>Identifying a quadric.</b> Compute traces at $z = 0, 1, -1$ and at $x = 0$, $y = 0$. Ellipses everywhere $\Rightarrow$ ellipsoid. One family empty for small $|k|$ but present for large $|k|$ $\Rightarrow$ two-sheet hyperboloid. One family that shrinks to a point then becomes crossing lines $\Rightarrow$ cone. Parabolas in two coordinate-plane traces $\Rightarrow$ paraboloid, elliptic if both open the same way, saddle if opposite.</p>
+
+<p><b>Cylinders.</b> A cylinder is a surface made of all lines (called <em>rulings</em>) parallel to a given line and passing through a given plane curve.</p>
 
 <div class="fig-inline"><figure><img src="stewart_figs/p950-0950.png" alt=""><figcaption>Stewart §12.6, Figure 1, parabolic cylinder $z = x^2$, rulings parallel to the $y$-axis.</figcaption></figure></div>
 <div class="fig-inline-canvas"><canvas data-fig="quadricTraces"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="ellipsoid"></canvas></div>
@@ -201,26 +203,18 @@ The distance from $S$ is $D = |6(2)+10(0)+7(4)-50|/\sqrt{36+100+49} = |-10|/\sqr
 <div class="fig"><canvas data-fig="cross"></canvas></div>
 <div class="fig"><canvas data-fig="planeDist"></canvas></div>
 </div>
-<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math and Statistics</footer>
-<script type="module">
-import { initFigures } from './calc3_figs.js';
-initFigures();
-</script>
-<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
-
-
 </div>
 <div class="section"><h3>Strategies</h3>
 
-<p><b>Scalar versus vector projection.</b> $\mathrm{comp}_{\vec a}\vec b = (\vec a\cdot\vec b)/|\vec a|$ is a signed length, $\mathrm{proj}_{\vec a}\vec b = \mathrm{comp}_{\vec a}\vec b \cdot \hat{\vec a}$ places it along $\vec a$, and $\mathrm{orth}_{\vec a}\vec b = \vec b - \mathrm{proj}_{\vec a}\vec b$ is perpendicular to $\vec a$.</p>
+<p><b>Scalar versus vector projection.</b> $\mathrm{comp}_{\vec a}\vec b = (\vec a\cdot\vec b)/|\vec a|$ is a signed length, $\mathrm{proj}_{\vec a}\vec b = (\mathrm{comp}_{\vec a}\vec b)\,\hat{\vec a}$ places it along $\vec a$, and $\mathrm{orth}_{\vec a}\vec b = \vec b - \mathrm{proj}_{\vec a}\vec b$ is perpendicular to $\vec a$.</p>
 
 <p><b>Plane from three points.</b> Take $\vec n = \overrightarrow{PQ}\times\overrightarrow{PR}$ and use $\vec n\cdot(\vec r - \vec r_P) = 0$.</p>
 
-<p><b>Line where two planes meet.</b> Direction $\vec n_1 \times \vec n_2$. For a point, solve the two plane equations together, setting $z = 0$ say.</p>
+<p><b>Line where two planes meet.</b> For planes with normals $\vec n_1$ and $\vec n_2$, the direction is $\vec n_1 \times \vec n_2$. For a point, solve the two plane equations together, setting $z = 0$ say (this works when the $z$-component of $\vec n_1 \times \vec n_2$ is nonzero).</p>
 
 <p><b>Angle between planes.</b> $\cos\theta = |\vec n_1\cdot\vec n_2|/(|\vec n_1||\vec n_2|)$, the absolute value selecting the acute angle.</p>
 
-<p><b>Distance from $P$ to a line $\vec r = \vec r_0 + t\vec v$.</b> $D = |\overrightarrow{r_0 P} \times \vec v|/|\vec v|$.</p>
+<p><b>Distance from $P$ to a line $\vec r = \vec r_0 + t\vec v$.</b> With $P_0$ the point whose position vector is $\vec r_0$, $D = |\overrightarrow{P_0 P} \times \vec v|/|\vec v|$.</p>
 
 <p><b>Identifying a quadric by traces.</b> Set $x = 0$, $y = 0$, $z = 0$ in turn. Ellipses in all three give an ellipsoid. Two parabolic traces give a paraboloid, elliptic if they open the same way and hyperbolic if opposite. A cone shows crossing lines through the origin in two traces.</p>
 
@@ -228,4 +222,10 @@ initFigures();
 
 </div>
 <div class="chapter-nav"><a href="ch10.html">← previous</a><a href="outline.html">outline</a><a href="ch13.html">next →</a></div>
+<footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a>  |  UNM Math and Statistics</footer>
+<script type="module">
+import { initFigures } from './calc3_figs.js';
+initFigures();
+</script>
+<script>function toggleNav(){document.getElementById("myTopnav").classList.toggle("responsive");}</script>
 </div></body></html>

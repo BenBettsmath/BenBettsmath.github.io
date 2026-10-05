@@ -43,7 +43,7 @@ window.MathJax = {
 <div class="formula">$\displaystyle \lim_{t \to a} \vec r(t) = \langle \lim_{t \to a} f,\ \lim_{t \to a} g,\ \lim_{t \to a} h\rangle.$</div>
 <p>$\vec r$ is continuous at $a$ iff each component is.</p>
 
-<p><b>Direction of traversal.</b> Arrowheads show direction as $t$ increases. Replacing $t$ by $-t$ (or running from $b$ to $a$) flips the arrow.</p>
+<p><b>Direction of traversal.</b> Arrowheads show direction as $t$ increases. Replacing $t$ by $-t$ (or running a parameter interval $[a, b]$ from $b$ to $a$) flips the arrow.</p>
 
 <p><b>Example.</b> The helix $\vec r(t) = \langle \cos t,\ \sin t,\ t\rangle$ projects to a circle in $xy$ while $z$ climbs linearly with $t$.</p>
 
@@ -56,11 +56,11 @@ window.MathJax = {
 </div>
 <div class="section"><h3>13.2 Derivatives and Integrals of Vector Functions</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Derivative.</b> $\vec r\,'(t) = \displaystyle\lim_{h \to 0} \dfrac{\vec r(t + h) - \vec r(t)}{h} = \langle f'(t),\ g'(t),\ h'(t)\rangle.$ Here $\vec r\,'$ is tangent to the curve, pointing the way the motion goes.</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Derivative.</b> $\vec r\,'(t) = \displaystyle\lim_{h \to 0} \dfrac{\vec r(t + h) - \vec r(t)}{h} = \langle f'(t),\ g'(t),\ h'(t)\rangle.$ Where $\vec r\,'(t) \ne \vec 0$, it is tangent to the curve, pointing the way the motion goes.</p>
 
 <p><b>Unit tangent vector.</b> $\vec T(t) = \dfrac{\vec r\,'(t)}{|\vec r\,'(t)|}.$</p>
 
-<p><b>Differentiation rules</b> look just like the scalar ones.</p>
+<p><b>Differentiation rules</b> look just like the scalar ones. Here $\vec u$, $\vec v$ are differentiable vector functions, $c$ is a constant, and $f$ is a differentiable scalar function.</p>
 <ul class="tight">
   <li>$(\vec u + \vec v)' = \vec u\,' + \vec v\,'$</li>
   <li>$(c\vec u)' = c\vec u\,'$ and $(f \vec u)' = f'\vec u + f \vec u\,'$</li>
@@ -76,14 +76,14 @@ window.MathJax = {
 <div class="section"><h3>13.3 Arc Length and Curvature</h3>
 
 <p class="part"><span class="dimtag">1D in 3D</span><b>Arc length.</b> The step element is $ds \approx |\vec r\,'(t)|\,dt$ by Pythagoras component by component, so</p>
-<div class="formula">$\displaystyle L = \int_a^b |\vec r\,'(t)|\,dt = \int_a^b \sqrt{(x')^2 + (y')^2 + (z')^2}\,dt.$</div>
+<div class="formula">$\displaystyle L = \int_a^b |\vec r\,'(t)|\,dt = \int_a^b \sqrt{(f')^2 + (g')^2 + (h')^2}\,dt.$</div>
 
 <p><b>Arc-length function</b> $s(t) = \int_a^t |\vec r\,'(u)|\,du$, so $ds/dt = |\vec r\,'(t)|$ is the speed.</p>
 
-<p><b>Curvature.</b> Curvature measures how fast the unit tangent direction turns per unit of arc length. A line has $\kappa = 0$, and a circle of radius $R$ has $\kappa = 1/R$, so $1/\kappa$ is the radius of the best-fitting circle.</p>
+<p><b>Curvature.</b> The curvature $\kappa$ measures how fast the unit tangent direction turns per unit of arc length. A line has $\kappa = 0$, and a circle of radius $R$ has $\kappa = 1/R$, so $1/\kappa$ is the radius of the best-fitting circle.</p>
 <div class="formula">$\kappa = \left|\dfrac{d\vec T}{ds}\right| = \dfrac{|\vec T\,'(t)|}{|\vec r\,'(t)|} = \dfrac{|\vec r\,'(t) \times \vec r\,''(t)|}{|\vec r\,'(t)|^3}.$</div>
-<p><em>Why the cross-product form works.</em> Only the component of $\vec r\,''$ perpendicular to the motion turns the curve, and the cross product with $\vec r\,'$ keeps exactly that part, so $|\vec r\,'\times\vec r\,''| = |\vec r\,'|\,|\vec r\,''_\perp|$. At speed $v$ the turning component of acceleration is $\kappa v^2$, so the numerator is $\kappa v^3$ and dividing by $|\vec r\,'|^3 = v^3$ leaves $\kappa$.</p>
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The denominator $|\vec r\,'|^3$ is the <em>cube</em> of the speed, not the speed. Curvature is always $\ge 0$, and the absolute values in both $\dfrac{|\vec r\,'\times\vec r\,''|}{|\vec r\,'|^3}$ and $\dfrac{|f''|}{(1+(f')^2)^{3/2}}$ are there to keep it nonnegative.</p></div>
+<p><em>Why the cross-product form works.</em> Only the component $\vec r\,''_\perp$ of $\vec r\,''$ perpendicular to the motion turns the curve, and the cross product with $\vec r\,'$ keeps exactly that part, so $|\vec r\,'\times\vec r\,''| = |\vec r\,'|\,|\vec r\,''_\perp|$. At speed $v$ the turning component of acceleration is $\kappa v^2$, so the numerator is $\kappa v^3$ and dividing by $|\vec r\,'|^3 = v^3$ leaves $\kappa$.</p>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The denominator $|\vec r\,'|^3$ is the <em>cube</em> of the speed, not the speed. Curvature is always $\ge 0$, and the absolute values in both $\dfrac{|\vec r\,'\times\vec r\,''|}{|\vec r\,'|^3}$ and $\dfrac{|f''|}{(1+(f')^2)^{3/2}}$ are there to keep it nonnegative.</p></div>
 <p>For a plane curve $y = f(x)$ the curvature is $\;\kappa = \dfrac{|f''(x)|}{(1 + (f'(x))^2)^{3/2}}.$</p>
 
 <p><b>Principal unit normal.</b> $\vec N(t) = \dfrac{\vec T\,'(t)}{|\vec T\,'(t)|}.$ Points toward the center of curvature on the concave side.</p>
@@ -105,12 +105,12 @@ window.MathJax = {
 <div class="note"><div class="note-name">Shortcut</div><p>Because $\vec T\perp\vec N$, the two components satisfy $|\vec a|^2=a_T^2+a_N^2$. So once we have $a_T$ we can get $a_N=\sqrt{|\vec a|^2-a_T^2}$ without computing a cross product.</p></div>
 <p>$a_T$ is the speed-up/slow-down part, $a_N$ the turning (centripetal) part.</p>
 
-<p><b>Projectile motion.</b> $\vec a = -g\hat\jmath$. Integrate twice with initial $\vec r(0)$ and $\vec v(0)$.</p>
+<p><b>Projectile motion.</b> In the plane, with $g \approx 9.8$ m/s$^2$ the acceleration due to gravity, $\vec a = -g\hat\jmath$. Integrate twice with initial $\vec r(0)$ and $\vec v(0)$.</p>
 <p>Fire from the origin at angle $\alpha$, speed $v_0$, so $\vec v(0) = (v_0 \cos\alpha)\hat\imath + (v_0\sin\alpha)\hat\jmath$. Then</p>
 <div class="formula">$\vec v(t) = \langle v_0\cos\alpha,\ v_0\sin\alpha - g t\rangle,\qquad \vec r(t) = \langle v_0\cos\alpha\cdot t,\ v_0\sin\alpha\cdot t - \tfrac12 g t^2\rangle.$</div>
 <p>Range $R = v_0^2 \sin 2\alpha / g$, biggest at $\alpha = \pi/4$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p><b>The range formula assumes equal launch and landing height.</b> $R=v_0^2\sin 2\alpha/g$ holds only when the projectile returns to its starting height. If it lands higher or lower, don't use it. Instead solve $y(t)=y_{\text{land}}$ for the flight time and substitute into $x(t)$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p><b>The range formula assumes equal launch and landing height.</b> $R=v_0^2\sin 2\alpha/g$ holds only when the projectile returns to its starting height. If it lands higher or lower, don't use it. Instead solve $y(t)=y_{\text{land}}$, the landing height, for the flight time and substitute into $x(t)$.</p></div>
 <div class="fig-inline-canvas"><canvas data-fig="projectile"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="projectileTNa"></canvas></div>
 </div>
 <div class="section"><h3>13.5 Taylor Approximation of Space Curves</h3>
@@ -118,11 +118,11 @@ window.MathJax = {
 <p class="part"><span class="dimtag">1D in 3D</span>Apply the scalar Taylor expansion component by component. Since $\vec r(t) = \langle f, g, h\rangle$, each one satisfies</p>
 <div class="formula">$f(t_0 + \delta) = f(t_0) + \delta f'(t_0) + \tfrac{\delta^2}{2}f''(t_0) + \cdots$</div>
 <p>Stacking gives</p>
-<div class="formula">$\vec r(t_0 + h) = \vec r(t_0) + h\,\vec r\,'(t_0) + \tfrac{h^2}{2}\,\vec r\,''(t_0) + \tfrac{h^3}{6}\,\vec r\,'''(t_0) + \cdots$</div>
+<div class="formula">$\vec r(t_0 + \delta) = \vec r(t_0) + \delta\,\vec r\,'(t_0) + \tfrac{\delta^2}{2}\,\vec r\,''(t_0) + \tfrac{\delta^3}{6}\,\vec r\,'''(t_0) + \cdots$</div>
 
-<p><b>Geometric meaning.</b> The linear truncation gives the tangent line. Adding the quadratic term gives the <em>osculating parabola</em> in the $T$, $N$ plane. Higher terms hug the curve more tightly.</p>
+<p><b>Geometric meaning.</b> The linear truncation gives the tangent line. Adding the quadratic term gives the <em>osculating parabola</em> in the plane of $\vec T$ and $\vec N$. Higher terms hug the curve more tightly.</p>
 
-<p><em>Example.</em> Take $\vec r(t) = (t,\ t^2/2,\ t^3/6)$, its own Taylor series at $t_0 = 0$. The linear truncation is the $x$-axis tangent, the quadratic adds the $xy$-plane parabola, and the cubic adds the $z$ wiggle, which here is the full curve.</p>
+<p><em>Example.</em> Take $\vec r(t) = \langle t,\ t^2/2,\ t^3/6\rangle$, its own Taylor series at $t_0 = 0$. The linear truncation is the $x$-axis tangent, the quadratic adds the $xy$-plane parabola, and the cubic adds the $z$ wiggle, which here is the full curve.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="taylorCurve"></canvas></div>
 </div>
@@ -133,7 +133,7 @@ $\vec v = \vec r\,' = \langle v_0\cos\alpha,\ v_0\sin\alpha - gt\rangle$, speed 
 $\vec a = \vec r\,'' = \langle 0,\ -g\rangle$, so $|\vec a| = g$ for all $t$.
 Tangential component $a_T = \vec a \cdot \vec T = \dfrac{\vec a \cdot \vec v}{|\vec v|} = \dfrac{-g(v_0\sin\alpha - gt)}{|\vec v|}$.
 At the apex $t = v_0\sin\alpha / g$, $\vec v = \langle v_0\cos\alpha, 0\rangle$ is horizontal and $\vec a = \langle 0, -g\rangle$ is perpendicular to it, so $a_T = 0$ and $a_N = g$, and all of gravity goes into turning the projectile.</p>
-<p>Arc length and curvature on a helix. $\vec r(t) = \langle \cos t,\ \sin t,\ t\rangle$.<br>
+<p><b>Arc length and curvature on a helix.</b> $\vec r(t) = \langle \cos t,\ \sin t,\ t\rangle$.<br>
 $\vec r\,' = \langle -\sin t, \cos t, 1\rangle$, $|\vec r\,'| = \sqrt 2$, so $L = \int_0^{2\pi}\!\sqrt 2\,dt = 2\sqrt 2\,\pi$.
 $\vec r\,'' = \langle -\cos t,\ -\sin t, 0\rangle$, $\vec r\,'\times\vec r\,'' = \langle\sin t,\ -\cos t,\ 1\rangle$ of magnitude $\sqrt 2$, so $\kappa = \sqrt 2/(\sqrt 2)^3 = 1/2$.</p>
 
@@ -153,15 +153,15 @@ $\vec r\,'' = \langle -\cos t,\ -\sin t, 0\rangle$, $\vec r\,'\times\vec r\,'' =
 </div>
 <div class="section"><h3>Strategies</h3>
 
-<p><b>Smooth curve.</b> $\vec r$ is smooth on $I$ when $\vec r\,'$ is continuous and $\vec r\,' \ne \vec 0$ on $I$.</p>
+<p><b>Smooth curve.</b> $\vec r$ is smooth on an interval $I$ when $\vec r\,'$ is continuous and $\vec r\,' \ne \vec 0$ on $I$.</p>
 
-<p><b>Tangent line at $t_0$.</b> $\vec L(s) = \vec r(t_0) + s\,\vec r\,'(t_0)$.</p>
+<p><b>Tangent line at $t_0$.</b> If $\vec r\,'(t_0) \ne \vec 0$, $\vec L(u) = \vec r(t_0) + u\,\vec r\,'(t_0)$.</p>
 
 <p><b>Reparametrize by arc length.</b> Compute $s(t) = \int_a^t |\vec r\,'(u)|\,du$, invert for $t(s)$, then $\vec r(t(s))$ has unit speed. Curvature is defined with respect to $s$ so that it only depends on the shape of the curve, not on how fast we travel along it.</p>
 
 <p><b>Choosing a curvature formula.</b> $\kappa = |d\vec T/ds|$ is the definition, $\kappa = |\vec T\,'(t)|/|\vec r\,'(t)|$ converts to an arbitrary parameter, and $\kappa = |\vec r\,'\times\vec r\,''|/|\vec r\,'|^3$ avoids computing $\vec T$. For $y = f(x)$ the last reduces to $|f''|/(1+(f')^2)^{3/2}$.</p>
 
-<p><b>Osculating, normal, rectifying planes.</b> Spanned by $\vec T, \vec N$, by $\vec N, \vec B$, and by $\vec T, \vec B$ respectively.</p>
+<p><b>Osculating, normal, rectifying planes.</b> With the binormal $\vec B = \vec T \times \vec N$, these are the planes through the point spanned by $\vec T, \vec N$, by $\vec N, \vec B$, and by $\vec T, \vec B$ respectively.</p>
 
 <p><b>Acceleration has no $\vec B$ component.</b> $\vec a = a_T\vec T + a_N\vec N$ always lies in the osculating plane.</p>
 
