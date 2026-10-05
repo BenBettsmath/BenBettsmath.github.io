@@ -658,17 +658,17 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
   }
   function renderStep(k) {
     const el = document.getElementById('tm-step');
-    if (k === 0) { el.innerHTML = '<div class="tm-id"><i>pi</i> = 1, &nbsp; 1 &minus; <i>ip</i> = &part;<i>h</i> + <i>h</i>&part;</div>'; return; }
+    if (k === 0) { el.innerHTML = ''; return; }
     const st = S[k], pv = st.prev, cu = st.basis;
-    let h = '<div class="tm-id"><i>i</i> : <i>C</i><sub>' + k + '</sub> &rarr; <i>C</i><sub>' + (k - 1) + '</sub>, &nbsp; <i>p</i> : <i>C</i><sub>' + (k - 1) + '</sub> &rarr; <i>C</i><sub>' + k + '</sub>, &nbsp; <i>h</i> : <i>C</i><sub>' + (k - 1) + '</sub> &rarr; <i>C</i><sub>' + (k - 1) + '</sub>[1]</div>';
+    let h = '';
     h += mats('<i>i</i>', st.i, n => cu[n], n => pv[n], 'id') + mats('<i>p</i>', st.p, n => pv[n], n => cu[n], 'id') + mats('<i>h</i>', st.h, n => pv[n], n => pv[n + 1] || [], 'zero');
     el.innerHTML = h;
   }
   function renderCum(k) {
     const el = document.getElementById('tm-cum');
     const st = S[k], cu = st.basis, pb = k ? S[k - 1].basis : null, pr = k ? S[k - 1] : null;
-    if (k === 0) { el.innerHTML = '<div class="tm-id"><i>i</i><sup><i>M</i></sup> = 1, &nbsp;<i>p</i><sup><i>M</i></sup> = 1, &nbsp;<i>h</i><sup><i>M</i></sup> = 0</div>'; return; }
-    let h = '<div class="tm-id"><i>i</i><sup><i>M</i></sup> : <i>C</i><sub>' + k + '</sub> &rarr; <i>T</i>, &nbsp; <i>p</i><sup><i>M</i></sup> : <i>T</i> &rarr; <i>C</i><sub>' + k + '</sub>, &nbsp; <i>h</i><sup><i>M</i></sup> : <i>T</i> &rarr; <i>T</i>[1]</div>';
+    if (k === 0) { el.innerHTML = ''; return; }
+    let h = '';
     h += mats('<i>i</i><sup><i>M</i></sup>', st.iM, n => cu[n], n => T[n], 'id', pr.iM, n => pb[n], n => T[n]);
     h += mats('<i>p</i><sup><i>M</i></sup>', st.pM, n => T[n], n => cu[n], 'id', pr.pM, n => T[n], n => pb[n]);
     h += mats('<i>h</i><sup><i>M</i></sup>', st.hM, n => T[n], n => T[n + 1] || [], 'zero', pr.hM, n => T[n], n => T[n + 1] || []);
