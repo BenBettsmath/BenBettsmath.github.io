@@ -44,7 +44,7 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">2D in 3D</span><b>Intro.</b> A function of two variables $f : D \subset \mathbb R^2 \to \mathbb R$ has a graph that is a surface $z = f(x, y)$. The level curves are the curves $f(x, y) = k$ for a fixed height $k$, the same as the lines on a topographic map. Drawing them for several values of $k$ gives a contour map. Contours that are close together mean the surface is steep there, and contours that are spread out mean it's shallow. A function of three variables $f(x, y, z)$ would need four dimensions to graph, so instead we picture its level surfaces $f(x, y, z) = k$.</p>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Story.</b> The dome $z = 1 - x^2 - y^2$ is a cap over the unit disk, height $1$ at the center and dropping to $0$ on the circle $x^2 + y^2 = 1$. Its level curves $1 - x^2 - y^2 = k$ are circles of radius $\sqrt{1-k}$, tight near the rim where the cap falls fast and loose near the top where it is nearly flat. We'll come back to this one surface and its contour map for every idea in the chapter, starting at the point $(\tfrac12, \tfrac12, \tfrac12)$, which sits on the level curve $k = \tfrac12$.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Example.</b> The dome $z = 1 - x^2 - y^2$ is a cap over the unit disk, height $1$ at the center and dropping to $0$ on the circle $x^2 + y^2 = 1$. Its level curves $1 - x^2 - y^2 = k$ are circles of radius $\sqrt{1-k}$, tight near the rim where the cap falls fast and loose near the top where it is nearly flat. We'll come back to this one surface and its contour map for every idea in the chapter, starting at the point $(\tfrac12, \tfrac12, \tfrac12)$, which sits on the level curve $k = \tfrac12$.</p>
 
 <p>Compare the dome with three other basic shapes. The bowl $f = x^2 + y^2$ has circular level curves and one low point. The saddle $f = x^2 - y^2$ has hyperbola level curves and the plane $f = x + y$ has parallel straight lines.</p>
 
@@ -57,7 +57,7 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">2D</span><b>Intro.</b> The statement $\lim_{(x,y) \to (a,b)} f(x, y) = L$ means $f$ gets close to $L$ no matter which path we take toward $(a, b)$ inside the domain. In one variable there are only two directions to come from, but now there are infinitely many paths. So to show a limit doesn't exist, it's enough to find two paths that give different limits. Lines $y = mx$ and parabolas $y = x^2$ or $x = y^2$ are the usual ones to try. A polar substitution $x = r\cos\theta$, $y = r\sin\theta$ is useful because $(x, y) \to (0, 0)$ becomes just $r \to 0$, so if the $\theta$ part stays bounded we're done.</p>
 
-<p class="part"><span class="dimtag">1D in 2D</span><b>Story.</b> Checking every straight line isn't enough. For $f = \dfrac{xy^2}{x^2 + y^4}$ every line $y = mx$ sends $f \to 0$, yet along the parabola $x = y^2$ the value is $\tfrac12$. So the limit exists only when every path agrees, and one path that disagrees is enough to rule it out.</p>
+<p class="part"><span class="dimtag">1D in 2D</span><b>Example.</b> Checking every straight line isn't enough. For $f = \dfrac{xy^2}{x^2 + y^4}$ every line $y = mx$ sends $f \to 0$, yet along the parabola $x = y^2$ the value is $\tfrac12$. So the limit exists only when every path agrees, and one path that disagrees is enough to rule it out.</p>
 
 <p>$f$ is continuous at $(a, b)$ when $\lim_{(x,y) \to (a,b)} f(x, y) = f(a, b)$. Polynomials and rational functions are continuous everywhere they're defined.</p>
 
@@ -69,7 +69,7 @@ window.MathJax = {
 <div class="formula">$f_x(x, y) = \displaystyle\lim_{h \to 0} \dfrac{f(x + h, y) - f(x, y)}{h}\quad (\text{hold } y \text{ fixed}).$</div>
 <p>Likewise $f_y$ holds $x$ fixed. The notations $\partial f/\partial x$, $f_x$, and $\partial z/\partial x$ all mean the same thing. Geometrically, $f_x$ is the slope of the trace we get by slicing with $y = $ const, and $f_y$ is the slope of the trace from slicing with $x = $ const.</p>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Story.</b> On the dome the trace $y = \tfrac12$ is the parabola $z = \tfrac34 - x^2$ with slope $f_x = -2x$, equal to $-1$ at $x = \tfrac12$. By symmetry $f_y = -1$ there too. The next section puts these two slopes together into a plane, and the section after that puts them into a vector.</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Example.</b> On the dome the trace $y = \tfrac12$ is the parabola $z = \tfrac34 - x^2$ with slope $f_x = -2x$, equal to $-1$ at $x = \tfrac12$. By symmetry $f_y = -1$ there too. The next section puts these two slopes together into a plane, and the section after that puts them into a vector.</p>
 
 <p>Higher partials repeat the process, giving $f_{xx}$, $f_{xy} = (f_x)_y$, $f_{yx}$, and $f_{yy}$. Clairaut's theorem says the mixed partials agree, $f_{xy} = f_{yx}$, whenever both are continuous. This is because both measure the same thing, the second difference of $f$ over a small rectangle, just stepping in $x$ first for one and in $y$ first for the other.</p>
 
@@ -87,7 +87,7 @@ window.MathJax = {
 <div class="formula">$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0).$</div>
 <p>Cut with $y = y_0$ to get the trace $z = f(x, y_0)$ whose tangent line is $z - z_0 = f_x(x - x_0)$. Cut with $x = x_0$ to get the other tangent line $z - z_0 = f_y(y - y_0)$. The plane holding both is the formula above. The linearization $L(x, y) = f(a, b) + f_x(a, b)(x - a) + f_y(a, b)(y - b)$ is the same plane written as a function, and its error goes to zero faster than $|\Delta\vec x|$.</p>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Story.</b> At $(\tfrac12, \tfrac12)$ the dome has $f_x = f_y = -1$ and $z_0 = \tfrac12$, so the tangent plane is $z = \tfrac32 - x - y$. The dome bends down in every direction, so the plane sits above the surface and the linearization overestimates. A saddle bends up in one direction and down in another, so its tangent plane cuts through the surface and the estimate is too high in some directions and too low in others.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>Example.</b> At $(\tfrac12, \tfrac12)$ the dome has $f_x = f_y = -1$ and $z_0 = \tfrac12$, so the tangent plane is $z = \tfrac32 - x - y$. The dome bends down in every direction, so the plane sits above the surface and the linearization overestimates. A saddle bends up in one direction and down in another, so its tangent plane cuts through the surface and the estimate is too high in some directions and too low in others.</p>
 
 <div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The hypothesis is <em>continuous</em> partials. Just having $f_x$ and $f_y$ exist at a point isn't enough for differentiability, or even for continuity, since the partials only see the two directions along the axes. For $f(x,y)=\dfrac{xy}{x^2+y^2}$ with $f(0,0)=0$, both partials exist at the origin, yet $f$ is not even continuous there.</p></div>
 <p><b>Total differential.</b> The differential $dz = \dfrac{\partial z}{\partial x}\,dx + \dfrac{\partial z}{\partial y}\,dy$ estimates the change $\Delta z \approx dz$. Here $dz$ is how much we rise along the tangent plane and $\Delta z$ is how much we actually rise on the surface. The difference between them is second-order small, and for the dome it's the overestimate from before.</p>
@@ -105,7 +105,7 @@ window.MathJax = {
 <div class="formula">$\dfrac{\partial z}{\partial s} = \dfrac{\partial z}{\partial x}\dfrac{\partial x}{\partial s} + \dfrac{\partial z}{\partial y}\dfrac{\partial y}{\partial s},\qquad \dfrac{\partial z}{\partial t} = \dfrac{\partial z}{\partial x}\dfrac{\partial x}{\partial t} + \dfrac{\partial z}{\partial y}\dfrac{\partial y}{\partial t}.$</div>
 <p>A tree diagram helps keep track of all the terms. Branches run from $z$ to $x$ and $y$, then on to $s$ and $t$, and we add up the products along every path from $z$ down to the variable we're differentiating with respect to.</p>
 
-<p class="part"><span class="dimtag">1D in 3D</span><b>Story.</b> Along the diagonal $x = t$, $y = t$ the dome height is $z = 1 - 2t^2$. The chain rule gives $\dfrac{dz}{dt} = \nabla f \cdot \langle 1, 1\rangle = -4t$, which agrees with differentiating $1 - 2t^2$ directly. So it's the same gradient as before, just dotted with a velocity instead of a displacement.</p>
+<p class="part"><span class="dimtag">1D in 3D</span><b>Example.</b> Along the diagonal $x = t$, $y = t$ the dome height is $z = 1 - 2t^2$. The chain rule gives $\dfrac{dz}{dt} = \nabla f \cdot \langle 1, 1\rangle = -4t$, which agrees with differentiating $1 - 2t^2$ directly. So it's the same gradient as before, just dotted with a velocity instead of a displacement.</p>
 
 <p><b>Implicit differentiation.</b> If $F(x, y, z) = 0$ defines $z$ as a function of $x$ and $y$, we can differentiate both sides with the chain rule, keeping in mind that $z$ depends on $x$ and $y$. Differentiating in $x$ gives $F_x + F_z\,\dfrac{\partial z}{\partial x} = 0$, so wherever $F_z \ne 0$,</p>
 <div class="formula">$\dfrac{\partial z}{\partial x} = -\dfrac{F_x}{F_z},\qquad \dfrac{\partial z}{\partial y} = -\dfrac{F_y}{F_z}.$</div>
@@ -124,11 +124,11 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="tangentVectors"></canvas></div>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the gradient four ways.</b> At $(\tfrac12, \tfrac12)$ the dome gradient is $\nabla f = \langle -1, -1\rangle$. Dotting it with a small displacement gives back the tangent plane of 14.4. Dotting it with the velocity $\langle 1, 1\rangle$ gives the chain rule rate $-2$ of 14.5. Dotting it with the unit direction $\vec u = \tfrac{1}{\sqrt2}\langle 1, 1\rangle$ gives the slope $-\sqrt2$, which is the steepest descent, since $\langle -1, -1\rangle$ points straight downhill. If we step perpendicular, along $\tfrac{1}{\sqrt2}\langle 1, -1\rangle$, the slope is $0$, because that's the direction of the level curve $k = \tfrac12$ through the point. So the same vector answers all four questions.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>The gradient four ways.</b> At $(\tfrac12, \tfrac12)$ the dome gradient is $\nabla f = \langle -1, -1\rangle$. Dotting it with a small displacement gives back the tangent plane of 14.4. Dotting it with the velocity $\langle 1, 1\rangle$ gives the chain rule rate $-2$ of 14.5. Dotting it with the unit direction $\vec u = \tfrac{1}{\sqrt2}\langle 1, 1\rangle$ gives the slope $-\sqrt2$, which is the steepest descent, since $\langle -1, -1\rangle$ points straight downhill. If we step perpendicular, along $\tfrac{1}{\sqrt2}\langle 1, -1\rangle$, the slope is $0$, because that's the direction of the level curve $k = \tfrac12$ through the point. So the same vector answers all four questions.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="gradFourWays"></canvas></div>
 
-<p class="part"><span class="dimtag">2D</span><b>Story, the gradient does not aim at the origin.</b> For $f = x^2 + 3y^2$ the level curves are ellipses and $\nabla f = \langle 2x, 6y\rangle$. At $(1, 1)$ the gradient is $\langle 2, 6\rangle$ while the position vector is $\langle 1, 1\rangle$, not parallel. The gradient is perpendicular to the level curve through the point, and it only lines up with the position vector when the level curves are circles.</p>
+<p class="part"><span class="dimtag">2D</span><b>The gradient need not point at the origin.</b> For $f = x^2 + 3y^2$ the level curves are ellipses and $\nabla f = \langle 2x, 6y\rangle$. At $(1, 1)$ the gradient is $\langle 2, 6\rangle$ while the position vector is $\langle 1, 1\rangle$, not parallel. The gradient is perpendicular to the level curve through the point, and it only lines up with the position vector when the level curves are circles.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="gradPerpLevel"></canvas></div>
 
@@ -158,11 +158,11 @@ window.MathJax = {
   <li>$D = 0$ is inconclusive.</li>
 </ul>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the test by shapes.</b> The downward elliptic paraboloid $z = 1 - 3x^2 - y^2$ drops fastest along $x$ and slowest along $y$, two perpendicular special directions aligned with the axes. Turned $45^\circ$ it becomes $z = 1 - 2x^2 - 2xy - 2y^2$. The shape is unchanged, the special directions have rotated, and the cross term $-2xy$ records the rotation. The test only cares about the signs of the curvatures along the two special directions. Both downward is a maximum, both upward a minimum, one of each a saddle. The dome $z = 1 - x^2 - y^2$ is the round case with no special direction.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>The second derivative test by shape.</b> The downward elliptic paraboloid $z = 1 - 3x^2 - y^2$ drops fastest along $x$ and slowest along $y$, two perpendicular special directions aligned with the axes. Turned $45^\circ$ it becomes $z = 1 - 2x^2 - 2xy - 2y^2$. The shape is unchanged, the special directions have rotated, and the cross term $-2xy$ records the rotation. The test only cares about the signs of the curvatures along the two special directions. Both downward is a maximum, both upward a minimum, one of each a saddle. The dome $z = 1 - x^2 - y^2$ is the round case with no special direction.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="paraboloidTurn"></canvas></div>
 
-<p class="part"><span class="dimtag">2D in 3D</span><b>Story, the natural saddle.</b> Build $z = x^2 - y^2$ from its slices. The cut $y = 0$ is the upward parabola $z = x^2$, the cut $x = 0$ is the downward parabola $z = -y^2$, and the level set $z = 0$ is the pair of lines $y = \pm x$. Up one way and down the perpendicular way is exactly $D &lt; 0$. The example $f = x^3 - 3x + y^2$ is a good one to look at, because adding $y^2$ turns the one variable maximum of $x^3 - 3x$ at $x = -1$ into a saddle of the surface.</p>
+<p class="part"><span class="dimtag">2D in 3D</span><b>The saddle $z = x^2 - y^2$.</b> Build $z = x^2 - y^2$ from its slices. The cut $y = 0$ is the upward parabola $z = x^2$, the cut $x = 0$ is the downward parabola $z = -y^2$, and the level set $z = 0$ is the pair of lines $y = \pm x$. Up one way and down the perpendicular way is exactly $D &lt; 0$. The example $f = x^3 - 3x + y^2$ is a good one to look at, because adding $y^2$ turns the one variable maximum of $x^3 - 3x$ at $x = -1$ into a saddle of the surface.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="saddleTraces"></canvas></div>
 
@@ -199,7 +199,7 @@ window.MathJax = {
 <div class="formula">$\nabla f = \lambda\,\nabla g,\qquad g(x, y) = k.$</div>
 <p>Then we solve the system, plug every candidate into $f$, and compare. With two constraints in $\mathbb R^3$, $\nabla f$ has to lie in the plane spanned by the two normals, so $\nabla f = \lambda\nabla g + \mu\nabla h$.</p>
 
-<p class="part"><span class="dimtag">1D in 2D</span><b>Story.</b> Maximize and minimize $f = xy$ on $x^2 + y^2 = 8$. The system $\langle y, x\rangle = \lambda\langle 2x, 2y\rangle$ forces $x^2 = y^2$, so $2x^2 = 8$ and $x = \pm 2$. The maximum is $f = 4$ at the same-sign points and the minimum is $-4$ at the opposite-sign ones. The figure shows the same idea with $\nabla f$ and $\nabla g$ turning together and lining up only where the level curve just touches the constraint.</p>
+<p class="part"><span class="dimtag">1D in 2D</span><b>Example.</b> Maximize and minimize $f = xy$ on $x^2 + y^2 = 8$. The system $\langle y, x\rangle = \lambda\langle 2x, 2y\rangle$ forces $x^2 = y^2$, so $2x^2 = 8$ and $x = \pm 2$. The maximum is $f = 4$ at the same-sign points and the minimum is $-4$ at the opposite-sign ones. The figure shows the same idea with $\nabla f$ and $\nabla g$ turning together and lining up only where the level curve just touches the constraint.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="lagrange"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="lagrangeEllipse"></canvas></div>
 </div>

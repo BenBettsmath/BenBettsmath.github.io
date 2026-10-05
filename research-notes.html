@@ -74,7 +74,7 @@
       <span id="tm-match" class="tm-match"></span>
     </div>
     <div class="homcx-scene"><canvas id="tm-cv"></canvas></div>
-    <div class="tm-legend"><i>a</i> = <i>xy</i>, &nbsp;<i>b</i> = <i>yz</i>, &nbsp;<i>c</i> = <i>zw</i>, &nbsp;<i>d</i> = <i>xw</i></div>
+    <div class="tm-legend">1 = <i>xy</i>, &nbsp;2 = <i>yz</i>, &nbsp;3 = <i>zw</i>, &nbsp;4 = <i>xw</i></div>
     <div class="tm-panels">
       <div class="tm-panel">
         <h3>&part;</h3>
@@ -568,7 +568,7 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
   cv.addEventListener('pointerup', () => { drag = null; });
 
   // ---------- panels ----------
-  const E = s => s === '' ? 'e<sub>&empty;</sub>' : 'e<sub>' + s + '</sub>';
+  const E = s => s === '' ? 'e<sub>&empty;</sub>' : 'e<sub>' + s.replace(/[abcd]/g, ch => 'abcd'.indexOf(ch) + 1) + '</sub>';
   const isMulti = s => / [+−] /.test(s);
   function combo(entries) { // [[coef, label]]
     const parts = [];
@@ -661,7 +661,6 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
     if (k === 0) { el.innerHTML = '<div class="tm-id"><i>pi</i> = 1, &nbsp; 1 &minus; <i>ip</i> = &part;<i>h</i> + <i>h</i>&part;</div>'; return; }
     const st = S[k], pv = st.prev, cu = st.basis;
     let h = '<div class="tm-id"><i>i</i> : <i>C</i><sub>' + k + '</sub> &rarr; <i>C</i><sub>' + (k - 1) + '</sub>, &nbsp; <i>p</i> : <i>C</i><sub>' + (k - 1) + '</sub> &rarr; <i>C</i><sub>' + k + '</sub>, &nbsp; <i>h</i> : <i>C</i><sub>' + (k - 1) + '</sub> &rarr; <i>C</i><sub>' + (k - 1) + '</sub>[1]</div>';
-    h += '<div class="tm-imgs">' + images('<i>i</i>', st.i, n => cu[n], n => pv[n], 'id') + images('<i>p</i>', st.p, n => pv[n], n => cu[n], 'id') + images('<i>h</i>', st.h, n => pv[n], n => pv[n + 1] || [], 'zero') + '</div>';
     h += mats('<i>i</i>', st.i, n => cu[n], n => pv[n], 'id') + mats('<i>p</i>', st.p, n => pv[n], n => cu[n], 'id') + mats('<i>h</i>', st.h, n => pv[n], n => pv[n + 1] || [], 'zero');
     el.innerHTML = h;
   }
@@ -670,7 +669,6 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
     const st = S[k], cu = st.basis, pb = k ? S[k - 1].basis : null, pr = k ? S[k - 1] : null;
     if (k === 0) { el.innerHTML = '<div class="tm-id"><i>i</i><sup><i>M</i></sup> = 1, &nbsp;<i>p</i><sup><i>M</i></sup> = 1, &nbsp;<i>h</i><sup><i>M</i></sup> = 0</div>'; return; }
     let h = '<div class="tm-id"><i>i</i><sup><i>M</i></sup> : <i>C</i><sub>' + k + '</sub> &rarr; <i>T</i>, &nbsp; <i>p</i><sup><i>M</i></sup> : <i>T</i> &rarr; <i>C</i><sub>' + k + '</sub>, &nbsp; <i>h</i><sup><i>M</i></sup> : <i>T</i> &rarr; <i>T</i>[1]</div>';
-    h += '<div class="tm-imgs">' + images('<i>i</i><sup><i>M</i></sup>', st.iM, n => cu[n], n => T[n], 'id') + images('<i>p</i><sup><i>M</i></sup>', st.pM, n => T[n], n => cu[n], 'id') + images('<i>h</i><sup><i>M</i></sup>', st.hM, n => T[n], n => T[n + 1] || [], 'zero') + '</div>';
     h += mats('<i>i</i><sup><i>M</i></sup>', st.iM, n => cu[n], n => T[n], 'id', pr.iM, n => pb[n], n => T[n]);
     h += mats('<i>p</i><sup><i>M</i></sup>', st.pM, n => T[n], n => cu[n], 'id', pr.pM, n => T[n], n => pb[n]);
     h += mats('<i>h</i><sup><i>M</i></sup>', st.hM, n => T[n], n => T[n + 1] || [], 'zero', pr.hM, n => T[n], n => T[n + 1] || []);

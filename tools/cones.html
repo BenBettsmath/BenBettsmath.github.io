@@ -3,33 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cones and lattices</title>
+<title>Points and lattices</title>
 <link rel="stylesheet" href="../style.css">
 <style>
 .page-content { max-width: 1240px; }
-.vp-top { display: flex; flex-wrap: wrap; gap: 1em 2em; align-items: flex-start; margin: 1em 0 1.2em; font-family: 'STIX Two Text', Georgia, serif; }
-.vp-top label { display: block; color: #6B7280; font-size: .9em; margin-bottom: .25em; }
-.vp-top textarea { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; width: 17em; height: 5.2em; padding: .4em .5em; border: 1px solid #c9ccd0; border-radius: 6px; resize: vertical; }
-.vp-top input, .vp-top select { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; padding: .3em .5em; border: 1px solid #c9ccd0; border-radius: 6px; }
-.vp-top button { font-size: .95em; padding: .35em .9em; border-radius: 5px; border: 1px solid #007A86; background: #007A86; color: #fff; cursor: pointer; margin-top: .4em; }
-.vp-err { color: #BA0C2F; font-size: .9em; min-height: 1.2em; }
-.vp-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2em; }
-@media screen and (max-width: 900px) { .vp-main { grid-template-columns: 1fr; } }
-.vp-card { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; overflow: hidden; }
-.vp-card canvas { display: block; width: 100%; height: 470px; touch-action: none; }
-.vp-cap { font-family: 'STIX Two Text', Georgia, serif; color: #6B7280; font-size: .9em; padding: .4em .8em; border-top: 1px solid #f0f1f2; min-height: 1.4em; }
-.vp-info { font-family: 'STIX Two Text', Georgia, serif; margin-top: 1.2em; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2em; }
-.vp-info .box { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; padding: .6em 1em .8em; }
-.vp-info h3 { font-size: 1.05em; margin: .2em 0 .5em; }
-.chips { display: flex; flex-wrap: wrap; gap: .35em; }
-.chip { border: 1px solid #c9ccd0; border-radius: 999px; padding: .15em .65em; background: #fff; cursor: pointer; font-size: .92em; font-family: 'STIX Two Text', Georgia, serif; }
-.chip.nt { border-color: #C2560E; color: #C2560E; }
-.chip.on { background: #007A86; border-color: #007A86; color: #fff; }
-.chip.nt.on { background: #C2560E; border-color: #C2560E; color: #fff; }
-.vp-info table { border-collapse: collapse; font-size: .92em; }
-.vp-info td, .vp-info th { padding: 2px 8px; text-align: left; border-bottom: 1px solid #f0f1f2; font-weight: normal; }
-.vp-info th { color: #6B7280; }
-.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
+.pl-wrap { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 1.2em; margin-top: 1em; }
+@media screen and (max-width: 900px) { .pl-wrap { grid-template-columns: 1fr; } }
+.pl-side { font-family: 'STIX Two Text', Georgia, serif; }
+.pl-side label { display: block; color: #6B7280; font-size: .9em; margin: .7em 0 .25em; }
+.pl-side textarea { width: 100%; box-sizing: border-box; height: 16em; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.5; padding: .5em .6em; border: 1px solid #c9ccd0; border-radius: 6px; resize: vertical; }
+.pl-side select, .pl-side input[type=text] { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; padding: .3em .5em; border: 1px solid #c9ccd0; border-radius: 6px; }
+.pl-side select { width: 100%; }
+.pl-row { display: flex; align-items: center; gap: .8em; margin-top: .7em; flex-wrap: wrap; }
+.pl-row button { font-size: .95em; padding: .35em 1em; border-radius: 5px; border: 1px solid #007A86; background: #007A86; color: #fff; cursor: pointer; }
+.pl-help { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.6; color: #4b5563; background: #fafafa; border: 1px solid #eceef0; border-radius: 6px; padding: .5em .7em; margin-top: .9em; white-space: pre; overflow-x: auto; }
+.pl-err { color: #BA0C2F; font-size: .9em; margin-top: .4em; min-height: 1.2em; }
+.pl-card { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; overflow: hidden; }
+.pl-card canvas { display: block; width: 100%; height: 640px; touch-action: none; cursor: grab; }
+@media screen and (max-width: 900px) { .pl-card canvas { height: 460px; } }
+.pl-bar { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #374151; padding: .45em .8em; border-top: 1px solid #f0f1f2; min-height: 1.5em; display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap; }
 </style>
 </head>
 <body>
@@ -41,36 +33,34 @@
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-  <p class="breadcrumb"><a href="../research.html">Research</a> &rsaquo; <a href="../research-tools.html">Tools</a> &rsaquo; <span>Cones and lattices</span></p>
-  <h1>Cones and lattices</h1>
-
-  <div class="vp-top">
-    <div>
-      <label for="vp-A"><i>A</i> (rows, nonnegative integers, <i>d</i> = 2 or 3)</label>
-      <textarea id="vp-A" spellcheck="false"></textarea>
-      <div><button id="vp-go">plot</button></div>
+  <p class="breadcrumb"><a href="../research.html">Research</a> &rsaquo; <a href="../research-tools.html">Tools</a> &rsaquo; <span>Points and lattices</span></p>
+  <h1>Points and lattices</h1>
+  <div class="pl-wrap">
+    <div class="pl-side">
+      <label for="pl-ex">examples</label>
+      <select id="pl-ex"></select>
+      <label for="pl-src">objects, one per line</label>
+      <textarea id="pl-src" spellcheck="false"></textarea>
+      <div class="pl-row">
+        <button id="pl-go">plot</button>
+        <span>range &plusmn;<input type="text" id="pl-range" value="6" size="3"></span>
+        <label style="margin:0;display:inline-flex;align-items:center;gap:.3em;color:#374151"><input type="checkbox" id="pl-grid"> integer points</label>
+      </div>
+      <div class="pl-err" id="pl-err"></div>
+<div class="pl-help">p = (1, 2)
+points (1,2) (3,1) (0,4)
+L = lattice (2,1) (0,3) cell
+vector (1,2) at (3,0)
+ray (1,1)        line (1,2) at (0,1)
+segment (0,0) (2,1)
+cone (1,0) (1,2)
+refine (1,0) (1,1) (0,1) (1,3)
+... color=orange      # comment</div>
     </div>
-    <div>
-      <label for="vp-preset">examples</label>
-      <select id="vp-preset"></select>
+    <div class="pl-card">
+      <canvas id="pl-cv"></canvas>
+      <div class="pl-bar"><span id="pl-hover"></span><span id="pl-msg"></span></div>
     </div>
-    <div>
-      <label for="vp-u">point <i>u</i></label>
-      <input id="vp-u" size="12" spellcheck="false">
-      <div id="vp-uinfo" class="mono" style="margin-top:.5em"></div>
-    </div>
-  </div>
-  <div class="vp-err" id="vp-err"></div>
-
-  <div class="vp-main">
-    <div class="vp-card"><canvas id="vp-left"></canvas><div class="vp-cap" id="vp-capL"></div></div>
-    <div class="vp-card"><canvas id="vp-right"></canvas><div class="vp-cap" id="vp-capR"></div></div>
-  </div>
-
-  <div class="vp-info">
-    <div class="box"><h3>pos(<i>A</i>)</h3><div id="vp-sum"></div></div>
-    <div class="box"><h3>bases &sigma; with <i>C</i> &sube; pos(<i>A</i><sub>&sigma;</sub>)</h3><div id="vp-delta"></div></div>
-    <div class="box"><h3><b>Z</b><i>A</i> / <b>Z</b><i>A</i><sub>&sigma;</sub></h3><div id="vp-group"></div></div>
   </div>
 </div>
 <footer>
@@ -78,95 +68,65 @@
 </footer>
 <script>function toggleNav() { document.getElementById("myTopnav").classList.toggle("responsive"); }</script>
 <script>
-// Cones, chambers and lattices. No DOM.
-const VP = (() => {
-  const EPS = 1e-9;
-  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
-  function det(M) {
-    const n = M.length;
-    if (n === 1) return M[0][0];
-    if (n === 2) return M[0][0] * M[1][1] - M[0][1] * M[1][0];
-    return M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1]) - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0]) + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]);
-  }
-  const col = (A, i) => A.map(r => r[i]);
-  const sub = (A, s) => A.map(r => s.map(i => r[i]));       // d x |s|
-  function combos(n, k) {
-    const out = [], c = [];
-    (function rec(st) { if (c.length === k) { out.push(c.slice()); return; } for (let i = st; i < n; i++) { c.push(i); rec(i + 1); c.pop(); } })(0);
-    return out;
-  }
-  // bases: d-subsets of columns with nonzero determinant
-  function bases(A) {
-    const d = A.length, n = A[0].length;
-    return combos(n, d).map(s => ({ s, det: det(sub(A, s)) })).filter(b => b.det !== 0);
-  }
-  // index of ZA in Z^d = gcd of the d x d minors
-  function latticeIndex(A) { return bases(A).reduce((g, b) => gcd(g, b.det), 0); }
-  // inverse of a 2x2 or 3x3 matrix (floating)
-  function inv(M) {
-    const D = det(M), n = M.length;
-    if (n === 2) return [[M[1][1] / D, -M[0][1] / D], [-M[1][0] / D, M[0][0] / D]];
-    const C = (i, j) => { const m = []; for (let r = 0; r < 3; r++) if (r !== i) { const row = []; for (let c = 0; c < 3; c++) if (c !== j) row.push(M[r][c]); m.push(row); } return det(m) * ((i + j) % 2 ? -1 : 1); };
-    const R = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) R[j][i] = C(i, j) / D;
-    return R;
-  }
-  const mv = (M, v) => M.map(r => r.reduce((s, x, j) => s + x * v[j], 0));
-  // class of u in G_sigma = Z^d / Z A_sigma, as the fractional parts of A_sigma^{-1} u
-  function classKey(A, s, u) {
-    const c = mv(inv(sub(A, s)), u);
-    return c.map(x => { let f = x - Math.floor(x + EPS); if (Math.abs(f) < EPS || Math.abs(f - 1) < EPS) f = 0; return f; });
-  }
-  // coset representatives of Z^d / Z A_sigma in the half-open parallelepiped A_sigma [0,1)^d
-  function cosetReps(A, s) {
-    const B = sub(A, s), d = A.length, Bi = inv(B);
-    const lo = Array(d).fill(0), hi = Array(d).fill(0);
-    for (let m = 0; m < (1 << d); m++) { const v = mv(B, Array.from({ length: d }, (_, k) => (m >> k) & 1)); v.forEach((x, k) => { lo[k] = Math.min(lo[k], x); hi[k] = Math.max(hi[k], x); }); }
-    const out = [];
-    const rec = (k, u) => {
-      if (k === d) { const c = mv(Bi, u); if (c.every(x => x > -EPS && x < 1 - EPS)) out.push(u.slice()); return; }
-      for (let x = Math.floor(lo[k]); x <= Math.ceil(hi[k]); x++) { u.push(x); rec(k + 1, u); u.pop(); }
-    };
-    rec(0, []);
-    return out;
-  }
-  // ---- d = 2: chambers are the cones between consecutive rays
-  function chambers2(A) {
-    const n = A[0].length;
-    const ang = [];
-    for (let i = 0; i < n; i++) { const t = Math.atan2(A[1][i], A[0][i]); if (!ang.some(a => Math.abs(a.t - t) < EPS)) ang.push({ t, i }); }
-    ang.sort((a, b) => a.t - b.t);
-    const ch = [];
-    for (let k = 0; k + 1 < ang.length; k++) ch.push({ lo: ang[k].t, hi: ang[k + 1].t, rays: [ang[k].i, ang[k + 1].i] });
-    const B = bases(A);
-    ch.forEach(c => {
-      const mid = (c.lo + c.hi) / 2;
-      c.delta = B.filter(b => { const t = b.s.map(i => Math.atan2(A[1][i], A[0][i])); return Math.min(...t) < mid && mid < Math.max(...t); });
+(function () {
+  // ---------- parsing ----------
+  // one object per line:
+  //   p = (1, 2)                      point (a name before "=" becomes its label)
+  //   points (1,2) (3,1) (0,4)        several points
+  //   L = lattice (2,1) (0,3)         lattice spanned by the vectors; add "cell" for the parallelepiped
+  //   vector (1,2)  or  vector (1,2) at (3,0)
+  //   ray (1,1)     segment (0,0) (2,1)     line (1,2) at (0,1)
+  //   cone (1,0) (1,2)                cone spanned by the vectors
+  //   refine (1,0) (1,1) (0,1) ...    common refinement of all simplicial cones on these rays
+  //   color=#c2560e  at the end of any line
+  const COLORS = ['#2563eb', '#C2560E', '#2f855a', '#7c3aed', '#b91c1c', '#0e7490'];
+  const NAMED = { blue: '#2563eb', orange: '#C2560E', green: '#2f855a', purple: '#7c3aed', red: '#b91c1c', teal: '#007A86', black: '#1f2328', gray: '#9aa1a9' };
+  function num(s) { s = s.trim(); if (/^-?\d+(\.\d+)?\/-?\d+(\.\d+)?$/.test(s)) { const [a, b] = s.split('/').map(Number); return a / b; } const v = Number(s); if (!isFinite(v) || s === '') throw 'bad number "' + s + '"'; return v; }
+  function tuples(s) { return [...s.matchAll(/\(([^()]*)\)/g)].map(m => m[1].split(',').map(num)); }
+  function parse(src) {
+    const objs = [], errs = [];
+    src.split('\n').forEach((raw, li) => {
+      let line = raw.replace(/#.*$/, '').trim();
+      if (!line) return;
+      try {
+        let color = null;
+        line = line.replace(/\bcolor\s*=\s*(#[0-9a-fA-F]{3,6}|\w+)/, (m, c) => { color = NAMED[c] || c; return ''; }).trim();
+        let name = null;
+        const mName = line.match(/^([A-Za-z][\w']*)\s*=\s*(.*)$/);
+        if (mName) { name = mName[1]; line = mName[2].trim(); }
+        let kind = (line.match(/^[a-z]+/) || [''])[0];
+        if (!['points', 'point', 'lattice', 'vector', 'ray', 'segment', 'line', 'cone', 'refine'].includes(kind)) kind = 'point';
+        const cell = /\bcell\b/.test(line);
+        let at = null;
+        const mAt = line.match(/\bat\s*(\([^()]*\))/);
+        if (mAt) { at = tuples(mAt[1])[0]; line = line.replace(mAt[0], ''); }
+        const T = tuples(line);
+        if (!T.length) throw 'no coordinates';
+        const dim = T[0].length;
+        if (T.some(t => t.length !== dim) || (dim !== 2 && dim !== 3)) throw 'coordinates must all be 2D or all be 3D';
+        if (kind === 'point' && T.length > 1) kind = 'points';
+        if (kind === 'segment' && T.length !== 2) throw 'segment needs two points';
+        objs.push({ kind, name, color, T, at, cell, dim, line: li + 1 });
+      } catch (e) { errs.push('line ' + (li + 1) + ': ' + e); }
     });
-    return ch;
+    return { objs, errs };
   }
-  // ---- d = 3: chamber complex in the slice x + y + z = 1
-  function slicePoint(a) { const s = a[0] + a[1] + a[2]; return [a[0] / s, a[1] / s, a[2] / s]; }
-  // 2D coordinates of a point of the slice (the standard triangle drawn equilateral)
-  function to2(p) { return [p[1] - p[0] + 0 * p[2], (2 * p[2] - p[0] - p[1]) / Math.sqrt(3)]; }
-  function chambers3(A) {
-    const n = A[0].length;
-    const P = [], rayOf = [];
-    for (let i = 0; i < n; i++) {
-      const q = to2(slicePoint(col(A, i)));
-      let k = P.findIndex(p => Math.hypot(p[0] - q[0], p[1] - q[1]) < 1e-9);
-      if (k < 0) { k = P.length; P.push(q); }
-      rayOf[i] = k;
-    }
-    // segments between all pairs of distinct points
-    const segs = [];
-    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) segs.push([P[i], P[j]]);
-    // vertices: endpoints and pairwise intersections
-    const V = [];
-    const addV = p => { for (let k = 0; k < V.length; k++) if (Math.hypot(V[k][0] - p[0], V[k][1] - p[1]) < 1e-9) return k; V.push(p); return V.length - 1; };
+
+  // ---------- geometry helpers ----------
+  const dot = (a, b) => a.reduce((s, x, i) => s + x * b[i], 0);
+  const add = (a, b) => a.map((x, i) => x + b[i]);
+  const scl = (a, c) => a.map(x => x * c);
+  const norm = a => Math.hypot(...a);
+  const crs = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  function det(M) { return M.length === 2 ? M[0][0] * M[1][1] - M[0][1] * M[1][0] : dot(M[0], crs(M[1], M[2])); }
+  function combos(n, k) { const out = [], c = []; (function r(s) { if (c.length === k) { out.push(c.slice()); return; } for (let i = s; i < n; i++) { c.push(i); r(i + 1); c.pop(); } })(0); return out; }
+
+  // planar subdivision of the convex hull of P by all segments between pairs of points
+  function arrangement(P) {
+    const segs = []; for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) segs.push([P[i], P[j]]);
+    const V = []; const addV = p => { for (let k = 0; k < V.length; k++) if (Math.hypot(V[k][0] - p[0], V[k][1] - p[1]) < 1e-9) return k; V.push(p); return V.length - 1; };
     P.forEach(addV);
-    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
-    const onSeg = (p, [a, b]) => Math.abs(cross(a, b, p)) < 1e-9 && (p[0] - a[0]) * (p[0] - b[0]) <= 1e-12 && (p[1] - a[1]) * (p[1] - b[1]) <= 1e-12;
+    const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
     for (let i = 0; i < segs.length; i++) for (let j = i + 1; j < segs.length; j++) {
       const [a, b] = segs[i], [c, d] = segs[j];
       const den = (b[0] - a[0]) * (d[1] - c[1]) - (b[1] - a[1]) * (d[0] - c[0]);
@@ -175,362 +135,210 @@ const VP = (() => {
       const u = ((c[0] - a[0]) * (b[1] - a[1]) - (c[1] - a[1]) * (b[0] - a[0])) / den;
       if (t > -1e-9 && t < 1 + 1e-9 && u > -1e-9 && u < 1 + 1e-9) addV([a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]);
     }
-    // edges: split each segment at the vertices on it
+    const onSeg = (p, [a, b]) => Math.abs(cr(a, b, p)) < 1e-9 && (p[0] - a[0]) * (p[0] - b[0]) <= 1e-12 && (p[1] - a[1]) * (p[1] - b[1]) <= 1e-12;
     const E = new Set();
     for (const s of segs) {
       const on = V.map((p, k) => k).filter(k => onSeg(V[k], s));
-      on.sort((x, y) => (V[x][0] - s[0][0]) * (s[1][0] - s[0][0]) + (V[x][1] - s[0][1]) * (s[1][1] - s[0][1]) - ((V[y][0] - s[0][0]) * (s[1][0] - s[0][0]) + (V[y][1] - s[0][1]) * (s[1][1] - s[0][1])));
-      for (let k = 0; k + 1 < on.length; k++) { const a = Math.min(on[k], on[k + 1]), b = Math.max(on[k], on[k + 1]); E.add(a + ',' + b); }
+      const key = k => (V[k][0] - s[0][0]) * (s[1][0] - s[0][0]) + (V[k][1] - s[0][1]) * (s[1][1] - s[0][1]);
+      on.sort((x, y) => key(x) - key(y));
+      for (let k = 0; k + 1 < on.length; k++) E.add(Math.min(on[k], on[k + 1]) + ',' + Math.max(on[k], on[k + 1]));
     }
     const adj = V.map(() => []);
     for (const e of E) { const [a, b] = e.split(',').map(Number); adj[a].push(b); adj[b].push(a); }
-    const angle = (a, b) => Math.atan2(V[b][1] - V[a][1], V[b][0] - V[a][0]);
-    adj.forEach((L, a) => L.sort((x, y) => angle(a, x) - angle(a, y)));
-    // face traversal: from directed edge (a->b), next is the neighbor of b just clockwise from a
+    const ang = (a, b) => Math.atan2(V[b][1] - V[a][1], V[b][0] - V[a][0]);
+    adj.forEach((L, a) => L.sort((x, y) => ang(a, x) - ang(a, y)));
     const used = new Set(), faces = [];
     for (let a = 0; a < V.length; a++) for (const b of adj[a]) {
       if (used.has(a + '>' + b)) continue;
-      const f = []; let x = a, y = b, guard = 0;
-      while (!used.has(x + '>' + y) && guard++ < 1000) {
-        used.add(x + '>' + y); f.push(x);
-        const L = adj[y], k = L.indexOf(x);
-        const z = L[(k - 1 + L.length) % L.length];
-        x = y; y = z;
-      }
-      let area = 0; for (let k = 0; k < f.length; k++) { const p = V[f[k]], q = V[f[(k + 1) % f.length]]; area += p[0] * q[1] - q[0] * p[1]; }
-      if (area > 1e-12) faces.push({ poly: f.map(k => V[k]), area: area / 2 });
+      const f = []; let x = a, y = b, g = 0;
+      while (!used.has(x + '>' + y) && g++ < 2000) { used.add(x + '>' + y); f.push(x); const L = adj[y], k = L.indexOf(x); const z = L[(k - 1 + L.length) % L.length]; x = y; y = z; }
+      let ar = 0; for (let k = 0; k < f.length; k++) { const p = V[f[k]], q = V[f[(k + 1) % f.length]]; ar += p[0] * q[1] - q[0] * p[1]; }
+      if (ar > 1e-12) faces.push(f.map(k => V[k]));
     }
-    // Delta(C): bases whose triangle contains the chamber
-    const B = bases(A);
-    const inTri = (p, t) => { const c1 = cross(t[0], t[1], p), c2 = cross(t[1], t[2], p), c3 = cross(t[2], t[0], p); return (c1 > 1e-12 && c2 > 1e-12 && c3 > 1e-12) || (c1 < -1e-12 && c2 < -1e-12 && c3 < -1e-12); };
-    faces.forEach(f => {
-      const c = f.poly.reduce((s, p) => [s[0] + p[0] / f.poly.length, s[1] + p[1] / f.poly.length], [0, 0]);
-      f.center = c;
-      f.delta = B.filter(b => inTri(c, b.s.map(i => P[rayOf[i]])));
-    });
-    return { P, rayOf, faces, vertices: V };
+    return { faces, segs };
   }
-  // classes of the columns in Z^d / Z A_sigma generate Z A / Z A_sigma
-  function subgroupZA(A, s) {
-    const key = c => c.map(x => Math.round(x * 1e6) / 1e6).join(',');
-    const gens = A[0].map((_, i) => classKey(A, s, col(A, i)));
-    const seen = new Map([[key(A.map(() => 0)), A.map(() => 0)]]);
-    let frontier = [A.map(() => 0)];
-    while (frontier.length) {
-      const nxt = [];
-      for (const c of frontier) for (const g of gens) {
-        const h = c.map((x, k) => { let y = x + g[k]; y -= Math.floor(y + EPS); if (Math.abs(y) < EPS || Math.abs(y - 1) < EPS) y = 0; return y; });
-        const kk = key(h); if (!seen.has(kk)) { seen.set(kk, h); nxt.push(h); }
-      }
-      frontier = nxt;
+  // common refinement of the simplicial cones on rays R (2D or 3D, pointed)
+  function refine(R) {
+    const dim = R[0].length;
+    if (dim === 2) {
+      const t = R.map(r => Math.atan2(r[1], r[0]));
+      const base = Math.atan2(R.reduce((s, r) => s + r[1] / norm(r), 0), R.reduce((s, r) => s + r[0] / norm(r), 0));
+      const rel = t.map(x => { let y = x - base; while (y <= -Math.PI) y += 2 * Math.PI; while (y > Math.PI) y -= 2 * Math.PI; return y; });
+      const u = [...new Set(rel.map(x => Math.round(x * 1e9) / 1e9))].sort((a, b) => a - b);
+      const ch = []; for (let k = 0; k + 1 < u.length; k++) ch.push([u[k] + base, u[k + 1] + base]);
+      return { dim, chambers: ch };
     }
-    return new Set(seen.keys());
+    const c = R.reduce((s, r) => add(s, scl(r, 1 / norm(r))), [0, 0, 0]);
+    if (R.some(r => dot(r, c) <= 1e-9)) throw 'refine needs a pointed cone';
+    let e1 = Math.abs(c[0]) < 0.9 * norm(c) ? crs(c, [1, 0, 0]) : crs(c, [0, 1, 0]); e1 = scl(e1, 1 / norm(e1));
+    let e2 = crs(c, e1); e2 = scl(e2, 1 / norm(e2));
+    const S = R.map(r => scl(r, 1 / dot(r, c)));
+    const P = [];
+    S.forEach(s => { const q = [dot(s, e1), dot(s, e2)]; if (!P.some(p => Math.hypot(p[0] - q[0], p[1] - q[1]) < 1e-9)) P.push(q); });
+    const cn = scl(c, 1 / dot(c, c));
+    const lift = q => add(add(cn, scl(e1, q[0])), scl(e2, q[1]));
+    const { faces } = arrangement(P);
+    return { dim, chambers: faces.map(f => f.map(lift)), walls: P.map(lift) };
   }
-  const ckey = c => c.map(x => Math.round(x * 1e6) / 1e6).join(',');
-  return { subgroupZA, ckey, det, bases, latticeIndex, classKey, cosetReps, chambers2, chambers3, slicePoint, to2, col, sub, inv, mv, gcd };
-})();
 
-
-</script>
-<script>
-(function () {
-  const PRESETS = [
-    { name: 'd = 3, six columns', A: '1 0 0 1 0 1\n0 1 0 1 1 0\n0 0 1 0 1 1', u: '2 3 1' },
-    { name: 'd = 2, four columns', A: '1 1 1 0\n0 1 2 1', u: '5 4' },
-    { name: 'd = 2, nontrivial groups', A: '1 2 1 0\n0 1 3 1', u: '6 7' },
-    { name: 'd = 3, unimodular', A: '1 0 0 1 1\n0 1 0 1 0\n0 0 1 0 1', u: '3 2 2' },
-    { name: 'd = 3, two nontrivial bases', A: '1 0 1 2\n0 1 1 1\n1 1 3 2', u: '4 4 9' },
-  ];
+  // ---------- state, view ----------
   const $ = id => document.getElementById(id);
-  const sel = $('vp-preset');
-  PRESETS.forEach((p, i) => { const o = document.createElement('option'); o.value = i; o.textContent = p.name; sel.appendChild(o); });
-
-  const CH_FILL = ['#e8f1f8', '#f3ece4', '#e9f3ea', '#f1e9f3', '#f6f3e1', '#e6f1f1'];
-  const TEAL = '#007A86', ORANGE = '#C2560E', GREEN = '#2f855a', INK = '#1f2328';
-  let A = null, d = 0, n = 0, CH = null, sliceData = null, selC = -1, selB = null, U = null, idx = 1;
-  const lab = s => '{' + s.map(i => i + 1).join(',') + '}';
-
-  function parse(txt) {
-    const rows = txt.trim().split(/\n|;/).map(r => r.trim()).filter(Boolean).map(r => r.split(/[\s,]+/).map(Number));
-    if (!rows.length || rows.some(r => r.some(x => !Number.isInteger(x) || x < 0))) throw 'entries must be nonnegative integers';
-    if (rows.some(r => r.length !== rows[0].length)) throw 'rows must have the same length';
-    if (rows.length !== 2 && rows.length !== 3) throw 'd must be 2 or 3';
-    for (let i = 0; i < rows[0].length; i++) if (rows.every(r => r[i] === 0)) throw 'column ' + (i + 1) + ' is zero';
-    if (!VP.bases(rows).length) throw 'A must have rank d';
-    return rows;
-  }
-
-  function load() {
-    $('vp-err').textContent = '';
-    try { A = parse($('vp-A').value); } catch (e) { $('vp-err').textContent = e; return; }
-    d = A.length; n = A[0].length; idx = VP.latticeIndex(A);
-    selC = -1; selB = null;
-    if (d === 2) CH = VP.chambers2(A); else { sliceData = VP.chambers3(A); CH = sliceData.faces; }
-    readU(); if (selC < 0 && CH.length) selC = 0;
-    if (!selB && CH[selC] && CH[selC].delta.length) selB = CH[selC].delta[0].s;
-    renderInfo(); drawAll();
-  }
-
-  // ---------- the point u ----------
-  function chamberOf(u) {
-    if (d === 2) { const t = Math.atan2(u[1], u[0]); return CH.findIndex(c => c.lo < t && t < c.hi); }
-    if (u.some(x => x < 0) || u.every(x => x === 0)) return -1;
-    const q = VP.to2(VP.slicePoint(u));
-    return CH.findIndex(f => inPoly(q, f.poly));
-  }
-  function inPoly(p, P) { let s = 0; for (let k = 0; k < P.length; k++) { const a = P[k], b = P[(k + 1) % P.length]; const c = (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]); if (c < -1e-12) return false; } return true; }
-  function readU() {
-    const v = $('vp-u').value.trim().split(/[\s,()]+/).filter(Boolean).map(Number);
-    U = (v.length === d && v.every(Number.isInteger)) ? v : null;
-    if (U) { const c = chamberOf(U); if (c >= 0) { selC = c; } }
-  }
-  function showU() {
-    const el = $('vp-uinfo');
-    if (!U) { el.textContent = ''; return; }
-    const c = chamberOf(U);
-    el.innerHTML = 'u = (' + U.join(', ') + ')' + (c >= 0 ? ' &nbsp; in <i>C</i><sub>' + (c + 1) + '</sub>' : ' &nbsp; not in the interior of a chamber');
-  }
-
-  // ---------- info panels ----------
-  function renderInfo() {
-    showU();
-    const B = VP.bases(A);
-    $('vp-sum').innerHTML = '<table><tr><th><i>n</i>, <i>d</i></th><td>' + n + ', ' + d + '</td></tr><tr><th>bases</th><td>' + B.length +
-      '</td></tr><tr><th>chambers</th><td>' + CH.length + '</td></tr><tr><th>[<b>Z</b><sup><i>d</i></sup> : <b>Z</b><i>A</i>]</th><td>' + idx + '</td></tr></table>';
-    const C = CH[selC];
-    if (!C) { $('vp-delta').innerHTML = ''; $('vp-group').innerHTML = ''; return; }
-    $('vp-delta').innerHTML = '<div style="margin-bottom:.4em"><i>C</i><sub>' + (selC + 1) + '</sub></div><div class="chips">' + C.delta.map(b => {
-      const g = Math.abs(b.det) / idx;
-      return '<span class="chip' + (g > 1 ? ' nt' : '') + (selB && b.s.join() === selB.join() ? ' on' : '') + '" data-s="' + b.s.join(',') + '">' + lab(b.s) + ' &middot; ' + g + '</span>';
-    }).join('') + '</div>';
-    $('vp-delta').querySelectorAll('.chip').forEach(el => el.onclick = () => { selB = el.dataset.s.split(',').map(Number); renderInfo(); drawAll(); });
-    if (!selB) { $('vp-group').innerHTML = ''; return; }
-    const D = VP.det(VP.sub(A, selB)), H = VP.subgroupZA(A, selB);
-    const reps = VP.cosetReps(A, selB).filter(u => H.has(VP.ckey(VP.classKey(A, selB, u))));
-    const fr = c => c.map(x => { const r = Math.round(x * Math.abs(D)); return r === 0 ? '0' : (r + '/' + Math.abs(D)).replace(/^(\d+)\/(\d+)$/, (m, a, b) => { const g = VP.gcd(+a, +b); return (a / g) + (b / g === 1 ? '' : '/' + (b / g)); }); }).join(', ');
-    let h = '<table><tr><th>&sigma;</th><td>' + lab(selB) + '</td></tr><tr><th>det <i>A</i><sub>&sigma;</sub></th><td>' + D + '</td></tr><tr><th>[<b>Z</b><i>A</i> : <b>Z</b><i>A</i><sub>&sigma;</sub>]</th><td>' + (Math.abs(D) / idx) + '</td></tr></table>';
-    h += '<div style="margin:.6em 0 .2em;color:#6B7280">coset representatives in <i>A</i><sub>&sigma;</sub>[0,1)<sup><i>d</i></sup>, with <i>A</i><sub>&sigma;</sub><sup>&minus;1</sup><i>u</i> mod 1</div><table>' +
-      reps.map(u => '<tr><td class="mono">(' + u.join(', ') + ')</td><td class="mono">(' + fr(VP.classKey(A, selB, u)) + ')</td></tr>').join('') + '</table>';
-    if (U) h += '<div style="margin-top:.6em">[<i>u</i>]<sub>&sigma;</sub> = <span class="mono">(' + fr(VP.classKey(A, selB, U)) + ')</span></div>';
-    $('vp-group').innerHTML = h;
-    REPS = reps;
-  }
-  let REPS = [];
-
-  // ---------- canvases ----------
-  const cvL = $('vp-left'), cvR = $('vp-right');
-  const ctxL = cvL.getContext('2d'), ctxR = cvR.getContext('2d');
-  let WL, HL, WR, HR, dpr = 1;
-  function resize() {
-    dpr = window.devicePixelRatio || 1;
-    for (const cv of [cvL, cvR]) { const r = cv.getBoundingClientRect(); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
-    WL = cvL.width / dpr; HL = cvL.height / dpr; WR = cvR.width / dpr; HR = cvR.height / dpr;
-    drawAll();
-  }
+  const cv = $('pl-cv'), ctx = cv.getContext('2d');
+  let W = 0, H = 0, dpr = 1, OBJ = [], DIM = 2, R = 6;
+  let yaw = -0.7, pitch = 0.42, zoom = 1, pan = [0, 0], drag = null, hover = null, DRAWN = [];
+  function resize() { dpr = window.devicePixelRatio || 1; const r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); draw(); }
   window.addEventListener('resize', resize);
-  function arrow(ctx, x0, y0, x1, y1, col, w) {
-    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = w || 2;
-    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
-    const a = Math.atan2(y1 - y0, x1 - x0), L = 9;
-    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x1 - L * Math.cos(a - 0.35), y1 - L * Math.sin(a - 0.35)); ctx.lineTo(x1 - L * Math.cos(a + 0.35), y1 - L * Math.sin(a + 0.35)); ctx.closePath(); ctx.fill();
-  }
-  function text(ctx, s, x, y, col, size, align) {
-    ctx.fillStyle = col || INK; ctx.font = (size || 14) + "px 'STIX Two Text', Georgia, serif"; ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
-  }
-
-  // ----- d = 2 plane view
-  function view2(W, H) {
-    let R = 0; for (let i = 0; i < n; i++) R = Math.max(R, A[0][i], A[1][i]);
-    R = Math.max(8, Math.ceil(R * 2.5));
-    const sc = Math.min(W, H) / (R + 1.6), ox = sc * 0.9, oy = H - sc * 0.9;
-    return { R, sc, X: x => ox + x * sc, Y: y => oy - y * sc, inv: (sx, sy) => [(sx - ox) / sc, (oy - sy) / sc] };
-  }
-  function drawPlane(ctx, W, H, overlay) {
-    const V = view2(W, H), far = V.R * 3;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-    CH.forEach((c, k) => {
-      ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0));
-      for (let t = c.lo; t <= c.hi + 1e-9; t += (c.hi - c.lo) / 24) ctx.lineTo(V.X(far * Math.cos(t)), V.Y(far * Math.sin(t)));
-      ctx.closePath(); ctx.fillStyle = k === selC ? 'rgba(0,122,134,0.16)' : CH_FILL[k % CH_FILL.length]; ctx.fill();
-    });
-    // every basis cone containing the selected chamber, overlaid
-    if (overlay && CH[selC]) {
-      for (const b of CH[selC].delta) {
-        const t = b.s.map(i => Math.atan2(A[1][i], A[0][i])), lo = Math.min(...t), hi = Math.max(...t);
-        ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0));
-        for (let s = lo; s <= hi + 1e-9; s += (hi - lo) / 24) ctx.lineTo(V.X(far * Math.cos(s)), V.Y(far * Math.sin(s)));
-        ctx.closePath(); ctx.fillStyle = 'rgba(194,86,14,0.10)'; ctx.fill();
-      }
-    }
-    // selected basis cone outline
-    if (selB) {
-      ctx.setLineDash([6, 4]); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.5;
-      for (const i of selB) { const L = Math.hypot(A[0][i], A[1][i]); ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(A[0][i] / L * far), V.Y(A[1][i] / L * far)); ctx.stroke(); }
-      ctx.setLineDash([]);
-    }
-    // lattice points
-    for (let x = 0; x <= V.R; x++) for (let y = 0; y <= V.R; y++) {
-      ctx.beginPath(); ctx.arc(V.X(x), V.Y(y), 1.8, 0, 7); ctx.fillStyle = '#9aa1a9'; ctx.fill();
-    }
-    if (!overlay && selB) {
-      // Z A_sigma and the fundamental parallelogram with coset representatives
-      const a = VP.col(A, selB[0]), b = VP.col(A, selB[1]);
-      for (let i = -V.R; i <= V.R; i++) for (let j = -V.R; j <= V.R; j++) {
-        const x = i * a[0] + j * b[0], y = i * a[1] + j * b[1];
-        if (x < 0 || y < 0 || x > V.R || y > V.R) continue;
-        ctx.beginPath(); ctx.arc(V.X(x), V.Y(y), 4, 0, 7); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.6; ctx.stroke();
-      }
-      ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(a[0]), V.Y(a[1])); ctx.lineTo(V.X(a[0] + b[0]), V.Y(a[1] + b[1])); ctx.lineTo(V.X(b[0]), V.Y(b[1])); ctx.closePath();
-      ctx.fillStyle = 'rgba(194,86,14,0.10)'; ctx.fill();
-      for (const u of REPS) { ctx.beginPath(); ctx.arc(V.X(u[0]), V.Y(u[1]), 4.2, 0, 7); ctx.fillStyle = GREEN; ctx.fill(); }
-    }
-    // walls and columns
-    for (let i = 0; i < n; i++) {
-      const L = Math.hypot(A[0][i], A[1][i]);
-      ctx.strokeStyle = 'rgba(31,35,40,0.35)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(A[0][i] / L * far), V.Y(A[1][i] / L * far)); ctx.stroke();
-    }
-    for (let i = 0; i < n; i++) {
-      arrow(ctx, V.X(0), V.Y(0), V.X(A[0][i]), V.Y(A[1][i]), selB && selB.includes(i) ? ORANGE : INK, 2.2);
-      text(ctx, 'a' + (i + 1), V.X(A[0][i]) + 12, V.Y(A[1][i]) - 10, selB && selB.includes(i) ? ORANGE : INK, 14);
-    }
-    if (U) { ctx.beginPath(); ctx.arc(V.X(U[0]), V.Y(U[1]), 7, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke(); }
-    // chamber labels
-    CH.forEach((c, k) => { const t = (c.lo + c.hi) / 2, r = V.R * 0.92; text(ctx, 'C' + (k + 1), V.X(r * Math.cos(t)), V.Y(r * Math.sin(t)), k === selC ? TEAL : '#6B7280', 13); });
-  }
-
-  // ----- d = 3 slice view
-  function sliceView(W, H) {
-    const T = [[1, 0, 0], [0, 1, 0], [0, 0, 1]].map(VP.to2);
-    const xs = T.map(p => p[0]), ys = T.map(p => p[1]);
-    const sc = Math.min(W / (Math.max(...xs) - Math.min(...xs)), H / (Math.max(...ys) - Math.min(...ys))) * 0.82;
-    const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
-    return { T, X: x => W / 2 + (x - cx) * sc, Y: y => H / 2 - (y - cy) * sc };
-  }
-  function drawSlice(ctx, W, H) {
-    const V = sliceView(W, H);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-    ctx.beginPath(); V.T.forEach((p, k) => k ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath(); ctx.strokeStyle = '#d0d4d9'; ctx.lineWidth = 1; ctx.stroke();
-    ['e1', 'e2', 'e3'].forEach((s, k) => { const p = V.T[k]; text(ctx, s, V.X(p[0]) + (k === 0 ? -16 : k === 1 ? 16 : 0), V.Y(p[1]) + (k === 2 ? -14 : 12), '#9aa1a9', 13); });
-    CH.forEach((f, k) => {
-      ctx.beginPath(); f.poly.forEach((p, j) => j ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath();
-      ctx.fillStyle = k === selC ? 'rgba(0,122,134,0.28)' : CH_FILL[k % CH_FILL.length]; ctx.fill();
-      ctx.strokeStyle = 'rgba(31,35,40,0.55)'; ctx.lineWidth = 1; ctx.stroke();
-    });
-    CH.forEach((f, k) => text(ctx, 'C' + (k + 1), V.X(f.center[0]), V.Y(f.center[1]), k === selC ? '#004f57' : '#6B7280', 12));
-    if (selB) {
-      const P = selB.map(i => sliceData.P[sliceData.rayOf[i]]);
-      ctx.beginPath(); P.forEach((p, j) => j ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath();
-      ctx.strokeStyle = ORANGE; ctx.lineWidth = 2.6; ctx.stroke();
-    }
-    // columns (several columns can share a ray)
-    sliceData.P.forEach((p, k) => {
-      const cols = []; sliceData.rayOf.forEach((r, i) => { if (r === k) cols.push(i); });
-      const on = selB && cols.some(i => selB.includes(i));
-      ctx.beginPath(); ctx.arc(V.X(p[0]), V.Y(p[1]), 5, 0, 7); ctx.fillStyle = on ? ORANGE : INK; ctx.fill();
-      const dx = V.X(p[0]) - W / 2, dy = V.Y(p[1]) - H / 2, r = Math.hypot(dx, dy) || 1;
-      text(ctx, cols.map(i => 'a' + (i + 1)).join(', '), V.X(p[0]) + dx / r * 22, V.Y(p[1]) + dy / r * 16, on ? ORANGE : INK, 14);
-    });
-    if (U && U.every(x => x >= 0) && U.some(x => x > 0)) {
-      const q = VP.to2(VP.slicePoint(U));
-      ctx.beginPath(); ctx.arc(V.X(q[0]), V.Y(q[1]), 6, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke();
-      text(ctx, 'u', V.X(q[0]) + 11, V.Y(q[1]) - 10, TEAL, 14);
-    }
-  }
-
-  // ----- d = 3 space view
-  let yaw = -0.8, pitch = 0.45, drag = null;
-  function proj3(p, W, H, S) {
+  function S() { return Math.min(W, H) / (2 * R + 1) * zoom; }
+  function proj(p) {
+    const s = S();
+    if (DIM === 2) return [W / 2 + (p[0] - pan[0]) * s, H / 2 - (p[1] - pan[1]) * s, 0];
     const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
-    // z axis up on screen
     const x = cy * p[0] - sy * p[1], y = sy * p[0] + cy * p[1], z = p[2];
     const y2 = cp * y + sp * z, z2 = -sp * y + cp * z;
-    return [W / 2 + x * S, H * 0.62 - z2 * S, y2];
+    return [W / 2 + x * s * 0.8, H / 2 - z2 * s * 0.8, y2];
   }
-  function drawSpace(ctx, W, H) {
+  const P3 = p => p.length === 3 ? p : [p[0], p[1], 0];
+
+  function lineTo(a, b, col, w, dash) { const p = proj(a), q = proj(b); ctx.setLineDash(dash || []); ctx.strokeStyle = col; ctx.lineWidth = w || 1; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); ctx.setLineDash([]); }
+  function arrow(a, b, col, w) {
+    const p = proj(a), q = proj(b); ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = w || 2;
+    ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
+    const t = Math.atan2(q[1] - p[1], q[0] - p[0]), L = 9;
+    ctx.beginPath(); ctx.moveTo(q[0], q[1]); ctx.lineTo(q[0] - L * Math.cos(t - 0.35), q[1] - L * Math.sin(t - 0.35)); ctx.lineTo(q[0] - L * Math.cos(t + 0.35), q[1] - L * Math.sin(t + 0.35)); ctx.closePath(); ctx.fill();
+  }
+  function label(s, p, col, dx, dy) { const q = proj(p); ctx.fillStyle = col; ctx.font = "italic 14px 'STIX Two Text', Georgia, serif"; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(s, q[0] + (dx ?? 8), q[1] + (dy ?? -9)); }
+  function dotAt(p, col, r, info) { const q = proj(p); DRAWN.push({ x: q[0], y: q[1], z: q[2], col, r, info }); }
+  function poly(pts, fill, stroke) { ctx.beginPath(); pts.map(proj).forEach((q, k) => k ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1])); ctx.closePath(); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke(); } }
+  const alpha = (hex, a) => { const h = hex.replace('#', ''); const f = h.length === 3 ? h.split('').map(c => c + c).join('') : h; const n = parseInt(f, 16); return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')'; };
+  const fmt = v => v.map(x => Math.abs(x - Math.round(x)) < 1e-9 ? String(Math.round(x)) : (+x.toFixed(3)).toString()).join(', ');
+
+  // far point along direction d from p, to the edge of the box [-R, R]^dim
+  const far = (p, d) => add(p, scl(d, 3 * R / norm(d)));
+
+  function draw() {
+    if (!W) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-    let M = 0; for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) M = Math.max(M, A[k][i]);
-    const box = Math.max(4, M * 2), S = Math.min(W, H) / (box * 1.9);
-    const P = p => proj3([p[0] - box / 3, p[1] - box / 3, p[2] - box / 3], W, H, S);
-    const line = (a, b, col, w, dash) => { const p = P(a), q = P(b); ctx.setLineDash(dash || []); ctx.strokeStyle = col; ctx.lineWidth = w || 1; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); ctx.setLineDash([]); };
-    // axes
-    [[1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((e, k) => { line([0, 0, 0], e.map(x => x * box), '#c4c8cd', 1); const q = P(e.map(x => x * box * 1.05)); text(ctx, ['x', 'y', 'z'][k], q[0], q[1], '#9aa1a9', 13); });
-    // selected chamber: cone over its slice polygon, cut at height x+y+z = box
-    const lift = q => { // invert to2 on the plane x+y+z=1
-      const c = q[1] * Math.sqrt(3); // = 2z - x - y = 3z - 1
-      const z = (c + 1) / 3, yx = q[0]; // y - x
-      const x = (1 - z - yx) / 2, y = x + yx; return [x * box, y * box, z * box];
-    };
-    if (CH[selC]) {
-      const poly = CH[selC].poly.map(lift).map(P);
-      ctx.beginPath(); poly.forEach((p, j) => j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath(); ctx.fillStyle = 'rgba(0,122,134,0.25)'; ctx.fill();
-      const o = P([0, 0, 0]);
-      for (const p of poly) { ctx.strokeStyle = 'rgba(0,122,134,0.45)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(o[0], o[1]); ctx.lineTo(p[0], p[1]); ctx.stroke(); }
+    DRAWN = [];
+    if (DIM === 2) { const a = proj([-R, R]), b = proj([R, -R]); ctx.save(); ctx.beginPath(); ctx.rect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.clip(); }
+    // integer grid and axes
+    const showGrid = $('pl-grid').checked;
+    if (DIM === 2) {
+      for (let k = -R; k <= R; k++) { lineTo([k, -R], [k, R], k ? '#eef0f2' : '#c4c8cd', 1); lineTo([-R, k], [R, k], k ? '#eef0f2' : '#c4c8cd', 1); }
+      if (showGrid) for (let x = -R; x <= R; x++) for (let y = -R; y <= R; y++) { const q = proj([x, y]); ctx.fillStyle = '#c4c8cd'; ctx.beginPath(); ctx.arc(q[0], q[1], 1.6, 0, 7); ctx.fill(); }
+      for (let k = -R; k <= R; k += Math.max(1, Math.round(R / 6))) if (k) { const q = proj([k, 0]); ctx.fillStyle = '#9aa1a9'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(k, q[0], q[1] + 12); const r = proj([0, k]); ctx.textAlign = 'right'; ctx.fillText(k, r[0] - 5, r[1] + 4); }
+    } else {
+      [[1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((e, k) => { lineTo(scl(e, -R), scl(e, R), '#c4c8cd', 1); label(['x', 'y', 'z'][k], scl(e, R * 1.05), '#9aa1a9', 2, 0); });
+      if (showGrid) for (let x = -R; x <= R; x += 1) for (let y = -R; y <= R; y += 1) for (let z = -R; z <= R; z += 1) dotAt([x, y, z], '#d6d9dd', 1.2, null);
     }
-    // Z A_sigma near the origin and the coset representatives
-    if (selB) {
-      const B = VP.sub(A, selB), pts = [];
-      for (let i = 0; i <= 3; i++) for (let j = 0; j <= 3; j++) for (let k = 0; k <= 3; k++) { const v = VP.mv(B, [i, j, k]); if (v.every(x => x <= box)) pts.push(v); }
-      for (const v of pts) { const p = P(v); ctx.beginPath(); ctx.arc(p[0], p[1], 3.4, 0, 7); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.4; ctx.stroke(); }
-      // the parallelepiped A_sigma [0,1]^3
-      const c = selB.map(i => VP.col(A, i));
-      const corner = m => [0, 1, 2].map(k => ((m & 1) ? c[0][k] : 0) + ((m & 2) ? c[1][k] : 0) + ((m & 4) ? c[2][k] : 0));
-      for (let m = 0; m < 8; m++) for (let b = 0; b < 3; b++) if (!(m & (1 << b))) line(corner(m), corner(m | (1 << b)), 'rgba(194,86,14,0.55)', 1.2);
-      for (const u of REPS) { const p = P(u); ctx.beginPath(); ctx.arc(p[0], p[1], 4.4, 0, 7); ctx.fillStyle = GREEN; ctx.fill(); }
-    }
-    // columns
-    for (let i = 0; i < n; i++) {
-      const a = VP.col(A, i), on = selB && selB.includes(i);
-      const s = Math.hypot(...a), L = box * 1.1 / s;
-      line([0, 0, 0], a.map(x => x * L), on ? 'rgba(194,86,14,0.6)' : 'rgba(31,35,40,0.25)', 1, [4, 4]);
-      const o = P([0, 0, 0]), q = P(a);
-      arrow(ctx, o[0], o[1], q[0], q[1], on ? ORANGE : INK, 2);
-      text(ctx, 'a' + (i + 1), q[0] + 12, q[1] - 10, on ? ORANGE : INK, 14);
-    }
-    if (U) { const p = P(U); ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke(); }
+    // filled objects first
+    OBJ.forEach(o => {
+      const col = o.col;
+      if (o.kind === 'cone') {
+        const G = o.T.map(P3);
+        if (DIM === 2) {
+          const t = o.T.map(v => Math.atan2(v[1], v[0])), lo = Math.min(...t), hi = Math.max(...t);
+          const pts = [[0, 0]]; for (let s = lo; s <= hi + 1e-9; s += (hi - lo) / 40 || 1) pts.push([3 * R * Math.cos(s), 3 * R * Math.sin(s)]);
+          poly(pts, alpha(col, 0.13));
+        } else {
+          const c = G.reduce((s, g) => add(s, scl(g, 1 / norm(g))), [0, 0, 0]);
+          let e1 = crs(c, Math.abs(c[0]) < 0.9 * norm(c) ? [1, 0, 0] : [0, 1, 0]); const e2 = crs(c, e1);
+          const ends = G.map(g => scl(g, R / norm(g))).sort((a, b) => Math.atan2(dot(a, e2), dot(a, e1)) - Math.atan2(dot(b, e2), dot(b, e1)));
+          for (let k = 0; k < ends.length; k++) poly([[0, 0, 0], ends[k], ends[(k + 1) % ends.length]], alpha(col, 0.10), alpha(col, 0.35));
+        }
+        o.T.forEach(v => lineTo(P3(v).map(x => 0 * x), far(P3(v).map(x => 0), P3(v)), col, 1.4));
+      }
+      if (o.kind === 'refine') {
+        try {
+          const F = refine(o.T);
+          if (F.dim === 2) {
+            F.chambers.forEach(([lo, hi], k) => { const pts = [[0, 0]]; for (let s = lo; s <= hi + 1e-9; s += (hi - lo) / 30) pts.push([3 * R * Math.cos(s), 3 * R * Math.sin(s)]); poly(pts, alpha(COLORS[k % COLORS.length], 0.12)); });
+            o.T.forEach(v => lineTo([0, 0], far([0, 0], v), col, 1.3));
+          } else {
+            const sc = R * 0.85 / Math.max(...F.chambers.flat().map(norm));
+            F.chambers.forEach((ch, k) => {
+              poly(ch.map(p => scl(p, sc)), alpha(COLORS[k % COLORS.length], 0.22), alpha(col, 0.7));
+              ch.forEach(p => lineTo([0, 0, 0], scl(p, sc), alpha(col, 0.25), 1));
+            });
+            o.T.forEach(v => lineTo([0, 0, 0], far([0, 0, 0], v), col, 1.3, [4, 4]));
+          }
+          o.info = F.chambers.length + ' chambers';
+        } catch (e) { o.info = String(e); }
+      }
+      if (o.kind === 'lattice' && o.cell) {
+        const B = o.T.map(P3), o0 = DIM === 2 ? [0, 0] : [0, 0, 0];
+        if (B.length === 2) poly([o0, B[0], add(B[0], B[1]), B[1]].map(p => DIM === 2 ? p.slice(0, 2) : P3(p)), alpha(col, 0.14), alpha(col, 0.6));
+        if (B.length === 3) { const c = m => [0, 1, 2].reduce((s, k) => (m >> k) & 1 ? add(s, B[k]) : s, [0, 0, 0]); for (let m = 0; m < 8; m++) for (let k = 0; k < 3; k++) if (!(m & (1 << k))) lineTo(c(m), c(m | (1 << k)), alpha(col, 0.7), 1.3); }
+      }
+    });
+    // lines, vectors, points
+    OBJ.forEach(o => {
+      const col = o.col, at = o.at || (DIM === 2 ? [0, 0] : [0, 0, 0]);
+      const fix = v => DIM === 2 ? v : P3(v);
+      if (o.kind === 'vector') o.T.forEach((v, k) => { const a = fix(at), b = add(a, fix(v)); arrow(a, b, col, 2.2); if (o.name && k === 0) label(o.name, b, col); });
+      if (o.kind === 'ray') o.T.forEach(v => { arrow(fix(at), far(fix(at), fix(v)), col, 1.8); if (o.name) label(o.name, add(fix(at), fix(v)), col); });
+      if (o.kind === 'line') o.T.forEach(v => { lineTo(far(fix(at), scl(fix(v), -1)), far(fix(at), fix(v)), col, 1.8); });
+      if (o.kind === 'segment') { lineTo(fix(o.T[0]), fix(o.T[1]), col, 2.2); dotAt(fix(o.T[0]), col, 3, null); dotAt(fix(o.T[1]), col, 3, null); }
+      if (o.kind === 'point' || o.kind === 'points') o.T.forEach((v, k) => { dotAt(fix(v), col, 5, (o.name ? o.name + ' = ' : '') + '(' + fmt(v) + ')'); if (o.name && o.T.length === 1) label(o.name, fix(v), col); });
+      if (o.kind === 'lattice') {
+        const B = o.T.map(fix), k = B.length, M = 4 * R;
+        const idx = []; const rec = (j, c) => { if (j === k) { idx.push(c.slice()); return; } for (let t = -M; t <= M; t++) { c.push(t); rec(j + 1, c); c.pop(); } };
+        if (k <= 3 && Math.pow(2 * M + 1, k) < 3e5) rec(0, []);
+        for (const c of idx) {
+          const p = c.reduce((s, t, j) => add(s, scl(B[j], t)), DIM === 2 ? [0, 0] : [0, 0, 0]);
+          if (p.some(x => Math.abs(x) > R + 1e-9)) continue;
+          dotAt(p, col, DIM === 3 ? 2.8 : 3.6, (o.name ? o.name + ': ' : '') + '(' + fmt(p) + ') = ' + c.map((t, j) => t + '·b' + (j + 1)).join(' + '));
+        }
+        B.forEach((b, j) => arrow(DIM === 2 ? [0, 0] : [0, 0, 0], b, col, 2));
+        if (o.name) label(o.name, B[0], col, 8, 12);
+      }
+    });
+    if (DIM === 2) ctx.restore();
+    DRAWN.sort((a, b) => b.z - a.z);
+    for (const d of DRAWN) { ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 7); ctx.fillStyle = d.col; ctx.fill(); if (hover === d) { ctx.strokeStyle = '#1f2328'; ctx.lineWidth = 2; ctx.stroke(); } }
+    $('pl-hover').textContent = hover && hover.info ? hover.info : '';
+    const info = OBJ.filter(o => o.info).map(o => (o.name || o.kind) + ': ' + o.info).join('   ');
+    $('pl-msg').textContent = info;
   }
 
-  function drawAll() {
-    if (!A || !WL) return;
-    if (d === 2) {
-      drawPlane(ctxL, WL, HL, false); drawPlane(ctxR, WR, HR, true);
-      $('vp-capL').innerHTML = 'chambers of pos(<i>A</i>), <b>Z</b><i>A</i><sub>&sigma;</sub> (orange), coset representatives (green). Click a point to set <i>u</i>.';
-      $('vp-capR').innerHTML = 'the simplicial cones pos(<i>A</i><sub>&sigma;</sub>) containing the selected chamber, overlaid';
-    } else {
-      drawSlice(ctxL, WL, HL); drawSpace(ctxR, WR, HR);
-      $('vp-capL').innerHTML = 'chamber complex in the slice <i>x</i> + <i>y</i> + <i>z</i> = 1, with the triangle of &sigma; in orange. Click a chamber.';
-      $('vp-capR').innerHTML = 'the chamber as a cone, <b>Z</b><i>A</i><sub>&sigma;</sub> (orange), coset representatives (green). Drag to rotate.';
-    }
+  function run() {
+    const { objs, errs } = parse($('pl-src').value);
+    $('pl-err').textContent = errs.join('   ');
+    DIM = objs.some(o => o.dim === 3) ? 3 : 2;
+    let k = 0; objs.forEach(o => { o.col = o.color || COLORS[k++ % COLORS.length]; });
+    OBJ = objs; R = Math.max(1, Math.min(30, Math.round(num($('pl-range').value || '6'))));
+    hover = null; draw();
   }
 
-  // ---------- interaction ----------
-  function pick(e) {
-    const r = cvL.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
-    if (d === 2) {
-      const V = view2(WL, HL), [x, y] = V.inv(sx, sy), u = [Math.round(x), Math.round(y)];
-      if (u[0] >= 0 && u[1] >= 0) { $('vp-u').value = u.join(' '); readU(); }
-      else { const t = Math.atan2(y, x), c = CH.findIndex(c => c.lo < t && t < c.hi); if (c >= 0) selC = c; }
-    } else {
-      const V = sliceView(WL, HL);
-      const T = sliceView(WL, HL); // screen -> slice coordinates
-      const xs = V.T.map(p => p[0]), ys = V.T.map(p => p[1]);
-      const sc = Math.min(WL / (Math.max(...xs) - Math.min(...xs)), HL / (Math.max(...ys) - Math.min(...ys))) * 0.82;
-      const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
-      const q = [(sx - WL / 2) / sc + cx, -(sy - HL / 2) / sc + cy];
-      const c = CH.findIndex(f => inPoly(q, f.poly)); if (c >= 0) selC = c;
+  cv.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, yaw, pitch, pan[0], pan[1]]; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => {
+    if (drag) {
+      if (DIM === 3) { yaw = drag[2] + (e.clientX - drag[0]) * 0.01; pitch = Math.max(-1.5, Math.min(1.5, drag[3] + (e.clientY - drag[1]) * 0.01)); }
+      else { pan = [drag[4] - (e.clientX - drag[0]) / S(), drag[5] + (e.clientY - drag[1]) / S()]; }
+      draw(); return;
     }
-    const C = CH[selC];
-    if (C && (!selB || !C.delta.some(b => b.s.join() === selB.join()))) selB = C.delta.length ? C.delta[0].s : null;
-    renderInfo(); drawAll();
-  }
-  cvL.addEventListener('click', pick);
-  cvR.addEventListener('pointerdown', e => { if (d !== 3) return; drag = [e.clientX, e.clientY, yaw, pitch]; cvR.setPointerCapture(e.pointerId); });
-  cvR.addEventListener('pointermove', e => { if (!drag) return; yaw = drag[2] + (e.clientX - drag[0]) * 0.01; pitch = Math.max(-1.4, Math.min(1.4, drag[3] + (e.clientY - drag[1]) * 0.01)); drawSpace(ctxR, WR, HR); });
-  cvR.addEventListener('pointerup', () => { drag = null; });
-  $('vp-go').onclick = load;
-  $('vp-u').addEventListener('change', () => { readU(); const C = CH && CH[selC]; if (C && C.delta.length && !(selB && C.delta.some(b => b.s.join() === selB.join()))) selB = C.delta[0].s; renderInfo(); drawAll(); });
-  sel.onchange = () => { const p = PRESETS[sel.value]; $('vp-A').value = p.A; $('vp-u').value = p.u; load(); };
-  $('vp-A').value = PRESETS[0].A; $('vp-u').value = PRESETS[0].u;
-  resize(); load();
+    const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    let best = null, bd = 9; for (const d of DRAWN) { if (!d.info) continue; const dd = Math.hypot(d.x - x, d.y - y); if (dd < bd) { bd = dd; best = d; } }
+    if (best !== hover) { hover = best; draw(); }
+  });
+  cv.addEventListener('pointerup', () => { drag = null; });
+  cv.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(0.2, Math.min(8, zoom * Math.exp(-e.deltaY * 0.0015))); draw(); }, { passive: false });
+
+  const EX = [
+    { name: '2D: a lattice and points', src: 'L = lattice (2,1) (1,3) cell\np = (3,4)\nq = (-2,1)\nvector (1,-2) at (3,4)' },
+    { name: '2D: lattice and sublattice', src: 'lattice (1,0) (0,1) color=gray\nM = lattice (3,1) (1,2) cell\npoints (1,1) (2,1) (2,2) (3,2) (1,0)' },
+    { name: '2D: cones and their refinement', src: 'refine (1,0) (3,1) (1,1) (1,3) (0,1)\np = (4,2)' },
+    { name: '3D: a lattice', src: 'L = lattice (2,0,1) (0,2,1) (1,1,2) cell\np = (1,2,3)\nray (1,1,0)', range: 4 },
+    { name: '3D: a cone and its refinement', src: 'refine (1,0,0) (0,1,0) (0,0,1) (2,2,1) (1,3,3)\np = (3,2,2)', range: 4 },
+  ];
+  const sel = $('pl-ex');
+  EX.forEach((x, i) => { const o = document.createElement('option'); o.value = i; o.textContent = x.name; sel.appendChild(o); });
+  sel.onchange = () => { $('pl-src').value = EX[sel.value].src; $('pl-range').value = EX[sel.value].range || 6; zoom = 1; pan = [0, 0]; run(); };
+  $('pl-go').onclick = run;
+  $('pl-src').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) run(); });
+  $('pl-grid').onchange = draw;
+  $('pl-range').onchange = run;
+  $('pl-src').value = EX[0].src;
+  resize(); run();
 })();
 
 </script>
