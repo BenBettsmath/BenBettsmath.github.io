@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 2. Ring Theory &middot; Ideals, primes, and maximals</title>
+<title>Part 2. Ring Theory &middot; Prime, maximal, and radical ideals</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Ideals, primes, and maximals</span></div>
-<div class="part-nav"><a href="groups.html">&larr; Part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Ideals, primes, and maximals</h2>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Prime, maximal, and radical ideals</span></div>
+<div class="part-nav"><a href="groups.html">&larr; Previous part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
+<h2 style="border:none; margin-top:0.5em;">Prime, maximal, and radical ideals</h2>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Prime and maximal ideals.</strong> <span class="cite">(D&amp;F &sect;7.4)</span>
@@ -40,7 +40,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>CRT recovers $\mathbb{Z}/n\mathbb{Z}$ from prime powers.</strong> <span class="cite">(D&amp;F &sect;7.6)</span>
+  <span class="thm-label">Remark.</span> <strong>CRT recovers $\mathbb{Z}/n\mathbb{Z}$ from prime powers.</strong> <span class="cite">(D&amp;F &sect;7.6)</span>
   In $\mathbb{Z}$ we have $(a) + (b) = (\gcd(a,b))$, so $I + J = R$ is the ring version of two numbers being coprime. Powers of different primes are coprime, so the CRT splits $\mathbb{Z}/n$ up according to the prime factorization of $n$. This is also the same statement as saying a system of congruences with coprime moduli has exactly one solution mod the product.
 </div>
 
@@ -60,7 +60,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>The nilradical is the smallest radical ideal.</strong> The nilradical is the smallest ideal $I$ such that $R/I$ has no nonzero nilpotent elements (is reduced). This is because $R/\mathrm{nil}(R)$ is reduced, and any $I$ with $R/I$ reduced has to contain every nilpotent of $R$.
+  <span class="thm-label">Remark.</span> <strong>The nilradical is the smallest radical ideal.</strong> The nilradical is the smallest ideal $I$ such that $R/I$ has no nonzero nilpotent elements (is reduced). This is because $R/\mathrm{nil}(R)$ is reduced, and any $I$ with $R/I$ reduced has to contain every nilpotent of $R$.
 </div>
 
 <div class="thm-block note">
@@ -97,10 +97,10 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Finite Boolean rings are products of copies of $\mathbb{Z}/2$.</strong> By the CRT, every finite Boolean ring is isomorphic to a direct product of copies of $\mathbb{Z}/2$, one for each maximal ideal. This is because $R/\mathfrak{m}$ is a field where $x^2 = x$, so $x(x-1) = 0$ and the only elements are $0$ and $1$. Infinite Boolean rings don't have to be products though, for example the finite and cofinite subsets of $\mathbb{N}$ form a countably infinite Boolean ring, and an infinite product of $\mathbb{Z}/2$'s is uncountable.
+  <span class="thm-label">Remark.</span> <strong>Finite Boolean rings are products of copies of $\mathbb{Z}/2$.</strong> By the CRT, every finite Boolean ring is isomorphic to a direct product of copies of $\mathbb{Z}/2$, one for each maximal ideal. This is because $R/\mathfrak{m}$ is a field where $x^2 = x$, so $x(x-1) = 0$ and the only elements are $0$ and $1$. Infinite Boolean rings don't have to be products though, for example the finite and cofinite subsets of $\mathbb{N}$ form a countably infinite Boolean ring, and an infinite product of $\mathbb{Z}/2$'s is uncountable.
 </div>
 
-<div class="part-nav"><a href="groups.html">&larr; Part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
+<div class="part-nav"><a href="groups.html">&larr; Previous part: Group Theory</a><a href="rings.html">Ring Theory contents</a><a href="rings-2.html">Local rings and power series &rarr;</a></div>
 </div>
 
 <footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>

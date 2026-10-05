@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 3. Module Theory &middot; Structure theorem for f.g. modules over a PID</title>
+<title>Part 3. Module Theory &middot; Finitely generated modules over a PID</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Structure theorem for f.g. modules over a PID</span></div>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="modules.html">Module Theory</a> &rsaquo; <span>Finitely generated modules over a PID</span></div>
 <div class="part-nav"><a href="modules-2.html">&larr; Exact sequences</a><a href="modules.html">Module Theory contents</a><a href="modules-4.html">Projective, injective, and flat modules &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Structure theorem for f.g. modules over a PID</h2>
+<h2 style="border:none; margin-top:0.5em;">Finitely generated modules over a PID</h2>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Invariant factor form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 5)</span>
@@ -49,12 +49,12 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Both forms are the same, seen differently.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
+  <span class="thm-label">Remark.</span> <strong>Converting between the two forms.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
   The invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ and the elementary divisors carry the same information. To go from invariant factors to elementary divisors, factor each $a_i$ into prime powers. To go back, put the largest power of each prime into $a_m$, the next largest into $a_{m-1}$, and so on. Invariant factors are nicer for things like rational canonical form, and elementary divisors are nicer when we want to look at one prime at a time, like in Jordan form.
 </div>
 
 <div class="thm-block note">
-  <span class="thm-label">Two main applications.</span>
+  <span class="thm-label">Applications.</span>
   <ul>
     <li><strong>Abelian groups</strong> ($R = \mathbb{Z}$): Every f.g. abelian group is $\mathbb{Z}^r \oplus \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_m$ with $d_1 \mid d_2 \mid \cdots \mid d_m$ (invariant factor form) or a sum of cyclic groups of prime-power order (elementary divisor form, the "canonical form" from group theory).</li>
     <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a f.d. $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors, which give the rational canonical form, and elementary divisors, which give the Jordan normal form when $k$ has all the eigenvalues. Each $k[x]/(x - \lambda)^j$ is one Jordan block, and all the blocks for one $\lambda$ together make up its generalized eigenspace.</li>

@@ -39,7 +39,7 @@ Problem numbers match the review sheet. Each problem is restated before its solu
 
 
 \begin{enumerate}
-\item[1.] Memorization.
+\item[1.] Formulas to know.
 \begin{enumerate}
 \item[(a)] State the definition of $f$ is continuous at $x=a$.
 \begin{solution}
@@ -47,13 +47,13 @@ $f$ is continuous at $x=a$ if $\lim_{x\to a} f(x) = f(a)$.
 
 This one equation hides three requirements: $f(a)$ is defined, $\lim_{x\to a} f(x)$ exists, and the two are equal. A hole fails the third, a jump fails the second, a vertical asymptote fails all three.
 \end{solution}
-\item[(b)] State both limit definitions of $f'(a)$, the derivative of $f$ at $x=a$.
+\item[(b)] Write $f'(a)$, the derivative of $f$ at $x=a$, as a limit in two ways.
 \begin{solution}
 \[f'(a) = \lim_{x \to a} \frac{f(x)-f(a)}{x-a} = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}.\]
 
 Both are limits of slopes of secant lines through $(a,f(a))$. The second form just names the horizontal gap $h = x - a$.
 \end{solution}
-\item[(l)] State both parts of the Fundamental Theorem of Calculus.
+\item[(l)] Give both parts of the Fundamental Theorem of Calculus.
 \begin{solution}
 Let $f$ be continuous on $[a,b]$.
 
@@ -105,52 +105,54 @@ The limit laws say limits pass through sums, constant multiples, products, quoti
 \end{enumerate}
 \item[3.] Computing limits.
 \begin{enumerate}
-\item[(a)] Evaluate $\lim_{x \to 2} \frac{x^2+x-6}{x^2-4}$.
+\item[(a)] Evaluate $\lim_{x \to 3} \frac{x^2-2x-3}{x^2-9}$.
 \begin{solution}
-Plugging in gives $\frac{0}{0}$, so $x-2$ divides both.
+Plugging in gives $\frac{0}{0}$, so $x-3$ divides both.
 
-\[\lim_{x \to 2} \frac{(x+3)(x-2)}{(x+2)(x-2)} = \lim_{x \to 2} \frac{x+3}{x+2} = \frac{5}{4}.\]
+\[\lim_{x \to 3} \frac{(x-3)(x+1)}{(x-3)(x+3)} = \lim_{x \to 3} \frac{x+1}{x+3} = \frac{4}{6} = \frac23.\]
 
-Canceling is allowed because the limit never uses $x=2$ itself.
+Canceling is allowed because the limit never uses $x=3$ itself.
 \end{solution}
-\item[(c)] Evaluate $\lim_{x \to 4} \frac{\sqrt{x}-2}{x-4}$.
+\item[(b)] Evaluate $\lim_{x \to 5} \frac{\sqrt{x+4}-3}{x-5}$.
 \begin{solution}
-$\frac{0}{0}$ again. Multiply by the conjugate $\sqrt x + 2$, or notice $x - 4 = (\sqrt{x}-2)(\sqrt{x}+2)$.
+$\frac{0}{0}$ again, and the root is the problem. Multiply top and bottom by the conjugate $\sqrt{x+4}+3$.
 
-\[\lim_{x \to 4} \frac{\sqrt{x}-2}{(\sqrt{x}-2)(\sqrt{x}+2)} = \lim_{x\to 4}\frac{1}{\sqrt{x}+2} = \frac{1}{4}.\]
+\[\frac{(x+4) - 9}{(x-5)\parens{\sqrt{x+4}+3}} = \frac{1}{\sqrt{x+4}+3} \longrightarrow \frac{1}{6}.\]
 \end{solution}
-\item[(f)] Evaluate $\lim_{r \to 0} \frac{\sqrt{4+r} - \sqrt{4-r}}{r}$.
+\item[(c)] Evaluate $\lim_{x \to -1} \frac{\frac{1}{x+3} - \frac{1}{2}}{x+1}$.
 \begin{solution}
-Rationalize the numerator with the conjugate $\sqrt{4+r}+\sqrt{4-r}$.
+Combine the fractions in the numerator over the common denominator $2(x+3)$.
 
-\[\frac{(4+r)-(4-r)}{r\parens{\sqrt{4+r}+\sqrt{4-r}}} = \frac{2}{\sqrt{4+r}+\sqrt{4-r}} \longrightarrow \frac{2}{2+2} = \frac{1}{2}.\]
+\[\frac{1}{x+1}\cdot\frac{2-(x+3)}{2(x+3)} = \frac{1}{x+1}\cdot\frac{-(x+1)}{2(x+3)} = \frac{-1}{2(x+3)} \longrightarrow -\frac14.\]
 \end{solution}
-\item[(i)] Evaluate $\lim_{x \to -2} \frac{6}{x^2-4}$, considering the one-sided limits.
+\item[(d)] Evaluate $\lim_{x \to 4} \frac{5}{x^2-3x-4}$, considering the one-sided limits.
 \begin{solution}
-The top is $6$ and the bottom $(x-2)(x+2)$ goes to $0$, so each one-sided limit is $\pm\infty$. Track signs.
+The top is $5$ and the bottom $(x-4)(x+1)$ goes to $0$, so each one-sided limit is $\pm\infty$. Near $x=4$ the factor $x+1$ is near $5$, positive, so the sign is the sign of $x-4$.
 
-For $x$ slightly less than $-2$: $x+2<0$ and $x-2<0$, so the bottom is a small positive number and $\lim_{x\to-2^-} = \infty$. For $x$ slightly more than $-2$: $x+2>0$ and $x-2<0$, so the bottom is a small negative number and $\lim_{x\to-2^+} = -\infty$.
+\[\lim_{x\to4^-}\frac{5}{(x-4)(x+1)} = -\infty, \qquad \lim_{x\to4^+}\frac{5}{(x-4)(x+1)} = \infty.\]
 
 The one-sided limits disagree, so the limit does not exist.
 \end{solution}
-\item[(j)] Evaluate $\lim_{t \to 3} \frac{t^3}{(t-1)(t-3)^2}$.
+\item[(f)] Evaluate $\lim_{x \to 2} \frac{x^2-4}{\abs{x-2}}$.
 \begin{solution}
-Near $t=3$ the top is near $27$ and $t-1$ is near $2$. The factor $(t-3)^2$ is a small positive number on both sides of $3$, because it is a square.
+An absolute value is a piecewise function, so split into the two sides. For $x>2$, $\abs{x-2} = x-2$, and for $x<2$, $\abs{x-2} = -(x-2)$.
 
-So the quotient is a large positive number on both sides and $\lim_{t\to 3} \frac{t^3}{(t-1)(t-3)^2} = \infty$.
+\[\lim_{x\to2^+}\frac{(x-2)(x+2)}{x-2} = 4, \qquad \lim_{x\to2^-}\frac{(x-2)(x+2)}{-(x-2)} = -4.\]
+
+The one-sided limits disagree, so the limit does not exist. The graph has a jump at $x=2$.
 \end{solution}
 \end{enumerate}
 \item[4.] Squeeze Theorem.
 \begin{enumerate}
 \item[(a)] Evaluate $\lim_{x \to 0} x^2 \sin\parens{\frac{3}{x}}$.
 \begin{solution}
-$\sin\parens{\frac{3}{x}}$ oscillates and has no limit, so the product law does not apply (this answers (d)). But it is bounded: $-1 \le \sin\parens{\frac3x} \le 1$. Multiplying by $x^2 \ge 0$,
+$\sin\parens{\frac{3}{x}}$ oscillates and has no limit, so the product law does not apply (this answers (c)). But it is bounded: $-1 \le \sin\parens{\frac3x} \le 1$. Multiplying by $x^2 \ge 0$,
 
 \[-x^2 \le x^2 \sin\parens{\frac{3}{x}} \le x^2.\]
 
 Both bounds go to $0$, so by the Squeeze Theorem the limit is $0$. The $x^2$ crushes the oscillation.
 \end{solution}
-\item[(c)] If $2x - 1 \leq f(x) \leq x^2 - 2x + 3$ for all $x$, find $\lim_{x \to 2} f(x)$.
+\item[(b)] If $2x - 1 \leq f(x) \leq x^2 - 2x + 3$ for all $x$, find $\lim_{x \to 2} f(x)$.
 \begin{solution}
 $\lim_{x\to2}(2x-1) = 3$ and $\lim_{x\to2}(x^2-2x+3) = 3$. Since $f$ is squeezed between them, $\lim_{x\to2} f(x) = 3$.
 
@@ -159,7 +161,7 @@ The bounds touch at $x=2$ because $(x^2-2x+3)-(2x-1) = (x-2)^2$.
 \end{enumerate}
 \item[5.] Limits at infinity.
 \begin{enumerate}
-\item[(d)] Evaluate $\lim_{x \to -\infty} \frac{\sqrt{4x^2+1}}{x+3}$.
+\item[(b)] Evaluate $\lim_{x \to -\infty} \frac{\sqrt{4x^2+1}}{x+3}$.
 \begin{solution}
 Pull $x^2$ out of the root: $\sqrt{4x^2+1} = \sqrt{x^2}\sqrt{4+\frac{1}{x^2}} = \abs{x}\sqrt{4+\frac{1}{x^2}}$. For $x<0$, $\abs{x} = -x$.
 
@@ -167,24 +169,24 @@ Pull $x^2$ out of the root: $\sqrt{4x^2+1} = \sqrt{x^2}\sqrt{4+\frac{1}{x^2}} = 
 
 The sign makes sense: the top is positive and the bottom is negative for very negative $x$.
 \end{solution}
-\item[(e)] Evaluate $\lim_{x \to \infty} \parens{\sqrt{x^2+6x} - x}$.
+\item[(c)] Evaluate $\lim_{x \to \infty} \parens{\sqrt{x^2+6x} - x}$.
 \begin{solution}
 This is $\infty - \infty$, which is not determined yet. Multiply by the conjugate over itself.
 
 \[\frac{(x^2+6x) - x^2}{\sqrt{x^2+6x}+x} = \frac{6x}{x\parens{\sqrt{1+\frac{6}{x}}+1}} = \frac{6}{\sqrt{1+\frac6x}+1} \longrightarrow \frac{6}{2} = 3.\]
 \end{solution}
-\item[(g)] Find all vertical and horizontal asymptotes of $f(x) = \frac{x^2-x-2}{x^2-4}$. Why is $x=2$ not a vertical asymptote?
+\item[(d)] Find all vertical and horizontal asymptotes of $f(x) = \frac{2x^2-2}{x^2+x-2}$. Why is $x=1$ not a vertical asymptote?
 \begin{solution}
-Factor: $f(x) = \frac{(x-2)(x+1)}{(x-2)(x+2)} = \frac{x+1}{x+2}$ for $x \ne 2$.
+Factor: $f(x) = \frac{2(x-1)(x+1)}{(x-1)(x+2)} = \frac{2(x+1)}{x+2}$ for $x \ne 1$.
 
-At $x=-2$ the top is $-1 \ne 0$ and the bottom is $0$, so $x=-2$ is a vertical asymptote. At $x=2$ the bad factor cancels and $\lim_{x\to 2} f(x) = \frac34$, a finite number. So the graph has a hole at $\parens{2,\frac34}$, not an asymptote.
+At $x=-2$ the top is $6 \ne 0$ and the bottom is $0$, so $x=-2$ is a vertical asymptote. At $x=1$ the bad factor cancels and $\lim_{x\to 1} f(x) = \frac43$, a finite number. So the graph has a hole at $\parens{1,\frac43}$, not an asymptote.
 
-The leading terms are both $x^2$, so $\lim_{x\to\pm\infty} f(x) = 1$ and $y=1$ is the horizontal asymptote.
+The leading terms are $2x^2$ and $x^2$, so $\lim_{x\to\pm\infty} f(x) = 2$ and $y=2$ is the horizontal asymptote.
 \end{solution}
 \end{enumerate}
 \item[6.] Continuity and the IVT.
 \begin{enumerate}
-\item[(d)] Let $f(x) = \begin{cases} x+2 & x < -1 \\ x^2 & -1 \leq x \leq 1 \\ 3-x & x > 1 \end{cases}$. Is $f$ continuous at $x=-1$ and at $x=1$? Where is $f$ not differentiable?
+\item[(b)] Let $f(x) = \begin{cases} x+2 & x < -1 \\ x^2 & -1 \leq x \leq 1 \\ 3-x & x > 1 \end{cases}$. Is $f$ continuous at $x=-1$ and at $x=1$? Where is $f$ not differentiable?
 \begin{solution}
 At $x=-1$: $f(-1) = 1$, $\lim_{x\to-1^-}(x+2) = 1$, $\lim_{x\to-1^+}x^2 = 1$. All agree, so $f$ is continuous at $-1$.
 
@@ -192,11 +194,7 @@ At $x=1$: $f(1) = 1$ and $\lim_{x\to1^-}x^2 = 1$, but $\lim_{x\to1^+}(3-x) = 2$.
 
 $f$ is not differentiable at $x=1$, since a differentiable function is continuous. It is also not differentiable at $x=-1$: the graph is continuous there but has a corner, with slope $1$ from the left and slope $2x = -2$ from the right.
 \end{solution}
-\item[(f)] Find $c$ so that $f(x) = \begin{cases} \frac{x^2}{x+2} & x \leq 2 \\ 3x + c & x > 2 \end{cases}$ is continuous at $x=2$.
-\begin{solution}
-$f(2) = \frac{4}{4} = 1$, and this is also the left limit. The right limit is $\lim_{x\to2^+}(3x+c) = 6 + c$. Continuity needs $6 + c = 1$, so $c = -5$.
-\end{solution}
-\item[(g)] Find $a$ and $b$ so that $f(x) = \begin{cases} 2 & x < 1 \\ ax + b & 1 \leq x < 4 \\ 8 & x \geq 4 \end{cases}$ is continuous everywhere.
+\item[(d)] Find $a$ and $b$ so that $f(x) = \begin{cases} 2 & x < 1 \\ ax + b & 1 \leq x < 4 \\ 8 & x \geq 4 \end{cases}$ is continuous everywhere.
 \begin{solution}
 Each piece is continuous, so only the seams at $x=1$ and $x=4$ matter. The middle line must start at height $2$ and end at height $8$.
 
@@ -204,7 +202,7 @@ Each piece is continuous, so only the seams at $x=1$ and $x=4$ matter. The middl
 
 Subtracting, $3a = 6$, so $a = 2$ and $b = 0$. The middle piece is $2x$.
 \end{solution}
-\item[(i)] Show that $x^3 + x - 1 = 0$ has a solution in $(0,1)$.
+\item[(e)] Show that $x^3 + x - 1 = 0$ has a solution in $(0,1)$.
 \begin{solution}
 Let $f(x) = x^3+x-1$. It is a polynomial, so it is continuous on $[0,1]$. $f(0) = -1 < 0$ and $f(1) = 1 > 0$.
 
@@ -213,23 +211,23 @@ Since $0$ is between $f(0)$ and $f(1)$, the Intermediate Value Theorem gives a n
 \end{enumerate}
 \item[7.] The derivative as a limit.
 \begin{enumerate}
-\item[(a)] Find the equation of the line tangent to $f(x)=\sqrt{x}$ at $x=4$, as a limit of slopes of secant lines.
+\item[(a)] Let $f(x) = x^3$ and $P = (2,8)$. Find the slope of the tangent line at $P$ as a limit of slopes of secant lines through $P$ and $Q = (x, x^3)$, then write the tangent line.
 \begin{solution}
-The secant line through $(4,2)$ and $(x,\sqrt{x})$ has slope $\frac{\sqrt x - 2}{x - 4}$. As $x\to 4$ the second point slides onto the first and the secant turns into the tangent.
+The secant through $P$ and $Q$ has slope $\frac{x^3-8}{x-2}$. As $x\to2$, $Q$ slides onto $P$ and the secant turns into the tangent. Factor the difference of cubes.
 
-\[m = \lim_{x\to4}\frac{\sqrt x - 2}{x-4} = \lim_{x\to 4}\frac{1}{\sqrt x + 2} = \frac14.\]
+\[m = \lim_{x\to2}\frac{(x-2)(x^2+2x+4)}{x-2} = \lim_{x\to2}(x^2+2x+4) = 12.\]
 
-The tangent line is $y - 2 = \frac14(x-4)$, that is $y = \frac{x}{4} + 1$.
+The tangent line is $y - 8 = 12(x-2)$, that is $y = 12x - 16$.
 \end{solution}
-\item[(c)] Use the limit definition of the derivative to find $f'(x)$ if $f(x) = \frac{2}{x^2}$.
+\item[(b)] Compute $f'(x)$ directly from $f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}$ for $f(x) = \frac{x}{x+2}$.
 \begin{solution}
 Combine the fractions in the numerator first.
 
-\[\frac{f(x+h)-f(x)}{h} = \frac{1}{h}\parens{\frac{2}{(x+h)^2}-\frac{2}{x^2}} = \frac{2\parens{x^2-(x+h)^2}}{h\,x^2(x+h)^2} = \frac{-2(2x+h)}{x^2(x+h)^2}.\]
+\[\frac{1}{h}\parens{\frac{x+h}{x+h+2}-\frac{x}{x+2}} = \frac{(x+h)(x+2) - x(x+h+2)}{h(x+h+2)(x+2)} = \frac{2h}{h(x+h+2)(x+2)}.\]
 
-Now $h$ is gone from the bottom, so let $h\to0$: $f'(x) = \frac{-4x}{x^4} = -\frac{4}{x^3}$. This matches the power rule applied to $2x^{-2}$.
+Cancel $h$ and let $h\to0$: $f'(x) = \frac{2}{(x+2)^2}$.
 \end{solution}
-\item[(f)] A ball's height is $h(t) = 200 - 16t^2$ feet after $t$ seconds. Find the slope of the secant line between $t=1$ and $t=3$, then the instantaneous velocity at $t=2$ as a limit.
+\item[(d)] A ball's height is $h(t) = 200 - 16t^2$ feet after $t$ seconds. Find the slope of the secant line between $t=1$ and $t=3$, then the instantaneous velocity at $t=2$ as a limit.
 \begin{solution}
 $h(1) = 184$ and $h(3) = 56$, so the average velocity is $\frac{56-184}{3-1} = -64$ ft/s.
 
@@ -239,11 +237,19 @@ For the instantaneous velocity at $t=2$ we use a small time step $k$ (not $h$, w
 
 The two agree. For a parabola the secant slope over an interval equals the tangent slope at the midpoint.
 \end{solution}
-\item[(h)] Each limit is the derivative of some $f$ at some $a$. Find $f$ and $a$, then evaluate: $\lim_{h \to 0} \frac{(1+h)^3 -1}{h}$ and $\lim_{x \to 3} \frac{\frac{1}{x} - \frac{1}{3}}{x-3}$.
+\item[(e)] Show that $f(x) = \sqrt[3]{x}$ is continuous at $x=0$ but not differentiable there. What does the tangent line at $x=0$ look like?
 \begin{solution}
-The first has the shape $\frac{f(a+h)-f(a)}{h}$ with $f(x) = x^3$, $a=1$. So it equals $f'(1) = 3(1)^2 = 3$.
+$\lim_{x\to0}\sqrt[3]{x} = 0 = f(0)$, so $f$ is continuous at $0$. The difference quotient at $0$ is
 
-The second has the shape $\frac{f(x)-f(a)}{x-a}$ with $f(x)=\frac1x$, $a = 3$. So it equals $f'(3) = -\frac{1}{3^2} = -\frac19$. Each is the slope of the tangent line to $y=f(x)$ at $x=a$.
+\[\frac{f(0+h)-f(0)}{h} = \frac{h^{1/3}}{h} = \frac{1}{h^{2/3}} \longrightarrow \infty \quad (h\to0),\]
+
+since $h^{2/3}$ is a small positive number on both sides of $0$. The limit is not a number, so $f'(0)$ does not exist. The secant slopes grow without bound, and the tangent line at the origin is vertical: the line $x = 0$.
+\end{solution}
+\item[(f)] Each limit is $f'(a)$ for some $f$ and $a$. Find $f$ and $a$, then evaluate: $\lim_{h \to 0} \frac{(2+h)^4 - 16}{h}$ and $\lim_{x \to \pi/2} \frac{\cos x}{x - \frac{\pi}{2}}$.
+\begin{solution}
+The first has the shape $\frac{f(a+h)-f(a)}{h}$ with $f(x) = x^4$ and $a = 2$, since $2^4 = 16$. So it equals $f'(2) = 4\cdot 2^3 = 32$.
+
+The second has the shape $\frac{f(x)-f(a)}{x-a}$ with $f(x) = \cos x$ and $a = \frac\pi2$, since $\cos\frac\pi2 = 0$. So it equals $f'\parens{\frac\pi2} = -\sin\frac\pi2 = -1$.
 \end{solution}
 \end{enumerate}
 \item[8.] Differentiation rules.
@@ -254,15 +260,15 @@ Quotient rule: bottom times derivative of top, minus top times derivative of bot
 
 \[y' = \frac{2x(2x+1) - (x^2+1)(2)}{(2x+1)^2} = \frac{2x^2+2x-2}{(2x+1)^2}.\]
 \end{solution}
-\item[(f)] At what points $(x,y)$ is the tangent line to $g(x) = \frac{x}{x^2+4}$ horizontal?
+\item[(d)] Find the points on the curve $y = x^3 - 3x^2 - 9x + 2$ where the tangent line is parallel to the line $y = 15x$.
 \begin{solution}
-A horizontal tangent means $g'(x) = 0$.
+Parallel lines have equal slopes, so we need $y' = 15$.
 
-\[g'(x) = \frac{(x^2+4) - x(2x)}{(x^2+4)^2} = \frac{4-x^2}{(x^2+4)^2}.\]
+\[3x^2 - 6x - 9 = 15 \quad\Longrightarrow\quad x^2 - 2x - 8 = 0 \quad\Longrightarrow\quad (x-4)(x+2) = 0.\]
 
-The bottom is never $0$, so $g'(x)=0$ exactly when $x = \pm 2$. The points are $\parens{2,\frac14}$ and $\parens{-2,-\frac14}$.
+At $x = 4$, $y = 64 - 48 - 36 + 2 = -18$, and at $x=-2$, $y = -8 - 12 + 18 + 2 = 0$. The points are $(4,-18)$ and $(-2,0)$.
 \end{solution}
-\item[(h)] A particle has position $s(t) = t^3 - 9t^2 + 24t$ meters at time $t$ seconds. Find $v(t)$ and $a(t)$, with units. When is the particle at rest?
+\item[(f)] A particle has position $s(t) = t^3 - 9t^2 + 24t$ meters at time $t$ seconds. Find $v(t)$ and $a(t)$, with units. When is the particle at rest?
 \begin{solution}
 \[v(t) = s'(t) = 3t^2 - 18t + 24 \ \text{m/s}, \qquad a(t) = v'(t) = 6t - 18\ \text{m/s}^2.\]
 
@@ -271,42 +277,54 @@ At rest means $v=0$: $3(t-2)(t-4) = 0$, so $t = 2$ s and $t = 4$ s. Between thes
 \end{enumerate}
 \item[9.] Trig derivatives.
 \begin{enumerate}
-\item[(b)] Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$, $\lim_{x \to 0} \frac{\tan(2x)}{x}$, and $\lim_{x \to 0} \frac{\sin(3x)}{\sin(5x)}$.
+\item[(a)] Starting only from $\frac{d}{dx}\sin x = \cos x$ and $\frac{d}{dx}\cos x = -\sin x$, derive $\frac{d}{dx}\sec x$. Then find $\frac{d^2}{dx^2}\tan x$.
+\begin{solution}
+Write $\sec x = \frac{1}{\cos x}$ and use the quotient rule.
+
+\[\frac{d}{dx}\frac{1}{\cos x} = \frac{0\cdot\cos x - 1\cdot(-\sin x)}{\cos^2 x} = \frac{1}{\cos x}\cdot\frac{\sin x}{\cos x} = \sec x\tan x.\]
+
+In the same way $\frac{d}{dx}\tan x = \frac{\cos x\cos x + \sin x\sin x}{\cos^2 x} = \sec^2 x$. Then $\sec^2 x = (\sec x)^2$, and the chain rule with the formula above gives
+
+\[\frac{d^2}{dx^2}\tan x = 2\sec x\cdot\sec x\tan x = 2\sec^2 x\tan x.\]
+\end{solution}
+\item[(b)] Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$ and $\lim_{x \to 0} \frac{1-\cos x}{x\sin x}$.
 \begin{solution}
 \[\frac{\sin(4x)}{3x} = \frac43\cdot\frac{\sin(4x)}{4x} \longrightarrow \frac43.\]
 
-\[\frac{\tan(2x)}{x} = 2\cdot\frac{\sin(2x)}{2x}\cdot\frac{1}{\cos(2x)} \longrightarrow 2\cdot1\cdot1 = 2.\]
+For the second, multiply by $\frac{1+\cos x}{1+\cos x}$ and use $1-\cos^2 x = \sin^2 x$.
 
-\[\frac{\sin(3x)}{\sin(5x)} = \frac{3x}{5x}\cdot\frac{\sin(3x)/(3x)}{\sin(5x)/(5x)} \longrightarrow \frac35.\]
+\[\frac{1-\cos^2 x}{x\sin x\,(1+\cos x)} = \frac{\sin^2 x}{x\sin x\,(1+\cos x)} = \frac{\sin x}{x}\cdot\frac{1}{1+\cos x} \longrightarrow 1\cdot\frac12 = \frac12.\]
 \end{solution}
-\item[(e)] Find $y'$ if $y = \frac{\sec x}{1 + \tan x}$.
+\item[(d)] Find $y'$ if $y = \frac{\sec x}{1 + \tan x}$.
 \begin{solution}
 \[y' = \frac{\sec x\tan x\,(1+\tan x) - \sec x\,\sec^2 x}{(1+\tan x)^2} = \frac{\sec x\parens{\tan x + \tan^2 x - \sec^2 x}}{(1+\tan x)^2}.\]
 
 Since $\sec^2 x = 1 + \tan^2 x$, the parentheses simplify to $\tan x - 1$, and $y' = \frac{\sec x\,(\tan x - 1)}{(1+\tan x)^2}$.
 \end{solution}
-\item[(g)] Find all points $(x,y)$ with $0 \leq x < 2\pi$ where $y = x + 2\cos x$ has a horizontal tangent line.
-\begin{solution}
-$y' = 1 - 2\sin x = 0$ gives $\sin x = \frac12$, so $x = \frac\pi6$ or $x=\frac{5\pi}{6}$.
-
-The points are $\parens{\frac{\pi}{6}, \frac{\pi}{6} + \sqrt3}$ and $\parens{\frac{5\pi}{6}, \frac{5\pi}{6} - \sqrt3}$.
-\end{solution}
 \end{enumerate}
 \item[10.] Chain rule.
 \begin{enumerate}
-\item[(c)] Find the equation of the line tangent to $x(t) = \sin(\sin(\sin(t)))$ when $t = \pi$.
+\item[(a)] Use the table to find $(f \circ g)'(1)$, $(g \circ f)'(1)$, and $(fg)'(2)$. $$\begin{array}{c|cccc} x & 0 & 1 & 2 & 3 \\ \hline f(x) & 2 & 3 & 0 & 1 \\ f'(x) & -1 & 4 & 2 & 5 \\ g(x) & 1 & 2 & 3 & 0 \\ g'(x) & 3 & -2 & 1 & 4 \end{array}$$
 \begin{solution}
-Differentiate from the outside in, one layer at a time.
+The chain rule evaluates the outer derivative at the inner value: $(f\circ g)'(1) = f'(g(1))\,g'(1) = f'(2)\cdot(-2) = 2(-2) = -4$.
 
-\[x'(t) = \cos(\sin(\sin t))\cdot\cos(\sin t)\cdot\cos t.\]
+$(g\circ f)'(1) = g'(f(1))\,f'(1) = g'(3)\cdot 4 = 16$.
 
-At $t=\pi$, $\sin\pi = 0$, so $x'(\pi) = \cos 0\cdot\cos0\cdot\cos\pi = -1$ and $x(\pi) = 0$. The tangent line is $x = -(t-\pi) = \pi - t$.
+The product rule gives $(fg)'(2) = f'(2)g(2) + f(2)g'(2) = 2\cdot3 + 0\cdot1 = 6$.
 \end{solution}
-\item[(d)] Find the equation of the line tangent to $h(t)=(1+2t^2)^4$ when $t=0$.
+\item[(b)] Find the tangent line to $y = \tan(\sqrt{x})$ at $x = \frac{\pi^2}{16}$.
 \begin{solution}
-$h'(t) = 4(1+2t^2)^3\cdot 4t$, so $h'(0) = 0$ and $h(0) = 1$. The tangent line is horizontal: $h = 1$.
+At $x = \frac{\pi^2}{16}$, $\sqrt{x} = \frac\pi4$ and $y = \tan\frac\pi4 = 1$.
+
+\[y' = \sec^2(\sqrt x)\cdot\frac{1}{2\sqrt x}, \qquad y'\parens{\tfrac{\pi^2}{16}} = 2\cdot\frac{1}{2\cdot\frac\pi4} = \frac4\pi.\]
+
+The tangent line is $y = 1 + \frac{4}{\pi}\parens{x - \frac{\pi^2}{16}}$.
 \end{solution}
-\item[(i)] Find all points $(x,y)$ with $0 \leq x < 2\pi$ where $y = 2\sin x + \cos(2x)$ has a horizontal tangent line.
+\item[(c)] Find the tangent line to $y = (x^2-3)^5$ at $x = 2$.
+\begin{solution}
+$y(2) = 1^5 = 1$ and $y' = 5(x^2-3)^4\cdot2x$, so $y'(2) = 5\cdot1\cdot4 = 20$. The tangent line is $y = 1 + 20(x-2)$, that is $y = 20x - 39$.
+\end{solution}
+\item[(h)] Find all points $(x,y)$ with $0 \leq x < 2\pi$ where $y = 2\sin x + \cos(2x)$ has a horizontal tangent line.
 \begin{solution}
 The chain rule gives $\frac{d}{dx}\cos(2x) = -2\sin(2x)$. Then use $\sin(2x) = 2\sin x\cos x$ to factor.
 
@@ -317,13 +335,21 @@ $\cos x = 0$ gives $x = \frac\pi2, \frac{3\pi}2$, and $\sin x = \frac12$ gives $
 \end{enumerate}
 \item[11.] Implicit differentiation.
 \begin{enumerate}
-\item[(b)] Find the equation of the tangent line at $(\pi/8, \pi/8)$ for the curve $\tan(x+y)+\sec(x-y)=2$.
+\item[(a)] For the ellipse $x^2 + 4y^2 = 16$, find $\frac{dy}{dx}$ and $\frac{d^2y}{dx^2}$, simplified using the equation of the ellipse.
 \begin{solution}
-\[\sec^2(x+y)\,(1+y') + \sec(x-y)\tan(x-y)\,(1-y') = 0.\]
+$2x + 8yy' = 0$, so $y' = -\frac{x}{4y}$. Differentiate again with the quotient rule, remembering that $y$ depends on $x$.
 
-At the point, $x+y = \frac\pi4$ so $\sec^2(x+y) = 2$, and $x - y = 0$ so $\tan(x-y) = 0$. The equation becomes $2(1+y') = 0$, so $y' = -1$.
+\[y'' = -\frac{4y - x\cdot 4y'}{16y^2} = -\frac{4y + \frac{x^2}{y}}{16y^2} = -\frac{4y^2 + x^2}{16y^3}.\]
 
-The tangent line is $y - \frac\pi8 = -\parens{x-\frac\pi8}$, that is $y = -x + \frac\pi4$.
+On the ellipse $x^2 + 4y^2 = 16$, so $y'' = -\frac{16}{16y^3} = -\frac{1}{y^3}$. On the top half ($y>0$) the curve is concave down, and on the bottom half it is concave up.
+\end{solution}
+\item[(b)] Find the tangent line to $\sin(x+y) = 2x - 2y$ at $(\pi, \pi)$.
+\begin{solution}
+Check the point: $\sin(2\pi) = 0 = 2\pi - 2\pi$. Differentiate.
+
+\[\cos(x+y)\,(1+y') = 2 - 2y'.\]
+
+At the point $\cos(2\pi) = 1$, so $1 + y' = 2 - 2y'$ and $y' = \frac13$. The tangent line is $y = \pi + \frac13(x-\pi)$.
 \end{solution}
 \item[(c)] Find the tangent line to $x^3 + y^3 = 9xy$ at $(2,4)$.
 \begin{solution}
@@ -333,7 +359,7 @@ Check the point: $8 + 64 = 72 = 9(2)(4)$. Differentiate, using the product rule 
 
 At $(2,4)$, $y' = \frac{12-4}{16-6} = \frac45$, and the tangent line is $y = 4 + \frac45(x-2)$.
 \end{solution}
-\item[(e)] For $y^2 = x^3 - 3x + 2$, find $\frac{dy}{dx}$, the tangent line at $(2,2)$, and all points with a horizontal tangent line.
+\item[(d)] For $y^2 = x^3 - 3x + 2$, find $\frac{dy}{dx}$, the tangent line at $(2,2)$, and all points with a horizontal tangent line.
 \begin{solution}
 $2yy' = 3x^2 - 3$, so $y' = \frac{3x^2-3}{2y}$. At $(2,2)$, $y' = \frac{9}{4}$ and the tangent line is $y = 2 + \frac94(x-2)$.
 
@@ -342,21 +368,13 @@ A horizontal tangent needs the top to be $0$ and the bottom not $0$: $x = \pm1$ 
 \end{enumerate}
 \item[12.] Related rates.
 \begin{enumerate}
-\item[(a)] If $x,y,z$ are functions of $t$ and $x(1-y)+5z^3=y^2z^2+x^2-3$, find $z'$ when $x=4$, $y=-2$, $z=1$, $x'=9$, $y' = -3$.
-\begin{solution}
-Differentiate every term with respect to $t$.
-
-\[x'(1-y) - xy' + 15z^2z' = 2yy'z^2 + 2y^2zz' + 2xx'.\]
-
-Plug in: $27 + 12 + 15z' = 12 + 8z' + 72$, so $7z' = 45$ and $z' = \frac{45}{7}$.
-\end{solution}
-\item[(b)] A 13 ft ladder leans against a wall. The bottom slides away at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?
+\item[(a)] A 13 ft ladder leans against a wall. The bottom slides away at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?
 \begin{solution}
 Let $x$ be the distance from the wall to the bottom and $y$ the height of the top. Then $x^2 + y^2 = 169$ at every instant, so $2xx' + 2yy' = 0$.
 
 When $x=5$, $y = 12$. So $y' = -\frac{xx'}{y} = -\frac{5\cdot 2}{12} = -\frac56$ ft/s. The top slides down at $\frac56$ ft/s.
 \end{solution}
-\item[(c)] A tank is an inverted cone with radius 3 m at the top and height 6 m. Water is pumped in at 4 $\text{m}^3$/min. How fast is the water level rising when the water is 4 m deep?
+\item[(b)] A tank is an inverted cone with radius 3 m at the top and height 6 m. Water is pumped in at 4 $\text{m}^3$/min. How fast is the water level rising when the water is 4 m deep?
 \begin{solution}
 Let $h$ be the depth and $r$ the radius of the water surface. Similar triangles give $\frac{r}{h} = \frac36$, so $r = \frac h2$ and
 
@@ -364,7 +382,15 @@ Let $h$ be the depth and $r$ the radius of the water surface. Similar triangles 
 
 At $h=4$: $4 = 4\pi \frac{dh}{dt}$, so $\frac{dh}{dt} = \frac{1}{\pi}$ m/min. The factor $\frac{\pi h^2}{4}$ is the area of the water surface, which is why the level rises more slowly as the tank fills.
 \end{solution}
-\item[(f)] A marble moves along $x^2 + xy + y^2 = 9$. At $(3,0)$, $x$ is decreasing at 2 ft/s. Is $y$ increasing or decreasing, and how fast?
+\item[(d)] A 6 ft tall person walks away from a 15 ft lamppost at 3 ft/s. How fast is the tip of the person's shadow moving?
+\begin{solution}
+Let $x$ be the person's distance from the post and $s$ the length of the shadow. The tip is at distance $x + s$. The light ray over the person's head makes two similar triangles.
+
+\[\frac{s}{6} = \frac{x+s}{15} \quad\Longrightarrow\quad 15s = 6x + 6s \quad\Longrightarrow\quad s = \frac{2x}{3}.\]
+
+The tip is at $x + s = \frac{5x}{3}$, so it moves at $\frac53\cdot 3 = 5$ ft/s, whatever the distance. The shadow itself grows at $2$ ft/s.
+\end{solution}
+\item[(e)] A marble moves along $x^2 + xy + y^2 = 9$. At $(3,0)$, $x$ is decreasing at 2 ft/s. Is $y$ increasing or decreasing, and how fast?
 \begin{solution}
 \[2xx' + x'y + xy' + 2yy' = 0.\]
 
@@ -373,23 +399,17 @@ At $(3,0)$ with $x' = -2$: $2(3)(-2) + 0 + 3y' + 0 = 0$, so $y' = 4$. The $y$-co
 \end{enumerate}
 \item[13.] Linear approximation.
 \begin{enumerate}
-\item[(b)] If $f(1)=1$ and $f'(1)=\frac{1}{2}$, what do you expect $f(\frac{3}{2})$ to be? Verify with the linearization.
+\item[(a)] Find the linearization of $f(x) = \sqrt[3]{x}$ at $a=27$. Use it to approximate $\sqrt[3]{27.27}$.
 \begin{solution}
-Moving right by $\frac12$ at slope $\frac12$ raises the height by about $\frac14$, so $f\parens{\frac32} \approx \frac54$.
+$f(27) = 3$ and $f'(x) = \frac13 x^{-2/3}$, so $f'(27) = \frac{1}{27}$. Then $L(x) = 3 + \frac{x-27}{27}$ and $L(27.27) = 3 + \frac{0.27}{27} = 3.01$. The true value is $3.00997\ldots$
+\end{solution}
+\item[(b)] Find the linearization of $f(x) = \sin x$ at $a = \frac{\pi}{6}$. Use it to approximate $\sin\parens{\frac{\pi}{6} + 0.02}$.
+\begin{solution}
+$f\parens{\frac\pi6} = \frac12$ and $f'\parens{\frac\pi6} = \cos\frac\pi6 = \frac{\sqrt3}{2}$, so $L(x) = \frac12 + \frac{\sqrt3}{2}\parens{x - \frac\pi6}$.
 
-The linearization is $L(x) = 1 + \frac12(x-1)$, and $L\parens{\frac32} = 1 + \frac14 = \frac54$.
+\[\sin\parens{\tfrac\pi6 + 0.02} \approx \frac12 + \frac{\sqrt3}{2}(0.02) = \frac12 + \frac{\sqrt3}{100} \approx 0.5173.\]
 \end{solution}
-\item[(c)] Find the linearization of $f(x) = \sqrt{x+5}$ at $a=4$. Use it to approximate $\sqrt{9.1}$.
-\begin{solution}
-$f(4) = 3$ and $f'(x) = \frac{1}{2\sqrt{x+5}}$, so $f'(4) = \frac16$. Then $L(x) = 3 + \frac16(x-4)$.
-
-$\sqrt{9.1} = f(4.1) \approx L(4.1) = 3 + \frac{0.1}{6} = \frac{181}{60} \approx 3.0167$. The true value is $3.01662\ldots$
-\end{solution}
-\item[(d)] Find the linearization of $f(x) = \sqrt[3]{x}$ at $a=27$. Use it to approximate $\sqrt[3]{27.27}$.
-\begin{solution}
-$f(27) = 3$ and $f'(x) = \frac13 x^{-2/3}$, so $f'(27) = \frac{1}{27}$. Then $L(x) = 3 + \frac{x-27}{27}$ and $L(27.27) = 3 + \frac{0.27}{27} = 3.01$.
-\end{solution}
-\item[(f)] The radius of a sphere is measured as 10 cm with a possible error of 0.05 cm. Estimate the maximum error in the computed volume.
+\item[(c)] The radius of a sphere is measured as 10 cm with a possible error of 0.05 cm. Estimate the maximum error in the computed volume.
 \begin{solution}
 $V = \frac43\pi r^3$, so $dV = 4\pi r^2\,dr = 4\pi(100)(0.05) = 20\pi \approx 62.8\ \text{cm}^3$.
 
@@ -398,7 +418,15 @@ Here $4\pi r^2$ is the surface area: an error $dr$ in the radius adds a thin she
 \end{enumerate}
 \item[14.] Extreme values.
 \begin{enumerate}
-\item[(e)] Find the absolute max and min of $f(x) = x^4 - 8x^2 + 3$ on $[-1,3]$.
+\item[(a)] Find the critical numbers of $f(x) = x^{2/3}(x-5)$. Which come from $f'(x) = 0$ and which from $f'(x)$ undefined?
+\begin{solution}
+Write $f(x) = x^{5/3} - 5x^{2/3}$. Then
+
+\[f'(x) = \frac53 x^{2/3} - \frac{10}{3}x^{-1/3} = \frac{5x - 10}{3x^{1/3}} = \frac{5(x-2)}{3x^{1/3}}.\]
+
+$f'(2) = 0$, and $f'(0)$ is undefined while $f(0)$ is defined. So the critical numbers are $2$ (horizontal tangent) and $0$ (a cusp).
+\end{solution}
+\item[(b)] Find the absolute max and min of $f(x) = x^4 - 8x^2 + 3$ on $[-1,3]$.
 \begin{solution}
 $f'(x) = 4x^3 - 16x = 4x(x-2)(x+2)$. The critical numbers in $[-1,3]$ are $0$ and $2$ (we drop $-2$).
 
@@ -406,13 +434,17 @@ $f'(x) = 4x^3 - 16x = 4x(x-2)(x+2)$. The critical numbers in $[-1,3]$ are $0$ an
 
 The absolute max is $12$ at $x=3$ and the absolute min is $-13$ at $x=2$.
 \end{solution}
-\item[(g)] Find the absolute max and min of $f(x) = \sqrt{9-x^2}$ on $[-1,3]$.
+\item[(d)] Find the absolute max and min of $f(x) = x\sqrt{4-x^2}$ on $[-1,2]$.
 \begin{solution}
-$f'(x) = \frac{-x}{\sqrt{9-x^2}}$ is $0$ at $x=0$ and undefined at $x=3$, an endpoint anyway.
+By the product and chain rules,
 
-$f(-1) = 2\sqrt2$, $f(0) = 3$, $f(3) = 0$. Max $3$ at $x=0$, min $0$ at $x=3$. The graph is the top of the circle of radius $3$, so this matches the picture.
+\[f'(x) = \sqrt{4-x^2} - \frac{x^2}{\sqrt{4-x^2}} = \frac{4 - 2x^2}{\sqrt{4-x^2}}.\]
+
+$f' = 0$ at $x = \pm\sqrt2$, and only $\sqrt2$ is in $[-1,2]$. $f'$ is undefined at $x = 2$, an endpoint anyway.
+
+$f(-1) = -\sqrt3$, $f(\sqrt2) = \sqrt2\cdot\sqrt2 = 2$, $f(2) = 0$. Max $2$ at $x = \sqrt2$, min $-\sqrt3$ at $x = -1$.
 \end{solution}
-\item[(h)] Find the absolute max and min of $f(x) = 2\cos x + \sin(2x)$ on $[0, \pi]$.
+\item[(e)] Find the absolute max and min of $f(x) = 2\cos x + \sin(2x)$ on $[0, \pi]$.
 \begin{solution}
 Use $\cos(2x) = 1 - 2\sin^2 x$ to write $f'$ in terms of $\sin x$ only.
 
@@ -431,13 +463,13 @@ Max $\frac{3\sqrt3}{2} \approx 2.60$ at $x=\frac\pi6$, min $-\frac{3\sqrt3}{2}$ 
 \begin{solution}
 $f(1) = -2$ and $f(5) = 6$, so the average slope is $\frac{8}{4} = 2$. Solve $f'(c) = 2c - 4 = 2$: $c = 3$.
 \end{solution}
-\item[(c)] If $f(2) = -1$ and $f'(x) \leq 3$ for all $x$, how large can $f(6)$ be?
+\item[(b)] If $f(2) = -1$ and $f'(x) \leq 3$ for all $x$, how large can $f(6)$ be?
 \begin{solution}
 By the MVT on $[2,6]$, $f(6) - f(2) = f'(c)(6-2)$ for some $c$. Since $f'(c) \le 3$, $f(6) \le -1 + 3\cdot 4 = 11$.
 
 The bound is reached by the line $f(x) = -1 + 3(x-2)$, so $11$ is the best possible.
 \end{solution}
-\item[(e)] Show that $x^3 + 5x - 2 = 0$ has exactly one real solution.
+\item[(d)] Show that $x^3 + 5x - 2 = 0$ has exactly one real solution.
 \begin{solution}
 Let $f(x) = x^3 + 5x - 2$. At least one: $f(0) = -2 < 0 < 4 = f(1)$, so the IVT gives a root in $(0,1)$.
 
@@ -462,13 +494,13 @@ Local min $f(1) = -1$. The critical number $x=0$ is not an extremum, since $f'$ 
 
 $f''(x) = 36x^2 - 24x = 12x(3x-2)$: concave up on $(-\infty,0)$ and $\parens{\frac23,\infty}$, concave down on $\parens{0,\frac23}$. Inflection points $(0,0)$ and $\parens{\frac23, -\frac{16}{27}}$.
 \end{solution}
-\item[(f)] Let $a>0$, $c<0$, and $f(x)=x(ax^2+bx+c)$ have its inflection point at the origin. Simplify $f$, then find the roots of $f$ and of $f'$.
+\item[(f)] Find constants $a$ and $b$ so that $f(x) = x^3 + ax^2 + bx$ has an inflection point at $x=1$ and a local minimum at $x=3$. Where is its local maximum?
 \begin{solution}
-$f(x) = ax^3 + bx^2 + cx$, so $f''(x) = 6ax + 2b$ and $f''(0) = 2b$. The inflection point at $0$ forces $b = 0$, and $f(x) = x(ax^2 + c)$.
+$f''(x) = 6x + 2a$, and the inflection point needs $f''(1) = 6 + 2a = 0$, so $a = -3$.
 
-Roots of $f$: $x = 0$, and the quadratic formula on $ax^2 + 0x + c$ gives $x = \frac{\pm\sqrt{-4ac}}{2a} = \pm\sqrt{-\frac ca}$. These are real since $-\frac ca > 0$.
+$f'(x) = 3x^2 - 6x + b$, and the local min needs $f'(3) = 27 - 18 + b = 0$, so $b = -9$. Check: $f''(3) = 12 > 0$, so $x = 3$ really is a local min.
 
-Roots of $f'(x) = 3ax^2 + c$: $x = \pm\sqrt{-\frac{c}{3a}}$. Since $a > 0$ the graph rises on the far right, so the local max is at $-\sqrt{-\frac{c}{3a}}$ and the local min at $+\sqrt{-\frac{c}{3a}}$.
+Now $f'(x) = 3x^2 - 6x - 9 = 3(x-3)(x+1)$, and $f''(-1) = -12 < 0$, so the local max is at $x = -1$, with $f(-1) = 5$. The inflection point at $1$ sits halfway between $-1$ and $3$, as it must for a cubic.
 \end{solution}
 \end{enumerate}
 \item[17.] Curve sketching.
@@ -481,38 +513,52 @@ Domain $\Rr$, since $x^2 + 3 > 0$. No $x$-intercept, $y$-intercept $\parens{0,\f
 
 Increasing on $(-\infty,0)$, decreasing on $(0,\infty)$, local max $\parens{0,\frac13}$. Concave up on $(-\infty,-1)$ and $(1,\infty)$, concave down on $(-1,1)$, inflection points $\parens{\pm1, \frac14}$. The graph is a bump that flattens toward the $x$-axis.
 \end{solution}
-\item[(b)] Sketch $f(x) = \frac{x^2-1}{x^2-4}$, labeling all key features.
+\item[(b)] Sketch $f(x) = \frac{x^2}{x-1}$, labeling all key features.
 \begin{solution}
-Domain $x \ne \pm 2$. Intercepts $(\pm1, 0)$ and $\parens{0,\frac14}$. Vertical asymptotes $x = \pm 2$ (the top is $3 \ne 0$ there), horizontal asymptote $y = 1$. $f$ is even.
+Domain $x \ne 1$. The only intercept is $(0,0)$. At $x=1$ the top is $1 \ne 0$, so $x = 1$ is a vertical asymptote: $f\to-\infty$ as $x\to1^-$ and $f\to\infty$ as $x\to1^+$.
 
-\[f'(x) = \frac{-6x}{(x^2-4)^2}, \qquad f''(x) = \frac{6(3x^2+4)}{(x^2-4)^3}.\]
+There is no horizontal asymptote, since the top has higher degree. Long division gives $\frac{x^2}{x-1} = x + 1 + \frac{1}{x-1}$, and $\frac{1}{x-1}\to0$, so the graph approaches the slant asymptote $y = x+1$ as $x \to \pm\infty$.
 
-Increasing on $(-\infty,-2)$ and $(-2,0)$, decreasing on $(0,2)$ and $(2,\infty)$, local max $\parens{0,\frac14}$.
+\[f'(x) = \frac{x(x-2)}{(x-1)^2}, \qquad f''(x) = \frac{2}{(x-1)^3}.\]
 
-$3x^2 + 4 > 0$, so $f''$ has the sign of $x^2 - 4$: concave up for $\abs{x} > 2$, concave down on $(-2,2)$. No inflection points, since concavity only changes at the asymptotes.
+Increasing on $(-\infty,0)$ and $(2,\infty)$, decreasing on $(0,1)$ and $(1,2)$. Local max $(0,0)$, local min $(2,4)$. Concave down on $(-\infty,1)$, concave up on $(1,\infty)$, no inflection point. The graph is two branches hugging $y = x+1$, one with a peak at the origin and one with a valley at $(2,4)$.
+\end{solution}
+\item[(c)] Sketch $f(x) = x - 2\sqrt{x}$, labeling all key features.
+\begin{solution}
+Domain $[0,\infty)$. Intercepts: $x - 2\sqrt x = \sqrt x(\sqrt x - 2) = 0$ at $x = 0$ and $x = 4$. No asymptotes.
 
-Near the asymptotes: $f\to-\infty$ as $x\to 2^-$ and $f\to\infty$ as $x\to2^+$, and symmetrically at $-2$. The middle piece is an upside-down bowl through $(\pm1,0)$ with top $\parens{0,\frac14}$, and the outer pieces come down from $\infty$ toward $y=1$.
+\[f'(x) = 1 - \frac{1}{\sqrt x}, \qquad f''(x) = \frac{1}{2x^{3/2}}.\]
+
+$f' < 0$ on $(0,1)$ and $f'>0$ on $(1,\infty)$, so the local (and absolute) min is $(1,-1)$. $f''>0$, so the graph is concave up everywhere with no inflection point. At $x=0$ the slope tends to $-\infty$, so the graph leaves the origin heading straight down.
 \end{solution}
 \end{enumerate}
 \item[18.] Optimization.
 \begin{enumerate}
-\item[(b)] A farmer has 2000 feet of fencing to build a rectangular field, fenced on 3 sides, along a straight river. What dimensions maximize the area?
+\item[(a)] A closed box has a rectangular base whose length is twice its width, and its volume is $72\ \text{ft}^3$. Find the dimensions that use the least material.
 \begin{solution}
-Let $x$ be each side perpendicular to the river and $y$ the side parallel to it. Then $2x + y = 2000$ and
+Let the base be $w$ by $2w$ and the height $h$. The volume gives $2w^2h = 72$, so $h = \frac{36}{w^2}$. The material is the surface area
 
-\[A(x) = x(2000 - 2x), \qquad 0 \le x \le 1000.\]
+\[S = 2(2w^2) + 2(wh) + 2(2wh) = 4w^2 + 6wh = 4w^2 + \frac{216}{w}, \qquad w > 0.\]
 
-$A'(x) = 2000 - 4x = 0$ at $x = 500$, and $A'' = -4 < 0$, so this is the max. The field is $500$ ft by $1000$ ft with area $500{,}000\ \text{ft}^2$.
+$S'(w) = 8w - \frac{216}{w^2} = 0$ gives $w^3 = 27$, so $w = 3$. $S'' = 8 + \frac{432}{w^3} > 0$, so this is a min. The box is $3$ ft by $6$ ft by $4$ ft, using $108\ \text{ft}^2$.
 \end{solution}
-\item[(d)] A box with a square base and an open top is made from 300 $\text{cm}^2$ of material. Find the largest possible volume.
+\item[(b)] A closed cylindrical can holds $16\pi\ \text{cm}^3$. Find the radius and height that minimize its surface area.
 \begin{solution}
-Let $x$ be the base side and $h$ the height. Material: $x^2 + 4xh = 300$, so $h = \frac{300-x^2}{4x}$. Then
+$\pi r^2 h = 16\pi$, so $h = \frac{16}{r^2}$. The surface area is two disks plus the side.
 
-\[V(x) = x^2 h = \frac{300x - x^3}{4}, \qquad V'(x) = \frac{300-3x^2}{4}.\]
+\[S(r) = 2\pi r^2 + 2\pi r h = 2\pi r^2 + \frac{32\pi}{r}, \qquad S'(r) = 4\pi r - \frac{32\pi}{r^2}.\]
 
-$V' = 0$ at $x = 10$, and $V'' = -\frac{3x}{2} < 0$, a max. Then $h = 5$ and $V = 500\ \text{cm}^3$. The best box is twice as wide as it is tall.
+$S' = 0$ gives $r^3 = 8$, so $r = 2$ cm and $h = 4$ cm. $S'' > 0$ for $r>0$, so this is a min. The best can has height equal to its diameter.
 \end{solution}
-\item[(e)] A rectangular pen is split in half by a divider parallel to one side. The outer fence costs \$4 per meter and the divider \$2 per meter. With \$200, what is the largest possible area?
+\item[(c)] A rectangle has its base on the $x$-axis and its two upper corners on the semicircle $y = \sqrt{25 - x^2}$. Find the largest possible area.
+\begin{solution}
+Put the upper corners at $\parens{\pm x, \sqrt{25-x^2}}$ with $0 \le x \le 5$. Then
+
+\[A(x) = 2x\sqrt{25-x^2}, \qquad A'(x) = 2\sqrt{25-x^2} - \frac{2x^2}{\sqrt{25-x^2}} = \frac{2(25 - 2x^2)}{\sqrt{25-x^2}}.\]
+
+$A' = 0$ at $x = \frac{5}{\sqrt2}$. Since $A(0) = A(5) = 0$, this is the max, and $A = 2\cdot\frac{5}{\sqrt2}\cdot\frac{5}{\sqrt2} = 25$. The best rectangle is twice as wide as it is tall.
+\end{solution}
+\item[(d)] A rectangular pen is split in half by a divider parallel to one side. The outer fence costs \$4 per meter and the divider \$2 per meter. With \$200, what is the largest possible area?
 \begin{solution}
 Let the pen be $x$ by $y$ meters with the divider of length $y$. Cost: $4(2x + 2y) + 2y = 8x + 10y = 200$, so $y = 20 - 0.8x$.
 
@@ -520,7 +566,7 @@ Let the pen be $x$ by $y$ meters with the divider of length $y$. Cost: $4(2x + 2
 
 $A' = 0$ at $x = 12.5$, and $A'' < 0$. Then $y = 10$, and the largest area is $125\ \text{m}^2$.
 \end{solution}
-\item[(f)] Find the points on the parabola $y = x^2$ closest to the point $(0,2)$.
+\item[(e)] Find the points on the parabola $y = x^2$ closest to the point $(0,2)$.
 \begin{solution}
 Minimize the squared distance (it has the same minimizer and no root).
 
@@ -531,34 +577,38 @@ Critical numbers $x = 0$ and $x = \pm\frac{\sqrt6}{2}$. $D(0) = 4$ while $D\pare
 \end{enumerate}
 \item[19.] Antiderivatives.
 \begin{enumerate}
-\item[(b)] Find the most general antiderivative of $g(s)=\frac{4-2s+\sqrt{s^3}}{\sqrt{s}}$.
+\item[(b)] Find the most general antiderivative of $g(x) = \frac{x^2 - 3x + 2\sqrt{x}}{x}$.
 \begin{solution}
-Split the fraction into powers of $s$ first: $g(s) = 4s^{-1/2} - 2s^{1/2} + s$.
+Split the fraction into powers of $x$ first: $g(x) = x - 3 + 2x^{-1/2}$.
 
-\[G(s) = 8s^{1/2} - \frac43 s^{3/2} + \frac{s^2}{2} + C.\]
+\[G(x) = \frac{x^2}{2} - 3x + 4\sqrt{x} + C.\]
 \end{solution}
-\item[(g)] If $f''(t) = 2\cos t - 6\sin t$, $f(0) = 1$, and $f'(0) = 4$, find $f(t)$.
+\item[(d)] If $f'(x) = 3\sqrt{x} - 2$ and $f(4) = 10$, find $f(x)$.
 \begin{solution}
-$f'(t) = 2\sin t + 6\cos t + C_1$, and $f'(0) = 6 + C_1 = 4$ gives $C_1 = -2$.
-
-$f(t) = -2\cos t + 6\sin t - 2t + C_2$, and $f(0) = -2 + C_2 = 1$ gives $C_2 = 3$.
-
-\[f(t) = -2\cos t + 6\sin t - 2t + 3.\]
+$f(x) = 2x^{3/2} - 2x + C$. Then $f(4) = 16 - 8 + C = 10$ gives $C = 2$, so $f(x) = 2x^{3/2} - 2x + 2$.
 \end{solution}
-\item[(i)] A particle has $a(t) = 6t - 4$, $v(0) = 3$, $s(0) = 1$. Find $s(t)$.
+\item[(e)] A particle has $a(t) = 6t - 4$, $v(0) = 3$, $s(0) = 1$. Find $s(t)$.
 \begin{solution}
 $v(t) = 3t^2 - 4t + 3$ (the constant is $v(0)$), and $s(t) = t^3 - 2t^2 + 3t + 1$ (the constant is $s(0)$).
+\end{solution}
+\item[(f)] Let $F$ be the antiderivative of $f(x) = x^2 - 4$ with $F(0) = 0$. Without finding $F$, decide where $F$ is increasing, where it has local extrema, and where it is concave up. Then find $F$.
+\begin{solution}
+$F' = f = (x-2)(x+2)$, so $F$ increases on $(-\infty,-2)$ and $(2,\infty)$ and decreases on $(-2,2)$. Local max at $x=-2$, local min at $x = 2$.
+
+$F'' = f' = 2x$, so $F$ is concave up on $(0,\infty)$ and concave down on $(-\infty,0)$. Where $f$ crosses zero, $F$ has a peak or valley, and where $f$ has its min, $F$ has an inflection point.
+
+Finally $F(x) = \frac{x^3}{3} - 4x$, with $F(-2) = \frac{16}{3}$ and $F(2) = -\frac{16}{3}$, which matches the picture.
 \end{solution}
 \end{enumerate}
 \item[20.] Riemann sums.
 \begin{enumerate}
-\item[(a)] Use 6 rectangles with right endpoints to approximate the area under $\sin(x)$ on $[0,\pi]$.
+\item[(a)] Estimate $\int_0^\pi \sin x\, dx$ with the midpoint rule and $n=3$.
 \begin{solution}
-$\Delta x = \frac\pi6$ and the right endpoints are $\frac{k\pi}{6}$ for $k = 1,\dots,6$, with heights $\frac12, \frac{\sqrt3}{2}, 1, \frac{\sqrt3}2, \frac12, 0$.
+$\Delta x = \frac\pi3$, and the midpoints of $\brac{0,\frac\pi3}$, $\brac{\frac\pi3,\frac{2\pi}3}$, $\brac{\frac{2\pi}3,\pi}$ are $\frac\pi6, \frac\pi2, \frac{5\pi}{6}$, with heights $\frac12, 1, \frac12$.
 
-\[R_6 = \frac\pi6\parens{2 + \sqrt3} \approx 1.954.\]
+\[M_3 = \frac\pi3\parens{\frac12 + 1 + \frac12} = \frac{2\pi}{3} \approx 2.09.\]
 
-The exact area is $2$.
+The exact area is $2$. The midpoint rule over estimates here because $\sin x$ is concave down on $[0,\pi]$.
 \end{solution}
 \item[(b)] Approximate the area under $f(x) = x^2$ on $[0,4]$ with $n=4$ using right endpoints, left endpoints, and midpoints. Which are over and which are under?
 \begin{solution}
@@ -568,7 +618,7 @@ $\Delta x = 1$.
 
 The exact area is $\frac{64}{3} \approx 21.33$. $f$ is increasing, so the right endpoint is the tallest point of each strip and $R_4$ is an over estimate, while $L_4$ is an under estimate. $M_4$ comes out under here because the graph is concave up.
 \end{solution}
-\item[(e)] Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.
+\item[(d)] Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.
 \begin{solution}
 Read $\Delta x = \frac3n$ and $x_i = 1 + \frac{3i}{n}$, so the interval starts at $1$ and has length $3$, and the height is $\sqrt{x_i}$.
 
@@ -577,21 +627,25 @@ Read $\Delta x = \frac3n$ and $x_i = 1 + \frac{3i}{n}$, so the interval starts a
 \end{enumerate}
 \item[21.] The integral as area.
 \begin{enumerate}
-\item[(a)] Evaluate $\int_0^2 \parens{3x + \sqrt{4-x^2}} dx$ using areas.
+\item[(a)] Evaluate $\int_0^2 \parens{3x + \sqrt{4-x^2}} dx$ with geometry.
 \begin{solution}
 $\int_0^2 3x\,dx$ is a triangle with base $2$ and height $6$: area $6$. $y = \sqrt{4-x^2}$ is the top half of the circle of radius $2$, so $\int_0^2\sqrt{4-x^2}\,dx$ is a quarter disk: area $\pi$.
 
 Total: $6 + \pi$.
 \end{solution}
-\item[(b)] Evaluate $\int_{-4}^4 \parens{2 - \sqrt{16-x^2}} dx$ using areas.
+\item[(b)] Evaluate $\int_{-2}^2 \parens{x^3 + \sqrt{4-x^2}} dx$ with geometry.
 \begin{solution}
-$\int_{-4}^4 2\,dx$ is a $8 \times 2$ rectangle, area $16$. $\int_{-4}^4\sqrt{16-x^2}\,dx$ is a half disk of radius $4$, area $8\pi$. So the integral is $16 - 8\pi$, which is negative because most of the semicircle rises above the line $y=2$.
+$x^3$ is odd: its graph on $[-2,0]$ is the graph on $[0,2]$ turned upside down, so the area below the axis cancels the area above, and $\int_{-2}^2 x^3\,dx = 0$.
+
+$\int_{-2}^2\sqrt{4-x^2}\,dx$ is a half disk of radius $2$, area $2\pi$. Total: $2\pi$.
 \end{solution}
-\item[(d)] Evaluate $\int_0^5 \abs{2x-4} dx$.
+\item[(c)] Evaluate $\int_{-3}^3 \parens{\abs{x} - 1} dx$ with geometry.
 \begin{solution}
-The graph is a V with its tip at $x=2$. On $[0,2]$ it is a triangle with base $2$, height $4$, area $4$. On $[2,5]$ it is a triangle with base $3$, height $6$, area $9$. Total $13$.
+The graph is a V with its tip at $(0,-1)$, crossing the axis at $x = \pm1$. Below the axis is a triangle with base $2$ and height $1$: area $1$. Above the axis are two triangles, each with base $2$ and height $2$: area $2$ each.
+
+\[\int_{-3}^3\parens{\abs x - 1}dx = 4 - 1 = 3.\]
 \end{solution}
-\item[(f)] For the velocity graph below ($v$ in m/s, $t$ in s), find the displacement and total distance from $t=0$ to $t=10$, the position at $t=10$ if $x(0)=3$ m, the acceleration at $t=5$, and when the particle is farthest from its start.
+\item[(e)] For the velocity graph below ($v$ in m/s, $t$ in s), find the displacement and total distance from $t=0$ to $t=10$, the position at $t=10$ if $x(0)=3$ m, the acceleration at $t=5$, and when the particle is farthest from its start.
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[width=9cm, height=5.5cm, xmin=0, xmax=10.5, ymin=-3, ymax=5, axis lines=middle, grid=major, xtick={0,...,10}, ytick={-2,...,4}, xlabel={$t$}, ylabel={$v$}]
@@ -611,29 +665,27 @@ The position at $t = 10$ is $3 + 9 = 12$ m. The acceleration at $t=5$ is the slo
 The particle moves forward while $v>0$ and backward after $t=6$, so it is farthest from the start at $t = 6$, $16$ m away.
 \end{solution}
 \end{enumerate}
-\item[22.] FTC, Part 1.
+\item[22.] Fundamental Theorem, Part 1.
 \begin{enumerate}
-\item[(a)] Calculate $f'(\pi/4)$ if $f(x) = \int_{-x}^x \cos(t) dt$, without finding an antiderivative.
-\begin{solution}
-Split at $0$: $f(x) = \int_0^x \cos t\,dt - \int_0^{-x}\cos t\,dt$. By FTC 1 and the chain rule,
-
-\[f'(x) = \cos x - \cos(-x)\cdot(-1) = 2\cos x.\]
-
-So $f'\parens{\frac\pi4} = \sqrt2$. Both edges move outward as $x$ grows, so the area gains $\cos$ at each end.
-\end{solution}
-\item[(c)] Find $g'(x)$ if $g(x) = \int_{x^2}^4 t\sqrt{1+t^2}\, dt$.
+\item[(b)] Find $g'(x)$ if $g(x) = \int_{x^2}^4 t\sqrt{1+t^2}\, dt$.
 \begin{solution}
 Flip the limits so the variable is on top: $g(x) = -\int_4^{x^2} t\sqrt{1+t^2}\,dt$. Then
 
 \[g'(x) = -x^2\sqrt{1+x^4}\cdot 2x = -2x^3\sqrt{1+x^4}.\]
 \end{solution}
-\item[(e)] Find $g'(x)$ if $g(x) = \int_{2x}^{x^3} \frac{1}{1+t^4} dt$.
+\item[(c)] Find $F'(x)$ if $F(x) = \int_0^{\tan x} \sqrt{1+t^2}\, dt$ for $-\frac{\pi}{2} < x < \frac{\pi}{2}$, and simplify.
+\begin{solution}
+FTC 1 with the chain rule gives $F'(x) = \sqrt{1+\tan^2 x}\cdot\sec^2 x$.
+
+Since $1 + \tan^2 x = \sec^2 x$ and $\sec x > 0$ on $\parens{-\frac\pi2,\frac\pi2}$, $\sqrt{1+\tan^2x} = \sec x$, and $F'(x) = \sec^3 x$.
+\end{solution}
+\item[(d)] Find $g'(x)$ if $g(x) = \int_{2x}^{x^3} \frac{1}{1+t^4} dt$.
 \begin{solution}
 Split at $0$ and apply FTC 1 with the chain rule to each piece.
 
 \[g'(x) = \frac{3x^2}{1+x^{12}} - \frac{2}{1+16x^4}.\]
 \end{solution}
-\item[(f)] Let $g(x) = \int_0^x f(t) dt$, where $f$ is graphed below. Find $g(4)$, $g'(4)$, $g''(4)$, and where on $[0,6]$ $g$ is largest.
+\item[(e)] Let $g(x) = \int_0^x f(t) dt$, where $f$ is graphed below. Find $g(4)$, $g'(4)$, $g''(4)$, and where on $[0,6]$ $g$ is largest.
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[width=8cm, height=5cm, xmin=0, xmax=6.5, ymin=-2.5, ymax=3, axis lines=middle, grid=major, xtick={0,...,6}, ytick={-2,...,2}, xlabel={$t$}, ylabel={$y$}]
@@ -650,46 +702,38 @@ By FTC 1, $g'(4) = f(4) = 0$, and $g''(4) = f'(4) = -1$, the slope of the line.
 $g$ increases while $f > 0$ and decreases once $f<0$, so $g$ is largest at $x = 4$, with $g(4) = 6$.
 \end{solution}
 \end{enumerate}
-\item[23.] FTC, Part 2.
+\item[23.] Fundamental Theorem, Part 2.
 \begin{enumerate}
-\item[(a)] Calculate $\int_{32}^{34} 2x\, dx$ as an area, then with FTC 2.
-\begin{solution}
-The region under $y=2x$ from $32$ to $34$ is a trapezoid with width $2$ and heights $64$ and $68$: area $2\cdot\frac{64+68}{2} = 132$.
-
-With FTC 2, $x^2$ is an antiderivative: $34^2 - 32^2 = (34-32)(34+32) = 132$.
-\end{solution}
-\item[(b)] Evaluate $\int_1^4 \parens{3\sqrt{x} - \frac{2}{x^2}} dx$.
+\item[(a)] Evaluate $\int_1^4 \parens{3\sqrt{x} - \frac{2}{x^2}} dx$.
 \begin{solution}
 \[\int_1^4\parens{3x^{1/2} - 2x^{-2}}dx = \brac{2x^{3/2} + \frac{2}{x}}_1^4 = \parens{16 + \frac12} - (2 + 2) = \frac{25}{2}.\]
 \end{solution}
-\item[(f)] What is wrong with $\int_{-1}^2 \frac{1}{x^2} dx = \brac{-\frac{1}{x}}_{-1}^2 = -\frac{3}{2}$?
+\item[(c)] Evaluate $\int_0^{\pi} (\sin x + 2\cos x) dx$.
+\begin{solution}
+\[\brac{-\cos x + 2\sin x}_0^\pi = (1 + 0) - (-1 + 0) = 2.\]
+
+The $\cos x$ part contributes $0$: its area above the axis on $\brac{0,\frac\pi2}$ cancels its area below on $\brac{\frac\pi2,\pi}$.
+\end{solution}
+\item[(d)] What is wrong with $\int_{-1}^2 \frac{1}{x^2} dx = \brac{-\frac{1}{x}}_{-1}^2 = -\frac{3}{2}$?
 \begin{solution}
 FTC 2 needs $f$ continuous on $[a,b]$, and $\frac{1}{x^2}$ blows up at $x=0$, inside $[-1,2]$. The answer cannot be right anyway, because $\frac1{x^2} > 0$ and the integral of a positive function cannot be negative. (This integral is improper, and it diverges. Improper integrals come in Calculus 2.)
 \end{solution}
 \end{enumerate}
 \item[24.] Substitution.
 \begin{enumerate}
-\item[(a)] Evaluate $\int_1^2 x\sqrt{x-1}\,dx$.
+\item[(a)] Evaluate $\int \sec^2 x \tan^3 x\, dx$.
 \begin{solution}
-Let $u = x - 1$, so $du = dx$ and $x = u + 1$. The bounds become $u=0$ and $u=1$.
+Let $u = \tan x$, so $du = \sec^2 x\,dx$.
 
-\[\int_0^1 (u+1)u^{1/2}\,du = \brac{\frac25u^{5/2} + \frac23u^{3/2}}_0^1 = \frac25 + \frac23 = \frac{16}{15}.\]
+\[\int u^3\,du = \frac{u^4}{4} + C = \frac{\tan^4 x}{4} + C.\]
 \end{solution}
-\item[(c)] Show that $u$-substitution undoes the chain rule by computing $\int_a^b g'(h(x))h'(x)\,dx$.
+\item[(b)] Evaluate $\int_0^{\pi/2} \cos x\sqrt{1 + 3\sin x}\, dx$.
 \begin{solution}
-Let $u = h(x)$, so $du = h'(x)\,dx$, and the bounds become $h(a)$ and $h(b)$.
+Let $u = 1 + 3\sin x$, so $du = 3\cos x\,dx$ and $\cos x\,dx = \frac{du}{3}$. The bounds become $u = 1$ and $u = 4$.
 
-\[\int_a^b g'(h(x))h'(x)\,dx = \int_{h(a)}^{h(b)} g'(u)\,du = g(h(b)) - g(h(a)).\]
-
-By the chain rule, $g'(h(x))h'(x)$ is the derivative of $g(h(x))$, and FTC 2 gives the same answer directly.
+\[\frac13\int_1^4 u^{1/2}\,du = \frac13\cdot\frac23\brac{u^{3/2}}_1^4 = \frac29(8-1) = \frac{14}{9}.\]
 \end{solution}
-\item[(e)] Evaluate $\int_0^1 x \cos\parens{\frac{\pi x^2}{2}} dx$.
-\begin{solution}
-Let $u = \frac{\pi x^2}{2}$, so $du = \pi x\,dx$ and $x\,dx = \frac{du}{\pi}$. The bounds become $0$ and $\frac\pi2$.
-
-\[\frac1\pi\int_0^{\pi/2}\cos u\,du = \frac1\pi\brac{\sin u}_0^{\pi/2} = \frac1\pi.\]
-\end{solution}
-\item[(i)] Evaluate $\int_{-2}^1 x\sqrt{x+3}\, dx$.
+\item[(e)] Evaluate $\int_{-2}^1 x\sqrt{x+3}\, dx$.
 \begin{solution}
 Let $u = x+3$, so $du = dx$, $x = u - 3$, and the bounds become $1$ and $4$.
 
@@ -697,49 +741,47 @@ Let $u = x+3$, so $du = dx$, $x = u - 3$, and the bounds become $1$ and $4$.
 
 The answer is negative because $x\sqrt{x+3}$ is negative on most of $[-2,1]$.
 \end{solution}
-\item[(k)] Substitute $u=2x-1$ in $\int_{1/2}^1 (2x-1)\, dx$ without evaluating. Approximate both the $x$-integral and the $u$-integral with 2 right-endpoint rectangles.
+\item[(f)] Evaluate $\int_{-\pi/2}^{\pi/2} x^2 \sin x\, dx$.
 \begin{solution}
-$du = 2\,dx$, so $dx = \frac{du}{2}$, and $x = \frac12, 1$ become $u = 0, 1$. The integral becomes $\int_0^1 \frac u2\,du$.
-
-The $x$-integral: $\Delta x = \frac14$, right endpoints $\frac34, 1$, heights $\frac12, 1$, sum $\frac14\cdot\frac32 = \frac38$. The $u$-integral: $\Delta u = \frac12$, right endpoints $\frac12, 1$, heights $\frac14, \frac12$, sum $\frac12\cdot\frac34 = \frac38$.
-
-They agree. The substitution makes every rectangle twice as wide and half as tall, so each area is unchanged. (Both integrals equal $\frac14$.)
+$f(x) = x^2\sin x$ is odd: $f(-x) = x^2\sin(-x) = -f(x)$. On an interval symmetric about $0$ the area below the axis on one side cancels the area above on the other, so the integral is $0$, with no antiderivative needed.
 \end{solution}
 \end{enumerate}
 \item[25.] Area between curves.
 \begin{enumerate}
-\item[(a)] Sketch the region between $y = x$ and $y = x^2 - 6$ and find its area.
+\item[(a)] Sketch the region between $y = x^2 - 2x$ and $y = x + 4$ and find its area.
 \begin{center}
 \begin{tikzpicture}
-\begin{axis}[width=8cm, height=6cm, xmin=-3.5, xmax=4, ymin=-7, ymax=5, axis lines=middle, grid=major, xlabel={$x$}, ylabel={$y$}]
-    \addplot[name path=L, blue, thick, domain=-3.2:3.8] {x};
-    \addplot[name path=P, red, thick, domain=-3.2:3.4, samples=60] {x^2-6};
-    \addplot[blue, fill opacity=0.15] fill between[of=L and P, soft clip={domain=-2:3}];
-    \node[blue] at (axis cs:-2.4,-4) {$y=x$};
-    \node[red] at (axis cs:3.0,-4.5) {$y=x^2-6$};
+\begin{axis}[width=8cm, height=6cm, xmin=-2, xmax=5, ymin=-2, ymax=10, axis lines=middle, grid=major, xlabel={$x$}, ylabel={$y$}]
+    \addplot[name path=L, blue, thick, domain=-1.8:4.8] {x+4};
+    \addplot[name path=P, red, thick, domain=-1.6:4.6, samples=60] {x^2-2*x};
+    \addplot[blue, fill opacity=0.15] fill between[of=L and P, soft clip={domain=-1:4}];
+    \node[blue] at (axis cs:1.3,8.3) {$y=x+4$};
+    \node[red, anchor=west] at (axis cs:3.3,1.5) {$y=x^2-2x$};
 \end{axis}
 \end{tikzpicture}
 \end{center}
 \begin{solution}
-They meet where $x = x^2 - 6$, that is $(x-3)(x+2) = 0$: $x = -2, 3$. Between them the line is on top (at $x=0$: $0 > -6$).
+They meet where $x^2 - 2x = x + 4$, that is $(x-4)(x+1) = 0$: $x = -1, 4$. Between them the line is on top (at $x=0$: $4 > 0$).
 
-\[\int_{-2}^3 \parens{x - x^2 + 6}dx = \brac{\frac{x^2}{2} - \frac{x^3}{3} + 6x}_{-2}^3 = \frac{27}{2} + \frac{22}{3} = \frac{125}{6}.\]
+\[\int_{-1}^4 \parens{x + 4 - x^2 + 2x}dx = \brac{\frac{3x^2}{2} + 4x - \frac{x^3}{3}}_{-1}^4 = \frac{56}{3} + \frac{13}{6} = \frac{125}{6}.\]
 \end{solution}
-\item[(c)] For $y = x^2$ and $y = 8 - x^2$, set up the area integrating with respect to $x$, then $y$.
+\item[(b)] Find the area between $y = \sqrt{x}$ and $y = \frac{x}{3}$, integrating with respect to $x$, then with respect to $y$.
 \begin{solution}
-They meet at $x = \pm 2$, $y = 4$. In $x$: $\int_{-2}^2 \parens{(8-x^2) - x^2}dx = \frac{64}{3}$.
+They meet where $\sqrt x = \frac x3$: $x = 0$ and $x = 9$, at heights $0$ and $3$. The root is on top (at $x = 1$: $1 > \frac13$).
 
-In $y$ the right and left edges change formula at $y=4$. For $0\le y\le4$ the width is $\sqrt y - (-\sqrt y)$, and for $4\le y\le 8$ it is $2\sqrt{8-y}$.
+\[\int_0^9\parens{\sqrt x - \frac x3}dx = \brac{\frac23x^{3/2} - \frac{x^2}{6}}_0^9 = 18 - \frac{27}{2} = \frac92.\]
 
-\[\int_0^4 2\sqrt{y}\,dy + \int_4^8 2\sqrt{8-y}\,dy = \frac{32}{3} + \frac{32}{3} = \frac{64}{3}.\]
+In $y$, solve each curve for $x$: the line is $x = 3y$ (on the right) and the root is $x = y^2$ (on the left).
+
+\[\int_0^3\parens{3y - y^2}dy = \frac{27}{2} - 9 = \frac92.\]
 \end{solution}
-\item[(d)] Find the area between $x = y^2$ and $x = y + 2$.
+\item[(c)] Find the area between $y = \sin x$ and $y = \cos x$ for $0 \leq x \leq \frac{\pi}{2}$.
 \begin{solution}
-They meet where $y^2 = y + 2$: $y = -1, 2$. The line is to the right (at $y = 0$: $2 > 0$).
+The curves cross at $x = \frac\pi4$, so the top curve changes there. Split the integral.
 
-\[\int_{-1}^{2}\parens{y + 2 - y^2}dy = \brac{\frac{y^2}{2} + 2y - \frac{y^3}{3}}_{-1}^2 = \frac{10}{3} + \frac76 = \frac92.\]
+\[\int_0^{\pi/4}(\cos x - \sin x)\,dx + \int_{\pi/4}^{\pi/2}(\sin x - \cos x)\,dx = (\sqrt2 - 1) + (\sqrt2 - 1) = 2\sqrt2 - 2.\]
 
-In $x$ this region would need two integrals, since the bottom edge changes formula at $x = 1$.
+Integrating $\cos x - \sin x$ over the whole interval would give $0$, since the two pieces cancel.
 \end{solution}
 \end{enumerate}
 \item[26.] Average value.
@@ -748,7 +790,7 @@ In $x$ this region would need two integrals, since the bottom edge changes formu
 \begin{solution}
 \[\frac{1}{3-1}\int_1^3 x^{-2}\,dx = \frac12\brac{-\frac1x}_1^3 = \frac12\parens{1 - \frac13} = \frac13.\]
 \end{solution}
-\item[(c)] Find the average value of $f(x) = x^2$ on $[0,3]$ and a $c$ in $[0,3]$ with $f(c)$ equal to it.
+\item[(b)] Find the average value of $f(x) = x^2$ on $[0,3]$ and a $c$ in $[0,3]$ with $f(c)$ equal to it.
 \begin{solution}
 $f_{\text{ave}} = \frac13\int_0^3x^2\,dx = \frac13\cdot 9 = 3$. Then $c^2 = 3$ gives $c = \sqrt3$, which is in $[0,3]$. The Mean Value Theorem for integrals says such a $c$ always exists for continuous $f$.
 \end{solution}
@@ -761,38 +803,52 @@ The curves meet at $x = 0, 1$, and $x \ge x^2$ there. A slice at $x$ is a washer
 
 \[V = \pi\int_0^1\parens{x^2 - x^4}dx = \pi\parens{\frac13 - \frac15} = \frac{2\pi}{15}.\]
 \end{solution}
-\item[(e)] Revolve the region between $y = 3x$ and $y = x^2$ around the $y$-axis, and then around the line $y=-1$.
+\item[(c)] Find the volume when the region under $y = \sqrt{x}$ for $0 \leq x \leq 4$ is revolved around the $x$-axis.
 \begin{solution}
-They meet at $(0,0)$ and $(3,9)$. Around the $y$-axis, slice horizontally. At height $y$ the region runs from the line $x = \frac y3$ out to the parabola $x = \sqrt y$, so $R = \sqrt y$ and $r = \frac y3$.
+Each slice is a disk of radius $\sqrt x$.
 
-\[V = \pi\int_0^9\parens{y - \frac{y^2}{9}}dy = \pi\parens{\frac{81}{2} - 27} = \frac{27\pi}{2}.\]
+\[V = \pi\int_0^4 \parens{\sqrt x}^2 dx = \pi\int_0^4 x\,dx = 8\pi.\]
+\end{solution}
+\item[(d)] Revolve the region between $y = \sqrt{x}$ and $y = x^2$ around the $y$-axis, and then around the line $x = -1$.
+\begin{solution}
+They meet at $(0,0)$ and $(1,1)$. Both axes are vertical, so slice horizontally. At height $y$ the region runs from the parabola $x = y^2$ (inner) out to the root curve $x = \sqrt y$ (outer).
 
-Around $y = -1$, slice vertically. The radii are distances to $y=-1$: $R = 3x + 1$ and $r = x^2 + 1$.
+\[V_{y\text{-axis}} = \pi\int_0^1\parens{y - y^4}dy = \pi\parens{\frac12 - \frac15} = \frac{3\pi}{10}.\]
 
-\[V = \pi\int_0^3\parens{(3x+1)^2 - (x^2+1)^2}dx = \pi\int_0^3\parens{-x^4 + 7x^2 + 6x}dx = \frac{207\pi}{5}.\]
+Around $x = -1$ each radius grows by $1$: $R = \sqrt y + 1$ and $r = y^2 + 1$.
+
+\[V = \pi\int_0^1\parens{(\sqrt y + 1)^2 - (y^2+1)^2}dy = \pi\int_0^1\parens{y + 2\sqrt y - y^4 - 2y^2}dy = \frac{29\pi}{30}.\]
 \end{solution}
 \end{enumerate}
 \item[28.] Work.
 \begin{enumerate}
-\item[(a)] If 2 J of work stretches a spring from 30 cm (natural length) to 42 cm, how much work stretches it from 35 cm to 40 cm? When pulled with 30 N, what is its length?
+\item[(a)] A spring has natural length 20 cm, and 0.9 J of work stretches it from 20 cm to 26 cm. How much work stretches it from 24 cm to 28 cm? What force holds it at a length of 30 cm?
 \begin{solution}
-Work in meters: stretching $0.12$ m takes $\int_0^{0.12}kx\,dx = 0.0072k = 2$, so $k = \frac{2500}{9}$ N/m.
+Work in meters: stretching $0.06$ m takes $\int_0^{0.06}kx\,dx = 0.0018k = 0.9$, so $k = 500$ N/m.
 
-\[W = \int_{0.05}^{0.10}kx\,dx = \frac k2\parens{0.01 - 0.0025} = \frac{25}{24} \approx 1.04\ \text{J}.\]
+\[W = \int_{0.04}^{0.08}500x\,dx = 250\parens{0.0064 - 0.0016} = 1.2\ \text{J}.\]
 
-With $30$ N, $x = \frac{30}{k} = 0.108$ m, so the spring is $30 + 10.8 = 40.8$ cm long.
+At $30$ cm the stretch is $0.1$ m, so the force is $500(0.1) = 50$ N.
 \end{solution}
-\item[(b)] A force of 12 N holds a spring stretched from its natural length of 10 cm to 14 cm. How much work stretches it from 12 cm to 16 cm?
-\begin{solution}
-$12 = k(0.04)$ gives $k = 300$ N/m. The stretch goes from $0.02$ m to $0.06$ m.
-
-\[W = \int_{0.02}^{0.06}300x\,dx = 150\parens{0.0036 - 0.0004} = 0.48\ \text{J}.\]
-\end{solution}
-\item[(c)] A spring has natural length 10 cm and spring constant $k$. Compare the work $W_1$ from 10 cm to 15 cm with $W_2$ from 15 cm to 20 cm.
+\item[(b)] A spring has natural length 10 cm and spring constant $k$. Compare the work $W_1$ from 10 cm to 15 cm with $W_2$ from 15 cm to 20 cm.
 \begin{solution}
 \[W_1 = \int_0^{0.05}kx\,dx = \frac{k}{800}, \qquad W_2 = \int_{0.05}^{0.10}kx\,dx = \frac{3k}{800}.\]
 
 So $W_2 = 3W_1$. The force grows with the stretch, so the second 5 cm is pulled against a larger force. On the graph of $F = kx$, $W_1$ is a triangle and $W_2$ is a trapezoid three times its size.
+\end{solution}
+\item[(c)] A 10 m chain with mass 2 kg per meter hangs from the top of a building. How much work does it take to pull the whole chain up to the top? Use $g = 9.8\ \text{m}/\text{s}^2$.
+\begin{solution}
+After $x$ meters have been pulled up, $10 - x$ meters still hang, with weight $2(9.8)(10-x) = 19.6(10-x)$ N. That is the force needed to lift the next small piece $dx$.
+
+\[W = \int_0^{10} 19.6(10-x)\,dx = 19.6\brac{10x - \frac{x^2}{2}}_0^{10} = 19.6\cdot 50 = 980\ \text{J}.\]
+
+Check: the chain's center of mass rises $5$ m, and $(20\ \text{kg})(9.8)(5\ \text{m}) = 980$ J.
+\end{solution}
+\item[(d)] A force of $F(x) = \frac{x}{(x^2+1)^2}$ pounds acts on an object $x$ feet from the origin. Find the work done moving the object from $x=0$ to $x=1$.
+\begin{solution}
+Let $u = x^2 + 1$, so $du = 2x\,dx$, and the bounds become $1$ and $2$.
+
+\[W = \frac12\int_1^2 u^{-2}\,du = \frac12\brac{-\frac1u}_1^2 = \frac12\parens{1 - \frac12} = \frac14\ \text{ft-lb}.\]
 \end{solution}
 \end{enumerate}
 \end{enumerate}

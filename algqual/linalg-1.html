@@ -21,7 +21,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 <div class="page-content">
 <div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="linalg.html">Linear Algebra</a> &rsaquo; <span>Minimal and characteristic polynomials</span></div>
-<div class="part-nav"><a href="modules.html">&larr; Part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
+<div class="part-nav"><a href="modules.html">&larr; Previous part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
 <h2 style="border:none; margin-top:0.5em;">Minimal and characteristic polynomials</h2>
 
 <div class="thm-block defn">
@@ -41,7 +41,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. So the minimal polynomial only sees the largest Jordan block for each eigenvalue, while $\chi$ sees the total size.
+  <span class="thm-label">Remark.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. So the minimal polynomial only sees the largest Jordan block for each eigenvalue, while $\chi$ sees the total size.
 </div>
 
 <div class="thm-block prop">
@@ -50,14 +50,14 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true over $\mathbb{C}$), there are no $A, B$ with $AB - BA = I$. This is why the Heisenberg relation from quantum mechanics needs infinite-dimensional spaces, and it shows up on quals a lot.
+  <span class="thm-label">Remark.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true over $\mathbb{C}$), there are no $A, B$ with $AB - BA = I$. This is why the Heisenberg relation from quantum mechanics needs infinite-dimensional spaces, and it shows up on quals a lot.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Compute $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. So over $k[x]$ the commutator relation works. This doesn't contradict the above, since there's no trace on all operators of an infinite-dimensional space, so the trace argument doesn't go through.
 </div>
 
-<div class="part-nav"><a href="modules.html">&larr; Part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
+<div class="part-nav"><a href="modules.html">&larr; Previous part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>
 </div>
 
 <footer><a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico</footer>

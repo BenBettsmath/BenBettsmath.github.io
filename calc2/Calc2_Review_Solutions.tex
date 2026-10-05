@@ -35,7 +35,7 @@
 
 \begin{enumerate}
 \setcounter{enumi}{0}
-\item Memorization
+\item Formulas to know
 \begin{enumerate}
 \item[(a)] Derivative and graph of $\sin^{-1}(x)$.
 \begin{solution}
@@ -53,7 +53,7 @@ The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ 
 \end{enumerate}
 
 \setcounter{enumi}{1}
-\item Logarithmic Differentiation
+\item Logarithmic differentiation
 \begin{enumerate}
 \item[(a)] Find $y'$ if $y=x^{\sqrt{x}}$.
 \begin{solution}
@@ -68,16 +68,17 @@ $\ln y=\sin x\,\ln(\sin x)$, so
 \[ y'=(\sin x)^{\sin x}\cos x\,\bigl(\ln(\sin x)+1\bigr). \]
 \end{solution}
 
-\item[(d)] Find the slope of the tangent line to $y=x^{\ln x}$ at $x=e$.
+\item[(d)] Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.
 \begin{solution}
-$\ln y=(\ln x)^2$, so $\dfrac{y'}{y}=\dfrac{2\ln x}{x}$ and $y'=x^{\ln x}\cdot\dfrac{2\ln x}{x}$. At $x=e$, $y=e^{1}=e$, so
-\[ y'(e)=e\cdot\frac{2}{e}=2. \]
+Take $\ln$ of both sides and expand: $\ln y=4\ln(x+1)+x-\frac12\ln(1+3x)$. Differentiate implicitly.
+\[ \frac{y'}{y}=\frac{4}{x+1}+1-\frac{3}{2(1+3x)}. \]
+At $x=0$, $y=1$, so $y'(0)=4+1-\frac32=\frac72$.
 \end{solution}
 
 \end{enumerate}
 
 \setcounter{enumi}{2}
-\item Derivatives and Logs
+\item Derivatives of logarithms
 \begin{enumerate}
 \item[(c)] Find $y$ if $y'=\frac{\sin(x)}{\cos(x)}$.
 \begin{solution}
@@ -90,15 +91,15 @@ Let $u=\cos x$, so $du=-\sin x\,dx$.
 We need $9-e^x>0$, that is $x<\ln 9$. So the domain is $(-\infty,\ln 9)$. On this domain $e^x$ takes every value in $(0,9)$, so $\sqrt{9-e^x}$ takes every value in $(0,3)$, and $\ln$ of that takes every value in $(-\infty,\ln 3)$. The range is $(-\infty,\ln 3)$.
 \end{solution}
 
-\item[(f)] Let $f(x)=\sqrt{4-e^{2x}}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?
+\item[(f)] Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?
 \begin{solution}
-Domain: $4-e^{2x}\ge 0$ means $e^{2x}\le 4$, that is $x\le\ln 2$. On $(-\infty,\ln 2]$ the values of $e^{2x}$ fill $(0,4]$, so $4-e^{2x}$ fills $[0,4)$ and the range of $f$ is $[0,2)$.
+$f$ is defined for every $x$, so the domain is $(-\infty,\infty)$. The values of $e^{-x}$ fill $(0,\infty)$, so the range of $f$ is $(-\infty,3)$.
 
-Inverse: set $y=\sqrt{4-e^{2x}}$ and solve for $x$. Then $y^2=4-e^{2x}$, so $x=\frac12\ln(4-y^2)$. Swapping names,
-\[ f^{-1}(x)=\tfrac12\ln(4-x^2), \]
-with domain $[0,2)$ (the range of $f$) and range $(-\infty,\ln 2]$ (the domain of $f$).
+Inverse: set $y=3-e^{-x}$ and solve for $x$. Then $e^{-x}=3-y$, so $x=-\ln(3-y)$. Swapping names,
+\[ f^{-1}(x)=-\ln(3-x), \]
+with domain $(-\infty,3)$ (the range of $f$) and range $(-\infty,\infty)$ (the domain of $f$).
 
-As $x\to-\infty$, $e^{2x}\to 0$ so $f(x)\to\sqrt4=2$. The line $y=2$ is a horizontal asymptote.
+As $x\to\infty$, $e^{-x}\to0$ so $f(x)\to3$. The line $y=3$ is a horizontal asymptote.
 \end{solution}
 
 \item[(g)] Find $y'(1)$ if $y=3^x\log_3(x)$.
@@ -110,7 +111,7 @@ Product rule, with $\frac{d}{dx}3^x=3^x\ln 3$ and $\frac{d}{dx}\log_3 x=\frac{1}
 \end{enumerate}
 
 \setcounter{enumi}{3}
-\item Derivatives and Inverse trig functions
+\item Inverse trig functions
 \begin{enumerate}
 \item[(a)] Prove the identity $\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}$ (ignore domain issues).
 \begin{solution}
@@ -146,7 +147,7 @@ Let $u=x^2$, so $du=2x\,dx$.
 \end{enumerate}
 
 \setcounter{enumi}{4}
-\item Hyperbolic trig
+\item Hyperbolic functions
 \begin{enumerate}
 \item[(b)] Find $\cosh^{-1}(2)$.
 \begin{solution}
@@ -194,10 +195,10 @@ $f'(x)=5+2\cos x-2\sin x$. Since $|2\cos x-2\sin x|\le 2\sqrt2<5$, $f'(x)>0$ and
 \[ (f^{-1})'(2)=\frac{1}{f'(0)}=\frac{1}{5+2}=\frac17. \]
 \end{solution}
 
-\item[(i)] Let $f(x)=x^3+x+1$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=3$.
+\item[(i)] Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.
 \begin{solution}
-$f(1)=3$, so $f^{-1}(3)=1$ and the point is $(3,1)$. $f'(x)=3x^2+1$, so $(f^{-1})'(3)=\frac{1}{f'(1)}=\frac14$. The tangent line is
-\[ y=1+\tfrac14(x-3). \]
+$f(0)=0+1=1$, so $f^{-1}(1)=0$ and the point is $(1,0)$. $f'(x)=1+e^x$, so $(f^{-1})'(1)=\frac{1}{f'(0)}=\frac12$. The tangent line is
+\[ y=\tfrac12(x-1). \]
 \end{solution}
 
 \item[(j)] Let $f(x)=2x^3+\ln x+\sin(\pi x)$ for $x>0$ (assume $f$ is 1-1). Find the slope of the tangent line to the graph of $f^{-1}$ at $x=2$.
@@ -209,7 +210,7 @@ $f(1)=2+0+0=2$, so $f^{-1}(2)=1$. $f'(x)=6x^2+\frac1x+\pi\cos(\pi x)$, so $f'(1)
 \end{enumerate}
 
 \setcounter{enumi}{6}
-\item L'Hopital's Rule
+\item L'H\^opital's rule
 \begin{enumerate}
 \item[(c)] $\lim_{x\to0^+}x^x$
 \begin{solution}
@@ -231,10 +232,10 @@ The form $\infty-\infty$. Combine into one fraction, then apply L'Hopital twice 
 \[ \lim_{x\to0^+}\frac{e^x-1-x}{x(e^x-1)}\overset{H}{=}\lim_{x\to0^+}\frac{e^x-1}{e^x-1+xe^x}\overset{H}{=}\lim_{x\to0^+}\frac{e^x}{2e^x+xe^x}=\frac12. \]
 \end{solution}
 
-\item[(j)] $\lim_{x\to0}\frac{\tan^{-1}(2x)}{x}$
+\item[(j)] $\lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}$
 \begin{solution}
-The form $\frac00$.
-\[ \lim_{x\to0}\frac{\tan^{-1}(2x)}{x}\overset{H}{=}\lim_{x\to0}\frac{\frac{2}{1+4x^2}}{1}=2. \]
+The form $\frac00$, since $\ln1=0$ and $\cos^{-1}(1)=0$.
+\[ \lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}\overset{H}{=}\lim_{x\to1^-}\frac{1/x}{-1/\sqrt{1-x^2}}=\lim_{x\to1^-}\left(-\frac{\sqrt{1-x^2}}{x}\right)=0. \]
 \end{solution}
 
 \item[(k)] $\lim_{x\to\infty}x\left(\frac{\pi}{2}-\tan^{-1}(2x)\right)$
@@ -258,7 +259,7 @@ Use the definition: $\cosh(\ln x)=\frac{e^{\ln x}+e^{-\ln x}}{2}=\frac{x+\frac1x
 \end{enumerate}
 
 \setcounter{enumi}{7}
-\item U-sub
+\item Substitution
 \begin{enumerate}
 \item[(a)] $\int_0^{(\pi/2)^{1/3}}x^2\sin x^3\,dx$
 \begin{solution}
@@ -293,7 +294,7 @@ Let $u=1+\sqrt x$, $du=\frac{dx}{2\sqrt x}$.
 \end{enumerate}
 
 \setcounter{enumi}{8}
-\item Integration by Parts
+\item Integration by parts
 \begin{enumerate}
 \item[(b)] $\int_1^e x^4\ln(x)\,dx$
 \begin{solution}
@@ -316,11 +317,10 @@ Let $u=x$, $dv=\sec^2x\,dx$, so $du=dx$, $v=\tan x$.
 \[ \int x\sec^2x\,dx=x\tan x-\int\tan x\,dx=x\tan x+\ln|\cos x|+C. \]
 \end{solution}
 
-\item[(h)] $\int e^x\cos(2x)\,dx$
+\item[(h)] $\int x\sin(2x)\,dx$
 \begin{solution}
-Call it $I$. Parts with $u=\cos 2x$, $dv=e^x\,dx$, then with $u=\sin2x$, $dv=e^x\,dx$:
-\[ I=e^x\cos2x+2\int e^x\sin2x\,dx=e^x\cos2x+2e^x\sin2x-4I. \]
-So $5I=e^x(\cos2x+2\sin2x)$ and $I=\frac{e^x(\cos2x+2\sin2x)}{5}+C$.
+Let $u=x$, $dv=\sin2x\,dx$, so $du=dx$, $v=-\frac{\cos2x}{2}$.
+\[ \int x\sin2x\,dx=-\frac{x\cos2x}{2}+\int\frac{\cos2x}{2}\,dx=-\frac{x\cos2x}{2}+\frac{\sin2x}{4}+C. \]
 \end{solution}
 
 \item[(i)] $\int_0^1x\tan^{-1}(x)\,dx$
@@ -334,7 +334,7 @@ using $\frac{x^2}{1+x^2}=1-\frac{1}{1+x^2}$. At the bounds,
 \end{enumerate}
 
 \setcounter{enumi}{9}
-\item Trig Integrals
+\item Trig integrals
 \begin{enumerate}
 \item[(a)] $\int\sin^3(x)\cos^2(x)\,dx$
 \begin{solution}
@@ -360,16 +360,16 @@ Use the product formula $\sin A\cos B=\frac12[\sin(A+B)+\sin(A-B)]$ with $A=3x$,
 \[ \frac12\int(\sin5x+\sin x)\,dx=-\frac{\cos5x}{10}-\frac{\cos x}{2}+C. \]
 \end{solution}
 
-\item[(j)] $\int_0^{\pi/2}\cos^2(3x)\,dx$
+\item[(j)] $\int_0^{\pi/3}\tan(x)\sec^3(x)\,dx$
 \begin{solution}
-Use $\cos^2\theta=\frac{1+\cos2\theta}{2}$ with $\theta=3x$.
-\[ \int_0^{\pi/2}\frac{1+\cos6x}{2}\,dx=\left[\frac x2+\frac{\sin6x}{12}\right]_0^{\pi/2}=\frac{\pi}{4}+\frac{\sin3\pi}{12}=\frac{\pi}{4}. \]
+Save $\sec x\tan x$ and let $u=\sec x$, $du=\sec x\tan x\,dx$. The bounds become $u=1$ and $u=2$.
+\[ \int_0^{\pi/3}\sec^2x\,(\sec x\tan x)\,dx=\int_1^2u^2\,du=\frac{8-1}{3}=\frac73. \]
 \end{solution}
 
 \end{enumerate}
 
 \setcounter{enumi}{10}
-\item Trig sub
+\item Trig substitution
 \begin{enumerate}
 \item[(a)] $\int_2^3\frac{dx}{(x^2-1)^{3/2}}$
 \begin{solution}
@@ -408,7 +408,7 @@ Let $x=\tan\theta$, $dx=\sec^2\theta\,d\theta$, so $(1+x^2)^2=\sec^4\theta$. The
 \end{enumerate}
 
 \setcounter{enumi}{11}
-\item Partial Fraction Decomposition
+\item Partial fractions
 \begin{enumerate}
 \item[(a)(ii)] $\int\frac{3x^2+6x+2}{x^2+3x+2}\,dx$
 \begin{solution}
@@ -437,7 +437,7 @@ Each power of a linear factor gets a constant on top, and each power of an irred
 \end{enumerate}
 
 \setcounter{enumi}{12}
-\item Improper Integrals
+\item Improper integrals
 \begin{enumerate}
 \item[(b)] $\int_0^1\frac{\ln x}{x}\,dx$
 \begin{solution}
@@ -453,11 +453,11 @@ If $p=1$: $\lim_{t\to\infty}\ln t=\infty$, divergent. If $p\neq1$:
 For $p>1$ the exponent $1-p$ is negative, so $t^{1-p}\to0$ and the integral is $\frac{1}{p-1}$. For $p<1$, $t^{1-p}\to\infty$ and it diverges. So it converges exactly when $p>1$.
 \end{solution}
 
-\item[(l)] $\int_0^\infty e^{-x^2}\,dx$ (do not determine the value)
+\item[(l)] $\int_0^\infty e^{x^2}\,dx$ (don't determine the value)
 \begin{solution}
-Split at $1$. The piece $\int_0^1e^{-x^2}\,dx$ is an ordinary integral of a continuous function. For $x\ge1$, $x^2\ge x$, so $0<e^{-x^2}\le e^{-x}$, and
-\[ \int_1^\infty e^{-x}\,dx=\lim_{t\to\infty}(e^{-1}-e^{-t})=\frac1e. \]
-By comparison $\int_1^\infty e^{-x^2}\,dx$ converges, so $\int_0^\infty e^{-x^2}\,dx$ converges.
+For $x\ge0$, $x^2\ge0$, so $e^{x^2}\ge1$. Then
+\[ \int_0^te^{x^2}\,dx\ge\int_0^t1\,dx=t\to\infty, \]
+so the integral diverges to $\infty$ by comparison. The region under the graph over $[0,\infty)$ contains a strip of height $1$ and infinite length, so it has infinite area.
 \end{solution}
 
 \item[(n)] $\int_0^\infty\frac{e^x}{(1+e^x)^3}\,dx$
@@ -574,7 +574,7 @@ Since $\sum b_n$ converges, $b_n\to0$. As $b_n>0$, this means $\frac1{b_n}\to\in
 \end{enumerate}
 
 \setcounter{enumi}{16}
-\item Telescoping Series
+\item Telescoping series
 \begin{enumerate}
 \item[(a)] $\sum_{n=2}^\infty\frac{1}{n^2-1}$
 \begin{solution}
@@ -600,16 +600,17 @@ For $N\ge k$, every $f(m)$ with $k<m\le N$ appears once with each sign, so
 \[ s_N=\bigl(f(1)+\cdots+f(k)\bigr)-\bigl(f(N+1)+\cdots+f(N+k)\bigr)\to f(1)+\cdots+f(k)-kL. \]
 \end{solution}
 
-\item[(f)] $\sum_{k=3}^\infty\frac{4}{(k-1)(k+1)}$
+\item[(f)] Determine if $\sum_{n=1}^\infty\ln\left(1+\frac1n\right)$ converges or diverges by writing out its partial sums.
 \begin{solution}
-$\frac{4}{(k-1)(k+1)}=2\left(\frac{1}{k-1}-\frac{1}{k+1}\right)$. In $s_N=\sum_{k=3}^N$ the surviving terms are
-\[ s_N=2\left(\frac12+\frac13-\frac1N-\frac1{N+1}\right)\to2\cdot\frac56=\frac53. \]
+$\ln\left(1+\frac1n\right)=\ln\frac{n+1}{n}=\ln(n+1)-\ln n$, so the partial sums telescope.
+\[ s_N=(\ln2-\ln1)+(\ln3-\ln2)+\cdots+\bigl(\ln(N+1)-\ln N\bigr)=\ln(N+1)\to\infty. \]
+The series diverges. (The TFD says nothing here, since the terms do go to $0$.)
 \end{solution}
 
 \end{enumerate}
 
 \setcounter{enumi}{17}
-\item Geometric Series
+\item Geometric series
 \begin{enumerate}
 \item[(b)] $\sum_{n=0}^\infty\frac{4^{2n-1}}{17^n}$
 \begin{solution}
@@ -683,9 +684,9 @@ A $p$-series with $p=e>1$ (starting at $n=5$ does not change convergence). It co
 A $p$-series with $p=10^{-6}\le1$. It diverges, no matter how slowly.
 \end{solution}
 
-\item[(d)] $1+\frac{1}{2\sqrt2}+\frac{1}{3\sqrt3}+\frac{1}{4\sqrt4}+\cdots$
+\item[(d)] $\sum_{n=1}^\infty\frac{n^2+\sqrt n}{n^4}$
 \begin{solution}
-The $n$th term is $\frac{1}{n\sqrt n}=\frac{1}{n^{3/2}}$. A $p$-series with $p=\frac32>1$, so it converges.
+Split the term: $\frac{n^2+\sqrt n}{n^4}=\frac{1}{n^2}+\frac{1}{n^{7/2}}$. Both are $p$-series with $p>1$ ($p=2$ and $p=\frac72$), and a sum of two convergent series converges. So the series converges.
 \end{solution}
 
 \item[(e)] For which $p$ does $\sum_{n=1}^\infty\frac{1}{n^{2p-1}}$ converge?
@@ -710,9 +711,9 @@ The limit is positive and finite and $\sum\frac1n$ diverges, so by the LCT the s
 $0\le\tan^{-1}(n)<\frac{\pi}{2}$, so for $n\ge1$, $0\le\frac{\tan^{-1}n}{n^2+1}\le\frac{\pi/2}{n^2}$. Since $\sum\frac{\pi/2}{n^2}$ converges ($p=2$), the DCT shows the series converges. (The $n=0$ term is $0$ and does not matter.)
 \end{solution}
 
-\item[(f)] $\sum_{n=1}^\infty\frac{\cos^2n}{n^2+n}$
+\item[(f)] $\sum_{n=1}^\infty\frac{1}{2^n+n}$
 \begin{solution}
-$0\le\frac{\cos^2n}{n^2+n}\le\frac{1}{n^2}$, and $\sum\frac1{n^2}$ converges. By the DCT the series converges.
+$0<\frac{1}{2^n+n}<\frac{1}{2^n}$, and $\sum\left(\frac12\right)^n$ is a convergent geometric series ($|r|=\frac12<1$). By the DCT the series converges.
 \end{solution}
 
 \item[(g)] $\sum_{n=1}^\infty\frac{n^2-2n}{n^{7/2}+1}$
@@ -734,6 +735,11 @@ since $\left|\frac{\cos n}{n}\right|\le\frac1n\to0$. By the LCT the series conve
 \setcounter{enumi}{21}
 \item Alternating Series Test (AST)
 \begin{enumerate}
+\item[(a)] $\sum_{n=2}^\infty\frac{(-1)^n}{n\ln n}$
+\begin{solution}
+Let $b_n=\frac{1}{n\ln n}$. For $n\ge2$, $b_n>0$, and $n\ln n$ is increasing to $\infty$, so $b_n$ is decreasing and $b_n\to0$. By the AST it converges.
+\end{solution}
+
 \item[(b)] $\sum_{i=1}^\infty\frac{\cos(\pi i)}{i^{0.1}}$
 \begin{solution}
 $\cos(\pi i)=(-1)^i$, so this is $\sum(-1)^ib_i$ with $b_i=\frac{1}{i^{0.1}}$. Then $b_i>0$, $b_i$ is decreasing, and $b_i\to0$. By the AST it converges.
@@ -749,9 +755,11 @@ $(-1)^{k+15}=-(-1)^k$, so this is $-\sum(-1)^kb_k$ with $b_k=\frac1{\ln k}$. Sin
 Let $b_n=\frac{\ln n}{\sqrt n}$ and $f(x)=\frac{\ln x}{\sqrt x}$. Then $f'(x)=\frac{2-\ln x}{2x^{3/2}}<0$ for $x>e^2\approx7.4$, so $b_n$ is decreasing for $n\ge8$. By L'Hopital, $\lim_{x\to\infty}\frac{\ln x}{\sqrt x}=\lim_{x\to\infty}\frac{1/x}{1/(2\sqrt x)}=\lim_{x\to\infty}\frac{2}{\sqrt x}=0$. The AST applies from $n=8$ on, and the first seven terms do not affect convergence. It converges.
 \end{solution}
 
-\item[(e)] $\sum_{n=1}^\infty\frac{(-1)^nn^2}{n^2+1}$. Can you use the AST?
+\item[(e)] $\sum_{n=1}^\infty\frac{(-1)^n\sqrt n}{n+4}$
 \begin{solution}
-No. Here $b_n=\frac{n^2}{n^2+1}\to1$, so the hypothesis $b_n\to0$ fails. In fact the terms $(-1)^nb_n$ do not go to $0$, so the series diverges by the TFD.
+Let $b_n=\frac{\sqrt n}{n+4}$ and $f(x)=\frac{\sqrt x}{x+4}$. Then
+\[ f'(x)=\frac{\frac{x+4}{2\sqrt x}-\sqrt x}{(x+4)^2}=\frac{4-x}{2\sqrt x\,(x+4)^2}<0 \quad\text{for } x>4, \]
+so $b_n$ is decreasing for $n\ge4$. Dividing top and bottom by $\sqrt n$, $b_n=\frac{1}{\sqrt n+4/\sqrt n}\to0$. The AST applies from $n=4$ on, so the series converges.
 \end{solution}
 
 \item[(f)] $a_n=\frac1n$ for $n$ odd, $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?
@@ -815,16 +823,18 @@ Both work. Root: $\sqrt[n]{a_n}=\frac{2}{\left(n^{1/n}\right)^5}\to2>1$. Ratio: 
 \end{enumerate}
 
 \setcounter{enumi}{24}
-\item Absolute/Conditional
+\item Absolute and conditional convergence
 \begin{enumerate}
 \item[(a)] $\sum_{n=1}^\infty\frac{(-1)^n}{n}$
 \begin{solution}
 $\sum\left|\frac{(-1)^n}{n}\right|=\sum\frac1n$ diverges, so it is not absolutely convergent. With $b_n=\frac1n$ positive, decreasing, and $b_n\to0$, the AST shows it converges. So it converges conditionally.
 \end{solution}
 
-\item[(c)] $\sum_{k=2}^\infty\frac{\cos(\pi k)}{\ln k}$
+\item[(c)] $\sum_{k=1}^\infty\frac{k\cos(\pi k)}{k^3+1}$
 \begin{solution}
-This is $\sum\frac{(-1)^k}{\ln k}$. For $k\ge2$, $\ln k<k$, so $\frac1{\ln k}>\frac1k$, and $\sum\frac1{\ln k}$ diverges by the DCT. The AST applies as in 22(c), so it converges conditionally.
+$\cos(\pi k)=(-1)^k$, so $|a_k|=\frac{k}{k^3+1}$. Compare with $\frac1{k^2}$:
+\[ \lim_{k\to\infty}\frac{k\cdot k^2}{k^3+1}=1. \]
+Since $\sum\frac1{k^2}$ converges, $\sum|a_k|$ converges by the LCT. The series converges absolutely.
 \end{solution}
 
 \item[(d)] $\sum_{n=1}^\infty\frac{(-1)^nn^3}{2^n}$
@@ -876,7 +886,7 @@ The center is $3$. Ratio Test: $\left|\frac{a_{n+1}}{a_n}\right|=2|x-3|\left(\fr
 \end{enumerate}
 
 \setcounter{enumi}{26}
-\item Power series from Geometric Series
+\item Power series from geometric series
 \begin{enumerate}
 \item[(b)] $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.
 \begin{solution}
@@ -913,7 +923,7 @@ Differentiate the geometric series and multiply by $x$: $\sum_{n=1}^\infty nx^n=
 \end{enumerate}
 
 \setcounter{enumi}{27}
-\item Taylor's Theorem
+\item Taylor and Maclaurin series
 \begin{enumerate}
 \item[(b)] Find the Maclaurin series for $\cosh(x)$ and $\sinh(x)$.
 \begin{solution}
@@ -964,7 +974,7 @@ $\sin x-x=-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots$, so
 \end{enumerate}
 
 \setcounter{enumi}{28}
-\item Approximations
+\item Approximations and error bounds
 \begin{enumerate}
 \item[(a)] Approximate $\int_0^{0.1}\frac{dx}{1+x^4}$ to within $10^{-6}$.
 \begin{solution}
@@ -1008,10 +1018,10 @@ The bound is true but far from the actual error $\frac{35}{2}$.
 The series alternates and $b_n=\frac1{n!}$ decreases to $0$. Using the terms $n=0,\dots,N$, ASE bounds the error by $b_{N+1}=\frac{1}{(N+1)!}$. Since $\frac1{6!}=\frac1{720}>0.001$ and $\frac1{7!}=\frac1{5040}<0.001$, we need $N+1=7$, that is the $7$ terms $n=0,\dots,6$.
 \end{solution}
 
-\item[(i)] $f(x)=\ln(1+x)$: find $T_2(x)$ and bound $|f(x)-T_2(x)|$ for $0\le x\le0.2$.
+\item[(i)] $f(x)=e^x$: find $T_3(x)$ and bound $|f(x)-T_3(x)|$ for $-1\le x\le1$.
 \begin{solution}
-$f(0)=0$, $f'(x)=\frac1{1+x}$, $f''(x)=-\frac{1}{(1+x)^2}$, so $T_2(x)=x-\frac{x^2}{2}$. Next, $f^{\prime\prime\prime}(x)=\frac{2}{(1+x)^3}\le2$ on $[0,0.2]$, so take $M=2$:
-\[ |f(x)-T_2(x)|\le\frac{M}{3!}x^3\le\frac{2}{6}(0.2)^3=\frac{1}{375}\approx0.0027. \]
+Every derivative of $e^x$ is $e^x$, and $e^0=1$, so $T_3(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}$. On $[-1,1]$, $|f^{(4)}(x)|=e^x\le e<3$, so take $M=3$:
+\[ |f(x)-T_3(x)|\le\frac{M}{4!}|x|^4\le\frac{3}{24}=\frac18. \]
 \end{solution}
 
 \item[(j)] Approximate $\int_0^1e^{-x^2}\,dx$ to within $0.01$ (use ASE).

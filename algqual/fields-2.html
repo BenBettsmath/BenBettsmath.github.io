@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 5. Field Theory &middot; Splitting fields, normality, separability</title>
+<title>Part 5. Field Theory &middot; Splitting fields, normal and separable extensions</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Splitting fields, normality, separability</span></div>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Splitting fields, normal and separable extensions</span></div>
 <div class="part-nav"><a href="fields-1.html">&larr; Field extensions and degrees</a><a href="fields.html">Field Theory contents</a><a href="fields-3.html">Finite fields &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Splitting fields, normality, separability</h2>
+<h2 style="border:none; margin-top:0.5em;">Splitting fields, normal and separable extensions</h2>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Splitting field.</strong> <span class="cite">(D&amp;F &sect;13.4)</span>
@@ -50,7 +50,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block ex">
   <span class="thm-label">Example.</span> In characteristic $0$, if $f$ is irreducible then $f' \neq 0$ and has smaller degree, so $\gcd(f, f')$ is a proper divisor of the irreducible $f$, which means it's $1$. So all irreducibles are separable. Finite fields $\mathbb{F}_q$: Frobenius $x \mapsto x^q$ is a bijection, so $\mathbb{F}_q$ is perfect.<br>
-  <span class="thm-label">Non-example (inseparable!).</span> Over $F = \mathbb{F}_p(t)$, the polynomial $x^p - t$ is irreducible by Eisenstein at $t$. But $(x^p - t)' = 0$ in characteristic $p$, so $x^p - t = (x - \sqrt[p]{t})^p$ has a single root of multiplicity $p$. Hence the extension $\mathbb{F}_p(t, \sqrt[p]{t})/\mathbb{F}_p(t)$ is not separable, and $\mathbb{F}_p(t)$ is not perfect.
+  <span class="thm-label">Non-example (inseparable).</span> Over $F = \mathbb{F}_p(t)$, the polynomial $x^p - t$ is irreducible by Eisenstein at $t$. But $(x^p - t)' = 0$ in characteristic $p$, so $x^p - t = (x - \sqrt[p]{t})^p$ has a single root of multiplicity $p$. Hence the extension $\mathbb{F}_p(t, \sqrt[p]{t})/\mathbb{F}_p(t)$ is not separable, and $\mathbb{F}_p(t)$ is not perfect.
 </div>
 
 <div class="thm-block prop">
@@ -59,7 +59,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Normal + Separable = Galois.</strong> A finite extension $E/F$ is Galois iff it is normal and separable. Normality makes sure every embedding of $E$ fixing $F$ lands back in $E$, and separability makes sure there are $[E:F]$ different embeddings, since there are no repeated roots to send things to. Together they give $|\mathrm{Aut}(E/F)| = [E:F]$.
+  <span class="thm-label">Remark.</span> <strong>Normal + Separable = Galois.</strong> A finite extension $E/F$ is Galois iff it is normal and separable. Normality makes sure every embedding of $E$ fixing $F$ lands back in $E$, and separability makes sure there are $[E:F]$ different embeddings, since there are no repeated roots to send things to. Together they give $|\mathrm{Aut}(E/F)| = [E:F]$.
 </div>
 
 <div class="part-nav"><a href="fields-1.html">&larr; Field extensions and degrees</a><a href="fields.html">Field Theory contents</a><a href="fields-3.html">Finite fields &rarr;</a></div>

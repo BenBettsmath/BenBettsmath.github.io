@@ -9,9 +9,10 @@
     .page-content { max-width: 1000px; }
     .chapter { margin-top: 2.4em; padding: 0.5em 0 0.2em; border-top: none; font-size: 1.45em; color: #143d42; display: flex; align-items: center; gap: 0.55em; }
     .chapter::before { content: ""; width: 0.42em; height: 1.05em; background: #007A86; border-radius: 2px; display: inline-block; }
-    .toc { padding: 0.85em 1.1em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.4em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); line-height: 2; }
-    .toc b { color: #143d42; }
-    .toc a { margin-right: 1.1em; color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc { padding: 0.9em 1.2em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.6em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); }
+    .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
+    .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
+    .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
     .toc a:hover { border-bottom-color: #007A86; }
     .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
     .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; }
@@ -61,42 +62,43 @@
   <p class="back"><a href="index.html">&larr; Calculus II home</a> &nbsp;|&nbsp; <a href="Calc2_Review_Solutions.pdf">PDF version</a> &nbsp;|&nbsp; <a href="Calc2_Review.pdf">Review sheet (problems only)</a></p>
   <div class="lede">Selected solutions to the Math 1522 review sheet. Problem numbers match the review sheet, so 7(c) here is part (c) of topic 7 there. Try each problem before reading its solution.</div>
   <div class="toc">
-    <b>Jump to</b>
-    <a href="#sec1">1. Memorization</a>
-    <a href="#sec2">2. Log differentiation</a>
-    <a href="#sec3">3. Derivatives and logs</a>
-    <a href="#sec4">4. Inverse trig</a>
-    <a href="#sec5">5. Hyperbolic</a>
-    <a href="#sec6">6. Inverse function thm</a>
-    <a href="#sec7">7. L'Hopital</a>
-    <a href="#sec8">8. U-sub</a>
-    <a href="#sec9">9. By parts</a>
-    <a href="#sec10">10. Trig integrals</a>
-    <a href="#sec11">11. Trig sub</a>
-    <a href="#sec12">12. Partial fractions</a>
-    <a href="#sec13">13. Improper integrals</a>
-    <a href="#sec14">14. Numerical integration</a>
-    <a href="#sec15">15. Sequences</a>
-    <a href="#sec16">16. Divergence test</a>
-    <a href="#sec17">17. Telescoping</a>
-    <a href="#sec18">18. Geometric</a>
-    <a href="#sec19">19. Integral test</a>
-    <a href="#sec20">20. p-series</a>
-    <a href="#sec21">21. Comparison tests</a>
-    <a href="#sec22">22. Alternating series</a>
-    <a href="#sec23">23. Ratio test</a>
-    <a href="#sec24">24. Root test</a>
-    <a href="#sec25">25. Absolute or conditional</a>
-    <a href="#sec26">26. ROC and IOC</a>
-    <a href="#sec27">27. Power series</a>
-    <a href="#sec28">28. Taylor series</a>
-    <a href="#sec29">29. Approximations</a>
-    <a href="#sec30">30. Complex numbers</a>
-    <a href="#sec31">31. Differential equations</a>
+    <ol>
+      <li><a href="#sec1">Formulas to know</a></li>
+      <li><a href="#sec2">Logarithmic differentiation</a></li>
+      <li><a href="#sec3">Derivatives of logarithms</a></li>
+      <li><a href="#sec4">Inverse trig functions</a></li>
+      <li><a href="#sec5">Hyperbolic functions</a></li>
+      <li><a href="#sec6">Inverse Function Theorem</a></li>
+      <li><a href="#sec7">L'Hôpital's rule</a></li>
+      <li><a href="#sec8">Substitution</a></li>
+      <li><a href="#sec9">Integration by parts</a></li>
+      <li><a href="#sec10">Trig integrals</a></li>
+      <li><a href="#sec11">Trig substitution</a></li>
+      <li><a href="#sec12">Partial fractions</a></li>
+      <li><a href="#sec13">Improper integrals</a></li>
+      <li><a href="#sec14">Numerical integration</a></li>
+      <li><a href="#sec15">Sequences</a></li>
+      <li><a href="#sec16">Test for Divergence</a></li>
+      <li><a href="#sec17">Telescoping series</a></li>
+      <li><a href="#sec18">Geometric series</a></li>
+      <li><a href="#sec19">Integral Test</a></li>
+      <li><a href="#sec20">p-series</a></li>
+      <li><a href="#sec21">Comparison tests</a></li>
+      <li><a href="#sec22">Alternating Series Test</a></li>
+      <li><a href="#sec23">Ratio Test</a></li>
+      <li><a href="#sec24">Root Test</a></li>
+      <li><a href="#sec25">Absolute and conditional convergence</a></li>
+      <li><a href="#sec26">Radius and interval of convergence</a></li>
+      <li><a href="#sec27">Power series from geometric series</a></li>
+      <li><a href="#sec28">Taylor and Maclaurin series</a></li>
+      <li><a href="#sec29">Approximations and error bounds</a></li>
+      <li><a href="#sec30">Complex numbers</a></li>
+      <li><a href="#sec31">Differential equations</a></li>
+    </ol>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec1" class="chapter">1. Memorization</h3>
+  <h3 id="sec1" class="chapter">1. Formulas to know</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 1(a).</b> Derivative and graph of $\sin^{-1}(x)$.</p>
@@ -116,7 +118,7 @@ The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ 
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec2" class="chapter">2. Logarithmic Differentiation</h3>
+  <h3 id="sec2" class="chapter">2. Logarithmic differentiation</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 2(a).</b> Find $y'$ if $y=x^{\sqrt{x}}$.</p>
@@ -136,15 +138,16 @@ The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ 
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 2(d).</b> Find the slope of the tangent line to $y=x^{\ln x}$ at $x=e$.</p>
+    <p class="stmt"><b>Problem 2(d).</b> Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.</p>
     <div class="sol">
-      <p>$\ln y=(\ln x)^2$, so $\dfrac{y'}{y}=\dfrac{2\ln x}{x}$ and $y'=x^{\ln x}\cdot\dfrac{2\ln x}{x}$. At $x=e$, $y=e^{1}=e$, so
-\[ y'(e)=e\cdot\frac{2}{e}=2. \]</p>
+      <p>Take $\ln$ of both sides and expand: $\ln y=4\ln(x+1)+x-\frac12\ln(1+3x)$. Differentiate implicitly.
+\[ \frac{y'}{y}=\frac{4}{x+1}+1-\frac{3}{2(1+3x)}. \]
+At $x=0$, $y=1$, so $y'(0)=4+1-\frac32=\frac72$.</p>
     </div>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec3" class="chapter">3. Derivatives and Logs</h3>
+  <h3 id="sec3" class="chapter">3. Derivatives of logarithms</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 3(c).</b> Find $y$ if $y'=\frac{\sin(x)}{\cos(x)}$.</p>
@@ -162,13 +165,13 @@ The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ 
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 3(f).</b> Let $f(x)=\sqrt{4-e^{2x}}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
+    <p class="stmt"><b>Problem 3(f).</b> Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
     <div class="sol">
-      <p>Domain: $4-e^{2x}\ge 0$ means $e^{2x}\le 4$, that is $x\le\ln 2$. On $(-\infty,\ln 2]$ the values of $e^{2x}$ fill $(0,4]$, so $4-e^{2x}$ fills $[0,4)$ and the range of $f$ is $[0,2)$.</p>
-      <p>Inverse: set $y=\sqrt{4-e^{2x}}$ and solve for $x$. Then $y^2=4-e^{2x}$, so $x=\frac12\ln(4-y^2)$. Swapping names,
-\[ f^{-1}(x)=\tfrac12\ln(4-x^2), \]
-with domain $[0,2)$ (the range of $f$) and range $(-\infty,\ln 2]$ (the domain of $f$).</p>
-      <p>As $x\to-\infty$, $e^{2x}\to 0$ so $f(x)\to\sqrt4=2$. The line $y=2$ is a horizontal asymptote.</p>
+      <p>$f$ is defined for every $x$, so the domain is $(-\infty,\infty)$. The values of $e^{-x}$ fill $(0,\infty)$, so the range of $f$ is $(-\infty,3)$.</p>
+      <p>Inverse: set $y=3-e^{-x}$ and solve for $x$. Then $e^{-x}=3-y$, so $x=-\ln(3-y)$. Swapping names,
+\[ f^{-1}(x)=-\ln(3-x), \]
+with domain $(-\infty,3)$ (the range of $f$) and range $(-\infty,\infty)$ (the domain of $f$).</p>
+      <p>As $x\to\infty$, $e^{-x}\to0$ so $f(x)\to3$. The line $y=3$ is a horizontal asymptote.</p>
     </div>
   </div>
 
@@ -181,7 +184,7 @@ with domain $[0,2)$ (the range of $f$) and range $(-\infty,\ln 2]$ (the domain o
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec4" class="chapter">4. Derivatives and Inverse trig functions</h3>
+  <h3 id="sec4" class="chapter">4. Inverse trig functions</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 4(a).</b> Prove the identity $\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}$ (ignore domain issues).</p>
@@ -225,7 +228,7 @@ So the tangent line is $y=\frac{\pi}{2}+2(x-1)$.</p>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec5" class="chapter">5. Hyperbolic trig</h3>
+  <h3 id="sec5" class="chapter">5. Hyperbolic functions</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 5(b).</b> Find $\cosh^{-1}(2)$.</p>
@@ -286,10 +289,10 @@ using $\cosh^2x-\sinh^2x=1$.</p>
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 6(i).</b> Let $f(x)=x^3+x+1$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=3$.</p>
+    <p class="stmt"><b>Problem 6(i).</b> Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.</p>
     <div class="sol">
-      <p>$f(1)=3$, so $f^{-1}(3)=1$ and the point is $(3,1)$. $f'(x)=3x^2+1$, so $(f^{-1})'(3)=\frac{1}{f'(1)}=\frac14$. The tangent line is
-\[ y=1+\tfrac14(x-3). \]</p>
+      <p>$f(0)=0+1=1$, so $f^{-1}(1)=0$ and the point is $(1,0)$. $f'(x)=1+e^x$, so $(f^{-1})'(1)=\frac{1}{f'(0)}=\frac12$. The tangent line is
+\[ y=\tfrac12(x-1). \]</p>
     </div>
   </div>
 
@@ -302,7 +305,7 @@ using $\cosh^2x-\sinh^2x=1$.</p>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec7" class="chapter">7. L'Hopital's Rule</h3>
+  <h3 id="sec7" class="chapter">7. L'Hôpital's rule</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 7(c).</b> $\lim_{x\to0^+}x^x$</p>
@@ -331,10 +334,10 @@ So the limit is $e^2$.</p>
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 7(j).</b> $\lim_{x\to0}\frac{\tan^{-1}(2x)}{x}$</p>
+    <p class="stmt"><b>Problem 7(j).</b> $\lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}$</p>
     <div class="sol">
-      <p>The form $\frac00$.
-\[ \lim_{x\to0}\frac{\tan^{-1}(2x)}{x}\overset{H}{=}\lim_{x\to0}\frac{\frac{2}{1+4x^2}}{1}=2. \]</p>
+      <p>The form $\frac00$, since $\ln1=0$ and $\cos^{-1}(1)=0$.
+\[ \lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}\overset{H}{=}\lim_{x\to1^-}\frac{1/x}{-1/\sqrt{1-x^2}}=\lim_{x\to1^-}\left(-\frac{\sqrt{1-x^2}}{x}\right)=0. \]</p>
     </div>
   </div>
 
@@ -363,7 +366,7 @@ So the limit is $e^2$.</p>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec8" class="chapter">8. U-sub</h3>
+  <h3 id="sec8" class="chapter">8. Substitution</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 8(a).</b> $\int_0^{(\pi/2)^{1/3}}x^2\sin x^3\,dx$</p>
@@ -406,7 +409,7 @@ So the limit is $e^2$.</p>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec9" class="chapter">9. Integration by Parts</h3>
+  <h3 id="sec9" class="chapter">9. Integration by parts</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 9(b).</b> $\int_1^e x^4\ln(x)\,dx$</p>
@@ -436,11 +439,10 @@ So $I=\frac{e^x(\sin x-\cos x)}{2}+C$, and
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 9(h).</b> $\int e^x\cos(2x)\,dx$</p>
+    <p class="stmt"><b>Problem 9(h).</b> $\int x\sin(2x)\,dx$</p>
     <div class="sol">
-      <p>Call it $I$. Parts with $u=\cos 2x$, $dv=e^x\,dx$, then with $u=\sin2x$, $dv=e^x\,dx$:
-\[ I=e^x\cos2x+2\int e^x\sin2x\,dx=e^x\cos2x+2e^x\sin2x-4I. \]
-So $5I=e^x(\cos2x+2\sin2x)$ and $I=\frac{e^x(\cos2x+2\sin2x)}{5}+C$.</p>
+      <p>Let $u=x$, $dv=\sin2x\,dx$, so $du=dx$, $v=-\frac{\cos2x}{2}$.
+\[ \int x\sin2x\,dx=-\frac{x\cos2x}{2}+\int\frac{\cos2x}{2}\,dx=-\frac{x\cos2x}{2}+\frac{\sin2x}{4}+C. \]</p>
     </div>
   </div>
 
@@ -455,7 +457,7 @@ using $\frac{x^2}{1+x^2}=1-\frac{1}{1+x^2}$. At the bounds,
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec10" class="chapter">10. Trig Integrals</h3>
+  <h3 id="sec10" class="chapter">10. Trig integrals</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 10(a).</b> $\int\sin^3(x)\cos^2(x)\,dx$</p>
@@ -490,15 +492,15 @@ using $\frac{x^2}{1+x^2}=1-\frac{1}{1+x^2}$. At the bounds,
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 10(j).</b> $\int_0^{\pi/2}\cos^2(3x)\,dx$</p>
+    <p class="stmt"><b>Problem 10(j).</b> $\int_0^{\pi/3}\tan(x)\sec^3(x)\,dx$</p>
     <div class="sol">
-      <p>Use $\cos^2\theta=\frac{1+\cos2\theta}{2}$ with $\theta=3x$.
-\[ \int_0^{\pi/2}\frac{1+\cos6x}{2}\,dx=\left[\frac x2+\frac{\sin6x}{12}\right]_0^{\pi/2}=\frac{\pi}{4}+\frac{\sin3\pi}{12}=\frac{\pi}{4}. \]</p>
+      <p>Save $\sec x\tan x$ and let $u=\sec x$, $du=\sec x\tan x\,dx$. The bounds become $u=1$ and $u=2$.
+\[ \int_0^{\pi/3}\sec^2x\,(\sec x\tan x)\,dx=\int_1^2u^2\,du=\frac{8-1}{3}=\frac73. \]</p>
     </div>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec11" class="chapter">11. Trig sub</h3>
+  <h3 id="sec11" class="chapter">11. Trig substitution</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 11(a).</b> $\int_2^3\frac{dx}{(x^2-1)^{3/2}}$</p>
@@ -545,7 +547,7 @@ Let $w=\sec\theta$, $dw=\sec\theta\tan\theta\,d\theta$, with bounds $w=1$ and $w
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec12" class="chapter">12. Partial Fraction Decomposition</h3>
+  <h3 id="sec12" class="chapter">12. Partial fractions</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 12(a)(ii).</b> $\int\frac{3x^2+6x+2}{x^2+3x+2}\,dx$</p>
@@ -580,7 +582,7 @@ Let $w=\sec\theta$, $dw=\sec\theta\tan\theta\,d\theta$, with bounds $w=1$ and $w
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec13" class="chapter">13. Improper Integrals</h3>
+  <h3 id="sec13" class="chapter">13. Improper integrals</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 13(b).</b> $\int_0^1\frac{\ln x}{x}\,dx$</p>
@@ -601,11 +603,11 @@ For $p&gt;1$ the exponent $1-p$ is negative, so $t^{1-p}\to0$ and the integral i
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 13(l).</b> $\int_0^\infty e^{-x^2}\,dx$ (do not determine the value)</p>
+    <p class="stmt"><b>Problem 13(l).</b> $\int_0^\infty e^{x^2}\,dx$ (don't determine the value)</p>
     <div class="sol">
-      <p>Split at $1$. The piece $\int_0^1e^{-x^2}\,dx$ is an ordinary integral of a continuous function. For $x\ge1$, $x^2\ge x$, so $0&lt;e^{-x^2}\le e^{-x}$, and
-\[ \int_1^\infty e^{-x}\,dx=\lim_{t\to\infty}(e^{-1}-e^{-t})=\frac1e. \]
-By comparison $\int_1^\infty e^{-x^2}\,dx$ converges, so $\int_0^\infty e^{-x^2}\,dx$ converges.</p>
+      <p>For $x\ge0$, $x^2\ge0$, so $e^{x^2}\ge1$. Then
+\[ \int_0^te^{x^2}\,dx\ge\int_0^t1\,dx=t\to\infty, \]
+so the integral diverges to $\infty$ by comparison. The region under the graph over $[0,\infty)$ contains a strip of height $1$ and infinite length, so it has infinite area.</p>
     </div>
   </div>
 
@@ -745,7 +747,7 @@ Since $\frac{27}{2n}\to0$, the Squeeze Theorem gives $\frac{3^n}{n!}\to0$.</p>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec17" class="chapter">17. Telescoping Series</h3>
+  <h3 id="sec17" class="chapter">17. Telescoping series</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 17(a).</b> $\sum_{n=2}^\infty\frac{1}{n^2-1}$</p>
@@ -780,15 +782,16 @@ As $N\to\infty$, $s_N\to\frac{\pi}{2}+\frac{\pi}{2}-\frac{\pi}{4}-\tan^{-1}(2)=\
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 17(f).</b> $\sum_{k=3}^\infty\frac{4}{(k-1)(k+1)}$</p>
+    <p class="stmt"><b>Problem 17(f).</b> Determine if $\sum_{n=1}^\infty\ln\left(1+\frac1n\right)$ converges or diverges by writing out its partial sums.</p>
     <div class="sol">
-      <p>$\frac{4}{(k-1)(k+1)}=2\left(\frac{1}{k-1}-\frac{1}{k+1}\right)$. In $s_N=\sum_{k=3}^N$ the surviving terms are
-\[ s_N=2\left(\frac12+\frac13-\frac1N-\frac1{N+1}\right)\to2\cdot\frac56=\frac53. \]</p>
+      <p>$\ln\left(1+\frac1n\right)=\ln\frac{n+1}{n}=\ln(n+1)-\ln n$, so the partial sums telescope.
+\[ s_N=(\ln2-\ln1)+(\ln3-\ln2)+\cdots+\bigl(\ln(N+1)-\ln N\bigr)=\ln(N+1)\to\infty. \]
+The series diverges. (The TFD says nothing here, since the terms do go to $0$.)</p>
     </div>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec18" class="chapter">18. Geometric Series</h3>
+  <h3 id="sec18" class="chapter">18. Geometric series</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 18(b).</b> $\sum_{n=0}^\infty\frac{4^{2n-1}}{17^n}$</p>
@@ -881,9 +884,9 @@ The integral converges, so the series converges.</p>
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 20(d).</b> $1+\frac{1}{2\sqrt2}+\frac{1}{3\sqrt3}+\frac{1}{4\sqrt4}+\cdots$</p>
+    <p class="stmt"><b>Problem 20(d).</b> $\sum_{n=1}^\infty\frac{n^2+\sqrt n}{n^4}$</p>
     <div class="sol">
-      <p>The $n$th term is $\frac{1}{n\sqrt n}=\frac{1}{n^{3/2}}$. A $p$-series with $p=\frac32&gt;1$, so it converges.</p>
+      <p>Split the term: $\frac{n^2+\sqrt n}{n^4}=\frac{1}{n^2}+\frac{1}{n^{7/2}}$. Both are $p$-series with $p&gt;1$ ($p=2$ and $p=\frac72$), and a sum of two convergent series converges. So the series converges.</p>
     </div>
   </div>
 
@@ -914,9 +917,9 @@ The limit is positive and finite and $\sum\frac1n$ diverges, so by the LCT the s
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 21(f).</b> $\sum_{n=1}^\infty\frac{\cos^2n}{n^2+n}$</p>
+    <p class="stmt"><b>Problem 21(f).</b> $\sum_{n=1}^\infty\frac{1}{2^n+n}$</p>
     <div class="sol">
-      <p>$0\le\frac{\cos^2n}{n^2+n}\le\frac{1}{n^2}$, and $\sum\frac1{n^2}$ converges. By the DCT the series converges.</p>
+      <p>$0&lt;\frac{1}{2^n+n}&lt;\frac{1}{2^n}$, and $\sum\left(\frac12\right)^n$ is a convergent geometric series ($|r|=\frac12&lt;1$). By the DCT the series converges.</p>
     </div>
   </div>
 
@@ -942,6 +945,13 @@ since $\left|\frac{\cos n}{n}\right|\le\frac1n\to0$. By the LCT the series conve
   <h3 id="sec22" class="chapter">22. Alternating Series Test (AST)</h3>
 
   <div class="problem">
+    <p class="stmt"><b>Problem 22(a).</b> $\sum_{n=2}^\infty\frac{(-1)^n}{n\ln n}$</p>
+    <div class="sol">
+      <p>Let $b_n=\frac{1}{n\ln n}$. For $n\ge2$, $b_n&gt;0$, and $n\ln n$ is increasing to $\infty$, so $b_n$ is decreasing and $b_n\to0$. By the AST it converges.</p>
+    </div>
+  </div>
+
+  <div class="problem">
     <p class="stmt"><b>Problem 22(b).</b> $\sum_{i=1}^\infty\frac{\cos(\pi i)}{i^{0.1}}$</p>
     <div class="sol">
       <p>$\cos(\pi i)=(-1)^i$, so this is $\sum(-1)^ib_i$ with $b_i=\frac{1}{i^{0.1}}$. Then $b_i&gt;0$, $b_i$ is decreasing, and $b_i\to0$. By the AST it converges.</p>
@@ -963,9 +973,11 @@ since $\left|\frac{\cos n}{n}\right|\le\frac1n\to0$. By the LCT the series conve
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 22(e).</b> $\sum_{n=1}^\infty\frac{(-1)^nn^2}{n^2+1}$. Can you use the AST?</p>
+    <p class="stmt"><b>Problem 22(e).</b> $\sum_{n=1}^\infty\frac{(-1)^n\sqrt n}{n+4}$</p>
     <div class="sol">
-      <p>No. Here $b_n=\frac{n^2}{n^2+1}\to1$, so the hypothesis $b_n\to0$ fails. In fact the terms $(-1)^nb_n$ do not go to $0$, so the series diverges by the TFD.</p>
+      <p>Let $b_n=\frac{\sqrt n}{n+4}$ and $f(x)=\frac{\sqrt x}{x+4}$. Then
+\[ f'(x)=\frac{\frac{x+4}{2\sqrt x}-\sqrt x}{(x+4)^2}=\frac{4-x}{2\sqrt x\,(x+4)^2}&lt;0 \quad\text{for } x&gt;4, \]
+so $b_n$ is decreasing for $n\ge4$. Dividing top and bottom by $\sqrt n$, $b_n=\frac{1}{\sqrt n+4/\sqrt n}\to0$. The AST applies from $n=4$ on, so the series converges.</p>
     </div>
   </div>
 
@@ -1040,7 +1052,7 @@ Both limits equal $1$, where the Root Test says nothing. Yet $\sum\frac1{n^2}$ c
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec25" class="chapter">25. Absolute/Conditional</h3>
+  <h3 id="sec25" class="chapter">25. Absolute and conditional convergence</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 25(a).</b> $\sum_{n=1}^\infty\frac{(-1)^n}{n}$</p>
@@ -1050,9 +1062,11 @@ Both limits equal $1$, where the Root Test says nothing. Yet $\sum\frac1{n^2}$ c
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 25(c).</b> $\sum_{k=2}^\infty\frac{\cos(\pi k)}{\ln k}$</p>
+    <p class="stmt"><b>Problem 25(c).</b> $\sum_{k=1}^\infty\frac{k\cos(\pi k)}{k^3+1}$</p>
     <div class="sol">
-      <p>This is $\sum\frac{(-1)^k}{\ln k}$. For $k\ge2$, $\ln k&lt;k$, so $\frac1{\ln k}&gt;\frac1k$, and $\sum\frac1{\ln k}$ diverges by the DCT. The AST applies as in 22(c), so it converges conditionally.</p>
+      <p>$\cos(\pi k)=(-1)^k$, so $|a_k|=\frac{k}{k^3+1}$. Compare with $\frac1{k^2}$:
+\[ \lim_{k\to\infty}\frac{k\cdot k^2}{k^3+1}=1. \]
+Since $\sum\frac1{k^2}$ converges, $\sum|a_k|$ converges by the LCT. The series converges absolutely.</p>
     </div>
   </div>
 
@@ -1115,7 +1129,7 @@ It converges when $x^2&lt;3$, so $R=\sqrt3$. At $x=\pm\sqrt3$, $x^{2n}=3^n$ and 
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec27" class="chapter">27. Power series from Geometric Series</h3>
+  <h3 id="sec27" class="chapter">27. Power series from geometric series</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 27(b).</b> $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.</p>
@@ -1160,7 +1174,7 @@ It converges when $\left|\frac{x-1}{2}\right|&lt;1$, so $R=2$ and IOC $(-1,3)$ (
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec28" class="chapter">28. Taylor's Theorem</h3>
+  <h3 id="sec28" class="chapter">28. Taylor and Maclaurin series</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 28(b).</b> Find the Maclaurin series for $\cosh(x)$ and $\sinh(x)$.</p>
@@ -1225,7 +1239,7 @@ The series for $e^u$ has $R=\infty$, and integrating does not change the radius,
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec29" class="chapter">29. Approximations</h3>
+  <h3 id="sec29" class="chapter">29. Approximations and error bounds</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem 29(a).</b> Approximate $\int_0^{0.1}\frac{dx}{1+x^4}$ to within $10^{-6}$.</p>
@@ -1275,10 +1289,10 @@ The bound is true but far from the actual error $\frac{35}{2}$.</p>
   </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 29(i).</b> $f(x)=\ln(1+x)$: find $T_2(x)$ and bound $|f(x)-T_2(x)|$ for $0\le x\le0.2$.</p>
+    <p class="stmt"><b>Problem 29(i).</b> $f(x)=e^x$: find $T_3(x)$ and bound $|f(x)-T_3(x)|$ for $-1\le x\le1$.</p>
     <div class="sol">
-      <p>$f(0)=0$, $f'(x)=\frac1{1+x}$, $f''(x)=-\frac{1}{(1+x)^2}$, so $T_2(x)=x-\frac{x^2}{2}$. Next, $f^{\prime\prime\prime}(x)=\frac{2}{(1+x)^3}\le2$ on $[0,0.2]$, so take $M=2$:
-\[ |f(x)-T_2(x)|\le\frac{M}{3!}x^3\le\frac{2}{6}(0.2)^3=\frac{1}{375}\approx0.0027. \]</p>
+      <p>Every derivative of $e^x$ is $e^x$, and $e^0=1$, so $T_3(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}$. On $[-1,1]$, $|f^{(4)}(x)|=e^x\le e&lt;3$, so take $M=3$:
+\[ |f(x)-T_3(x)|\le\frac{M}{4!}|x|^4\le\frac{3}{24}=\frac18. \]</p>
     </div>
   </div>
 

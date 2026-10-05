@@ -9,9 +9,10 @@
     .page-content { max-width: 1000px; }
     .chapter { margin-top: 2.4em; padding: 0.5em 0 0.2em; border-top: none; font-size: 1.45em; color: #143d42; display: flex; align-items: center; gap: 0.55em; }
     .chapter::before { content: ""; width: 0.42em; height: 1.05em; background: #007A86; border-radius: 2px; display: inline-block; }
-    .toc { padding: 0.85em 1.1em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.4em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); line-height: 2; }
-    .toc b { color: #143d42; }
-    .toc a { margin-right: 1.1em; color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc { padding: 0.9em 1.2em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.6em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); }
+    .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
+    .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
+    .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
     .toc a:hover { border-bottom-color: #007A86; }
     .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
     .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; }
@@ -60,20 +61,21 @@
 <div class="page-content">
   <h2>Calc III · Selected Solutions</h2>
   <div class="toc">
-    <b>Jump to</b>
-    <a href="#sec1">3D &amp; Vectors</a>
-    <a href="#sec2">Lines &amp; planes</a>
-    <a href="#sec3">Quadric surfaces</a>
-    <a href="#sec4">Space curves</a>
-    <a href="#sec5">Functions of several vars</a>
-    <a href="#sec6">Multiple integrals</a>
-    <a href="#sec7">Line integrals</a>
-    <a href="#sec8">Curl &amp; divergence</a>
-    <a href="#sec9">Lagrange</a>
+    <ol>
+      <li><a href="#sec1">3D coordinates and vectors</a></li>
+      <li><a href="#sec2">Lines and planes</a></li>
+      <li><a href="#sec3">Quadric surfaces</a></li>
+      <li><a href="#sec4">Space curves and vector functions</a></li>
+      <li><a href="#sec5">Functions of several variables</a></li>
+      <li><a href="#sec6">Multiple integrals</a></li>
+      <li><a href="#sec7">Line integrals</a></li>
+      <li><a href="#sec8">Curl and divergence</a></li>
+      <li><a href="#sec9">Lagrange multipliers</a></li>
+    </ol>
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec1" class="chapter">3D Coordinates and Vectors</h3>
+  <h3 id="sec1" class="chapter">3D coordinates and vectors</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Point $C$ lies on the segment from $A$ to $B$ with $|AC|=\tfrac12|CB|$. Writing $\vec a,\vec b,\vec c$ for the position vectors of $A,B,C$, show $\vec c=\tfrac23\vec a+\tfrac13\vec b$.</p>
@@ -97,7 +99,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec2" class="chapter">Lines and Planes</h3>
+  <h3 id="sec2" class="chapter">Lines and planes</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find the plane through $A(1,0,0),\ B(0,2,0),\ C(0,0,3)$.</p>
@@ -147,7 +149,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec3" class="chapter">Quadric Surfaces</h3>
+  <h3 id="sec3" class="chapter">Quadric surfaces</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Sketch the ellipsoid $\dfrac{x^2}{4}+y^2+\dfrac{z^2}{9}=1$.</p>
@@ -212,7 +214,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec4" class="chapter">Space Curves and Vector Functions</h3>
+  <h3 id="sec4" class="chapter">Space curves and vector functions</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Let $\vec r(t)=\langle\ln(t-1),\arctan t,\sqrt{4-t^2}\rangle$. Find the domain and sketch the $xy$ projection.</p>
@@ -302,7 +304,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec5" class="chapter">Functions of Multiple Variables</h3>
+  <h3 id="sec5" class="chapter">Functions of several variables</h3>
 
   <p class="lede">The gradient is one object we use four ways. Dotting it with a small displacement gives the linear approximation, dotting it with a velocity gives the chain rule, dotting it with a unit direction gives the directional derivative, and setting it to zero gives the candidates for a max or min. The problems below build each one in one dimension first, then lift it. The running example is the downward dome $z=1-x^2-y^2$ studied at $P=(\tfrac12,\tfrac12,\tfrac12)$.</p>
 
@@ -554,7 +556,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec6" class="chapter">Multiple Integrals</h3>
+  <h3 id="sec6" class="chapter">Multiple integrals</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> $\displaystyle\iint_D xy\,dA$, where $D$ is bounded by $y=x^2$ and $y=x$.</p>
@@ -648,7 +650,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec7" class="chapter">Line Integrals</h3>
+  <h3 id="sec7" class="chapter">Line integrals</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Evaluate $\displaystyle\int_C\vec F\cdot d\vec r$ for $\vec F=\langle xy,x^2\rangle$ along $y=x^2$ from $(0,0)$ to $(1,1)$. Is the work path independent?</p>
@@ -694,7 +696,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec8" class="chapter">Curl and Divergence</h3>
+  <h3 id="sec8" class="chapter">Curl and divergence</h3>
 
   <div class="problem">
     <p class="stmt"><b>Problem.</b> Find the curl and divergence of $\vec F=\langle xz,xyz,-y^2\rangle$.</p>
@@ -727,7 +729,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <h3 id="sec9" class="chapter">Lagrange Multipliers</h3>
+  <h3 id="sec9" class="chapter">Lagrange multipliers</h3>
 
   <p class="lede">To optimize $f$ subject to a constraint $g=0$, we push the level curves of $f$ outward until one just touches the constraint. At that tangency the two gradients line up, $\nabla f=\lambda\nabla g$. Solve that together with the constraint, then compare values of $f$ at the candidates.</p>
 

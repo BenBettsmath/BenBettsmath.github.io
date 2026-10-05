@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 1. Group Theory &middot; Basic toolkit</title>
+<title>Part 1. Group Theory &middot; Normal subgroups and the isomorphism theorems</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Basic toolkit</span></div>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="groups.html">Group Theory</a> &rsaquo; <span>Normal subgroups and the isomorphism theorems</span></div>
 <div class="part-nav"><span class="disabled">&larr; previous</span><a href="groups.html">Group Theory contents</a><a href="groups-2.html">Symmetric and alternating groups &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Basic toolkit</h2>
+<h2 style="border:none; margin-top:0.5em;">Normal subgroups and the isomorphism theorems</h2>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Normal subgroup.</strong> <span class="cite">(D&amp;F &sect;3.1)</span>
@@ -31,7 +31,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> Every kernel is normal, and every normal subgroup is a kernel, namely of the quotient map $G \to G/H$. So normal subgroups and kernels are really the same thing. This is also usually the easiest way to check normality, since if we can find a homomorphism with kernel $H$ then we're done. <span class="cite">(D&amp;F &sect;3.1)</span>
+  <span class="thm-label">Remark.</span> Every kernel is normal, and every normal subgroup is a kernel, namely of the quotient map $G \to G/H$. So normal subgroups and kernels are really the same thing. This is also usually the easiest way to check normality, since if we can find a homomorphism with kernel $H$ then we're done. <span class="cite">(D&amp;F &sect;3.1)</span>
 </div>
 
 <div class="thm-block ex">
@@ -40,7 +40,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Normality is not transitive.</strong> In $D_8$ take a reflection $s$. Then $\langle s \rangle \trianglelefteq \langle s, r^2 \rangle \trianglelefteq D_8$, but $\langle s \rangle$ is not normal in $D_8$ since $rsr^{-1} = sr^{-2} \notin \langle s \rangle$. Each step is normal because it has index 2, but that doesn't carry through the whole chain. This shows up on quals a lot. <span class="cite">(D&amp;F &sect;3.1)</span>
+  <span class="thm-label">Remark.</span> <strong>Normality is not transitive.</strong> In $D_8$ take a reflection $s$. Then $\langle s \rangle \trianglelefteq \langle s, r^2 \rangle \trianglelefteq D_8$, but $\langle s \rangle$ is not normal in $D_8$ since $rsr^{-1} = sr^{-2} \notin \langle s \rangle$. Each step is normal because it has index 2, but that doesn't carry through the whole chain. This shows up on quals a lot. <span class="cite">(D&amp;F &sect;3.1)</span>
 </div>
 
 <div class="thm-block thm">
@@ -54,7 +54,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block prop">
-  <span class="thm-label">Prop.</span> <strong>Quick ways to see normality.</strong> <span class="cite">(D&amp;F &sect;3.2, 4.2)</span>
+  <span class="thm-label">Prop.</span> <strong>Tests for normality.</strong> <span class="cite">(D&amp;F &sect;3.2, 4.2)</span>
   <ul>
     <li>$[G:H] = 2 \Rightarrow H \trianglelefteq G$. This is because the left cosets and the right cosets are both just $H$ and everything else, so $gH = Hg$ for every $g$.</li>
     <li>More generally, if $[G:H] = p$ is the <em>smallest</em> prime dividing $|G|$, then $H \trianglelefteq G$. The index 2 case is this with $p = 2$.</li>
@@ -64,7 +64,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block prop">
-  <span class="thm-label">Fun fact.</span> <strong>Counting with products.</strong> <span class="cite">(D&amp;F &sect;3.2)</span>
+  <span class="thm-label">Remark.</span> <strong>The order of $HK$.</strong> <span class="cite">(D&amp;F &sect;3.2)</span>
   For finite subgroups, $|HK| = \dfrac{|H|\,|K|}{|H \cap K|}$ whether or not $HK$ is a subgroup. This is because each element of $HK$ can be written as $hk$ in exactly $|H \cap K|$ ways. And $HK$ <em>is</em> a subgroup iff $HK = KH$, which is automatic when either one is normal. We use this counting formula a lot in the Sylow arguments later.
 </div>
 

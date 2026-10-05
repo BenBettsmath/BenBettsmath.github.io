@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 5. Field Theory &middot; Galois groups of specific polynomials</title>
+<title>Part 5. Field Theory &middot; Computing Galois groups</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Galois groups of specific polynomials</span></div>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="fields.html">Field Theory</a> &rsaquo; <span>Computing Galois groups</span></div>
 <div class="part-nav"><a href="fields-5.html">&larr; Galois theory</a><a href="fields.html">Field Theory contents</a><a href="fields-7.html">Qual problems &middot; Field Theory &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Galois groups of specific polynomials</h2>
+<h2 style="border:none; margin-top:0.5em;">Computing Galois groups</h2>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Discriminant of a polynomial.</strong> <span class="cite">(D&amp;F &sect;14.6)</span>
@@ -63,7 +63,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Computing Galois groups in general.</strong> For small cases (cubics, quartics, $x^n - a$), the discriminant or a direct look at where the roots can go works. For higher degrees, a good trick is reducing mod primes $p$. The factorization of $f$ mod $p$ gives the cycle type of an element of the Galois group (Dedekind), which can be used to guess the group and sometimes prove it. There are algorithms that compute Galois groups in general, but they're much too slow to do by hand.
+  <span class="thm-label">Remark.</span> <strong>Computing Galois groups in general.</strong> For small cases (cubics, quartics, $x^n - a$), the discriminant or a direct look at where the roots can go works. For higher degrees, a good trick is reducing mod primes $p$. The factorization of $f$ mod $p$ gives the cycle type of an element of the Galois group (Dedekind), which can be used to guess the group and sometimes prove it. There are algorithms that compute Galois groups in general, but they're much too slow to do by hand.
 </div>
 
 <div class="qual-section">

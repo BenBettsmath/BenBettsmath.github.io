@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 2. Ring Theory &middot; Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</title>
+<title>Part 2. Ring Theory &middot; Euclidean domains, PIDs, and UFDs</title>
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="algqual.css">
 <script>
@@ -20,9 +20,9 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 </div>
 <div class="page-content">
-<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</span></div>
+<div class="breadcrumb"><a href="notes.html">outline</a> &rsaquo; <a href="rings.html">Ring Theory</a> &rsaquo; <span>Euclidean domains, PIDs, and UFDs</span></div>
 <div class="part-nav"><a href="rings-3.html">&larr; Localization</a><a href="rings.html">Ring Theory contents</a><a href="rings-5.html">Qual problems &middot; Ring Theory &rarr;</a></div>
-<h2 style="border:none; margin-top:0.5em;">Factorization: ED $\Rightarrow$ PID $\Rightarrow$ UFD</h2>
+<h2 style="border:none; margin-top:0.5em;">Euclidean domains, PIDs, and UFDs</h2>
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Factorization classes.</strong> <span class="cite">(D&amp;F &sect;8.1-8.3)</span>
@@ -41,7 +41,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>The ED-to-UFD chain is strict.</strong> Each step loses some structure. A Euclidean domain has a division algorithm. A PID loses the division algorithm but still has gcds coming from principal ideals. A UFD loses principal ideals but still has unique factorization. $\mathbb{Z}[x]$ and $\mathbb{Z}[(1+\sqrt{-19})/2]$ show that both gaps really happen.
+  <span class="thm-label">Remark.</span> <strong>The ED-to-UFD chain is strict.</strong> Each step loses some structure. A Euclidean domain has a division algorithm. A PID loses the division algorithm but still has gcds coming from principal ideals. A UFD loses principal ideals but still has unique factorization. $\mathbb{Z}[x]$ and $\mathbb{Z}[(1+\sqrt{-19})/2]$ show that both gaps really happen.
 </div>
 
 <div class="thm-block defn">
@@ -55,7 +55,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Integral closure and UFDs.</strong> Being integrally closed doesn't make a ring a UFD, for example $\mathbb{Z}[\sqrt{-5}]$ is integrally closed and still not a UFD. But a ring that isn't integrally closed can't be a UFD, and often the fix is to pass to the integral closure $\overline{R}$, which is a bigger ring that might be a UFD or PID. This is why $\mathbb{Z}[\sqrt{d}]$ often sits inside a bigger ring of integers.
+  <span class="thm-label">Remark.</span> <strong>Integral closure and UFDs.</strong> Being integrally closed doesn't make a ring a UFD, for example $\mathbb{Z}[\sqrt{-5}]$ is integrally closed and still not a UFD. But a ring that isn't integrally closed can't be a UFD, and often the fix is to pass to the integral closure $\overline{R}$, which is a bigger ring that might be a UFD or PID. This is why $\mathbb{Z}[\sqrt{d}]$ often sits inside a bigger ring of integers.
 </div>
 
 <div class="thm-block prop">
@@ -80,7 +80,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Fun fact.</span> <strong>Norms can measure irreducibility.</strong> For imaginary quadratic fields $\mathbb{Z}[\sqrt{d}]$ with $d < 0$, the norm $N(\alpha) = |\alpha|^2$ is always multiplicative and positive. So if $N(p)$ is prime, then $p$ is irreducible, since any factorization of $p$ gives a factorization of $N(p)$. This is the usual way to check that elements of these rings are irreducible.
+  <span class="thm-label">Remark.</span> <strong>Norms can measure irreducibility.</strong> For imaginary quadratic fields $\mathbb{Z}[\sqrt{d}]$ with $d < 0$, the norm $N(\alpha) = |\alpha|^2$ is always multiplicative and positive. So if $N(p)$ is prime, then $p$ is irreducible, since any factorization of $p$ gives a factorization of $N(p)$. This is the usual way to check that elements of these rings are irreducible.
 </div>
 
 <div class="thm-block comp">

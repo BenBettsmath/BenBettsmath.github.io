@@ -5,7 +5,7 @@
 .part-card { display: block; padding: 1em 1.2em; margin: 0.7em 0; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; text-decoration: none; color: inherit; }
 .part-card:hover { background: #eef3fa; }
 .part-card h4 { margin: 0 0 0.3em 0; }
-.part-card p { margin: 0; color: #444; }
+.part-card p { margin: 0; color: #5b625c; font-size: 0.92em; line-height: 1.45; }
 
 .thm-block { border-left: 3px solid #777; padding: 4px 12px; margin: 8px 0; }
 .thm-block.defn { border-color: #336699; }
@@ -38,11 +38,14 @@ p, li { line-height: 1.65; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb span { color: #444; font-weight: 600; }
 .chapter-context { color: #888; font-size: 0.88em; margin-top: -0.2em; margin-bottom: 1.4em; }
-.subsection-toc { padding-left: 1.2em; margin: 1.2em 0; }
-.subsection-toc li { padding: 6px 4px; margin: 0; line-height: 1.5; list-style: none; border-bottom: 1px solid #eee; }
-.subsection-toc li:last-child { border-bottom: none; }
-.subsection-toc a { text-decoration: none; color: #2d5d3d; display: block; padding: 4px 8px; border-radius: 3px; }
-.subsection-toc a:hover { background: #eef5ec; }
-.subsection-toc .sec-num { display: inline-block; color: #888; font-variant-numeric: tabular-nums; min-width: 1.6em; }
+.subsection-toc { padding: 0; margin: 1.4em 0; counter-reset: none; }
+.subsection-toc li { list-style: none; margin: 0; border-bottom: 1px solid #e8ece8; }
+.subsection-toc li:first-child { border-top: 1px solid #e8ece8; }
+.subsection-toc a { display: grid; grid-template-columns: 2em 1fr; column-gap: 0.4em; padding: 0.75em 0.6em; text-decoration: none; color: inherit; border-radius: 4px; }
+.subsection-toc a:hover { background: #f1f6f0; }
+.subsection-toc .sec-num { grid-row: span 2; color: #9aa59c; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.subsection-toc .sec-title { color: #2d5d3d; font-weight: 600; }
+.subsection-toc .sec-desc { color: #6b726c; font-size: 0.9em; line-height: 1.45; margin-top: 0.15em; }
+.subsection-toc li.toc-qual { margin-top: 0.8em; border-top: 2px solid #d5ddd5; }
 .start-button { display: inline-block; margin: 1em 0 2em 0; padding: 0.7em 1.4em; background: #2d5d3d; color: #fff; text-decoration: none; border-radius: 4px; font-weight: 600; letter-spacing: 0.02em; }
 .start-button:hover { background: #1f432a; }

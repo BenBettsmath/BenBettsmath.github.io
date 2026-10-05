@@ -41,7 +41,7 @@ window.MathJax = {
 
 <p><b>Rate of change.</b> If $y = f(x)$, the <b>average rate of change</b> of $y$ over $[x_1, x_2]$ is $\dfrac{\Delta y}{\Delta x} = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$, and the <b>instantaneous rate of change</b> at $x = a$ is $f'(a)$. Its units are (units of $y$) per (unit of $x$). If $s(t)$ is position, $s'(a)$ is the velocity at time $a$ and $|s'(a)|$ is the speed.</p>
 
-<p><b>Example.</b> $f(x) = \dfrac{1}{x}$ at $a = 2$. $\displaystyle f'(2) = \lim_{h \to 0}\frac{\frac{1}{2 + h} - \frac12}{h} = \lim_{h \to 0}\frac{2 - (2 + h)}{2h(2 + h)} = \lim_{h \to 0}\frac{-1}{2(2 + h)} = -\frac14.$ The tangent line is $y - \tfrac12 = -\tfrac14(x - 2)$.</p>
+<p><b>Example.</b> $f(x) = \dfrac{x + 2}{x - 1}$ at $a = 3$. $\displaystyle f'(3) = \lim_{h \to 0}\frac{\frac{5 + h}{2 + h} - \frac52}{h} = \lim_{h \to 0}\frac{2(5 + h) - 5(2 + h)}{2h(2 + h)} = \lim_{h \to 0}\frac{-3}{2(2 + h)} = -\frac34.$ The tangent line is $y - \tfrac52 = -\tfrac34(x - 3)$.</p>
 </div>
 
 <div class="section"><h3>2.2 The Derivative as a Function</h3>
@@ -54,7 +54,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="fAndFprime"></canvas><div class="fig-cap"><b>Slope becomes height.</b> Top: $f(x) = x^3/3 - x$ and its tangent line. Bottom: $f'(x) = x^2 - 1$, traced by recording each tangent slope as a height. The tangent is horizontal at $x = \pm 1$, where $f'$ crosses $0$.</div></div>
 
-<p><b>Example.</b> $f(x) = \sqrt x$. Rationalizing, $\dfrac{\sqrt{x + h} - \sqrt x}{h} = \dfrac{1}{\sqrt{x + h} + \sqrt x} \to \dfrac{1}{2\sqrt x}$, so $f'(x) = \dfrac{1}{2\sqrt x}$ for $x &gt; 0$. At $x = 0$ the one-sided quotient $\dfrac{\sqrt h}{h} = \dfrac{1}{\sqrt h} \to \infty$, so $f'(0)$ does not exist.</p>
+<p><b>Example.</b> $f(x) = \dfrac{1}{x^2}$. Combining fractions, $\dfrac{1}{h}\left(\dfrac{1}{(x + h)^2} - \dfrac{1}{x^2}\right) = \dfrac{x^2 - (x + h)^2}{h\,x^2(x + h)^2} = \dfrac{-2x - h}{x^2(x + h)^2} \to \dfrac{-2x}{x^4}$, so $f'(x) = -\dfrac{2}{x^3}$ for $x \neq 0$. Here $f'$ has the same domain as $f$. In general the domain of $f'$ can be smaller.</p>
 
 <p><b>Differentiability.</b> $f$ is <b>differentiable at</b> $a$ if $f'(a)$ exists, and <b>differentiable on</b> an open interval if it is differentiable at every number in it.</p>
 <div class="thm"><div class="thm-name">Theorem</div>If $f$ is differentiable at $a$, then $f$ is continuous at $a$.</div>
@@ -79,7 +79,7 @@ window.MathJax = {
 
 <p class="part"><span class="dimtag">Rules</span>For constants $c$ and $n$, and differentiable $f$, $g$:</p>
 <div class="formula">$\dfrac{d}{dx}(c) = 0, \qquad \dfrac{d}{dx}(x^n) = n x^{n - 1}, \qquad (cf)' = c f', \qquad (f \pm g)' = f' \pm g'.$</div>
-<p><em>Why the power rule.</em> For a positive integer $n$, $(x + h)^n = x^n + n x^{n - 1}h + (\text{terms with } h^2, h^3, \ldots)$ by the binomial theorem. Subtract $x^n$, divide by $h$, and every term except $n x^{n - 1}$ still contains $h$, so it goes to $0$. The rule holds for every real $n$ (where $x^n$ is defined), e.g. $\dfrac{d}{dx}\sqrt x = \dfrac{d}{dx}x^{1/2} = \tfrac12 x^{-1/2}$ and $\dfrac{d}{dx}\dfrac{1}{x^3} = \dfrac{d}{dx}x^{-3} = -3x^{-4}$.</p>
+<p><em>Why the power rule.</em> For a positive integer $n$, $(x + h)^n = x^n + n x^{n - 1}h + (\text{terms with } h^2, h^3, \ldots)$ by the binomial theorem. Subtract $x^n$, divide by $h$, and every term except $n x^{n - 1}$ still contains $h$, so it goes to $0$. The rule holds for every real $n$ (where $x^n$ is defined), e.g. $\dfrac{d}{dx}\sqrt x = \dfrac{d}{dx}x^{1/2} = \tfrac12 x^{-1/2}$ and $\dfrac{d}{dx}\dfrac{1}{x^5} = \dfrac{d}{dx}x^{-5} = -5x^{-6}$.</p>
 
 <p><b>Two trigonometric limits</b> ($\theta$ in radians):</p>
 <div class="formula">$\displaystyle\lim_{\theta \to 0}\frac{\sin\theta}{\theta} = 1, \qquad \lim_{\theta \to 0}\frac{\cos\theta - 1}{\theta} = 0.$</div>
@@ -91,7 +91,7 @@ window.MathJax = {
 
 <p><b>Example.</b> $\dfrac{d}{dx}\left(4x^3 - \dfrac{2}{\sqrt x} + 5\cos x\right) = 12x^2 + x^{-3/2} - 5\sin x.$ Limits like $\displaystyle\lim_{x \to 0}\frac{\sin 5x}{x} = \lim_{x \to 0} 5\cdot\frac{\sin 5x}{5x} = 5$ come from the first trig limit with $\theta = 5x$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The power rule needs a constant exponent on the variable. It does not apply to $2^x$ (variable exponent), and $\dfrac{d}{dx}\pi^2 = 0$ since $\pi^2$ is a constant. Rewrite roots and reciprocals as powers first: $\dfrac{1}{x^3} = x^{-3}$, $\sqrt[3]{x^2} = x^{2/3}$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>The power rule needs a constant exponent on the variable. It does not apply to $2^x$ (variable exponent), and $\dfrac{d}{dx}\pi^2 = 0$ since $\pi^2$ is a constant. Rewrite roots and reciprocals as powers first: $\dfrac{1}{x^4} = x^{-4}$, $\sqrt[3]{x^2} = x^{2/3}$.</p></div>
 </div>
 
 <div class="section"><h3>2.4 The Product and Quotient Rules</h3>
@@ -103,9 +103,9 @@ window.MathJax = {
 
 <p><b>The other trigonometric derivatives</b> follow from the quotient rule:</p>
 <div class="formula">$\dfrac{d}{dx}\tan x = \sec^2 x, \quad \dfrac{d}{dx}\sec x = \sec x\tan x, \quad \dfrac{d}{dx}\csc x = -\csc x\cot x, \quad \dfrac{d}{dx}\cot x = -\csc^2 x.$</div>
-<p><em>Example.</em> $\dfrac{d}{dx}\dfrac{\sin x}{\cos x} = \dfrac{\cos x\cos x - \sin x(-\sin x)}{\cos^2 x} = \dfrac{1}{\cos^2 x} = \sec^2 x$. The "co" functions get the minus signs.</p>
+<p><em>Why.</em> Write each one in terms of $\sin$ and $\cos$ (for instance $\sec x = 1/\cos x$) and apply the quotient rule, then simplify with $\sin^2 x + \cos^2 x = 1$. The "co" functions get the minus signs.</p>
 
-<p><b>Example.</b> $\dfrac{d}{dx}\dfrac{x}{x^2 + 1} = \dfrac{1\cdot(x^2 + 1) - x\cdot 2x}{(x^2 + 1)^2} = \dfrac{1 - x^2}{(x^2 + 1)^2}.$ And $\dfrac{d}{dx}(x^3\sin x) = 3x^2\sin x + x^3\cos x$.</p>
+<p><b>Example.</b> $\dfrac{d}{dx}\dfrac{3x - 1}{x^2 + 2} = \dfrac{3(x^2 + 2) - (3x - 1)\cdot 2x}{(x^2 + 2)^2} = \dfrac{-3x^2 + 2x + 6}{(x^2 + 2)^2}.$ And $\dfrac{d}{dx}(\sqrt x\,\sin x) = \dfrac{\sin x}{2\sqrt x} + \sqrt x\cos x$.</p>
 
 <div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>$(fg)' \neq f'g'$ and $\left(\dfrac fg\right)' \neq \dfrac{f'}{g'}$. Test with $f = g = x$: $(x\cdot x)' = 2x$, but $f'g' = 1$. In the quotient rule, the order in the numerator matters. It is $f'g - fg'$, "low d-high minus high d-low".</p></div>
 </div>
@@ -119,8 +119,8 @@ window.MathJax = {
 <div class="fig-inline-canvas"><canvas data-fig="chainStretch"></canvas><div class="fig-cap"><b>Stretch factors multiply.</b> A short interval on the $x$-line is sent by $u = x^2$ to an interval about $2x$ times as long, then by $y = \sin u$ to one about $|\cos u|$ times as long again. A negative factor ($\cos u &lt; 0$) also flips the interval's direction.</div></div>
 
 <p><b>Outside-inside.</b> Differentiate the outer function, leave the inside alone, then multiply by the derivative of the inside. Power form: $\dfrac{d}{dx}[g(x)]^n = n[g(x)]^{n - 1}g'(x)$.</p>
-<p><b>Examples.</b> $\dfrac{d}{dx}(1 + 3x^2)^5 = 5(1 + 3x^2)^4\cdot 6x = 30x(1 + 3x^2)^4$. $\dfrac{d}{dx}\sin(x^2) = \cos(x^2)\cdot 2x$, while $\dfrac{d}{dx}\sin^2 x = 2\sin x\cos x$. Longer chains multiply more factors: $\dfrac{d}{dx}\cos(\sin 3x) = -\sin(\sin 3x)\cdot\cos 3x\cdot 3$.</p>
-<p><b>From a table.</b> If $g(2) = 5$, $g'(2) = 4$, and $f'(5) = -1$, then $(f \circ g)'(2) = f'(g(2))\,g'(2) = f'(5)\cdot 4 = -4$. Note $f'$ is evaluated at $g(2)$, not at $2$.</p>
+<p><b>Examples.</b> $\dfrac{d}{dx}(x^2 - 4x)^3 = 3(x^2 - 4x)^2(2x - 4)$. $\dfrac{d}{dx}\sin(x^2) = \cos(x^2)\cdot 2x$, while $\dfrac{d}{dx}\sin^2 x = 2\sin x\cos x$. Longer chains multiply more factors: $\dfrac{d}{dx}\sin^3(2x) = 3\sin^2(2x)\cdot\cos(2x)\cdot 2$.</p>
+<p><b>Where $f'$ is evaluated.</b> With $f(u) = \sqrt u$ and $g(x) = x^2 + 1$, $f'(u) = \dfrac{1}{2\sqrt u}$ must be evaluated at $u = g(x)$: $\dfrac{d}{dx}\sqrt{x^2 + 1} = \dfrac{1}{2\sqrt{x^2 + 1}}\cdot 2x = \dfrac{x}{\sqrt{x^2 + 1}}$.</p>
 
 <div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>Forgetting the inner derivative: $\dfrac{d}{dx}\sin(4x) = 4\cos(4x)$, not $\cos(4x)$. And evaluating the outer derivative at the wrong place: $f'(g(x))$, not $f'(x)$.</p></div>
 </div>
@@ -133,7 +133,7 @@ window.MathJax = {
   <li>Solve the result for $\dfrac{dy}{dx}$.</li>
 </ol>
 <p><em>Why it is legal.</em> Both sides are equal as functions of $x$ along the curve, so their derivatives are equal.</p>
-<p><b>Example.</b> $x^2 + y^2 = 25$ gives $2x + 2y\,y' = 0$, so $y' = -\dfrac{x}{y}$. At $(3, 4)$ the slope is $-\tfrac34$. Picture: the tangent to a circle is perpendicular to the radius, whose slope is $\tfrac{y}{x}$, and $-\tfrac xy$ is its negative reciprocal.</p>
+<p><b>Example.</b> The ellipse $4x^2 + y^2 = 8$ gives $8x + 2y\,y' = 0$, so $y' = -\dfrac{4x}{y}$. At $(1, 2)$ the slope is $-2$. The formula gives a slope at every point with $y \neq 0$, on the upper and the lower half at once, without splitting the ellipse into two functions.</p>
 
 <p><b>Example (a folium).</b> $x^3 + y^3 = 9xy$. Differentiating, $3x^2 + 3y^2 y' = 9y + 9x y'$ (product rule on the right). Collect the $y'$ terms: $y'(3y^2 - 9x) = 9y - 3x^2$, so</p>
 <div class="formula">$\dfrac{dy}{dx} = \dfrac{3y - x^2}{y^2 - 3x}.$</div>
@@ -183,20 +183,21 @@ window.MathJax = {
 
 <div class="section"><h3>Worked example</h3>
 
-<p><b>Tangent line by every method.</b> Find the tangent line to $f(x) = \dfrac{2x}{x^2 + 1}$ at $x = 1$.<br>
-Quotient rule: $f'(x) = \dfrac{2(x^2 + 1) - 2x\cdot 2x}{(x^2 + 1)^2} = \dfrac{2 - 2x^2}{(x^2 + 1)^2}$, so $f'(1) = 0$.<br>
-Product rule check: $f = 2x\,(x^2 + 1)^{-1}$, so $f' = 2(x^2 + 1)^{-1} + 2x\cdot(-1)(x^2 + 1)^{-2}\cdot 2x$, which at $x = 1$ is $1 - 1 = 0$.<br>
-$f(1) = 1$, so the tangent line is the horizontal line $y = 1$.</p>
+<p><b>Tangent line, with a check.</b> Find the tangent line to $f(x) = \dfrac{x}{x + 2}$ at $x = 2$.<br>
+Quotient rule: $f'(x) = \dfrac{(x + 2) - x}{(x + 2)^2} = \dfrac{2}{(x + 2)^2}$, so $f'(2) = \dfrac{2}{16} = \dfrac18$.<br>
+Check with the product and chain rules: $f = x\,(x + 2)^{-1}$, so $f' = (x + 2)^{-1} - x(x + 2)^{-2}$, which at $x = 2$ is $\tfrac14 - \tfrac{2}{16} = \tfrac18$.<br>
+$f(2) = \tfrac12$, so the tangent line is $y - \tfrac12 = \tfrac18(x - 2)$.</p>
 
-<p><b>Implicit differentiation with three variables.</b> If $x$, $y$, $z$ are functions of $t$ with $xy + z^2 = 10$, find $\dfrac{dz}{dt}$ when $x = 2$, $y = 3$, $z = 2$, $\dfrac{dx}{dt} = 1$, $\dfrac{dy}{dt} = -2$.<br>
-Differentiate in $t$: $\dfrac{dx}{dt}y + x\dfrac{dy}{dt} + 2z\dfrac{dz}{dt} = 0$. Substitute: $3 + 2(-2) + 4\dfrac{dz}{dt} = 0$, so $\dfrac{dz}{dt} = \dfrac14$.</p>
+<p><b>A shadow.</b> A person $6$ ft tall walks away from a $15$ ft streetlight at $3$ ft/s. How fast does the tip of the shadow move?<br>
+Let $x$ be the person's distance from the light and $s$ the length of the shadow. The light, the person, and the tip form similar triangles: $\dfrac{s}{6} = \dfrac{x + s}{15}$, so $15s = 6x + 6s$ and $s = \tfrac23 x$. The tip is at distance $x + s = \tfrac53 x$ from the light.<br>
+Differentiate in $t$: $\dfrac{d}{dt}\left(\tfrac53 x\right) = \tfrac53\cdot 3 = 5$ ft/s, at every instant. (The shadow itself lengthens at $\tfrac23\cdot 3 = 2$ ft/s.)</p>
 </div>
 
 <div class="section"><h3>Practice problems</h3>
 
 <ol class="tight">
   <li>Use the limit definition to find $f'(x)$ for $f(x) = x^2 - 3x$, then check with the power rule.</li>
-  <li>Use the limit definition to find $f'(1)$ for $f(x) = \dfrac{1}{x + 3}$.</li>
+  <li>Use the limit definition to find $f'(1)$ for $f(x) = x^3 + 2x$.</li>
   <li>Sketch the graph of $f'$ for $f(x) = |x - 2|$. Where is $f$ not differentiable, and why?</li>
   <li>Differentiate $y = x^3\cos x$, $y = \dfrac{x^2}{1 + x}$, $y = (2x^3 - 1)^4$, and $y = \tan(\sqrt x)$.</li>
   <li>Evaluate $\displaystyle\lim_{x \to 0}\frac{\sin 3x}{2x}$.</li>

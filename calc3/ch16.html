@@ -34,18 +34,23 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 16 · Vector Calculus</h2>
 <div class="chapter-nav"><a href="ch15.html">← previous</a><a href="outline.html">outline</a><span class="disabled">next →</span></div>
-<p>Vector fields and the calculus built on them. Conservative fields, line integrals for work and fence area, the Fundamental Theorem for Line Integrals, Green's Theorem, curl and divergence. The gradient shows up again here. If a field is a gradient, its line integrals only depend on the potential at the endpoints, and a lot of the rest of the chapter is about measuring how far a field is from being a gradient.</p>
+<p>Vector fields and the calculus built on them. We come at this chapter from two directions, and they meet in the line integral.</p>
+<p><b>From integrals.</b> Every integral so far has a domain and an integrand. Integrating $1$ measures the domain: $\int_a^b dx$ is a length, $\iint_D dA$ is an area, $\iiint_E dV$ is a volume. Putting a function inside weights each piece of the domain, so $\iiint_E \rho\,dV$ is a mass. A curve $C$ is one more kind of domain, so $\int_C ds$ is its length and $\int_C f\,ds$ is a weighted total along it.</p>
+<p><b>From gradients.</b> We already know a machine that eats a point and returns a vector, the gradient $\nabla f$. Drawing $\nabla f$ as an arrow at each point gives a picture of a terrain from above, with arrows pointing uphill and crossing the level curves at right angles. A vector field is any such picture, whether or not it comes from a terrain.</p>
+<p>Putting a field inside a curve integral gives work. If the field is a gradient, the work only depends on the endpoints, and much of the rest of the chapter measures how far a field is from being a gradient.</p>
 <div class="section"><h3>16.1 Vector Fields</h3>
 
 <p class="part"><span class="dimtag">2D</span>A <b>vector field</b> on $\mathbb R^n$ is a function $\vec F : \mathbb R^n \to \mathbb R^n$. To each point $\vec x$ in the domain we attach a vector $\vec F(\vec x)$, drawn as an arrow based at $\vec x$.</p>
 
 <p>In $\mathbb R^2$ it is $\vec F(x, y) = P(x, y)\hat\imath + Q(x, y)\hat\jmath$. In $\mathbb R^3$ it is $\vec F = P\hat\imath + Q\hat\jmath + R\hat k$.</p>
 
+<p><b>Gradient fields.</b> For $f(x,y) = x^2 + y^2$, the field $\nabla f = \langle 2x, 2y\rangle$ points straight out from the origin, perpendicular to the circles $f = c$. This is the picture to keep in mind. Walking along a level curve changes $f$ by nothing, and $\nabla f$ points in the direction of fastest increase, so the arrows of a gradient field always cross the level curves at right angles.</p>
+
 <p><b>Conservative field.</b> $\vec F = \nabla f$ for some scalar function $f$, called the <em>potential</em>. On a simply connected domain, $\vec F$ is conservative exactly when $\nabla \times \vec F = \vec 0$.</p>
 
 <p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ is a source with $\nabla \cdot \vec F &gt; 0$. The swirl $\vec F = \langle -y, x, 0\rangle$ has nonzero curl. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
 
-<p><b>Why a potential can fail to exist.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl the level curves would have to be rays out of the origin, with $f$ going up as we go counterclockwise. But then going once around a circle, $f$ keeps increasing the whole way and comes back to the starting point with a bigger value. So there's no single-valued potential.</p>
+<p><b>Reading a potential off the picture.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field $\langle x, y\rangle$ these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl $\langle -y, x\rangle$ the curves crossing every arrow at a right angle are rays out of the origin, which is the first sign of trouble.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="potentialContours"></canvas></div>
 
@@ -56,7 +61,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>16.2 Line Integrals</h3>
 
-<p class="part"><span class="dimtag">1D in 3D</span>Let $C$ be a smooth oriented curve parametrized by $\vec r(t)$ for $a \le t \le b$.</p>
+<p class="part"><span class="dimtag">1D in 3D</span>Let $C$ be a smooth oriented curve parametrized by $\vec r(t)$ for $a \le t \le b$. Following the pattern from the start of the chapter, $\int_C ds$ is the length of $C$, and $\int_C f\,ds$ counts each piece $ds$ of the curve with weight $f$. The new ingredient is how to compute these, by writing $ds = |\vec r\,'(t)|\,dt$.</p>
 
 <p><b>(1) Scalar line integral.</b></p>
 <div class="formula">$\displaystyle\int_C f\,ds = \int_a^b f(\vec r(t))\,|\vec r\,'(t)|\,dt.$</div>
@@ -64,7 +69,8 @@ window.MathJax = {
 
 <p><b>(2) Vector line integral, the work.</b></p>
 <div class="formula">$\displaystyle\int_C \vec F \cdot d\vec r = \int_a^b \vec F(\vec r(t)) \cdot \vec r\,'(t)\,dt = \int_C P\,dx + Q\,dy + R\,dz.$</div>
-<p>This integrates the tangent component of $\vec F$, and it equals the work done by $\vec F$ moving an object along $C$.</p>
+<p><em>Why.</em> A constant force $\vec F$ pushing along a straight displacement $\vec d$ does work $\vec F \cdot \vec d$, and only the component of $\vec F$ along $\vec d$ counts. Along a curve, chop $C$ into nearly straight steps $\Delta \vec r$, add up $\vec F \cdot \Delta \vec r$, and take the limit. Since $d\vec r = \vec T\,ds$ with $\vec T$ the unit tangent, this is the scalar line integral $\int_C \vec F \cdot \vec T\,ds$ of the tangential component of $\vec F$. A field perpendicular to the path does no work.</p>
+<p><b>Two loops with no computation.</b> On the unit circle traversed counterclockwise, the swirl $\langle -y, x\rangle$ is a unit vector pointing along the direction of travel, so $\vec F \cdot d\vec r = ds$ and $\oint_C \vec F \cdot d\vec r = 2\pi$, the length of the circle. The radial field $\langle x, y\rangle$ is perpendicular to the circle everywhere, so its loop integral is $0$.</p>
 
 <p><b>(3) 2D flux.</b> The integral $\displaystyle\int_C \vec F \cdot \vec n\,ds$ takes the normal component, measuring how much of the field crosses $C$.</p>
 
@@ -83,9 +89,18 @@ window.MathJax = {
 <div class="formula">$\displaystyle\int_C \nabla f \cdot d\vec r = f(\vec r(b)) - f(\vec r(a)).$</div>
 <p><em>Why.</em> By the chain rule of 14.5, $\frac{d}{dt} f(\vec r(t)) = \nabla f \cdot \vec r\,'(t)$, which is the integrand. The line integral therefore adds up every change in $f$ along the path, and the total change of $f$ over a trip is its final value minus its initial value.</p>
 
+<p>Next to the Fundamental Theorem of Calculus, $\int_a^b f'(x)\,dx = f(b) - f(a)$, the gradient plays the part of $f'$, the endpoints of $C$ play $a$ and $b$, and the curve plays the interval. The whole path drops out and only the endpoints are left.</p>
+
 <p><b>Path independence.</b> $\int_C \vec F \cdot d\vec r$ is independent of the path iff $\vec F$ is conservative iff $\oint_C \vec F \cdot d\vec r = 0$ for every closed $C$. If work depends only on endpoints then closed loops give zero, and work measured from a fixed base point defines the potential $f$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="pathIndependence"></canvas></div>
+
+<p><b>Three reasons $\langle -y, x\rangle$ has no potential.</b> Suppose $\langle -y, x\rangle = \nabla f$.</p>
+<ul class="tight">
+  <li><em>Crossing contours.</em> The level curves of $f$ would cross the arrows at right angles, so they would be the rays out of the origin. These all meet at the origin, but two different level curves cannot pass through the same point.</li>
+  <li><em>The climbing hike.</em> Going once counterclockwise around the unit circle, every step has $\nabla f \cdot d\vec r = ds &gt; 0$, so $f$ increases the whole way. We return to the starting point $P$ with $f(P) &gt; f(P)$.</li>
+  <li><em>The nonzero loop.</em> A gradient does zero work around every closed loop, but the loop integral above is $2\pi$.</li>
+</ul>
 
 <p><b>Exactness test in $\mathbb R^2$.</b> On a simply-connected domain, $\vec F = \langle P, Q\rangle$ is conservative iff $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$.</p>
 

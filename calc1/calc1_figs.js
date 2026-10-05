@@ -432,22 +432,22 @@ export const FIGS2D = {
 
   /* Ch 1 -------------------------------------------------- */
 
-  // secant lines through P = (4, 2) on y = √x converge to the tangent as h → 0
+  // secant lines through P = (4, 3) on y = √(2x + 1) converge to the tangent as h → 0
   secantTangent: {
     period: 10000,
     slider: {
-      label: 'h', min: -3.5, max: 5, step: 0.01, value: 2,
-      anim: t => t < 0.5 ? Math.max(0.02, 5 * (1 - t / 0.42)) : Math.min(-0.02, -3.5 * (1 - (t - 0.5) / 0.42)),
+      label: 'h', min: -4, max: 5, step: 0.01, value: 2,
+      anim: t => t < 0.5 ? Math.max(0.02, 5 * (1 - t / 0.42)) : Math.min(-0.02, -4 * (1 - (t - 0.5) / 0.42)),
       fmt: v => fx(v, 2)
     },
     draw: (ctx, W, H, t, st) => {
-      const fn = x => Math.sqrt(x);
-      const f = panel(W, H, -0.6, 9.6, -0.6, 3.6);
+      const fn = x => Math.sqrt(2 * x + 1);
+      const f = panel(W, H, -0.8, 9.6, -0.6, 5.2);
       axes(ctx, f);
       let h = st.s; if (Math.abs(h) < 0.01) h = h < 0 ? -0.01 : 0.01;
-      const a = 4, fa = 2, xq = a + h, fq = fn(xq), m = (fq - fa) / h;
-      slopeLine(ctx, f, a, fa, 0.25, C.tan, 1.8, [7, 6]);
-      plot(ctx, f, fn, 0, 9.6, C.curve, 2.6);
+      const a = 4, fa = 3, xq = a + h, fq = fn(xq), m = (fq - fa) / h;
+      slopeLine(ctx, f, a, fa, 1 / 3, C.tan, 1.8, [7, 6]);
+      plot(ctx, f, fn, -0.5, 9.6, C.curve, 2.6);
       slopeLine(ctx, f, a, fa, m, C.sec, 2.2);
       line(ctx, f, a, fa, xq, fa, C.dim, 1.2, [3, 4]);
       line(ctx, f, xq, fa, xq, fq, C.dim, 1.2, [3, 4]);
@@ -456,9 +456,9 @@ export const FIGS2D = {
       labelAt(ctx, f, 'P', a, fa, C.hi, { dx: -0.4, dy: -1.3 });
       labelAt(ctx, f, 'Q', xq, fq, C.pink, { dx: 0.4, dy: 0.2 });
       readout(ctx, f, [
-        ['f(x) = √x,  P = (4, 2),  Q = (4 + h, √(4 + h))', C.curve],
-        ['secant slope = (√(4 + h) − 2)/h = ' + fx(m, 4), C.sec],
-        ['tangent slope = lim_{h→0} = 1/4 = 0.25', C.tan]
+        ['f(x) = √(2x + 1),  P = (4, 3),  Q = (4 + h, f(4 + h))', C.curve],
+        ['secant slope = (√(9 + 2h) − 3)/h = ' + fx(m, 4), C.sec],
+        ['tangent slope = lim_{h→0} = 1/3 ≈ 0.3333', C.tan]
       ], { atX: 0 });
     }
   },
@@ -874,28 +874,28 @@ export const FIGS2D = {
     }
   },
 
-  // antiderivatives: the family x³/3 − x + C all have slope x² − 1 at each x
+  // antiderivatives: the family x³/3 − x² + C all have slope x² − 2x at each x
   antiFamily: {
     period: 9000,
     slider: { label: 'C', min: -3, max: 3, step: 0.01, value: 1 },
     draw: (ctx, W, H, t, st) => {
-      const F = x => x ** 3 / 3 - x, fn = x => x * x - 1;
-      const f = panel(W, H, -2.6, 2.6, -4, 4);
+      const F = x => x ** 3 / 3 - x * x, fn = x => x * x - 2 * x;
+      const f = panel(W, H, -1.6, 3.6, -4, 4);
       axes(ctx, f);
       // slope field of y′ = x² − 1
       ctx.save(); clip(ctx, f); ctx.strokeStyle = 'rgba(170,102,255,0.55)'; ctx.lineWidth = 1.3;
-      for (let gx = -2.4; gx <= 2.41; gx += 0.4) for (let gy = -3.6; gy <= 3.61; gy += 0.6) {
+      for (let gx = -1.4; gx <= 3.41; gx += 0.4) for (let gy = -3.6; gy <= 3.61; gy += 0.6) {
         const m = fn(gx), [px, py] = f(gx, gy);
         const ux = f.sx, uy = -m * f.sy, Ln = Math.hypot(ux, uy), s = Math.min(W, H) * 0.022;
         ctx.beginPath(); ctx.moveTo(px - ux / Ln * s, py - uy / Ln * s); ctx.lineTo(px + ux / Ln * s, py + uy / Ln * s); ctx.stroke();
       }
       ctx.restore();
-      for (let c = -3; c <= 3; c++) plot(ctx, f, x => F(x) + c, -2.6, 2.6, C.ghost, 1.3);
-      plot(ctx, f, x => F(x) + st.s, -2.6, 2.6, C.curve, 2.6);
+      for (let c = -3; c <= 3; c++) plot(ctx, f, x => F(x) + c, -1.6, 3.6, C.ghost, 1.3);
+      plot(ctx, f, x => F(x) + st.s, -1.6, 3.6, C.curve, 2.6);
       dot(ctx, f, 0, st.s, 5, C.hi);
       readout(ctx, f, [
-        ['F(x) = x^3/3 − x + C,  C = ' + fx(st.s, 2), C.curve],
-        ['segments: slope F′(x) = x^2 − 1', C.purple],
+        ['F(x) = x^3/3 − x^2 + C,  C = ' + fx(st.s, 2), C.curve],
+        ['segments: slope F′(x) = x^2 − 2x', C.purple],
         ['F(0) = C picks one member', C.hi]
       ], { right: true, bottom: true });
     }

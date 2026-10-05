@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>fig debug harness 2</title>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+}}
+</script>
+<style>
+  body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+  .row{display:flex;flex-wrap:wrap}
+  .cell{margin:4px}
+  canvas{width:320px;height:240px;display:block;background:#111}
+  .lbl{font-size:12px;padding:2px}
+</style>
+</head>
+<body>
+<div id="app" class="row"></div>
+<script type="module">
+import * as THREE from 'three';
+const params = new URLSearchParams(location.search);
+const figName = params.get('fig') || 'sphGrid';
+const times = (params.get('times') || '0,2,4,6,8,10,12,14').split(',').map(Number);
+
+const mod = await import('./calc3_figs.js');
+const FIGS = mod.FIGS;
+const fn = FIGS[figName];
+const app = document.getElementById('app');
+
+function makeCanvasCell(label) {
+  const cell = document.createElement('div'); cell.className = 'cell';
+  const l = document.createElement('div'); l.className = 'lbl'; l.textContent = label;
+  const c = document.createElement('canvas'); c.width = 320; c.height = 240;
+  cell.appendChild(l); cell.appendChild(c); app.appendChild(cell);
+  return c;
+}
+
+for (const tsec of times) {
+  const canvas = makeCanvasCell(`${figName} t=${tsec}s`);
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+  renderer.setPixelRatio(1);
+  renderer.setSize(320, 240, false);
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x101115);
+  const cam = new THREE.PerspectiveCamera(50, 320/240, 0.1, 100);
+  cam.up.set(0,0,1);
+  cam.position.set(6,-5,4);
+  cam.lookAt(0,0,0);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+  scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x202028, 0.55));
+  const dl = new THREE.DirectionalLight(0xffffff, 1.05); dl.position.set(5,8,6); scene.add(dl);
+  const rim = new THREE.DirectionalLight(0x88aaff, 0.4); rim.position.set(-6,-4,3); scene.add(rim);
+  fn(scene);
+  if (scene.userData && typeof scene.userData.tick === 'function') {
+    scene.userData.tick(tsec);
+  }
+  renderer.render(scene, cam);
+}
+window.__done = true;
+</script>
+</body></html>

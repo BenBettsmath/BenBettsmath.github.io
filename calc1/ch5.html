@@ -43,7 +43,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="areaBetween"></canvas><div class="fig-cap"><b>One strip, then all of them.</b> The yellow strip has height $(3 + 2x - x^2) - (x + 1) = 2 + x - x^2$. Integrating that height from $x = -1$ to $x = 2$ gives the area $\tfrac92$.</div></div>
 
-<p><b>Curves that cross.</b> If the top and bottom curves switch, split the interval at the crossing points, or integrate $|f(x) - g(x)|$. Example: between $y = x^2$ and $y = x$ on $[0, 2]$, the line is on top on $[0, 1]$ and the parabola on $[1, 2]$, so $A = \int_0^1(x - x^2)\,dx + \int_1^2(x^2 - x)\,dx = \tfrac16 + \tfrac56 = 1$.</p>
+<p><b>Curves that cross.</b> If the top and bottom curves switch, split the interval at the crossing points, or integrate $|f(x) - g(x)|$. Example: between $y = x^2$ and $y = 2x$ on $[0, 3]$, the line is on top on $[0, 2]$ and the parabola on $[2, 3]$, so $A = \int_0^2(2x - x^2)\,dx + \int_2^3(x^2 - 2x)\,dx = \tfrac43 + \tfrac43 = \tfrac83$.</p>
 
 <p><b>Horizontal strips.</b> If the region is bounded by curves $x = f(y)$ (right) and $x = g(y)$ (left) for $c \le y \le d$, then</p>
 <div class="formula">$\displaystyle A = \int_c^d\big[f(y) - g(y)\big]\,dy = \int_c^d (\text{right} - \text{left})\,dy.$</div>
@@ -88,7 +88,7 @@ window.MathJax = {
 
 <div class="fig-inline-canvas"><canvas data-fig="spring"></canvas><div class="fig-cap"><b>Work is area under the force graph.</b> A spring with $k = 30$ N/m. Stretching it $x$ meters takes $W = \int_0^x 30s\,ds = 15x^2$ J, the triangle under $F = 30s$. Each extra centimeter costs more than the last.</div></div>
 
-<p><b>Lifting a cable.</b> A $20$ m cable weighing $3$ N/m hangs from the top of a building. A piece of length $\Delta x$ at depth $x$ weighs $3\,\Delta x$ N and must be lifted $x$ m, so $W = \int_0^{20}3x\,dx = 600$ J. The same idea (weight of a slice times the distance that slice moves) handles pumping liquid from a tank.</p>
+<p><b>A leaking bucket.</b> A bucket of water weighing $40$ N is lifted $10$ m at constant speed while it leaks, so that its weight drops steadily to $20$ N at the top. At height $x$ the weight is $F(x) = 40 - 2x$ N, so $W = \int_0^{10}(40 - 2x)\,dx = 400 - 100 = 300$ J. When different pieces of an object move different distances (a hanging chain, liquid pumped from a tank), slice the object instead and add (weight of a slice) times (distance that slice moves).</p>
 
 <div class="pitfall"><div class="pitfall-name">Common pitfall</div><p>In Hooke's Law, convert lengths to stretches by subtracting the natural length first, and keep units consistent (meters with newtons gives joules). Stretching from $25$ cm to $30$ cm means $x$ from $0.05$ to $0.10$ m, not from $0.25$ to $0.30$.</p></div>
 </div>
@@ -126,7 +126,7 @@ Volume about $y = -1$: $R = 2\sqrt x + 1$, $r = x + 1$, so $V = \pi\displaystyle
   <li>Rotate the region under $y = 3 - x$, $0 \le x \le 3$, about the $x$-axis. Find the volume, and check it against the cone formula $V = \tfrac13\pi r^2 h$.</li>
   <li>Set up (do not evaluate) the volume when the region between $y = x^2$ and $y = 4$ is rotated about the $y$-axis, about $y = 4$, and about $y = -1$.</li>
   <li>A force of $8$ N holds a spring stretched $0.2$ m beyond its natural length. How much work stretches it from $0.2$ m to $0.5$ m beyond natural length?</li>
-  <li>Find the average value of $f(x) = \sin x$ on $[0, \pi]$, and of $f(x) = x^2$ on $[0, 3]$. Find every $c$ the Mean Value Theorem for Integrals promises for the second.</li>
+  <li>Find the average value of $f(x) = \cos x$ on $[0, \pi/2]$, and of $f(x) = x^2$ on $[0, 6]$. Find every $c$ the Mean Value Theorem for Integrals promises for the second.</li>
 </ol>
 </div>
 
