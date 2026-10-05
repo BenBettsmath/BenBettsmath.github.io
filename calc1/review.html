@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc I · Review Problems</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .page-content { max-width: 1000px; }
+    .backlinks { margin: -0.4em 0 1.1em; font-size: 0.95em; }
+    .backlinks a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; margin-right: 1.2em; }
+    .backlinks a:hover { border-bottom-color: #007A86; }
+    .chapter { margin-top: 2.4em; padding: 0.5em 0 0.2em; border-top: none; font-size: 1.45em; color: #143d42; display: flex; align-items: center; gap: 0.55em; }
+    .chapter::before { content: ""; width: 0.42em; height: 1.05em; background: #007A86; border-radius: 2px; display: inline-block; }
+    .toc { padding: 0.9em 1.2em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.6em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); }
+    .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
+    .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
+    .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc a:hover { border-bottom-color: #007A86; }
+    .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
+    .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; overflow-x: auto; }
+    .problem:hover { border-left-color: #007A86; box-shadow: 0 4px 16px rgba(25,35,60,0.08); }
+    .problem .stmt { margin-bottom: 0.7em; color: #2a2d33; }
+    .problem .stmt b { color: #007A86; font-weight: 700; letter-spacing: 0.01em; }
+    .sol { margin-left: 0.2em; padding-left: 0.9em; border-left: 2px solid #eef0f3; }
+    .sol .sollabel { font-variant: small-caps; color: #007A86; font-weight: 600; font-size: 0.9em; letter-spacing: 0.03em; margin-bottom: 0.2em; }
+    .fig { margin: 0.8em auto; text-align: center; }
+    .fig svg { max-width: 100%; height: auto; display: inline-block; font-family: sans-serif; }
+    .fig .cap { font-size: 0.85em; color: #555; margin-top: 0.2em; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']],
+        macros: {
+          Rr: '\\mathbb{R}',
+          abs: ['\\left| #1 \\right|', 1],
+          parens: ['\\left( #1 \\right)', 1],
+          brac: ['\\left[ #1 \\right]', 1]
+        }
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <h2>Calc I · Review Problems</h2>
+  <p class="backlinks"><a href="index.html">&larr; Calculus I home</a><a href="Calc1_Review.pdf">PDF version</a><a href="solutions.html">Selected solutions</a></p>
+  <div class="toc">
+    <ol>
+      <li><a href="#sec1">Formulas to know</a></li>
+      <li><a href="#sec2">Limits from a graph</a></li>
+      <li><a href="#sec3">Computing limits</a></li>
+      <li><a href="#sec4">Squeeze Theorem</a></li>
+      <li><a href="#sec5">Limits at infinity</a></li>
+      <li><a href="#sec6">Continuity and the IVT</a></li>
+      <li><a href="#sec7">The derivative as a limit</a></li>
+      <li><a href="#sec8">Differentiation rules</a></li>
+      <li><a href="#sec9">Trig derivatives</a></li>
+      <li><a href="#sec10">Chain rule</a></li>
+      <li><a href="#sec11">Implicit differentiation</a></li>
+      <li><a href="#sec12">Related rates</a></li>
+      <li><a href="#sec13">Linear approximation</a></li>
+      <li><a href="#sec14">Extreme values</a></li>
+      <li><a href="#sec15">Mean Value Theorem</a></li>
+      <li><a href="#sec16">Shape of a graph</a></li>
+      <li><a href="#sec17">Curve sketching</a></li>
+      <li><a href="#sec18">Optimization</a></li>
+      <li><a href="#sec19">Antiderivatives</a></li>
+      <li><a href="#sec20">Riemann sums</a></li>
+      <li><a href="#sec21">The integral as area</a></li>
+      <li><a href="#sec22">Fundamental Theorem, Part 1</a></li>
+      <li><a href="#sec23">Fundamental Theorem, Part 2</a></li>
+      <li><a href="#sec24">Substitution</a></li>
+      <li><a href="#sec25">Area between curves</a></li>
+      <li><a href="#sec26">Average value</a></li>
+      <li><a href="#sec27">Volumes</a></li>
+      <li><a href="#sec28">Work</a></li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec1" class="chapter">1. Formulas to know</h3>
+  <p class="lede">The definitions everything else is built from. Each one is a sentence you should be able to write and also a picture you should be able to draw.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(a).</b> State the definition of $f$ is continuous at $x=a$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(b).</b> Write $f'(a)$, the derivative of $f$ at $x=a$, as a limit in two ways.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(c).</b> Give both parts of the Fundamental Theorem of Calculus.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec2" class="chapter">2. Limits from a graph</h3>
+  <p class="lede">A limit asks where the graph is heading, not where the dot is. Cover the point $x=a$ with your thumb and read the heights on each side.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(a).</b> Let $g$ be the function graphed below (a filled dot is a point on the graph, an open dot is not). Find $g(-1)$, $\lim_{x \to -1^-} g(x)$, $\lim_{x \to -1^+} g(x)$, $\lim_{x \to -1} g(x)$, then $g(0)$ and $\lim_{x \to 0} g(x)$, then $\lim_{x \to 2^-} g(x)$, $\lim_{x \to 2^+} g(x)$, $\lim_{x \to 2} g(x)$.</p>
+    <div class="fig"><svg viewBox="0 0 440 280" width="440" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="50.2" y1="254.0" x2="50.2" y2="26.0"/><line x1="98.8" y1="254.0" x2="98.8" y2="26.0"/><line x1="147.2" y1="254.0" x2="147.2" y2="26.0"/><line x1="195.8" y1="254.0" x2="195.8" y2="26.0"/><line x1="244.2" y1="254.0" x2="244.2" y2="26.0"/><line x1="292.8" y1="254.0" x2="292.8" y2="26.0"/><line x1="341.2" y1="254.0" x2="341.2" y2="26.0"/><line x1="389.8" y1="254.0" x2="389.8" y2="26.0"/><line x1="26.0" y1="233.3" x2="414.0" y2="233.3"/><line x1="26.0" y1="191.8" x2="414.0" y2="191.8"/><line x1="26.0" y1="150.4" x2="414.0" y2="150.4"/><line x1="26.0" y1="108.9" x2="414.0" y2="108.9"/><line x1="26.0" y1="67.5" x2="414.0" y2="67.5"/><line x1="26.0" y1="26.0" x2="414.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="233.3" x2="414.0" y2="233.3"/><line x1="195.8" y1="254.0" x2="195.8" y2="26.0"/></g><g font-size="10" fill="#555"><text x="50.2" y="246.3" text-anchor="middle">-3</text><text x="98.8" y="246.3" text-anchor="middle">-2</text><text x="147.2" y="246.3" text-anchor="middle">-1</text><text x="244.2" y="246.3" text-anchor="middle">1</text><text x="292.8" y="246.3" text-anchor="middle">2</text><text x="341.2" y="246.3" text-anchor="middle">3</text><text x="389.8" y="246.3" text-anchor="middle">4</text><text x="190.8" y="195.8" text-anchor="end">1</text><text x="190.8" y="154.4" text-anchor="end">2</text><text x="190.8" y="112.9" text-anchor="end">3</text><text x="190.8" y="71.5" text-anchor="end">4</text><text x="190.8" y="30.0" text-anchor="end">5</text><text x="410.0" y="227.3" text-anchor="end" font-style="italic">x</text><text x="201.8" y="36.0" font-style="italic">y</text></g><path d="M 50.2,191.8 L 51.1,191.1 L 51.9,190.4 L 52.7,189.7 L 53.5,189.1 L 54.3,188.4 L 55.1,187.7 L 55.9,187.0 L 56.7,186.3 L 57.5,185.6 L 58.3,184.9 L 59.1,184.2 L 60.0,183.5 L 60.8,182.8 L 61.6,182.1 L 62.4,181.5 L 63.2,180.8 L 64.0,180.1 L 64.8,179.4 L 65.6,178.7 L 66.4,178.0 L 67.2,177.3 L 68.0,176.6 L 68.8,175.9 L 69.7,175.2 L 70.5,174.5 L 71.3,173.9 L 72.1,173.2 L 72.9,172.5 L 73.7,171.8 L 74.5,171.1 L 75.3,170.4 L 76.1,169.7 L 76.9,169.0 L 77.7,168.3 L 78.5,167.6 L 79.3,166.9 L 80.2,166.3 L 81.0,165.6 L 81.8,164.9 L 82.6,164.2 L 83.4,163.5 L 84.2,162.8 L 85.0,162.1 L 85.8,161.4 L 86.6,160.7 L 87.4,160.0 L 88.2,159.3 L 89.0,158.7 L 89.9,158.0 L 90.7,157.3 L 91.5,156.6 L 92.3,155.9 L 93.1,155.2 L 93.9,154.5 L 94.7,153.8 L 95.5,153.1 L 96.3,152.4 L 97.1,151.7 L 97.9,151.1 L 98.8,150.4 L 99.6,149.7 L 100.4,149.0 L 101.2,148.3 L 102.0,147.6 L 102.8,146.9 L 103.6,146.2 L 104.4,145.5 L 105.2,144.8 L 106.0,144.1 L 106.8,143.5 L 107.6,142.8 L 108.5,142.1 L 109.3,141.4 L 110.1,140.7 L 110.9,140.0 L 111.7,139.3 L 112.5,138.6 L 113.3,137.9 L 114.1,137.2 L 114.9,136.5 L 115.7,135.9 L 116.5,135.2 L 117.3,134.5 L 118.1,133.8 L 119.0,133.1 L 119.8,132.4 L 120.6,131.7 L 121.4,131.0 L 122.2,130.3 L 123.0,129.6 L 123.8,128.9 L 124.6,128.3 L 125.4,127.6 L 126.2,126.9 L 127.0,126.2 L 127.9,125.5 L 128.7,124.8 L 129.5,124.1 L 130.3,123.4 L 131.1,122.7 L 131.9,122.0 L 132.7,121.3 L 133.5,120.7 L 134.3,120.0 L 135.1,119.3 L 135.9,118.6 L 136.7,117.9 L 137.6,117.2 L 138.4,116.5 L 139.2,115.8 L 140.0,115.1 L 140.8,114.4 L 141.6,113.7 L 142.4,113.1 L 143.2,112.4 L 144.0,111.7 L 144.8,111.0 L 145.6,110.3 L 146.4,109.6 L 147.2,108.9" fill="none" stroke="#06a" stroke-width="2"/><path d="M 147.2,67.5 L 148.5,71.6 L 149.7,75.6 L 150.9,79.7 L 152.1,83.6 L 153.3,87.5 L 154.5,91.4 L 155.7,95.2 L 157.0,99.0 L 158.2,102.7 L 159.4,106.3 L 160.6,109.9 L 161.8,113.5 L 163.0,117.0 L 164.2,120.4 L 165.4,123.8 L 166.7,127.1 L 167.9,130.4 L 169.1,133.7 L 170.3,136.9 L 171.5,140.0 L 172.7,143.1 L 173.9,146.1 L 175.1,149.1 L 176.3,152.0 L 177.6,154.9 L 178.8,157.7 L 180.0,160.5 L 181.2,163.2 L 182.4,165.9 L 183.6,168.5 L 184.8,171.1 L 186.0,173.6 L 187.3,176.0 L 188.5,178.4 L 189.7,180.8 L 190.9,183.1 L 192.1,185.4 L 193.3,187.6 L 194.5,189.7 L 195.8,191.8 L 197.0,193.9 L 198.2,195.9 L 199.4,197.8 L 200.6,199.7 L 201.8,201.5 L 203.0,203.3 L 204.2,205.1 L 205.5,206.7 L 206.7,208.4 L 207.9,210.0 L 209.1,211.5 L 210.3,213.0 L 211.5,214.4 L 212.7,215.8 L 213.9,217.1 L 215.2,218.3 L 216.4,219.6 L 217.6,220.7 L 218.8,221.8 L 220.0,222.9 L 221.2,223.9 L 222.4,224.9 L 223.6,225.8 L 224.8,226.6 L 226.1,227.4 L 227.3,228.2 L 228.5,228.9 L 229.7,229.5 L 230.9,230.1 L 232.1,230.7 L 233.3,231.2 L 234.5,231.6 L 235.8,232.0 L 237.0,232.3 L 238.2,232.6 L 239.4,232.9 L 240.6,233.0 L 241.8,233.2 L 243.0,233.2 L 244.2,233.3 L 245.5,233.2 L 246.7,233.2 L 247.9,233.0 L 249.1,232.9 L 250.3,232.6 L 251.5,232.3 L 252.7,232.0 L 254.0,231.6 L 255.2,231.2 L 256.4,230.7 L 257.6,230.1 L 258.8,229.5 L 260.0,228.9 L 261.2,228.2 L 262.4,227.4 L 263.6,226.6 L 264.9,225.8 L 266.1,224.9 L 267.3,223.9 L 268.5,222.9 L 269.7,221.8 L 270.9,220.7 L 272.1,219.6 L 273.4,218.3 L 274.6,217.1 L 275.8,215.8 L 277.0,214.4 L 278.2,213.0 L 279.4,211.5 L 280.6,210.0 L 281.8,208.4 L 283.1,206.7 L 284.3,205.1 L 285.5,203.3 L 286.7,201.5 L 287.9,199.7 L 289.1,197.8 L 290.3,195.9 L 291.5,193.9 L 292.8,191.8" fill="none" stroke="#06a" stroke-width="2"/><path d="M 303.4,44.8 L 304.3,59.2 L 305.2,71.6 L 306.1,82.3 L 306.9,91.6 L 307.8,99.9 L 308.7,107.3 L 309.6,113.9 L 310.5,119.8 L 311.3,125.2 L 312.2,130.1 L 313.1,134.5 L 314.0,138.6 L 314.9,142.4 L 315.8,145.9 L 316.6,149.1 L 317.5,152.1 L 318.4,154.9 L 319.3,157.5 L 320.2,159.9 L 321.0,162.2 L 321.9,164.4 L 322.8,166.4 L 323.7,168.3 L 324.6,170.1 L 325.4,171.8 L 326.3,173.4 L 327.2,174.9 L 328.1,176.4 L 329.0,177.8 L 329.9,179.1 L 330.7,180.3 L 331.6,181.5 L 332.5,182.7 L 333.4,183.8 L 334.3,184.8 L 335.1,185.8 L 336.0,186.8 L 336.9,187.7 L 337.8,188.6 L 338.7,189.5 L 339.5,190.3 L 340.4,191.1 L 341.3,191.9 L 342.2,192.6 L 343.1,193.3 L 343.9,194.0 L 344.8,194.7 L 345.7,195.3 L 346.6,195.9 L 347.5,196.5 L 348.4,197.1 L 349.2,197.7 L 350.1,198.2 L 351.0,198.8 L 351.9,199.3 L 352.8,199.8 L 353.6,200.3 L 354.5,200.7 L 355.4,201.2 L 356.3,201.6 L 357.2,202.1 L 358.0,202.5 L 358.9,202.9 L 359.8,203.3 L 360.7,203.7 L 361.6,204.1 L 362.5,204.4 L 363.3,204.8 L 364.2,205.1 L 365.1,205.5 L 366.0,205.8 L 366.9,206.1 L 367.7,206.5 L 368.6,206.8 L 369.5,207.1 L 370.4,207.4 L 371.3,207.7 L 372.1,207.9 L 373.0,208.2 L 373.9,208.5 L 374.8,208.8 L 375.7,209.0 L 376.5,209.3 L 377.4,209.5 L 378.3,209.8 L 379.2,210.0 L 380.1,210.2 L 381.0,210.5 L 381.8,210.7 L 382.7,210.9 L 383.6,211.1 L 384.5,211.4 L 385.4,211.6 L 386.2,211.8 L 387.1,212.0 L 388.0,212.2 L 388.9,212.4 L 389.8,212.5 L 390.6,212.7 L 391.5,212.9 L 392.4,213.1 L 393.3,213.3 L 394.2,213.4 L 395.1,213.6 L 395.9,213.8 L 396.8,214.0 L 397.7,214.1 L 398.6,214.3 L 399.5,214.4 L 400.3,214.6 L 401.2,214.7 L 402.1,214.9 L 403.0,215.0 L 403.9,215.2 L 404.7,215.3 L 405.6,215.5 L 406.5,215.6 L 407.4,215.7 L 408.3,215.9 L 409.2,216.0" fill="none" stroke="#06a" stroke-width="2"/><line x1="292.8" y1="254.0" x2="292.8" y2="26.0" stroke="#999" stroke-dasharray="4 3"/><circle cx="147.2" cy="108.9" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="147.2" cy="67.5" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="195.8" cy="191.8" r="3.6" fill="#fff" stroke="#06a" stroke-width="1.5"/><circle cx="147.2" cy="191.8" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/><circle cx="195.8" cy="108.9" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/><circle cx="292.8" cy="191.8" r="3.6" fill="#06a" stroke="#06a" stroke-width="1.5"/></svg><div class="cap">The graph of $g$. Open dots are not on the graph, filled dots are.</div></div>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(b).</b> At which $x$ values in $(-3,4)$ is $g$ not continuous? Classify each discontinuity. At which of these is $g$ continuous from the left, or from the right?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(c).</b> Suppose $\lim_{x \to a} f(x) = 4$ and $\lim_{x \to a} h(x) = -2$. Evaluate $\lim_{x \to a} [3f(x) - 5h(x)]$, $\lim_{x \to a} f(x)h(x)$, $\lim_{x \to a} \frac{f(x)}{h(x)}$, and $\lim_{x \to a} \parens{\sqrt{f(x)} + h(x)^2}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec3" class="chapter">3. Computing limits</h3>
+  <p class="lede">If plugging in gives a number, that is the limit. If it gives $\frac{0}{0}$, the expression is hiding a common factor, so factor, rationalize, or combine fractions until it cancels. If it gives (nonzero)$/0$, the limit is infinite on each side and only the signs are left to decide.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(a).</b> Evaluate $\lim_{x \to 3} \frac{x^2-2x-3}{x^2-9}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(b).</b> Evaluate $\lim_{x \to 5} \frac{\sqrt{x+4}-3}{x-5}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(c).</b> Evaluate $\lim_{x \to -1} \frac{\frac{1}{x+3} - \frac{1}{2}}{x+1}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(d).</b> Evaluate $\lim_{x \to 4} \frac{5}{x^2-3x-4}$, considering the one-sided limits.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(e).</b> Evaluate $\lim_{x \to 2} \frac{x^2-4}{\abs{x-2}}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec4" class="chapter">4. Squeeze Theorem</h3>
+  <p class="lede">If $f$ is trapped between two functions that head to the same height $L$, then $f$ has nowhere else to go.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(a).</b> Evaluate $\lim_{x \to 0} x^2 \sin\parens{\frac{3}{x}}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(b).</b> If $2x - 1 \leq f(x) \leq x^2 - 2x + 3$ for all $x$, find $\lim_{x \to 2} f(x)$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec5" class="chapter">5. Limits at infinity</h3>
+  <p class="lede">As $x \to \pm\infty$ only the biggest power matters. Divide top and bottom by the highest power of $x$ in the bottom.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(a).</b> Evaluate $\lim_{x \to -\infty} \frac{\sqrt{4x^2+1}}{x+3}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(b).</b> Evaluate $\lim_{x \to \infty} \parens{\sqrt{x^2+6x} - x}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(c).</b> Find all vertical and horizontal asymptotes of $f(x) = \frac{2x^2-2}{x^2+x-2}$. Why is $x=1$ not a vertical asymptote?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec6" class="chapter">6. Continuity and the IVT</h3>
+  <p class="lede">To check continuity at a point compute three things: the value, the left limit, the right limit. All three must agree.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(a).</b> Let $f(x) = \begin{cases} x+2 &amp; x &lt; -1 \\ x^2 &amp; -1 \leq x \leq 1 \\ 3-x &amp; x &gt; 1 \end{cases}$. Is $f$ continuous at $x=-1$ and at $x=1$? Where is $f$ not differentiable?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(b).</b> Find $a$ and $b$ so that $f(x) = \begin{cases} 2 &amp; x &lt; 1 \\ ax + b &amp; 1 \leq x &lt; 4 \\ 8 &amp; x \geq 4 \end{cases}$ is continuous everywhere.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(c).</b> Show that $x^3 + x - 1 = 0$ has a solution in $(0,1)$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec7" class="chapter">7. The derivative as a limit</h3>
+  <p class="lede">The tangent slope is the limit of secant slopes. Every limit-definition problem has the same shape: write the difference quotient, simplify until the $h$ in the bottom cancels, then let $h\to0$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(a).</b> Let $f(x) = x^3$ and $P = (2,8)$. Find the slope of the tangent line at $P$ as a limit of slopes of secant lines through $P$ and $Q = (x, x^3)$, then write the tangent line.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(b).</b> Compute $f'(x)$ directly from $f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}$ for $f(x) = \frac{x}{x+2}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(c).</b> A ball's height is $h(t) = 200 - 16t^2$ feet after $t$ seconds. Find the slope of the secant line between $t=1$ and $t=3$, then the instantaneous velocity at $t=2$ as a limit.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(d).</b> Show that $f(x) = \sqrt[3]{x}$ is continuous at $x=0$ but not differentiable there. What does the tangent line at $x=0$ look like?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(e).</b> Each limit is $f'(a)$ for some $f$ and $a$. Find $f$ and $a$, then evaluate: $\lim_{h \to 0} \frac{(2+h)^4 - 16}{h}$ and $\lim_{x \to \pi/2} \frac{\cos x}{x - \frac{\pi}{2}}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec8" class="chapter">8. Differentiation rules</h3>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(a).</b> Find $y'$ if $y = \frac{x^2+1}{2x+1}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(b).</b> Find the points on the curve $y = x^3 - 3x^2 - 9x + 2$ where the tangent line is parallel to the line $y = 15x$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(c).</b> A particle has position $s(t) = t^3 - 9t^2 + 24t$ meters at time $t$ seconds. Find $v(t)$ and $a(t)$, with units. When is the particle at rest?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec9" class="chapter">9. Trig derivatives</h3>
+  <p class="lede">Every trig limit in this course reduces to $\lim_{\theta\to0}\frac{\sin\theta}{\theta} = 1$. The trick is to make the angle inside the sine match the denominator exactly.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(a).</b> Starting only from $\frac{d}{dx}\sin x = \cos x$ and $\frac{d}{dx}\cos x = -\sin x$, derive $\frac{d}{dx}\sec x$. Then find $\frac{d^2}{dx^2}\tan x$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(b).</b> Evaluate $\lim_{x \to 0} \frac{\sin(4x)}{3x}$ and $\lim_{x \to 0} \frac{1-\cos x}{x\sin x}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(c).</b> Find $y'$ if $y = \frac{\sec x}{1 + \tan x}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec10" class="chapter">10. Chain rule</h3>
+  <p class="lede">The chain rule says rates multiply: if $u$ changes $3$ times as fast as $x$ and $y$ changes $2$ times as fast as $u$, then $y$ changes $6$ times as fast as $x$. In symbols, $\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(a).</b> Use the table to find $(f \circ g)'(1)$, $(g \circ f)'(1)$, and $(fg)'(2)$. $$\begin{array}{c|cccc} x &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\ \hline f(x) &amp; 2 &amp; 3 &amp; 0 &amp; 1 \\ f'(x) &amp; -1 &amp; 4 &amp; 2 &amp; 5 \\ g(x) &amp; 1 &amp; 2 &amp; 3 &amp; 0 \\ g'(x) &amp; 3 &amp; -2 &amp; 1 &amp; 4 \end{array}$$</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(b).</b> Find the tangent line to $y = \tan(\sqrt{x})$ at $x = \frac{\pi^2}{16}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(c).</b> Find the tangent line to $y = (x^2-3)^5$ at $x = 2$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(d).</b> Find all points $(x,y)$ with $0 \leq x &lt; 2\pi$ where $y = 2\sin x + \cos(2x)$ has a horizontal tangent line.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec11" class="chapter">11. Implicit differentiation</h3>
+  <p class="lede">Treat $y$ as an unknown function of $x$. Every time you differentiate something with $y$ in it, the chain rule leaves a factor of $y'$. Then solve for $y'$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(a).</b> For the ellipse $x^2 + 4y^2 = 16$, find $\frac{dy}{dx}$ and $\frac{d^2y}{dx^2}$, simplified using the equation of the ellipse.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(b).</b> Find the tangent line to $\sin(x+y) = 2x - 2y$ at $(\pi, \pi)$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(c).</b> Find the tangent line to $x^3 + y^3 = 9xy$ at $(2,4)$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(d).</b> For $y^2 = x^3 - 3x + 2$, find $\frac{dy}{dx}$, the tangent line at $(2,2)$, and all points with a horizontal tangent line.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec12" class="chapter">12. Related rates</h3>
+  <p class="lede">Write one equation that holds at every instant, differentiate it with respect to $t$, and only then plug in the numbers for the instant you care about. Plugging in first freezes the quantities and kills their rates.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(a).</b> A 13 ft ladder leans against a wall. The bottom slides away at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(b).</b> A tank is an inverted cone with radius 3 m at the top and height 6 m. Water is pumped in at 4 $\text{m}^3$/min. How fast is the water level rising when the water is 4 m deep?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(c).</b> A 6 ft tall person walks away from a 15 ft lamppost at 3 ft/s. How fast is the tip of the person's shadow moving?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(d).</b> A marble moves along $x^2 + xy + y^2 = 9$. At $(3,0)$, $x$ is decreasing at 2 ft/s. Is $y$ increasing or decreasing, and how fast?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec13" class="chapter">13. Linear approximation</h3>
+  <p class="lede">Near $x=a$ a differentiable curve looks like its tangent line, so we use $L(x) = f(a) + f'(a)(x-a)$ in place of $f(x)$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(a).</b> Find the linearization of $f(x) = \sqrt[3]{x}$ at $a=27$. Use it to approximate $\sqrt[3]{27.27}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(b).</b> Find the linearization of $f(x) = \sin x$ at $a = \frac{\pi}{6}$. Use it to approximate $\sin\parens{\frac{\pi}{6} + 0.02}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(c).</b> The radius of a sphere is measured as 10 cm with a possible error of 0.05 cm. Estimate the maximum error in the computed volume.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec14" class="chapter">14. Extreme values</h3>
+  <p class="lede">A continuous function on a closed interval attains a max and a min (Extreme Value Theorem), and they can only occur at critical numbers or endpoints (Fermat's Theorem). So list those candidates and compare the values of $f$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(a).</b> Find the critical numbers of $f(x) = x^{2/3}(x-5)$. Which come from $f'(x) = 0$ and which from $f'(x)$ undefined?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(b).</b> Find the absolute max and min of $f(x) = x^4 - 8x^2 + 3$ on $[-1,3]$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(c).</b> Find the absolute max and min of $f(x) = x\sqrt{4-x^2}$ on $[-1,2]$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(d).</b> Find the absolute max and min of $f(x) = 2\cos x + \sin(2x)$ on $[0, \pi]$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec15" class="chapter">15. Mean Value Theorem</h3>
+  <p class="lede">If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then somewhere the tangent slope equals the average slope: $f'(c) = \frac{f(b)-f(a)}{b-a}$ for some $c$ in $(a,b)$. If your average speed on a trip was 60 mph, at some instant the speedometer read exactly 60.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(a).</b> Find every $c$ guaranteed by the MVT for $f(x) = x^2 - 4x + 1$ on $[1,5]$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(b).</b> If $f(2) = -1$ and $f'(x) \leq 3$ for all $x$, how large can $f(6)$ be?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(c).</b> Show that $x^3 + 5x - 2 = 0$ has exactly one real solution.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec16" class="chapter">16. Shape of a graph</h3>
+  <p class="lede">The sign of $f'$ says whether $f$ goes up or down. The sign of $f''$ says whether $f'$ goes up or down, which is whether the graph bends up or down. Find where each is zero or undefined, then test signs between.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(a).</b> For $f(x) = x^3 - 6x^2 + 9x + 1$, find the intervals of increase and decrease, local extrema, concavity, and inflection points.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(b).</b> Do the same for $f(x) = 3x^4 - 4x^3$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(c).</b> Find constants $a$ and $b$ so that $f(x) = x^3 + ax^2 + bx$ has an inflection point at $x=1$ and a local minimum at $x=3$. Where is its local maximum?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec17" class="chapter">17. Curve sketching</h3>
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(a).</b> Sketch $f(x) = \frac{1}{x^2+3}$, labeling intercepts, asymptotes, extrema, and inflection points.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(b).</b> Sketch $f(x) = \frac{x^2}{x-1}$, labeling all key features.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(c).</b> Sketch $f(x) = x - 2\sqrt{x}$, labeling all key features.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec18" class="chapter">18. Optimization</h3>
+  <p class="lede">Write the quantity as a function of one variable using the constraint, find its critical numbers, and check that the one you pick really is the max or min (endpoints, first derivative test, or second derivative test).</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(a).</b> A closed box has a rectangular base whose length is twice its width, and its volume is $72\ \text{ft}^3$. Find the dimensions that use the least material.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(b).</b> A closed cylindrical can holds $16\pi\ \text{cm}^3$. Find the radius and height that minimize its surface area.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(c).</b> A rectangle has its base on the $x$-axis and its two upper corners on the semicircle $y = \sqrt{25 - x^2}$. Find the largest possible area.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(d).</b> A rectangular pen is split in half by a divider parallel to one side. The outer fence costs \$4 per meter and the divider \$2 per meter. With \$200, what is the largest possible area?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(e).</b> Find the points on the parabola $y = x^2$ closest to the point $(0,2)$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec19" class="chapter">19. Antiderivatives</h3>
+  <p class="lede">An antiderivative undoes a derivative, and it is only determined up to a constant $C$, because constants have derivative $0$. An initial condition picks out the one value of $C$ that fits.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(a).</b> Find the most general antiderivative of $g(x) = \frac{x^2 - 3x + 2\sqrt{x}}{x}$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(b).</b> If $f'(x) = 3\sqrt{x} - 2$ and $f(4) = 10$, find $f(x)$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(c).</b> A particle has $a(t) = 6t - 4$, $v(0) = 3$, $s(0) = 1$. Find $s(t)$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(d).</b> Let $F$ be the antiderivative of $f(x) = x^2 - 4$ with $F(0) = 0$. Without finding $F$, decide where $F$ is increasing, where it has local extrema, and where it is concave up. Then find $F$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec20" class="chapter">20. Riemann sums</h3>
+  <p class="lede">A Riemann sum adds up rectangles of width $\Delta x$ and height $f(x_i)$. The definite integral is what these sums approach as the rectangles get thin.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(a).</b> Estimate $\int_0^\pi \sin x\, dx$ with the midpoint rule and $n=3$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(b).</b> Approximate the area under $f(x) = x^2$ on $[0,4]$ with $n=4$ using right endpoints, left endpoints, and midpoints. Which are over and which are under?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(c).</b> Write $\lim_{n \to \infty} \sum_{i=1}^n \frac{3}{n}\sqrt{1 + \frac{3i}{n}}$ as a definite integral, then evaluate it.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec21" class="chapter">21. The integral as area</h3>
+  <p class="lede">$\int_a^b f(x)\,dx$ is the area above the axis minus the area below it. For lines and circles we can find these areas with geometry.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(a).</b> Evaluate $\int_0^2 \parens{3x + \sqrt{4-x^2}} dx$ with geometry.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(b).</b> Evaluate $\int_{-2}^2 \parens{x^3 + \sqrt{4-x^2}} dx$ with geometry.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(c).</b> Evaluate $\int_{-3}^3 \parens{\abs{x} - 1} dx$ with geometry.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(d).</b> For the velocity graph below ($v$ in m/s, $t$ in s), find the displacement and total distance from $t=0$ to $t=10$, the position at $t=10$ if $x(0)=3$ m, the acceleration at $t=5$, and when the particle is farthest from its start.</p>
+    <div class="fig"><svg viewBox="0 0 460 260" width="460" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="26.0" y1="234.0" x2="26.0" y2="26.0"/><line x1="64.9" y1="234.0" x2="64.9" y2="26.0"/><line x1="103.7" y1="234.0" x2="103.7" y2="26.0"/><line x1="142.6" y1="234.0" x2="142.6" y2="26.0"/><line x1="181.4" y1="234.0" x2="181.4" y2="26.0"/><line x1="220.3" y1="234.0" x2="220.3" y2="26.0"/><line x1="259.1" y1="234.0" x2="259.1" y2="26.0"/><line x1="298.0" y1="234.0" x2="298.0" y2="26.0"/><line x1="336.9" y1="234.0" x2="336.9" y2="26.0"/><line x1="375.7" y1="234.0" x2="375.7" y2="26.0"/><line x1="414.6" y1="234.0" x2="414.6" y2="26.0"/><line x1="26.0" y1="234.0" x2="434.0" y2="234.0"/><line x1="26.0" y1="208.0" x2="434.0" y2="208.0"/><line x1="26.0" y1="182.0" x2="434.0" y2="182.0"/><line x1="26.0" y1="156.0" x2="434.0" y2="156.0"/><line x1="26.0" y1="130.0" x2="434.0" y2="130.0"/><line x1="26.0" y1="104.0" x2="434.0" y2="104.0"/><line x1="26.0" y1="78.0" x2="434.0" y2="78.0"/><line x1="26.0" y1="52.0" x2="434.0" y2="52.0"/><line x1="26.0" y1="26.0" x2="434.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="156.0" x2="434.0" y2="156.0"/><line x1="26.0" y1="234.0" x2="26.0" y2="26.0"/></g><g font-size="10" fill="#555"><text x="64.9" y="169.0" text-anchor="middle">1</text><text x="103.7" y="169.0" text-anchor="middle">2</text><text x="142.6" y="169.0" text-anchor="middle">3</text><text x="181.4" y="169.0" text-anchor="middle">4</text><text x="220.3" y="169.0" text-anchor="middle">5</text><text x="259.1" y="169.0" text-anchor="middle">6</text><text x="298.0" y="169.0" text-anchor="middle">7</text><text x="336.9" y="169.0" text-anchor="middle">8</text><text x="375.7" y="169.0" text-anchor="middle">9</text><text x="414.6" y="169.0" text-anchor="middle">10</text><text x="21.0" y="238.0" text-anchor="end">-3</text><text x="21.0" y="212.0" text-anchor="end">-2</text><text x="21.0" y="186.0" text-anchor="end">-1</text><text x="21.0" y="134.0" text-anchor="end">1</text><text x="21.0" y="108.0" text-anchor="end">2</text><text x="21.0" y="82.0" text-anchor="end">3</text><text x="21.0" y="56.0" text-anchor="end">4</text><text x="21.0" y="30.0" text-anchor="end">5</text><text x="430.0" y="150.0" text-anchor="end" font-style="italic">t</text><text x="32.0" y="36.0" font-style="italic">v</text></g><path d="M 26.0,156.0 L 103.7,52.0 L 181.4,52.0 L 259.1,156.0 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 259.1,156.0 L 298.0,208.0 L 414.6,208.0 L 414.6,156.0 Z" fill="#c33" fill-opacity="0.2" stroke="none"/><path d="M 26.0,156.0 L 103.7,52.0 L 181.4,52.0 L 298.0,208.0 L 414.6,208.0" fill="none" stroke="#06a" stroke-width="2"/><text x="142.6" y="114.4" fill="#06a" font-size="12" text-anchor="middle">+16</text><text x="352.4" y="187.2" fill="#c33" font-size="12" text-anchor="middle">&#8722;7</text></svg><div class="cap">Blue area counts forward motion, red area backward motion. Displacement subtracts them, distance adds them.</div></div>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec22" class="chapter">22. Fundamental Theorem, Part 1</h3>
+  <p class="lede">$\frac{d}{dx}\int_a^x f(t)\,dt = f(x)$: the area grows at a rate equal to the height of the graph at the moving edge. When the upper limit is $u(x)$ instead of $x$, the chain rule adds a factor $u'(x)$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(a).</b> Find $g'(x)$ if $g(x) = \int_{x^2}^4 t\sqrt{1+t^2}\, dt$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(b).</b> Find $F'(x)$ if $F(x) = \int_0^{\tan x} \sqrt{1+t^2}\, dt$ for $-\frac{\pi}{2} &lt; x &lt; \frac{\pi}{2}$, and simplify.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(c).</b> Find $g'(x)$ if $g(x) = \int_{2x}^{x^3} \frac{1}{1+t^4} dt$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(d).</b> Let $g(x) = \int_0^x f(t) dt$, where $f$ is graphed below. Find $g(4)$, $g'(4)$, $g''(4)$, and where on $[0,6]$ $g$ is largest.</p>
+    <div class="fig"><svg viewBox="0 0 400 240" width="400" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0"/><line x1="79.5" y1="214.0" x2="79.5" y2="26.0"/><line x1="133.1" y1="214.0" x2="133.1" y2="26.0"/><line x1="186.6" y1="214.0" x2="186.6" y2="26.0"/><line x1="240.2" y1="214.0" x2="240.2" y2="26.0"/><line x1="293.7" y1="214.0" x2="293.7" y2="26.0"/><line x1="347.2" y1="214.0" x2="347.2" y2="26.0"/><line x1="26.0" y1="196.9" x2="374.0" y2="196.9"/><line x1="26.0" y1="162.7" x2="374.0" y2="162.7"/><line x1="26.0" y1="128.5" x2="374.0" y2="128.5"/><line x1="26.0" y1="94.4" x2="374.0" y2="94.4"/><line x1="26.0" y1="60.2" x2="374.0" y2="60.2"/><line x1="26.0" y1="26.0" x2="374.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="128.5" x2="374.0" y2="128.5"/><line x1="26.0" y1="214.0" x2="26.0" y2="26.0"/></g><g font-size="10" fill="#555"><text x="79.5" y="141.5" text-anchor="middle">1</text><text x="133.1" y="141.5" text-anchor="middle">2</text><text x="186.6" y="141.5" text-anchor="middle">3</text><text x="240.2" y="141.5" text-anchor="middle">4</text><text x="293.7" y="141.5" text-anchor="middle">5</text><text x="347.2" y="141.5" text-anchor="middle">6</text><text x="21.0" y="200.9" text-anchor="end">-2</text><text x="21.0" y="166.7" text-anchor="end">-1</text><text x="21.0" y="98.4" text-anchor="end">1</text><text x="21.0" y="64.2" text-anchor="end">2</text><text x="21.0" y="30.0" text-anchor="end">3</text><text x="370.0" y="122.5" text-anchor="end" font-style="italic">t</text><text x="32.0" y="36.0" font-style="italic">y</text></g><path d="M 26.0,128.5 L 26.0,60.2 L 133.1,60.2 L 240.2,128.5 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 26.0,60.2 L 133.1,60.2 L 347.2,196.9" fill="none" stroke="#06a" stroke-width="2"/><text x="79.5" y="85.8" fill="#06a" font-size="11" text-anchor="middle">y = f(t)</text></svg><div class="cap">The shaded area is $g(4) = 6$. Past $t = 4$ the area counts negative and $g$ starts to drop.</div></div>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec23" class="chapter">23. Fundamental Theorem, Part 2</h3>
+  <p class="lede">To integrate $f$ over $[a,b]$, find any antiderivative $F$ and compute $F(b) - F(a)$. The constant $C$ cancels, so we leave it out.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(a).</b> Evaluate $\int_1^4 \parens{3\sqrt{x} - \frac{2}{x^2}} dx$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(b).</b> Evaluate $\int_0^{\pi} (\sin x + 2\cos x) dx$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(c).</b> What is wrong with $\int_{-1}^2 \frac{1}{x^2} dx = \brac{-\frac{1}{x}}_{-1}^2 = -\frac{3}{2}$?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec24" class="chapter">24. Substitution</h3>
+  <p class="lede">Substitution is the chain rule read backward. Look for an inside function $u$ whose derivative $du$ also appears as a factor.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(a).</b> Evaluate $\int \sec^2 x \tan^3 x\, dx$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(b).</b> Evaluate $\int_0^{\pi/2} \cos x\sqrt{1 + 3\sin x}\, dx$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(c).</b> Evaluate $\int_{-2}^1 x\sqrt{x+3}\, dx$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(d).</b> Evaluate $\int_{-\pi/2}^{\pi/2} x^2 \sin x\, dx$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec25" class="chapter">25. Area between curves</h3>
+  <p class="lede">Area between curves is the integral of (top minus bottom), between the points where the curves meet. If the region is easier to describe left to right, integrate (right minus left) in $y$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(a).</b> Sketch the region between $y = x^2 - 2x$ and $y = x + 4$ and find its area.</p>
+    <div class="fig"><svg viewBox="0 0 360 320" width="360" role="img"><g stroke="#e3e6ea" stroke-width="1"><line x1="26.0" y1="294.0" x2="26.0" y2="26.0"/><line x1="70.0" y1="294.0" x2="70.0" y2="26.0"/><line x1="114.0" y1="294.0" x2="114.0" y2="26.0"/><line x1="158.0" y1="294.0" x2="158.0" y2="26.0"/><line x1="202.0" y1="294.0" x2="202.0" y2="26.0"/><line x1="246.0" y1="294.0" x2="246.0" y2="26.0"/><line x1="290.0" y1="294.0" x2="290.0" y2="26.0"/><line x1="334.0" y1="294.0" x2="334.0" y2="26.0"/><line x1="26.0" y1="294.0" x2="334.0" y2="294.0"/><line x1="26.0" y1="271.7" x2="334.0" y2="271.7"/><line x1="26.0" y1="249.3" x2="334.0" y2="249.3"/><line x1="26.0" y1="227.0" x2="334.0" y2="227.0"/><line x1="26.0" y1="204.7" x2="334.0" y2="204.7"/><line x1="26.0" y1="182.3" x2="334.0" y2="182.3"/><line x1="26.0" y1="160.0" x2="334.0" y2="160.0"/><line x1="26.0" y1="137.7" x2="334.0" y2="137.7"/><line x1="26.0" y1="115.3" x2="334.0" y2="115.3"/><line x1="26.0" y1="93.0" x2="334.0" y2="93.0"/><line x1="26.0" y1="70.7" x2="334.0" y2="70.7"/><line x1="26.0" y1="48.3" x2="334.0" y2="48.3"/><line x1="26.0" y1="26.0" x2="334.0" y2="26.0"/></g><g stroke="#666" stroke-width="1.2"><line x1="26.0" y1="249.3" x2="334.0" y2="249.3"/><line x1="114.0" y1="294.0" x2="114.0" y2="26.0"/></g><g font-size="10" fill="#555"><text x="26.0" y="262.3" text-anchor="middle">-2</text><text x="70.0" y="262.3" text-anchor="middle">-1</text><text x="158.0" y="262.3" text-anchor="middle">1</text><text x="202.0" y="262.3" text-anchor="middle">2</text><text x="246.0" y="262.3" text-anchor="middle">3</text><text x="290.0" y="262.3" text-anchor="middle">4</text><text x="334.0" y="262.3" text-anchor="middle">5</text><text x="109.0" y="298.0" text-anchor="end">-2</text><text x="109.0" y="275.7" text-anchor="end">-1</text><text x="109.0" y="231.0" text-anchor="end">1</text><text x="109.0" y="208.7" text-anchor="end">2</text><text x="109.0" y="186.3" text-anchor="end">3</text><text x="109.0" y="164.0" text-anchor="end">4</text><text x="109.0" y="141.7" text-anchor="end">5</text><text x="109.0" y="119.3" text-anchor="end">6</text><text x="109.0" y="97.0" text-anchor="end">7</text><text x="109.0" y="74.7" text-anchor="end">8</text><text x="109.0" y="52.3" text-anchor="end">9</text><text x="109.0" y="30.0" text-anchor="end">10</text><text x="330.0" y="243.3" text-anchor="end" font-style="italic">x</text><text x="120.0" y="36.0" font-style="italic">y</text></g><path d="M 70.0,182.3 L 72.8,180.9 L 75.5,179.5 L 78.2,178.1 L 81.0,176.8 L 83.8,175.4 L 86.5,174.0 L 89.2,172.6 L 92.0,171.2 L 94.8,169.8 L 97.5,168.4 L 100.2,167.0 L 103.0,165.6 L 105.8,164.2 L 108.5,162.8 L 111.2,161.4 L 114.0,160.0 L 116.8,158.6 L 119.5,157.2 L 122.2,155.8 L 125.0,154.4 L 127.8,153.0 L 130.5,151.6 L 133.2,150.2 L 136.0,148.8 L 138.8,147.4 L 141.5,146.0 L 144.2,144.6 L 147.0,143.2 L 149.8,141.9 L 152.5,140.5 L 155.2,139.1 L 158.0,137.7 L 160.8,136.3 L 163.5,134.9 L 166.2,133.5 L 169.0,132.1 L 171.8,130.7 L 174.5,129.3 L 177.2,127.9 L 180.0,126.5 L 182.8,125.1 L 185.5,123.7 L 188.2,122.3 L 191.0,120.9 L 193.7,119.5 L 196.5,118.1 L 199.2,116.7 L 202.0,115.3 L 204.8,113.9 L 207.5,112.5 L 210.2,111.1 L 213.0,109.8 L 215.8,108.4 L 218.5,107.0 L 221.2,105.6 L 224.0,104.2 L 226.8,102.8 L 229.5,101.4 L 232.2,100.0 L 235.0,98.6 L 237.8,97.2 L 240.5,95.8 L 243.3,94.4 L 246.0,93.0 L 248.8,91.6 L 251.5,90.2 L 254.2,88.8 L 257.0,87.4 L 259.8,86.0 L 262.5,84.6 L 265.2,83.2 L 268.0,81.8 L 270.8,80.4 L 273.5,79.0 L 276.2,77.6 L 279.0,76.2 L 281.8,74.9 L 284.5,73.5 L 287.2,72.1 L 290.0,70.7 L 290.0,70.7 L 287.2,79.0 L 284.5,87.1 L 281.8,95.0 L 279.0,102.8 L 276.2,110.4 L 273.5,117.8 L 270.8,125.0 L 268.0,132.1 L 265.2,139.0 L 262.5,145.7 L 259.8,152.2 L 257.0,158.6 L 254.2,164.8 L 251.5,170.8 L 248.8,176.7 L 246.0,182.3 L 243.3,187.8 L 240.5,193.2 L 237.8,198.3 L 235.0,203.3 L 232.2,208.1 L 229.5,212.7 L 226.8,217.1 L 224.0,221.4 L 221.2,225.5 L 218.5,229.4 L 215.8,233.2 L 213.0,236.8 L 210.2,240.2 L 207.5,243.4 L 204.8,246.5 L 202.0,249.3 L 199.2,252.0 L 196.5,254.6 L 193.7,256.9 L 191.0,259.1 L 188.2,261.1 L 185.5,262.9 L 182.8,264.6 L 180.0,266.1 L 177.2,267.4 L 174.5,268.5 L 171.8,269.5 L 169.0,270.3 L 166.2,270.9 L 163.5,271.3 L 160.8,271.6 L 158.0,271.7 L 155.2,271.6 L 152.5,271.3 L 149.8,270.9 L 147.0,270.3 L 144.2,269.5 L 141.5,268.5 L 138.8,267.4 L 136.0,266.1 L 133.2,264.6 L 130.5,262.9 L 127.8,261.1 L 125.0,259.1 L 122.2,256.9 L 119.5,254.6 L 116.8,252.0 L 114.0,249.3 L 111.2,246.5 L 108.5,243.4 L 105.8,240.2 L 103.0,236.8 L 100.2,233.2 L 97.5,229.4 L 94.8,225.5 L 92.0,221.4 L 89.2,217.1 L 86.5,212.7 L 83.8,208.1 L 81.0,203.3 L 78.2,198.3 L 75.5,193.2 L 72.8,187.8 L 70.0,182.3 Z" fill="#06a" fill-opacity="0.2" stroke="none"/><path d="M 34.8,200.2 L 37.2,199.0 L 39.6,197.7 L 42.1,196.5 L 44.5,195.3 L 46.9,194.1 L 49.3,192.8 L 51.7,191.6 L 54.2,190.4 L 56.6,189.1 L 59.0,187.9 L 61.4,186.7 L 63.8,185.5 L 66.3,184.2 L 68.7,183.0 L 71.1,181.8 L 73.5,180.5 L 75.9,179.3 L 78.4,178.1 L 80.8,176.9 L 83.2,175.6 L 85.6,174.4 L 88.0,173.2 L 90.5,171.9 L 92.9,170.7 L 95.3,169.5 L 97.7,168.3 L 100.1,167.0 L 102.6,165.8 L 105.0,164.6 L 107.4,163.3 L 109.8,162.1 L 112.2,160.9 L 114.7,159.7 L 117.1,158.4 L 119.5,157.2 L 121.9,156.0 L 124.3,154.8 L 126.8,153.5 L 129.2,152.3 L 131.6,151.1 L 134.0,149.8 L 136.4,148.6 L 138.9,147.4 L 141.3,146.2 L 143.7,144.9 L 146.1,143.7 L 148.5,142.5 L 151.0,141.2 L 153.4,140.0 L 155.8,138.8 L 158.2,137.6 L 160.6,136.3 L 163.1,135.1 L 165.5,133.9 L 167.9,132.6 L 170.3,131.4 L 172.7,130.2 L 175.2,129.0 L 177.6,127.7 L 180.0,126.5 L 182.4,125.3 L 184.8,124.0 L 187.3,122.8 L 189.7,121.6 L 192.1,120.4 L 194.5,119.1 L 196.9,117.9 L 199.4,116.7 L 201.8,115.4 L 204.2,114.2 L 206.6,113.0 L 209.0,111.8 L 211.5,110.5 L 213.9,109.3 L 216.3,108.1 L 218.7,106.8 L 221.1,105.6 L 223.6,104.4 L 226.0,103.2 L 228.4,101.9 L 230.8,100.7 L 233.2,99.5 L 235.7,98.2 L 238.1,97.0 L 240.5,95.8 L 242.9,94.6 L 245.3,93.3 L 247.8,92.1 L 250.2,90.9 L 252.6,89.6 L 255.0,88.4 L 257.4,87.2 L 259.9,86.0 L 262.3,84.7 L 264.7,83.5 L 267.1,82.3 L 269.5,81.1 L 272.0,79.8 L 274.4,78.6 L 276.8,77.4 L 279.2,76.1 L 281.6,74.9 L 284.1,73.7 L 286.5,72.5 L 288.9,71.2 L 291.3,70.0 L 293.7,68.8 L 296.2,67.5 L 298.6,66.3 L 301.0,65.1 L 303.4,63.9 L 305.8,62.6 L 308.3,61.4 L 310.7,60.2 L 313.1,58.9 L 315.5,57.7 L 317.9,56.5 L 320.4,55.3 L 322.8,54.0 L 325.2,52.8" fill="none" stroke="#06a" stroke-width="2"/><path d="M 43.6,120.7 L 45.9,126.6 L 48.1,132.5 L 50.4,138.2 L 52.7,143.7 L 55.0,149.2 L 57.2,154.5 L 59.5,159.8 L 61.8,164.9 L 64.1,169.9 L 66.3,174.7 L 68.6,179.5 L 70.9,184.1 L 73.2,188.6 L 75.4,193.0 L 77.7,197.3 L 80.0,201.4 L 82.2,205.5 L 84.5,209.4 L 86.8,213.2 L 89.1,216.9 L 91.3,220.4 L 93.6,223.8 L 95.9,227.2 L 98.2,230.4 L 100.4,233.4 L 102.7,236.4 L 105.0,239.2 L 107.3,242.0 L 109.5,244.6 L 111.8,247.0 L 114.1,249.4 L 116.3,251.7 L 118.6,253.8 L 120.9,255.8 L 123.2,257.7 L 125.4,259.4 L 127.7,261.1 L 130.0,262.6 L 132.3,264.0 L 134.5,265.3 L 136.8,266.5 L 139.1,267.5 L 141.4,268.5 L 143.6,269.3 L 145.9,270.0 L 148.2,270.6 L 150.4,271.0 L 152.7,271.3 L 155.0,271.6 L 157.3,271.7 L 159.5,271.6 L 161.8,271.5 L 164.1,271.2 L 166.4,270.9 L 168.6,270.4 L 170.9,269.7 L 173.2,269.0 L 175.5,268.2 L 177.7,267.2 L 180.0,266.1 L 182.3,264.9 L 184.5,263.5 L 186.8,262.1 L 189.1,260.5 L 191.4,258.8 L 193.6,257.0 L 195.9,255.1 L 198.2,253.0 L 200.5,250.9 L 202.7,248.6 L 205.0,246.2 L 207.3,243.7 L 209.6,241.0 L 211.8,238.2 L 214.1,235.4 L 216.4,232.4 L 218.6,229.2 L 220.9,226.0 L 223.2,222.6 L 225.5,219.2 L 227.7,215.6 L 230.0,211.8 L 232.3,208.0 L 234.6,204.1 L 236.8,200.0 L 239.1,195.8 L 241.4,191.5 L 243.7,187.0 L 245.9,182.5 L 248.2,177.8 L 250.5,173.0 L 252.7,168.1 L 255.0,163.1 L 257.3,157.9 L 259.6,152.7 L 261.8,147.3 L 264.1,141.8 L 266.4,136.1 L 268.7,130.4 L 270.9,124.5 L 273.2,118.6 L 275.5,112.5 L 277.8,106.2 L 280.0,99.9 L 282.3,93.4 L 284.6,86.9 L 286.8,80.2 L 289.1,73.3 L 291.4,66.4 L 293.7,59.3 L 295.9,52.2 L 298.2,44.9 L 300.5,37.5 L 302.8,29.9 L 305.0,22.3 L 307.3,14.5 L 309.6,6.6 L 311.9,-1.4 L 314.1,-9.5 L 316.4,-17.8" fill="none" stroke="#c33" stroke-width="2"/><text x="140.4" y="86.3" fill="#06a" font-size="11" text-anchor="middle">y = x + 4</text><text x="272.4" y="280.6" fill="#c33" font-size="11" text-anchor="middle">y = x&#178; &#8722; 2x</text></svg><div class="cap">The line is on top between $x=-1$ and $x=4$.</div></div>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(b).</b> Find the area between $y = \sqrt{x}$ and $y = \frac{x}{3}$, integrating with respect to $x$, then with respect to $y$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(c).</b> Find the area between $y = \sin x$ and $y = \cos x$ for $0 \leq x \leq \frac{\pi}{2}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec26" class="chapter">26. Average value</h3>
+  <p class="lede">The average value $f_{\text{ave}} = \frac{1}{b-a}\int_a^b f(x)\,dx$ is the height of the rectangle on $[a,b]$ with the same area as the region under $f$.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(a).</b> Find the average value of $f(x) = \frac{1}{x^2}$ on $[1,3]$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(b).</b> Find the average value of $f(x) = x^2$ on $[0,3]$ and a $c$ in $[0,3]$ with $f(c)$ equal to it.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec27" class="chapter">27. Volumes</h3>
+  <p class="lede">Slice the solid perpendicular to the axis. Each slice is a disk or a washer, with volume $\pi(R^2 - r^2)$ times its thickness, where $R$ is the outer radius and $r$ the inner radius, both measured from the axis.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(a).</b> Find the volume when the region between $y = x$ and $y = x^2$ is revolved around the $x$-axis.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(b).</b> Find the volume when the region under $y = \sqrt{x}$ for $0 \leq x \leq 4$ is revolved around the $x$-axis.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(c).</b> Revolve the region between $y = \sqrt{x}$ and $y = x^2$ around the $y$-axis, and then around the line $x = -1$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec28" class="chapter">28. Work</h3>
+  <p class="lede">Work is force times distance when the force is constant. When it varies, chop the motion into small pieces and add them: $W = \int_a^b F(x)\,dx$. For a spring, Hooke's Law says $F(x) = kx$, where $x$ is the stretch beyond natural length.</p>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(a).</b> A spring has natural length 20 cm, and 0.9 J of work stretches it from 20 cm to 26 cm. How much work stretches it from 24 cm to 28 cm? What force holds it at a length of 30 cm?</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(b).</b> A spring has natural length 10 cm and spring constant $k$. Compare the work $W_1$ from 10 cm to 15 cm with $W_2$ from 15 cm to 20 cm.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(c).</b> A 10 m chain with mass 2 kg per meter hangs from the top of a building. How much work does it take to pull the whole chain up to the top? Use $g = 9.8\ \text{m}/\text{s}^2$.</p>
+    </div>
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(d).</b> A force of $F(x) = \frac{x}{(x^2+1)^2}$ pounds acts on an object $x$ feet from the origin. Find the work done moving the object from $x=0$ to $x=1$.</p>
+    </div>
+
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

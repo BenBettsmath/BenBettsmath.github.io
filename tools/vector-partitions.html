@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vector partition functions</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.page-content { max-width: 1240px; }
+.vp-top { display: flex; flex-wrap: wrap; gap: 1em 2em; align-items: flex-start; margin: 1em 0 1.2em; font-family: 'STIX Two Text', Georgia, serif; }
+.vp-top label { display: block; color: #6B7280; font-size: .9em; margin-bottom: .25em; }
+.vp-top textarea { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; width: 17em; height: 5.2em; padding: .4em .5em; border: 1px solid #c9ccd0; border-radius: 6px; resize: vertical; }
+.vp-top input, .vp-top select { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; padding: .3em .5em; border: 1px solid #c9ccd0; border-radius: 6px; }
+.vp-top button { font-size: .95em; padding: .35em .9em; border-radius: 5px; border: 1px solid #007A86; background: #007A86; color: #fff; cursor: pointer; margin-top: .4em; }
+.vp-err { color: #BA0C2F; font-size: .9em; min-height: 1.2em; }
+.vp-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2em; }
+@media screen and (max-width: 900px) { .vp-main { grid-template-columns: 1fr; } }
+.vp-card { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; overflow: hidden; }
+.vp-card canvas { display: block; width: 100%; height: 470px; touch-action: none; }
+.vp-cap { font-family: 'STIX Two Text', Georgia, serif; color: #6B7280; font-size: .9em; padding: .4em .8em; border-top: 1px solid #f0f1f2; min-height: 1.4em; }
+.vp-info { font-family: 'STIX Two Text', Georgia, serif; margin-top: 1.2em; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2em; }
+.vp-info .box { border: 1px solid #E8E9EA; border-radius: 8px; background: #fff; padding: .6em 1em .8em; }
+.vp-info h3 { font-size: 1.05em; margin: .2em 0 .5em; }
+.chips { display: flex; flex-wrap: wrap; gap: .35em; }
+.chip { border: 1px solid #c9ccd0; border-radius: 999px; padding: .15em .65em; background: #fff; cursor: pointer; font-size: .92em; font-family: 'STIX Two Text', Georgia, serif; }
+.chip.nt { border-color: #C2560E; color: #C2560E; }
+.chip.on { background: #007A86; border-color: #007A86; color: #fff; }
+.chip.nt.on { background: #C2560E; border-color: #C2560E; color: #fff; }
+.vp-info table { border-collapse: collapse; font-size: .92em; }
+.vp-info td, .vp-info th { padding: 2px 8px; text-align: left; border-bottom: 1px solid #f0f1f2; font-weight: normal; }
+.vp-info th { color: #6B7280; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
+</style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html" class="active">Research</a>
+  <a href="../teaching.html">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+<div class="page-content">
+  <p class="breadcrumb"><a href="../research.html">Research</a> &rsaquo; <a href="../research-tools.html">Tools</a> &rsaquo; <span>Vector partition functions</span></p>
+  <h1>Vector partition functions</h1>
+
+  <div class="vp-top">
+    <div>
+      <label for="vp-A"><i>A</i> (rows, nonnegative integers, <i>d</i> = 2 or 3)</label>
+      <textarea id="vp-A" spellcheck="false"></textarea>
+      <div><button id="vp-go">plot</button></div>
+    </div>
+    <div>
+      <label for="vp-preset">examples</label>
+      <select id="vp-preset"></select>
+    </div>
+    <div>
+      <label for="vp-u"><i>u</i></label>
+      <input id="vp-u" size="12" spellcheck="false">
+      <div id="vp-phi" class="mono" style="margin-top:.5em"></div>
+    </div>
+  </div>
+  <div class="vp-err" id="vp-err"></div>
+
+  <div class="vp-main">
+    <div class="vp-card"><canvas id="vp-left"></canvas><div class="vp-cap" id="vp-capL"></div></div>
+    <div class="vp-card"><canvas id="vp-right"></canvas><div class="vp-cap" id="vp-capR"></div></div>
+  </div>
+
+  <div class="vp-info">
+    <div class="box"><h3>pos(<i>A</i>)</h3><div id="vp-sum"></div></div>
+    <div class="box"><h3>&Delta;(<i>C</i>)</h3><div id="vp-delta"></div></div>
+    <div class="box"><h3><i>G</i><sub>&sigma;</sub> = <b>Z</b><i>A</i> / <b>Z</b><i>A</i><sub>&sigma;</sub></h3><div id="vp-group"></div></div>
+  </div>
+</div>
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+<script>function toggleNav() { document.getElementById("myTopnav").classList.toggle("responsive"); }</script>
+<script>
+// Core computations for the vector partition viewer. No DOM.
+const VP = (() => {
+  const EPS = 1e-9;
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  function det(M) {
+    const n = M.length;
+    if (n === 1) return M[0][0];
+    if (n === 2) return M[0][0] * M[1][1] - M[0][1] * M[1][0];
+    return M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1]) - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0]) + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]);
+  }
+  const col = (A, i) => A.map(r => r[i]);
+  const sub = (A, s) => A.map(r => s.map(i => r[i]));       // d x |s|
+  function combos(n, k) {
+    const out = [], c = [];
+    (function rec(st) { if (c.length === k) { out.push(c.slice()); return; } for (let i = st; i < n; i++) { c.push(i); rec(i + 1); c.pop(); } })(0);
+    return out;
+  }
+  // bases: d-subsets of columns with nonzero determinant
+  function bases(A) {
+    const d = A.length, n = A[0].length;
+    return combos(n, d).map(s => ({ s, det: det(sub(A, s)) })).filter(b => b.det !== 0);
+  }
+  // index of ZA in Z^d = gcd of the d x d minors
+  function latticeIndex(A) { return bases(A).reduce((g, b) => gcd(g, b.det), 0); }
+  // inverse of a 2x2 or 3x3 matrix (floating)
+  function inv(M) {
+    const D = det(M), n = M.length;
+    if (n === 2) return [[M[1][1] / D, -M[0][1] / D], [-M[1][0] / D, M[0][0] / D]];
+    const C = (i, j) => { const m = []; for (let r = 0; r < 3; r++) if (r !== i) { const row = []; for (let c = 0; c < 3; c++) if (c !== j) row.push(M[r][c]); m.push(row); } return det(m) * ((i + j) % 2 ? -1 : 1); };
+    const R = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) R[j][i] = C(i, j) / D;
+    return R;
+  }
+  const mv = (M, v) => M.map(r => r.reduce((s, x, j) => s + x * v[j], 0));
+  // class of u in G_sigma = Z^d / Z A_sigma, as the fractional parts of A_sigma^{-1} u
+  function classKey(A, s, u) {
+    const c = mv(inv(sub(A, s)), u);
+    return c.map(x => { let f = x - Math.floor(x + EPS); if (Math.abs(f) < EPS || Math.abs(f - 1) < EPS) f = 0; return f; });
+  }
+  // coset representatives of Z^d / Z A_sigma in the half-open parallelepiped A_sigma [0,1)^d
+  function cosetReps(A, s) {
+    const B = sub(A, s), d = A.length, Bi = inv(B);
+    const lo = Array(d).fill(0), hi = Array(d).fill(0);
+    for (let m = 0; m < (1 << d); m++) { const v = mv(B, Array.from({ length: d }, (_, k) => (m >> k) & 1)); v.forEach((x, k) => { lo[k] = Math.min(lo[k], x); hi[k] = Math.max(hi[k], x); }); }
+    const out = [];
+    const rec = (k, u) => {
+      if (k === d) { const c = mv(Bi, u); if (c.every(x => x > -EPS && x < 1 - EPS)) out.push(u.slice()); return; }
+      for (let x = Math.floor(lo[k]); x <= Math.ceil(hi[k]); x++) { u.push(x); rec(k + 1, u); u.pop(); }
+    };
+    rec(0, []);
+    return out;
+  }
+  // vector partition function: number of lambda in N^n with A lambda = u
+  function phi(A, u) {
+    const n = A[0].length, memo = new Map();
+    const rec = (k, r) => {
+      if (r.some(x => x < 0)) return 0;
+      if (k === n) return r.every(x => x === 0) ? 1 : 0;
+      const key = k + '|' + r.join(',');
+      if (memo.has(key)) return memo.get(key);
+      const a = col(A, k); let tot = 0, cur = r.slice();
+      if (a.every(x => x === 0)) { tot = rec(k + 1, r); }
+      else while (cur.every(x => x >= 0)) { tot += rec(k + 1, cur); cur = cur.map((x, i) => x - a[i]); }
+      memo.set(key, tot); return tot;
+    };
+    return rec(0, u.slice());
+  }
+  // ---- d = 2: chambers are the cones between consecutive rays
+  function chambers2(A) {
+    const n = A[0].length;
+    const ang = [];
+    for (let i = 0; i < n; i++) { const t = Math.atan2(A[1][i], A[0][i]); if (!ang.some(a => Math.abs(a.t - t) < EPS)) ang.push({ t, i }); }
+    ang.sort((a, b) => a.t - b.t);
+    const ch = [];
+    for (let k = 0; k + 1 < ang.length; k++) ch.push({ lo: ang[k].t, hi: ang[k + 1].t, rays: [ang[k].i, ang[k + 1].i] });
+    const B = bases(A);
+    ch.forEach(c => {
+      const mid = (c.lo + c.hi) / 2;
+      c.delta = B.filter(b => { const t = b.s.map(i => Math.atan2(A[1][i], A[0][i])); return Math.min(...t) < mid && mid < Math.max(...t); });
+    });
+    return ch;
+  }
+  // ---- d = 3: chamber complex in the slice x + y + z = 1
+  function slicePoint(a) { const s = a[0] + a[1] + a[2]; return [a[0] / s, a[1] / s, a[2] / s]; }
+  // 2D coordinates of a point of the slice (the standard triangle drawn equilateral)
+  function to2(p) { return [p[1] - p[0] + 0 * p[2], (2 * p[2] - p[0] - p[1]) / Math.sqrt(3)]; }
+  function chambers3(A) {
+    const n = A[0].length;
+    const P = [], rayOf = [];
+    for (let i = 0; i < n; i++) {
+      const q = to2(slicePoint(col(A, i)));
+      let k = P.findIndex(p => Math.hypot(p[0] - q[0], p[1] - q[1]) < 1e-9);
+      if (k < 0) { k = P.length; P.push(q); }
+      rayOf[i] = k;
+    }
+    // segments between all pairs of distinct points
+    const segs = [];
+    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) segs.push([P[i], P[j]]);
+    // vertices: endpoints and pairwise intersections
+    const V = [];
+    const addV = p => { for (let k = 0; k < V.length; k++) if (Math.hypot(V[k][0] - p[0], V[k][1] - p[1]) < 1e-9) return k; V.push(p); return V.length - 1; };
+    P.forEach(addV);
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const onSeg = (p, [a, b]) => Math.abs(cross(a, b, p)) < 1e-9 && (p[0] - a[0]) * (p[0] - b[0]) <= 1e-12 && (p[1] - a[1]) * (p[1] - b[1]) <= 1e-12;
+    for (let i = 0; i < segs.length; i++) for (let j = i + 1; j < segs.length; j++) {
+      const [a, b] = segs[i], [c, d] = segs[j];
+      const den = (b[0] - a[0]) * (d[1] - c[1]) - (b[1] - a[1]) * (d[0] - c[0]);
+      if (Math.abs(den) < 1e-12) continue;
+      const t = ((c[0] - a[0]) * (d[1] - c[1]) - (c[1] - a[1]) * (d[0] - c[0])) / den;
+      const u = ((c[0] - a[0]) * (b[1] - a[1]) - (c[1] - a[1]) * (b[0] - a[0])) / den;
+      if (t > -1e-9 && t < 1 + 1e-9 && u > -1e-9 && u < 1 + 1e-9) addV([a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]);
+    }
+    // edges: split each segment at the vertices on it
+    const E = new Set();
+    for (const s of segs) {
+      const on = V.map((p, k) => k).filter(k => onSeg(V[k], s));
+      on.sort((x, y) => (V[x][0] - s[0][0]) * (s[1][0] - s[0][0]) + (V[x][1] - s[0][1]) * (s[1][1] - s[0][1]) - ((V[y][0] - s[0][0]) * (s[1][0] - s[0][0]) + (V[y][1] - s[0][1]) * (s[1][1] - s[0][1])));
+      for (let k = 0; k + 1 < on.length; k++) { const a = Math.min(on[k], on[k + 1]), b = Math.max(on[k], on[k + 1]); E.add(a + ',' + b); }
+    }
+    const adj = V.map(() => []);
+    for (const e of E) { const [a, b] = e.split(',').map(Number); adj[a].push(b); adj[b].push(a); }
+    const angle = (a, b) => Math.atan2(V[b][1] - V[a][1], V[b][0] - V[a][0]);
+    adj.forEach((L, a) => L.sort((x, y) => angle(a, x) - angle(a, y)));
+    // face traversal: from directed edge (a->b), next is the neighbor of b just clockwise from a
+    const used = new Set(), faces = [];
+    for (let a = 0; a < V.length; a++) for (const b of adj[a]) {
+      if (used.has(a + '>' + b)) continue;
+      const f = []; let x = a, y = b, guard = 0;
+      while (!used.has(x + '>' + y) && guard++ < 1000) {
+        used.add(x + '>' + y); f.push(x);
+        const L = adj[y], k = L.indexOf(x);
+        const z = L[(k - 1 + L.length) % L.length];
+        x = y; y = z;
+      }
+      let area = 0; for (let k = 0; k < f.length; k++) { const p = V[f[k]], q = V[f[(k + 1) % f.length]]; area += p[0] * q[1] - q[0] * p[1]; }
+      if (area > 1e-12) faces.push({ poly: f.map(k => V[k]), area: area / 2 });
+    }
+    // Delta(C): bases whose triangle contains the chamber
+    const B = bases(A);
+    const inTri = (p, t) => { const c1 = cross(t[0], t[1], p), c2 = cross(t[1], t[2], p), c3 = cross(t[2], t[0], p); return (c1 > 1e-12 && c2 > 1e-12 && c3 > 1e-12) || (c1 < -1e-12 && c2 < -1e-12 && c3 < -1e-12); };
+    faces.forEach(f => {
+      const c = f.poly.reduce((s, p) => [s[0] + p[0] / f.poly.length, s[1] + p[1] / f.poly.length], [0, 0]);
+      f.center = c;
+      f.delta = B.filter(b => inTri(c, b.s.map(i => P[rayOf[i]])));
+    });
+    return { P, rayOf, faces, vertices: V };
+  }
+  // classes of the columns in Z^d / Z A_sigma generate Z A / Z A_sigma
+  function subgroupZA(A, s) {
+    const key = c => c.map(x => Math.round(x * 1e6) / 1e6).join(',');
+    const gens = A[0].map((_, i) => classKey(A, s, col(A, i)));
+    const seen = new Map([[key(A.map(() => 0)), A.map(() => 0)]]);
+    let frontier = [A.map(() => 0)];
+    while (frontier.length) {
+      const nxt = [];
+      for (const c of frontier) for (const g of gens) {
+        const h = c.map((x, k) => { let y = x + g[k]; y -= Math.floor(y + EPS); if (Math.abs(y) < EPS || Math.abs(y - 1) < EPS) y = 0; return y; });
+        const kk = key(h); if (!seen.has(kk)) { seen.set(kk, h); nxt.push(h); }
+      }
+      frontier = nxt;
+    }
+    return new Set(seen.keys());
+  }
+  const ckey = c => c.map(x => Math.round(x * 1e6) / 1e6).join(',');
+  return { subgroupZA, ckey, det, bases, latticeIndex, classKey, cosetReps, phi, chambers2, chambers3, slicePoint, to2, col, sub, inv, mv, gcd };
+})();
+
+
+</script>
+<script>
+(function () {
+  const PRESETS = [
+    { name: 'Sturmfels, n = 6, d = 3', A: '2 1 1 0 0 0\n0 1 0 2 1 0\n0 0 1 0 1 2', u: '8 6 4' },
+    { name: 'd = 2, four columns', A: '1 1 1 0\n0 1 2 1', u: '5 4' },
+    { name: 'd = 2, nontrivial groups', A: '1 2 1 0\n0 1 3 1', u: '6 7' },
+    { name: 'd = 3, unimodular', A: '1 0 0 1 1\n0 1 0 1 0\n0 0 1 0 1', u: '3 2 2' },
+    { name: 'd = 3, two nontrivial bases', A: '1 0 1 2\n0 1 1 1\n1 1 3 2', u: '4 4 9' },
+  ];
+  const $ = id => document.getElementById(id);
+  const sel = $('vp-preset');
+  PRESETS.forEach((p, i) => { const o = document.createElement('option'); o.value = i; o.textContent = p.name; sel.appendChild(o); });
+
+  const CH_FILL = ['#e8f1f8', '#f3ece4', '#e9f3ea', '#f1e9f3', '#f6f3e1', '#e6f1f1'];
+  const TEAL = '#007A86', ORANGE = '#C2560E', GREEN = '#2f855a', INK = '#1f2328';
+  let A = null, d = 0, n = 0, CH = null, sliceData = null, selC = -1, selB = null, U = null, idx = 1;
+  const lab = s => '{' + s.map(i => i + 1).join(',') + '}';
+
+  function parse(txt) {
+    const rows = txt.trim().split(/\n|;/).map(r => r.trim()).filter(Boolean).map(r => r.split(/[\s,]+/).map(Number));
+    if (!rows.length || rows.some(r => r.some(x => !Number.isInteger(x) || x < 0))) throw 'entries must be nonnegative integers';
+    if (rows.some(r => r.length !== rows[0].length)) throw 'rows must have the same length';
+    if (rows.length !== 2 && rows.length !== 3) throw 'd must be 2 or 3';
+    for (let i = 0; i < rows[0].length; i++) if (rows.every(r => r[i] === 0)) throw 'column ' + (i + 1) + ' is zero';
+    if (!VP.bases(rows).length) throw 'A must have rank d';
+    return rows;
+  }
+
+  function load() {
+    $('vp-err').textContent = '';
+    try { A = parse($('vp-A').value); } catch (e) { $('vp-err').textContent = e; return; }
+    d = A.length; n = A[0].length; idx = VP.latticeIndex(A);
+    selC = -1; selB = null;
+    if (d === 2) CH = VP.chambers2(A); else { sliceData = VP.chambers3(A); CH = sliceData.faces; }
+    readU(); if (selC < 0 && CH.length) selC = 0;
+    if (!selB && CH[selC] && CH[selC].delta.length) selB = CH[selC].delta[0].s;
+    phiCache = new Map();
+    renderInfo(); drawAll();
+  }
+
+  // ---------- u and phi ----------
+  let phiCache = new Map();
+  function phiOf(u) { const k = u.join(','); if (!phiCache.has(k)) phiCache.set(k, VP.phi(A, u)); return phiCache.get(k); }
+  function chamberOf(u) {
+    if (d === 2) { const t = Math.atan2(u[1], u[0]); return CH.findIndex(c => c.lo < t && t < c.hi); }
+    if (u.some(x => x < 0) || u.every(x => x === 0)) return -1;
+    const q = VP.to2(VP.slicePoint(u));
+    return CH.findIndex(f => inPoly(q, f.poly));
+  }
+  function inPoly(p, P) { let s = 0; for (let k = 0; k < P.length; k++) { const a = P[k], b = P[(k + 1) % P.length]; const c = (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]); if (c < -1e-12) return false; } return true; }
+  function readU() {
+    const v = $('vp-u').value.trim().split(/[\s,()]+/).filter(Boolean).map(Number);
+    U = (v.length === d && v.every(Number.isInteger)) ? v : null;
+    if (U) { const c = chamberOf(U); if (c >= 0) { selC = c; } }
+  }
+  function showPhi() {
+    const el = $('vp-phi');
+    if (!U) { el.textContent = ''; return; }
+    if (U.some(x => x < 0)) { el.innerHTML = '&phi;<sub>A</sub>(u) = 0'; return; }
+    const big = U.reduce((s, x) => s + x, 0) > 120;
+    const c = chamberOf(U);
+    el.innerHTML = '&phi;<sub>A</sub>(' + U.join(', ') + ') = ' + (big ? '(too large)' : phiOf(U)) + (c >= 0 ? ' &nbsp; <i>C</i><sub>' + (c + 1) + '</sub>' : ' &nbsp; on a wall');
+  }
+
+  // ---------- info panels ----------
+  function renderInfo() {
+    showPhi();
+    const B = VP.bases(A);
+    $('vp-sum').innerHTML = '<table><tr><th><i>n</i>, <i>d</i></th><td>' + n + ', ' + d + '</td></tr><tr><th>bases</th><td>' + B.length +
+      '</td></tr><tr><th>chambers</th><td>' + CH.length + '</td></tr><tr><th>[<b>Z</b><sup><i>d</i></sup> : <b>Z</b><i>A</i>]</th><td>' + idx + '</td></tr></table>';
+    const C = CH[selC];
+    if (!C) { $('vp-delta').innerHTML = ''; $('vp-group').innerHTML = ''; return; }
+    $('vp-delta').innerHTML = '<div style="margin-bottom:.4em"><i>C</i><sub>' + (selC + 1) + '</sub></div><div class="chips">' + C.delta.map(b => {
+      const g = Math.abs(b.det) / idx;
+      return '<span class="chip' + (g > 1 ? ' nt' : '') + (selB && b.s.join() === selB.join() ? ' on' : '') + '" data-s="' + b.s.join(',') + '">' + lab(b.s) + ' &middot; ' + g + '</span>';
+    }).join('') + '</div>';
+    $('vp-delta').querySelectorAll('.chip').forEach(el => el.onclick = () => { selB = el.dataset.s.split(',').map(Number); renderInfo(); drawAll(); });
+    if (!selB) { $('vp-group').innerHTML = ''; return; }
+    const D = VP.det(VP.sub(A, selB)), H = VP.subgroupZA(A, selB);
+    const reps = VP.cosetReps(A, selB).filter(u => H.has(VP.ckey(VP.classKey(A, selB, u))));
+    const fr = c => c.map(x => { const r = Math.round(x * Math.abs(D)); return r === 0 ? '0' : (r + '/' + Math.abs(D)).replace(/^(\d+)\/(\d+)$/, (m, a, b) => { const g = VP.gcd(+a, +b); return (a / g) + (b / g === 1 ? '' : '/' + (b / g)); }); }).join(', ');
+    let h = '<table><tr><th>&sigma;</th><td>' + lab(selB) + '</td></tr><tr><th>det <i>A</i><sub>&sigma;</sub></th><td>' + D + '</td></tr><tr><th>|<i>G</i><sub>&sigma;</sub>|</th><td>' + (Math.abs(D) / idx) + '</td></tr></table>';
+    h += '<div style="margin:.6em 0 .2em;color:#6B7280">coset representatives in <i>A</i><sub>&sigma;</sub>[0,1)<sup><i>d</i></sup>, with <i>A</i><sub>&sigma;</sub><sup>&minus;1</sup><i>u</i> mod 1</div><table>' +
+      reps.map(u => '<tr><td class="mono">(' + u.join(', ') + ')</td><td class="mono">(' + fr(VP.classKey(A, selB, u)) + ')</td></tr>').join('') + '</table>';
+    if (U) h += '<div style="margin-top:.6em">[<i>u</i>]<sub>&sigma;</sub> = <span class="mono">(' + fr(VP.classKey(A, selB, U)) + ')</span></div>';
+    $('vp-group').innerHTML = h;
+    REPS = reps;
+  }
+  let REPS = [];
+
+  // ---------- canvases ----------
+  const cvL = $('vp-left'), cvR = $('vp-right');
+  const ctxL = cvL.getContext('2d'), ctxR = cvR.getContext('2d');
+  let WL, HL, WR, HR, dpr = 1;
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    for (const cv of [cvL, cvR]) { const r = cv.getBoundingClientRect(); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+    WL = cvL.width / dpr; HL = cvL.height / dpr; WR = cvR.width / dpr; HR = cvR.height / dpr;
+    drawAll();
+  }
+  window.addEventListener('resize', resize);
+  function arrow(ctx, x0, y0, x1, y1, col, w) {
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = w || 2;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    const a = Math.atan2(y1 - y0, x1 - x0), L = 9;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x1 - L * Math.cos(a - 0.35), y1 - L * Math.sin(a - 0.35)); ctx.lineTo(x1 - L * Math.cos(a + 0.35), y1 - L * Math.sin(a + 0.35)); ctx.closePath(); ctx.fill();
+  }
+  function text(ctx, s, x, y, col, size, align) {
+    ctx.fillStyle = col || INK; ctx.font = (size || 14) + "px 'STIX Two Text', Georgia, serif"; ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
+  }
+
+  // ----- d = 2 plane view
+  function view2(W, H) {
+    let R = 0; for (let i = 0; i < n; i++) R = Math.max(R, A[0][i], A[1][i]);
+    R = Math.max(8, Math.ceil(R * 2.5));
+    const sc = Math.min(W, H) / (R + 1.6), ox = sc * 0.9, oy = H - sc * 0.9;
+    return { R, sc, X: x => ox + x * sc, Y: y => oy - y * sc, inv: (sx, sy) => [(sx - ox) / sc, (oy - sy) / sc] };
+  }
+  function drawPlane(ctx, W, H, withPhi) {
+    const V = view2(W, H), far = V.R * 3;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    CH.forEach((c, k) => {
+      ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0));
+      for (let t = c.lo; t <= c.hi + 1e-9; t += (c.hi - c.lo) / 24) ctx.lineTo(V.X(far * Math.cos(t)), V.Y(far * Math.sin(t)));
+      ctx.closePath(); ctx.fillStyle = k === selC ? 'rgba(0,122,134,0.16)' : CH_FILL[k % CH_FILL.length]; ctx.fill();
+    });
+    // selected basis cone outline
+    if (selB) {
+      ctx.setLineDash([6, 4]); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.5;
+      for (const i of selB) { const L = Math.hypot(A[0][i], A[1][i]); ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(A[0][i] / L * far), V.Y(A[1][i] / L * far)); ctx.stroke(); }
+      ctx.setLineDash([]);
+    }
+    // lattice points
+    for (let x = 0; x <= V.R; x++) for (let y = 0; y <= V.R; y++) {
+      if (withPhi) {
+        const v = phiOf([x, y]);
+        text(ctx, String(v), V.X(x), V.Y(y), v ? INK : '#c4c8cd', Math.max(9, Math.min(13, V.sc * 0.42)));
+      } else { ctx.beginPath(); ctx.arc(V.X(x), V.Y(y), 1.8, 0, 7); ctx.fillStyle = '#9aa1a9'; ctx.fill(); }
+    }
+    if (!withPhi && selB) {
+      // Z A_sigma and the fundamental parallelogram with coset representatives
+      const a = VP.col(A, selB[0]), b = VP.col(A, selB[1]);
+      for (let i = -V.R; i <= V.R; i++) for (let j = -V.R; j <= V.R; j++) {
+        const x = i * a[0] + j * b[0], y = i * a[1] + j * b[1];
+        if (x < 0 || y < 0 || x > V.R || y > V.R) continue;
+        ctx.beginPath(); ctx.arc(V.X(x), V.Y(y), 4, 0, 7); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.6; ctx.stroke();
+      }
+      ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(a[0]), V.Y(a[1])); ctx.lineTo(V.X(a[0] + b[0]), V.Y(a[1] + b[1])); ctx.lineTo(V.X(b[0]), V.Y(b[1])); ctx.closePath();
+      ctx.fillStyle = 'rgba(194,86,14,0.10)'; ctx.fill();
+      for (const u of REPS) { ctx.beginPath(); ctx.arc(V.X(u[0]), V.Y(u[1]), 4.2, 0, 7); ctx.fillStyle = GREEN; ctx.fill(); }
+    }
+    // walls and columns
+    for (let i = 0; i < n; i++) {
+      const L = Math.hypot(A[0][i], A[1][i]);
+      ctx.strokeStyle = 'rgba(31,35,40,0.35)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(V.X(0), V.Y(0)); ctx.lineTo(V.X(A[0][i] / L * far), V.Y(A[1][i] / L * far)); ctx.stroke();
+    }
+    for (let i = 0; i < n; i++) {
+      arrow(ctx, V.X(0), V.Y(0), V.X(A[0][i]), V.Y(A[1][i]), selB && selB.includes(i) ? ORANGE : INK, 2.2);
+      text(ctx, 'a' + (i + 1), V.X(A[0][i]) + 12, V.Y(A[1][i]) - 10, selB && selB.includes(i) ? ORANGE : INK, 14);
+    }
+    if (U) { ctx.beginPath(); ctx.arc(V.X(U[0]), V.Y(U[1]), 7, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke(); }
+    // chamber labels
+    CH.forEach((c, k) => { const t = (c.lo + c.hi) / 2, r = V.R * 0.92; text(ctx, 'C' + (k + 1), V.X(r * Math.cos(t)), V.Y(r * Math.sin(t)), k === selC ? TEAL : '#6B7280', 13); });
+  }
+
+  // ----- d = 3 slice view
+  function sliceView(W, H) {
+    const T = [[1, 0, 0], [0, 1, 0], [0, 0, 1]].map(VP.to2);
+    const xs = T.map(p => p[0]), ys = T.map(p => p[1]);
+    const sc = Math.min(W / (Math.max(...xs) - Math.min(...xs)), H / (Math.max(...ys) - Math.min(...ys))) * 0.82;
+    const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
+    return { T, X: x => W / 2 + (x - cx) * sc, Y: y => H / 2 - (y - cy) * sc };
+  }
+  function drawSlice(ctx, W, H) {
+    const V = sliceView(W, H);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    ctx.beginPath(); V.T.forEach((p, k) => k ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath(); ctx.strokeStyle = '#d0d4d9'; ctx.lineWidth = 1; ctx.stroke();
+    ['e1', 'e2', 'e3'].forEach((s, k) => { const p = V.T[k]; text(ctx, s, V.X(p[0]) + (k === 0 ? -16 : k === 1 ? 16 : 0), V.Y(p[1]) + (k === 2 ? -14 : 12), '#9aa1a9', 13); });
+    CH.forEach((f, k) => {
+      ctx.beginPath(); f.poly.forEach((p, j) => j ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath();
+      ctx.fillStyle = k === selC ? 'rgba(0,122,134,0.28)' : CH_FILL[k % CH_FILL.length]; ctx.fill();
+      ctx.strokeStyle = 'rgba(31,35,40,0.55)'; ctx.lineWidth = 1; ctx.stroke();
+    });
+    CH.forEach((f, k) => text(ctx, 'C' + (k + 1), V.X(f.center[0]), V.Y(f.center[1]), k === selC ? '#004f57' : '#6B7280', 12));
+    if (selB) {
+      const P = selB.map(i => sliceData.P[sliceData.rayOf[i]]);
+      ctx.beginPath(); P.forEach((p, j) => j ? ctx.lineTo(V.X(p[0]), V.Y(p[1])) : ctx.moveTo(V.X(p[0]), V.Y(p[1]))); ctx.closePath();
+      ctx.strokeStyle = ORANGE; ctx.lineWidth = 2.6; ctx.stroke();
+    }
+    // columns (several columns can share a ray)
+    sliceData.P.forEach((p, k) => {
+      const cols = []; sliceData.rayOf.forEach((r, i) => { if (r === k) cols.push(i); });
+      const on = selB && cols.some(i => selB.includes(i));
+      ctx.beginPath(); ctx.arc(V.X(p[0]), V.Y(p[1]), 5, 0, 7); ctx.fillStyle = on ? ORANGE : INK; ctx.fill();
+      const dx = V.X(p[0]) - W / 2, dy = V.Y(p[1]) - H / 2, r = Math.hypot(dx, dy) || 1;
+      text(ctx, cols.map(i => 'a' + (i + 1)).join(', '), V.X(p[0]) + dx / r * 22, V.Y(p[1]) + dy / r * 16, on ? ORANGE : INK, 14);
+    });
+    if (U && U.every(x => x >= 0) && U.some(x => x > 0)) {
+      const q = VP.to2(VP.slicePoint(U));
+      ctx.beginPath(); ctx.arc(V.X(q[0]), V.Y(q[1]), 6, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke();
+      text(ctx, 'u', V.X(q[0]) + 11, V.Y(q[1]) - 10, TEAL, 14);
+    }
+  }
+
+  // ----- d = 3 space view
+  let yaw = -0.8, pitch = 0.45, drag = null;
+  function proj3(p, W, H, S) {
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    // z axis up on screen
+    const x = cy * p[0] - sy * p[1], y = sy * p[0] + cy * p[1], z = p[2];
+    const y2 = cp * y + sp * z, z2 = -sp * y + cp * z;
+    return [W / 2 + x * S, H * 0.62 - z2 * S, y2];
+  }
+  function drawSpace(ctx, W, H) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    let M = 0; for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) M = Math.max(M, A[k][i]);
+    const box = Math.max(4, M * 2), S = Math.min(W, H) / (box * 1.9);
+    const P = p => proj3([p[0] - box / 3, p[1] - box / 3, p[2] - box / 3], W, H, S);
+    const line = (a, b, col, w, dash) => { const p = P(a), q = P(b); ctx.setLineDash(dash || []); ctx.strokeStyle = col; ctx.lineWidth = w || 1; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); ctx.setLineDash([]); };
+    // axes
+    [[1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((e, k) => { line([0, 0, 0], e.map(x => x * box), '#c4c8cd', 1); const q = P(e.map(x => x * box * 1.05)); text(ctx, ['x', 'y', 'z'][k], q[0], q[1], '#9aa1a9', 13); });
+    // selected chamber: cone over its slice polygon, cut at height x+y+z = box
+    const lift = q => { // invert to2 on the plane x+y+z=1
+      const c = q[1] * Math.sqrt(3); // = 2z - x - y = 3z - 1
+      const z = (c + 1) / 3, yx = q[0]; // y - x
+      const x = (1 - z - yx) / 2, y = x + yx; return [x * box, y * box, z * box];
+    };
+    if (CH[selC]) {
+      const poly = CH[selC].poly.map(lift).map(P);
+      ctx.beginPath(); poly.forEach((p, j) => j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath(); ctx.fillStyle = 'rgba(0,122,134,0.25)'; ctx.fill();
+      const o = P([0, 0, 0]);
+      for (const p of poly) { ctx.strokeStyle = 'rgba(0,122,134,0.45)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(o[0], o[1]); ctx.lineTo(p[0], p[1]); ctx.stroke(); }
+    }
+    // Z A_sigma near the origin and the coset representatives
+    if (selB) {
+      const B = VP.sub(A, selB), pts = [];
+      for (let i = 0; i <= 3; i++) for (let j = 0; j <= 3; j++) for (let k = 0; k <= 3; k++) { const v = VP.mv(B, [i, j, k]); if (v.every(x => x <= box)) pts.push(v); }
+      for (const v of pts) { const p = P(v); ctx.beginPath(); ctx.arc(p[0], p[1], 3.4, 0, 7); ctx.strokeStyle = ORANGE; ctx.lineWidth = 1.4; ctx.stroke(); }
+      // the parallelepiped A_sigma [0,1]^3
+      const c = selB.map(i => VP.col(A, i));
+      const corner = m => [0, 1, 2].map(k => ((m & 1) ? c[0][k] : 0) + ((m & 2) ? c[1][k] : 0) + ((m & 4) ? c[2][k] : 0));
+      for (let m = 0; m < 8; m++) for (let b = 0; b < 3; b++) if (!(m & (1 << b))) line(corner(m), corner(m | (1 << b)), 'rgba(194,86,14,0.55)', 1.2);
+      for (const u of REPS) { const p = P(u); ctx.beginPath(); ctx.arc(p[0], p[1], 4.4, 0, 7); ctx.fillStyle = GREEN; ctx.fill(); }
+    }
+    // columns
+    for (let i = 0; i < n; i++) {
+      const a = VP.col(A, i), on = selB && selB.includes(i);
+      const s = Math.hypot(...a), L = box * 1.1 / s;
+      line([0, 0, 0], a.map(x => x * L), on ? 'rgba(194,86,14,0.6)' : 'rgba(31,35,40,0.25)', 1, [4, 4]);
+      const o = P([0, 0, 0]), q = P(a);
+      arrow(ctx, o[0], o[1], q[0], q[1], on ? ORANGE : INK, 2);
+      text(ctx, 'a' + (i + 1), q[0] + 12, q[1] - 10, on ? ORANGE : INK, 14);
+    }
+    if (U) { const p = P(U); ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 7); ctx.strokeStyle = TEAL; ctx.lineWidth = 2.5; ctx.stroke(); }
+  }
+
+  function drawAll() {
+    if (!A || !WL) return;
+    if (d === 2) {
+      drawPlane(ctxL, WL, HL, false); drawPlane(ctxR, WR, HR, true);
+      $('vp-capL').innerHTML = 'chambers of pos(<i>A</i>), <b>Z</b><i>A</i><sub>&sigma;</sub> (orange), coset representatives (green). Click a point to set <i>u</i>.';
+      $('vp-capR').innerHTML = '&phi;<sub><i>A</i></sub>(<i>u</i>) at each lattice point';
+    } else {
+      drawSlice(ctxL, WL, HL); drawSpace(ctxR, WR, HR);
+      $('vp-capL').innerHTML = 'chamber complex in the slice <i>x</i> + <i>y</i> + <i>z</i> = 1, with the triangle of &sigma; in orange. Click a chamber.';
+      $('vp-capR').innerHTML = 'the chamber as a cone, <b>Z</b><i>A</i><sub>&sigma;</sub> (orange), coset representatives (green). Drag to rotate.';
+    }
+  }
+
+  // ---------- interaction ----------
+  function pick(e) {
+    const r = cvL.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
+    if (d === 2) {
+      const V = view2(WL, HL), [x, y] = V.inv(sx, sy), u = [Math.round(x), Math.round(y)];
+      if (u[0] >= 0 && u[1] >= 0) { $('vp-u').value = u.join(' '); readU(); }
+      else { const t = Math.atan2(y, x), c = CH.findIndex(c => c.lo < t && t < c.hi); if (c >= 0) selC = c; }
+    } else {
+      const V = sliceView(WL, HL);
+      const T = sliceView(WL, HL); // screen -> slice coordinates
+      const xs = V.T.map(p => p[0]), ys = V.T.map(p => p[1]);
+      const sc = Math.min(WL / (Math.max(...xs) - Math.min(...xs)), HL / (Math.max(...ys) - Math.min(...ys))) * 0.82;
+      const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
+      const q = [(sx - WL / 2) / sc + cx, -(sy - HL / 2) / sc + cy];
+      const c = CH.findIndex(f => inPoly(q, f.poly)); if (c >= 0) selC = c;
+    }
+    const C = CH[selC];
+    if (C && (!selB || !C.delta.some(b => b.s.join() === selB.join()))) selB = C.delta.length ? C.delta[0].s : null;
+    renderInfo(); drawAll();
+  }
+  cvL.addEventListener('click', pick);
+  cvR.addEventListener('pointerdown', e => { if (d !== 3) return; drag = [e.clientX, e.clientY, yaw, pitch]; cvR.setPointerCapture(e.pointerId); });
+  cvR.addEventListener('pointermove', e => { if (!drag) return; yaw = drag[2] + (e.clientX - drag[0]) * 0.01; pitch = Math.max(-1.4, Math.min(1.4, drag[3] + (e.clientY - drag[1]) * 0.01)); drawSpace(ctxR, WR, HR); });
+  cvR.addEventListener('pointerup', () => { drag = null; });
+  $('vp-go').onclick = load;
+  $('vp-u').addEventListener('change', () => { readU(); const C = CH && CH[selC]; if (C && C.delta.length && !(selB && C.delta.some(b => b.s.join() === selB.join()))) selB = C.delta[0].s; renderInfo(); drawAll(); });
+  sel.onchange = () => { const p = PRESETS[sel.value]; $('vp-A').value = p.A; $('vp-u').value = p.u; load(); };
+  $('vp-A').value = PRESETS[0].A; $('vp-u').value = PRESETS[0].u;
+  resize(); load();
+})();
+
+</script>
+</body>
+</html>

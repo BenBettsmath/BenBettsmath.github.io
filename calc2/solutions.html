@@ -59,8 +59,8 @@
 
 <div class="page-content">
   <h2>Calc II · Selected Solutions</h2>
-  <p class="back"><a href="index.html">&larr; Calculus II home</a> &nbsp;|&nbsp; <a href="Calc2_Review_Solutions.pdf">PDF version</a> &nbsp;|&nbsp; <a href="Calc2_Review.pdf">Review sheet (problems only)</a></p>
-  <div class="lede">Selected solutions to the Math 1522 review sheet. Problem numbers match the review sheet, so 7(c) here is part (c) of topic 7 there. Try each problem before reading its solution.</div>
+  <p class="back"><a href="index.html">&larr; Calculus II home</a> &nbsp;|&nbsp; <a href="Calc2_Review_Solutions.pdf">PDF version</a> &nbsp;|&nbsp; <a href="review.html">Review problems</a></p>
+  <div class="lede">One worked problem from each topic of the Math 1522 review sheet. Problem numbers match the review sheet, so 7(b) here is part (b) of topic 7 there. Try each problem before reading its solution.</div>
   <div class="toc">
     <ol>
       <li><a href="#sec1">Formulas to know</a></li>
@@ -101,15 +101,7 @@
   <h3 id="sec1" class="chapter">1. Formulas to know</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 1(a).</b> Derivative and graph of $\sin^{-1}(x)$.</p>
-    <div class="sol">
-      <p>$y=\sin^{-1}(x)$ is the inverse of $\sin$ restricted to $[-\frac{\pi}{2},\frac{\pi}{2}]$, so its domain is $[-1,1]$ and its range is $[-\frac{\pi}{2},\frac{\pi}{2}]$. The graph increases from $(-1,-\frac{\pi}{2})$ through $(0,0)$ to $(1,\frac{\pi}{2})$, with vertical tangents at the ends.
-\[ \frac{d}{dx}\sin^{-1}(x)=\frac{1}{\sqrt{1-x^2}}, \qquad -1&lt;x&lt;1. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 1(h).</b> State the Inverse Function Theorem.</p>
+    <p class="stmt"><b>Problem 1(b).</b> State the Inverse Function Theorem.</p>
     <div class="sol">
       <p>Let $f$ be a 1-1 differentiable function with inverse $f^{-1}$, and let $a$ be in the domain of $f^{-1}$. If $f'(f^{-1}(a))\neq 0$, then $f^{-1}$ is differentiable at $a$ and
 \[ (f^{-1})'(a)=\frac{1}{f'(f^{-1}(a))}. \]
@@ -121,24 +113,7 @@ The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ 
   <h3 id="sec2" class="chapter">2. Logarithmic differentiation</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 2(a).</b> Find $y'$ if $y=x^{\sqrt{x}}$.</p>
-    <div class="sol">
-      <p>Take $\ln$ of both sides: $\ln y=\sqrt{x}\,\ln x$. Differentiate implicitly.
-\[ \frac{y'}{y}=\frac{\ln x}{2\sqrt{x}}+\frac{\sqrt{x}}{x}, \qquad y'=x^{\sqrt{x}}\left(\frac{\ln x}{2\sqrt{x}}+\frac{1}{\sqrt{x}}\right)=x^{\sqrt{x}}\,\frac{\ln x+2}{2\sqrt{x}}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 2(c).</b> Find $y'$ if $y=(\sin x)^{\sin x}$.</p>
-    <div class="sol">
-      <p>$\ln y=\sin x\,\ln(\sin x)$, so
-\[ \frac{y'}{y}=\cos x\,\ln(\sin x)+\sin x\cdot\frac{\cos x}{\sin x}=\cos x\,\bigl(\ln(\sin x)+1\bigr), \]
-\[ y'=(\sin x)^{\sin x}\cos x\,\bigl(\ln(\sin x)+1\bigr). \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 2(d).</b> Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.</p>
+    <p class="stmt"><b>Problem 2(c).</b> Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.</p>
     <div class="sol">
       <p>Take $\ln$ of both sides and expand: $\ln y=4\ln(x+1)+x-\frac12\ln(1+3x)$. Differentiate implicitly.
 \[ \frac{y'}{y}=\frac{4}{x+1}+1-\frac{3}{2(1+3x)}. \]
@@ -150,22 +125,7 @@ At $x=0$, $y=1$, so $y'(0)=4+1-\frac32=\frac72$.</p>
   <h3 id="sec3" class="chapter">3. Derivatives of logarithms</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 3(c).</b> Find $y$ if $y'=\frac{\sin(x)}{\cos(x)}$.</p>
-    <div class="sol">
-      <p>Let $u=\cos x$, so $du=-\sin x\,dx$.
-\[ y=\int\frac{\sin x}{\cos x}\,dx=-\int\frac{du}{u}=-\ln|\cos x|+C=\ln|\sec x|+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 3(d).</b> Find the domain and range of $f(x)=\ln(\sqrt{9-e^x})$.</p>
-    <div class="sol">
-      <p>We need $9-e^x&gt;0$, that is $x&lt;\ln 9$. So the domain is $(-\infty,\ln 9)$. On this domain $e^x$ takes every value in $(0,9)$, so $\sqrt{9-e^x}$ takes every value in $(0,3)$, and $\ln$ of that takes every value in $(-\infty,\ln 3)$. The range is $(-\infty,\ln 3)$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 3(f).</b> Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
+    <p class="stmt"><b>Problem 3(c).</b> Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
     <div class="sol">
       <p>$f$ is defined for every $x$, so the domain is $(-\infty,\infty)$. The values of $e^{-x}$ fill $(0,\infty)$, so the range of $f$ is $(-\infty,3)$.</p>
       <p>Inverse: set $y=3-e^{-x}$ and solve for $x$. Then $e^{-x}=3-y$, so $x=-\ln(3-y)$. Swapping names,
@@ -175,35 +135,11 @@ with domain $(-\infty,3)$ (the range of $f$) and range $(-\infty,\infty)$ (the d
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 3(g).</b> Find $y'(1)$ if $y=3^x\log_3(x)$.</p>
-    <div class="sol">
-      <p>Product rule, with $\frac{d}{dx}3^x=3^x\ln 3$ and $\frac{d}{dx}\log_3 x=\frac{1}{x\ln 3}$.
-\[ y'=3^x\ln 3\,\log_3(x)+\frac{3^x}{x\ln 3}, \qquad y'(1)=3\ln3\cdot 0+\frac{3}{\ln 3}=\frac{3}{\ln 3}. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec4" class="chapter">4. Inverse trig functions</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 4(a).</b> Prove the identity $\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}$ (ignore domain issues).</p>
-    <div class="sol">
-      <p>Let $y=\sec^{-1}(x)$, so $\sec y=x$. Differentiate implicitly: $\sec y\tan y\;y'=1$. From $\tan^2y=\sec^2y-1=x^2-1$ we get $\tan y=\sqrt{x^2-1}$ (taking $y$ in $[0,\frac{\pi}{2})$, where $\tan y\ge0$). So
-\[ y'=\frac{1}{\sec y\tan y}=\frac{1}{x\sqrt{x^2-1}}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 4(d).</b> Find $y$ if $y'=\frac{x^2}{\frac19+x^6}$.</p>
-    <div class="sol">
-      <p>Let $u=x^3$, so $du=3x^2\,dx$.
-\[ y=\frac13\int\frac{du}{\frac19+u^2}=\frac13\cdot 9\int\frac{du}{1+(3u)^2}=\frac13\cdot 9\cdot\frac13\tan^{-1}(3u)+C=\tan^{-1}(3x^3)+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 4(f).</b> Find the equation of the tangent line to $y=2\tan^{-1}(x^2)$ at $x=1$.</p>
+    <p class="stmt"><b>Problem 4(c).</b> Find the equation of the tangent line to $y=2\tan^{-1}(x^2)$ at $x=1$.</p>
     <div class="sol">
       <p>The point is $y(1)=2\tan^{-1}(1)=\frac{\pi}{2}$. The slope is
 \[ y'=2\cdot\frac{2x}{1+x^4}, \qquad y'(1)=2. \]
@@ -211,61 +147,14 @@ So the tangent line is $y=\frac{\pi}{2}+2(x-1)$.</p>
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 4(g).</b> Write $\cos(\tan^{-1}(x/2))$ as an algebraic function of $x$.</p>
-    <div class="sol">
-      <p>Let $\theta=\tan^{-1}(x/2)$, so $\tan\theta=\frac{x}{2}$ with $-\frac{\pi}{2}&lt;\theta&lt;\frac{\pi}{2}$. Draw a right triangle with opposite side $x$ and adjacent side $2$. The hypotenuse is $\sqrt{4+x^2}$, and $\cos\theta&gt;0$ on this range, so
-\[ \cos(\tan^{-1}(x/2))=\frac{2}{\sqrt{4+x^2}}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 4(h).</b> Find $y$ if $y'=\frac{x}{\sqrt{1-x^4}}$.</p>
-    <div class="sol">
-      <p>Let $u=x^2$, so $du=2x\,dx$.
-\[ y=\frac12\int\frac{du}{\sqrt{1-u^2}}=\frac12\sin^{-1}(x^2)+C. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec5" class="chapter">5. Hyperbolic functions</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 5(b).</b> Find $\cosh^{-1}(2)$.</p>
+    <p class="stmt"><b>Problem 5(a).</b> Find $\cosh^{-1}(2)$.</p>
     <div class="sol">
       <p>Solve $\cosh y=2$, that is $\frac{e^y+e^{-y}}{2}=2$. Multiply by $2e^y$: $e^{2y}-4e^y+1=0$, a quadratic in $e^y$. So $e^y=2\pm\sqrt3$ and $y=\ln(2\pm\sqrt3)$. Since $(2-\sqrt3)(2+\sqrt3)=1$, the two solutions are $y=\pm\ln(2+\sqrt3)$. The function $\cosh^{-1}$ is the inverse of $\cosh$ restricted to $[0,\infty)$, so
 \[ \cosh^{-1}(2)=\ln(2+\sqrt3). \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 5(d).</b> Evaluate $\lim_{x\to\infty}\coth x$.</p>
-    <div class="sol">
-      <p>Divide the top and bottom by $e^x$.
-\[ \lim_{x\to\infty}\coth x=\lim_{x\to\infty}\frac{e^x+e^{-x}}{e^x-e^{-x}}=\lim_{x\to\infty}\frac{1+e^{-2x}}{1-e^{-2x}}=\frac{1+0}{1-0}=1. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 5(f).</b> Prove that the derivative of $\tanh x$ is $\operatorname{sech}^2x$.</p>
-    <div class="sol">
-      <p>Write $\tanh x=\frac{\sinh x}{\cosh x}$ and use the quotient rule with $(\sinh x)'=\cosh x$, $(\cosh x)'=\sinh x$.
-\[ \frac{d}{dx}\tanh x=\frac{\cosh x\cosh x-\sinh x\sinh x}{\cosh^2x}=\frac{1}{\cosh^2x}=\operatorname{sech}^2x, \]
-using $\cosh^2x-\sinh^2x=1$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 5(g).</b> Find $y'$ if $y=\tan^{-1}(\sinh x)$, and simplify.</p>
-    <div class="sol">
-      <p>\[ y'=\frac{\cosh x}{1+\sinh^2x}=\frac{\cosh x}{\cosh^2x}=\frac{1}{\cosh x}=\operatorname{sech}x. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 5(h).</b> Evaluate $\int_{-\ln3}^{\ln3}\cosh x\,dx$.</p>
-    <div class="sol">
-      <p>\[ \int_{-\ln3}^{\ln3}\cosh x\,dx=\sinh(\ln3)-\sinh(-\ln3)=2\sinh(\ln 3)=e^{\ln3}-e^{-\ln3}=3-\frac13=\frac83. \]</p>
     </div>
   </div>
 
@@ -273,34 +162,10 @@ using $\cosh^2x-\sinh^2x=1$.</p>
   <h3 id="sec6" class="chapter">6. Inverse Function Theorem</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 6(a).</b> Show $f(x)=x+x^3+2x^5$ is 1-1, then find the derivative of $f^{-1}$ at $(4,f^{-1}(4))$.</p>
-    <div class="sol">
-      <p>$f'(x)=1+3x^2+10x^4\ge1&gt;0$, so $f$ is increasing, hence 1-1. Since $f(1)=1+1+2=4$, we have $f^{-1}(4)=1$, and
-\[ (f^{-1})'(4)=\frac{1}{f'(1)}=\frac{1}{14}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 6(b).</b> $f(x)=5x+2\sin x+2\cos x$, at $(2,f^{-1}(2))$.</p>
-    <div class="sol">
-      <p>$f'(x)=5+2\cos x-2\sin x$. Since $|2\cos x-2\sin x|\le 2\sqrt2&lt;5$, $f'(x)&gt;0$ and $f$ is 1-1. Since $f(0)=2$, $f^{-1}(2)=0$, and
-\[ (f^{-1})'(2)=\frac{1}{f'(0)}=\frac{1}{5+2}=\frac17. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 6(i).</b> Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.</p>
+    <p class="stmt"><b>Problem 6(c).</b> Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.</p>
     <div class="sol">
       <p>$f(0)=0+1=1$, so $f^{-1}(1)=0$ and the point is $(1,0)$. $f'(x)=1+e^x$, so $(f^{-1})'(1)=\frac{1}{f'(0)}=\frac12$. The tangent line is
 \[ y=\tfrac12(x-1). \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 6(j).</b> Let $f(x)=2x^3+\ln x+\sin(\pi x)$ for $x&gt;0$ (assume $f$ is 1-1). Find the slope of the tangent line to the graph of $f^{-1}$ at $x=2$.</p>
-    <div class="sol">
-      <p>$f(1)=2+0+0=2$, so $f^{-1}(2)=1$. $f'(x)=6x^2+\frac1x+\pi\cos(\pi x)$, so $f'(1)=6+1-\pi$. The slope is
-\[ (f^{-1})'(2)=\frac{1}{f'(1)}=\frac{1}{7-\pi}. \]</p>
     </div>
   </div>
 
@@ -308,16 +173,7 @@ using $\cosh^2x-\sinh^2x=1$.</p>
   <h3 id="sec7" class="chapter">7. L'Hôpital's rule</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 7(c).</b> $\lim_{x\to0^+}x^x$</p>
-    <div class="sol">
-      <p>This is the form $0^0$. Let $y=x^x$, so $\ln y=x\ln x=\dfrac{\ln x}{1/x}$, the form $\frac{-\infty}{\infty}$.
-\[ \lim_{x\to0^+}\frac{\ln x}{1/x}\overset{H}{=}\lim_{x\to0^+}\frac{1/x}{-1/x^2}=\lim_{x\to0^+}(-x)=0. \]
-So $\ln y\to0$ and $x^x\to e^0=1$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(g).</b> $\lim_{x\to0^+}(1+\sin(2x))^{\cot x}$</p>
+    <p class="stmt"><b>Problem 7(b).</b> $\lim_{x\to0^+}(1+\sin(2x))^{\cot x}$</p>
     <div class="sol">
       <p>The form $1^\infty$. Let $y$ be the expression, so $\ln y=\cot x\,\ln(1+\sin 2x)=\dfrac{\ln(1+\sin2x)}{\tan x}$, the form $\frac00$.
 \[ \lim_{x\to0^+}\frac{\ln(1+\sin2x)}{\tan x}\overset{H}{=}\lim_{x\to0^+}\frac{\frac{2\cos 2x}{1+\sin2x}}{\sec^2x}=\frac{2}{1}=2. \]
@@ -325,83 +181,11 @@ So the limit is $e^2$.</p>
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(i).</b> $\lim_{x\to0^+}\left(\frac1x-\frac{1}{e^x-1}\right)$</p>
-    <div class="sol">
-      <p>The form $\infty-\infty$. Combine into one fraction, then apply L'Hopital twice (each step is $\frac00$).
-\[ \lim_{x\to0^+}\frac{e^x-1-x}{x(e^x-1)}\overset{H}{=}\lim_{x\to0^+}\frac{e^x-1}{e^x-1+xe^x}\overset{H}{=}\lim_{x\to0^+}\frac{e^x}{2e^x+xe^x}=\frac12. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(j).</b> $\lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}$</p>
-    <div class="sol">
-      <p>The form $\frac00$, since $\ln1=0$ and $\cos^{-1}(1)=0$.
-\[ \lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}\overset{H}{=}\lim_{x\to1^-}\frac{1/x}{-1/\sqrt{1-x^2}}=\lim_{x\to1^-}\left(-\frac{\sqrt{1-x^2}}{x}\right)=0. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(k).</b> $\lim_{x\to\infty}x\left(\frac{\pi}{2}-\tan^{-1}(2x)\right)$</p>
-    <div class="sol">
-      <p>The form $\infty\cdot0$, since $\tan^{-1}(2x)\to\frac{\pi}{2}$. Rewrite as a quotient of the form $\frac00$.
-\[ \lim_{x\to\infty}\frac{\frac{\pi}{2}-\tan^{-1}(2x)}{1/x}\overset{H}{=}\lim_{x\to\infty}\frac{-\frac{2}{1+4x^2}}{-\frac{1}{x^2}}=\lim_{x\to\infty}\frac{2x^2}{1+4x^2}=\frac12. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(l).</b> $\lim_{x\to\infty}\sin^{-1}\left(\frac{e^x}{2e^x+1}\right)$</p>
-    <div class="sol">
-      <p>No L'Hopital needed. Divide by $e^x$ inside: $\dfrac{e^x}{2e^x+1}=\dfrac{1}{2+e^{-x}}\to\dfrac12$. Since $\sin^{-1}$ is continuous at $\frac12$,
-\[ \lim_{x\to\infty}\sin^{-1}\left(\frac{e^x}{2e^x+1}\right)=\sin^{-1}\left(\tfrac12\right)=\frac{\pi}{6}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 7(m).</b> $\lim_{x\to\infty}\frac{\cosh(\ln x)}{x}$</p>
-    <div class="sol">
-      <p>Use the definition: $\cosh(\ln x)=\frac{e^{\ln x}+e^{-\ln x}}{2}=\frac{x+\frac1x}{2}$. So
-\[ \lim_{x\to\infty}\frac{\cosh(\ln x)}{x}=\lim_{x\to\infty}\frac{1+\frac{1}{x^2}}{2}=\frac12. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec8" class="chapter">8. Substitution</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 8(a).</b> $\int_0^{(\pi/2)^{1/3}}x^2\sin x^3\,dx$</p>
-    <div class="sol">
-      <p>Let $u=x^3$, $du=3x^2\,dx$. The bounds become $u=0$ and $u=\frac{\pi}{2}$.
-\[ \frac13\int_0^{\pi/2}\sin u\,du=\frac13\Bigl[-\cos u\Bigr]_0^{\pi/2}=\frac13(0+1)=\frac13. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 8(d).</b> $\int_{\pi/4}^{\pi/2}\cot x\,dx$</p>
-    <div class="sol">
-      <p>Let $u=\sin x$, $du=\cos x\,dx$. The bounds become $u=\frac{\sqrt2}{2}$ and $u=1$.
-\[ \int_{\sqrt2/2}^{1}\frac{du}{u}=\ln1-\ln\frac{\sqrt2}{2}=\ln\sqrt2=\frac{\ln 2}{2}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 8(e).</b> $\int_1^e\frac{(\ln x)^2}{x}\,dx$</p>
-    <div class="sol">
-      <p>Let $u=\ln x$, $du=\frac{dx}{x}$. The bounds become $u=0$ and $u=1$.
-\[ \int_0^1u^2\,du=\frac13. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 8(f).</b> $\int\frac{\cos x}{4+\sin^2x}\,dx$</p>
-    <div class="sol">
-      <p>Let $u=\sin x$, $du=\cos x\,dx$.
-\[ \int\frac{du}{4+u^2}=\frac12\tan^{-1}\left(\frac u2\right)+C=\frac12\tan^{-1}\left(\frac{\sin x}{2}\right)+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 8(g).</b> $\int\frac{dx}{\sqrt x\,(1+\sqrt x)}$</p>
+    <p class="stmt"><b>Problem 8(e).</b> $\int\frac{dx}{\sqrt x\,(1+\sqrt x)}$</p>
     <div class="sol">
       <p>Let $u=1+\sqrt x$, $du=\frac{dx}{2\sqrt x}$.
 \[ \int\frac{2\,du}{u}=2\ln|u|+C=2\ln(1+\sqrt x)+C. \]</p>
@@ -412,16 +196,7 @@ So the limit is $e^2$.</p>
   <h3 id="sec9" class="chapter">9. Integration by parts</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 9(b).</b> $\int_1^e x^4\ln(x)\,dx$</p>
-    <div class="sol">
-      <p>Let $u=\ln x$, $dv=x^4\,dx$, so $du=\frac{dx}{x}$, $v=\frac{x^5}{5}$.
-\[ \int x^4\ln x\,dx=\frac{x^5\ln x}{5}-\int\frac{x^4}{5}\,dx=\frac{x^5\ln x}{5}-\frac{x^5}{25}+C. \]
-\[ \int_1^e x^4\ln x\,dx=\left(\frac{e^5}{5}-\frac{e^5}{25}\right)-\left(0-\frac1{25}\right)=\frac{4e^5+1}{25}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 9(e).</b> $\int_0^\pi e^x\sin(x)\,dx$</p>
+    <p class="stmt"><b>Problem 9(b).</b> $\int_0^\pi e^x\sin(x)\,dx$</p>
     <div class="sol">
       <p>Call the antiderivative $I=\int e^x\sin x\,dx$. Parts with $u=\sin x$, $dv=e^x\,dx$, then again with $u=\cos x$, $dv=e^x\,dx$:
 \[ I=e^x\sin x-\int e^x\cos x\,dx=e^x\sin x-e^x\cos x-I. \]
@@ -430,72 +205,14 @@ So $I=\frac{e^x(\sin x-\cos x)}{2}+C$, and
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 9(g).</b> $\int x\sec^2(x)\,dx$</p>
-    <div class="sol">
-      <p>Let $u=x$, $dv=\sec^2x\,dx$, so $du=dx$, $v=\tan x$.
-\[ \int x\sec^2x\,dx=x\tan x-\int\tan x\,dx=x\tan x+\ln|\cos x|+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 9(h).</b> $\int x\sin(2x)\,dx$</p>
-    <div class="sol">
-      <p>Let $u=x$, $dv=\sin2x\,dx$, so $du=dx$, $v=-\frac{\cos2x}{2}$.
-\[ \int x\sin2x\,dx=-\frac{x\cos2x}{2}+\int\frac{\cos2x}{2}\,dx=-\frac{x\cos2x}{2}+\frac{\sin2x}{4}+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 9(i).</b> $\int_0^1x\tan^{-1}(x)\,dx$</p>
-    <div class="sol">
-      <p>Let $u=\tan^{-1}x$, $dv=x\,dx$, so $du=\frac{dx}{1+x^2}$, $v=\frac{x^2}{2}$.
-\[ \int x\tan^{-1}x\,dx=\frac{x^2}{2}\tan^{-1}x-\frac12\int\frac{x^2}{1+x^2}\,dx=\frac{x^2}{2}\tan^{-1}x-\frac12\bigl(x-\tan^{-1}x\bigr)+C, \]
-using $\frac{x^2}{1+x^2}=1-\frac{1}{1+x^2}$. At the bounds,
-\[ \int_0^1x\tan^{-1}x\,dx=\frac{\pi}{8}-\frac12\left(1-\frac{\pi}{4}\right)=\frac{\pi}{4}-\frac12. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec10" class="chapter">10. Trig integrals</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 10(a).</b> $\int\sin^3(x)\cos^2(x)\,dx$</p>
-    <div class="sol">
-      <p>The power of $\sin$ is odd, so save one $\sin x$ and convert the rest with $\sin^2x=1-\cos^2x$. Let $u=\cos x$, $du=-\sin x\,dx$.
-\[ \int(1-\cos^2x)\cos^2x\sin x\,dx=-\int(u^2-u^4)\,du=-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 10(f).</b> $\int\tan^2(x)\,dx$</p>
-    <div class="sol">
-      <p>Use $\tan^2x=\sec^2x-1$.
-\[ \int(\sec^2x-1)\,dx=\tan x-x+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 10(h).</b> $\int\tan^2(x)\sec^4(x)\,dx$</p>
+    <p class="stmt"><b>Problem 10(c).</b> $\int\tan^2(x)\sec^4(x)\,dx$</p>
     <div class="sol">
       <p>The power of $\sec$ is even, so save $\sec^2x$ and convert the other $\sec^2x=1+\tan^2x$. Let $u=\tan x$, $du=\sec^2x\,dx$.
 \[ \int\tan^2x(1+\tan^2x)\sec^2x\,dx=\int(u^2+u^4)\,du=\frac{\tan^3x}{3}+\frac{\tan^5x}{5}+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 10(i).</b> $\int\sin(3x)\cos(2x)\,dx$</p>
-    <div class="sol">
-      <p>Use the product formula $\sin A\cos B=\frac12[\sin(A+B)+\sin(A-B)]$ with $A=3x$, $B=2x$.
-\[ \frac12\int(\sin5x+\sin x)\,dx=-\frac{\cos5x}{10}-\frac{\cos x}{2}+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 10(j).</b> $\int_0^{\pi/3}\tan(x)\sec^3(x)\,dx$</p>
-    <div class="sol">
-      <p>Save $\sec x\tan x$ and let $u=\sec x$, $du=\sec x\tan x\,dx$. The bounds become $u=1$ and $u=2$.
-\[ \int_0^{\pi/3}\sec^2x\,(\sec x\tan x)\,dx=\int_1^2u^2\,du=\frac{8-1}{3}=\frac73. \]</p>
     </div>
   </div>
 
@@ -512,72 +229,14 @@ since $\sin\theta=\frac{\sqrt{x^2-1}}{x}$ from the triangle with hypotenuse $x$ 
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 11(g).</b> $\int\frac{dx}{(6-8x-x^2)^{3/2}}$</p>
-    <div class="sol">
-      <p>Complete the square: $6-8x-x^2=22-(x+4)^2$. Let $x+4=\sqrt{22}\sin\theta$, $dx=\sqrt{22}\cos\theta\,d\theta$, so $22-(x+4)^2=22\cos^2\theta$.
-\[ \int\frac{\sqrt{22}\cos\theta}{22^{3/2}\cos^3\theta}\,d\theta=\frac1{22}\int\sec^2\theta\,d\theta=\frac{\tan\theta}{22}+C=\frac{x+4}{22\sqrt{6-8x-x^2}}+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 11(h).</b> $\int_0^{\sqrt3}\frac{x^3}{\sqrt{x^2+1}}\,dx$</p>
-    <div class="sol">
-      <p>Let $x=\tan\theta$, $dx=\sec^2\theta\,d\theta$, so $\sqrt{x^2+1}=\sec\theta$. The bounds become $\theta=0$ and $\theta=\frac{\pi}{3}$.
-\[ \int_0^{\pi/3}\tan^3\theta\sec\theta\,d\theta=\int_0^{\pi/3}(\sec^2\theta-1)\sec\theta\tan\theta\,d\theta. \]
-Let $w=\sec\theta$, $dw=\sec\theta\tan\theta\,d\theta$, with bounds $w=1$ and $w=2$.
-\[ \int_1^2(w^2-1)\,dw=\left[\frac{w^3}{3}-w\right]_1^2=\frac23+\frac23=\frac43. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 11(i).</b> $\int_{\sqrt2}^2\frac{dx}{x^2\sqrt{x^2-1}}$</p>
-    <div class="sol">
-      <p>Let $x=\sec\theta$, $dx=\sec\theta\tan\theta\,d\theta$, so $\sqrt{x^2-1}=\tan\theta$. The bounds become $\theta=\frac{\pi}{4}$ and $\theta=\frac{\pi}{3}$.
-\[ \int_{\pi/4}^{\pi/3}\frac{\sec\theta\tan\theta}{\sec^2\theta\tan\theta}\,d\theta=\int_{\pi/4}^{\pi/3}\cos\theta\,d\theta=\frac{\sqrt3}{2}-\frac{\sqrt2}{2}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 11(j).</b> $\int_0^1\frac{dx}{(1+x^2)^2}$</p>
-    <div class="sol">
-      <p>Let $x=\tan\theta$, $dx=\sec^2\theta\,d\theta$, so $(1+x^2)^2=\sec^4\theta$. The bounds become $\theta=0$ and $\theta=\frac{\pi}{4}$.
-\[ \int_0^{\pi/4}\cos^2\theta\,d\theta=\left[\frac\theta2+\frac{\sin2\theta}{4}\right]_0^{\pi/4}=\frac{\pi}{8}+\frac14. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec12" class="chapter">12. Partial fractions</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 12(a)(ii).</b> $\int\frac{3x^2+6x+2}{x^2+3x+2}\,dx$</p>
-    <div class="sol">
-      <p>The degrees are equal, so divide first: $\frac{3x^2+6x+2}{x^2+3x+2}=3-\frac{3x+4}{(x+1)(x+2)}$. Write $\frac{3x+4}{(x+1)(x+2)}=\frac{A}{x+1}+\frac{B}{x+2}$, so $3x+4=A(x+2)+B(x+1)$. At $x=-1$, $A=1$. At $x=-2$, $B=2$.
-\[ \int\left(3-\frac{1}{x+1}-\frac{2}{x+2}\right)dx=3x-\ln|x+1|-2\ln|x+2|+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 12(b)(iv).</b> $\int\frac{x+4}{x^3-4x}\,dx$</p>
-    <div class="sol">
-      <p>Factor $x^3-4x=x(x-2)(x+2)$ and write $\frac{x+4}{x(x-2)(x+2)}=\frac Ax+\frac{B}{x-2}+\frac{D}{x+2}$ (we use $D$ to keep $C$ for the constant). Then $x+4=A(x-2)(x+2)+Bx(x+2)+Dx(x-2)$. At $x=0$, $4=-4A$, so $A=-1$. At $x=2$, $6=8B$, so $B=\frac34$. At $x=-2$, $2=8D$, so $D=\frac14$.
-\[ \int\frac{x+4}{x^3-4x}\,dx=-\ln|x|+\frac34\ln|x-2|+\frac14\ln|x+2|+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 12(c)(ii).</b> $\int\frac{3x^2-x+8}{x^3+4x}\,dx$</p>
+    <p class="stmt"><b>Problem 12(c).</b> $\int\frac{3x^2-x+8}{x^3+4x}\,dx$</p>
     <div class="sol">
       <p>$x^3+4x=x(x^2+4)$ with $x^2+4$ irreducible. Write $\frac{3x^2-x+8}{x(x^2+4)}=\frac Ax+\frac{Bx+D}{x^2+4}$, so $3x^2-x+8=A(x^2+4)+(Bx+D)x$. At $x=0$, $A=2$. Matching $x^2$: $3=A+B$, so $B=1$. Matching $x$: $D=-1$.
 \[ \int\left(\frac2x+\frac{x}{x^2+4}-\frac{1}{x^2+4}\right)dx=2\ln|x|+\frac12\ln(x^2+4)-\frac12\tan^{-1}\left(\frac x2\right)+C. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 12(c)(iii).</b> Set up, but do not solve, the partial fraction decomposition of $\frac{x+1}{x^2(x-3)(x^2+1)^2}$.</p>
-    <div class="sol">
-      <p>Each power of a linear factor gets a constant on top, and each power of an irreducible quadratic gets a linear term on top.
-\[ \frac{x+1}{x^2(x-3)(x^2+1)^2}=\frac Ax+\frac{B}{x^2}+\frac{D}{x-3}+\frac{Ex+F}{x^2+1}+\frac{Gx+H}{(x^2+1)^2}. \]</p>
     </div>
   </div>
 
@@ -585,63 +244,10 @@ Let $w=\sec\theta$, $dw=\sec\theta\tan\theta\,d\theta$, with bounds $w=1$ and $w
   <h3 id="sec13" class="chapter">13. Improper integrals</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 13(b).</b> $\int_0^1\frac{\ln x}{x}\,dx$</p>
-    <div class="sol">
-      <p>The integrand is undefined at $0$. With $u=\ln x$, an antiderivative is $\frac{(\ln x)^2}{2}$.
-\[ \lim_{t\to0^+}\int_t^1\frac{\ln x}{x}\,dx=\lim_{t\to0^+}\left(0-\frac{(\ln t)^2}{2}\right)=-\infty. \]
-It diverges. The region between the graph and the $x$-axis over $(0,1]$, below the axis and running down along the $y$-axis, has infinite area.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(f).</b> $\int_1^\infty\frac{dx}{x^p}$ (consider $p\le1$ and $p&gt;1$)</p>
-    <div class="sol">
-      <p>If $p=1$: $\lim_{t\to\infty}\ln t=\infty$, divergent. If $p\neq1$:
-\[ \lim_{t\to\infty}\int_1^t x^{-p}\,dx=\lim_{t\to\infty}\frac{t^{1-p}-1}{1-p}. \]
-For $p&gt;1$ the exponent $1-p$ is negative, so $t^{1-p}\to0$ and the integral is $\frac{1}{p-1}$. For $p&lt;1$, $t^{1-p}\to\infty$ and it diverges. So it converges exactly when $p&gt;1$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(l).</b> $\int_0^\infty e^{x^2}\,dx$ (don't determine the value)</p>
-    <div class="sol">
-      <p>For $x\ge0$, $x^2\ge0$, so $e^{x^2}\ge1$. Then
-\[ \int_0^te^{x^2}\,dx\ge\int_0^t1\,dx=t\to\infty, \]
-so the integral diverges to $\infty$ by comparison. The region under the graph over $[0,\infty)$ contains a strip of height $1$ and infinite length, so it has infinite area.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(n).</b> $\int_0^\infty\frac{e^x}{(1+e^x)^3}\,dx$</p>
+    <p class="stmt"><b>Problem 13(d).</b> $\int_0^\infty\frac{e^x}{(1+e^x)^3}\,dx$</p>
     <div class="sol">
       <p>Let $u=1+e^x$, $du=e^x\,dx$; $x=0$ gives $u=2$ and $x\to\infty$ gives $u\to\infty$.
 \[ \lim_{t\to\infty}\int_2^{t}u^{-3}\,du=\lim_{t\to\infty}\left(\frac{1}{2\cdot 4}-\frac{1}{2t^2}\right)=\frac18. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(o).</b> $\int_1^\infty\frac{\ln x}{x^3}\,dx$</p>
-    <div class="sol">
-      <p>Parts with $u=\ln x$, $dv=x^{-3}\,dx$, so $du=\frac{dx}{x}$, $v=-\frac{1}{2x^2}$.
-\[ \int\frac{\ln x}{x^3}\,dx=-\frac{\ln x}{2x^2}+\int\frac{dx}{2x^3}=-\frac{\ln x}{2x^2}-\frac{1}{4x^2}+C. \]
-\[ \lim_{t\to\infty}\left(-\frac{\ln t}{2t^2}-\frac{1}{4t^2}+\frac14\right)=\frac14, \]
-since $\frac{\ln t}{t^2}\to0$ by L'Hopital.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(p).</b> $\int_0^2\frac{dx}{(x-1)^{2/3}}$</p>
-    <div class="sol">
-      <p>The integrand blows up at $x=1$, inside the interval, so split there. An antiderivative is $3(x-1)^{1/3}$.
-\[ \lim_{t\to1^-}\Bigl[3(x-1)^{1/3}\Bigr]_0^t+\lim_{s\to1^+}\Bigl[3(x-1)^{1/3}\Bigr]_s^2=(0+3)+(3-0)=6. \]
-Both pieces converge, so the integral converges to $6$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 13(q).</b> $\int_2^\infty\frac{dx}{4+x^2}$</p>
-    <div class="sol">
-      <p>\[ \lim_{t\to\infty}\left[\frac12\tan^{-1}\left(\frac x2\right)\right]_2^t=\frac12\cdot\frac{\pi}{2}-\frac12\cdot\frac{\pi}{4}=\frac{\pi}{8}. \]</p>
     </div>
   </div>
 
@@ -649,28 +255,10 @@ Both pieces converge, so the integral converges to $6$.</p>
   <h3 id="sec14" class="chapter">14. Numerical integration</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 14(c).</b> $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.</p>
+    <p class="stmt"><b>Problem 14(a).</b> $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.</p>
     <div class="sol">
       <p>Let $f(x)=x^3-3x^2+2x+1$. Then $f''(x)=6x-6&lt;0$ on $[0,1)$, so $f$ is concave down. A concave down graph lies below its chords and above its tangent lines, so the trapezoid rule underestimates and the midpoint rule overestimates. $f'(x)=3x^2-6x+2$ changes sign at $x=1-\frac{1}{\sqrt3}$, so $f$ is not monotonic on $[0,1]$, and the left and right endpoint rules are not determined by this reasoning.</p>
       <p>With $\Delta x=\frac14$, $M_4=\frac14\bigl(f(\tfrac18)+f(\tfrac38)+f(\tfrac58)+f(\tfrac78)\bigr)=\frac{161}{128}\approx1.258$ and $T_4=\frac18\bigl(f(0)+2f(\tfrac14)+2f(\tfrac12)+2f(\tfrac34)+f(1)\bigr)=\frac{79}{64}\approx1.234$. The exact value is $\frac14-1+1+1=\frac54$, between them as predicted.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 14(d).</b> Use the trapezoid rule with $n=3$ to approximate $\int_0^32^x\,dx$ in exact form.</p>
-    <div class="sol">
-      <p>$\Delta x=1$ and the nodes are $0,1,2,3$.
-\[ T_3=\frac12\bigl(2^0+2\cdot2^1+2\cdot2^2+2^3\bigr)=\frac12(1+4+8+8)=\frac{21}{2}. \]
-(The exact value is $\frac{7}{\ln2}\approx10.10$. $2^x$ is concave up, so $T_3$ overestimates.)</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 14(e).</b> How large must $n$ be so that the trapezoid rule approximates $\int_1^2\frac{dx}{x}$ with error less than $10^{-4}$?</p>
-    <div class="sol">
-      <p>$f(x)=\frac1x$ has $f''(x)=\frac{2}{x^3}$, which on $[1,2]$ is at most $2$. So take $K=2$, $b-a=1$.
-\[ |E_T|\le\frac{2}{12n^2}=\frac{1}{6n^2}&lt;10^{-4}\iff n^2&gt;\frac{10^4}{6}\approx1666.7. \]
-So $n\ge41$ is enough.</p>
     </div>
   </div>
 
@@ -678,29 +266,7 @@ So $n\ge41$ is enough.</p>
   <h3 id="sec15" class="chapter">15. Sequences</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 15(e).</b> If an alternating sequence converges, what must it converge to?</p>
-    <div class="sol">
-      <p>It must converge to $0$. Suppose $a_n\to L$ and the terms alternate in sign. The positive terms are a subsequence converging to $L$, so $L\ge0$. The negative terms also converge to $L$, so $L\le0$. Hence $L=0$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 15(h).</b> Write $\{-\frac18,\frac1{27},-\frac1{64},\frac1{125},\dots\}$ as a function of $n$.</p>
-    <div class="sol">
-      <p>The denominators are $2^3,3^3,4^3,5^3$ and the signs alternate starting negative. So $a_n=\dfrac{(-1)^n}{(n+1)^3}$ for $n\ge1$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 15(j).</b> Monotonic? Bounded? $a_n=1+\frac{(-1)^n}{n}$ and $b_n=\frac{n}{n+1}$ ($n\ge1$).</p>
-    <div class="sol">
-      <p>$a_1=0$, $a_2=\frac32$, $a_3=\frac23$, $a_4=\frac54$: it goes up, down, up, so $a_n$ is not monotonic. Since $\left|\frac{(-1)^n}{n}\right|\le1$, $0\le a_n\le2$, so it is bounded.</p>
-      <p>$b_n=1-\frac{1}{n+1}$, and $\frac{1}{n+1}$ decreases, so $b_n$ is increasing. It is bounded: $\frac12\le b_n&lt;1$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 15(k).</b> Show that $\lim_{n\to\infty}\frac{3^n}{n!}=0$.</p>
+    <p class="stmt"><b>Problem 15(d).</b> Show that $\lim_{n\to\infty}\frac{3^n}{n!}=0$.</p>
     <div class="sol">
       <p>For $n\ge3$, write the quotient as a product of $n$ factors and bound the middle ones by $1$:
 \[ 0&lt;\frac{3^n}{n!}=\frac31\cdot\frac32\cdot\frac33\cdot\frac34\cdots\frac{3}{n-1}\cdot\frac3n\le\frac31\cdot\frac32\cdot\frac3n=\frac{27}{2n}. \]
@@ -712,35 +278,7 @@ Since $\frac{27}{2n}\to0$, the Squeeze Theorem gives $\frac{3^n}{n!}\to0$.</p>
   <h3 id="sec16" class="chapter">16. Test for Divergence (TFD)</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 16(a).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n+1}$</p>
-    <div class="sol">
-      <p>$\left|\frac{(-1)^nn}{n+1}\right|=\frac{n}{n+1}\to1$, so the terms do not go to $0$ (they approach $1$ and $-1$ alternately). By the TFD the series diverges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 16(c).</b> $\sum_{n=0}^\infty\frac{n^2+1}{6n^2+6n+1}$</p>
-    <div class="sol">
-      <p>$\lim_{n\to\infty}\frac{n^2+1}{6n^2+6n+1}=\frac16\neq0$, so the series diverges by the TFD.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 16(e).</b> Can you use the TFD on $\sum_{n=2}^\infty\frac{1}{n^2}$?</p>
-    <div class="sol">
-      <p>No. The TFD only concludes divergence when $a_n\not\to0$. Here $\frac1{n^2}\to0$, so the TFD says nothing. (The series converges, as a $p$-series with $p=2$.)</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 16(f).</b> $\sum_{n=1}^\infty2^{1/n}$</p>
-    <div class="sol">
-      <p>$2^{1/n}\to2^0=1\neq0$, so the series diverges by the TFD.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 16(g).</b> Suppose $b_n&gt;0$ and $\sum b_n$ converges. What does the TFD say about $\sum\frac{1}{b_n}$?</p>
+    <p class="stmt"><b>Problem 16(e).</b> Suppose $b_n&gt;0$ and $\sum b_n$ converges. What does the TFD say about $\sum\frac{1}{b_n}$?</p>
     <div class="sol">
       <p>Since $\sum b_n$ converges, $b_n\to0$. As $b_n&gt;0$, this means $\frac1{b_n}\to\infty$, so the terms of $\sum\frac1{b_n}$ do not go to $0$. By the TFD, $\sum\frac1{b_n}$ diverges.</p>
     </div>
@@ -757,74 +295,11 @@ Since $\frac{27}{2n}\to0$, the Squeeze Theorem gives $\frac{3^n}{n!}\to0$.</p>
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 17(c).</b> $\sum_{n=1}^\infty\left[\tan^{-1}(n+2)-\tan^{-1}(n)\right]$</p>
-    <div class="sol">
-      <p>Each term cancels against the term two places later.
-\[ s_N=\tan^{-1}(N+1)+\tan^{-1}(N+2)-\tan^{-1}(1)-\tan^{-1}(2). \]
-As $N\to\infty$, $s_N\to\frac{\pi}{2}+\frac{\pi}{2}-\frac{\pi}{4}-\tan^{-1}(2)=\frac{3\pi}{4}-\tan^{-1}(2)$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 17(d).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+1)\right]$, where $\lim_{n\to\infty}f(n)=L$</p>
-    <div class="sol">
-      <p>$s_N=\bigl(f(1)-f(2)\bigr)+\bigl(f(2)-f(3)\bigr)+\cdots+\bigl(f(N)-f(N+1)\bigr)=f(1)-f(N+1)$. So the sum is $f(1)-L$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 17(e).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+k)\right]$, $k$ a positive integer, $\lim f(n)=L$</p>
-    <div class="sol">
-      <p>For $N\ge k$, every $f(m)$ with $k&lt;m\le N$ appears once with each sign, so
-\[ s_N=\bigl(f(1)+\cdots+f(k)\bigr)-\bigl(f(N+1)+\cdots+f(N+k)\bigr)\to f(1)+\cdots+f(k)-kL. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 17(f).</b> Determine if $\sum_{n=1}^\infty\ln\left(1+\frac1n\right)$ converges or diverges by writing out its partial sums.</p>
-    <div class="sol">
-      <p>$\ln\left(1+\frac1n\right)=\ln\frac{n+1}{n}=\ln(n+1)-\ln n$, so the partial sums telescope.
-\[ s_N=(\ln2-\ln1)+(\ln3-\ln2)+\cdots+\bigl(\ln(N+1)-\ln N\bigr)=\ln(N+1)\to\infty. \]
-The series diverges. (The TFD says nothing here, since the terms do go to $0$.)</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec18" class="chapter">18. Geometric series</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 18(b).</b> $\sum_{n=0}^\infty\frac{4^{2n-1}}{17^n}$</p>
-    <div class="sol">
-      <p>$\frac{4^{2n-1}}{17^n}=\frac14\left(\frac{16}{17}\right)^n$, geometric with first term $\frac14$ and ratio $r=\frac{16}{17}$, $|r|&lt;1$.
-\[ \sum_{n=0}^\infty\frac14\left(\frac{16}{17}\right)^n=\frac{1/4}{1-16/17}=\frac{17}{4}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 18(c).</b> $\sum_{n=-4}^\infty\left(\frac12\right)^n$</p>
-    <div class="sol">
-      <p>The first term is $\left(\frac12\right)^{-4}=16$ and $r=\frac12$. So the sum is $\frac{16}{1-1/2}=32$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 18(d).</b> $\sum_{n=1}^\infty\frac{3^{n+1}}{4^{n-1}}$</p>
-    <div class="sol">
-      <p>The first term ($n=1$) is $\frac{9}{1}=9$ and the ratio is $r=\frac34$.
-\[ \sum_{n=1}^\infty\frac{3^{n+1}}{4^{n-1}}=\frac{9}{1-3/4}=36. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 18(e).</b> $2-1+\frac12-\frac14+\frac18-\cdots$</p>
-    <div class="sol">
-      <p>Geometric with first term $2$ and $r=-\frac12$. The sum is $\frac{2}{1+1/2}=\frac43$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 18(f).</b> For which $a$ does $\sum_{k=1}^\infty\left(\frac{2a}{1+a^2}\right)^k$ converge? Find its value.</p>
+    <p class="stmt"><b>Problem 18(e).</b> For which $a$ does $\sum_{k=1}^\infty\left(\frac{2a}{1+a^2}\right)^k$ converge? Find its value.</p>
     <div class="sol">
       <p>Let $r=\frac{2a}{1+a^2}$. The series converges exactly when $|r|&lt;1$. Since $(|a|-1)^2\ge0$, we get $2|a|\le1+a^2$, so $|r|\le1$, with equality exactly when $|a|=1$. So the series converges for all $a\neq\pm1$. Its first term is $r$, so
 \[ \sum_{k=1}^\infty r^k=\frac{r}{1-r}=\frac{2a}{1+a^2-2a}=\frac{2a}{(a-1)^2}. \]</p>
@@ -843,55 +318,11 @@ The integral converges, so the series converges.</p>
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 19(c).</b> Show $\sum_{n=1}^\infty\frac{1}{n^p}$ converges if $p&gt;1$ and diverges if $0&lt;p\le1$.</p>
-    <div class="sol">
-      <p>For $p&gt;0$, $f(x)=x^{-p}$ is positive, continuous, and decreasing on $[1,\infty)$. By problem 13(f), $\int_1^\infty x^{-p}\,dx$ converges exactly when $p&gt;1$. By the Integral Test the series converges for $p&gt;1$ and diverges for $0&lt;p\le1$, including $p=1$, where $\int_1^\infty\frac{dx}{x}=\lim_{t\to\infty}\ln t=\infty$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 19(d).</b> $\sum_{n=1}^\infty ne^{-n^2}$</p>
-    <div class="sol">
-      <p>$f(x)=xe^{-x^2}$ is positive and continuous, and $f'(x)=e^{-x^2}(1-2x^2)&lt;0$ for $x\ge1$, so it is decreasing on $[1,\infty)$. With $u=x^2$,
-\[ \int_1^\infty xe^{-x^2}\,dx=\lim_{t\to\infty}\frac{e^{-1}-e^{-t^2}}{2}=\frac{1}{2e}. \]
-The integral converges, so the series converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 19(e).</b> Can you use the integral test on $\sum_{n=1}^\infty\frac{2+\sin n}{n^2}$?</p>
-    <div class="sol">
-      <p>No. The Integral Test needs $f(x)=\frac{2+\sin x}{x^2}$ to be decreasing, and it is not: the numerator oscillates, so $f$ increases on stretches where $\sin x$ rises quickly. Use the DCT instead: $0&lt;\frac{2+\sin n}{n^2}\le\frac{3}{n^2}$, and $\sum\frac{3}{n^2}$ converges ($p=2$). So the series converges.</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec20" class="chapter">20. p-series</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 20(a).</b> $\sum_{n=5}^\infty\frac{1}{n^e}$</p>
-    <div class="sol">
-      <p>A $p$-series with $p=e&gt;1$ (starting at $n=5$ does not change convergence). It converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 20(c).</b> $\sum_{n=1}^\infty\frac{1}{n^{0.000001}}$</p>
-    <div class="sol">
-      <p>A $p$-series with $p=10^{-6}\le1$. It diverges, no matter how slowly.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 20(d).</b> $\sum_{n=1}^\infty\frac{n^2+\sqrt n}{n^4}$</p>
-    <div class="sol">
-      <p>Split the term: $\frac{n^2+\sqrt n}{n^4}=\frac{1}{n^2}+\frac{1}{n^{7/2}}$. Both are $p$-series with $p&gt;1$ ($p=2$ and $p=\frac72$), and a sum of two convergent series converges. So the series converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 20(e).</b> For which $p$ does $\sum_{n=1}^\infty\frac{1}{n^{2p-1}}$ converge?</p>
+    <p class="stmt"><b>Problem 20(d).</b> For which $p$ does $\sum_{n=1}^\infty\frac{1}{n^{2p-1}}$ converge?</p>
     <div class="sol">
       <p>It is a $p$-series with exponent $2p-1$, so it converges exactly when $2p-1&gt;1$, that is $p&gt;1$.</p>
     </div>
@@ -901,7 +332,7 @@ The integral converges, so the series converges.</p>
   <h3 id="sec21" class="chapter">21. Direct Comparison Test (DCT) and Limit Comparison Test (LCT)</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 21(b).</b> $\sum_{n=1}^\infty\sin(1/n)$</p>
+    <p class="stmt"><b>Problem 21(a).</b> $\sum_{n=1}^\infty\sin(1/n)$</p>
     <div class="sol">
       <p>The terms are positive. Compare with $b_n=\frac1n$, using $\lim_{x\to0}\frac{\sin x}{x}=1$:
 \[ \lim_{n\to\infty}\frac{\sin(1/n)}{1/n}=1. \]
@@ -909,68 +340,8 @@ The limit is positive and finite and $\sum\frac1n$ diverges, so by the LCT the s
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 21(c).</b> $\sum_{n=0}^\infty\frac{\tan^{-1}(n)}{n^2+1}$</p>
-    <div class="sol">
-      <p>$0\le\tan^{-1}(n)&lt;\frac{\pi}{2}$, so for $n\ge1$, $0\le\frac{\tan^{-1}n}{n^2+1}\le\frac{\pi/2}{n^2}$. Since $\sum\frac{\pi/2}{n^2}$ converges ($p=2$), the DCT shows the series converges. (The $n=0$ term is $0$ and does not matter.)</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 21(f).</b> $\sum_{n=1}^\infty\frac{1}{2^n+n}$</p>
-    <div class="sol">
-      <p>$0&lt;\frac{1}{2^n+n}&lt;\frac{1}{2^n}$, and $\sum\left(\frac12\right)^n$ is a convergent geometric series ($|r|=\frac12&lt;1$). By the DCT the series converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 21(g).</b> $\sum_{n=1}^\infty\frac{n^2-2n}{n^{7/2}+1}$</p>
-    <div class="sol">
-      <p>The terms are positive for $n\ge3$, and the first two terms do not affect convergence. For large $n$ the term behaves like $\frac{n^2}{n^{7/2}}=\frac{1}{n^{3/2}}$, so compare with $b_n=\frac{1}{n^{3/2}}$.
-\[ \lim_{n\to\infty}\frac{(n^2-2n)\,n^{3/2}}{n^{7/2}+1}=\lim_{n\to\infty}\frac{1-\frac2n}{1+n^{-7/2}}=1. \]
-Since $\sum\frac{1}{n^{3/2}}$ converges, the LCT shows the series converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 21(h).</b> $\sum_{n=1}^\infty\frac{1}{n^2+n\cos n}$</p>
-    <div class="sol">
-      <p>$n^2+n\cos n\ge n^2-n\ge0$, with $1+\cos1&gt;0$ at $n=1$, so the terms are positive. Compare with $b_n=\frac1{n^2}$:
-\[ \lim_{n\to\infty}\frac{n^2}{n^2+n\cos n}=\lim_{n\to\infty}\frac{1}{1+\frac{\cos n}{n}}=1, \]
-since $\left|\frac{\cos n}{n}\right|\le\frac1n\to0$. By the LCT the series converges.</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec22" class="chapter">22. Alternating Series Test (AST)</h3>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 22(a).</b> $\sum_{n=2}^\infty\frac{(-1)^n}{n\ln n}$</p>
-    <div class="sol">
-      <p>Let $b_n=\frac{1}{n\ln n}$. For $n\ge2$, $b_n&gt;0$, and $n\ln n$ is increasing to $\infty$, so $b_n$ is decreasing and $b_n\to0$. By the AST it converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 22(b).</b> $\sum_{i=1}^\infty\frac{\cos(\pi i)}{i^{0.1}}$</p>
-    <div class="sol">
-      <p>$\cos(\pi i)=(-1)^i$, so this is $\sum(-1)^ib_i$ with $b_i=\frac{1}{i^{0.1}}$. Then $b_i&gt;0$, $b_i$ is decreasing, and $b_i\to0$. By the AST it converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 22(c).</b> $\sum_{k=2}^\infty\frac{(-1)^{k+15}}{\ln k}$</p>
-    <div class="sol">
-      <p>$(-1)^{k+15}=-(-1)^k$, so this is $-\sum(-1)^kb_k$ with $b_k=\frac1{\ln k}$. Since $\ln k$ increases to $\infty$, $b_k$ is positive, decreasing, and $b_k\to0$. By the AST it converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 22(d).</b> $\sum_{n=1}^\infty\frac{(-1)^n\ln n}{\sqrt n}$</p>
-    <div class="sol">
-      <p>Let $b_n=\frac{\ln n}{\sqrt n}$ and $f(x)=\frac{\ln x}{\sqrt x}$. Then $f'(x)=\frac{2-\ln x}{2x^{3/2}}&lt;0$ for $x&gt;e^2\approx7.4$, so $b_n$ is decreasing for $n\ge8$. By L'Hopital, $\lim_{x\to\infty}\frac{\ln x}{\sqrt x}=\lim_{x\to\infty}\frac{1/x}{1/(2\sqrt x)}=\lim_{x\to\infty}\frac{2}{\sqrt x}=0$. The AST applies from $n=8$ on, and the first seven terms do not affect convergence. It converges.</p>
-    </div>
-  </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem 22(e).</b> $\sum_{n=1}^\infty\frac{(-1)^n\sqrt n}{n+4}$</p>
@@ -981,35 +352,11 @@ so $b_n$ is decreasing for $n\ge4$. Dividing top and bottom by $\sqrt n$, $b_n=\
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 22(f).</b> $a_n=\frac1n$ for $n$ odd, $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?</p>
-    <div class="sol">
-      <p>No. The AST needs $a_n$ decreasing, but $a_2=\frac14&lt;a_3=\frac13$, and this happens at every even $n$. (The series actually diverges. Its even terms form the convergent series $\sum\frac{1}{(2m)^2}$, and its odd terms form $-\sum\frac{1}{2m-1}$, which diverges. A convergent series plus a divergent one diverges.)</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec23" class="chapter">23. Ratio Test</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 23(b).</b> $\sum_{n=0}^\infty\frac{n!}{n^n}$</p>
-    <div class="sol">
-      <p>(Start at $n=1$, since $0^0$ is undefined.) With $a_n=\frac{n!}{n^n}$,
-\[ \frac{a_{n+1}}{a_n}=\frac{(n+1)!}{(n+1)^{n+1}}\cdot\frac{n^n}{n!}=\left(\frac{n}{n+1}\right)^n=\frac{1}{\left(1+\frac1n\right)^n}\to\frac1e&lt;1. \]
-By the Ratio Test it converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 23(c).</b> $\sum_{n=0}^\infty\frac{(2n+1)!}{3^n}$</p>
-    <div class="sol">
-      <p>\[ \frac{a_{n+1}}{a_n}=\frac{(2n+3)!}{3^{n+1}}\cdot\frac{3^n}{(2n+1)!}=\frac{(2n+3)(2n+2)}{3}\to\infty. \]
-By the Ratio Test it diverges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 23(d).</b> $\sum_{n=1}^\infty\frac{n^24^n}{n!}$</p>
+    <p class="stmt"><b>Problem 23(c).</b> $\sum_{n=1}^\infty\frac{n^24^n}{n!}$</p>
     <div class="sol">
       <p>\[ \frac{a_{n+1}}{a_n}=\frac{(n+1)^24^{n+1}}{(n+1)!}\cdot\frac{n!}{n^24^n}=\frac{4(n+1)}{n^2}\to0&lt;1. \]
 By the Ratio Test it converges.</p>
@@ -1027,69 +374,13 @@ By the Root Test it converges.</p>
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 24(b).</b> $\sum_{n=1}^\infty\frac{n^n}{2^{n^2}}$</p>
-    <div class="sol">
-      <p>\[ \sqrt[n]{a_n}=\frac{n}{2^n}\to0&lt;1 \]
-(by L'Hopital, $\lim_{x\to\infty}\frac{x}{2^x}=\lim_{x\to\infty}\frac{1}{2^x\ln2}=0$). By the Root Test it converges.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 24(c).</b> Show the Root Test is inconclusive for $\sum\frac1n$ and $\sum\frac1{n^2}$. Which converges?</p>
-    <div class="sol">
-      <p>First, $\ln\bigl(n^{1/n}\bigr)=\frac{\ln n}{n}\to0$, so $n^{1/n}\to1$. Then
-\[ \sqrt[n]{\tfrac1n}=\frac{1}{n^{1/n}}\to1, \qquad \sqrt[n]{\tfrac1{n^2}}=\frac{1}{\left(n^{1/n}\right)^2}\to1. \]
-Both limits equal $1$, where the Root Test says nothing. Yet $\sum\frac1{n^2}$ converges ($p=2$) and $\sum\frac1n$ diverges ($p=1$).</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 24(d).</b> $\sum_{n=1}^\infty\frac{2^n}{n^5}$: Root Test? Ratio Test?</p>
-    <div class="sol">
-      <p>Both work. Root: $\sqrt[n]{a_n}=\frac{2}{\left(n^{1/n}\right)^5}\to2&gt;1$. Ratio: $\frac{a_{n+1}}{a_n}=2\left(\frac{n}{n+1}\right)^5\to2&gt;1$. Either way the series diverges.</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec25" class="chapter">25. Absolute and conditional convergence</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 25(a).</b> $\sum_{n=1}^\infty\frac{(-1)^n}{n}$</p>
-    <div class="sol">
-      <p>$\sum\left|\frac{(-1)^n}{n}\right|=\sum\frac1n$ diverges, so it is not absolutely convergent. With $b_n=\frac1n$ positive, decreasing, and $b_n\to0$, the AST shows it converges. So it converges conditionally.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 25(c).</b> $\sum_{k=1}^\infty\frac{k\cos(\pi k)}{k^3+1}$</p>
-    <div class="sol">
-      <p>$\cos(\pi k)=(-1)^k$, so $|a_k|=\frac{k}{k^3+1}$. Compare with $\frac1{k^2}$:
-\[ \lim_{k\to\infty}\frac{k\cdot k^2}{k^3+1}=1. \]
-Since $\sum\frac1{k^2}$ converges, $\sum|a_k|$ converges by the LCT. The series converges absolutely.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 25(d).</b> $\sum_{n=1}^\infty\frac{(-1)^nn^3}{2^n}$</p>
-    <div class="sol">
-      <p>Apply the Ratio Test to $|a_n|=\frac{n^3}{2^n}$:
-\[ \frac{|a_{n+1}|}{|a_n|}=\frac12\left(\frac{n+1}{n}\right)^3\to\frac12&lt;1. \]
-So $\sum|a_n|$ converges, and the series converges absolutely.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 25(e).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n^2+1}$</p>
+    <p class="stmt"><b>Problem 25(d).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n^2+1}$</p>
     <div class="sol">
       <p>Absolute values: $\frac{n}{n^2+1}$ compared with $\frac1n$ gives $\lim\frac{n^2}{n^2+1}=1$, so $\sum\frac{n}{n^2+1}$ diverges by the LCT. AST: $b_n=\frac{n}{n^2+1}\to0$, and $f(x)=\frac{x}{x^2+1}$ has $f'(x)=\frac{1-x^2}{(x^2+1)^2}\le0$ for $x\ge1$, so $b_n$ is decreasing. The series converges conditionally.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 25(f).</b> Suppose $\sum a_n$ converges to $2$. What is $\lim a_n$? Must $\sum|a_n|$ converge?</p>
-    <div class="sol">
-      <p>Since the series converges, $\lim_{n\to\infty}a_n=0$. No, $\sum|a_n|$ need not converge. The series $\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n}$ converges to $\ln2$ but not absolutely. Multiplying every term by $\frac{2}{\ln2}$ gives a series that converges to $2$ whose absolute values still form a multiple of the harmonic series.</p>
     </div>
   </div>
 
@@ -1097,34 +388,9 @@ So $\sum|a_n|$ converges, and the series converges absolutely.</p>
   <h3 id="sec26" class="chapter">26. Radius of Convergence (ROC) and Interval of Convergence (IOC)</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 26(a).</b> $\sum_{n=0}^\infty n^nx^n$</p>
-    <div class="sol">
-      <p>For $x\neq0$, the Ratio Test gives
-\[ \left|\frac{(n+1)^{n+1}x^{n+1}}{n^nx^n}\right|=(n+1)\left(1+\frac1n\right)^n|x|\to\infty. \]
-So the series diverges for every $x\neq0$. ROC $R=0$, IOC $\{0\}$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 26(e).</b> $\sum_{n=1}^\infty\frac{(-1)^nx^{2n}}{3^n(2n+1)}$</p>
-    <div class="sol">
-      <p>Ratio Test:
-\[ \left|\frac{a_{n+1}}{a_n}\right|=\frac{x^2}{3}\cdot\frac{2n+1}{2n+3}\to\frac{x^2}{3}. \]
-It converges when $x^2&lt;3$, so $R=\sqrt3$. At $x=\pm\sqrt3$, $x^{2n}=3^n$ and the series is $\sum\frac{(-1)^n}{2n+1}$, which converges by the AST. IOC $[-\sqrt3,\sqrt3]$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 26(f).</b> $\sum_{n=1}^\infty\frac{(x+2)^n}{n\,4^n}$</p>
+    <p class="stmt"><b>Problem 26(c).</b> $\sum_{n=1}^\infty\frac{(x+2)^n}{n\,4^n}$</p>
     <div class="sol">
       <p>Ratio Test: $\left|\frac{a_{n+1}}{a_n}\right|=\frac{|x+2|}{4}\cdot\frac{n}{n+1}\to\frac{|x+2|}{4}$. So it converges for $|x+2|&lt;4$: center $-2$, $R=4$. At $x=2$: $\sum\frac1n$ diverges. At $x=-6$: $\sum\frac{(-1)^n}{n}$ converges by the AST. IOC $[-6,2)$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 26(g).</b> Center, ROC, IOC: $\sum_{n=1}^\infty\frac{2^n(x-3)^n}{n^2}$</p>
-    <div class="sol">
-      <p>The center is $3$. Ratio Test: $\left|\frac{a_{n+1}}{a_n}\right|=2|x-3|\left(\frac{n}{n+1}\right)^2\to2|x-3|$, so $R=\frac12$. At $x=\frac72$: $\sum\frac{1}{n^2}$ converges. At $x=\frac52$: $\sum\frac{(-1)^n}{n^2}$ converges absolutely. IOC $\left[\frac52,\frac72\right]$.</p>
     </div>
   </div>
 
@@ -1132,41 +398,7 @@ It converges when $x^2&lt;3$, so $R=\sqrt3$. At $x=\pm\sqrt3$, $x^{2n}=3^n$ and 
   <h3 id="sec27" class="chapter">27. Power series from geometric series</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 27(b).</b> $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.</p>
-    <div class="sol">
-      <p>Write it in terms of $x-1$: $1+x=2+(x-1)$, so
-\[ \frac{1}{1+x}=\frac12\cdot\frac{1}{1-\left(-\frac{x-1}{2}\right)}=\sum_{n=0}^\infty\frac{(-1)^n(x-1)^n}{2^{n+1}}. \]
-It converges when $\left|\frac{x-1}{2}\right|&lt;1$, so $R=2$ and IOC $(-1,3)$ (at both endpoints the terms do not go to $0$).</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 27(f).</b> $g(x)=\ln(x)$, $a=1$. State the ROC.</p>
-    <div class="sol">
-      <p>$\ln x=\int_1^x\frac{dt}{t}$, and $\frac1t=\frac{1}{1+(t-1)}=\sum_{n=0}^\infty(-1)^n(t-1)^n$ for $|t-1|&lt;1$. Integrate term by term from $1$ to $x$:
-\[ \ln x=\sum_{n=0}^\infty\frac{(-1)^n(x-1)^{n+1}}{n+1}=\sum_{n=1}^\infty\frac{(-1)^{n+1}(x-1)^n}{n}, \qquad R=1. \]
-(Centered at $0$ this is impossible, since $\ln x$ is undefined at $0$.)</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 27(i).</b> Find the function that $\sum_{n=2}^\infty2n(n-1)x^n$ represents.</p>
-    <div class="sol">
-      <p>Differentiate $\frac{1}{1-x}=\sum_{n=0}^\infty x^n$ twice: $\frac{2}{(1-x)^3}=\sum_{n=2}^\infty n(n-1)x^{n-2}$ for $|x|&lt;1$. Multiply by $2x^2$:
-\[ \sum_{n=2}^\infty2n(n-1)x^n=\frac{4x^2}{(1-x)^3}, \qquad |x|&lt;1. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 27(j).</b> $f(x)=\frac{x}{(1-x^2)^2}$, $a=0$.</p>
-    <div class="sol">
-      <p>$\frac{1}{1-x^2}=\sum_{n=0}^\infty x^{2n}$ for $|x|&lt;1$. Differentiate: $\frac{2x}{(1-x^2)^2}=\sum_{n=1}^\infty2nx^{2n-1}$. Divide by $2$:
-\[ \frac{x}{(1-x^2)^2}=\sum_{n=1}^\infty nx^{2n-1}, \qquad R=1. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 27(k).</b> Find the exact value of $\sum_{n=1}^\infty\frac{n}{3^n}$.</p>
+    <p class="stmt"><b>Problem 27(e).</b> Find the exact value of $\sum_{n=1}^\infty\frac{n}{3^n}$.</p>
     <div class="sol">
       <p>Differentiate the geometric series and multiply by $x$: $\sum_{n=1}^\infty nx^n=\frac{x}{(1-x)^2}$ for $|x|&lt;1$. At $x=\frac13$:
 \[ \sum_{n=1}^\infty\frac{n}{3^n}=\frac{1/3}{(2/3)^2}=\frac34. \]</p>
@@ -1177,31 +409,7 @@ It converges when $\left|\frac{x-1}{2}\right|&lt;1$, so $R=2$ and IOC $(-1,3)$ (
   <h3 id="sec28" class="chapter">28. Taylor and Maclaurin series</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 28(b).</b> Find the Maclaurin series for $\cosh(x)$ and $\sinh(x)$.</p>
-    <div class="sol">
-      <p>Add and subtract $e^x=\sum\frac{x^n}{n!}$ and $e^{-x}=\sum\frac{(-1)^nx^n}{n!}$. The odd terms cancel in the sum and the even terms cancel in the difference.
-\[ \cosh x=\frac{e^x+e^{-x}}{2}=\sum_{n=0}^\infty\frac{x^{2n}}{(2n)!}, \qquad \sinh x=\frac{e^x-e^{-x}}{2}=\sum_{n=0}^\infty\frac{x^{2n+1}}{(2n+1)!}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(c).</b> Degree 2 Taylor polynomial of $\sqrt x$ at $a=9$.</p>
-    <div class="sol">
-      <p>$f(9)=3$, $f'(x)=\frac{1}{2\sqrt x}$ so $f'(9)=\frac16$, and $f''(x)=-\frac{1}{4x^{3/2}}$ so $f''(9)=-\frac{1}{108}$.
-\[ T_2(x)=3+\frac{x-9}{6}-\frac{(x-9)^2}{216}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(d).</b> Degree 3 Taylor polynomial of $\cos x$ at $a=\frac{\pi}{3}$.</p>
-    <div class="sol">
-      <p>$f(\frac\pi3)=\frac12$, $f'(\frac\pi3)=-\sin\frac\pi3=-\frac{\sqrt3}{2}$, $f''(\frac\pi3)=-\cos\frac\pi3=-\frac12$, $f^{\prime\prime\prime}(\frac\pi3)=\sin\frac\pi3=\frac{\sqrt3}{2}$.
-\[ T_3(x)=\frac12-\frac{\sqrt3}{2}\left(x-\frac\pi3\right)-\frac14\left(x-\frac\pi3\right)^2+\frac{\sqrt3}{12}\left(x-\frac\pi3\right)^3. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(e).</b> Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
+    <p class="stmt"><b>Problem 28(d).</b> Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
     <div class="sol">
       <p>Substitute $-t^2$ into $e^u=\sum\frac{u^n}{n!}$, then integrate term by term.
 \[ e^{-t^2}=\sum_{n=0}^\infty\frac{(-1)^nt^{2n}}{n!}, \qquad F(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{n!\,(2n+1)}=x-\frac{x^3}{3}+\frac{x^5}{10}-\cdots. \]
@@ -1209,99 +417,14 @@ The series for $e^u$ has $R=\infty$, and integrating does not change the radius,
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(f).</b> Find the exact value of $1-\frac{\pi^2}{3^2\cdot2!}+\frac{\pi^4}{3^4\cdot4!}-\cdots$</p>
-    <div class="sol">
-      <p>The $n$th term is $\frac{(-1)^n(\pi/3)^{2n}}{(2n)!}$, which is the cosine series $\cos x=\sum\frac{(-1)^nx^{2n}}{(2n)!}$ at $x=\frac\pi3$. The sum is $\cos\frac\pi3=\frac12$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(g).</b> Find the exact value of $\sum_{n=0}^\infty\frac{(\ln3)^n}{n!}$.</p>
-    <div class="sol">
-      <p>This is $e^x=\sum\frac{x^n}{n!}$ at $x=\ln3$, so the sum is $e^{\ln3}=3$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(h).</b> Find the exact value of $\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n\,2^n}$.</p>
-    <div class="sol">
-      <p>$\ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n+1}x^n}{n}$ for $-1&lt;x\le1$. At $x=\frac12$ the sum is $\ln\frac32$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 28(i).</b> Use a Maclaurin series to evaluate $\lim_{x\to0}\frac{\sin x-x}{x^3}$.</p>
-    <div class="sol">
-      <p>$\sin x-x=-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots$, so
-\[ \frac{\sin x-x}{x^3}=-\frac16+\frac{x^2}{120}-\cdots\to-\frac16. \]</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec29" class="chapter">29. Approximations and error bounds</h3>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(a).</b> Approximate $\int_0^{0.1}\frac{dx}{1+x^4}$ to within $10^{-6}$.</p>
-    <div class="sol">
-      <p>$\frac{1}{1+x^4}=\sum_{n=0}^\infty(-1)^nx^{4n}$ for $|x|&lt;1$, so
-\[ \int_0^{0.1}\frac{dx}{1+x^4}=\sum_{n=0}^\infty\frac{(-1)^n(0.1)^{4n+1}}{4n+1}=0.1-\frac{(0.1)^5}{5}+\frac{(0.1)^9}{9}-\cdots. \]
-This is alternating with decreasing terms. By ASE, stopping after two terms has error at most $\frac{(0.1)^9}{9}&lt;10^{-6}$ (one term is not enough, since $\frac{(0.1)^5}{5}=2\times10^{-6}$). So the integral is about $0.1-0.000002=0.099998$.</p>
-    </div>
-  </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem 29(b).</b> Use $p_3(x)$ to approximate $\tan^{-1}(x)$ near $0$, and bound the error at $x=\frac12$ with ASE.</p>
     <div class="sol">
       <p>$\tan^{-1}x=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots$, so $p_3(x)=x-\frac{x^3}{3}$ and $p_3(\frac12)=\frac12-\frac1{24}=\frac{11}{24}$. At $x=\frac12$ the series alternates with decreasing terms, so the error is at most the next term:
 \[ |\tan^{-1}(\tfrac12)-p_3(\tfrac12)|\le\frac{(1/2)^5}{5}=\frac{1}{160}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(c).</b> Bound the same error with Taylor's Inequality, bounding $|f^{(4)}(x)|$ on $[0,\frac12]$, where $f(x)=\tan^{-1}(x)$.</p>
-    <div class="sol">
-      <p>Differentiating four times gives $f^{(4)}(x)=\frac{24x(1-x^2)}{(1+x^2)^4}$. On $[0,\frac12]$, $24x\le12$, $0\le1-x^2\le1$, and $(1+x^2)^4\ge1$, so $|f^{(4)}(x)|\le M=12$. Taylor's Inequality with $n=3$:
-\[ |R_3(\tfrac12)|\le\frac{M}{4!}\left(\tfrac12\right)^4=\frac{12}{24\cdot16}=\frac1{32}. \]
-This bound is valid but weaker than ASE's $\frac1{160}$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(d).</b> $f(x)=\sum_{n=2}^\infty5n(n-1)x^n$: parts (i) to (vi).</p>
-    <div class="sol">
-      <p>(i) By 27(i), $f(x)=\frac52\cdot\frac{4x^2}{(1-x)^3}=\frac{10x^2}{(1-x)^3}$ for $|x|&lt;1$.</p>
-      <p>(ii) $f(\frac12)=\frac{10/4}{1/8}=20$.</p>
-      <p>(iii) The lowest term of the series is $5\cdot2\cdot1\,x^2$, so $p_2(x)=10x^2$.</p>
-      <p>(iv) $p_2(\frac12)=\frac{10}{4}=\frac52$.</p>
-      <p>(v) $|f(\frac12)-p_2(\frac12)|=20-\frac52=\frac{35}{2}$.</p>
-      <p>(vi) The given $f^{\prime\prime\prime}(x)$ is a sum of terms increasing on $[0,\frac12]$, so its maximum is at $x=\frac12$: $M=600\cdot\frac14\cdot64+720\cdot\frac12\cdot32+180\cdot16=24000$. Then
-\[ |R_2(\tfrac12)|\le\frac{M}{3!}\left(\tfrac12\right)^3=\frac{24000}{48}=500. \]
-The bound is true but far from the actual error $\frac{35}{2}$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(h).</b> How many terms of $\sum_{n=0}^\infty\frac{(-1)^n}{n!}$ are needed to approximate its sum to within $0.001$?</p>
-    <div class="sol">
-      <p>The series alternates and $b_n=\frac1{n!}$ decreases to $0$. Using the terms $n=0,\dots,N$, ASE bounds the error by $b_{N+1}=\frac{1}{(N+1)!}$. Since $\frac1{6!}=\frac1{720}&gt;0.001$ and $\frac1{7!}=\frac1{5040}&lt;0.001$, we need $N+1=7$, that is the $7$ terms $n=0,\dots,6$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(i).</b> $f(x)=e^x$: find $T_3(x)$ and bound $|f(x)-T_3(x)|$ for $-1\le x\le1$.</p>
-    <div class="sol">
-      <p>Every derivative of $e^x$ is $e^x$, and $e^0=1$, so $T_3(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}$. On $[-1,1]$, $|f^{(4)}(x)|=e^x\le e&lt;3$, so take $M=3$:
-\[ |f(x)-T_3(x)|\le\frac{M}{4!}|x|^4\le\frac{3}{24}=\frac18. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 29(j).</b> Approximate $\int_0^1e^{-x^2}\,dx$ to within $0.01$ (use ASE).</p>
-    <div class="sol">
-      <p>By 28(e) at $x=1$,
-\[ \int_0^1e^{-x^2}\,dx=1-\frac13+\frac1{10}-\frac1{42}+\frac1{216}-\cdots. \]
-The terms alternate and decrease. Since $\frac1{216}&lt;0.01$, the first four terms suffice: $1-\frac13+\frac1{10}-\frac1{42}=\frac{26}{35}\approx0.743$.</p>
     </div>
   </div>
 
@@ -1315,113 +438,8 @@ The terms alternate and decrease. Since $\frac1{216}&lt;0.01$, the first four te
     </div>
   </div>
 
-  <div class="problem">
-    <p class="stmt"><b>Problem 30(c).</b> Compute $(i-1)^{12}$ in $a+bi$ form.</p>
-    <div class="sol">
-      <p>$i-1=\sqrt2\,e^{i3\pi/4}$. So $(i-1)^{12}=(\sqrt2)^{12}e^{i9\pi}=64\,e^{i\pi}=-64$.</p>
-    </div>
-  </div>
-
   <!-- ============================================================ -->
   <h3 id="sec31" class="chapter">31. Differential equations</h3>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(a).</b> Show that $y=Ce^{x^2}$ solves $y'=2xy$ for every constant $C$. Find the solution with $y(0)=3$.</p>
-    <div class="sol">
-      <p>$y'=C\cdot2xe^{x^2}=2x\bigl(Ce^{x^2}\bigr)=2xy$. For the initial condition, $y(0)=Ce^0=C=3$, so $y=3e^{x^2}$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(b).</b> Sketch the direction field of $y'=x+y$ at the nine points with $x,y\in\{-1,0,1\}$. Along which line are the slopes $0$? Sketch the solution through $(0,0)$.</p>
-    <div class="sol">
-      <p>The slope at $(x,y)$ is $x+y$.
-\[ \begin{array}{c|ccc} &amp; x=-1 &amp; x=0 &amp; x=1\\ \hline y=1 &amp; 0 &amp; 1 &amp; 2\\ y=0 &amp; -1 &amp; 0 &amp; 1\\ y=-1 &amp; -2 &amp; -1 &amp; 0\end{array} \]
-The slopes are $0$ exactly on the line $y=-x$. The solution through $(0,0)$ has slope $0$ there. Just to the right the slopes are positive and growing, and just to the left they are negative, so the curve has a minimum at the origin and rises on both sides. (It is $y=e^x-x-1$.)</p>
-      <div class="fig"><svg viewBox="0 0 340 320" width="340" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Direction field of y prime equals x plus y">
-<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#555"/></marker></defs>
-<line x1="26.0" y1="160.0" x2="314.0" y2="160.0" stroke="#555" marker-end="url(#ah)"/>
-<line x1="170.0" y1="304.0" x2="170.0" y2="16.0" stroke="#555" marker-end="url(#ah)"/>
-<line x1="35.0" y1="25.0" x2="305.0" y2="295.0" stroke="#9aa" stroke-dasharray="5,4"/>
-<line x1="68.7" y1="227.5" x2="91.3" y2="272.5" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="62.2" y1="142.2" x2="97.8" y2="177.8" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="54.8" y1="70.0" x2="105.2" y2="70.0" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="152.2" y1="232.2" x2="187.8" y2="267.8" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="144.8" y1="160.0" x2="195.2" y2="160.0" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="152.2" y1="87.8" x2="187.8" y2="52.2" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="234.8" y1="250.0" x2="285.2" y2="250.0" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="242.2" y1="177.8" x2="277.8" y2="142.2" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="248.7" y1="92.5" x2="271.3" y2="47.5" stroke="#143d42" stroke-width="2.5" stroke-linecap="round"/>
-<polyline points="48.5,105.2 52.2,107.9 56.0,110.6 59.7,113.3 63.5,115.9 67.2,118.5 71.0,121.0 74.8,123.5 78.5,125.9 82.2,128.3 86.0,130.6 89.7,132.9 93.5,135.0 97.2,137.1 101.0,139.2 104.7,141.2 108.5,143.1 112.2,144.9 116.0,146.6 119.7,148.3 123.5,149.8 127.2,151.3 131.0,152.6 134.8,153.9 138.5,155.1 142.2,156.1 146.0,157.1 149.8,157.9 153.5,158.6 157.2,159.1 161.0,159.6 164.8,159.8 168.5,160.0 172.2,160.0 176.0,159.8 179.8,159.5 183.5,158.9 187.2,158.2 191.0,157.3 194.8,156.3 198.5,155.0 202.2,153.5 206.0,151.7 209.8,149.8 213.5,147.6 217.2,145.1 221.0,142.4 224.8,139.4 228.5,136.1 232.2,132.5 236.0,128.6 239.8,124.4 243.5,119.8 247.2,114.9 251.0,109.6 254.7,104.0 258.5,97.9 262.2,91.4 266.0,84.5 269.8,77.1 273.5,69.3" fill="none" stroke="#007A86" stroke-width="2.5"/>
-<text x="276.0" y="200.0" font-size="13" text-anchor="middle" fill="#333">1</text>
-<text x="144.0" y="75.0" font-size="13" text-anchor="end" fill="#333">1</text>
-<text x="64.0" y="200.0" font-size="13" text-anchor="middle" fill="#333">&#8722;1</text>
-<text x="144.0" y="255.0" font-size="13" text-anchor="end" fill="#333">&#8722;1</text>
-<text x="310.0" y="152.0" font-size="14" font-style="italic" fill="#333">x</text>
-<text x="178.0" y="22.0" font-size="14" font-style="italic" fill="#333">y</text>
-<text x="208.0" y="285.5" font-size="12" fill="#6a7a7c">y = &#8722;x</text>
-</svg>
-      <div class="cap">Slope marks at the nine grid points, the dashed line $y=-x$ where the slope is $0$, and the solution curve through $(0,0)$.</div></div>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(c).</b> Find the equilibrium solutions of $y'=y^2-4$ and decide whether nearby solutions move toward or away from each.</p>
-    <div class="sol">
-      <p>Equilibria are constant solutions, where $y'=0$: $y=2$ and $y=-2$. The sign of $y'=(y-2)(y+2)$ is positive for $y&gt;2$, negative for $-2&lt;y&lt;2$, and positive for $y&lt;-2$. Near $y=-2$, solutions above it decrease and solutions below it increase, so they move toward $y=-2$. Near $y=2$, solutions above increase and solutions below decrease, so they move away from $y=2$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(d).</b> Euler's method with $h=0.5$ for $y'=x+y$, $y(0)=1$, to approximate $y(1)$. Over or under estimate?</p>
-    <div class="sol">
-      <p>Euler's method steps along the tangent line: $y_{k+1}=y_k+h\,F(x_k,y_k)$ with $F(x,y)=x+y$.
-\[ y_1=1+0.5(0+1)=1.5, \qquad y_2=1.5+0.5(0.5+1.5)=2.5. \]
-So $y(1)\approx2.5$. Differentiating the equation, $y''=1+y'=1+x+y&gt;0$ along the solution here, so the solution is concave up and lies above its tangent lines. Euler's method underestimates. (The exact value is $2e-2\approx3.44$.)</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(e).</b> Euler's method with $h=-1$ for $y'=y-x$, $y(1)=3$, to approximate $y(-1)$.</p>
-    <div class="sol">
-      <p>$y_{k+1}=y_k+h\,(y_k-x_k)$ with $h=-1$.
-\[ y(0)\approx3+(-1)(3-1)=1, \qquad y(-1)\approx1+(-1)(1-0)=0. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(f).</b> Solve $\frac{dy}{dx}=xy^2$, $y(0)=1$. On what interval is the solution defined?</p>
-    <div class="sol">
-      <p>Separate: $y^{-2}\,dy=x\,dx$, so $-\frac1y=\frac{x^2}{2}+C$. At $x=0$, $-1=C$. Then $\frac1y=1-\frac{x^2}{2}$, so
-\[ y=\frac{2}{2-x^2}. \]
-This blows up where $x^2=2$. The interval containing $x=0$ on which it is defined is $(-\sqrt2,\sqrt2)$.</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(g).</b> Solve $\frac{dy}{dx}=e^{x-y}$, $y(0)=\ln2$.</p>
-    <div class="sol">
-      <p>$e^{x-y}=e^xe^{-y}$, so separate: $e^y\,dy=e^x\,dx$ and $e^y=e^x+C$. At $x=0$, $2=1+C$, so $C=1$ and
-\[ y=\ln(e^x+1). \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(h).</b> Solve $\frac{dy}{dt}=3y-6$, $y(0)=5$.</p>
-    <div class="sol">
-      <p>$\frac{dy}{dt}=3(y-2)$. Separate: $\frac{dy}{y-2}=3\,dt$, so $\ln|y-2|=3t+C$ and $y-2=Ae^{3t}$ for a constant $A$. At $t=0$, $A=3$.
-\[ y=2+3e^{3t}. \]</p>
-    </div>
-  </div>
-
-  <div class="problem">
-    <p class="stmt"><b>Problem 31(i).</b> Bacteria grow at a rate proportional to size, from $200$ cells to $600$ in $2$ hours. Find $P(t)$ and when $P=5400$.</p>
-    <div class="sol">
-      <p>$\frac{dP}{dt}=kP$ gives $P(t)=200e^{kt}$. From $600=200e^{2k}$, $e^{2k}=3$, so $k=\frac{\ln3}{2}$ and
-\[ P(t)=200\cdot3^{t/2}. \]
-$5400=200\cdot3^{t/2}$ means $3^{t/2}=27=3^3$, so $t=6$ hours.</p>
-    </div>
-  </div>
 
   <div class="problem">
     <p class="stmt"><b>Problem 31(j).</b> Logistic: $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Carrying capacity, equilibria, growth, and $P(t)$.</p>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc II · Review Problems</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .page-content { max-width: 1000px; }
+    .chapter { margin-top: 2.4em; padding: 0.5em 0 0.2em; border-top: none; font-size: 1.45em; color: #143d42; display: flex; align-items: center; gap: 0.55em; }
+    .chapter::before { content: ""; width: 0.42em; height: 1.05em; background: #007A86; border-radius: 2px; display: inline-block; }
+    .toc { padding: 0.9em 1.2em; background: #fff; border: 1px solid #e4e7ec; border-left: 4px solid #007A86; border-radius: 6px; margin-bottom: 1.6em; box-shadow: 0 2px 10px rgba(20,40,60,0.05); }
+    .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
+    .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
+    .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc a:hover { border-bottom-color: #007A86; }
+    .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
+    .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; }
+    .problem:hover { border-left-color: #007A86; box-shadow: 0 4px 16px rgba(25,35,60,0.08); }
+    .problem .stmt { margin-bottom: 0.7em; color: #2a2d33; }
+    .problem .stmt b { color: #007A86; font-weight: 700; letter-spacing: 0.01em; }
+    .sol { margin-left: 0.2em; padding-left: 0.9em; border-left: 2px solid #eef0f3; }
+    .sol .label { font-variant: small-caps; color: #007A86; font-weight: 600; font-size: 0.9em; letter-spacing: 0.03em; }
+    .fig { margin: 0.8em auto; text-align: center; }
+    .fig svg { max-width: 100%; height: auto; display: inline-block; }
+    .fig .cap { font-size: 0.85em; color: #555; margin-top: 0.2em; }
+    .check { color: #007A86; font-weight: bold; }
+    ul.tight { margin: 0.2em 0 0.2em 1.2em; }
+    ul.tight li { margin-bottom: 0.15em; }
+    .solfig { margin: 0.9em 0; border: 1px solid #d3d7df; border-radius: 8px; overflow: hidden; background: #0f1013; box-shadow: 0 3px 14px rgba(25,35,60,0.10); }
+    .solfig canvas { display: block; width: 100%; height: 340px; background: #0f1013; cursor: grab; }
+    .solfig canvas:active { cursor: grabbing; }
+    .solfig .cap2 { padding: 0.5em 0.85em; font-size: 0.84em; line-height: 1.45; color: #4a4f57; background: #f5f6f9; border-top: 1px solid #e3e6ec; }
+    .solfig .cap2 b { color: #2a2d33; }
+    .fignote { font-size: 0.82em; color: #777; margin: 0.2em 0 0.6em; }
+    .fig svg { background: #fff; border: 1px solid #e6e8ec; border-radius: 6px; }
+    .back { margin: -0.4em 0 1.2em; }
+    .back a { color: #007A86; }
+    .sol .array-wrap { overflow-x: auto; }
+    .sol p { overflow-x: auto; }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html" class="active">Teaching</a>
+  <a href="../cv.html">CV</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+</div>
+
+<div class="page-content">
+  <h2>Calc II · Review Problems</h2>
+  <p class="back"><a href="index.html">&larr; Calculus II home</a> &nbsp;|&nbsp; <a href="Calc2_Review.pdf">PDF version</a> &nbsp;|&nbsp; <a href="solutions.html">Selected solutions</a></p>
+  <div class="toc">
+    <ol>
+      <li><a href="#sec1">Formulas to know</a></li>
+      <li><a href="#sec2">Logarithmic differentiation</a></li>
+      <li><a href="#sec3">Derivatives of logarithms</a></li>
+      <li><a href="#sec4">Inverse trig functions</a></li>
+      <li><a href="#sec5">Hyperbolic functions</a></li>
+      <li><a href="#sec6">Inverse Function Theorem</a></li>
+      <li><a href="#sec7">L'Hôpital's rule</a></li>
+      <li><a href="#sec8">Substitution</a></li>
+      <li><a href="#sec9">Integration by parts</a></li>
+      <li><a href="#sec10">Trig integrals</a></li>
+      <li><a href="#sec11">Trig substitution</a></li>
+      <li><a href="#sec12">Partial fractions</a></li>
+      <li><a href="#sec13">Improper integrals</a></li>
+      <li><a href="#sec14">Numerical integration</a></li>
+      <li><a href="#sec15">Sequences</a></li>
+      <li><a href="#sec16">Test for Divergence</a></li>
+      <li><a href="#sec17">Telescoping series</a></li>
+      <li><a href="#sec18">Geometric series</a></li>
+      <li><a href="#sec19">Integral Test</a></li>
+      <li><a href="#sec20">p-series</a></li>
+      <li><a href="#sec21">Comparison tests</a></li>
+      <li><a href="#sec22">Alternating Series Test</a></li>
+      <li><a href="#sec23">Ratio Test</a></li>
+      <li><a href="#sec24">Root Test</a></li>
+      <li><a href="#sec25">Absolute and conditional convergence</a></li>
+      <li><a href="#sec26">Radius and interval of convergence</a></li>
+      <li><a href="#sec27">Power series from geometric series</a></li>
+      <li><a href="#sec28">Taylor and Maclaurin series</a></li>
+      <li><a href="#sec29">Approximations and error bounds</a></li>
+      <li><a href="#sec30">Complex numbers</a></li>
+      <li><a href="#sec31">Differential equations</a></li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec1" class="chapter">1. Formulas to know</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(a).</b> Derivative and graph of $\sin^{-1}(x)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 1(b).</b> State the Inverse Function Theorem.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec2" class="chapter">2. Logarithmic differentiation</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(a).</b> Find $y'$ if $y=x^{\sqrt{x}}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(b).</b> Find $y'$ if $y=(\sin x)^{\sin x}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 2(c).</b> Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec3" class="chapter">3. Derivatives of logarithms</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(a).</b> Find $y$ if $y'=\frac{\sin(x)}{\cos(x)}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(b).</b> Find the domain and range of $f(x)=\ln(\sqrt{9-e^x})$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(c).</b> Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 3(d).</b> Find $y'(1)$ if $y=3^x\log_3(x)$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec4" class="chapter">4. Inverse trig functions</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(a).</b> Prove the identity $\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}$ (ignore domain issues).</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(b).</b> Find $y$ if $y'=\frac{x^2}{\frac19+x^6}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(c).</b> Find the equation of the tangent line to $y=2\tan^{-1}(x^2)$ at $x=1$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(d).</b> Write $\cos(\tan^{-1}(x/2))$ as an algebraic function of $x$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 4(e).</b> Find $y$ if $y'=\frac{x}{\sqrt{1-x^4}}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec5" class="chapter">5. Hyperbolic functions</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(a).</b> Find $\cosh^{-1}(2)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(b).</b> Evaluate $\lim_{x\to\infty}\coth x$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(c).</b> Prove that the derivative of $\tanh x$ is $\operatorname{sech}^2x$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(d).</b> Find $y'$ if $y=\tan^{-1}(\sinh x)$, and simplify.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 5(e).</b> Evaluate $\int_{-\ln3}^{\ln3}\cosh x\,dx$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec6" class="chapter">6. Inverse Function Theorem</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(a).</b> Show $f(x)=x+x^3+2x^5$ is 1-1, then find the derivative of $f^{-1}$ at $(4,f^{-1}(4))$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(b).</b> $f(x)=5x+2\sin x+2\cos x$, at $(2,f^{-1}(2))$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(c).</b> Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 6(d).</b> Let $f(x)=2x^3+\ln x+\sin(\pi x)$ for $x&gt;0$ (assume $f$ is 1-1). Find the slope of the tangent line to the graph of $f^{-1}$ at $x=2$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec7" class="chapter">7. L'Hôpital's rule</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(a).</b> $\lim_{x\to0^+}x^x$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(b).</b> $\lim_{x\to0^+}(1+\sin(2x))^{\cot x}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(c).</b> $\lim_{x\to0^+}\left(\frac1x-\frac{1}{e^x-1}\right)$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(d).</b> $\lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(e).</b> $\lim_{x\to\infty}x\left(\frac{\pi}{2}-\tan^{-1}(2x)\right)$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(f).</b> $\lim_{x\to\infty}\sin^{-1}\left(\frac{e^x}{2e^x+1}\right)$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 7(g).</b> $\lim_{x\to\infty}\frac{\cosh(\ln x)}{x}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec8" class="chapter">8. Substitution</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(a).</b> $\int_0^{(\pi/2)^{1/3}}x^2\sin x^3\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(b).</b> $\int_{\pi/4}^{\pi/2}\cot x\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(c).</b> $\int_1^e\frac{(\ln x)^2}{x}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(d).</b> $\int\frac{\cos x}{4+\sin^2x}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 8(e).</b> $\int\frac{dx}{\sqrt x\,(1+\sqrt x)}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec9" class="chapter">9. Integration by parts</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(a).</b> $\int_1^e x^4\ln(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(b).</b> $\int_0^\pi e^x\sin(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(c).</b> $\int x\sec^2(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(d).</b> $\int x\sin(2x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 9(e).</b> $\int_0^1x\tan^{-1}(x)\,dx$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec10" class="chapter">10. Trig integrals</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(a).</b> $\int\sin^3(x)\cos^2(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(b).</b> $\int\tan^2(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(c).</b> $\int\tan^2(x)\sec^4(x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(d).</b> $\int\sin(3x)\cos(2x)\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 10(e).</b> $\int_0^{\pi/3}\tan(x)\sec^3(x)\,dx$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec11" class="chapter">11. Trig substitution</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(a).</b> $\int_2^3\frac{dx}{(x^2-1)^{3/2}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(b).</b> $\int\frac{dx}{(6-8x-x^2)^{3/2}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(c).</b> $\int_0^{\sqrt3}\frac{x^3}{\sqrt{x^2+1}}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(d).</b> $\int_{\sqrt2}^2\frac{dx}{x^2\sqrt{x^2-1}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 11(e).</b> $\int_0^1\frac{dx}{(1+x^2)^2}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec12" class="chapter">12. Partial fractions</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(a).</b> $\int\frac{3x^2+6x+2}{x^2+3x+2}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(b).</b> $\int\frac{x+4}{x^3-4x}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(c).</b> $\int\frac{3x^2-x+8}{x^3+4x}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 12(d).</b> Set up, but do not solve, the partial fraction decomposition of $\frac{x+1}{x^2(x-3)(x^2+1)^2}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec13" class="chapter">13. Improper integrals</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(a).</b> $\int_0^1\frac{\ln x}{x}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(b).</b> $\int_1^\infty\frac{dx}{x^p}$ (consider $p\le1$ and $p&gt;1$)</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(c).</b> $\int_0^\infty e^{x^2}\,dx$ (don't determine the value)</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(d).</b> $\int_0^\infty\frac{e^x}{(1+e^x)^3}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(e).</b> $\int_1^\infty\frac{\ln x}{x^3}\,dx$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(f).</b> $\int_0^2\frac{dx}{(x-1)^{2/3}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 13(g).</b> $\int_2^\infty\frac{dx}{4+x^2}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec14" class="chapter">14. Numerical integration</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(a).</b> $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(b).</b> Use the trapezoid rule with $n=3$ to approximate $\int_0^32^x\,dx$ in exact form.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 14(c).</b> How large must $n$ be so that the trapezoid rule approximates $\int_1^2\frac{dx}{x}$ with error less than $10^{-4}$?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec15" class="chapter">15. Sequences</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(a).</b> If an alternating sequence converges, what must it converge to?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(b).</b> Write $\{-\frac18,\frac1{27},-\frac1{64},\frac1{125},\dots\}$ as a function of $n$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(c).</b> Monotonic? Bounded? $a_n=1+\frac{(-1)^n}{n}$ and $b_n=\frac{n}{n+1}$ ($n\ge1$).</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 15(d).</b> Show that $\lim_{n\to\infty}\frac{3^n}{n!}=0$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec16" class="chapter">16. Test for Divergence (TFD)</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(a).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(b).</b> $\sum_{n=0}^\infty\frac{n^2+1}{6n^2+6n+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(c).</b> Can you use the TFD on $\sum_{n=2}^\infty\frac{1}{n^2}$?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(d).</b> $\sum_{n=1}^\infty2^{1/n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 16(e).</b> Suppose $b_n&gt;0$ and $\sum b_n$ converges. What does the TFD say about $\sum\frac{1}{b_n}$?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec17" class="chapter">17. Telescoping series</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(a).</b> $\sum_{n=2}^\infty\frac{1}{n^2-1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(b).</b> $\sum_{n=1}^\infty\left[\tan^{-1}(n+2)-\tan^{-1}(n)\right]$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(c).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+1)\right]$, where $\lim_{n\to\infty}f(n)=L$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(d).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+k)\right]$, $k$ a positive integer, $\lim f(n)=L$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 17(e).</b> Determine if $\sum_{n=1}^\infty\ln\left(1+\frac1n\right)$ converges or diverges by writing out its partial sums.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec18" class="chapter">18. Geometric series</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(a).</b> $\sum_{n=0}^\infty\frac{4^{2n-1}}{17^n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(b).</b> $\sum_{n=-4}^\infty\left(\frac12\right)^n$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(c).</b> $\sum_{n=1}^\infty\frac{3^{n+1}}{4^{n-1}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(d).</b> $2-1+\frac12-\frac14+\frac18-\cdots$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 18(e).</b> For which $a$ does $\sum_{k=1}^\infty\left(\frac{2a}{1+a^2}\right)^k$ converge? Find its value.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec19" class="chapter">19. Integral Test</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(a).</b> $\sum_{n=2}^\infty\frac{1}{n(\ln n)^2}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(b).</b> Show $\sum_{n=1}^\infty\frac{1}{n^p}$ converges if $p&gt;1$ and diverges if $0&lt;p\le1$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(c).</b> $\sum_{n=1}^\infty ne^{-n^2}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 19(d).</b> Can you use the integral test on $\sum_{n=1}^\infty\frac{2+\sin n}{n^2}$?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec20" class="chapter">20. p-series</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(a).</b> $\sum_{n=5}^\infty\frac{1}{n^e}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(b).</b> $\sum_{n=1}^\infty\frac{1}{n^{0.000001}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(c).</b> $\sum_{n=1}^\infty\frac{n^2+\sqrt n}{n^4}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 20(d).</b> For which $p$ does $\sum_{n=1}^\infty\frac{1}{n^{2p-1}}$ converge?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec21" class="chapter">21. Direct Comparison Test (DCT) and Limit Comparison Test (LCT)</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(a).</b> $\sum_{n=1}^\infty\sin(1/n)$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(b).</b> $\sum_{n=0}^\infty\frac{\tan^{-1}(n)}{n^2+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(c).</b> $\sum_{n=1}^\infty\frac{1}{2^n+n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(d).</b> $\sum_{n=1}^\infty\frac{n^2-2n}{n^{7/2}+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 21(e).</b> $\sum_{n=1}^\infty\frac{1}{n^2+n\cos n}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec22" class="chapter">22. Alternating Series Test (AST)</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(a).</b> $\sum_{n=2}^\infty\frac{(-1)^n}{n\ln n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(b).</b> $\sum_{i=1}^\infty\frac{\cos(\pi i)}{i^{0.1}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(c).</b> $\sum_{k=2}^\infty\frac{(-1)^{k+15}}{\ln k}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(d).</b> $\sum_{n=1}^\infty\frac{(-1)^n\ln n}{\sqrt n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(e).</b> $\sum_{n=1}^\infty\frac{(-1)^n\sqrt n}{n+4}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 22(f).</b> $a_n=\frac1n$ for $n$ odd, $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec23" class="chapter">23. Ratio Test</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(a).</b> $\sum_{n=0}^\infty\frac{n!}{n^n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(b).</b> $\sum_{n=0}^\infty\frac{(2n+1)!}{3^n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 23(c).</b> $\sum_{n=1}^\infty\frac{n^24^n}{n!}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec24" class="chapter">24. Root Test</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(a).</b> $\sum_{n=1}^\infty\left(\frac{2n+1}{3n-1}\right)^n$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(b).</b> $\sum_{n=1}^\infty\frac{n^n}{2^{n^2}}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(c).</b> Show the Root Test is inconclusive for $\sum\frac1n$ and $\sum\frac1{n^2}$. Which converges?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 24(d).</b> $\sum_{n=1}^\infty\frac{2^n}{n^5}$: Root Test? Ratio Test?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec25" class="chapter">25. Absolute and conditional convergence</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(a).</b> $\sum_{n=1}^\infty\frac{(-1)^n}{n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(b).</b> $\sum_{k=1}^\infty\frac{k\cos(\pi k)}{k^3+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(c).</b> $\sum_{n=1}^\infty\frac{(-1)^nn^3}{2^n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(d).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n^2+1}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 25(e).</b> Suppose $\sum a_n$ converges to $2$. What is $\lim a_n$? Must $\sum|a_n|$ converge?</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec26" class="chapter">26. Radius of Convergence (ROC) and Interval of Convergence (IOC)</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(a).</b> $\sum_{n=0}^\infty n^nx^n$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(b).</b> $\sum_{n=1}^\infty\frac{(-1)^nx^{2n}}{3^n(2n+1)}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(c).</b> $\sum_{n=1}^\infty\frac{(x+2)^n}{n\,4^n}$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 26(d).</b> Center, ROC, IOC: $\sum_{n=1}^\infty\frac{2^n(x-3)^n}{n^2}$</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec27" class="chapter">27. Power series from geometric series</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(a).</b> $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(b).</b> $g(x)=\ln(x)$, $a=1$. State the ROC.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(c).</b> Find the function that $\sum_{n=2}^\infty2n(n-1)x^n$ represents.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(d).</b> $f(x)=\frac{x}{(1-x^2)^2}$, $a=0$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 27(e).</b> Find the exact value of $\sum_{n=1}^\infty\frac{n}{3^n}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec28" class="chapter">28. Taylor and Maclaurin series</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(a).</b> Find the Maclaurin series for $\cosh(x)$ and $\sinh(x)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(b).</b> Degree 2 Taylor polynomial of $\sqrt x$ at $a=9$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(c).</b> Degree 3 Taylor polynomial of $\cos x$ at $a=\frac{\pi}{3}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(d).</b> Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(e).</b> Find the exact value of $1-\frac{\pi^2}{3^2\cdot2!}+\frac{\pi^4}{3^4\cdot4!}-\cdots$</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(f).</b> Find the exact value of $\sum_{n=0}^\infty\frac{(\ln3)^n}{n!}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(g).</b> Find the exact value of $\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n\,2^n}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 28(h).</b> Use a Maclaurin series to evaluate $\lim_{x\to0}\frac{\sin x-x}{x^3}$.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec29" class="chapter">29. Approximations and error bounds</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(a).</b> Approximate $\int_0^{0.1}\frac{dx}{1+x^4}$ to within $10^{-6}$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(b).</b> Use $p_3(x)$ to approximate $\tan^{-1}(x)$ near $0$, and bound the error at $x=\frac12$ with ASE.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(c).</b> Bound the same error with Taylor's Inequality, bounding $|f^{(4)}(x)|$ on $[0,\frac12]$, where $f(x)=\tan^{-1}(x)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(d).</b> $f(x)=\sum_{n=2}^\infty5n(n-1)x^n$: parts (i) to (vi).</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(e).</b> How many terms of $\sum_{n=0}^\infty\frac{(-1)^n}{n!}$ are needed to approximate its sum to within $0.001$?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(f).</b> $f(x)=e^x$: find $T_3(x)$ and bound $|f(x)-T_3(x)|$ for $-1\le x\le1$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 29(g).</b> Approximate $\int_0^1e^{-x^2}\,dx$ to within $0.01$ (use ASE).</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec30" class="chapter">30. Complex numbers</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 30(a).</b> Compute $(1+i)^{10}$ in $a+bi$ form.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 30(b).</b> Compute $(i-1)^{12}$ in $a+bi$ form.</p>
+    </div>
+
+  <!-- ============================================================ -->
+  <h3 id="sec31" class="chapter">31. Differential equations</h3>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(a).</b> Show that $y=Ce^{x^2}$ solves $y'=2xy$ for every constant $C$. Find the solution with $y(0)=3$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(b).</b> Sketch the direction field of $y'=x+y$ at the nine points with $x,y\in\{-1,0,1\}$. Along which line are the slopes $0$? Sketch the solution through $(0,0)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(c).</b> Find the equilibrium solutions of $y'=y^2-4$ and decide whether nearby solutions move toward or away from each.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(d).</b> Euler's method with $h=0.5$ for $y'=x+y$, $y(0)=1$, to approximate $y(1)$. Over or under estimate?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(e).</b> Euler's method with $h=-1$ for $y'=y-x$, $y(1)=3$, to approximate $y(-1)$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(f).</b> Solve $\frac{dy}{dx}=xy^2$, $y(0)=1$. On what interval is the solution defined?</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(g).</b> Solve $\frac{dy}{dx}=e^{x-y}$, $y(0)=\ln2$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(h).</b> Solve $\frac{dy}{dt}=3y-6$, $y(0)=5$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(i).</b> Bacteria grow at a rate proportional to size, from $200$ cells to $600$ in $2$ hours. Find $P(t)$ and when $P=5400$.</p>
+    </div>
+
+  <div class="problem">
+    <p class="stmt"><b>Problem 31(j).</b> Logistic: $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Carrying capacity, equilibria, growth, and $P(t)$.</p>
+    </div>
+
+</div>
+
+<footer>
+  <a href="mailto:fraughn@unm.edu">fraughn@unm.edu</a> &nbsp;|&nbsp; Department of Mathematics and Statistics, University of New Mexico
+</footer>
+
+<script>
+function toggleNav() {
+  var x = document.getElementById("myTopnav");
+  x.classList.toggle("responsive");
+}
+</script>
+
+</body>
+</html>

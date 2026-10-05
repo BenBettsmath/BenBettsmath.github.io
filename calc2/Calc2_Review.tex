@@ -24,507 +24,467 @@
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
   {\end{proof}}
 
-
 \begin{document}
 \raggedright
 \begin{center}
       {\large Math 1522 Calculus 2 Review}\\
   {Fall 2026}\\
- 
 \end{center}
 
-
 \begin{enumerate}
-\item Formulas to know.
-    \begin{enumerate}
-        \item Derivative and graph of $\sin^{-1}(x)$
-        \item Derivative and graph of $\cos^{-1}(x)$
-        \item Derivative and graph of $\tan^{-1}(x)$
-        \item Derivative of $\sin(x)$
-        \item Derivative of $\cos(x)$
-        \item Derivative of $\tan(x)$
-        \item Derivative of $\sec(x)$
-        \item State the Inverse Function Theorem
-        \item Derivative and graph of $b^x$ (graph for $b>1$ and $0<b<1$)
-        \item Antiderivative of $b^x$
-        \item Derivative and graph of $\log_b(x)$ ($b>1$)
-        \item Antiderivative of $x^p$ if $p \neq -1$ or if $p=-1$
-        \item Definition of $\sinh(x)$
-        \item Definition of $\cosh(x)$
-    
-    \end{enumerate}
-    
-    \newpage
-    
-    \item Logarithmic differentiation.
-    \begin{enumerate}
-        \item Find $y'$ if $y=x^{\sqrt{x}}$
-        \item Find $y'$ if $y= \frac{x^{3/4}\sqrt{x^2+1}}{(x^3+x)^3}$
-        \item Find $y'$ if $y= (\sin x)^{\sin x}$
-        \item Find $y'(0)$ if $y = \frac{(x+1)^4 e^x}{\sqrt{1+3x}}$
-    \end{enumerate}
-    \newpage
-    
-    \item Derivatives of logarithms
-    \begin{enumerate}
-        \item Find $y'$ if $y= \tan(\ln(x))$ 
-        \item Find $y'$ if $y= \ln(\sec(x))$
-        \item Find $y$ if $y' = \frac{\sin(x)}{\cos(x)}$
-        \item Find the domain and range of the function $f(x)= \ln(\sqrt{9-e^x})$
-        \item Explain why we need absolute values when we take the antiderivative of $\frac{1}{x}$. 
-        \begin{enumerate}
-            \item Consider the particular antiderivative $\ln \abs{x}$ of $\frac{1}{x}$. Write it as a piecewise function and take its derivative.
-            \item Compare the domain of this function with the domain of $\frac{1}{x}$
-            \item Graph both functions on the same set of axes to see that the antiderivative we assign to $\frac{1}{x}$ is the correct most general antiderivative.
-        \end{enumerate}
-        \item Let $f(x) = 3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?
-        \item Find $y'(1)$ if $y = 3^x \log_3(x)$.
-        
-    \end{enumerate}
-    \newpage
-    
-    \item Inverse trig functions
-    \begin{enumerate}
-        \item Prove the identity: $\frac{d}{dx} \sec^{-1}(x)= \frac{1}{x\sqrt{x^2 -1}}$ (You may ignore the domain issues with $\sec x$)
-        
-        \item Similar to (a), be able to derive the other derivatives of inverse trig functions.
-        
-        \item Find $y'$ if $y= \cos^{-1}(\sin(x))$
-        
-        \item Find $y$ if $y' = \frac{x^2}{\frac{1}{9}+x^6}$
-
-        \item Find $y$ if $y' = \frac{1}{\sqrt{a^2-x^2}}$, where $a>0$. Express $y$ as a function of $\sin^{-1}(x/a)$ or as a function of $\cos^{-1}(x/a)$
-
-        \item Find the equation of the tangent line to $y = 2\tan^{-1}(x^2)$ at $x=1$.
-
-        \item Write $\cos(\tan^{-1}(x/2))$ as an algebraic function of $x$ (no trig functions).
-
-        \item Find $y$ if $y' = \frac{x}{\sqrt{1-x^4}}$
-
-    \end{enumerate}
-
-    \newpage
-    
-    \item Hyperbolic functions
-    \begin{enumerate}
-        \item Prove that $\cosh^2x-\sinh^2x=1$
-        
-        \item Find $\cosh^{-1}(2)$ (The equation $\cosh y = 2$ has 2 solutions $y$, so you should be able to set up some sort of quadratic equation in $e^y$. Which solution is $\cosh^{-1}(2)$?)
-        
-        \item Prove that the derivative of $\cosh{x}$ is $\sinh{x}$ and that the derivative of $\sinh{x}$ is $\cosh{x}$
-        
-        \item Evaluate the limit $\lim_{x \to \infty} \coth{x}$. Clearly show all algebraic manipulations.
-        
-        \item Find the derivative of $\ln(\cosh(x))$
-
-        \item Prove that the derivative of $\tanh x$ is $\operatorname{sech}^2 x$
-
-        \item Find $y'$ if $y = \tan^{-1}(\sinh x)$, and simplify.
-
-        \item Evaluate $\int_{-\ln 3}^{\ln 3} \cosh x \, dx$
-
-    \end{enumerate}
-
-    \newpage
-    
-    \item Inverse Function Theorem:
-    \begin{enumerate}
-        \item Show the function is 1-1 then find the derivative of the inverse function at the point: $f(x)=x+x^3+2x^5$, $(4, f^{-1}(4))$
-        
-        \item $f(x)=5x+ 2\sin(x)+2\cos(x)$, $(2, f^{-1}(2))$
-        
-
-        \item Explain what could go wrong with using the inverse function theorem on a function that's not 1-1. Draw a picture using $f(x)=x^2$ to illustrate.
-        
-        \item True/False: If a function is 1-1 then it is invertible
-        
-        \item True/False: If a function is invertible then it is 1-1
-        
-        \item True/False: If a function is not continuous then it cannot be 1-1
-        
-        \item True/False: If an invertible function is increasing then its inverse is decreasing
-        
-        \item True/False: If a function is invertible and continuous on an interval then its inverse might be discontinuous
-
-        \item Let $f(x) = x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.
-
-        \item Let $f(x) = 2x^3 + \ln x + \sin(\pi x)$ for $x>0$. You may assume $f$ is 1-1. Find the slope of the tangent line to the graph of $f^{-1}$ at $x=2$. (Hint: what is $f(1)$?)
-
-    \end{enumerate}
-
-    \newpage
-    \item L'H\^opital's rule.
-
-     \begin{enumerate}
-         \item $\lim_{x \to \infty} xe^{-x}$
-         
-         \item $\lim_{x \to 0^+} x \ln{x}$
-         
-         \item $\lim_{x \to 0^+} x^x$
-         
-         \item $\lim_{x \to 0^+} x^{\frac{1}{x}}$
-         \item $\lim_{x \to 0} \frac{\sin x}{x}$
-         \item $\lim_{x \to \infty} (1+\frac{1}{x})^x$
-         \item $\lim_{x \to 0^+} (1+\sin(2x))^{\cot{x}}$
-         \item $\lim_{x \to \infty} (e^x - 2^x)$
-         \item $\lim_{x \to 0^+} \parens{\frac{1}{x} - \frac{1}{e^x-1}}$
-         \item $\lim_{x \to 1^-} \frac{\ln x}{\cos^{-1}(x)}$
-         \item $\lim_{x \to \infty} x\parens{\frac{\pi}{2} - \tan^{-1}(2x)}$
-         \item $\lim_{x \to \infty} \sin^{-1}\parens{\frac{e^x}{2e^x+1}}$
-         \item $\lim_{x \to \infty} \frac{\cosh(\ln x)}{x}$
-     \end{enumerate}
-
-     
-\newpage
-
-\item Substitution. Fully evaluate the antiderivative, then plug in the bounds. Or change the bounds with your substitution to evaluate while in terms of u. Clearly declare each substitution.
+\setcounter{enumi}{0}
+\item Formulas to know
 \begin{enumerate}
-    \item $\int_0^{(\frac{\pi}{2})^{\frac{1}{3}}} x^2  \sin x^3 dx$
-    \item $\int_0^1 (2x+2)e^{x^2+2x+3}dx$
-    \item $\int_0^1 \frac{e^{\tan^{-1}(x)}}{1+x^2} dx$
-    \item $\int_{\pi/4}^{\pi/2} \cot x dx$
-    \item $\int_1^e \frac{(\ln x)^2}{x} dx$
-    \item $\int \frac{\cos x}{4+\sin^2 x} dx$
-    \item $\int \frac{dx}{\sqrt{x}\,(1+\sqrt{x})}$
+\item[(a)] Derivative and graph of $\sin^{-1}(x)$.
+
+\item[(b)] State the Inverse Function Theorem.
+
 \end{enumerate}
 
-\item Integration by parts. Fully evaluate the antiderivative, then after, plug in the bounds. Clearly declare each substitution.
+\setcounter{enumi}{1}
+\item Logarithmic differentiation
 \begin{enumerate}
-    \item $\int_0^1 x^2e^x dx$
-    \item $\int_1^e x^4 \ln (x) dx$
-    \item $\int_1^e \ln(x) dx$
-    \item $\int_0^1 \tan^{-1}(x) dx$
-    \item $\int_0^{\pi} e^x \sin (x) dx$
-    \item $\int_0^{\pi /2}\sin (x) \cos (x) dx$
-    \item $\int x \sec^2 (x) dx$
-    \item $\int x \sin (2x) dx$
-    \item $\int_0^1 x \tan^{-1}(x) dx$
+\item[(a)] Find $y'$ if $y=x^{\sqrt{x}}$.
+
+\item[(b)] Find $y'$ if $y=(\sin x)^{\sin x}$.
+
+\item[(c)] Find $y'(0)$ if $y=\frac{(x+1)^4e^x}{\sqrt{1+3x}}$.
+
 \end{enumerate}
 
-\item Trig integrals. Find the most general antiderivative.
+\setcounter{enumi}{2}
+\item Derivatives of logarithms
 \begin{enumerate}
-    \item $\int \sin^3 (x) \cos^2 (x) dx$
-    \item $\int \sin^3 (x) dx$
-    \item $\int \cos^3 (x) \sin^2 (x) dx$
-    \item $\int \sin^2 (x) \cos^2 (x) dx$
-    \item $\int \cos^2 (x) dx$
-    \item $\int \tan^2 (x) dx$
-    \item $\int \tan^3 (x) dx$
-    \item $\int \tan^2 (x) \sec^4 (x) dx$
-    \item $\int \sin (3x) \cos (2x) dx$
-    \item $\int_0^{\pi/3} \tan (x) \sec^3 (x) dx$ (evaluate at the bounds)
+\item[(a)] Find $y$ if $y'=\frac{\sin(x)}{\cos(x)}$.
+
+\item[(b)] Find the domain and range of $f(x)=\ln(\sqrt{9-e^x})$.
+
+\item[(c)] Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?
+
+\item[(d)] Find $y'(1)$ if $y=3^x\log_3(x)$.
+
 \end{enumerate}
 
-\newpage
-
-\item Trig substitution. Find the most general antiderivative then evaluate it at the bounds, or substitute the bounds with each substitution. Clearly declare each substitution.
+\setcounter{enumi}{3}
+\item Inverse trig functions
 \begin{enumerate}
-    \item $\int_2^3 \frac{dx}{(x^2-1)^{\frac{3}{2}}}$
-    \item $\int_0^2 \frac{dx}{\sqrt{4+x^2}}$
-    \item $\int_0^1 \frac{dx}{\sqrt{1+4x^2}}$
-    \item $\int_0^2 \frac{dx}{\sqrt{4+\frac{1}{4}x^2}}$
-    \item $\int_0^1 \frac{dx}{\sqrt{4+9x^2}}$
-    \vspace{10mm}
-    
-    complete the square:
-    
-    \item $\int \frac{dx}{\sqrt{x^2+4x-5}}$
-    \item $\int \frac{dx}{(6-8x-x^2)^{\frac{3}{2}}} $
-    \vspace{10mm}
+\item[(a)] Prove the identity $\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}$ (ignore domain issues).
 
-    more practice:
+\item[(b)] Find $y$ if $y'=\frac{x^2}{\frac19+x^6}$.
 
-    \item $\int_0^{\sqrt{3}} \frac{x^3}{\sqrt{x^2+1}} dx$
-    \item $\int_{\sqrt{2}}^2 \frac{dx}{x^2\sqrt{x^2-1}}$
-    \item $\int_0^1 \frac{dx}{(1+x^2)^2}$
+\item[(c)] Find the equation of the tangent line to $y=2\tan^{-1}(x^2)$ at $x=1$.
+
+\item[(d)] Write $\cos(\tan^{-1}(x/2))$ as an algebraic function of $x$.
+
+\item[(e)] Find $y$ if $y'=\frac{x}{\sqrt{1-x^4}}$.
+
 \end{enumerate}
 
+\setcounter{enumi}{4}
+\item Hyperbolic functions
+\begin{enumerate}
+\item[(a)] Find $\cosh^{-1}(2)$.
+
+\item[(b)] Evaluate $\lim_{x\to\infty}\coth x$.
+
+\item[(c)] Prove that the derivative of $\tanh x$ is $\operatorname{sech}^2x$.
+
+\item[(d)] Find $y'$ if $y=\tan^{-1}(\sinh x)$, and simplify.
+
+\item[(e)] Evaluate $\int_{-\ln3}^{\ln3}\cosh x\,dx$.
+
+\end{enumerate}
+
+\setcounter{enumi}{5}
+\item Inverse Function Theorem
+\begin{enumerate}
+\item[(a)] Show $f(x)=x+x^3+2x^5$ is 1-1, then find the derivative of $f^{-1}$ at $(4,f^{-1}(4))$.
+
+\item[(b)] $f(x)=5x+2\sin x+2\cos x$, at $(2,f^{-1}(2))$.
+
+\item[(c)] Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.
+
+\item[(d)] Let $f(x)=2x^3+\ln x+\sin(\pi x)$ for $x>0$ (assume $f$ is 1-1). Find the slope of the tangent line to the graph of $f^{-1}$ at $x=2$.
+
+\end{enumerate}
+
+\setcounter{enumi}{6}
+\item L'H\^opital's rule
+\begin{enumerate}
+\item[(a)] $\lim_{x\to0^+}x^x$
+
+\item[(b)] $\lim_{x\to0^+}(1+\sin(2x))^{\cot x}$
+
+\item[(c)] $\lim_{x\to0^+}\left(\frac1x-\frac{1}{e^x-1}\right)$
+
+\item[(d)] $\lim_{x\to1^-}\frac{\ln x}{\cos^{-1}(x)}$
+
+\item[(e)] $\lim_{x\to\infty}x\left(\frac{\pi}{2}-\tan^{-1}(2x)\right)$
+
+\item[(f)] $\lim_{x\to\infty}\sin^{-1}\left(\frac{e^x}{2e^x+1}\right)$
+
+\item[(g)] $\lim_{x\to\infty}\frac{\cosh(\ln x)}{x}$
+
+\end{enumerate}
+
+\setcounter{enumi}{7}
+\item Substitution
+\begin{enumerate}
+\item[(a)] $\int_0^{(\pi/2)^{1/3}}x^2\sin x^3\,dx$
+
+\item[(b)] $\int_{\pi/4}^{\pi/2}\cot x\,dx$
+
+\item[(c)] $\int_1^e\frac{(\ln x)^2}{x}\,dx$
+
+\item[(d)] $\int\frac{\cos x}{4+\sin^2x}\,dx$
+
+\item[(e)] $\int\frac{dx}{\sqrt x\,(1+\sqrt x)}$
+
+\end{enumerate}
+
+\setcounter{enumi}{8}
+\item Integration by parts
+\begin{enumerate}
+\item[(a)] $\int_1^e x^4\ln(x)\,dx$
+
+\item[(b)] $\int_0^\pi e^x\sin(x)\,dx$
+
+\item[(c)] $\int x\sec^2(x)\,dx$
+
+\item[(d)] $\int x\sin(2x)\,dx$
+
+\item[(e)] $\int_0^1x\tan^{-1}(x)\,dx$
+
+\end{enumerate}
+
+\setcounter{enumi}{9}
+\item Trig integrals
+\begin{enumerate}
+\item[(a)] $\int\sin^3(x)\cos^2(x)\,dx$
+
+\item[(b)] $\int\tan^2(x)\,dx$
+
+\item[(c)] $\int\tan^2(x)\sec^4(x)\,dx$
+
+\item[(d)] $\int\sin(3x)\cos(2x)\,dx$
+
+\item[(e)] $\int_0^{\pi/3}\tan(x)\sec^3(x)\,dx$
+
+\end{enumerate}
+
+\setcounter{enumi}{10}
+\item Trig substitution
+\begin{enumerate}
+\item[(a)] $\int_2^3\frac{dx}{(x^2-1)^{3/2}}$
+
+\item[(b)] $\int\frac{dx}{(6-8x-x^2)^{3/2}}$
+
+\item[(c)] $\int_0^{\sqrt3}\frac{x^3}{\sqrt{x^2+1}}\,dx$
+
+\item[(d)] $\int_{\sqrt2}^2\frac{dx}{x^2\sqrt{x^2-1}}$
+
+\item[(e)] $\int_0^1\frac{dx}{(1+x^2)^2}$
+
+\end{enumerate}
+
+\setcounter{enumi}{11}
 \item Partial fractions
 \begin{enumerate}
+\item[(a)] $\int\frac{3x^2+6x+2}{x^2+3x+2}\,dx$
 
+\item[(b)] $\int\frac{x+4}{x^3-4x}\,dx$
 
-\item With long division. Find the most general antiderivative.
+\item[(c)] $\int\frac{3x^2-x+8}{x^3+4x}\,dx$
+
+\item[(d)] Set up, but do not solve, the partial fraction decomposition of $\frac{x+1}{x^2(x-3)(x^2+1)^2}$.
+
+\end{enumerate}
+
+\setcounter{enumi}{12}
+\item Improper integrals
 \begin{enumerate}
-    \item $\int \frac{x^2}{x-1} dx$
-    \item $\int \frac{3x^2+6x+2}{x^2+3x+2}dx$
-    \item $\int \frac{x^3+4}{x^2+4} dx$
+\item[(a)] $\int_0^1\frac{\ln x}{x}\,dx$
+
+\item[(b)] $\int_1^\infty\frac{dx}{x^p}$ (consider $p\le1$ and $p>1$)
+
+\item[(c)] $\int_0^\infty e^{x^2}\,dx$ (don't determine the value)
+
+\item[(d)] $\int_0^\infty\frac{e^x}{(1+e^x)^3}\,dx$
+
+\item[(e)] $\int_1^\infty\frac{\ln x}{x^3}\,dx$
+
+\item[(f)] $\int_0^2\frac{dx}{(x-1)^{2/3}}$
+
+\item[(g)] $\int_2^\infty\frac{dx}{4+x^2}$
+
 \end{enumerate}
 
-\item With fully factorable denominators. Find the most general antiderivative.
+\setcounter{enumi}{13}
+\item Numerical integration
 \begin{enumerate}
-    \item $\int \frac{dx}{(x^2-1)^2}$
-    \item $\int \frac{2x dx}{2x^2+3x+1}$
-    \item $\int \frac{ e^{2x} dx}{e^{2x}+3e^x+2}$
-    \item $\int \frac{x+4}{x^3-4x} dx$
+\item[(a)] $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.
+
+\item[(b)] Use the trapezoid rule with $n=3$ to approximate $\int_0^32^x\,dx$ in exact form.
+
+\item[(c)] How large must $n$ be so that the trapezoid rule approximates $\int_1^2\frac{dx}{x}$ with error less than $10^{-4}$?
+
 \end{enumerate}
 
-\newpage
-
-\item With irreducible quadratics. Find the most general antiderivative.
+\setcounter{enumi}{14}
+\item Sequences
 \begin{enumerate}
-    \item $\int \frac{2x+5}{(x-2)^2(x^2+2)} dx$
-    \item $\int \frac{3x^2-x+8}{x^3+4x}dx$
-    \item Set up, but do not solve, the partial fraction decomposition of $\frac{x+1}{x^2(x-3)(x^2+1)^2}$
-\end{enumerate}
+\item[(a)] If an alternating sequence converges, what must it converge to?
+
+\item[(b)] Write $\{-\frac18,\frac1{27},-\frac1{64},\frac1{125},\dots\}$ as a function of $n$.
+
+\item[(c)] Monotonic? Bounded? $a_n=1+\frac{(-1)^n}{n}$ and $b_n=\frac{n}{n+1}$ ($n\ge1$).
+
+\item[(d)] Show that $\lim_{n\to\infty}\frac{3^n}{n!}=0$.
 
 \end{enumerate}
 
-
-
-\item Improper integrals. Set-up and evaluate a limit expression to determine if the integral converges or diverges. If it diverges, describe an infinite area that the graph of the function encloses. If it converges determine what it converges to, unless indicated otherwise.
-\begin{enumerate}
-    \item $\int_0^1 \ln (x) dx$
-    \item $\int_0^1 \frac{\ln x}{x} dx$
-    \item $\int_1^\infty \frac{dx}{x}$
-    \item $\int_1^\infty \frac{dx}{\sqrt{x}}$
-    \item $\int_1^\infty \frac{dx}{x^{0.9}}$
-    \item $\int_1^\infty \frac{dx}{x^p}$ (consider $p \leq 1$ and $p > 1$)
-    \item $\int_0^{\pi} \tan (x) dx$
-    \item $\int_{-1}^1 \frac{dx}{x} $
-    \item $\int_{-4}^2 \frac{x-1}{(x+2)^2} dx$
-    \item $\int_0^\infty xe^{-x} dx$
-    \item $\int_0^\infty \sin (x) dx$
-    \item $\int_0^\infty e^{x^2} dx$ (don't determine the value)
-    \item $\int_0^\infty 2^{\sin x} dx$ (don't determine the value)
-    \item $\int_0^\infty \frac{e^x}{(1+e^x)^3} dx$
-    \item $\int_1^\infty \frac{\ln x}{x^3} dx$
-    \item $\int_0^2 \frac{dx}{(x-1)^{2/3}}$
-    \item $\int_2^\infty \frac{dx}{4+x^2}$
-\end{enumerate}
-
-\item Numerical integration. From the function, determine which methods will give an over estimate, and which methods will give an under estimate. The list of methods is: Left endpoint rule, Right endpoint rule, Midpoint rule, Trapezoid rule. After, confirm you were correct for the midpoint and trapezoid rules by calculating the estimated area given by midpoint rule and and trapezoid rule with n=4. You may use a calculator.
-\begin{enumerate}
-    \item $\int_0^4 e^x dx$
-    \item $\int_0^\pi \sin(x) dx$
-    \item $\int_0^1 (x^3-3x^2+2x+1) dx$
-    \item Use the trapezoid rule with $n=3$ to approximate $\int_0^3 2^x dx$. Leave your answer in exact form.
-    \item The error in the trapezoid rule satisfies $\abs{E_T} \leq \frac{K(b-a)^3}{12n^2}$, where $\abs{f''(x)} \leq K$ on $[a,b]$. How large must $n$ be to guarantee that the trapezoid rule approximates $\int_1^2 \frac{dx}{x}$ with error less than $10^{-4}$?
-\end{enumerate}
-
-
-\item Sequences.
-\begin{enumerate}
-    \item Give an example of a sequence that converges to 0.
-    \item Give an example of a sequence that converges to 1
-    \item give an example of a bounded sequence that diverges.
-    \item give an example of a sequence that diverges to infinity
-    \item If an alternating sequence converges, what must it converge to?
-    \item Given a series $\sum_{n=0}^\infty a_n$, what are the 2 sequences that are relevant to this series? What are their limits?
-    \item Write the sequence as a function whose domain is the natural numbers (e.g. $\{1,4,9,16,...\}= \{f(n)\}_{n=0}^\infty$ where $f(n)=n^2$, $f: \mathbb{N} \to \mathbb{R}$. You may change notation to write $f(n) = a_n$) 
-
-    $\{1, \frac{1}{4}, \frac{1}{16}, \frac{1}{64}, ... \}$
-    \item Write the sequence as a function whose domain is the natural numbers $\{ \frac{-1}{8}, \frac{1}{27}, \frac{-1}{64}, \frac{1}{125}, ... \}$
-
-    \item Write the sequence as a function whose domain is the natural numbers $\{1, 1, 2, 6, 24, 120, ... \}$
-    \item For each sequence, decide if it is increasing, decreasing, or not monotonic, and if it is bounded or unbounded. $a_n = 1 + \frac{(-1)^n}{n}$ ($n \geq 1$) and $b_n = \frac{n}{n+1}$ ($n \geq 1$)
-    \item Show that $\lim_{n \to \infty} \frac{3^n}{n!} = 0$
-\end{enumerate}
-
+\setcounter{enumi}{15}
 \item Test for Divergence (TFD)
 \begin{enumerate}
-    \item $\sum_{n=1}^\infty \frac{(-1)^n n}{n+1}$
-    \item $\sum_{m=1}^\infty (\frac{4}{3})^m$
-    \item $\sum_{n=0}^\infty \frac{n^2+1}{6n^2+6n+1}$
-    \item $\sum_{n=0}^\infty \sin (n)$
-    \item $\sum_{n=1}^\infty 2^{1/n}$
-    \item Can you use the TFD to determine if $\sum_{n=2}^\infty \frac{1}{n^2}$ converges or diverges? Explain why or why not.
-    \item Suppose $b_n > 0$ for all $n$ and $\sum_{n=1}^\infty b_n$ converges. What does the TFD say about $\sum_{n=1}^\infty \frac{1}{b_n}$?
+\item[(a)] $\sum_{n=1}^\infty\frac{(-1)^nn}{n+1}$
+
+\item[(b)] $\sum_{n=0}^\infty\frac{n^2+1}{6n^2+6n+1}$
+
+\item[(c)] Can you use the TFD on $\sum_{n=2}^\infty\frac{1}{n^2}$?
+
+\item[(d)] $\sum_{n=1}^\infty2^{1/n}$
+
+\item[(e)] Suppose $b_n>0$ and $\sum b_n$ converges. What does the TFD say about $\sum\frac{1}{b_n}$?
+
 \end{enumerate}
 
+\setcounter{enumi}{16}
 \item Telescoping series
 \begin{enumerate}
-    \item Evaluate the series $\sum_{n=2}^\infty \frac{1}{n^2 - 1}$
-    \item Evaluate the series $\sum_{n=1}^\infty \frac{2}{4n^2 -1}$
-    \item Evaluate the series $\sum_{n=1}^\infty \brac{\tan^{-1}(n+2)-\tan^{-1}(n)}$
-    \item Evaluate the series $\sum_{n=1}^\infty \brac{f(n)-f(n+1)}$, where $\lim_{n \to \infty} f(n) = L$
-    \item Evaluate the series $\sum_{n=1}^\infty \brac{f(n)-f(n+k)}$, where $k$ is a positive integer and $\lim_{n \to \infty} f(n) = L$
-    \item Determine if the series converges or diverges by writing out its partial sums $\sum_{n=1}^\infty \ln\parens{1+\frac{1}{n}}$
+\item[(a)] $\sum_{n=2}^\infty\frac{1}{n^2-1}$
+
+\item[(b)] $\sum_{n=1}^\infty\left[\tan^{-1}(n+2)-\tan^{-1}(n)\right]$
+
+\item[(c)] $\sum_{n=1}^\infty\left[f(n)-f(n+1)\right]$, where $\lim_{n\to\infty}f(n)=L$
+
+\item[(d)] $\sum_{n=1}^\infty\left[f(n)-f(n+k)\right]$, $k$ a positive integer, $\lim f(n)=L$
+
+\item[(e)] Determine if $\sum_{n=1}^\infty\ln\left(1+\frac1n\right)$ converges or diverges by writing out its partial sums.
+
 \end{enumerate}
 
+\setcounter{enumi}{17}
 \item Geometric series
 \begin{enumerate}
-    \item Evaluate the series $\sum_{n=0}^\infty (\frac{3}{4})^n$
-    \item Evaluate the series $\sum_{n=0}^\infty \frac{4^{2n-1}}{17^n}$
-    \item Evaluate the series $\sum_{n=-4}^\infty (\frac{1}{2})^n$
-    \item Evaluate the series $\sum_{n=1}^\infty \frac{3^{n+1}}{4^{n-1}}$
-    \item Evaluate the series $2 - 1 + \frac{1}{2} - \frac{1}{4} + \frac{1}{8} - \cdots$
-    \item For which real numbers $a$ does $\sum_{k=1}^\infty \parens{\frac{2a}{1+a^2}}^k$ converge? Find its value (in terms of $a$) when it converges.
+\item[(a)] $\sum_{n=0}^\infty\frac{4^{2n-1}}{17^n}$
+
+\item[(b)] $\sum_{n=-4}^\infty\left(\frac12\right)^n$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{3^{n+1}}{4^{n-1}}$
+
+\item[(d)] $2-1+\frac12-\frac14+\frac18-\cdots$
+
+\item[(e)] For which $a$ does $\sum_{k=1}^\infty\left(\frac{2a}{1+a^2}\right)^k$ converge? Find its value.
+
 \end{enumerate}
 
+\setcounter{enumi}{18}
 \item Integral Test
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=2}^\infty \frac{1}{n (\ln n)^2}$
-    \item Determine if the series converges or diverges $\sum_{n=2}^\infty \frac{1}{n (\ln n)}$
-    \item Show that the series converges if $p>1$ and diverges if $0<p<1$. Also show it diverges if $p=1$. $\sum_{n=1}^\infty \frac{1}{n^p}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty n e^{-n^2}$
-    \item Can you use the integral test to determine if $\sum_{n=1}^\infty \frac{2+\sin n}{n^2}$ converges or diverges? Explain why or why not. If not, which test works?
+\item[(a)] $\sum_{n=2}^\infty\frac{1}{n(\ln n)^2}$
+
+\item[(b)] Show $\sum_{n=1}^\infty\frac{1}{n^p}$ converges if $p>1$ and diverges if $0<p\le1$.
+
+\item[(c)] $\sum_{n=1}^\infty ne^{-n^2}$
+
+\item[(d)] Can you use the integral test on $\sum_{n=1}^\infty\frac{2+\sin n}{n^2}$?
+
 \end{enumerate}
 
+\setcounter{enumi}{19}
 \item p-series
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=5}^\infty \frac{1}{n^e}$
-    \item Determine if the series converges or diverges $\sum_{n=2}^\infty \frac{1}{\sqrt{n}}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{1}{n^{0.000001}}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{n^2+\sqrt{n}}{n^4}$
-    \item For which real numbers $p$ does $\sum_{n=1}^\infty \frac{1}{n^{2p-1}}$ converge?
+\item[(a)] $\sum_{n=5}^\infty\frac{1}{n^e}$
+
+\item[(b)] $\sum_{n=1}^\infty\frac{1}{n^{0.000001}}$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{n^2+\sqrt n}{n^4}$
+
+\item[(d)] For which $p$ does $\sum_{n=1}^\infty\frac{1}{n^{2p-1}}$ converge?
+
 \end{enumerate}
 
+\setcounter{enumi}{20}
 \item Direct Comparison Test (DCT) and Limit Comparison Test (LCT)
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=2}^\infty \frac{1}{\ln n}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \sin (1/n)$
-    \item Determine if the series converges or diverges $\sum_{n=0}^\infty \frac{\tan^{-1}(n)}{n^2 +1}$
-    \item Determine if the series converges or diverges $\sum_{n=0}^\infty \frac{n+1}{n^2+n+1}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{3n+2}{n^{1.99}+2}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{1}{2^n+n}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{n^2-2n}{n^{7/2}+1}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{1}{n^2+n\cos n}$
+\item[(a)] $\sum_{n=1}^\infty\sin(1/n)$
+
+\item[(b)] $\sum_{n=0}^\infty\frac{\tan^{-1}(n)}{n^2+1}$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{1}{2^n+n}$
+
+\item[(d)] $\sum_{n=1}^\infty\frac{n^2-2n}{n^{7/2}+1}$
+
+\item[(e)] $\sum_{n=1}^\infty\frac{1}{n^2+n\cos n}$
+
 \end{enumerate}
 
+\setcounter{enumi}{21}
 \item Alternating Series Test (AST)
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=2}^\infty \frac{(-1)^n}{n \ln n}$
-    \item Determine if the series converges or diverges $\sum_{i=1}^\infty \frac{\cos (\pi i)}{i^{0.1}}$
-    \item Determine if the series converges or diverges $\sum_{k=2}^\infty \frac{(-1)^{k+15}}{\ln k}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{(-1)^n \ln n}{\sqrt{n}}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{(-1)^n \sqrt{n}}{n+4}$
-    \item Let $a_n = \frac{1}{n}$ if $n$ is odd and $a_n = \frac{1}{n^2}$ if $n$ is even. Can you use the AST to determine if $\sum_{n=1}^\infty (-1)^n a_n$ converges? Explain why or why not.
+\item[(a)] $\sum_{n=2}^\infty\frac{(-1)^n}{n\ln n}$
+
+\item[(b)] $\sum_{i=1}^\infty\frac{\cos(\pi i)}{i^{0.1}}$
+
+\item[(c)] $\sum_{k=2}^\infty\frac{(-1)^{k+15}}{\ln k}$
+
+\item[(d)] $\sum_{n=1}^\infty\frac{(-1)^n\ln n}{\sqrt n}$
+
+\item[(e)] $\sum_{n=1}^\infty\frac{(-1)^n\sqrt n}{n+4}$
+
+\item[(f)] $a_n=\frac1n$ for $n$ odd, $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?
+
 \end{enumerate}
 
+\setcounter{enumi}{22}
 \item Ratio Test
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=0}^\infty \frac{1}{n!}$
-    \item Determine if the series converges or diverges $\sum_{n=0}^\infty \frac{n!}{n^n}$
-    \item Determine if the series converges or diverges (for this one you could theoretically use TFD) $\sum_{n=0}^\infty \frac{(2n+1)!}{3^n}$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{n^2 4^n}{n!}$
+\item[(a)] $\sum_{n=0}^\infty\frac{n!}{n^n}$
+
+\item[(b)] $\sum_{n=0}^\infty\frac{(2n+1)!}{3^n}$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{n^24^n}{n!}$
+
 \end{enumerate}
 
+\setcounter{enumi}{23}
 \item Root Test
 \begin{enumerate}
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \parens{\frac{2n+1}{3n-1}}^n$
-    \item Determine if the series converges or diverges $\sum_{n=1}^\infty \frac{n^n}{2^{n^2}}$
-    \item Show that the Root Test is inconclusive for both $\sum_{n=1}^\infty \frac{1}{n}$ and $\sum_{n=1}^\infty \frac{1}{n^2}$. Which one converges?
-    \item Consider $\sum_{n=1}^\infty \frac{2^n}{n^5}$. Can you use the Root Test to determine if it converges or diverges? Can you use the Ratio Test? Explain.
+\item[(a)] $\sum_{n=1}^\infty\left(\frac{2n+1}{3n-1}\right)^n$
+
+\item[(b)] $\sum_{n=1}^\infty\frac{n^n}{2^{n^2}}$
+
+\item[(c)] Show the Root Test is inconclusive for $\sum\frac1n$ and $\sum\frac1{n^2}$. Which converges?
+
+\item[(d)] $\sum_{n=1}^\infty\frac{2^n}{n^5}$: Root Test? Ratio Test?
+
 \end{enumerate}
 
+\setcounter{enumi}{24}
 \item Absolute and conditional convergence
 \begin{enumerate}
-    \item Determine if the series converges absolutely, converges conditionally, or diverges $\sum_{n=1}^\infty \frac{(-1)^n}{n}$
-    \item Determine if the series converges absolutely, converges conditionally, or diverges  $\sum_{l=1}^\infty \frac{(-1)^l}{l^2}$
-    \item Determine if the series converges absolutely, converges conditionally, or diverges $\sum_{k=1}^\infty \frac{k\cos{\pi k}}{k^3+1}$
-    \item Determine if the series converges absolutely, converges conditionally, or diverges $\sum_{n=1}^\infty \frac{(-1)^n n^3}{2^n}$
-    \item Determine if the series converges absolutely, converges conditionally, or diverges $\sum_{n=1}^\infty \frac{(-1)^n n}{n^2+1}$
-    \item Suppose $\sum_{n=1}^\infty a_n$ converges to $2$. What is $\lim_{n \to \infty} a_n$? Must $\sum_{n=1}^\infty \abs{a_n}$ also converge?
+\item[(a)] $\sum_{n=1}^\infty\frac{(-1)^n}{n}$
+
+\item[(b)] $\sum_{k=1}^\infty\frac{k\cos(\pi k)}{k^3+1}$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{(-1)^nn^3}{2^n}$
+
+\item[(d)] $\sum_{n=1}^\infty\frac{(-1)^nn}{n^2+1}$
+
+\item[(e)] Suppose $\sum a_n$ converges to $2$. What is $\lim a_n$? Must $\sum|a_n|$ converge?
+
 \end{enumerate}
 
+\setcounter{enumi}{25}
 \item Radius of Convergence (ROC) and Interval of Convergence (IOC)
 \begin{enumerate}
-    \item Find the ROC and IOC. $\sum_{n=0}^\infty n^n x^n$
-    \item Find the ROC and IOC. $\sum_{n=0}^\infty \frac{x^n}{n!}$
-    \item Find the ROC and IOC. $\sum_{n=0}^\infty \frac{(-1)^n x^{2n}}{(2n)!}$
-    \item Find the ROC and IOC. $\sum_{n=0}^\infty (\frac{-3x}{2})^n$
-    \item Find the ROC and IOC. $\sum_{n=1}^\infty \frac{(-1)^n x^{2n}}{3^n (2n+1)}$
-    \item Find the ROC and IOC. $\sum_{n=1}^\infty \frac{(x+2)^n}{n\, 4^n}$
-    \item Find the center, ROC, and IOC. $\sum_{n=1}^\infty \frac{2^n (x-3)^n}{n^2}$
+\item[(a)] $\sum_{n=0}^\infty n^nx^n$
+
+\item[(b)] $\sum_{n=1}^\infty\frac{(-1)^nx^{2n}}{3^n(2n+1)}$
+
+\item[(c)] $\sum_{n=1}^\infty\frac{(x+2)^n}{n\,4^n}$
+
+\item[(d)] Center, ROC, IOC: $\sum_{n=1}^\infty\frac{2^n(x-3)^n}{n^2}$
+
 \end{enumerate}
 
+\setcounter{enumi}{26}
 \item Power series from geometric series
 \begin{enumerate}
-    \item Find the power series that represents the function at the center x=a. $f(x)=\frac{1}{1+x}$, $a=0$. State the ROC and IOC
-    \item Find the power series that represents the function at the center x=a. $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.
-    \item Find the power series that represents the function at the center x=a. $g(x)=\frac{1}{1+x}$, $a=-3$. State the ROC and IOC.
-    \item Find the power series that represents the function at the center x=a. $f(x)= \frac{1}{1-x^3}$, $a=0$. State the ROC and IOC.
-    \item Find the power series that represents the function at the center x=a. $g(x)= \tan^{-1}(x)$, $a=0$. State the ROC
-    \item Find the power series that represents the function at the center x=a. $g(x)= \ln(x)$, $a=1$. State the ROC 
-    \item Find the power series that represents the function at the center x=a, $f(x)= \frac{1}{4-x^2}$, $a=0$. For fun also try to find it by writing $f(x)=\frac{1}{2-x} \frac{1}{2+x}$ and performing a multiplication of power series.
-    \item Find the power series that represents the function at the center x=a, $f(x) = \frac{2}{(1+x)^3}$, $a=0$
-    
-    \item Find the function that the power series represents $\sum_{n=2}^\infty 2n(n-1)x^n$
-    \item Find the power series that represents the function at the center x=a, $f(x) = \frac{x}{(1-x^2)^2}$, $a=0$ (Hint: differentiate $\frac{1}{1-x^2}$)
-    \item Find the exact value of $\sum_{n=1}^\infty \frac{n}{3^n}$
+\item[(a)] $g(x)=\frac{1}{1+x}$, $a=1$. State the ROC and IOC.
+
+\item[(b)] $g(x)=\ln(x)$, $a=1$. State the ROC.
+
+\item[(c)] Find the function that $\sum_{n=2}^\infty2n(n-1)x^n$ represents.
+
+\item[(d)] $f(x)=\frac{x}{(1-x^2)^2}$, $a=0$.
+
+\item[(e)] Find the exact value of $\sum_{n=1}^\infty\frac{n}{3^n}$.
+
 \end{enumerate}
 
+\setcounter{enumi}{27}
 \item Taylor and Maclaurin series
 \begin{enumerate}
-    \item Find the Maclaurin Series for $e^x$, $\sin (x)$, $\cos(x)$
-    \item Find the Maclaurin series for $\cosh(x)$, and $\sinh(x)$
-    \item Find the degree 2 Taylor polynomial of $f(x)=\sqrt{x}$ centered at $a=9$
-    \item Find the degree 3 Taylor polynomial of $f(x)=\cos(x)$ centered at $a=\frac{\pi}{3}$
-    \item Find the Maclaurin series for $F(x) = \int_0^x e^{-t^2} dt$ and state its ROC
-    \item Find the exact value of $1 - \frac{\pi^2}{3^2 \cdot 2!} + \frac{\pi^4}{3^4 \cdot 4!} - \frac{\pi^6}{3^6 \cdot 6!} + \cdots$
-    \item Find the exact value of $\sum_{n=0}^\infty \frac{(\ln 3)^n}{n!}$
-    \item Find the exact value of $\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n\, 2^n}$
-    \item Use a Maclaurin series to evaluate $\lim_{x \to 0} \frac{\sin x - x}{x^3}$
+\item[(a)] Find the Maclaurin series for $\cosh(x)$ and $\sinh(x)$.
+
+\item[(b)] Degree 2 Taylor polynomial of $\sqrt x$ at $a=9$.
+
+\item[(c)] Degree 3 Taylor polynomial of $\cos x$ at $a=\frac{\pi}{3}$.
+
+\item[(d)] Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.
+
+\item[(e)] Find the exact value of $1-\frac{\pi^2}{3^2\cdot2!}+\frac{\pi^4}{3^4\cdot4!}-\cdots$
+
+\item[(f)] Find the exact value of $\sum_{n=0}^\infty\frac{(\ln3)^n}{n!}$.
+
+\item[(g)] Find the exact value of $\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n\,2^n}$.
+
+\item[(h)] Use a Maclaurin series to evaluate $\lim_{x\to0}\frac{\sin x-x}{x^3}$.
+
 \end{enumerate}
 
+\setcounter{enumi}{28}
 \item Approximations and error bounds
 \begin{enumerate}
-    \item Approximate the value of the integral to within $10^{-6}$. $\int_0^{0.1} \frac{dx}{1+x^4}$
-    \item Use a degree 3 polynomial, $p_3(x)$ to approximate $\tan^{-1}(x)$ near x=0. Use  Alternating Series Estimation to find an upperbound for the error in using $p_3(1/2)$ to approximate $\tan^{-1}(1/2)$
-    \item Find an upper bound for the same error using Taylor's Inequality. To get $M$, bound $\abs{f^{(4)}(x)}$ on the interval $[0,1/2]$, where $f(x)=\tan^{-1}(x)$.
-    \item
-    \begin{enumerate}
-         \item Find the function that represents the power series $f(x) = \sum_{n=2}^\infty 5n(n-1)x^n$
-         \item Use that function to evaluate $f(1/2)=\sum_{n=2}^\infty 5n (n-1)(\frac{1}{2^n})$. 
-        \item Find $p_2(x)$, the quadratic approximation for f centered at 0. 
-        \item Find $p_2 (1/2)$. 
-        \item Calculate the exact error $|f(1/2)-p_2(1/2)|$
-        \item calculate the upper bound on the error given by Taylor's inequality for x=1/2, with $M$ the maximum of $\abs{f'''(x)}$ on $[0,1/2]$. You can use the 3rd derivative of $f(x)$ is $\frac{600x^2}{(1-x)^6}+ \frac{720x}{(1-x)^5}+\frac{180}{(1-x)^4}$
-    \end{enumerate}
+\item[(a)] Approximate $\int_0^{0.1}\frac{dx}{1+x^4}$ to within $10^{-6}$.
 
-    \item Approximate $\ln(1.1)$ to within $0.01$ (Use ASE)
-    \item Approximate $\ln(0.9)$ to within $0.01$ (Use Taylor's Inequality)
-    \item Approximate $\sin(0.1)$ to within $10^{-5}$
-    \item How many terms of $\sum_{n=0}^\infty \frac{(-1)^n}{n!}$ are needed to approximate its sum to within $0.001$?
-    \item Let $f(x)=e^x$. Find $T_3(x)$, the degree 3 Taylor polynomial of $f$ centered at $0$, and use Taylor's Inequality to bound $\abs{f(x)-T_3(x)}$ for $-1 \leq x \leq 1$.
-    \item Approximate $\int_0^1 e^{-x^2} dx$ to within $0.01$ (Use ASE)
+\item[(b)] Use $p_3(x)$ to approximate $\tan^{-1}(x)$ near $0$, and bound the error at $x=\frac12$ with ASE.
+
+\item[(c)] Bound the same error with Taylor's Inequality, bounding $|f^{(4)}(x)|$ on $[0,\frac12]$, where $f(x)=\tan^{-1}(x)$.
+
+\item[(d)] $f(x)=\sum_{n=2}^\infty5n(n-1)x^n$: parts (i) to (vi).
+
+\item[(e)] How many terms of $\sum_{n=0}^\infty\frac{(-1)^n}{n!}$ are needed to approximate its sum to within $0.001$?
+
+\item[(f)] $f(x)=e^x$: find $T_3(x)$ and bound $|f(x)-T_3(x)|$ for $-1\le x\le1$.
+
+\item[(g)] Approximate $\int_0^1e^{-x^2}\,dx$ to within $0.01$ (use ASE).
+
 \end{enumerate}
 
+\setcounter{enumi}{29}
 \item Complex numbers
 \begin{enumerate}
-    \item Compute $(1+i)^{10}$ write your answer in $a+bi$ form
-    \item State Euler's Formula
-    \item Compute $(i-1)^{12}$ write your answer in $a+bi$ form
-    \item convert $3+4i$ to polar coordinates
-    \item convert $2e^{i\pi/4}$ to rectangular coordinates
+\item[(a)] Compute $(1+i)^{10}$ in $a+bi$ form.
+
+\item[(b)] Compute $(i-1)^{12}$ in $a+bi$ form.
+
 \end{enumerate}
-    
 
-\newpage
-
+\setcounter{enumi}{30}
 \item Differential equations
 \begin{enumerate}
-    \item Show that $y = Ce^{x^2}$ is a solution of $y' = 2xy$ for every constant $C$. Then find the solution with $y(0)=3$.
-    \item Sketch the direction field of $y' = x+y$ at the nine points $(x,y)$ with $x, y \in \set{-1,0,1}$. Along which line are all the slopes $0$? Then sketch the solution curve through $(0,0)$.
+\item[(a)] Show that $y=Ce^{x^2}$ solves $y'=2xy$ for every constant $C$. Find the solution with $y(0)=3$.
 
-    \begin{center}
-    \begin{tikzpicture}[scale=1.1]
-        \draw[->] (-1.6,0) -- (1.6,0) node[right] {$x$};
-        \draw[->] (0,-1.6) -- (0,1.6) node[above] {$y$};
-        \foreach \x in {-1,0,1} {
-            \foreach \y in {-1,0,1} {
-                \fill (\x,\y) circle (1.5pt);
-            }
-        }
-        \foreach \t in {-1,1} {
-            \draw (\t,0.08) -- (\t,-0.08) node[below left] {\small $\t$};
-            \draw (0.08,\t) -- (-0.08,\t);
-        }
-    \end{tikzpicture}
-    \end{center}
-    \item Find the equilibrium solutions of $y' = y^2-4$. For each one, use the sign of $y'$ to decide if nearby solutions move toward it or away from it.
-    \item Use Euler's method with step size $h=0.5$ to approximate $y(1)$, where $y' = x+y$ and $y(0)=1$. Is your approximation an over estimate or an under estimate? (Hint: what is $y''$?)
-    \item Use Euler's method with step size $h=-1$ to approximate $y(-1)$, where $y' = y-x$ and $y(1)=3$.
-    \item Solve the initial value problem $\frac{dy}{dx} = xy^2$, $y(0)=1$. On what interval is the solution defined?
-    \item Solve the initial value problem $\frac{dy}{dx} = e^{x-y}$, $y(0)=\ln 2$.
-    \item Solve the initial value problem $\frac{dy}{dt} = 3y-6$, $y(0)=5$.
-    \item A population of bacteria grows at a rate proportional to its size. It starts with $200$ cells and has $600$ cells after $2$ hours. Find the population $P(t)$ after $t$ hours, and find when the population is $5400$.
-    \item A population satisfies the logistic equation $\frac{dP}{dt} = 0.5P\parens{1-\frac{P}{1000}}$ with $P(0)=200$.
-    \begin{enumerate}
-        \item What is the carrying capacity? What are the equilibrium solutions?
-        \item For which values of $P$ is the population increasing? For which value of $P$ is it increasing fastest?
-        \item Solve for $P(t)$, and find when $P = 500$.
-    \end{enumerate}
+\item[(b)] Sketch the direction field of $y'=x+y$ at the nine points with $x,y\in\{-1,0,1\}$. Along which line are the slopes $0$? Sketch the solution through $(0,0)$.
+
+\item[(c)] Find the equilibrium solutions of $y'=y^2-4$ and decide whether nearby solutions move toward or away from each.
+
+\item[(d)] Euler's method with $h=0.5$ for $y'=x+y$, $y(0)=1$, to approximate $y(1)$. Over or under estimate?
+
+\item[(e)] Euler's method with $h=-1$ for $y'=y-x$, $y(1)=3$, to approximate $y(-1)$.
+
+\item[(f)] Solve $\frac{dy}{dx}=xy^2$, $y(0)=1$. On what interval is the solution defined?
+
+\item[(g)] Solve $\frac{dy}{dx}=e^{x-y}$, $y(0)=\ln2$.
+
+\item[(h)] Solve $\frac{dy}{dt}=3y-6$, $y(0)=5$.
+
+\item[(i)] Bacteria grow at a rate proportional to size, from $200$ cells to $600$ in $2$ hours. Find $P(t)$ and when $P=5400$.
+
+\item[(j)] Logistic: $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Carrying capacity, equilibria, growth, and $P(t)$.
+
 \end{enumerate}
 
 \end{enumerate}
