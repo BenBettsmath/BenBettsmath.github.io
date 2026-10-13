@@ -22,7 +22,7 @@
 ul.tight { margin: 0.3em 0; } ul.tight li { margin-bottom: 0.15em; }
 .chapter-card { display: block; padding: 1em 1.2em; margin: 0.6em 0; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; text-decoration: none; color: inherit; }
 .chapter-card:hover { background: #eef3fa; }
-.chapter-card h4 { margin: 0 0 0.3em 0; }
+.chapter-card h4 { margin: 0; }
 .chapter-card p { margin: 0; color: #444; }
 .thm, .defn, .prop, .keybox, .pitfall, .note {
   border-left: 4px solid #5a78a8;

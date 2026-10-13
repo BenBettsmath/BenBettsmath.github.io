@@ -12,8 +12,10 @@
 .pl-side { font-family: 'STIX Two Text', Georgia, serif; }
 .pl-side label { display: block; color: #6B7280; font-size: .9em; margin: .7em 0 .25em; }
 .pl-side textarea { width: 100%; box-sizing: border-box; height: 16em; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.5; padding: .5em .6em; border: 1px solid #c9ccd0; border-radius: 6px; resize: vertical; }
-.pl-side select, .pl-side input[type=text] { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; padding: .3em .5em; border: 1px solid #c9ccd0; border-radius: 6px; }
-.pl-side select { width: 100%; }
+.pl-side input[type=text] { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; padding: .3em .5em; border: 1px solid #c9ccd0; border-radius: 6px; }
+.pl-dim { display: inline-flex; border: 1px solid #007A86; border-radius: 6px; overflow: hidden; }
+.pl-dim button { font-size: .95em; padding: .35em 1.2em; border: 0; background: #fff; color: #007A86; cursor: pointer; }
+.pl-dim button.on { background: #007A86; color: #fff; }
 .pl-row { display: flex; align-items: center; gap: .8em; margin-top: .7em; flex-wrap: wrap; }
 .pl-row button { font-size: .95em; padding: .35em 1em; border-radius: 5px; border: 1px solid #007A86; background: #007A86; color: #fff; cursor: pointer; }
 .pl-help { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.6; color: #4b5563; background: #fafafa; border: 1px solid #eceef0; border-radius: 6px; padding: .5em .7em; margin-top: .9em; white-space: pre; overflow-x: auto; }
@@ -37,8 +39,7 @@
   <h1>Points and lattices</h1>
   <div class="pl-wrap">
     <div class="pl-side">
-      <label for="pl-ex">examples</label>
-      <select id="pl-ex"></select>
+      <div class="pl-dim"><button id="pl-d2" class="on">2D</button><button id="pl-d3">3D</button></div>
       <label for="pl-src">objects, one per line</label>
       <textarea id="pl-src" spellcheck="false"></textarea>
       <div class="pl-row">
@@ -307,6 +308,7 @@ refine (1,0) (1,1) (0,1) (1,3)
     let k = 0; objs.forEach(o => { o.col = o.color || COLORS[k++ % COLORS.length]; });
     OBJ = objs; R = Math.max(1, Math.min(30, Math.round(num($('pl-range').value || '6'))));
     hover = null; draw();
+    $('pl-d2').classList.toggle('on', DIM === 2); $('pl-d3').classList.toggle('on', DIM === 3);
   }
 
   cv.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, yaw, pitch, pan[0], pan[1]]; cv.setPointerCapture(e.pointerId); });
@@ -323,21 +325,42 @@ refine (1,0) (1,1) (0,1) (1,3)
   cv.addEventListener('pointerup', () => { drag = null; });
   cv.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(0.2, Math.min(8, zoom * Math.exp(-e.deltaY * 0.0015))); draw(); }, { passive: false });
 
-  const EX = [
-    { name: '2D: a lattice and points', src: 'L = lattice (2,1) (1,3) cell\np = (3,4)\nq = (-2,1)\nvector (1,-2) at (3,4)' },
-    { name: '2D: lattice and sublattice', src: 'lattice (1,0) (0,1) color=gray\nM = lattice (3,1) (1,2) cell\npoints (1,1) (2,1) (2,2) (3,2) (1,0)' },
-    { name: '2D: cones and their refinement', src: 'refine (1,0) (3,1) (1,1) (1,3) (0,1)\np = (4,2)' },
-    { name: '3D: a lattice', src: 'L = lattice (2,0,1) (0,2,1) (1,1,2) cell\np = (1,2,3)\nray (1,1,0)', range: 4 },
-    { name: '3D: a cone and its refinement', src: 'refine (1,0,0) (0,1,0) (0,0,1) (2,2,1) (1,3,3)\np = (3,2,2)', range: 4 },
-  ];
-  const sel = $('pl-ex');
-  EX.forEach((x, i) => { const o = document.createElement('option'); o.value = i; o.textContent = x.name; sel.appendChild(o); });
-  sel.onchange = () => { $('pl-src').value = EX[sel.value].src; $('pl-range').value = EX[sel.value].range || 6; zoom = 1; pan = [0, 0]; run(); };
+  // one example per dimension, using every kind of object
+  const EX = {
+    2: { range: 6, src: [
+      'L = lattice (2,1) (1,3) cell',
+      'p = (3,4)',
+      'points (-4,-1) (-5,-3)',
+      'vector (1,-2) at (3,4)',
+      'ray (-1,-2)',
+      'line (1,-1) at (0,-4)',
+      'segment (-5,4) (-2,2) color=black',
+      'cone (-1,1) (-3,1) color=purple',
+      'refine (1,0) (3,1) (1,1) (0,1)',
+    ].join('\n') },
+    3: { range: 4, src: [
+      'L = lattice (2,0,1) (0,2,1) (1,1,2) cell',
+      'p = (1,2,3)',
+      'points (-3,-2,1) (-2,-3,2)',
+      'vector (1,-1,1) at (1,2,3)',
+      'ray (-1,-1,0)',
+      'line (1,0,0) at (0,-3,-3)',
+      'segment (-3,3,-2) (-1,3,1) color=black',
+      'cone (-1,0,0) (0,-1,0) (0,0,-1) color=purple',
+      'refine (1,0,0) (0,1,0) (0,0,1) (2,2,1) (1,3,3)',
+    ].join('\n') },
+  };
+  function load(d) {
+    $('pl-src').value = EX[d].src; $('pl-range').value = EX[d].range;
+    zoom = 1; pan = [0, 0]; run();
+  }
+  $('pl-d2').onclick = () => load(2);
+  $('pl-d3').onclick = () => load(3);
   $('pl-go').onclick = run;
   $('pl-src').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) run(); });
   $('pl-grid').onchange = draw;
   $('pl-range').onchange = run;
-  $('pl-src').value = EX[0].src;
+  $('pl-src').value = EX[2].src; $('pl-range').value = EX[2].range;
   resize(); run();
 })();
 
