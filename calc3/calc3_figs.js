@@ -1220,6 +1220,88 @@ export const FIGS = {
    ============================================================ */
 Object.assign(FIGS, {
 
+  /* Ch 12, torque on a bolt.  A wrench grips a hex bolt whose axis is the z-axis.
+     r (red) runs from the bolt axis to the end of the handle, F (cyan) is the
+     push at the end of the handle, at angle theta from r.  theta sweeps a full
+     turn, so tau = r x F (purple, along the bolt axis) has length |r||F| sin(theta):
+     largest for a perpendicular push, zero when pushing along the handle, and
+     reversed when pushing the other way.  The wrench turns at a rate proportional
+     to tau, and the right-hand thread carries the bolt in the direction tau points
+     (counterclockwise from above loosens it, so it rises).  The dashed line is the
+     line of action of F, and the yellow segment is the moment arm |r| sin(theta). */
+  torqueWrench: scene => {
+    const s = new THREE.Group(); s.scale.setScalar(1.35); scene.add(s);   // enlarge the whole model
+    const R = 2.4, Fmag = 1.3, pitch = 0.35, zHead = 0.55;
+    const steel = new THREE.MeshPhongMaterial({color:0xa9b1ba, shininess:90});
+    const brass = new THREE.MeshPhongMaterial({color:0xc9a227, shininess:70});
+    // the surface the bolt is threaded into
+    const plate = new THREE.Mesh(new THREE.BoxGeometry(3.2, 3.2, 0.12),
+      new THREE.MeshPhongMaterial({color:0x5a6270, opacity:0.55, transparent:true}));
+    plate.position.z = -0.06; s.add(plate);
+    // bolt: hex head, shank, and a helical thread so the turning is visible
+    const bolt = new THREE.Group(); s.add(bolt);
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.36, 0.26, 6), brass);
+    head.rotation.x = Math.PI/2; head.position.z = zHead; bolt.add(head);
+    const shank = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 2.0, 24), brass);
+    shank.rotation.x = Math.PI/2; shank.position.z = zHead - 1.13; bolt.add(shank);
+    const th = []; for (let i=0;i<=200;i++){ const u=i/200*5*2*Math.PI; th.push(new THREE.Vector3(0.18*Math.cos(u), 0.18*Math.sin(u), zHead-0.2-u/(2*Math.PI)*pitch)); }
+    bolt.add(tubeCurve(th, 0x8a6d12, 0.025));
+    // wrench: a ring around the head and a flat handle along local +x
+    const wrench = new THREE.Group(); s.add(wrench);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.47, 0.1, 12, 6), steel);
+    ring.rotation.z = Math.PI/6; wrench.add(ring);
+    const handle = new THREE.Mesh(new THREE.BoxGeometry(R-0.5, 0.24, 0.1), steel);
+    handle.position.x = 0.5 + (R-0.5)/2 - 0.05; wrench.add(handle);
+    const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.5, 16),
+      new THREE.MeshPhongMaterial({color:0xb03a2e, shininess:30}));
+    grip.rotation.z = Math.PI/2; grip.position.x = R - 0.3; wrench.add(grip);
+    // vectors and labels, rebuilt each frame
+    const dyn = new THREE.Group(); s.add(dyn);
+    const lr = makeLabel('r', '#ff5555'), lF = makeLabel('F', '#46c8ff'), lt = makeLabel('τ', '#9a7bff');
+    s.add(lr); s.add(lF); s.add(lt);
+    const dashMat = new THREE.LineDashedMaterial({color:0x46c8ff, dashSize:0.12, gapSize:0.1, transparent:true, opacity:0.7});
+    const arcMat = new THREE.LineBasicMaterial({color:0xffe066});
+    const w = 2*Math.PI/9;            // theta makes one full turn every 9 s
+    const k = 0.9;                    // turning rate per unit of sin(theta)
+    scene.userData.tick = (tsec) => {
+      const theta = Math.PI/2 + w*tsec;               // start with a perpendicular push
+      const sn = Math.sin(theta);
+      const phi = (k/w)*Math.sin(w*tsec);             // integral of k sin(theta) dt, so it loops
+      const h = pitch*phi/(2*Math.PI);
+      bolt.rotation.z = phi; bolt.position.z = h;
+      wrench.rotation.z = phi; wrench.position.z = zHead + h;
+      while (dyn.children.length) { const c = dyn.children.pop(); if (c.geometry) c.geometry.dispose(); }
+      const z = zHead + h + 0.12;
+      const O = new THREE.Vector3(0, 0, z);
+      const er = new THREE.Vector3(Math.cos(phi), Math.sin(phi), 0);
+      const tip = O.clone().addScaledVector(er, R);
+      const eF = new THREE.Vector3(Math.cos(phi+theta), Math.sin(phi+theta), 0);
+      dyn.add(vectorArrow(O, tip, 0xff5555));
+      dyn.add(vectorArrow(tip, tip.clone().addScaledVector(eF, Fmag), 0x46c8ff));
+      lr.position.copy(O).addScaledVector(er, R*0.55).add(new THREE.Vector3(0,0,0.3));
+      lF.position.copy(tip).addScaledVector(eF, Fmag + 0.3);
+      // line of action of F, and the moment arm from the axis to it
+      const a = tip.clone().addScaledVector(eF, -4), b = tip.clone().addScaledVector(eF, 4);
+      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), dashMat); line.computeLineDistances(); dyn.add(line);
+      const foot = tip.clone().addScaledVector(eF, -R*Math.cos(theta));
+      if (Math.abs(sn) > 0.05) dyn.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([O, foot]), arcMat));
+      // signed angle from r to F, marked at the tip
+      const arc = []; const n = 24, span = Math.atan2(sn, Math.cos(theta));
+      for (let i=0;i<=n;i++){ const u=phi + span*i/n; arc.push(tip.clone().add(new THREE.Vector3(0.35*Math.cos(u), 0.35*Math.sin(u), 0))); }
+      dyn.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(arc), arcMat));
+      // torque along the bolt axis, length |r||F| sin(theta) (scaled)
+      const L = 0.75*R*Fmag*sn;
+      if (Math.abs(L) > 0.08) {
+        const ta = new THREE.ArrowHelper(new THREE.Vector3(0,0,Math.sign(L)), O, Math.abs(L), 0x9a7bff, 0.25, 0.14);
+        ta.traverse(o => { if (o.material) { o.material.depthTest = false; o.renderOrder = 10; } });   // visible through the bolt when tau points down
+        dyn.add(ta);
+      }
+      lt.visible = Math.abs(L) > 0.08;
+      lt.position.copy(O).add(new THREE.Vector3(0.3, 0, L + 0.25*Math.sign(L)));
+    };
+    scene.userData.tick(0);
+  },
+
   /* Ch 12, scalar triple product as a volume.  b, c span a base in the
      xy-plane, a is the slant edge.  Vol = |a·(b×c)| = (base area) times (height).
      The height of a animates so you can watch the volume grow and shrink. */

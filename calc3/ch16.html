@@ -50,6 +50,8 @@ window.MathJax = {
 
 <p><b>Examples.</b> The radial $\vec F = \langle x, y, z\rangle$ points straight out from the origin, like a source. The swirl $\vec F = \langle -y, x, 0\rangle$ circles the $z$-axis. The gradient field $\vec F = \nabla(xy) = \langle y, x, 0\rangle$ is conservative. The shear $\vec F = \langle y, 0, 0\rangle$ is not conservative.</p>
 
+<div class="fig-inline-canvas"><canvas data-fig="radial"></canvas></div>
+
 <p><b>Reading a potential off the picture.</b> A potential's level curves must cross the field at right angles, with $f$ increasing in the direction of $\vec F$. For the radial field $\langle x, y\rangle$ these curves are circles and $f = (x^2+y^2)/2$ works. For the swirl $\langle -y, x\rangle$ the curves crossing every arrow at a right angle are rays out of the origin, which is the first sign of trouble.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="potentialContours"></canvas></div>
@@ -171,13 +173,6 @@ $P = y^2$, $Q = 3xy$, so $Q_x - P_y = 3y - 2y = y$. In polar coordinates $\iint_
 </ol>
 
 </div>
-<div class="section"><h3>More interactive figures</h3>
-<div class="fig-grid">
-<div class="fig"><canvas data-fig="radial"></canvas></div>
-<div class="fig"><canvas data-fig="swirl"></canvas></div>
-<div class="fig"><canvas data-fig="gradField"></canvas></div>
-<div class="fig"><canvas data-fig="shear"></canvas></div>
-</div></div>
 <div class="section"><h3>Strategies</h3>
 
 <p><b>Conservative tests.</b> On a simply connected domain, $P_y = Q_x$ in $\mathbb R^2$, or $\nabla\times\vec F = \vec 0$ in $\mathbb R^3$, implies $\vec F$ is conservative.</p>

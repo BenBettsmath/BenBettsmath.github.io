@@ -95,15 +95,16 @@ window.MathJax = {
 </ul>
 <p><em>Why the length is an area.</em> Take $\vec a$ as the base of the parallelogram. The height is the component of $\vec b$ perpendicular to the base, $|\vec b|\sin\theta$, so base times height is $|\vec a||\vec b|\sin\theta$. Parallel vectors span no area, which is why their cross product is $\vec 0$.</p>
 
+<div class="fig-inline-canvas"><canvas data-fig="cross"></canvas></div>
+
 <p><b>Scalar triple product.</b> $\vec a \cdot (\vec b \times \vec c)$ is the determinant of the $3 \times 3$ matrix with rows $\vec a, \vec b, \vec c$. Its absolute value is the volume of the parallelepiped they span, base times height again. $\vec b \times \vec c$ has the base area as its length and points perpendicular to the base, so the dot with $\vec a$ multiplies that area by the height of $\vec a$ above the base. The triangle with sides $\vec a$ and $\vec b$ has area $\tfrac12 |\vec a \times \vec b|$.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="triangleArea3D"></canvas></div>
+<div class="fig-inline-canvas"><canvas data-fig="tripleProduct"></canvas></div><div class="fig-inline-canvas"><canvas data-fig="triangleArea3D"></canvas></div>
 
 <div class="pitfall"><div class="pitfall-name">Warning</div><p><b>Scalar versus vector.</b> $\vec a\cdot\vec b$ is a number and $\vec a\times\vec b$ is a vector. In the triple product $\vec a\cdot(\vec b\times\vec c)$ the cross product must be evaluated first, so the parentheses are essential. The grouping $(\vec a\cdot\vec b)\times\vec c$ is meaningless, since we can't cross a number with a vector.</p></div>
 <p><b>Torque.</b> A force $\vec F$ applied at the tip of the position vector $\vec r$ (from the pivot) has torque $\vec\tau = \vec r \times \vec F$, magnitude $|\vec r||\vec F|\sin\theta$ with $\theta$ the angle between $\vec r$ and $\vec F$, force times moment arm.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="tripleProduct"></canvas>
-</div>
+<div class="fig-inline-canvas"><canvas data-fig="torqueWrench"></canvas></div>
 </div>
 <div class="section"><h3>12.5 Equations of Lines and Planes</h3>
 
@@ -127,6 +128,8 @@ Symmetric form. $\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}.$
 
 <p><b>Distance from a point $P = (x_1, y_1, z_1)$ to the plane $ax + by + cz + d = 0$.</b> Pick any $Q_0$ on the plane. The distance is the absolute value of the scalar projection of $\overrightarrow{Q_0 P}$ onto the unit normal $\hat{\vec n} = \vec n/|\vec n|$.</p>
 <div class="formula">$D = \left|\overrightarrow{Q_0 P} \cdot \hat{\vec n}\right| = \dfrac{|a x_1 + b y_1 + c z_1 + d|}{\sqrt{a^2 + b^2 + c^2}}.$</div>
+
+<div class="fig-inline-canvas"><canvas data-fig="planeDist"></canvas></div>
 
 <p><b>Angle between planes</b> equals the angle between their normals, because turning a plane turns its normal by the same amount.</p>
 
@@ -195,12 +198,6 @@ The distance from $S$ is $D = |6(2)+10(0)+7(4)-50|/\sqrt{36+100+49} = |-10|/\sqr
   <li>Sketch the surface $z = y^2 - x^2$ and identify the quadric.</li>
 </ol>
 
-</div>
-<div class="section"><h3>More interactive figures</h3>
-<div class="fig-grid">
-<div class="fig"><canvas data-fig="cross"></canvas></div>
-<div class="fig"><canvas data-fig="planeDist"></canvas></div>
-</div>
 </div>
 <div class="section"><h3>Strategies</h3>
 

@@ -40,6 +40,8 @@
 .tm-mat .gone, .tm-mat td.gone { color: #C2560E; text-decoration: line-through; opacity: .65; background: #fdf1e7; }
 .tm-imgs { font-family: 'STIX Two Text', Georgia, serif; margin: .3em 0 .5em; line-height: 1.7; }
 .tm-id { font-family: 'STIX Two Text', Georgia, serif; color: #444; margin: .2em 0 .4em; }
+.rp2 { margin: 2.6em 0 1.4em; }
+.rp2 h2 { font-size: 1.25em; font-weight: 600; margin: 0 0 .6em; font-family: 'STIX Two Text', Georgia, serif; }
 </style>
 </head>
 <body>
@@ -87,6 +89,16 @@
         <div id="tm-cum"></div>
       </div>
     </div>
+  </div>
+  <div class="rp2">
+    <h2>A triangulation of &#8477;P<sup>2</sup></h2>
+    <div class="tm-bar">
+      <button id="rp-prev">&#9666;</button>
+      <button id="rp-next" class="on">&#9656;</button>
+      <button id="rp-replay">&#8635;</button>
+      <span id="rp-cap" class="tm-match"></span>
+    </div>
+    <div class="homcx-scene"><canvas id="rp-cv"></canvas></div>
   </div>
 </div>
 <footer>
@@ -688,6 +700,158 @@ function toggleNav() { document.getElementById("myTopnav").classList.toggle("res
   document.getElementById('tm-prev').onclick = () => go(step - 1, false);
   document.getElementById('tm-replay').onclick = () => go(step, true);
   resize(); go(0, false); requestAnimationFrame(draw);
+})();
+</script>
+<script>
+(function () {
+  // The 6-vertex triangulation of RP^2: a disk whose boundary circle carries the labels
+  // 0,1,2,0,1,2 (antipodal points identified), interior vertices 3,4,5, and 10 triangles.
+  const cv = document.getElementById('rp-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const C = {
+    ink: '#1E1E1E', soft: '#6B7280', rim: '#c9ccd0',
+    fill: 'rgba(0,122,134,0.15)', line: 'rgba(0,95,104,0.75)',
+    cur: 'rgba(214,100,20,0.32)', curLine: '#C2560E',
+    arc: { '01': '#2563C9', '12': '#1F8A5B', '20': '#7A4FBF' }
+  };
+  const LBL = [0, 1, 2, 0, 1, 2];                       // labels of the boundary points P0..P5
+  const ang = i => Math.PI / 2 + i * Math.PI / 3;       // P_i, counterclockwise from the top
+  // interior vertex 3 faces P1, 4 faces P3, 5 faces P5
+  const INNER = { 3: ang(1), 4: ang(3), 5: ang(5) };
+  // triangles in the order they are added: [interior vertices..., boundary points (indices into P)]
+  // a triangle on a boundary arc is {v, P_i, P_{i+1}}; a gap triangle is {v, w, P_i}
+  const TRI = [
+    { in: [3], arc: [0, 1] }, { in: [3], arc: [1, 2] }, { in: [3, 4], pt: 2 },
+    { in: [4], arc: [2, 3] }, { in: [4], arc: [3, 4] }, { in: [4, 5], pt: 4 },
+    { in: [5], arc: [4, 5] }, { in: [5], arc: [5, 0] }, { in: [5, 3], pt: 0 },
+  ];
+  const name = t => {
+    const vs = t.in.slice().concat(t.arc ? t.arc.map(i => LBL[i]) : [LBL[t.pt]]);
+    return vs.sort((a, b) => a - b).join('');
+  };
+  const NSTEP = 2 + TRI.length;                         // 0: circle, 1: triangle 345, 2..10: the rest
+
+  let W = 0, H = 0, dpr = 1, step = 0, t0 = null, u = 1, auto = false;
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const r = cv.getBoundingClientRect(); W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  }
+  window.addEventListener('resize', resize);
+
+  const geo = () => { const R = Math.min(W, H) * 0.36; return { cx: W / 2, cy: H / 2 + 6, R, r: R * 0.36 }; };
+  const P = (g, i) => [g.cx + g.R * Math.cos(ang(i)), g.cy - g.R * Math.sin(ang(i))];
+  const Q = (g, v) => [g.cx + g.r * Math.cos(INNER[v]), g.cy - g.r * Math.sin(INNER[v])];
+  function arcPts(g, i, j) {                           // counterclockwise arc from P_i to P_j
+    const a = ang(i); let b = ang(j); if (b <= a) b += 2 * Math.PI;
+    const out = []; for (let k = 0; k <= 24; k++) { const s = a + (b - a) * k / 24; out.push([g.cx + g.R * Math.cos(s), g.cy - g.R * Math.sin(s)]); }
+    return out;
+  }
+  function triPts(g, t) {
+    if (t.arc) return [Q(g, t.in[0])].concat(arcPts(g, t.arc[0], t.arc[1]));
+    return [Q(g, t.in[0]), Q(g, t.in[1]), P(g, t.pt)];
+  }
+  function poly(pts, fill, stroke, lw) {
+    ctx.beginPath(); pts.forEach((p, k) => k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw || 1.4; ctx.stroke(); }
+  }
+  function label(s, x, y, col, size) {
+    ctx.fillStyle = col; ctx.font = "italic " + (size || 18) + "px 'STIX Two Text', Georgia, serif";
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
+  }
+  function arrowOnArc(g, i, col) {                     // arrowhead at the middle of the arc P_i P_{i+1}
+    const s = ang(i) + Math.PI / 6, x = g.cx + g.R * Math.cos(s), y = g.cy - g.R * Math.sin(s);
+    const tx = -Math.sin(s), ty = -Math.cos(s);         // counterclockwise tangent in screen coordinates
+    const nx = -ty, ny = tx, L = 9;
+    ctx.fillStyle = col; ctx.beginPath();
+    ctx.moveTo(x + tx * L, y + ty * L);
+    ctx.lineTo(x - tx * L * 0.6 + nx * L * 0.6, y - ty * L * 0.6 + ny * L * 0.6);
+    ctx.lineTo(x - tx * L * 0.6 - nx * L * 0.6, y - ty * L * 0.6 - ny * L * 0.6);
+    ctx.closePath(); ctx.fill();
+  }
+
+  function caption() {
+    let s;
+    if (step === 0) s = 'Antipodal points of the circle are identified, so its boundary is 0&thinsp;1&thinsp;2 traversed twice';
+    else if (step === 1) s = 'Interior vertices 3, 4, 5 and the triangle {3,&thinsp;4,&thinsp;5}';
+    else if (step < NSTEP - 1) s = 'Add {' + name(TRI[step - 2]).split('').join(',&thinsp;') + '}';
+    else s = 'Add {' + name(TRI[step - 2]).split('').join(',&thinsp;') + '}. &nbsp;6 vertices, 15 edges, 10 triangles, &chi; = 1';
+    document.getElementById('rp-cap').innerHTML = s;
+  }
+
+  function draw(now) {
+    requestAnimationFrame(draw);
+    if (!W) return;
+    if (t0 !== null) {
+      u = Math.min(1, (now - t0) / 700);
+      if (u >= 1) {
+        t0 = null;
+        if (auto && step < NSTEP - 1) setTimeout(() => { if (auto) go(step + 1, true); }, 500);
+        else auto = false;
+      }
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const g = geo();
+    const e = x => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+    const fade = e(u);
+    // antipodal pairs, faint dashed diameters (only before the interior is filled)
+    if (step <= 1) {
+      ctx.save(); ctx.globalAlpha = step === 0 ? 1 : 1 - fade;
+      ctx.setLineDash([4, 5]); ctx.strokeStyle = C.rim; ctx.lineWidth = 1;
+      for (let i = 0; i < 3; i++) { const a = P(g, i), b = P(g, i + 3); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
+      ctx.restore();
+    }
+    // triangles added so far
+    if (step >= 1) {
+      const T = [Q(g, 3), Q(g, 4), Q(g, 5)];
+      ctx.save(); if (step === 1) ctx.globalAlpha = fade;
+      poly(T, step === 1 ? C.cur : C.fill, step === 1 ? C.curLine : C.line, step === 1 ? 2.2 : 1.4);
+      ctx.restore();
+    }
+    for (let k = 0; k < step - 1; k++) {
+      const t = TRI[k], cur = k === step - 2;
+      ctx.save(); if (cur) ctx.globalAlpha = fade;
+      poly(triPts(g, t), cur ? C.cur : C.fill, cur ? C.curLine : C.line, cur ? 2.2 : 1.4);
+      ctx.restore();
+    }
+    // boundary circle: each arc colored by its label pair, with an arrow from the smaller label around
+    for (let i = 0; i < 6; i++) {
+      const key = String(LBL[i]) + String(LBL[(i + 1) % 6]);
+      const col = C.arc[key];
+      const pts = arcPts(g, i, (i + 1) % 6);
+      ctx.beginPath(); pts.forEach((p, k) => k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]));
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.stroke();
+      arrowOnArc(g, i, col);
+    }
+    // vertices and labels
+    for (let i = 0; i < 6; i++) {
+      const p = P(g, i);
+      ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(p[0], p[1], 4.5, 0, 7); ctx.fill();
+      label(String(LBL[i]), g.cx + (g.R + 22) * Math.cos(ang(i)), g.cy - (g.R + 22) * Math.sin(ang(i)), C.ink, 20);
+    }
+    if (step >= 1) {
+      ctx.save(); if (step === 1) ctx.globalAlpha = fade;
+      for (const v of [3, 4, 5]) {
+        const q = Q(g, v), d = Math.hypot(q[0] - g.cx, q[1] - g.cy);
+        ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(q[0], q[1], 4.5, 0, 7); ctx.fill();
+        label(String(v), g.cx + (q[0] - g.cx) * (d + 18) / d, g.cy + (q[1] - g.cy) * (d + 18) / d, C.ink, 19);
+      }
+      ctx.restore();
+    }
+  }
+
+  function go(k, animate) {
+    step = Math.max(0, Math.min(NSTEP - 1, k));
+    if (animate) { t0 = performance.now(); u = 0; } else { t0 = null; u = 1; }
+    caption();
+  }
+  document.getElementById('rp-next').onclick = () => { auto = false; if (t0 !== null) { t0 = null; u = 1; } else if (step < NSTEP - 1) go(step + 1, true); };
+  document.getElementById('rp-prev').onclick = () => { auto = false; go(step - 1, false); };
+  document.getElementById('rp-replay').onclick = () => { auto = true; go(0, false); setTimeout(() => { if (auto) go(1, true); }, 900); };
+  resize(); setTimeout(resize, 60); setTimeout(resize, 350);
+  go(0, false); requestAnimationFrame(draw);
 })();
 </script>
 </body>
