@@ -24,3 +24,6 @@ calc3/homework/
 code/cx3d/
 
 lichess_db_puzzle.csv*
+
+# Past qual exams: kept locally, not published
+algqual/quals/
