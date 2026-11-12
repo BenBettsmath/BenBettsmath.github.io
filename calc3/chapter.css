@@ -21,7 +21,6 @@
 .formula { background: #fbfbfb; padding: 0.4em 0.8em; border-left: 3px solid #88a; margin: 0.6em 0; }
 ul.tight { margin: 0.3em 0; } ul.tight li { margin-bottom: 0.15em; }
 .chapter-card { display: block; padding: 1em 1.2em; margin: 0.6em 0; border: 1px solid #ccc; border-radius: 6px; background: #fafafa; text-decoration: none; color: inherit; }
-.chapter-card:hover { background: #eef3fa; }
 .chapter-card h4 { margin: 0; }
 .chapter-card p { margin: 0; color: #444; }
 .thm, .defn, .prop, .keybox, .pitfall, .note {
@@ -66,5 +65,4 @@ ul.tight { margin: 0.3em 0; } ul.tight li { margin-bottom: 0.15em; }
 .fig-fold > summary::-webkit-details-marker { display: none; }
 .fig-fold > summary::before { content: '▸ '; }
 .fig-fold[open] > summary::before { content: '▾ '; }
-.fig-fold > summary:hover { background: #eef3fa; }
 .fig-fold > .fig-inline-canvas { margin: 0.8em auto; }

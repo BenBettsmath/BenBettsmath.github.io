@@ -13,10 +13,8 @@
     .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
     .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
     .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
-    .toc a:hover { border-bottom-color: #007A86; }
     .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
     .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; }
-    .problem:hover { border-left-color: #007A86; box-shadow: 0 4px 16px rgba(25,35,60,0.08); }
     .problem .stmt { margin-bottom: 0.7em; color: #2a2d33; }
     .problem .stmt b { color: #007A86; font-weight: 700; letter-spacing: 0.01em; }
     .sol { margin-left: 0.2em; padding-left: 0.9em; border-left: 2px solid #eef0f3; }
@@ -100,7 +98,7 @@
   <h3 id="sec1" class="chapter">1. Formulas to know</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 1(a).</b> Derivative and graph of $\sin^{-1}(x)$.</p>
+    <p class="stmt"><b>Problem 1(a).</b> State the derivative of $\sin^{-1}(x)$ and sketch its graph.</p>
     </div>
 
   <div class="problem">
@@ -383,7 +381,7 @@
   <h3 id="sec14" class="chapter">14. Numerical integration</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 14(a).</b> $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.</p>
+    <p class="stmt"><b>Problem 14(a).</b> For $\int_0^1(x^3-3x^2+2x+1)\,dx$, decide which rules give overestimates and which give underestimates, then compute $M_4$ and $T_4$.</p>
     </div>
 
   <div class="problem">
@@ -406,7 +404,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 15(c).</b> Monotonic? Bounded? $a_n=1+\frac{(-1)^n}{n}$ and $b_n=\frac{n}{n+1}$ ($n\ge1$).</p>
+    <p class="stmt"><b>Problem 15(c).</b> Is each sequence monotonic? Is it bounded? $a_n=1+\frac{(-1)^n}{n}$ and $b_n=\frac{n}{n+1}$ ($n\ge1$).</p>
     </div>
 
   <div class="problem">
@@ -452,7 +450,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 17(d).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+k)\right]$, $k$ a positive integer, $\lim f(n)=L$</p>
+    <p class="stmt"><b>Problem 17(d).</b> $\sum_{n=1}^\infty\left[f(n)-f(n+k)\right]$, where $k$ is a positive integer and $\lim f(n)=L$</p>
     </div>
 
   <div class="problem">
@@ -567,7 +565,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 22(f).</b> $a_n=\frac1n$ for $n$ odd, $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?</p>
+    <p class="stmt"><b>Problem 22(f).</b> Let $a_n=\frac1n$ for $n$ odd and $a_n=\frac1{n^2}$ for $n$ even. Can you use the AST on $\sum(-1)^na_n$?</p>
     </div>
 
   <!-- ============================================================ -->
@@ -643,7 +641,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 26(d).</b> Center, ROC, IOC: $\sum_{n=1}^\infty\frac{2^n(x-3)^n}{n^2}$</p>
+    <p class="stmt"><b>Problem 26(d).</b> Find the center, ROC, and IOC of $\sum_{n=1}^\infty\frac{2^n(x-3)^n}{n^2}$.</p>
     </div>
 
   <!-- ============================================================ -->
@@ -658,7 +656,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 27(c).</b> Find the function that $\sum_{n=2}^\infty2n(n-1)x^n$ represents.</p>
+    <p class="stmt"><b>Problem 27(c).</b> Find the function whose Maclaurin series is $\sum_{n=2}^\infty2n(n-1)x^n$.</p>
     </div>
 
   <div class="problem">
@@ -677,15 +675,15 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 28(b).</b> Degree 2 Taylor polynomial of $\sqrt x$ at $a=9$.</p>
+    <p class="stmt"><b>Problem 28(b).</b> Find the degree 2 Taylor polynomial of $\sqrt x$ at $a=9$.</p>
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 28(c).</b> Degree 3 Taylor polynomial of $\cos x$ at $a=\frac{\pi}{3}$.</p>
+    <p class="stmt"><b>Problem 28(c).</b> Find the degree 3 Taylor polynomial of $\cos x$ at $a=\frac{\pi}{3}$.</p>
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 28(d).</b> Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
+    <p class="stmt"><b>Problem 28(d).</b> Find the Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
     </div>
 
   <div class="problem">
@@ -762,11 +760,11 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 31(d).</b> Euler's method with $h=0.5$ for $y'=x+y$, $y(0)=1$, to approximate $y(1)$. Over or under estimate?</p>
+    <p class="stmt"><b>Problem 31(d).</b> Use Euler's method with $h=0.5$ for $y'=x+y$, $y(0)=1$, to approximate $y(1)$. Is it an overestimate or an underestimate?</p>
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 31(e).</b> Euler's method with $h=-1$ for $y'=y-x$, $y(1)=3$, to approximate $y(-1)$.</p>
+    <p class="stmt"><b>Problem 31(e).</b> Use Euler's method with $h=-1$ for $y'=y-x$, $y(1)=3$, to approximate $y(-1)$.</p>
     </div>
 
   <div class="problem">
@@ -786,7 +784,7 @@
     </div>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 31(j).</b> Logistic: $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Carrying capacity, equilibria, growth, and $P(t)$.</p>
+    <p class="stmt"><b>Problem 31(j).</b> Consider the logistic equation $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Find the carrying capacity and the equilibria, describe the growth, and find $P(t)$.</p>
     </div>
 
 </div>

@@ -13,10 +13,8 @@
     .toc ol { columns: 14em; column-gap: 2.2em; margin: 0; padding-left: 2em; }
     .toc li { break-inside: avoid; padding: 0.18em 0; color: #9aa5ab; font-variant-numeric: tabular-nums; }
     .toc a { color: #007A86; text-decoration: none; border-bottom: 1px solid transparent; }
-    .toc a:hover { border-bottom-color: #007A86; }
     .lede { font-style: italic; color: #3a4047; background: #f6f8f9; border-left: 3px solid #9fc4c9; padding: 0.7em 1em; border-radius: 5px; margin-bottom: 1.4em; }
     .problem { margin: 1.5em 0; padding: 0.9em 1.2em 1em; border: 1px solid #e6e8ec; border-left: 3px solid #c4ccd4; border-radius: 8px; background: #fcfcfd; box-shadow: 0 2px 10px rgba(25,35,60,0.045); transition: border-color 0.15s, box-shadow 0.15s; }
-    .problem:hover { border-left-color: #007A86; box-shadow: 0 4px 16px rgba(25,35,60,0.08); }
     .problem .stmt { margin-bottom: 0.7em; color: #2a2d33; }
     .problem .stmt b { color: #007A86; font-weight: 700; letter-spacing: 0.01em; }
     .sol { margin-left: 0.2em; padding-left: 0.9em; border-left: 2px solid #eef0f3; }
@@ -105,7 +103,7 @@
     <div class="sol">
       <p>Let $f$ be a 1-1 differentiable function with inverse $f^{-1}$, and let $a$ be in the domain of $f^{-1}$. If $f'(f^{-1}(a))\neq 0$, then $f^{-1}$ is differentiable at $a$ and
 \[ (f^{-1})'(a)=\frac{1}{f'(f^{-1}(a))}. \]
-The tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, reflected across $y=x$ is the tangent line to $f^{-1}$ at $(a,b)$, and reflecting swaps rise and run.</p>
+Reflecting the tangent line to $f$ at $(b,a)$, where $b=f^{-1}(a)$, across $y=x$ gives the tangent line to $f^{-1}$ at $(a,b)$, and reflecting swaps rise and run.</p>
     </div>
   </div>
 
@@ -128,7 +126,7 @@ At $x=0$, $y=1$, so $y'(0)=4+1-\frac32=\frac72$.</p>
     <p class="stmt"><b>Problem 3(c).</b> Let $f(x)=3-e^{-x}$. Find the domain and range of $f$, find $f^{-1}(x)$, and state the domain and range of $f^{-1}$. Does the graph of $f$ have a horizontal asymptote?</p>
     <div class="sol">
       <p>$f$ is defined for every $x$, so the domain is $(-\infty,\infty)$. The values of $e^{-x}$ fill $(0,\infty)$, so the range of $f$ is $(-\infty,3)$.</p>
-      <p>Inverse: set $y=3-e^{-x}$ and solve for $x$. Then $e^{-x}=3-y$, so $x=-\ln(3-y)$. Swapping names,
+      <p>For the inverse, set $y=3-e^{-x}$ and solve for $x$. Then $e^{-x}=3-y$, so $x=-\ln(3-y)$. Swapping $x$ and $y$,
 \[ f^{-1}(x)=-\ln(3-x), \]
 with domain $(-\infty,3)$ (the range of $f$) and range $(-\infty,\infty)$ (the domain of $f$).</p>
       <p>As $x\to\infty$, $e^{-x}\to0$ so $f(x)\to3$. The line $y=3$ is a horizontal asymptote.</p>
@@ -141,7 +139,7 @@ with domain $(-\infty,3)$ (the range of $f$) and range $(-\infty,\infty)$ (the d
   <div class="problem">
     <p class="stmt"><b>Problem 4(c).</b> Find the equation of the tangent line to $y=2\tan^{-1}(x^2)$ at $x=1$.</p>
     <div class="sol">
-      <p>The point is $y(1)=2\tan^{-1}(1)=\frac{\pi}{2}$. The slope is
+      <p>The point has $y(1)=2\tan^{-1}(1)=\frac{\pi}{2}$. The slope is
 \[ y'=2\cdot\frac{2x}{1+x^4}, \qquad y'(1)=2. \]
 So the tangent line is $y=\frac{\pi}{2}+2(x-1)$.</p>
     </div>
@@ -164,7 +162,7 @@ So the tangent line is $y=\frac{\pi}{2}+2(x-1)$.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 6(c).</b> Let $f(x)=x+e^x$. Find the equation of the tangent line to the graph of $f^{-1}$ at $x=1$.</p>
     <div class="sol">
-      <p>$f(0)=0+1=1$, so $f^{-1}(1)=0$ and the point is $(1,0)$. $f'(x)=1+e^x$, so $(f^{-1})'(1)=\frac{1}{f'(0)}=\frac12$. The tangent line is
+      <p>$f(0)=0+1=1$, so $f^{-1}(1)=0$ and the point is $(1,0)$. $f'(x)=1+e^x$, so the Inverse Function Theorem gives $(f^{-1})'(1)=\frac{1}{f'(0)}=\frac12$. The tangent line is
 \[ y=\tfrac12(x-1). \]</p>
     </div>
   </div>
@@ -175,7 +173,7 @@ So the tangent line is $y=\frac{\pi}{2}+2(x-1)$.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 7(b).</b> $\lim_{x\to0^+}(1+\sin(2x))^{\cot x}$</p>
     <div class="sol">
-      <p>The form $1^\infty$. Let $y$ be the expression, so $\ln y=\cot x\,\ln(1+\sin 2x)=\dfrac{\ln(1+\sin2x)}{\tan x}$, the form $\frac00$.
+      <p>This has the form $1^\infty$. Let $y$ be the expression, so $\ln y=\cot x\,\ln(1+\sin 2x)=\dfrac{\ln(1+\sin2x)}{\tan x}$, which has the form $\frac00$.
 \[ \lim_{x\to0^+}\frac{\ln(1+\sin2x)}{\tan x}\overset{H}{=}\lim_{x\to0^+}\frac{\frac{2\cos 2x}{1+\sin2x}}{\sec^2x}=\frac{2}{1}=2. \]
 So the limit is $e^2$.</p>
     </div>
@@ -198,7 +196,7 @@ So the limit is $e^2$.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 9(b).</b> $\int_0^\pi e^x\sin(x)\,dx$</p>
     <div class="sol">
-      <p>Call the antiderivative $I=\int e^x\sin x\,dx$. Parts with $u=\sin x$, $dv=e^x\,dx$, then again with $u=\cos x$, $dv=e^x\,dx$:
+      <p>Call the antiderivative $I=\int e^x\sin x\,dx$. Integrate by parts with $u=\sin x$, $dv=e^x\,dx$, then again with $u=\cos x$, $dv=e^x\,dx$:
 \[ I=e^x\sin x-\int e^x\cos x\,dx=e^x\sin x-e^x\cos x-I. \]
 So $I=\frac{e^x(\sin x-\cos x)}{2}+C$, and
 \[ \int_0^\pi e^x\sin x\,dx=\frac{e^\pi(0+1)}{2}-\frac{1\cdot(0-1)}{2}=\frac{e^\pi+1}{2}. \]</p>
@@ -211,7 +209,7 @@ So $I=\frac{e^x(\sin x-\cos x)}{2}+C$, and
   <div class="problem">
     <p class="stmt"><b>Problem 10(c).</b> $\int\tan^2(x)\sec^4(x)\,dx$</p>
     <div class="sol">
-      <p>The power of $\sec$ is even, so save $\sec^2x$ and convert the other $\sec^2x=1+\tan^2x$. Let $u=\tan x$, $du=\sec^2x\,dx$.
+      <p>The power of $\sec$ is even, so save $\sec^2x$ and rewrite the other factor as $\sec^2x=1+\tan^2x$. Let $u=\tan x$, $du=\sec^2x\,dx$.
 \[ \int\tan^2x(1+\tan^2x)\sec^2x\,dx=\int(u^2+u^4)\,du=\frac{\tan^3x}{3}+\frac{\tan^5x}{5}+C. \]</p>
     </div>
   </div>
@@ -235,7 +233,7 @@ since $\sin\theta=\frac{\sqrt{x^2-1}}{x}$ from the triangle with hypotenuse $x$ 
   <div class="problem">
     <p class="stmt"><b>Problem 12(c).</b> $\int\frac{3x^2-x+8}{x^3+4x}\,dx$</p>
     <div class="sol">
-      <p>$x^3+4x=x(x^2+4)$ with $x^2+4$ irreducible. Write $\frac{3x^2-x+8}{x(x^2+4)}=\frac Ax+\frac{Bx+D}{x^2+4}$, so $3x^2-x+8=A(x^2+4)+(Bx+D)x$. At $x=0$, $A=2$. Matching $x^2$: $3=A+B$, so $B=1$. Matching $x$: $D=-1$.
+      <p>We have $x^3+4x=x(x^2+4)$ with $x^2+4$ irreducible. Write $\frac{3x^2-x+8}{x(x^2+4)}=\frac Ax+\frac{Bx+D}{x^2+4}$, so $3x^2-x+8=A(x^2+4)+(Bx+D)x$. At $x=0$, $A=2$. Matching coefficients of $x^2$: $3=A+B$, so $B=1$. Matching coefficients of $x$: $D=-1$.
 \[ \int\left(\frac2x+\frac{x}{x^2+4}-\frac{1}{x^2+4}\right)dx=2\ln|x|+\frac12\ln(x^2+4)-\frac12\tan^{-1}\left(\frac x2\right)+C. \]</p>
     </div>
   </div>
@@ -255,10 +253,10 @@ since $\sin\theta=\frac{\sqrt{x^2-1}}{x}$ from the triangle with hypotenuse $x$ 
   <h3 id="sec14" class="chapter">14. Numerical integration</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 14(a).</b> $\int_0^1(x^3-3x^2+2x+1)\,dx$: over or under estimates, then $M_4$ and $T_4$.</p>
+    <p class="stmt"><b>Problem 14(a).</b> For $\int_0^1(x^3-3x^2+2x+1)\,dx$, decide which rules give overestimates and which give underestimates, then compute $M_4$ and $T_4$.</p>
     <div class="sol">
-      <p>Let $f(x)=x^3-3x^2+2x+1$. Then $f''(x)=6x-6&lt;0$ on $[0,1)$, so $f$ is concave down. A concave down graph lies above its chords and below its tangent lines, so the trapezoid rule underestimates and the midpoint rule overestimates. $f'(x)=3x^2-6x+2$ changes sign at $x=1-\frac{1}{\sqrt3}$, so $f$ is not monotonic on $[0,1]$, and the left and right endpoint rules are not determined by this reasoning.</p>
-      <p>With $\Delta x=\frac14$, $M_4=\frac14\bigl(f(\tfrac18)+f(\tfrac38)+f(\tfrac58)+f(\tfrac78)\bigr)=\frac{161}{128}\approx1.258$ and $T_4=\frac18\bigl(f(0)+2f(\tfrac14)+2f(\tfrac12)+2f(\tfrac34)+f(1)\bigr)=\frac{79}{64}\approx1.234$. The exact value is $\frac14-1+1+1=\frac54$, between them as predicted.</p>
+      <p>Let $f(x)=x^3-3x^2+2x+1$. Then $f''(x)=6x-6&lt;0$ on $[0,1)$, so $f$ is concave down. A concave down graph lies above its chords and below its tangent lines, so the trapezoid rule underestimates and the midpoint rule overestimates. $f'(x)=3x^2-6x+2$ changes sign at $x=1-\frac{1}{\sqrt3}$, so $f$ is not monotonic on $[0,1]$, and this reasoning does not determine whether the left and right endpoint rules overestimate or underestimate.</p>
+      <p>With $\Delta x=\frac14$, $M_4=\frac14\bigl(f(\tfrac18)+f(\tfrac38)+f(\tfrac58)+f(\tfrac78)\bigr)=\frac{161}{128}\approx1.258$ and $T_4=\frac18\bigl(f(0)+2f(\tfrac14)+2f(\tfrac12)+2f(\tfrac34)+f(1)\bigr)=\frac{79}{64}\approx1.234$. The exact value is $\frac14-1+1+1=\frac54$, which lies between them as predicted.</p>
     </div>
   </div>
 
@@ -290,7 +288,7 @@ Since $\frac{27}{2n}\to0$, the Squeeze Theorem gives $\frac{3^n}{n!}\to0$.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 17(a).</b> $\sum_{n=2}^\infty\frac{1}{n^2-1}$</p>
     <div class="sol">
-      <p>Partial fractions: $\frac{1}{n^2-1}=\frac12\left(\frac{1}{n-1}-\frac{1}{n+1}\right)$. In the partial sum $s_N=\sum_{n=2}^N$, everything cancels except the first two positive terms and the last two negative ones.
+      <p>By partial fractions, $\frac{1}{n^2-1}=\frac12\left(\frac{1}{n-1}-\frac{1}{n+1}\right)$. In the partial sum $s_N=\sum_{n=2}^N$, everything cancels except the first two positive terms and the last two negative ones.
 \[ s_N=\frac12\left(1+\frac12-\frac1N-\frac1{N+1}\right)\to\frac12\cdot\frac32=\frac34. \]</p>
     </div>
   </div>
@@ -314,7 +312,7 @@ Since $\frac{27}{2n}\to0$, the Squeeze Theorem gives $\frac{3^n}{n!}\to0$.</p>
     <div class="sol">
       <p>$f(x)=\frac{1}{x(\ln x)^2}$ is positive, continuous, and decreasing on $[2,\infty)$. With $u=\ln x$,
 \[ \int_2^\infty\frac{dx}{x(\ln x)^2}=\lim_{t\to\infty}\left(\frac{1}{\ln2}-\frac{1}{\ln t}\right)=\frac{1}{\ln2}. \]
-The integral converges, so the series converges.</p>
+The integral converges, so the series converges by the Integral Test.</p>
     </div>
   </div>
 
@@ -359,7 +357,7 @@ so $b_n$ is decreasing for $n\ge4$. Dividing top and bottom by $\sqrt n$, $b_n=\
     <p class="stmt"><b>Problem 23(c).</b> $\sum_{n=1}^\infty\frac{n^24^n}{n!}$</p>
     <div class="sol">
       <p>\[ \frac{a_{n+1}}{a_n}=\frac{(n+1)^24^{n+1}}{(n+1)!}\cdot\frac{n!}{n^24^n}=\frac{4(n+1)}{n^2}\to0&lt;1. \]
-By the Ratio Test it converges.</p>
+By the Ratio Test the series converges.</p>
     </div>
   </div>
 
@@ -370,7 +368,7 @@ By the Ratio Test it converges.</p>
     <p class="stmt"><b>Problem 24(a).</b> $\sum_{n=1}^\infty\left(\frac{2n+1}{3n-1}\right)^n$</p>
     <div class="sol">
       <p>\[ \sqrt[n]{a_n}=\frac{2n+1}{3n-1}\to\frac23&lt;1. \]
-By the Root Test it converges.</p>
+By the Root Test the series converges.</p>
     </div>
   </div>
 
@@ -380,7 +378,7 @@ By the Root Test it converges.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 25(d).</b> $\sum_{n=1}^\infty\frac{(-1)^nn}{n^2+1}$</p>
     <div class="sol">
-      <p>Absolute values: $\frac{n}{n^2+1}$ compared with $\frac1n$ gives $\lim\frac{n^2}{n^2+1}=1$, so $\sum\frac{n}{n^2+1}$ diverges by the LCT. AST: $b_n=\frac{n}{n^2+1}\to0$, and $f(x)=\frac{x}{x^2+1}$ has $f'(x)=\frac{1-x^2}{(x^2+1)^2}\le0$ for $x\ge1$, so $b_n$ is decreasing. The series converges conditionally.</p>
+      <p>For absolute convergence, comparing $\frac{n}{n^2+1}$ with $\frac1n$ gives $\lim\frac{n^2}{n^2+1}=1$, so $\sum\frac{n}{n^2+1}$ diverges by the LCT. For the AST, $b_n=\frac{n}{n^2+1}\to0$, and $f(x)=\frac{x}{x^2+1}$ has $f'(x)=\frac{1-x^2}{(x^2+1)^2}\le0$ for $x\ge1$, so $b_n$ is decreasing and the series converges by the AST. So the series converges conditionally.</p>
     </div>
   </div>
 
@@ -390,7 +388,7 @@ By the Root Test it converges.</p>
   <div class="problem">
     <p class="stmt"><b>Problem 26(c).</b> $\sum_{n=1}^\infty\frac{(x+2)^n}{n\,4^n}$</p>
     <div class="sol">
-      <p>Ratio Test: $\left|\frac{a_{n+1}}{a_n}\right|=\frac{|x+2|}{4}\cdot\frac{n}{n+1}\to\frac{|x+2|}{4}$. So it converges for $|x+2|&lt;4$: center $-2$, $R=4$. At $x=2$: $\sum\frac1n$ diverges. At $x=-6$: $\sum\frac{(-1)^n}{n}$ converges by the AST. IOC $[-6,2)$.</p>
+      <p>Ratio Test: $\left|\frac{a_{n+1}}{a_n}\right|=\frac{|x+2|}{4}\cdot\frac{n}{n+1}\to\frac{|x+2|}{4}$. So it converges for $|x+2|&lt;4$, with center $-2$ and $R=4$. At $x=2$ the series is $\sum\frac1n$, which diverges. At $x=-6$ it is $\sum\frac{(-1)^n}{n}$, which converges by the AST. The IOC is $[-6,2)$.</p>
     </div>
   </div>
 
@@ -409,7 +407,7 @@ By the Root Test it converges.</p>
   <h3 id="sec28" class="chapter">28. Taylor and Maclaurin series</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 28(d).</b> Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
+    <p class="stmt"><b>Problem 28(d).</b> Find the Maclaurin series for $F(x)=\int_0^xe^{-t^2}\,dt$ and its ROC.</p>
     <div class="sol">
       <p>Substitute $-t^2$ into $e^u=\sum\frac{u^n}{n!}$, then integrate term by term.
 \[ e^{-t^2}=\sum_{n=0}^\infty\frac{(-1)^nt^{2n}}{n!}, \qquad F(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{n!\,(2n+1)}=x-\frac{x^3}{3}+\frac{x^5}{10}-\cdots. \]
@@ -423,7 +421,7 @@ The series for $e^u$ has $R=\infty$, and integrating does not change the radius,
   <div class="problem">
     <p class="stmt"><b>Problem 29(b).</b> Use the degree 3 Maclaurin polynomial $T_3(x)$ to approximate $\tan^{-1}(x)$ near $0$, and bound the error at $x=\frac12$ with the Alternating Series Estimation Theorem (ASE).</p>
     <div class="sol">
-      <p>$\tan^{-1}x=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots$, so $T_3(x)=x-\frac{x^3}{3}$ and $T_3(\frac12)=\frac12-\frac1{24}=\frac{11}{24}$. At $x=\frac12$ the series alternates with decreasing terms, so the error is at most the next term:
+      <p>$\tan^{-1}x=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots$, so $T_3(x)=x-\frac{x^3}{3}$ and $T_3(\frac12)=\frac12-\frac1{24}=\frac{11}{24}$. At $x=\frac12$ the series alternates with decreasing terms, so by the ASE the error is at most the next term:
 \[ |\tan^{-1}(\tfrac12)-T_3(\tfrac12)|\le\frac{(1/2)^5}{5}=\frac{1}{160}. \]</p>
     </div>
   </div>
@@ -442,7 +440,7 @@ The series for $e^u$ has $R=\infty$, and integrating does not change the radius,
   <h3 id="sec31" class="chapter">31. Differential equations</h3>
 
   <div class="problem">
-    <p class="stmt"><b>Problem 31(j).</b> Logistic: $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Carrying capacity, equilibria, growth, and $P(t)$.</p>
+    <p class="stmt"><b>Problem 31(j).</b> Consider the logistic equation $\frac{dP}{dt}=0.5P\left(1-\frac{P}{1000}\right)$, $P(0)=200$. Find the carrying capacity and the equilibria, describe the growth, and find $P(t)$.</p>
     <div class="sol">
       <p>(i) The carrying capacity is $M=1000$. The equilibria are $P=0$ and $P=1000$.</p>
       <p>(ii) For $0&lt;P&lt;1000$ both factors are positive, so $P$ increases. The rate $0.5P-\frac{0.5P^2}{1000}$ is a downward parabola in $P$ with roots $0$ and $1000$, so it is largest at the vertex $P=500$.</p>

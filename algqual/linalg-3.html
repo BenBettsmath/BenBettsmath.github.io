@@ -26,25 +26,25 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Nilpotent matrices.</strong> <span class="cite">(D&amp;F &sect;12.3)</span>
-  For an $n \times n$ matrix $A$:
+  Let $A$ be an $n \times n$ matrix over a field.
   <ul>
     <li>$A$ is nilpotent $\Leftrightarrow$ all eigenvalues are $0$ $\Leftrightarrow$ $\chi_A(x) = x^n$.</li>
-    <li>The nilpotency index $\nu(A) = \min\{k : A^k = 0\}$ satisfies $\nu(A) \leq n$ by Cayley-Hamilton.</li>
-    <li>$\nu(A)$ equals the size of the largest Jordan block in $A$. So how fast $A$ kills everything depends on its block structure, not just on the size of the matrix.</li>
+    <li>If $A$ is nilpotent, the nilpotency index $\nu(A) = \min\{k : A^k = 0\}$ satisfies $\nu(A) \leq n$, since Cayley-Hamilton gives $A^n = \chi_A(A) = 0$.</li>
+    <li>$\nu(A)$ equals the size of the largest Jordan block in the Jordan form of $A$. So the index depends on the block structure of $A$ and not only on the size of the matrix.</li>
   </ul>
   <em>The reason $\nu(A) \leq n$ is that $m_A$ divides $\chi_A = x^n$, so $m_A = x^k$ for some $k \leq n$.</em>
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> The strictly upper triangular $N$ with $1$s on the superdiagonal has $N^n = 0$ but $N^{n-1} \neq 0$, since each power pushes the $1$s one diagonal further up. Its index is $n$, the largest possible. It is a single $n \times n$ Jordan block.
+  <span class="thm-label">Example.</span> The $n \times n$ matrix $N$ with $1$s on the superdiagonal and zeros elsewhere has $N^n = 0$ but $N^{n-1} \neq 0$, since each power pushes the $1$s one diagonal further up. Its index is $n$, the largest possible. It is a single $n \times n$ Jordan block.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Non-example.</span> $\mathrm{diag}(1, 0)$ has eigenvalue $1$, so not nilpotent. The matrix $\mathrm{diag}(0, 0, N_2)$ with $N_2$ the $2 \times 2$ shift is nilpotent of index $2$, not $4$, because the largest Jordan block is size $2$.
+  <span class="thm-label">Non-example.</span> $\mathrm{diag}(1, 0)$ has eigenvalue $1$, so it is not nilpotent. The matrix $\mathrm{diag}(0, 0, N_2)$ with $N_2$ the $2 \times 2$ shift is nilpotent of index $2$, not $4$, because the largest Jordan block has size $2$.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Remark.</span> <strong>Index equals largest Jordan block size.</strong> For the matrix $J_3(0) \oplus J_2(0)$ (direct sum of two Jordan blocks), $\chi = x^5$, but $m = x^3$. We only need three powers, not five, since $J_3(0)^3 = 0$ and $J_2(0)^2 = 0$ already. Each block dies on its own schedule, so the biggest one decides when everything is zero.
+  <span class="thm-label">Remark.</span> <strong>Index equals largest Jordan block size.</strong> For the matrix $J_3(0) \oplus J_2(0)$ (direct sum of two Jordan blocks), $\chi = x^5$, but $m = x^3$. The third power is already zero, since $J_3(0)^3 = 0$ and $J_2(0)^2 = 0$. Each block becomes zero at its own index, so the largest block determines the index of the whole matrix.
 </div>
 
 

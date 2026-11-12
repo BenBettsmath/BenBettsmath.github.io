@@ -26,35 +26,35 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Characteristic and minimal polynomials.</strong> <span class="cite">(D&amp;F &sect;12.2)</span>
-  For $T \colon V \to V$ on an $n$-dimensional $k$-vector space:
+  Let $T \colon V \to V$ be a linear operator on an $n$-dimensional vector space $V$ over a field $k$.
   <ul>
     <li>$\chi_T(x) = \det(xI - T)$ is the characteristic polynomial, monic of degree $n$.</li>
-    <li>$m_T(x)$ is the minimal polynomial, the monic generator of the ideal of polynomials vanishing on $T$.</li>
+    <li>$m_T(x)$ is the minimal polynomial, the monic generator of the ideal of polynomials $f \in k[x]$ with $f(T) = 0$.</li>
     <li><strong>Cayley-Hamilton:</strong> $\chi_T(T) = 0$. So $m_T \mid \chi_T$, and they share the same irreducible factors (up to multiplicity).</li>
-    <li>$m_T$ is the largest invariant factor. Writing invariant factors as $a_1 \mid a_2 \mid \cdots \mid a_r$, their product is $\chi_T$.</li>
+    <li>Write the invariant factors of $T$, meaning those of $V$ as a $k[x]$-module with $x$ acting as $T$, as $a_1 \mid a_2 \mid \cdots \mid a_r$. Then $m_T$ is the largest invariant factor $a_r$, and the product of the invariant factors is $\chi_T$.</li>
   </ul>
   <em>So $m_T$ is the smallest polynomial that kills $T$, and $\chi_T$ also kills $T$ by Cayley-Hamilton, which is why one divides the other.</em>
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Example.</span> For the companion matrix of $f = x^3 + 2x + 1$, both $\chi$ and $m$ equal $f$. The companion matrix is built so that $f$ is the smallest polynomial that kills it. For $T = \mathrm{diag}(2, 2, 3)$, $\chi = (x-2)^2 (x - 3)$ but $m = (x - 2)(x - 3)$, because $T$ is diagonal, so $(T - 2)(T - 3) = 0$ already, even though $2$ shows up twice.
+  <span class="thm-label">Example.</span> For the companion matrix of $f = x^3 + 2x + 1$, both $\chi$ and $m$ equal $f$. The companion matrix is built so that $f$ is the smallest polynomial that kills it. For $T = \mathrm{diag}(2, 2, 3)$, $\chi = (x-2)^2 (x - 3)$ but $m = (x - 2)(x - 3)$, because $T$ is diagonal, so $(T - 2)(T - 3) = 0$ already, even though the eigenvalue $2$ appears twice.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Remark.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But stack two copies of $J_2(0)$ block-diagonally and $\chi$ stays $x^4$ while $m = x^2$. So the minimal polynomial only sees the largest Jordan block for each eigenvalue, while $\chi$ sees the total size.
+  <span class="thm-label">Remark.</span> A Jordan block $J_2(0) = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ has $\chi = x^2$ and $m = x^2$, so for a single Jordan block the polynomials coincide. But for the block diagonal matrix with two copies of $J_2(0)$, $\chi$ is $x^4$ while $m = x^2$. So the minimal polynomial only sees the largest Jordan block for each eigenvalue, while $\chi$ sees the total size.
 </div>
 
 <div class="thm-block prop">
   <span class="thm-label">Prop.</span> <strong>Trace and determinant from eigenvalues.</strong> <span class="cite">(D&amp;F &sect;12.3)</span>
-  $\mathrm{tr}(A) = \sum \lambda_i$ and $\det(A) = \prod \lambda_i$, summing and multiplying eigenvalues with multiplicity. Trace is cyclic, so $\mathrm{tr}(AB) = \mathrm{tr}(BA)$. Thus $\mathrm{tr}(AB - BA) = 0$ always.
+  Let $A$ be an $n \times n$ matrix over a field $k$ with eigenvalues $\lambda_1, \ldots, \lambda_n$ in an algebraic closure of $k$, listed with multiplicity. Then $\mathrm{tr}(A) = \sum \lambda_i$ and $\det(A) = \prod \lambda_i$. Trace is cyclic, meaning $\mathrm{tr}(AB) = \mathrm{tr}(BA)$ for all $n \times n$ matrices $A$ and $B$ over $k$. Thus $\mathrm{tr}(AB - BA) = 0$.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Remark.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces: $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true over $\mathbb{C}$), there are no $A, B$ with $AB - BA = I$. This is why the Heisenberg relation from quantum mechanics needs infinite-dimensional spaces, and it shows up on quals a lot.
+  <span class="thm-label">Remark.</span> <strong>Why $AB - BA \neq I$ in finite dimension.</strong> Taking traces, $\mathrm{tr}(AB - BA) = 0$ but $\mathrm{tr}(I_n) = n$. So if $\mathrm{char}(k) \nmid n$ (which is always true over $\mathbb{C}$), there are no $n \times n$ matrices $A, B$ over $k$ with $AB - BA = I$. This is why the Heisenberg relation from quantum mechanics needs infinite-dimensional spaces. This appears often on quals.
 </div>
 
 <div class="thm-block ex">
-  <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Compute $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. So over $k[x]$ the commutator relation works. This doesn't contradict the above, since there's no trace on all operators of an infinite-dimensional space, so the trace argument doesn't go through.
+  <span class="thm-label">Counterexample in infinite dimension.</span> Let $V = k[x]$ with $u \colon p \mapsto xp$ (multiply by $x$) and $v \colon p \mapsto p'$ (formal derivative). Then $(uv - vu)(p) = x p' - (xp)' = x p' - p - xp' = -p$, so $uv - vu = -\mathrm{id}$. So on $k[x]$ the commutator relation holds. This doesn't contradict the trace argument for $n \times n$ matrices. There is no trace defined on all operators of an infinite-dimensional space, so the trace argument does not apply.
 </div>
 
 <div class="part-nav"><a href="modules.html">&larr; Previous part: Module Theory</a><a href="linalg.html">Linear Algebra contents</a><a href="linalg-2.html">Rational canonical form &rarr;</a></div>

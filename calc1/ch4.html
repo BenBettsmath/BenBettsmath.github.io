@@ -31,15 +31,15 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 4 · Integrals</h2>
 <div class="chapter-nav"><a href="ch3.html">← previous</a><a href="outline.html">outline</a><a href="ch5.html">next →</a></div>
-<p>The second half of calculus. Area under a curve, and distance traveled from a velocity, are both limits of sums of thin rectangles. That limit is the definite integral. The Fundamental Theorem of Calculus then says integrals and derivatives undo each other, so antiderivatives from Chapter 3 compute areas exactly.</p>
+<p>This chapter begins the second half of calculus. The area under a curve and the distance traveled at a given velocity are both limits of sums of areas of thin rectangles. That limit is the definite integral. The Fundamental Theorem of Calculus then says that integration and differentiation are inverse processes, so the antiderivatives of Chapter 3 compute areas exactly.</p>
 <div class="section"><h3>4.1 Areas and Distances</h3>
 
 <p class="part"><span class="dimtag">Geometry</span>To find the area of the region under $y = f(x) \ge 0$ from $x = a$ to $x = b$, cut $[a, b]$ into $n$ subintervals of equal width</p>
 <div class="formula">$\Delta x = \dfrac{b - a}{n}, \qquad \text{with endpoints } x_i = a + i\,\Delta x \quad (i = 0, 1, \ldots, n).$</div>
-<p>Over the $i$th subinterval $[x_{i - 1}, x_i]$ stand a rectangle of width $\Delta x$ whose height is $f(x_i^*)$ for a chosen <b>sample point</b> $x_i^*$ in that subinterval. The total area of the rectangles is</p>
+<p>Over the $i$th subinterval $[x_{i - 1}, x_i]$ draw a rectangle of width $\Delta x$ whose height is $f(x_i^*)$ for a chosen <b>sample point</b> $x_i^*$ in that subinterval. The total area of the rectangles is</p>
 <div class="formula">$\displaystyle\sum_{i = 1}^{n} f(x_i^*)\,\Delta x = f(x_1^*)\Delta x + f(x_2^*)\Delta x + \cdots + f(x_n^*)\Delta x.$</div>
-<p>Here $\sum$ (sigma) means "add up", over $i$ from $1$ to $n$. Common sample points: the <b>left endpoint</b> $x_i^* = x_{i - 1}$ (sum $L_n$), the <b>right endpoint</b> $x_i^* = x_i$ (sum $R_n$), and the <b>midpoint</b> $x_i^* = \bar x_i = \tfrac12(x_{i - 1} + x_i)$ (sum $M_n$).</p>
-<p>The area $A$ under the curve is the limit of these sums as $n \to \infty$. <em>Why.</em> Thinner rectangles waste less: the error is a collection of slivers between the curve and the rectangle tops, and their total shrinks to $0$ (for continuous $f$).</p>
+<p>Here $\sum$ (sigma) means "add up", over $i$ from $1$ to $n$. Common choices of sample point are the <b>left endpoint</b> $x_i^* = x_{i - 1}$ (sum $L_n$), the <b>right endpoint</b> $x_i^* = x_i$ (sum $R_n$), and the <b>midpoint</b> $x_i^* = \bar x_i = \tfrac12(x_{i - 1} + x_i)$ (sum $M_n$).</p>
+<p>The area $A$ under the curve is the limit of these sums as $n \to \infty$. <em>Why.</em> Thinner rectangles give a smaller error. The error is the total area of the thin regions between the curve and the tops of the rectangles, and when $f$ is continuous on $[a, b]$ it approaches $0$.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="riemann"></canvas><div class="fig-cap"><b>Rectangles approaching the area.</b> $f(x) = \tfrac{x^2}{4} + 1$ on $[0, 4]$. Since $f$ is increasing, left sums are too small and right sums too big. The midpoint sum is close even for small $n$. All three approach $\tfrac{28}{3}$.</div></div>
 
@@ -47,36 +47,36 @@ window.MathJax = {
 
 <p><b>Distance.</b> If an object moves with velocity $v(t) \ge 0$, on the $i$th of $n$ time intervals of length $\Delta t = \tfrac{b - a}{n}$ it travels about $v(t_i^*)\,\Delta t$, with $t_i^*$ a sample time in that interval (speed times time, treating the speed as constant). So the distance traveled from $t = a$ to $t = b$ is $\displaystyle\lim_{n \to \infty}\sum_{i = 1}^n v(t_i^*)\,\Delta t$, the area under the velocity graph.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>With $n$ rectangles there are $n + 1$ endpoints $x_0, \ldots, x_n$. The left sum uses $x_0, \ldots, x_{n - 1}$ and the right sum uses $x_1, \ldots, x_n$. Do not use all $n + 1$. And always multiply by $\Delta x$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>With $n$ rectangles there are $n + 1$ endpoints $x_0, \ldots, x_n$. The left sum uses $x_0, \ldots, x_{n - 1}$ and the right sum uses $x_1, \ldots, x_n$. Neither sum uses all $n + 1$. Always multiply by $\Delta x$.</p></div>
 </div>
 
 <div class="section"><h3>4.2 The Definite Integral</h3>
 
-<p class="part"><span class="dimtag">Concept</span>If $f$ is defined on $[a, b]$, its <b>definite integral</b> from $a$ to $b$ is</p>
+<p class="part"><span class="dimtag">Concept</span>Let $f$ be defined on $[a, b]$, and suppose the limit as $n \to \infty$ of the sums of 4.1 exists and is the same for all choices of sample points. Then the <b>definite integral</b> of $f$ from $a$ to $b$ is</p>
 <div class="formula">$\displaystyle\int_a^b f(x)\,dx = \lim_{n \to \infty}\sum_{i = 1}^{n} f(x_i^*)\,\Delta x,$</div>
-<p>provided the limit exists and is the same for all choices of sample points. Then $f$ is <b>integrable</b> on $[a, b]$. Every continuous $f$ is integrable. The sums are <b>Riemann sums</b>. In the notation, $\int$ is a stretched S for "sum", $a$ and $b$ are the <b>limits of integration</b>, $f(x)$ is the <b>integrand</b>, and $dx$ plays the role of $\Delta x$ (it has no meaning by itself). With right endpoints, $x_i = a + i\,\Delta x$ and</p>
+<p>and $f$ is <b>integrable</b> on $[a, b]$. Every function that is continuous on $[a, b]$ is integrable on $[a, b]$. The sums are <b>Riemann sums</b>. In the notation, $\int$ is an elongated S for "sum", $a$ and $b$ are the <b>limits of integration</b>, $f(x)$ is the <b>integrand</b>, and $dx$ plays the role of $\Delta x$ (it has no meaning by itself). With right endpoints, $x_i = a + i\,\Delta x$ and</p>
 <div class="formula">$\displaystyle\int_a^b f(x)\,dx = \lim_{n \to \infty}\sum_{i = 1}^{n} f\!\left(a + i\,\frac{b - a}{n}\right)\frac{b - a}{n}.$</div>
 
 <p><b>Net area.</b> Where $f &lt; 0$ the products $f(x_i^*)\Delta x$ are negative. So $\int_a^b f(x)\,dx$ is the <b>net (signed) area</b>: the area above the $x$-axis minus the area below.</p>
 
 <p><b>Evaluating with sums.</b> The formulas $\displaystyle\sum_{i = 1}^n i = \frac{n(n + 1)}{2}$ and $\displaystyle\sum_{i = 1}^n i^2 = \frac{n(n + 1)(2n + 1)}{6}$ evaluate simple cases. Example: $\displaystyle\int_0^3 x^2\,dx = \lim_{n \to \infty}\sum_{i = 1}^n\left(\frac{3i}{n}\right)^2\frac3n = \lim_{n \to \infty}\frac{27}{n^3}\cdot\frac{n(n + 1)(2n + 1)}{6} = \frac{27\cdot 2}{6} = 9.$</p>
 
-<p><b>Evaluating with geometry.</b> If the region is made of rectangles, triangles, and circles, use their area formulas. $\displaystyle\int_{-2}^{2}\sqrt{4 - x^2}\,dx = 2\pi$ is the area of the upper half of the circle $x^2 + y^2 = 4$. And $\displaystyle\int_0^2\left(1 + \sqrt{4 - x^2}\right)dx = 2 + \pi$: a $2$ by $1$ rectangle plus a quarter circle of radius $2$.</p>
+<p><b>Evaluating with geometry.</b> If the region is made of rectangles, triangles, and circles, use their area formulas. $\displaystyle\int_{-2}^{2}\sqrt{4 - x^2}\,dx = 2\pi$ is the area of the upper half of the circle $x^2 + y^2 = 4$. And $\displaystyle\int_0^2\left(1 + \sqrt{4 - x^2}\right)dx = 2 + \pi$ is the area of a $2$ by $1$ rectangle plus a quarter circle of radius $2$.</p>
 
-<p><b>Properties.</b> For integrable $f$, $g$ and a constant $c$:</p>
+<p><b>Properties.</b> Let $f$ and $g$ be integrable and let $c$ be a constant. Then</p>
 <ul class="tight">
   <li>$\int_a^b c\,dx = c(b - a)$, $\ \int_a^b c f\,dx = c\int_a^b f\,dx$, $\ \int_a^b (f \pm g)\,dx = \int_a^b f\,dx \pm \int_a^b g\,dx$</li>
   <li>$\int_a^a f\,dx = 0$, $\ \int_b^a f\,dx = -\int_a^b f\,dx$, $\ \int_a^c f\,dx + \int_c^b f\,dx = \int_a^b f\,dx$</li>
-  <li>Comparison: if $m \le f(x) \le M$ on $[a, b]$, then $m(b - a) \le \int_a^b f\,dx \le M(b - a)$</li>
+  <li>Comparison: if $m \le f(x) \le M$ for every $x$ in $[a, b]$, then $m(b - a) \le \int_a^b f\,dx \le M(b - a)$</li>
 </ul>
 <p><em>Why.</em> Each property already holds for every Riemann sum, so it holds for the limit.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>The definite integral is a number, and it is net area, not total area. $\int_0^{2\pi}\sin x\,dx = 0$ even though the region between $\sin x$ and the axis has area $4$. The variable is a dummy: $\int_a^b f(x)\,dx = \int_a^b f(t)\,dt$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The definite integral is a number, and it is net area, not total area. $\int_0^{2\pi}\sin x\,dx = 0$ even though the region between $\sin x$ and the axis has area $4$. The variable of integration is a dummy variable: $\int_a^b f(x)\,dx = \int_a^b f(t)\,dt$.</p></div>
 </div>
 
 <div class="section"><h3>4.3 The Fundamental Theorem of Calculus</h3>
 
-<p class="part"><span class="dimtag">Theorem</span>For $f$ continuous on $[a, b]$, define the <b>area-so-far</b> function</p>
+<p class="part"><span class="dimtag">Theorem</span>Let $f$ be continuous on $[a, b]$. Define the <b>area-so-far</b> function</p>
 <div class="formula">$\displaystyle g(x) = \int_a^x f(t)\,dt, \qquad a \le x \le b,$</div>
 <p>the net area under $f$ from $a$ up to $x$. (The integration variable is renamed $t$ since $x$ is now the upper limit.)</p>
 
@@ -87,13 +87,13 @@ window.MathJax = {
 
 <p><b>With the chain rule.</b> If the upper limit is a differentiable function $u(x)$, then</p>
 <div class="formula">$\dfrac{d}{dx}\displaystyle\int_a^{u(x)} f(t)\,dt = f(u(x))\,u'(x).$</div>
-<p>For a variable lower limit, flip the integral: $\int_{v(x)}^a f\,dt = -\int_a^{v(x)} f\,dt$. With both limits variable, split at a constant: $\dfrac{d}{dx}\displaystyle\int_{v(x)}^{u(x)} f(t)\,dt = f(u(x))\,u'(x) - f(v(x))\,v'(x)$.</p>
+<p>For a variable lower limit, reverse the limits: $\int_{v(x)}^a f\,dt = -\int_a^{v(x)} f\,dt$. With both limits variable, split at a constant: $\dfrac{d}{dx}\displaystyle\int_{v(x)}^{u(x)} f(t)\,dt = f(u(x))\,u'(x) - f(v(x))\,v'(x)$.</p>
 <p><b>Examples.</b> $\dfrac{d}{dx}\displaystyle\int_1^x\sqrt{1 + t^3}\,dt = \sqrt{1 + x^3}$. $\ \dfrac{d}{dx}\displaystyle\int_1^{x^3}\frac{dt}{1 + t^2} = \frac{3x^2}{1 + x^6}$. $\ \dfrac{d}{dx}\displaystyle\int_x^{3}\sin(t^3)\,dt = -\sin(x^3)$.</p>
 
 <div class="thm"><div class="thm-name">FTC, Part 2</div>If $f$ is continuous on $[a, b]$ and $F$ is any antiderivative of $f$ ($F' = f$), then
 $$\int_a^b f(x)\,dx = F(b) - F(a).$$</div>
-<p><em>Why.</em> By Part 1, $g(x) = \int_a^x f(t)\,dt$ is an antiderivative of $f$, so $g = F + C$ (3.7). Then $\int_a^b f\,dx = g(b) - g(a) = (F(b) + C) - (F(a) + C) = F(b) - F(a)$. <em>Slope picture.</em> $F(b) - F(a)$ is the total change in $F$, and that is the sum of the small changes $F'(x)\,\Delta x = f(x)\,\Delta x$, which is a Riemann sum for $\int_a^b f\,dx$.</p>
-<p>Notation: $F(b) - F(a) = \big[F(x)\big]_a^b$. <b>Examples.</b> $\displaystyle\int_1^4\left(2x + \frac{1}{\sqrt x}\right)dx = \Big[x^2 + 2\sqrt x\Big]_1^4 = (16 + 4) - (1 + 2) = 17$. $\ \displaystyle\int_0^\pi\sin x\,dx = \Big[-\cos x\Big]_0^\pi = 1 - (-1) = 2$.</p>
+<p><em>Why.</em> By Part 1, $g(x) = \int_a^x f(t)\,dt$ is an antiderivative of $f$, so $g = F + C$ for some constant $C$, since the theorem of 3.7 says every antiderivative of $f$ on an interval is $F$ plus a constant. Then $\int_a^b f\,dx = g(b) - g(a) = (F(b) + C) - (F(a) + C) = F(b) - F(a)$. <em>Slope picture.</em> $F(b) - F(a)$ is the total change in $F$, and that is the sum of the small changes $F'(x)\,\Delta x = f(x)\,\Delta x$, which is a Riemann sum for $\int_a^b f\,dx$.</p>
+<p>We write $F(b) - F(a) = \big[F(x)\big]_a^b$. <b>Examples.</b> $\displaystyle\int_1^4\left(2x + \frac{1}{\sqrt x}\right)dx = \Big[x^2 + 2\sqrt x\Big]_1^4 = (16 + 4) - (1 + 2) = 17$. $\ \displaystyle\int_0^\pi\sin x\,dx = \Big[-\cos x\Big]_0^\pi = 1 - (-1) = 2$.</p>
 
 <div class="note"><div class="note-name">The two parts of the FTC</div><p>Part 1: the area function $g$ changes at the rate $f(x)$, the height at its moving edge. Part 2: adding up the small changes $F'(x)\,\Delta x$ of $F$ across $[a, b]$ gives its total change $F(b) - F(a)$.</p></div>
 
@@ -110,12 +110,12 @@ $$\int_a^b f(x)\,dx = F(b) - F(a).$$</div>
 <div class="thm"><div class="thm-name">Net Change Theorem</div>The integral of a rate of change is the net change: $\displaystyle\int_a^b F'(x)\,dx = F(b) - F(a)$.</div>
 <p>This is FTC Part 2 read as a statement about rates. If $V'(t)$ is the rate water flows into a tank, $\int_{t_1}^{t_2}V'(t)\,dt$ is the change in volume. If $s(t)$ is position and $v = s'$ is velocity,</p>
 <div class="formula">$\displaystyle\text{displacement} = \int_a^b v(t)\,dt = s(b) - s(a), \qquad \text{distance traveled} = \int_a^b |v(t)|\,dt.$</div>
-<p><em>Why the absolute value.</em> Moving backward ($v &lt; 0$) cancels displacement but still adds to distance.</p>
+<p><em>Why the absolute value.</em> Moving backward ($v &lt; 0$) reduces displacement but adds to distance.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="netChange"></canvas><div class="fig-cap"><b>Displacement vs distance.</b> $v(t) = (t - 1)(t - 4)$ m/s on $[0, 5]$. The particle (bottom, starting at $0$) moves right, then left while $v &lt; 0$, then right again. Over $[0, 5]$ the displacement is $-\tfrac56$ m and the distance is $\tfrac{49}{6}$ m.</div></div>
 
-<p><b>Example.</b> For $v(t) = (t - 1)(t - 4) = t^2 - 5t + 4$ on $[0, 5]$, split at the zeros $t = 1, 4$: $\int_0^1 v\,dt = \tfrac{11}{6}$, $\int_1^4 v\,dt = -\tfrac92$, $\int_4^5 v\,dt = \tfrac{11}{6}$. Displacement $\tfrac{11}{6} - \tfrac92 + \tfrac{11}{6} = -\tfrac56$ m. Distance $\tfrac{11}{6} + \tfrac92 + \tfrac{11}{6} = \tfrac{49}{6}$ m.</p>
-<p><b>Example (absolute value).</b> $\displaystyle\int_0^5|x - 2|\,dx = \int_0^2(2 - x)\,dx + \int_2^5(x - 2)\,dx = 2 + \tfrac92 = \tfrac{13}{2}.$ (Two triangles.)</p>
+<p><b>Example.</b> For $v(t) = (t - 1)(t - 4) = t^2 - 5t + 4$ on $[0, 5]$, split at the zeros $t = 1, 4$: $\int_0^1 v\,dt = \tfrac{11}{6}$, $\int_1^4 v\,dt = -\tfrac92$, $\int_4^5 v\,dt = \tfrac{11}{6}$. The displacement is $\tfrac{11}{6} - \tfrac92 + \tfrac{11}{6} = -\tfrac56$ m. The distance is $\tfrac{11}{6} + \tfrac92 + \tfrac{11}{6} = \tfrac{49}{6}$ m.</p>
+<p><b>Example (absolute value).</b> $\displaystyle\int_0^5|x - 2|\,dx = \int_0^2(2 - x)\,dx + \int_2^5(x - 2)\,dx = 2 + \tfrac92 = \tfrac{13}{2}.$ (These are the areas of two triangles.)</p>
 
 <div class="pitfall"><div class="pitfall-name">Warning</div><p>For distance, find where $v$ changes sign and split the integral there. Computing $\left|\int_a^b v\,dt\right|$ instead of $\int_a^b|v|\,dt$ gives $\tfrac56$ in the example above, not $\tfrac{49}{6}$.</p></div>
 </div>
@@ -125,7 +125,7 @@ $$\int_a^b f(x)\,dx = F(b) - F(a).$$</div>
 <p class="part"><span class="dimtag">Technique</span>The chain rule says $\dfrac{d}{dx}F(g(x)) = F'(g(x))\,g'(x)$. Reading it backward:</p>
 <div class="thm"><div class="thm-name">Substitution Rule</div>If $u = g(x)$ is differentiable with range an interval $I$, and $f$ is continuous on $I$, then
 $$\int f(g(x))\,g'(x)\,dx = \int f(u)\,du.$$</div>
-<p>In practice: choose $u$ to be an inside function whose derivative (up to a constant factor) also appears, write $du = g'(x)\,dx$, and rewrite the whole integral in $u$. <em>Why it is legal.</em> If $F' = f$, both sides equal $F(g(x)) + C$, by the chain rule.</p>
+<p>In practice, choose $u$ to be an inside function whose derivative (up to a constant factor) also appears, write $du = g'(x)\,dx$, and rewrite the whole integral in $u$. <em>Why this is valid.</em> If $F' = f$, both sides equal $F(g(x)) + C$, by the chain rule.</p>
 
 <p><b>Examples.</b></p>
 <ul class="tight">
@@ -137,11 +137,11 @@ $$\int f(g(x))\,g'(x)\,dx = \int f(u)\,du.$$</div>
 
 <p><b>Definite integrals.</b> Change the limits with the substitution: $\displaystyle\int_a^b f(g(x))\,g'(x)\,dx = \int_{g(a)}^{g(b)}f(u)\,du$. Example: $\displaystyle\int_0^4\frac{x}{\sqrt{x^2 + 9}}\,dx$ with $u = x^2 + 9$ runs from $u = 9$ to $u = 25$, giving $\displaystyle\int_9^{25}\tfrac12 u^{-1/2}\,du = \Big[\sqrt u\Big]_9^{25} = 5 - 3 = 2$.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="substitution"></canvas><div class="fig-cap"><b>Substitution moves area without changing it.</b> With $u = x^2$, each colored strip of width $dx$ under $y = 2x\cos(x^2)$ (top) matches a strip of width $du = 2x\,dx$ under $y = \cos u$ (bottom) with the same net area. Both integrals equal $\sin(a^2)$.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="substitution"></canvas><div class="fig-cap"><b>Substitution preserves net area.</b> With $u = x^2$, each colored strip of width $dx$ under $y = 2x\cos(x^2)$ (top) matches a strip of width $du = 2x\,dx$ under $y = \cos u$ (bottom) with the same net area. Both integrals equal $\sin(a^2)$.</div></div>
 
 <p><b>Symmetry.</b> Let $f$ be continuous on $[-a, a]$. If $f$ is even, $\int_{-a}^a f\,dx = 2\int_0^a f\,dx$. If $f$ is odd, $\int_{-a}^a f\,dx = 0$ (the two halves cancel), e.g. $\int_{-2}^2 x^3\cos x\,dx = 0$.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>Every $x$ must go. An integral with both $x$ and $u$ in it, or with $dx$ left over, is not finished. For definite integrals either change the limits to $u$-values or switch back to $x$ before substituting the original limits. Mixing the two (old limits, new variable) is the most common error.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Every $x$ must be replaced. An integral with both $x$ and $u$ in it, or with $dx$ left over, is not finished. For definite integrals either change the limits to $u$-values or switch back to $x$ before substituting the original limits. Mixing the two (old limits, new variable) is the most common error.</p></div>
 </div>
 
 <div class="section"><h3>Worked example</h3>
@@ -169,17 +169,17 @@ The cart moves $9$ m forward, stops at $t = 3$, then backs up $4$ m.</p>
 
 <div class="section"><h3>Strategies</h3>
 
-<p><b>Riemann sums.</b> Compute $\Delta x$, list the sample points, multiply each height by $\Delta x$, add. Draw the rectangles to check left vs right.</p>
+<p><b>Riemann sums.</b> Compute $\Delta x$, list the sample points, multiply each height by $\Delta x$, and add. Draw the rectangles to check left vs right.</p>
 
-<p><b>Definite integral as a limit.</b> $\Delta x = \tfrac{b - a}{n}$, $x_i = a + i\Delta x$, then $\lim_{n \to \infty}\sum_{i = 1}^n f(x_i)\Delta x$.</p>
+<p><b>Definite integral as a limit.</b> Set $\Delta x = \tfrac{b - a}{n}$ and $x_i = a + i\Delta x$, then write $\lim_{n \to \infty}\sum_{i = 1}^n f(x_i)\Delta x$.</p>
 
-<p><b>Choosing a method for $\int_a^b f\,dx$.</b> Geometry when the region is a known shape (especially $\sqrt{r^2 - x^2}$, a semicircle). FTC Part 2 when an antiderivative is visible. Substitution when an inside function's derivative appears as a factor.</p>
+<p><b>Choosing a method for $\int_a^b f\,dx$.</b> Use geometry when the region is a known shape (especially $\sqrt{r^2 - x^2}$, a semicircle). Use FTC Part 2 when an antiderivative is known. Use substitution when the derivative of an inside function appears as a factor.</p>
 
-<p><b>Derivative of an integral.</b> FTC Part 1: plug the upper limit into the integrand and multiply by its derivative. Subtract the same for a variable lower limit.</p>
+<p><b>Derivative of an integral.</b> By FTC Part 1, substitute the upper limit into the integrand and multiply by the derivative of the upper limit. For a variable lower limit, subtract the same expression computed with the lower limit.</p>
 
 <p><b>Absolute values and distance.</b> Find where the inside changes sign, split the interval there, and integrate each piece with the correct sign.</p>
 
-<p><b>Substitution.</b> Declare $u$, compute $du$, convert everything (including the limits), integrate, and (for indefinite integrals) substitute back.</p>
+<p><b>Substitution.</b> Choose $u$, compute $du$, convert everything (including the limits), integrate, and (for indefinite integrals) substitute back.</p>
 </div>
 <div class="chapter-nav"><a href="ch3.html">← previous</a><a href="outline.html">outline</a><a href="ch5.html">next →</a></div>
 </div>

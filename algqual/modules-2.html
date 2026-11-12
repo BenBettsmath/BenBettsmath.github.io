@@ -26,26 +26,26 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block defn">
   <span class="thm-label">Def.</span> <strong>Short exact sequence.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
-  A diagram $0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0$ is exact if $f$ is injective, $g$ is surjective, and $\mathrm{im}\, f = \ker g$. <em>So exactness says $f$ makes $A$ a submodule of $B$, and $C$ is what's left over, $C \cong B/f(A)$.</em> The sequence <strong>splits</strong> if $B \cong A \oplus C$ (as an isomorphism of the diagram), equivalently if there is a section $C \to B$ of $g$ or a retraction $B \to A$ of $f$.
+  A sequence $0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0$ of $R$-modules and $R$-module homomorphisms is exact if $f$ is injective, $g$ is surjective, and $\mathrm{im}\, f = \ker g$. <em>So exactness says $f$ makes $A$ a submodule of $B$, and $C$ is the quotient, $C \cong B/f(A)$.</em> The sequence <strong>splits</strong> if $B \cong A \oplus C$ (by an isomorphism compatible with the maps of the sequence), equivalently if there is a section $C \to B$ of $g$ (a homomorphism $s$ with $g \circ s = \mathrm{id}_C$) or a retraction $B \to A$ of $f$ (a homomorphism $r$ with $r \circ f = \mathrm{id}_A$).
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Example (split).</span> $0 \to \mathbb{Z}/2 \to \mathbb{Z}/2 \oplus \mathbb{Z}/3 \to \mathbb{Z}/3 \to 0$ splits, since the middle is already the direct sum.<br>
-  <span class="thm-label">Non-example (non-split).</span> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would give $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ does not.
+  <span class="thm-label">Non-example (non-split).</span> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A splitting would give $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ does not.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Remark.</span> <strong>When sequences don't split.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
-  A splitting means $B$ is just $A$ and $C$ sitting side by side, so $B$ has to contain a copy of $C$ as a summand, which is what a section of $g$ gives. This fails when $B$ glues $A$ and $C$ together in a way that can't be undone, for example when $C$ has torsion but $B$ doesn't, or when some ring element moves part of $C$ into $A$. Here are the standard examples.
+  A splitting means $B$ is the direct sum of $A$ and $C$, so $B$ has to contain a copy of $C$ as a summand, which is what a section of $g$ gives. This fails when $A$ and $C$ are joined in $B$ in a way that is not a direct sum, for example when $C$ has torsion but $B$ doesn't, or when some ring element moves part of $C$ into $A$. Here are the standard examples.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Remark.</span> <strong>Three standard non-split examples.</strong>
   <ul>
-    <li><strong>Over $\mathbb{Z}$:</strong> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A split would need $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ doesn't.</li>
-    <li><strong>Over $\mathbb{C}[x]$:</strong> $0 \to (x)/(x^2) \to \mathbb{C}[x]/(x^2) \to \mathbb{C}[x]/(x) \to 0$. As vector spaces this does split, both sides are $\mathbb{C}^2$, so the problem is the action of $x$. Write an element of the middle as $(c, d)$ for $c + dx \bmod x^2$. Multiplying by $x$ sends $(c, d) \mapsto (0, c)$, which isn't always $0$. But $x$ kills both $(x)/(x^2)$ and $\mathbb{C}[x]/(x)$, so it would kill their direct sum too.</li>
-    <li><strong>Over $\mathbb{Z}[i]$:</strong> $0 \to (1+i) \to \mathbb{Z}[i] \to \mathbb{Z}[i]/(1+i) \cong \mathbb{F}_2 \to 0$. A splitting would give an idempotent of $\mathbb{Z}[i]$ other than $0$ and $1$ (see the next bullet), but $\mathbb{Z}[i]$ is a domain, so it only has $0$ and $1$.</li>
-    <li><strong>General principle (domains).</strong> If $R$ is a domain and $0 \neq I \subsetneq R$, then $0 \to I \to R \to R/I \to 0$ never splits. A splitting writes $R = I \oplus J$ as ideals, so $1 = i + e$ with $i \in I$ and $e \in J$. Then $e = e \cdot 1 = ei + e^2$, and $ei \in I \cap J = 0$, so $e^2 = e$. In a domain this forces $e \in \{0,1\}$, which makes $I = R$ or $I = 0$.</li>
+    <li><strong>Over $\mathbb{Z}$:</strong> $0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \to \mathbb{Z}/2 \to 0$. A splitting would need $\mathbb{Z} \cong \mathbb{Z} \oplus \mathbb{Z}/2$, but the right side has torsion and $\mathbb{Z}$ doesn't.</li>
+    <li><strong>Over $\mathbb{C}[x]$:</strong> $0 \to (x)/(x^2) \to \mathbb{C}[x]/(x^2) \to \mathbb{C}[x]/(x) \to 0$. As vector spaces this does split, since both sides are $\mathbb{C}^2$. The problem is the action of $x$. Write an element of the middle as $(c, d)$ for $c + dx \bmod x^2$. Multiplying by $x$ sends $(c, d) \mapsto (0, c)$, which isn't always $0$. But $x$ kills both $(x)/(x^2)$ and $\mathbb{C}[x]/(x)$, so it would kill their direct sum too.</li>
+    <li><strong>Over $\mathbb{Z}[i]$:</strong> $0 \to (1+i) \to \mathbb{Z}[i] \to \mathbb{Z}[i]/(1+i) \cong \mathbb{F}_2 \to 0$. A splitting would give an idempotent of $\mathbb{Z}[i]$ other than $0$ and $1$ (the component of $1$ in a complement of $(1+i)$), but $\mathbb{Z}[i]$ is a domain, so its only idempotents are $0$ and $1$.</li>
+    <li><strong>General principle (domains).</strong> If $R$ is a domain and $0 \neq I \subsetneq R$ is an ideal, then $0 \to I \to R \to R/I \to 0$ does not split. A splitting writes $R = I \oplus J$ for some ideal $J$, so $1 = i + e$ with $i \in I$ and $e \in J$. Then $e = e \cdot 1 = ei + e^2$, and $ei \in I \cap J = 0$, so $e^2 = e$. In a domain this forces $e \in \{0,1\}$, which makes $I = R$ or $I = 0$.</li>
   </ul>
 </div>
 
@@ -53,7 +53,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
   <span class="thm-label">Prop.</span> <strong>Sequence from two maximal ideals.</strong> <span class="cite">(D&amp;F &sect;10.5)</span>
   If $I, J$ are distinct maximal ideals of $R$, then $I + J = R$, and the sequence
   $$0 \to IJ \to I \oplus J \xrightarrow{(a, b) \mapsto a - b} R \to 0$$
-  (with first map $x \mapsto (x, x)$) is exact. The kernel of the second map is $I \cap J$, which equals $IJ$ since $I + J = R$. The sequence splits because $R$ is free, so $I \oplus J \cong IJ \oplus R$. So if $I$ and $J$ are projective, so is $IJ$, as a direct summand of a projective module.
+  (with first map $x \mapsto (x, x)$) is exact. The kernel of the second map is $I \cap J$, which equals $IJ$ since $I + J = R$. The sequence splits because $R$ is free as an $R$-module, so $I \oplus J \cong IJ \oplus R$. So if $I$ and $J$ are projective, so is $IJ$, as a direct summand of the projective module $I \oplus J$.
 </div>
 
 <div class="thm-block thm">
@@ -65,7 +65,7 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block note">
   <span class="thm-label">Diagram chase.</span>
-  For $\beta$ injective: take $b \in \ker \beta$. Its image in $C$ lies in $\ker \gamma = 0$, so $b$ comes from some $a \in A$ via the top row. The image of $\alpha(a)$ in $B'$ is $\beta(b) = 0$, and $A' \hookrightarrow B'$ gives $\alpha(a) = 0$. With $\alpha$ injective, $a = 0$, so $b = 0$. Surjectivity is a similar chase going the other way.
+  To show $\beta$ is injective, take $b \in \ker \beta$. Its image in $C$ lies in $\ker \gamma = 0$, so by exactness of the top row $b$ is the image of some $a \in A$. The image of $\alpha(a)$ in $B'$ is $\beta(b) = 0$, and since $A' \hookrightarrow B'$ is injective, $\alpha(a) = 0$. Since $\alpha$ is injective, $a = 0$, so $b = 0$. Surjectivity is a similar chase going the other way.
 </div>
 
 <div class="part-nav"><a href="modules-1.html">&larr; Free, torsion, and finitely generated modules</a><a href="modules.html">Module Theory contents</a><a href="modules-3.html">Finitely generated modules over a PID &rarr;</a></div>

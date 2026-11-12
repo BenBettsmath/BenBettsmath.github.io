@@ -28,26 +28,26 @@ window.MathJax = {
 <div class="page-content">
 <h2>Chapter 11 · Sequences and Series</h2>
 <div class="chapter-nav"><a href="ch9.html">← previous</a><a href="outline.html">outline</a><a href="complex.html">next →</a></div>
-<p>Infinite lists of numbers, infinite sums, and functions written as "polynomials of infinite degree". The chapter has two halves. First, tests that decide whether an infinite sum adds up to a finite number. Second, power series and Taylor series, which use those tests to represent $e^x$, $\sin x$, $\ln(1 + x)$ and many other functions as series. The guiding picture is the sequence of partial sums: a series converges exactly when its partial sums settle down to a limit.</p>
+<p>This chapter covers infinite lists of numbers, infinite sums, and functions written as "polynomials of infinite degree". It has two halves. The first gives tests that decide whether an infinite sum adds up to a finite number. The second covers power series and Taylor series, which use those tests to write $e^x$, $\sin x$, $\ln(1 + x)$ and many other functions as series. The main picture is the sequence of partial sums: a series converges exactly when its partial sums settle down to a limit.</p>
 <div class="section"><h3>11.1 Sequences</h3>
 
 <p class="part"><b>Sequence.</b> A sequence $\{a_n\}$ is an ordered list $a_1, a_2, a_3, \dots$, one term $a_n$ for each positive integer $n$ (sometimes starting at $n = 0$). Equivalently it is a function $a$ whose domain is the positive integers, with $a_n = a(n)$.</p>
 
-<p><b>Limit.</b> $\displaystyle\lim_{n\to\infty}a_n = L$ means: for every $\varepsilon &gt; 0$ there is an integer $N$ such that $|a_n - L| &lt; \varepsilon$ whenever $n &gt; N$. Then $\{a_n\}$ <b>converges</b> to $L$. Otherwise it <b>diverges</b>. In words, every band of half-width $\varepsilon$ around $L$, however thin, eventually contains all the terms.</p>
+<p><b>Limit.</b> $\displaystyle\lim_{n\to\infty}a_n = L$ means that for every $\varepsilon &gt; 0$ there is an integer $N$ such that $|a_n - L| &lt; \varepsilon$ for every $n &gt; N$. Then $\{a_n\}$ <b>converges</b> to $L$. Otherwise it <b>diverges</b>. In words, every band of half-width $\varepsilon$ around $L$, however thin, eventually contains all the terms.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="seqLimit"></canvas><div class="fig-cap"><b>The $\varepsilon$ band.</b>Shrink $\varepsilon$. For a convergent sequence the cutoff index moves right but always exists. For $(-1)^n$ no band of half-width less than $1$ works around any $L$.</div></div>
 
-<p><b>Theorem (sequences from functions).</b> If $\lim_{x\to\infty}f(x) = L$ and $a_n = f(n)$ for integers $n$, then $\lim_{n\to\infty}a_n = L$. This lets us use L'Hôpital's rule: $\displaystyle\lim_{n\to\infty}\frac{\ln n}{n} = \lim_{x\to\infty}\frac{1/x}{1} = 0$.</p>
+<p><b>Theorem (sequences from functions).</b> If $\lim_{x\to\infty}f(x) = L$ and $a_n = f(n)$ for every positive integer $n$, then $\lim_{n\to\infty}a_n = L$. This lets us use L'Hôpital's rule: $\displaystyle\lim_{n\to\infty}\frac{\ln n}{n} = \lim_{x\to\infty}\frac{1/x}{1} = 0$.</p>
 
-<p><b>Tools.</b> The limit laws and the squeeze theorem hold for sequences. Also:</p>
+<p><b>Tools.</b> The limit laws and the squeeze theorem hold for sequences. The following also hold.</p>
 <ul class="tight">
   <li>If $\lim|a_n| = 0$, then $\lim a_n = 0$ (squeeze $-|a_n| \le a_n \le |a_n|$).</li>
   <li>If $a_n \to L$ and $f$ is continuous at $L$, then $f(a_n) \to f(L)$.</li>
   <li>$\{r^n\}$ converges to $0$ if $-1 &lt; r &lt; 1$, to $1$ if $r = 1$, and diverges for all other $r$.</li>
 </ul>
 
-<p><b>Monotone and bounded.</b> $\{a_n\}$ is <b>increasing</b> if $a_n &lt; a_{n+1}$ for all $n$, <b>decreasing</b> if $a_n &gt; a_{n+1}$ for all $n$, and <b>monotonic</b> if it is one or the other. It is <b>bounded above</b> if some $M$ has $a_n \le M$ for all $n$, <b>bounded below</b> if some $m$ has $a_n \ge m$ for all $n$, and <b>bounded</b> if both.</p>
-<p><b>Monotonic sequence theorem.</b> Every bounded monotonic sequence converges. <em>Why.</em> An increasing sequence bounded above cannot jump past its bound, so its terms crowd toward the smallest number that is not exceeded by any term. That number is the limit. This is a property of the real numbers (completeness), and it is how we know a sequence converges before we know its limit.</p>
+<p><b>Monotone and bounded.</b> $\{a_n\}$ is <b>increasing</b> if $a_n &lt; a_{n+1}$ for all $n$, <b>decreasing</b> if $a_n &gt; a_{n+1}$ for all $n$, and <b>monotonic</b> if it is one or the other. It is <b>bounded above</b> if there is a number $M$ with $a_n \le M$ for all $n$, <b>bounded below</b> if there is a number $m$ with $a_n \ge m$ for all $n$, and <b>bounded</b> if it is both.</p>
+<p><b>Monotonic sequence theorem.</b> Every bounded monotonic sequence converges. <em>Why.</em> An increasing sequence bounded above cannot jump past its bound, so its terms approach the smallest number that no term exceeds. That number is the limit. This is a property of the real numbers (completeness), and it is how we know a sequence converges before we know its limit.</p>
 
 <p><b>Examples.</b> $\dfrac{n}{n + 1} = \dfrac{1}{1 + 1/n} \to 1$. $\dfrac{(-1)^n}{n} \to 0$ since $\bigl|\frac{(-1)^n}{n}\bigr| = \frac1n \to 0$. $(-1)^n$ diverges, alternating between $1$ and $-1$. $\bigl(1 + \frac1n\bigr)^n \to e$ (6.4).</p>
 
@@ -55,7 +55,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>11.2 Series</h3>
 
-<p class="part"><b>Series and partial sums.</b> Given a sequence $\{a_n\}$, the series $\sum_{n=1}^\infty a_n = a_1 + a_2 + \cdots$ is the "infinite sum" of its terms. Its <b>$n$th partial sum</b> is $s_n = \sum_{i=1}^n a_i = a_1 + \cdots + a_n$. If the sequence $\{s_n\}$ converges to a number $s$, the series is <b>convergent</b> with <b>sum</b> $s$, and we write $\sum a_n = s$. Otherwise the series is <b>divergent</b>. So a series is really the sequence of its partial sums.</p>
+<p class="part"><b>Series and partial sums.</b> Given a sequence $\{a_n\}$, the series $\sum_{n=1}^\infty a_n = a_1 + a_2 + \cdots$ is the "infinite sum" of its terms. Its <b>$n$th partial sum</b> is $s_n = \sum_{i=1}^n a_i = a_1 + \cdots + a_n$. If the sequence $\{s_n\}$ converges to a number $s$, the series is <b>convergent</b> with <b>sum</b> $s$, and we write $\sum a_n = s$. Otherwise the series is <b>divergent</b>. So a series is the sequence of its partial sums.</p>
 
 <p><b>Geometric series.</b> For a first term $a \ne 0$ and a common ratio $r$ of consecutive terms,</p>
 <div class="formula">$\displaystyle\sum_{n=1}^\infty ar^{n-1} = a + ar + ar^2 + \cdots = \frac{a}{1 - r} \ \text{ if } |r| &lt; 1, \qquad \text{divergent if } |r| \ge 1.$</div>
@@ -68,14 +68,14 @@ window.MathJax = {
 
 <p><b>The harmonic series diverges.</b> $\sum\frac1n = 1 + \tfrac12 + \bigl(\tfrac13 + \tfrac14\bigr) + \bigl(\tfrac15 + \cdots + \tfrac18\bigr) + \cdots$. Each group in parentheses is at least $\tfrac12$ (the group ending at $\frac{1}{2^{k+1}}$ has $2^k$ terms, each at least $\frac{1}{2^{k+1}}$), so $s_{2^k} \ge 1 + \tfrac k2 \to \infty$.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="partialSums"></canvas><div class="fig-cap"><b>Terms and partial sums.</b>Slide $N$ and switch series. The harmonic terms shrink to $0$, but its partial sums keep climbing.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="partialSums"></canvas><div class="fig-cap"><b>Terms and partial sums.</b>Slide $N$ and switch series. The harmonic terms shrink to $0$, but its partial sums grow without bound.</div></div>
 
 <p><b>Theorem.</b> If $\sum a_n$ converges, then $\lim_{n\to\infty}a_n = 0$. <em>Why.</em> $a_n = s_n - s_{n-1}$, and both partial sums tend to the same $s$.</p>
 <p><b>Test for divergence.</b> The contrapositive: if $\lim a_n$ does not exist or is not $0$, then $\sum a_n$ diverges.</p>
-<p><b>Linearity.</b> If $\sum a_n$ and $\sum b_n$ converge, so do $\sum ca_n = c\sum a_n$ and $\sum(a_n \pm b_n) = \sum a_n \pm \sum b_n$.</p>
+<p><b>Linearity.</b> If $\sum a_n$ and $\sum b_n$ converge and $c$ is a constant, then so do $\sum ca_n = c\sum a_n$ and $\sum(a_n \pm b_n) = \sum a_n \pm \sum b_n$.</p>
 
 <div class="pitfall"><div class="pitfall-name">Warning</div><p>$a_n \to 0$ does <em>not</em> imply convergence. The harmonic series is the standard counterexample. The test for divergence can only prove divergence.</p>
-<p>Keep the sequence and the series apart. $\frac{n}{n+1} \to 1$ as a sequence, so the series $\sum\frac{n}{n + 1}$ diverges.</p></div>
+<p>Do not confuse the sequence with the series. $\frac{n}{n+1} \to 1$ as a sequence, so the series $\sum\frac{n}{n + 1}$ diverges.</p></div>
 </div>
 <div class="section"><h3>11.3 The Integral Test and Estimates of Sums</h3>
 
@@ -105,30 +105,30 @@ window.MathJax = {
 <p><b>Limit comparison test.</b> Suppose $\sum a_n$ and $\sum b_n$ have positive terms and $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n} = c$ with $0 &lt; c &lt; \infty$. Then both series converge or both diverge.</p>
 <p><em>Why.</em> For large $n$, $\frac{c}{2}b_n &lt; a_n &lt; 2c\,b_n$, and the ordinary comparison test applies in both directions.</p>
 
-<p><b>Choosing $b_n$.</b> Keep only the dominant term of the numerator and of the denominator. Example: $\displaystyle\sum\frac{2n + 3}{n^3 + 1}$ looks like $\frac{2n}{n^3} = \frac{2}{n^2}$. With $b_n = \frac{1}{n^2}$, $\dfrac{a_n}{b_n} = \dfrac{2n^3 + 3n^2}{n^3 + 1} \to 2$, and $\sum\frac{1}{n^2}$ converges, so the series converges.</p>
+<p><b>Choosing $b_n$.</b> Keep only the dominant term of the numerator and of the denominator. Example: $\displaystyle\sum\frac{2n + 3}{n^3 + 1}$ behaves like $\frac{2n}{n^3} = \frac{2}{n^2}$. With $b_n = \frac{1}{n^2}$, $\dfrac{a_n}{b_n} = \dfrac{2n^3 + 3n^2}{n^3 + 1} \to 2$, and $\sum\frac{1}{n^2}$ converges, so the series converges.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>A comparison in the wrong direction proves nothing. Showing $\frac{1}{n^2 + 1} \le \frac1n$ is true but useless, because being smaller than a divergent series says nothing. Before writing an inequality, decide whether you expect convergence (bound above by a convergent series) or divergence (bound below by a divergent one).</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>A comparison in the wrong direction proves nothing. Showing $\frac{1}{n^2 + 1} \le \frac1n$ is true but does not help, because being smaller than a divergent series gives no information. Before writing an inequality, decide whether you expect convergence (bound above by a convergent series) or divergence (bound below by a divergent one).</p></div>
 </div>
 <div class="section"><h3>11.5 Alternating Series</h3>
 
 <p class="part"><b>Definition.</b> An <b>alternating series</b> has terms that alternate in sign, $\sum(-1)^{n-1}b_n = b_1 - b_2 + b_3 - \cdots$ with $b_n &gt; 0$.</p>
 <p><b>Alternating series test.</b> If (i) $b_{n+1} \le b_n$ for all $n$ and (ii) $\lim_{n\to\infty}b_n = 0$, then the series converges.</p>
-<p><em>Why.</em> Each step goes the opposite way and no farther than the last one. So the even partial sums $s_2 \le s_4 \le s_6 \le \cdots$ increase, the odd ones $s_1 \ge s_3 \ge \cdots$ decrease, and every even one is below every odd one. Both are bounded monotonic, hence converge, and their limits agree because $s_{2n+1} - s_{2n} = b_{2n+1} \to 0$.</p>
+<p><em>Why.</em> Each term moves the partial sum in the opposite direction from the previous term, and by no more. So the even partial sums $s_2 \le s_4 \le s_6 \le \cdots$ increase, the odd ones $s_1 \ge s_3 \ge \cdots$ decrease, and every even one is below every odd one. Both sequences are bounded and monotonic, hence converge, and their limits agree because $s_{2n+1} - s_{2n} = b_{2n+1} \to 0$.</p>
 
-<p><b>Alternating series estimation theorem.</b> If $s = \sum(-1)^{n-1}b_n$ satisfies the hypotheses of the test, then</p>
+<p><b>Alternating series estimation theorem.</b> If $s = \sum(-1)^{n-1}b_n$ is the sum of an alternating series that satisfies the hypotheses of the alternating series test, then</p>
 <div class="formula">$|R_n| = |s - s_n| \le b_{n+1}.$</div>
 <p>The sum $s$ lies between any two consecutive partial sums, so the error after $n$ terms is at most the size of the first omitted term.</p>
 
 <div class="fig-inline-canvas"><canvas data-fig="alternating"></canvas><div class="fig-cap"><b>Partial sums zigzag around the sum.</b>The yellow band between $s_N$ and $s_{N+1}$ always contains $s$ (green). Its width is $b_{N+1}$.</div></div>
 
-<p><b>Examples.</b> The alternating harmonic series $1 - \frac12 + \frac13 - \cdots$ converges. (Its sum is $\ln 2$.) How many terms of $\sum_{n=1}^\infty\frac{(-1)^{n-1}}{n!}$ guarantee error at most $0.001$? We need $b_{n+1} = \frac{1}{(n + 1)!} \le 0.001$, that is $(n + 1)! \ge 1000$. Since $6! = 720$ and $7! = 5040$, $n + 1 = 7$, so $n = 6$ terms.</p>
+<p><b>Examples.</b> The alternating harmonic series $1 - \frac12 + \frac13 - \cdots$ converges. (Its sum is $\ln 2$.) How many terms of $\sum_{n=1}^\infty\frac{(-1)^{n-1}}{n!}$ guarantee error at most $0.001$? We need $b_{n+1} = \frac{1}{(n + 1)!} \le 0.001$, that is $(n + 1)! \ge 1000$. Since $6! = 720$ and $7! = 5040$, we need $n + 1 = 7$, so $n = 6$ terms.</p>
 
 <div class="pitfall"><div class="pitfall-name">Warning</div><p>Check both conditions. If $b_n \not\to 0$, the series diverges by the test for divergence (for example $\sum(-1)^n\frac{n}{n + 1}$). If $b_n$ is not decreasing, the test does not apply, though the series might still converge by another test. The estimate $|R_n| \le b_{n+1}$ holds only for alternating series that pass the test.</p></div>
 </div>
 <div class="section"><h3>11.6 Absolute Convergence and the Ratio and Root Tests</h3>
 
 <p class="part"><b>Definitions.</b> $\sum a_n$ is <b>absolutely convergent</b> if $\sum|a_n|$ converges. It is <b>conditionally convergent</b> if it converges but $\sum|a_n|$ diverges. Example: $\sum\frac{(-1)^{n-1}}{n}$ is conditionally convergent, while $\sum\frac{(-1)^{n-1}}{n^2}$ is absolutely convergent.</p>
-<p><b>Theorem.</b> Absolutely convergent series are convergent. <em>Why.</em> $0 \le a_n + |a_n| \le 2|a_n|$, so $\sum(a_n + |a_n|)$ converges by comparison, and $a_n = (a_n + |a_n|) - |a_n|$ is a difference of two convergent series.</p>
+<p><b>Theorem.</b> If a series $\sum a_n$ is absolutely convergent, then it is convergent. <em>Why.</em> $0 \le a_n + |a_n| \le 2|a_n|$, so $\sum(a_n + |a_n|)$ converges by the comparison test with $\sum 2|a_n|$, and $a_n = (a_n + |a_n|) - |a_n|$ is a difference of two convergent series.</p>
 
 <p><b>Ratio test.</b> Let $L = \displaystyle\lim_{n\to\infty}\Bigl|\frac{a_{n+1}}{a_n}\Bigr|$.</p>
 <ul class="tight">
@@ -140,25 +140,25 @@ window.MathJax = {
 
 <p><b>Root test.</b> Let $L = \displaystyle\lim_{n\to\infty}\sqrt[n]{|a_n|}$. The same three conclusions hold, for the same reason (eventually $|a_n| \le r^n$).</p>
 
-<p><b>Examples.</b> $\sum\frac{n^3}{3^n}$: $\dfrac{a_{n+1}}{a_n} = \dfrac{(n + 1)^3}{3n^3} \to \dfrac13 &lt; 1$, absolutely convergent. $\sum\Bigl(\dfrac{2n + 1}{3n + 2}\Bigr)^n$: $\sqrt[n]{a_n} = \dfrac{2n + 1}{3n + 2} \to \dfrac23 &lt; 1$, absolutely convergent.</p>
+<p><b>Examples.</b> For $\sum\frac{n^3}{3^n}$ we have $\dfrac{a_{n+1}}{a_n} = \dfrac{(n + 1)^3}{3n^3} \to \dfrac13 &lt; 1$, so the series is absolutely convergent by the ratio test. For $\sum\Bigl(\dfrac{2n + 1}{3n + 2}\Bigr)^n$ we have $\sqrt[n]{a_n} = \dfrac{2n + 1}{3n + 2} \to \dfrac23 &lt; 1$, so the series is absolutely convergent by the root test.</p>
 
 <p><b>Rearrangements.</b> The terms of an absolutely convergent series can be reordered without changing the sum. A conditionally convergent series can be rearranged to have any sum at all (Riemann). Order matters when convergence relies on cancellation.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test gives $L = 1$ for every $p$-series and for every rational function of $n$, whether they converge or not, so it tells nothing there. Use it for factorials and for constants raised to the $n$th power. Use the root test when the whole term is an $n$th power.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test gives $L = 1$ for every $p$-series and for every rational function of $n$, whether they converge or not, so it gives no information there. Use it for factorials and for constants raised to the $n$th power. Use the root test when the whole term is an $n$th power.</p></div>
 </div>
 <div class="section"><h3>11.7 Strategy for Testing Series</h3>
 
 <p class="part">Classify $\sum a_n$ by its form.</p>
 <ol class="tight">
-  <li>If $\lim a_n \ne 0$ (or it does not exist), stop: divergent by the test for divergence.</li>
+  <li>If $\lim a_n \ne 0$ (or it does not exist), the series diverges by the test for divergence.</li>
   <li>If it is a $p$-series $\sum\frac{1}{n^p}$ or a geometric series $\sum ar^{n-1}$, use the known answers.</li>
-  <li>If it is a rational or algebraic function of $n$ (roots of polynomials), compare with a $p$-series, usually by limit comparison.</li>
+  <li>If it is a rational or algebraic function of $n$ (roots of polynomials), compare with a $p$-series by the comparison test or the limit comparison test.</li>
   <li>If it has the form $\sum(-1)^{n-1}b_n$, try the alternating series test, and check absolute convergence separately if asked.</li>
   <li>If it has factorials or constants to the $n$th power, use the ratio test.</li>
   <li>If $a_n = (b_n)^n$, use the root test.</li>
   <li>If $a_n = f(n)$ with $\int_1^\infty f(x)\,dx$ easy to evaluate, and $f$ positive and decreasing, use the integral test.</li>
 </ol>
-<p>Example classifications: $\sum\frac{n - 1}{2n + 1}$ (terms $\to \frac12$, step 1), $\sum\frac{\sqrt n}{n^2 + 1}$ (compare with $\frac{1}{n^{3/2}}$, step 3), $\sum\frac{2^n}{n!}$ (ratio, step 5), $\sum ne^{-n^2}$ (integral, step 7).</p>
+<p>Examples: $\sum\frac{n - 1}{2n + 1}$ (terms $\to \frac12$, step 1), $\sum\frac{\sqrt n}{n^2 + 1}$ (compare with $\frac{1}{n^{3/2}}$, step 3), $\sum\frac{2^n}{n!}$ (ratio, step 5), $\sum ne^{-n^2}$ (integral, step 7).</p>
 </div>
 <div class="section"><h3>11.8 Power Series</h3>
 
@@ -172,21 +172,21 @@ window.MathJax = {
   <li>It converges for all $x$.</li>
   <li>There is a number $R &gt; 0$ such that it converges if $|x - a| &lt; R$ and diverges if $|x - a| &gt; R$.</li>
 </ol>
-<p>$R$ is the <b>radius of convergence</b> ($R = 0$ in case 1, $R = \infty$ in case 2). The <b>interval of convergence</b> is the set of all $x$ where the series converges. In case 3 it is $(a - R, a + R)$ together with whichever endpoints $x = a \pm R$ give convergent series, and each endpoint must be checked on its own.</p>
+<p>$R$ is the <b>radius of convergence</b> ($R = 0$ in case 1, $R = \infty$ in case 2). The <b>interval of convergence</b> is the set of all $x$ where the series converges. In case 3 it is $(a - R, a + R)$ together with whichever endpoints $x = a \pm R$ give convergent series, and each endpoint must be checked separately.</p>
 <p><em>Why the convergence set is an interval around $a$.</em> If the series converges at some $x_1$, its terms are bounded there. For any $x$ closer to $a$, each term is smaller than a bounded term times $\bigl|\frac{x - a}{x_1 - a}\bigr|^n$, a geometric ratio less than $1$, so the series converges absolutely at $x$.</p>
 
 <p><b>Finding $R$.</b> Apply the ratio (or root) test to $\sum|c_n(x - a)^n|$, get a limit $L$ depending on $x$, and solve $L &lt; 1$.</p>
 <p><b>Example.</b> $\displaystyle\sum_{n=1}^\infty\frac{(x + 1)^n}{n\,2^n}$. Ratio test:</p>
 <div class="formula">$\Bigl|\dfrac{(x + 1)^{n+1}}{(n + 1)2^{n+1}}\cdot\dfrac{n\,2^n}{(x + 1)^n}\Bigr| = \dfrac{n}{n + 1}\cdot\dfrac{|x + 1|}{2} \to \dfrac{|x + 1|}{2}.$</div>
-<p>So it converges for $|x + 1| &lt; 2$: center $a = -1$, radius $R = 2$. At $x = 1$ the series is $\sum\frac1n$, divergent. At $x = -3$ it is $\sum\frac{(-1)^n}{n}$, convergent. Interval of convergence $[-3, 1)$.</p>
+<p>So it converges for $|x + 1| &lt; 2$, with center $a = -1$ and radius $R = 2$. At $x = 1$ the series is $\sum\frac1n$, which diverges. At $x = -3$ it is $\sum\frac{(-1)^n}{n}$, which converges. The interval of convergence is $[-3, 1)$.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="powerInterval"></canvas><div class="fig-cap"><b>Interval of convergence.</b>Drag the yellow point along the number line. Below it, the partial sums at that $x$ settle (blue) or run away (red). Endpoints snap into place.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="powerInterval"></canvas><div class="fig-cap"><b>Interval of convergence.</b>Drag the yellow point along the number line. Below it, the partial sums at that $x$ converge (blue) or diverge (red). Endpoints snap into place.</div></div>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test always gives $L = 1$ at the endpoints, so it cannot decide them. Substitute each endpoint and use another test (often $p$-series or alternating series). And $R$ is a radius, half the length of the interval, not the interval itself.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>The ratio test always gives $L = 1$ at the endpoints, so it cannot decide them. Substitute each endpoint and use another test (often $p$-series or alternating series). Also, $R$ is a radius, half the length of the interval, not the interval itself.</p></div>
 </div>
 <div class="section"><h3>11.9 Representations of Functions as Power Series</h3>
 
-<p class="part"><b>The basic series.</b> The geometric series with $a = 1$, $r = x$:</p>
+<p class="part"><b>The basic series.</b> The geometric series with $a = 1$, $r = x$ is</p>
 <div class="formula">$\displaystyle\frac{1}{1 - x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + \cdots, \qquad |x| &lt; 1.$</div>
 <p>Substituting for $x$ and multiplying by powers of $x$ gives many more. Example: $\dfrac{1}{1 + x^2} = \dfrac{1}{1 - (-x^2)} = \displaystyle\sum_{n=0}^\infty(-1)^nx^{2n}$ for $|x| &lt; 1$. Example: $\dfrac{x^3}{2 + x} = \dfrac{x^3}{2}\cdot\dfrac{1}{1 - (-x/2)} = \displaystyle\sum_{n=0}^\infty\frac{(-1)^nx^{n+3}}{2^{n+1}}$, valid for $|x/2| &lt; 1$, so $R = 2$.</p>
 
@@ -204,7 +204,7 @@ window.MathJax = {
 </div>
 <div class="section"><h3>11.10 Taylor and Maclaurin Series</h3>
 
-<p class="part"><b>Theorem (the coefficients are forced).</b> If $f$ has a power series representation $f(x) = \sum c_n(x - a)^n$ for $|x - a| &lt; R$, then</p>
+<p class="part"><b>Theorem (formula for the coefficients).</b> If $f$ has a power series representation $f(x) = \sum c_n(x - a)^n$ for $|x - a| &lt; R$, then</p>
 <div class="formula">$c_n = \dfrac{f^{(n)}(a)}{n!}.$</div>
 <p><em>Why.</em> Differentiate $n$ times term by term and set $x = a$. Every term with a power of $(x - a)$ left over vanishes, and the term $c_n(x - a)^n$ has become $n!\,c_n$.</p>
 
@@ -212,10 +212,10 @@ window.MathJax = {
 <div class="formula">$\displaystyle T_n(x) = \sum_{i=0}^n\frac{f^{(i)}(a)}{i!}(x - a)^i = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n,$</div>
 <p>and the <b>remainder</b> is $R_n(x) = f(x) - T_n(x)$. $T_1$ is the tangent line, and $T_n$ is the polynomial of degree $\le n$ that matches $f$ and its first $n$ derivatives at $a$.</p>
 
-<p><b>When does $f$ equal its Taylor series?</b> Exactly at those $x$ where $R_n(x) \to 0$ as $n \to \infty$. The tool for showing this is</p>
-<p><b>Taylor's inequality.</b> If $|f^{(n+1)}(x)| \le M$ for $|x - a| \le d$, then</p>
+<p><b>When $f$ equals its Taylor series.</b> This holds exactly at those $x$ where $R_n(x) \to 0$ as $n \to \infty$. To show that $R_n(x) \to 0$ we use Taylor's inequality.</p>
+<p><b>Taylor's inequality.</b> If $|f^{(n+1)}(x)| \le M$ for every $x$ with $|x - a| \le d$, then</p>
 <div class="formula">$|R_n(x)| \le \dfrac{M}{(n + 1)!}\,|x - a|^{n+1} \qquad \text{for } |x - a| \le d.$</div>
-<p><em>Example.</em> For $f = e^x$ at $a = 0$ every derivative is $e^x \le e^d$ on $|x| \le d$, so $|R_n(x)| \le e^d\frac{d^{n+1}}{(n + 1)!} \to 0$ (factorials beat powers). Hence $e^x$ equals its Maclaurin series for every $x$.</p>
+<p><em>Example.</em> For $f = e^x$ at $a = 0$ every derivative is $e^x \le e^d$ on $|x| \le d$, so $|R_n(x)| \le e^d\frac{d^{n+1}}{(n + 1)!} \to 0$ (factorials grow faster than powers). Hence $e^x$ equals its Maclaurin series for every $x$.</p>
 
 <p><b>Table of Maclaurin series.</b></p>
 <div class="formula">$\begin{aligned}
@@ -227,16 +227,16 @@ e^x &amp;= \sum_{n=0}^\infty\frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \cdots &am
 \ln(1 + x) &amp;= \sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots &amp;&amp; R = 1\\
 (1 + x)^k &amp;= \sum_{n=0}^\infty\binom kn x^n = 1 + kx + \frac{k(k - 1)}{2!}x^2 + \cdots &amp;&amp; R = 1
 \end{aligned}$</div>
-<p>In the last line, the <b>binomial series</b>, $k$ is any real number and $\binom kn = \frac{k(k - 1)\cdots(k - n + 1)}{n!}$ with $\binom k0 = 1$. If $k$ is a nonnegative integer the series stops and is the binomial theorem.</p>
+<p>In the last line, the <b>binomial series</b>, $k$ is any real number and $\binom kn = \frac{k(k - 1)\cdots(k - n + 1)}{n!}$ with $\binom k0 = 1$. If $k$ is a nonnegative integer the series terminates and is the binomial theorem.</p>
 
-<div class="fig-inline-canvas"><canvas data-fig="taylor"></canvas><div class="fig-cap"><b>Taylor polynomials $T_n$ at $0$.</b>Raise the degree. For $\sin$, $\cos$, $e^x$ the polynomials hug the curve on a wider and wider interval, and the green Taylor bound is computed at the probe point. For the others, nothing outside $|x| &lt; 1$ improves.</div></div>
+<div class="fig-inline-canvas"><canvas data-fig="taylor"></canvas><div class="fig-cap"><b>Taylor polynomials $T_n$ at $0$.</b>Raise the degree. For $\sin$, $\cos$, $e^x$ the polynomials approximate the curve on a wider and wider interval, and the green Taylor bound is computed at the probe point. For the others, the approximation does not improve outside $|x| &lt; 1$.</div></div>
 
 <p><b>New series from old.</b> Substitute, multiply, or differentiate the table instead of computing derivatives. Example: $x\cos(x^2) = \displaystyle\sum_{n=0}^\infty\frac{(-1)^nx^{4n+1}}{(2n)!}$.
-Series also evaluate limits: $\dfrac{\sin x - x}{x^3} = \dfrac{-x^3/3! + x^5/5! - \cdots}{x^3} \to -\dfrac16$ as $x \to 0$.
-And they sum series:</p>
+Series can also be used to evaluate limits: $\dfrac{\sin x - x}{x^3} = \dfrac{-x^3/3! + x^5/5! - \cdots}{x^3} \to -\dfrac16$ as $x \to 0$.
+They can also be used to sum series:</p>
 <div class="formula">$\displaystyle\sum_{n=0}^\infty\frac{(-1)^n\pi^{2n}}{4^n(2n)!} = \sum_{n=0}^\infty\frac{(-1)^n(\pi/2)^{2n}}{(2n)!} = \cos\frac\pi2 = 0.$</div>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>Do not drop the $n!$. The coefficient is $f^{(n)}(a)/n!$, not $f^{(n)}(a)$. And a Taylor series can converge without equaling $f$: the function equal to $e^{-1/x^2}$ for $x \ne 0$ and $0$ at $x = 0$ has every derivative $0$ at $0$, so its Maclaurin series is $0$. Equality needs $R_n \to 0$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>Do not drop the $n!$. The coefficient is $f^{(n)}(a)/n!$, not $f^{(n)}(a)$. Also, a Taylor series can converge without equaling $f$: the function equal to $e^{-1/x^2}$ for $x \ne 0$ and $0$ at $x = 0$ has every derivative $0$ at $0$, so its Maclaurin series is $0$. Equality needs $R_n \to 0$.</p></div>
 </div>
 <div class="section"><h3>11.11 Applications of Taylor Polynomials</h3>
 
@@ -248,9 +248,9 @@ And they sum series:</p>
 
 <p><b>Example.</b> Approximate $\sin(0.2)$ by $T_3(x) = x - \frac{x^3}{6}$: $T_3(0.2) = 0.2 - \frac{0.008}{6} \approx 0.198667$. Since the $x^4$ coefficient of $\sin$ is $0$, $T_3 = T_4$, so Taylor's inequality with $n = 4$ and $M = 1$ (every derivative of $\sin$ is bounded by $1$) gives $|R_4(0.2)| \le \frac{(0.2)^5}{5!} \approx 2.7\times10^{-6}$. The true value is $\sin(0.2) = 0.1986693\ldots$</p>
 
-<p><b>Physics.</b> Many formulas are first Taylor terms. For example the relativistic kinetic energy $mc^2\bigl[(1 - v^2/c^2)^{-1/2} - 1\bigr]$ becomes $\tfrac12mv^2$ when $(1 - v^2/c^2)^{-1/2}$ is replaced by the first two terms $1 + \frac{v^2}{2c^2}$ of its binomial series. Here $m$ is mass, $v$ speed, and $c$ the speed of light.</p>
+<p><b>Physics.</b> Many formulas in physics are the first terms of a Taylor series. For example the relativistic kinetic energy $mc^2\bigl[(1 - v^2/c^2)^{-1/2} - 1\bigr]$ becomes $\tfrac12mv^2$ when $(1 - v^2/c^2)^{-1/2}$ is replaced by the first two terms $1 + \frac{v^2}{2c^2}$ of its binomial series. Here $m$ is mass, $v$ speed, and $c$ the speed of light.</p>
 
-<div class="pitfall"><div class="pitfall-name">Warning</div><p>$M$ must bound $|f^{(n+1)}|$ on the whole interval from $a$ to $x$, not just at $a$. For $e^x$ on $[0, 0.5]$ take $M = e^{0.5}$ (or the cruder $M = 2$), not $M = e^0 = 1$.</p></div>
+<div class="pitfall"><div class="pitfall-name">Warning</div><p>$M$ must bound $|f^{(n+1)}|$ on the whole interval from $a$ to $x$, not only at $a$. For $e^x$ on $[0, 0.5]$ take $M = e^{0.5}$ (or the cruder $M = 2$), not $M = e^0 = 1$.</p></div>
 </div>
 <div class="section"><h3>Practice problems</h3>
 

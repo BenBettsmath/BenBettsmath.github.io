@@ -26,38 +26,38 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Invariant factor form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 5)</span>
-  Every f.g. module $M$ over a PID $R$ decomposes as
-  $$M \cong R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m), \qquad a_1 \mid a_2 \mid \cdots \mid a_m, \quad a_i \in R \setminus R^\times.$$
+  Let $R$ be a PID and $M$ a finitely generated (f.g.) $R$-module. Then there exist an integer $r \geq 0$ and elements $a_1, \ldots, a_m$ of $R$ with
+  $$M \cong R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m), \qquad a_1 \mid a_2 \mid \cdots \mid a_m, \quad a_i \neq 0, \quad a_i \notin R^\times.$$
   The $a_i$ are the <strong>invariant factors</strong> and $r$ is the <strong>free rank</strong>.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Elementary divisor form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 6)</span>
-  Equivalently $M \cong R^r \oplus R/(p_1^{\alpha_1}) \oplus \cdots \oplus R/(p_t^{\alpha_t})$ where the $p_i^{\alpha_i}$ are prime powers (with repetitions allowed). The multiset of elementary divisors is uniquely determined.
+  Let $R$ be a PID and $M$ a finitely generated $R$-module. Equivalently to the invariant factor form, $M \cong R^r \oplus R/(p_1^{\alpha_1}) \oplus \cdots \oplus R/(p_t^{\alpha_t})$ where the $p_i^{\alpha_i}$ are powers of primes of $R$ (with repetitions allowed). The $p_i^{\alpha_i}$ are the elementary divisors of $M$, and their multiset is uniquely determined by $M$.
 </div>
 
 <div class="thm-block thm">
   <span class="thm-label">Thm (Smith normal form).</span> <span class="cite">(D&amp;F &sect;12.1, Thm. 21)</span>
-  Any matrix $A$ over a PID can be put in the form $\mathrm{diag}(d_1, \ldots, d_r, 0, \ldots, 0)$ with $d_1 \mid \cdots \mid d_r$ by elementary row and column operations. For $A = xI - T$ over $k[x]$, the $d_i$ are the invariant factors of the operator $T$.
+  Let $A$ be a matrix over a PID. Then elementary row and column operations put $A$ in the form $\mathrm{diag}(d_1, \ldots, d_r, 0, \ldots, 0)$ with $d_1 \mid \cdots \mid d_r$. If $A = xI - T$ over $k[x]$ for an operator $T$ on a finite-dimensional vector space over a field $k$, then the $d_i$ that are not units are the invariant factors of $T$.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">How to read a quotient as a cokernel.</span>
-  To find $\mathbb{Z}^n/H$ for $H = \langle v_1, \ldots, v_m \rangle$, write generators as the <strong>columns</strong> of an $n \times m$ matrix $M$. Then $M : \mathbb{Z}^m \to \mathbb{Z}^n$ has image $H$, and the quotient sits in
+  To find $\mathbb{Z}^n/H$ for $H = \langle v_1, \ldots, v_m \rangle$, write the generators as the <strong>columns</strong> of an $n \times m$ matrix $M$. Then $M : \mathbb{Z}^m \to \mathbb{Z}^n$ has image $H$, and the quotient sits in the exact sequence
   $$0 \to \mathbb{Z}^m \xrightarrow{\ M\ } \mathbb{Z}^n \to \mathbb{Z}^n/H \to 0.$$
-  It's columns, not rows. Row ops change the target basis of $\mathbb{Z}^n$, column ops the source basis of $\mathbb{Z}^m$. Each invariant factor $d_i$ gives a cyclic block $\mathbb{Z}/d_i$. A coordinate that no column reaches gives a free $\mathbb{Z}$ summand.
+  The generators must be the columns and not the rows. Row operations change the basis of the target $\mathbb{Z}^n$, and column operations change the basis of the source $\mathbb{Z}^m$. Each nonzero diagonal entry $d_i$ of the Smith normal form of $M$ gives a cyclic summand $\mathbb{Z}/d_i$. Each coordinate of $\mathbb{Z}^n$ where the Smith normal form has no nonzero entry gives a free $\mathbb{Z}$ summand.
 </div>
 
 <div class="thm-block ex">
   <span class="thm-label">Remark.</span> <strong>Converting between the two forms.</strong> <span class="cite">(D&amp;F &sect;12.1)</span>
-  The invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ and the elementary divisors carry the same information. To go from invariant factors to elementary divisors, factor each $a_i$ into prime powers. To go back, put the largest power of each prime into $a_m$, the next largest into $a_{m-1}$, and so on. Invariant factors are nicer for things like rational canonical form, and elementary divisors are nicer when we want to look at one prime at a time, like in Jordan form.
+  The invariant factors $a_1 \mid a_2 \mid \cdots \mid a_m$ and the elementary divisors carry the same information. To go from invariant factors to elementary divisors, factor each $a_i$ into prime powers. To go back, put the largest power of each prime into $a_m$, the next largest into $a_{m-1}$, and so on. Invariant factors are more convenient for rational canonical form, and elementary divisors are more convenient when we look at one prime at a time, as in Jordan form.
 </div>
 
 <div class="thm-block note">
   <span class="thm-label">Applications.</span>
   <ul>
     <li><strong>Abelian groups</strong> ($R = \mathbb{Z}$): Every f.g. abelian group is $\mathbb{Z}^r \oplus \mathbb{Z}/d_1 \oplus \cdots \oplus \mathbb{Z}/d_m$ with $d_1 \mid d_2 \mid \cdots \mid d_m$ (invariant factor form) or a sum of cyclic groups of prime-power order (elementary divisor form, the "canonical form" from group theory).</li>
-    <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a f.d. $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors, which give the rational canonical form, and elementary divisors, which give the Jordan normal form when $k$ has all the eigenvalues. Each $k[x]/(x - \lambda)^j$ is one Jordan block, and all the blocks for one $\lambda$ together make up its generalized eigenspace.</li>
+    <li><strong>Linear operators</strong> ($R = k[x]$): For an operator $T : V \to V$ on a finite-dimensional $k$-vector space, the structure theorem applied to $V$ as a $k[x]$-module (via $x \cdot v = T(v)$) gives invariant factors, which give the rational canonical form, and elementary divisors, which give the Jordan normal form when $k$ contains all the eigenvalues. Each $k[x]/(x - \lambda)^j$ is one Jordan block, and all the blocks for one $\lambda$ together make up its generalized eigenspace.</li>
   </ul>
 </div>
 
