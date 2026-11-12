@@ -43,8 +43,30 @@ window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [
     <li>$(M \otimes N) \otimes P \cong M \otimes (N \otimes P)$ (associativity).</li>
     <li>$R/I \otimes_R R/J \cong R/(I + J)$ for ideals $I, J$ of $R$.</li>
     <li>$\mathbb{Z}/m \otimes_\mathbb{Z} \mathbb{Z}/n \cong \mathbb{Z}/\gcd(m, n)$ for positive integers $m, n$.</li>
-    <li>$M \otimes_R N$ inherits scalar multiplication, so for a ring $S \supseteq R$, $S \otimes_R M$ is naturally an $S$-module ("base change").</li>
   </ul>
+</div>
+
+<div class="thm-block defn">
+  <span class="thm-label">Def.</span> <strong>Restriction and extension of scalars.</strong> <span class="cite">(D&amp;F &sect;10.4)</span>
+  Let $f\colon R \to S$ be a homomorphism of commutative rings with $f(1) = 1$.
+  <ul>
+    <li><strong>Restriction of scalars.</strong> An $S$-module $N$ becomes an $R$-module by $r \cdot n = f(r)n$ for $r \in R$ and $n \in N$. The underlying abelian group of $N$ does not change.</li>
+    <li><strong>Extension of scalars.</strong> The ring $S$ is an $R$-module by restriction of scalars. For an $R$-module $M$, the tensor product $S \otimes_R M$ is an $S$-module by $s'(s \otimes m) = s's \otimes m$ for $s, s' \in S$ and $m \in M$.</li>
+  </ul>
+  <em>So extension of scalars is a tensor product, while restriction of scalars only forgets part of the action.</em>
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <span class="cite">(D&amp;F &sect;10.4)</span>
+  Let $f\colon R \to S$ be as above, let $M$ be an $R$-module, and let $N$ be an $S$-module, viewed as an $R$-module by restriction of scalars. Then
+  $$\mathrm{Hom}_S(S \otimes_R M, N) \cong \mathrm{Hom}_R(M, N), \qquad \phi \mapsto \bigl(m \mapsto \phi(1 \otimes m)\bigr).$$
+  The inverse sends an $R$-linear $\psi\colon M \to N$ to the $S$-linear map with $s \otimes m \mapsto s\,\psi(m)$, which is well defined by the universal property of the tensor product, since $(s, m) \mapsto s\,\psi(m)$ is $R$-balanced.
+</div>
+
+<div class="thm-block prop">
+  <span class="thm-label">Prop.</span> <strong>Extension of scalars preserves free modules, and restriction of scalars does not.</strong>
+  Let $f\colon R \to S$ be as above and let $n \geq 1$. Then $S \otimes_R R^n \cong S^n$ as $S$-modules, since tensor products distribute over $\oplus$ and $S \otimes_R R \cong S$. So extension of scalars sends a free $R$-module of rank $n$ to a free $S$-module of rank $n$.<br>
+  Restriction of scalars can turn a free module into a torsion module. Recall that an element $m$ of a $\mathbb{Z}$-module is torsion if $km = 0$ for some nonzero integer $k$. Take $f\colon \mathbb{Z} \to \mathbb{Z}/k$ the quotient map, with $k \geq 2$. The free $\mathbb{Z}/k$-module $\mathbb{Z}/k$ of rank $1$ restricts to the $\mathbb{Z}$-module $\mathbb{Z}/k$, in which every element is killed by $k$. So every element is torsion, and the restricted module is not free over $\mathbb{Z}$, since a nonzero free $\mathbb{Z}$-module has no nonzero torsion elements.
 </div>
 
 <div class="thm-block comp">
